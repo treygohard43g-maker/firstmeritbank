@@ -53,14 +53,6 @@ signupForm.addEventListener("submit", async (event) => {
     document.getElementById("signupDemoSsn").value.trim();
 
 
-  // Basic validation
-
-  if (!fullName || !email || !password || !confirmPassword) {
-    showMessage("Please complete all required fields.", "error");
-    return;
-  }
-
-
   if (password !== confirmPassword) {
     showMessage("Passwords do not match.", "error");
     return;
@@ -76,29 +68,19 @@ signupForm.addEventListener("submit", async (event) => {
   }
 
 
-  if (!idType || !demoIdNumber || !demoSsn) {
-    showMessage(
-      "Please complete the demo identity verification fields.",
-      "error"
-    );
-    return;
-  }
-
-
-  // Prevent double submission
-
   signupButton.disabled = true;
   signupButton.textContent = "Creating Account...";
 
-  showMessage("Creating your account...");
+  showMessage("Connecting to Firebase...");
 
 
   try {
 
-    /*
-      STEP 1
-      Create Firebase Authentication account
-    */
+    console.log("Starting Firebase signup...");
+    console.log("Email:", email);
+
+
+    // Create Firebase Authentication account
 
     const userCredential =
       await createUserWithEmailAndPassword(
@@ -110,24 +92,20 @@ signupForm.addEventListener("submit", async (event) => {
 
     const user = userCredential.user;
 
+    console.log("Firebase Authentication account created.");
+    console.log("UID:", user.uid);
 
-    /*
-      STEP 2
-      Save the user's display name
-    */
+
+    // Save display name
 
     await updateProfile(user, {
       displayName: fullName
     });
 
+    console.log("Profile updated.");
 
-    /*
-      STEP 3
-      Create the user's demo banking profile
-      in Firestore.
 
-      The password is NEVER stored here.
-    */
+    // Create Firestore user document
 
     await setDoc(
       doc(db, "users", user.uid),
@@ -151,54 +129,50 @@ signupForm.addEventListener("submit", async (event) => {
     );
 
 
-    /*
-      Account successfully created
-    */
+    console.log("Firestore user document created.");
+
 
     showMessage(
-      "Account created successfully! Redirecting...",
+      "Account created successfully!",
       "success"
     );
 
 
     setTimeout(() => {
       window.location.href = "dashboard.html";
-    }, 1200);
+    }, 1000);
 
 
   } catch (error) {
 
-    console.error("Firebase signup error:", error);
+    console.error("========== FIREBASE ERROR ==========");
+    console.error("Code:", error.code);
+    console.error("Message:", error.message);
+    console.error("Full error:", error);
+    console.error("====================================");
 
 
-    let message =
-      "Unable to create your account. Please try again.";
+    let message = "Firebase error: " + error.code;
 
 
     if (error.code === "auth/email-already-in-use") {
-
-      message =
-        "An account with this email already exists.";
+      message = "This email is already registered.";
 
     } else if (error.code === "auth/invalid-email") {
-
-      message =
-        "Please enter a valid email address.";
+      message = "The email address is invalid.";
 
     } else if (error.code === "auth/weak-password") {
-
-      message =
-        "Your password is too weak. Use at least 6 characters.";
+      message = "The password is too weak.";
 
     } else if (error.code === "auth/network-request-failed") {
+      message = "Network error. Check your internet connection.";
 
+    } else if (error.code === "permission-denied") {
+      message = "Firestore permission denied. Check your Firestore rules.";
+
+    } else if (error.code === "auth/operation-not-allowed") {
       message =
-        "Network error. Check your internet connection.";
-
-    } else if (error.code === "auth/api-key-not-valid") {
-
-      message =
-        "Firebase configuration is invalid. Please check firebase.js.";
+        "Email/Password authentication is not enabled in Firebase.";
 
     }
 
