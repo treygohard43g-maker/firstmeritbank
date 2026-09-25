@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Account | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ecf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .back-btn,
+    .header-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .back-btn:active,
+    .header-btn:active {
+      transform: scale(0.96);
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .page-title-small {
+      color: #7e8999;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 920px);
+      margin: auto;
+      padding: 28px 18px 50px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.8px;
+    }
+
+    .page-heading p {
+      color: #7d8899;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    /* PROFILE CARD */
+
+    .profile-card {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      border-radius: 23px;
+      padding: 22px;
+      color: #ffffff;
+      box-shadow: 0 13px 30px rgba(18, 59, 114, 0.16);
+      margin-bottom: 18px;
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile-avatar {
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      border-radius: 19px;
+      background: rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .profile-name {
+      font-size: 19px;
+      font-weight: 780;
+    }
+
+    .profile-email {
+      font-size: 12px;
+      opacity: 0.78;
+      margin-top: 4px;
+      word-break: break-word;
+    }
+
+    .profile-status {
+      margin-left: auto;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.13);
+      border-radius: 30px;
+      padding: 7px 10px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .profile-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #79e4ad;
+    }
+
+    .profile-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.14);
+      margin: 20px 0 15px;
+    }
+
+    .profile-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      opacity: 0.65;
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    /* SECTION */
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 750;
+      margin: 0 3px 10px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e6ebf2;
+      border-radius: 20px;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+      overflow: hidden;
+    }
+
+    /* DETAIL ROWS */
+
+    .detail-row {
+      min-height: 65px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+    }
+
+    .detail-icon {
+      width: 39px;
+      height: 39px;
+      min-width: 39px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .detail-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      color: #8a95a5;
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      font-size: 13px;
+      font-weight: 650;
+      color: #253044;
+      word-break: break-word;
+    }
+
+    .detail-action {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      background: #f1f5f9;
+      border-radius: 10px;
+      color: #526176;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ACCOUNT NUMBER */
+
+    .account-number-card {
+      padding: 18px;
+    }
+
+    .account-number-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 14px;
+    }
+
+    .account-number-label {
+      color: #8a95a5;
+      font-size: 11px;
+    }
+
+    .account-number {
+      font-size: 20px;
+      font-weight: 780;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+      color: #182337;
+    }
+
+    .copy-btn {
+      height: 40px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 12px;
+      background: #edf3fa;
+      color: #123b72;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .account-number-footer {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .account-tag {
+      background: #f5f7fa;
+      border-radius: 9px;
+      padding: 7px 10px;
+      color: #687589;
+      font-size: 10px;
+    }
+
+    /* SECURITY CARD */
+
+    .security-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 17px;
+    }
+
+    .security-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 14px;
+      background: #edf7f2;
+      color: #188456;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .security-content {
+      flex: 1;
+    }
+
+    .security-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .security-text {
+      color: #8a95a5;
+      font-size: 11px;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .security-arrow {
+      color: #9aa4b2;
+      font-size: 12px;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 20px);
+      background: #172033;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 13px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 430px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .content {
+        padding: 24px 13px 45px;
+      }
+
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .profile-card {
+        padding: 19px;
+      }
+
+      .profile-status {
+        padding: 6px 8px;
+      }
+
+      .profile-meta {
+        gap: 10px;
+      }
+
+      .account-number {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button class="back-btn" id="backBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+
+          <div class="bank-logo">FM</div>
+
+          <div>
+            <div class="bank-name">First Merit Bank</div>
+            <div class="page-title-small">My Account</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="header-btn" id="settingsBtn">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+
+    </header>
+
+
+    <main class="content">
+
+      <div class="page-heading">
+        <h1>My Account</h1>
+        <p>Manage your account information and details.</p>
+      </div>
+
+
+      <!-- PROFILE -->
+      <section class="profile-card">
+
+        <div class="profile-top">
+
+          <div class="profile-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <div>
+            <div class="profile-name" id="profileName">
+              Account Holder
+            </div>
+
+            <div class="profile-email" id="profileEmail">
+              —
+            </div>
+          </div>
+
+          <div class="profile-status">
+            <span class="profile-status-dot"></span>
+            Active
+          </div>
+
+        </div>
+
+
+        <div class="profile-divider"></div>
+
+
+        <div class="profile-meta">
+
+          <div>
+            <div class="meta-label">
+              ACCOUNT TYPE
+            </div>
+
+            <div class="meta-value" id="accountType">
+              Checking
+            </div>
+          </div>
+
+          <div>
+            <div class="meta-label">
+              CURRENCY
+            </div>
+
+            <div class="meta-value">
+              USD
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOUNT NUMBER -->
+      <section class="section">
+
+        <div class="section-title">
+          Account Information
+        </div>
+
+        <div class="card account-number-card">
+
+          <div class="account-number-top">
+
+            <div>
+              <div class="account-number-label">
+                ACCOUNT NUMBER
+              </div>
+
+              <div class="account-number" id="accountNumber">
+                —
+              </div>
+            </div>
+
+            <button class="copy-btn" id="copyAccountBtn">
+              <i class="fa-regular fa-copy"></i>
+              Copy
+            </button>
+
+          </div>
+
+
+          <div class="account-number-footer">
+
+            <span class="account-tag">
+              <i class="fa-solid fa-building-columns"></i>
+              Checking Account
+            </span>
+
+            <span class="account-tag">
+              <i class="fa-solid fa-circle-check"></i>
+              Active
+            </span>
+
+            <span class="account-tag">
+              <i class="fa-solid fa-dollar-sign"></i>
+              USD
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PERSONAL DETAILS -->
+      <section class="section">
+
+        <div class="section-title">
+          Personal Information
+        </div>
+
+        <div class="card">
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Full Name
+              </div>
+
+              <div class="detail-value" id="fullName">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Email Address
+              </div>
+
+              <div class="detail-value" id="emailAddress">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Customer ID
+              </div>
+
+              <div class="detail-value" id="customerId">
+                —
+              </div>
+
+            </div>
+
+            <button class="detail-action" id="copyCustomerId">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOUNT DETAILS -->
+      <section class="section">
+
+        <div class="section-title">
+          Account Details
+        </div>
+
+        <div class="card">
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Available Balance
+              </div>
+
+              <div class="detail-value" id="balance">
+                $0.00
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Account Opened
+              </div>
+
+              <div class="detail-value" id="createdDate">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Account Status
+              </div>
+
+              <div class="detail-value">
+                Active
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SECURITY -->
+      <section class="section">
+
+        <div class="section-title">
+          Account Security
+        </div>
+
+        <div class="card security-card" id="securityBtn">
+
+          <div class="security-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <div class="security-content">
+
+            <div class="security-title">
+              Security & Sign-in
+            </div>
+
+            <div class="security-text">
+              Manage your password and account security settings.
+            </div>
+
+          </div>
+
+          <div class="security-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <div class="toast" id="toast">
+    Copied to clipboard
+  </div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const settingsBtn =
+      document.getElementById("settingsBtn");
+
+    const securityBtn =
+      document.getElementById("securityBtn");
+
+    const copyAccountBtn =
+      document.getElementById("copyAccountBtn");
+
+    const copyCustomerId =
+      document.getElementById("copyCustomerId");
+
+    const toast =
+      document.getElementById("toast");
+
+
+    let currentAccountNumber = "";
+    let currentCustomerId = "";
+
+
+    /* BACK */
+
+    backBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+
+    /* SETTINGS */
+
+    settingsBtn.addEventListener("click", () => {
+      window.location.href = "settings.html";
+    });
+
+
+    /* SECURITY */
+
+    securityBtn.addEventListener("click", () => {
+      window.location.href = "security.html";
+    });
+
+
+    /* AUTH */
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      await loadAccount(user);
+
+    });
+
+
+    /* LOAD ACCOUNT */
+
+    async function loadAccount(user) {
+
+      try {
+
+        const userRef =
+          doc(db, "users", user.uid);
+
+        const snapshot =
+          await getDoc(userRef);
+
+
+        if (!snapshot.exists()) {
+
+          document.getElementById("profileName")
+            .textContent =
+            user.displayName || "Account Holder";
+
+          document.getElementById("profileEmail")
+            .textContent =
+            user.email || "—";
+
+          document.getElementById("fullName")
+            .textContent =
+            user.displayName || "—";
+
+          document.getElementById("emailAddress")
+            .textContent =
+            user.email || "—";
+
+          currentCustomerId = user.uid;
+
+          document.getElementById("customerId")
+            .textContent =
+            shortenId(user.uid);
+
+          return;
+
+        }
+
+
+        const data =
+          snapshot.data();
+
+
+        const fullName =
+          data.fullName ||
+          user.displayName ||
+          "Account Holder";
+
+
+        const email =
+          data.email ||
+          user.email ||
+          "—";
+
+
+        const accountType =
+          data.accountType ||
+          "Checking";
+
+
+        const balance =
+          typeof data.balance === "number"
+            ? data.balance
+            : 0;
+
+
+        currentAccountNumber =
+          data.accountNumber || "";
+
+
+        currentCustomerId =
+          data.uid || user.uid;
+
+
+        document.getElementById("profileName")
+          .textContent =
+          fullName;
+
+
+        document.getElementById("profileEmail")
+          .textContent =
+          email;
+
+
+        document.getElementById("accountType")
+          .textContent =
+          accountType;
+
+
+        document.getElementById("accountNumber")
+          .textContent =
+          currentAccountNumber || "Not assigned";
+
+
+        document.getElementById("fullName")
+          .textContent =
+          fullName;
+
+
+        document.getElementById("emailAddress")
+          .textContent =
+          email;
+
+
+        document.getElementById("customerId")
+          .textContent =
+          shortenId(currentCustomerId);
+
+
+        document.getElementById("balance")
+          .textContent =
+          formatCurrency(balance);
+
+
+        document.getElementById("createdDate")
+          .textContent =
+          formatDate(data.createdAt);
+
+      } catch (error) {
+
+        console.error(
+          "Account loading error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* COPY ACCOUNT */
+
+    copyAccountBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentAccountNumber) {
+          showToast("Account number unavailable");
+          return;
+        }
+
+        await copyText(currentAccountNumber);
+
+        showToast("Account number copied");
+
+      }
+    );
+
+
+    /* COPY CUSTOMER ID */
+
+    copyCustomerId.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentCustomerId) {
+          showToast("Customer ID unavailable");
+          return;
+        }
+
+        await copyText(currentCustomerId);
+
+        showToast("Customer ID copied");
+
+      }
+    );
+
+
+    /* COPY */
+
+    async function copyText(text) {
+
+      try {
+
+        await navigator.clipboard.writeText(text);
+
+      } catch {
+
+        const textarea =
+          document.createElement("textarea");
+
+        textarea.value = text;
+
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+      }
+
+    }
+
+
+    /* FORMAT */
+
+    function formatCurrency(amount) {
+
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(Number(amount) || 0);
+
+    }
+
+
+    function formatDate(timestamp) {
+
+      if (!timestamp) {
+        return "—";
+      }
+
+
+      let date;
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate === "function"
+      ) {
+
+        date = timestamp.toDate();
+
+      } else {
+
+        date = new Date(timestamp);
+
+      }
+
+
+      if (isNaN(date.getTime())) {
+        return "—";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    function shortenId(id) {
+
+      if (!id) {
+        return "—";
+      }
+
+      if (id.length <= 18) {
+        return id;
+      }
+
+      return (
+        id.substring(0, 8) +
+        "..." +
+        id.substring(id.length - 6)
+      );
+
+    }
+
+
+    /* TOAST */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer =
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2200);
+
+    }
+
+  </script>
+
+</body>
+</html>
