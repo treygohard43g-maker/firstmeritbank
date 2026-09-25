@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Create Account | First Merit Bank</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="auth-page">
+
+    <div class="auth-container">
+
+      <div class="auth-logo">FM</div>
+
+      <h1>Create your account</h1>
+
+      <p class="auth-subtitle">
+        Open your First Merit Bank account and manage your finances
+        from one simple place.
+      </p>
+
+      <form id="signupForm" class="auth-card">
+
+        <!-- PERSONAL INFORMATION -->
+
+        <div class="form-section-title">
+          Personal Information
+        </div>
+
+        <div class="input-group">
+          <label for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Enter your full name"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <!-- SECURITY -->
+
+        <div class="form-section-title">
+          Account Security
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <!-- IDENTITY VERIFICATION -->
+
+        <div class="verification-section">
+
+          <div class="form-section-title">
+            Identity Verification
+          </div>
+
+          <div class="verification-notice">
+            <strong>Demo verification</strong>
+            <p>
+              This is a simulated banking environment.
+              Do not enter real SSNs, government ID numbers,
+              or other sensitive identity information.
+            </p>
+          </div>
+
+          <div class="input-group">
+            <label for="idType">ID Type</label>
+
+            <select id="idType" required>
+              <option value="">Select ID type</option>
+              <option value="drivers-license">Driver's License</option>
+              <option value="national-id">National ID</option>
+              <option value="passport">Passport</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="demoIdNumber">
+              Demo ID Number
+            </label>
+
+            <input
+              type="text"
+              id="demoIdNumber"
+              placeholder="Example: DEMO-ID-123456"
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label for="demoSsn">
+              Demo SSN
+            </label>
+
+            <input
+              type="text"
+              id="demoSsn"
+              placeholder="Example: XXX-XX-1234"
+              maxlength="11"
+              required
+            >
+          </div>
+
+        </div>
+
+        <button type="submit" class="auth-button">
+          Create Account
+        </button>
+
+        <p id="signupMessage" class="auth-message"></p>
+
+      </form>
+
+      <p class="auth-switch">
+        Already have an account?
+        <a href="login.html">Sign In</a>
+      </p>
+
+      <a href="index.html" class="back-home">
+        ← Back to First Merit Bank
+      </a>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
