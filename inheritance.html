@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Inheritance | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ecf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .back-btn,
+    .header-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .page-title-small {
+      color: #7e8999;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 820px);
+      margin: auto;
+      padding: 28px 18px 55px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.8px;
+    }
+
+    .page-heading p {
+      color: #7d8899;
+      font-size: 14px;
+      margin-top: 7px;
+      line-height: 1.5;
+    }
+
+    /* STATUS HERO */
+
+    .hero {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      border-radius: 24px;
+      padding: 24px;
+      color: #ffffff;
+      box-shadow: 0 14px 30px rgba(18, 59, 114, 0.16);
+      margin-bottom: 18px;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .hero-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.13);
+      font-size: 10px;
+    }
+
+    .hero-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #79e4ad;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      opacity: 0.72;
+      margin-top: 20px;
+    }
+
+    .hero-amount {
+      font-size: 31px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-top: 5px;
+    }
+
+    .hero-subtitle {
+      font-size: 12px;
+      opacity: 0.72;
+      margin-top: 5px;
+    }
+
+    /* SETUP CARD */
+
+    .setup-card {
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+      text-align: center;
+    }
+
+    .setup-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 20px;
+      background: #edf3fa;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 22px;
+    }
+
+    .setup-card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .setup-card p {
+      color: #818c9c;
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 520px;
+      margin: auto;
+    }
+
+    .primary-btn {
+      width: 100%;
+      height: 50px;
+      border: 0;
+      border-radius: 14px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+
+    /* DETAILS */
+
+    .details-section {
+      display: none;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 750;
+      margin: 0 3px 10px;
+    }
+
+    .details-card {
+      background: #ffffff;
+      border: 1px solid #e6ebf2;
+      border-radius: 21px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(24,39,75,0.04);
+      margin-bottom: 18px;
+    }
+
+    .detail-row {
+      min-height: 67px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+    }
+
+    .detail-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .detail-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .detail-label {
+      color: #8994a4;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      color: #253044;
+      font-size: 13px;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .amount-value {
+      color: #123b72;
+      font-size: 16px;
+    }
+
+    /* VERIFICATION */
+
+    .verification-card {
+      background: #ffffff;
+      border: 1px solid #e6ebf2;
+      border-radius: 21px;
+      padding: 19px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 5px 18px rgba(24,39,75,0.04);
+      margin-bottom: 18px;
+    }
+
+    .verification-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      border-radius: 14px;
+      background: #fff6e6;
+      color: #b87510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .verification-content {
+      flex: 1;
+    }
+
+    .verification-title {
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .verification-text {
+      color: #8792a2;
+      font-size: 11px;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .verification-status {
+      font-size: 10px;
+      font-weight: 700;
+      color: #b87510;
+      white-space: nowrap;
+    }
+
+    .edit-btn {
+      width: 100%;
+      height: 48px;
+      border: 1px solid #dce4ee;
+      background: #ffffff;
+      color: #123b72;
+      border-radius: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,22,38,0.52);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 15px;
+      z-index: 100;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(100%, 520px);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #ffffff;
+      border-radius: 25px 25px 18px 18px;
+      padding: 20px;
+      animation: slideUp 0.22s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .handle {
+      width: 38px;
+      height: 4px;
+      border-radius: 20px;
+      background: #d9dee6;
+      margin: 0 auto 19px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 19px;
+    }
+
+    .modal-header h2 {
+      font-size: 20px;
+    }
+
+    .close-btn {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #596579;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 650;
+      color: #475468;
+      margin-bottom: 7px;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 48px;
+      border: 1px solid #dfe5ec;
+      border-radius: 13px;
+      padding: 0 13px;
+      outline: none;
+      color: #172033;
+      background: #ffffff;
+      font-size: 14px;
+    }
+
+    .form-input:focus {
+      border-color: #123b72;
+      box-shadow: 0 0 0 3px rgba(18,59,114,0.08);
+    }
+
+    .readonly-input {
+      background: #f5f7fa;
+      color: #667286;
+    }
+
+    .form-help {
+      color: #8a95a5;
+      font-size: 10px;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .save-btn {
+      width: 100%;
+      height: 50px;
+      border: 0;
+      border-radius: 14px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    .cancel-btn {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      background: transparent;
+      color: #657287;
+      font-weight: 650;
+      margin-top: 5px;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%,20px);
+      background: #172033;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 13px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%,0);
+    }
+
+    @media (min-width: 700px) {
+      .modal-overlay {
+        align-items: center;
+      }
+
+      .modal {
+        border-radius: 25px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .content {
+        padding: 24px 13px 45px;
+      }
+
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .hero-amount {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button class="back-btn" id="backBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+
+          <div class="bank-logo">
+            FM
+          </div>
+
+          <div>
+            <div class="bank-name">
+              First Merit Bank
+            </div>
+
+            <div class="page-title-small">
+              Inheritance
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="header-btn" id="refreshBtn">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </header>
+
+
+    <main class="content">
+
+      <div class="page-heading">
+
+        <h1>Inheritance</h1>
+
+        <p>
+          Manage your inheritance information and transfer details.
+        </p>
+
+      </div>
+
+
+      <!-- HERO -->
+
+      <section class="hero">
+
+        <div class="hero-top">
+
+          <div class="hero-icon">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+
+          <div class="hero-status" id="heroStatus">
+            <span class="hero-status-dot"></span>
+            Not Set
+          </div>
+
+        </div>
+
+        <div class="hero-label">
+          INHERITANCE VALUE
+        </div>
+
+        <div class="hero-amount" id="heroAmount">
+          —
+        </div>
+
+        <div class="hero-subtitle">
+          Inheritance information
+        </div>
+
+      </section>
+
+
+      <!-- SETUP -->
+
+      <section class="setup-card" id="setupCard">
+
+        <div class="setup-icon">
+          <i class="fa-solid fa-file-circle-plus"></i>
+        </div>
+
+        <h2>Set Inheritance Details</h2>
+
+        <p>
+          Add your inheritance information to view the amount,
+          receive date, and next of kin details associated
+          with your account.
+        </p>
+
+        <button class="primary-btn" id="setDetailsBtn">
+          Set Inheritance Details
+        </button>
+
+      </section>
+
+
+      <!-- DETAILS -->
+
+      <section class="details-section" id="detailsSection">
+
+        <div class="section-title">
+          Inheritance Information
+        </div>
+
+        <div class="details-card">
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-dollar-sign"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Inheritance Amount
+              </div>
+
+              <div class="detail-value amount-value"
+                   id="detailAmount">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Receive Date
+              </div>
+
+              <div class="detail-value"
+                   id="detailReceiveDate">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Next of Kin
+              </div>
+
+              <div class="detail-value"
+                   id="detailNextOfKin">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <i class="fa-solid fa-right-left"></i>
+            </div>
+
+            <div class="detail-content">
+
+              <div class="detail-label">
+                Transfer Status
+              </div>
+
+              <div class="detail-value"
+                   id="detailTransferStatus">
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- VERIFICATION -->
+
+        <div class="section-title">
+          Verification
+        </div>
+
+        <div class="verification-card">
+
+          <div class="verification-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <div class="verification-content">
+
+            <div class="verification-title">
+              Account Verification
+            </div>
+
+            <div class="verification-text">
+              Review your inheritance verification status.
+            </div>
+
+          </div>
+
+          <div class="verification-status"
+               id="verificationStatus">
+            Required
+          </div>
+
+        </div>
+
+
+        <button class="edit-btn" id="editDetailsBtn">
+          <i class="fa-solid fa-pen"></i>
+          Update Inheritance Details
+        </button>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- SET DETAILS MODAL -->
+
+  <div class="modal-overlay" id="detailsModal">
+
+    <div class="modal">
+
+      <div class="handle"></div>
+
+      <div class="modal-header">
+
+        <h2>Inheritance Details</h2>
+
+        <button class="close-btn" id="closeModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <form id="inheritanceForm">
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Inheritance Amount
+          </label>
+
+          <input
+            type="number"
+            class="form-input"
+            id="amountInput"
+            value="250000"
+            min="0"
+            step="0.01"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Receive Date
+          </label>
+
+          <input
+            type="date"
+            class="form-input"
+            id="receiveDateInput"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Next of Kin
+          </label>
+
+          <input
+            type="text"
+            class="form-input readonly-input"
+            id="nextOfKinInput"
+            readonly
+          >
+
+          <div class="form-help">
+            Your account holder name is used as the next of kin.
+          </div>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="save-btn"
+          id="saveBtn"
+        >
+          Save Inheritance Details
+        </button>
+
+        <button
+          type="button"
+          class="cancel-btn"
+          id="cancelBtn"
+        >
+          Cancel
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <div class="toast" id="toast">
+    Inheritance details saved
+  </div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      updateDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    /* ELEMENTS */
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const setupCard =
+      document.getElementById("setupCard");
+
+    const detailsSection =
+      document.getElementById("detailsSection");
+
+    const setDetailsBtn =
+      document.getElementById("setDetailsBtn");
+
+    const editDetailsBtn =
+      document.getElementById("editDetailsBtn");
+
+    const detailsModal =
+      document.getElementById("detailsModal");
+
+    const closeModal =
+      document.getElementById("closeModal");
+
+    const cancelBtn =
+      document.getElementById("cancelBtn");
+
+    const inheritanceForm =
+      document.getElementById("inheritanceForm");
+
+    const amountInput =
+      document.getElementById("amountInput");
+
+    const receiveDateInput =
+      document.getElementById("receiveDateInput");
+
+    const nextOfKinInput =
+      document.getElementById("nextOfKinInput");
+
+    const saveBtn =
+      document.getElementById("saveBtn");
+
+    const heroAmount =
+      document.getElementById("heroAmount");
+
+    const heroStatus =
+      document.getElementById("heroStatus");
+
+    const detailAmount =
+      document.getElementById("detailAmount");
+
+    const detailReceiveDate =
+      document.getElementById("detailReceiveDate");
+
+    const detailNextOfKin =
+      document.getElementById("detailNextOfKin");
+
+    const detailTransferStatus =
+      document.getElementById("detailTransferStatus");
+
+    const verificationStatus =
+      document.getElementById("verificationStatus");
+
+    const toast =
+      document.getElementById("toast");
+
+
+    let currentUser = null;
+    let currentUserData = null;
+
+
+    /* BACK */
+
+    backBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+
+    /* AUTH */
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = user;
+
+      await loadInheritance();
+
+    });
+
+
+    /* LOAD */
+
+    async function loadInheritance() {
+
+      try {
+
+        const userRef =
+          doc(db, "users", currentUser.uid);
+
+        const snapshot =
+          await getDoc(userRef);
+
+
+        if (!snapshot.exists()) {
+          showSetupState();
+          return;
+        }
+
+
+        currentUserData =
+          snapshot.data();
+
+
+        const fullName =
+          currentUserData.fullName ||
+          currentUser.displayName ||
+          "Account Holder";
+
+
+        nextOfKinInput.value =
+          fullName;
+
+
+        const inheritance =
+          currentUserData.inheritance;
+
+
+        /*
+          Only show the inheritance details
+          after they have been saved.
+        */
+
+        if (
+          inheritance &&
+          inheritance.detailsSet === true
+        ) {
+
+          showDetails(inheritance);
+
+        } else {
+
+          showSetupState();
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Inheritance loading error:",
+          error
+        );
+
+        showSetupState();
+
+      }
+
+    }
+
+
+    /* SETUP STATE */
+
+    function showSetupState() {
+
+      setupCard.style.display = "block";
+      detailsSection.style.display = "none";
+
+      heroAmount.textContent = "—";
+
+      heroStatus.innerHTML = `
+        <span class="hero-status-dot"></span>
+        Not Set
+      `;
+
+    }
+
+
+    /* DETAILS STATE */
+
+    function showDetails(inheritance) {
+
+      setupCard.style.display = "none";
+      detailsSection.style.display = "block";
+
+
+      const amount =
+        Number(inheritance.amount || 0);
+
+
+      heroAmount.textContent =
+        formatCurrency(amount);
+
+
+      heroStatus.innerHTML = `
+        <span class="hero-status-dot"></span>
+        Active
+      `;
+
+
+      detailAmount.textContent =
+        formatCurrency(amount);
+
+
+      detailReceiveDate.textContent =
+        formatDateValue(
+          inheritance.receiveDate
+        );
+
+
+      detailNextOfKin.textContent =
+        inheritance.nextOfKin ||
+        currentUserData.fullName ||
+        currentUser.displayName ||
+        "Account Holder";
+
+
+      detailTransferStatus.textContent =
+        formatStatus(
+          inheritance.transferStatus ||
+          "Inaccessible"
+        );
+
+
+      verificationStatus.textContent =
+        formatStatus(
+          inheritance.verificationStatus ||
+          "Required"
+        );
+
+
+      amountInput.value =
+        amount || 250000;
+
+
+      setDateInput(
+        inheritance.receiveDate
+      );
+
+    }
+
+
+    /* OPEN MODAL */
+
+    setDetailsBtn.addEventListener(
+      "click",
+      openModal
+    );
+
+
+    editDetailsBtn.addEventListener(
+      "click",
+      openModal
+    );
+
+
+    function openModal() {
+
+      const fullName =
+        currentUserData?.fullName ||
+        currentUser?.displayName ||
+        "Account Holder";
+
+
+      nextOfKinInput.value =
+        fullName;
+
+
+      detailsModal.classList.add("show");
+
+      document.body.style.overflow = "hidden";
+
+    }
+
+
+    /* CLOSE MODAL */
+
+    closeModal.addEventListener(
+      "click",
+      closeDetailsModal
+    );
+
+
+    cancelBtn.addEventListener(
+      "click",
+      closeDetailsModal
+    );
+
+
+    detailsModal.addEventListener(
+      "click",
+      (event) => {
+
+        if (
+          event.target === detailsModal
+        ) {
+          closeDetailsModal();
+        }
+
+      }
+    );
+
+
+    function closeDetailsModal() {
+
+      detailsModal.classList.remove("show");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    /* SAVE */
+
+    inheritanceForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        const amount =
+          Number(amountInput.value);
+
+
+        const receiveDate =
+          receiveDateInput.value;
+
+
+        const nextOfKin =
+          nextOfKinInput.value.trim();
+
+
+        if (
+          !amount ||
+          amount <= 0 ||
+          !receiveDate ||
+          !nextOfKin
+        ) {
+
+          showToast(
+            "Please complete all fields"
+          );
+
+          return;
+
+        }
+
+
+        saveBtn.disabled = true;
+
+        saveBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+
+        try {
+
+          const userRef =
+            doc(db, "users", currentUser.uid);
+
+
+          await updateDoc(
+            userRef,
+            {
+              inheritance: {
+                detailsSet: true,
+                amount: amount,
+                receiveDate: receiveDate,
+                nextOfKin: nextOfKin,
+                transferStatus: "Inaccessible",
+                verificationStatus: "Required",
+                updatedAt: serverTimestamp()
+              }
+            }
+          );
+
+
+          currentUserData.inheritance = {
+            detailsSet: true,
+            amount: amount,
+            receiveDate: receiveDate,
+            nextOfKin: nextOfKin,
+            transferStatus: "Inaccessible",
+            verificationStatus: "Required"
+          };
+
+
+          showDetails(
+            currentUserData.inheritance
+          );
+
+
+          closeDetailsModal();
+
+          showToast(
+            "Inheritance details saved"
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          showToast(
+            "Unable to save details"
+          );
+
+        } finally {
+
+          saveBtn.disabled = false;
+
+          saveBtn.innerHTML =
+            "Save Inheritance Details";
+
+        }
+
+      }
+    );
+
+
+    /* REFRESH */
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+        await loadInheritance();
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-rotate-right"></i>';
+
+      }
+    );
+
+
+    /* DATE */
+
+    function setDateInput(value) {
+
+      if (!value) {
+        receiveDateInput.value = "";
+        return;
+      }
+
+
+      if (
+        typeof value === "string"
+      ) {
+
+        receiveDateInput.value =
+          value;
+
+        return;
+
+      }
+
+
+      if (
+        value &&
+        typeof value.toDate === "function"
+      ) {
+
+        const date =
+          value.toDate();
+
+        receiveDateInput.value =
+          toDateInputValue(date);
+
+        return;
+
+      }
+
+
+      const date =
+        new Date(value);
+
+
+      if (!isNaN(date.getTime())) {
+
+        receiveDateInput.value =
+          toDateInputValue(date);
+
+      }
+
+    }
+
+
+    function toDateInputValue(date) {
+
+      const year =
+        date.getFullYear();
+
+      const month =
+        String(
+          date.getMonth() + 1
+        ).padStart(2, "0");
+
+      const day =
+        String(
+          date.getDate()
+        ).padStart(2, "0");
+
+
+      return `${year}-${month}-${day}`;
+
+    }
+
+
+    function formatDateValue(value) {
+
+      if (!value) {
+        return "—";
+      }
+
+
+      let date;
+
+
+      if (
+        typeof value === "string"
+      ) {
+
+        date =
+          new Date(
+            `${value}T00:00:00`
+          );
+
+      } else if (
+        value &&
+        typeof value.toDate === "function"
+      ) {
+
+        date =
+          value.toDate();
+
+      } else {
+
+        date =
+          new Date(value);
+
+      }
+
+
+      if (isNaN(date.getTime())) {
+        return "—";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    /* FORMATTING */
+
+    function formatCurrency(amount) {
+
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        Number(amount) || 0
+      );
+
+    }
+
+
+    function formatStatus(value) {
+
+      if (!value) {
+        return "—";
+      }
+
+
+      return String(value)
+        .replace(/[-_]/g, " ")
+        .replace(/\b\w/g, letter =>
+          letter.toUpperCase()
+        );
+
+    }
+
+
+    /* TOAST */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+      toast.textContent =
+        message;
+
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer =
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2300);
+
+    }
+
+  </script>
+
+</body>
+</html>
