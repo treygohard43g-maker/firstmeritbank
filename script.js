@@ -1,248 +1,213 @@
+import { auth, db } from "./firebase.js";
+
 import {
   createUserWithEmailAndPassword,
-  updateProfile,
-  sendEmailVerification,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import { auth } from "./firebase.js";
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
-/* =========================================
-   SIGN UP
-========================================= */
 
 const signupForm = document.getElementById("signupForm");
+const signupButton = document.getElementById("signupButton");
 const signupMessage = document.getElementById("signupMessage");
 
-if (signupForm) {
 
-  signupForm.addEventListener("submit", async (event) => {
+function showMessage(message, type = "") {
+  signupMessage.textContent = message;
+  signupMessage.className = "auth-message";
 
-    event.preventDefault();
-
-    const fullName =
-      document.getElementById("fullName")?.value.trim();
-
-    const email =
-      document.getElementById("signupEmail")?.value.trim();
-
-    const password =
-      document.getElementById("signupPassword")?.value;
-
-    const confirmPassword =
-      document.getElementById("confirmPassword")?.value;
-
-
-    if (!fullName || !email || !password || !confirmPassword) {
-
-      signupMessage.textContent =
-        "Please complete all required fields.";
-
-      return;
-    }
-
-
-    if (password !== confirmPassword) {
-
-      signupMessage.textContent =
-        "Passwords do not match.";
-
-      return;
-    }
-
-
-    if (password.length < 6) {
-
-      signupMessage.textContent =
-        "Password must be at least 6 characters.";
-
-      return;
-    }
-
-
-    signupMessage.textContent =
-      "Creating your account...";
-
-
-    try {
-
-      const userCredential =
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-
-      const user = userCredential.user;
-
-
-      await updateProfile(user, {
-        displayName: fullName
-      });
-
-
-      try {
-        await sendEmailVerification(user);
-      } catch (emailError) {
-        console.warn(
-          "Verification email could not be sent:",
-          emailError
-        );
-      }
-
-
-      signupMessage.textContent =
-        "Account created successfully! Redirecting to login...";
-
-
-      /*
-        Give the user a moment to see
-        the success message.
-      */
-
-      setTimeout(() => {
-
-        window.location.href = "login.html";
-
-      }, 1500);
-
-
-    } catch (error) {
-
-      console.error("Signup error:", error);
-
-
-      if (error.code === "auth/email-already-in-use") {
-
-        signupMessage.textContent =
-          "An account with this email already exists.";
-
-      }
-
-      else if (error.code === "auth/invalid-email") {
-
-        signupMessage.textContent =
-          "Please enter a valid email address.";
-
-      }
-
-      else if (error.code === "auth/weak-password") {
-
-        signupMessage.textContent =
-          "Password must be at least 6 characters.";
-
-      }
-
-      else if (error.code === "auth/operation-not-allowed") {
-
-        signupMessage.textContent =
-          "Email/Password sign-in is not enabled in Firebase.";
-
-      }
-
-      else {
-
-        signupMessage.textContent =
-          "Account creation failed: " + error.message;
-
-      }
-
-    }
-
-  });
-
+  if (type) {
+    signupMessage.classList.add(type);
+  }
 }
 
 
-/* =========================================
-   LOGIN
-========================================= */
+signupForm.addEventListener("submit", async (event) => {
 
-const loginForm = document.getElementById("loginForm");
-const loginMessage = document.getElementById("loginMessage");
+  event.preventDefault();
 
-if (loginForm) {
+  const fullName =
+    document.getElementById("signupFullName").value.trim();
 
-  loginForm.addEventListener("submit", async (event) => {
+  const email =
+    document.getElementById("signupEmail").value.trim();
 
-    event.preventDefault();
+  const password =
+    document.getElementById("signupPassword").value;
 
+  const confirmPassword =
+    document.getElementById("signupConfirmPassword").value;
 
-    const email =
-      document.getElementById("loginEmail")?.value.trim();
+  const idType =
+    document.getElementById("signupIdType").value;
 
-    const password =
-      document.getElementById("loginPassword")?.value;
+  const demoIdNumber =
+    document.getElementById("signupDemoIdNumber").value.trim();
 
-
-    if (!email || !password) {
-
-      loginMessage.textContent =
-        "Please enter your email and password.";
-
-      return;
-    }
+  const demoSsn =
+    document.getElementById("signupDemoSsn").value.trim();
 
 
-    loginMessage.textContent =
-      "Signing you in...";
+  // Basic validation
+
+  if (!fullName || !email || !password || !confirmPassword) {
+    showMessage("Please complete all required fields.", "error");
+    return;
+  }
 
 
-    try {
+  if (password !== confirmPassword) {
+    showMessage("Passwords do not match.", "error");
+    return;
+  }
 
-      await signInWithEmailAndPassword(
+
+  if (password.length < 6) {
+    showMessage(
+      "Password must contain at least 6 characters.",
+      "error"
+    );
+    return;
+  }
+
+
+  if (!idType || !demoIdNumber || !demoSsn) {
+    showMessage(
+      "Please complete the demo identity verification fields.",
+      "error"
+    );
+    return;
+  }
+
+
+  // Prevent double submission
+
+  signupButton.disabled = true;
+  signupButton.textContent = "Creating Account...";
+
+  showMessage("Creating your account...");
+
+
+  try {
+
+    /*
+      STEP 1
+      Create Firebase Authentication account
+    */
+
+    const userCredential =
+      await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
 
-      loginMessage.textContent =
-        "Login successful. Opening your dashboard...";
+    const user = userCredential.user;
 
 
-      setTimeout(() => {
+    /*
+      STEP 2
+      Save the user's display name
+    */
 
-        window.location.href = "dashboard.html";
-
-      }, 500);
-
-
-    } catch (error) {
-
-      console.error("Login error:", error);
+    await updateProfile(user, {
+      displayName: fullName
+    });
 
 
-      if (
-        error.code === "auth/invalid-credential" ||
-        error.code === "auth/wrong-password" ||
-        error.code === "auth/user-not-found"
-      ) {
+    /*
+      STEP 3
+      Create the user's demo banking profile
+      in Firestore.
 
-        loginMessage.textContent =
-          "Incorrect email or password.";
+      The password is NEVER stored here.
+    */
 
+    await setDoc(
+      doc(db, "users", user.uid),
+      {
+        uid: user.uid,
+        fullName: fullName,
+        email: email,
+
+        demoIdentity: {
+          idType: idType,
+          demoIdNumber: demoIdNumber,
+          demoSsn: demoSsn
+        },
+
+        accountType: "Demo Checking",
+        balance: 0,
+        currency: "USD",
+
+        createdAt: serverTimestamp()
       }
+    );
 
-      else if (error.code === "auth/invalid-email") {
 
-        loginMessage.textContent =
-          "Please enter a valid email address.";
+    /*
+      Account successfully created
+    */
 
-      }
+    showMessage(
+      "Account created successfully! Redirecting...",
+      "success"
+    );
 
-      else {
 
-        loginMessage.textContent =
-          "Unable to sign in: " + error.message;
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1200);
 
-      }
+
+  } catch (error) {
+
+    console.error("Firebase signup error:", error);
+
+
+    let message =
+      "Unable to create your account. Please try again.";
+
+
+    if (error.code === "auth/email-already-in-use") {
+
+      message =
+        "An account with this email already exists.";
+
+    } else if (error.code === "auth/invalid-email") {
+
+      message =
+        "Please enter a valid email address.";
+
+    } else if (error.code === "auth/weak-password") {
+
+      message =
+        "Your password is too weak. Use at least 6 characters.";
+
+    } else if (error.code === "auth/network-request-failed") {
+
+      message =
+        "Network error. Check your internet connection.";
+
+    } else if (error.code === "auth/api-key-not-valid") {
+
+      message =
+        "Firebase configuration is invalid. Please check firebase.js.";
 
     }
 
-  });
 
-}
- 
+    showMessage(message, "error");
+
+
+    signupButton.disabled = false;
+    signupButton.textContent = "Create Account";
+  }
+
+});
