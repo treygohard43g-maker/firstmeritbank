@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Transactions | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e8edf4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .back-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      transition: 0.2s;
+    }
+
+    .back-btn:active {
+      transform: scale(0.96);
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: -0.5px;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+      color: #172033;
+    }
+
+    .page-title-small {
+      color: #7b8798;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .header-action {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      padding: 25px 18px 50px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      color: #172033;
+    }
+
+    .page-heading p {
+      color: #7b8798;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    /* SUMMARY */
+
+    .summary-card {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      border-radius: 22px;
+      padding: 22px;
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(18, 59, 114, 0.16);
+      margin-bottom: 18px;
+    }
+
+    .summary-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      opacity: 0.76;
+      margin-bottom: 6px;
+    }
+
+    .summary-balance {
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .summary-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .summary-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .summary-dot {
+      width: 7px;
+      height: 7px;
+      background: #77e5ad;
+      border-radius: 50%;
+    }
+
+    /* CONTROLS */
+
+    .controls {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+    }
+
+    .search-box {
+      height: 48px;
+      background: #f5f7fa;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      gap: 11px;
+    }
+
+    .search-box i {
+      color: #8b96a7;
+      font-size: 14px;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #172033;
+      font-size: 14px;
+    }
+
+    .search-box input::placeholder {
+      color: #9aa5b5;
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .filter-select {
+      height: 45px;
+      border: 1px solid #e3e8ef;
+      border-radius: 13px;
+      background: #ffffff;
+      color: #354052;
+      padding: 0 12px;
+      outline: none;
+      font-size: 13px;
+    }
+
+    /* TRANSACTIONS */
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 11px;
+    }
+
+    .section-header h2 {
+      font-size: 16px;
+      color: #172033;
+    }
+
+    .transaction-count {
+      font-size: 12px;
+      color: #8a95a5;
+    }
+
+    .transaction-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .transaction-card {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 18px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      box-shadow: 0 4px 15px rgba(24, 39, 75, 0.035);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .transaction-card:active {
+      transform: scale(0.99);
+    }
+
+    .transaction-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .transaction-icon.credit {
+      background: #eaf8f1;
+      color: #168452;
+    }
+
+    .transaction-icon.debit {
+      background: #fff0f0;
+      color: #c54848;
+    }
+
+    .transaction-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .transaction-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #202a3b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .transaction-meta {
+      font-size: 11px;
+      color: #8a95a5;
+      margin-top: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .transaction-right {
+      text-align: right;
+      min-width: 92px;
+    }
+
+    .transaction-amount {
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .transaction-amount.credit {
+      color: #168452;
+    }
+
+    .transaction-amount.debit {
+      color: #c54848;
+    }
+
+    .transaction-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      margin-top: 5px;
+      color: #748093;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #27a66f;
+    }
+
+    /* EMPTY */
+
+    .empty-state {
+      display: none;
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 20px;
+      padding: 45px 20px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #f1f5f9;
+      color: #7d8999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 20px;
+    }
+
+    .empty-state h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .empty-state p {
+      color: #8a95a5;
+      font-size: 13px;
+    }
+
+    /* LOADING */
+
+    .loading-state {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 20px;
+      padding: 38px 20px;
+      text-align: center;
+      color: #7f8a9a;
+      font-size: 13px;
+    }
+
+    .loading-state i {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 22, 38, 0.52);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      padding: 15px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .transaction-modal {
+      width: min(100%, 520px);
+      background: #ffffff;
+      border-radius: 25px 25px 18px 18px;
+      padding: 20px;
+      max-height: 88vh;
+      overflow-y: auto;
+      animation: slideUp 0.22s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(35px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-handle {
+      width: 38px;
+      height: 4px;
+      border-radius: 20px;
+      background: #d9dee6;
+      margin: 0 auto 20px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      font-size: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    .close-modal {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #596579;
+    }
+
+    .detail-hero {
+      background: #f5f8fc;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .detail-icon {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .detail-icon.credit {
+      background: #eaf8f1;
+      color: #168452;
+    }
+
+    .detail-icon.debit {
+      background: #fff0f0;
+      color: #c54848;
+    }
+
+    .detail-title {
+      font-size: 17px;
+      font-weight: 750;
+    }
+
+    .detail-amount {
+      font-size: 27px;
+      font-weight: 800;
+      margin-top: 5px;
+    }
+
+    .detail-amount.credit {
+      color: #168452;
+    }
+
+    .detail-amount.debit {
+      color: #c54848;
+    }
+
+    .detail-list {
+      border: 1px solid #e7ecf2;
+      border-radius: 17px;
+      overflow: hidden;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+    }
+
+    .detail-label {
+      color: #8994a4;
+      font-size: 12px;
+    }
+
+    .detail-value {
+      color: #263145;
+      font-size: 12px;
+      font-weight: 650;
+      text-align: right;
+      max-width: 62%;
+      word-break: break-word;
+    }
+
+    .modal-button {
+      width: 100%;
+      height: 49px;
+      border: 0;
+      border-radius: 14px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    /* DESKTOP */
+
+    @media (min-width: 700px) {
+      .content {
+        padding-top: 35px;
+      }
+
+      .modal-overlay {
+        align-items: center;
+      }
+
+      .transaction-modal {
+        border-radius: 25px;
+      }
+
+      .transaction-card:hover {
+        border-color: #d5deea;
+        transform: translateY(-1px);
+      }
+    }
+
+    @media (max-width: 430px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .bank-name {
+        font-size: 14px;
+      }
+
+      .page-title-small {
+        font-size: 11px;
+      }
+
+      .content {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .summary-card {
+        padding: 19px;
+      }
+
+      .summary-balance {
+        font-size: 26px;
+      }
+
+      .transaction-card {
+        padding: 13px;
+      }
+
+      .transaction-icon {
+        width: 43px;
+        height: 43px;
+        min-width: 43px;
+      }
+
+      .transaction-right {
+        min-width: 82px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button class="back-btn" id="backBtn" aria-label="Back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+          <div class="bank-logo">FM</div>
+
+          <div>
+            <div class="bank-name">First Merit Bank</div>
+            <div class="page-title-small">Transactions</div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="header-action" id="refreshBtn" aria-label="Refresh">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <div class="page-heading">
+        <h1>Transactions</h1>
+        <p>Review your recent account activity.</p>
+      </div>
+
+
+      <!-- BALANCE -->
+      <section class="summary-card">
+
+        <div class="summary-top">
+
+          <div>
+            <div class="summary-label">Available Balance</div>
+            <div class="summary-balance" id="balanceAmount">
+              $0.00
+            </div>
+          </div>
+
+          <div class="summary-icon">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+
+        </div>
+
+        <div class="summary-bottom">
+          <span class="summary-dot"></span>
+          <span>Checking Account</span>
+        </div>
+
+      </section>
+
+
+      <!-- SEARCH / FILTER -->
+      <section class="controls">
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Search transactions..."
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="filter-row">
+
+          <select id="typeFilter" class="filter-select">
+            <option value="all">All transactions</option>
+            <option value="credit">Money received</option>
+            <option value="debit">Money sent</option>
+          </select>
+
+          <select id="transactionFilter" class="filter-select">
+            <option value="all">All types</option>
+            <option value="send">Send Money</option>
+            <option value="zelle">Zelle</option>
+            <option value="deposit">Money Added</option>
+            <option value="withdrawal">Withdrawal</option>
+            <option value="transfer">Bank Transfer</option>
+          </select>
+
+        </div>
+
+      </section>
+
+
+      <!-- TRANSACTION LIST -->
+      <section>
+
+        <div class="section-header">
+          <h2>Recent Activity</h2>
+          <span class="transaction-count" id="transactionCount">
+            0 transactions
+          </span>
+        </div>
+
+        <div id="loadingState" class="loading-state">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          <div>Loading transactions...</div>
+        </div>
+
+        <div
+          id="transactionList"
+          class="transaction-list"
+          style="display:none;"
+        ></div>
+
+        <div id="emptyState" class="empty-state">
+
+          <div class="empty-icon">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+
+          <h3>No transactions found</h3>
+
+          <p>
+            Your account activity will appear here.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- TRANSACTION DETAILS MODAL -->
+
+  <div class="modal-overlay" id="transactionModal">
+
+    <div class="transaction-modal">
+
+      <div class="modal-handle"></div>
+
+      <div class="modal-header">
+
+        <h2>Transaction Details</h2>
+
+        <button class="close-modal" id="closeModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+      <div class="detail-hero">
+
+        <div class="detail-icon" id="detailIcon">
+          <i class="fa-solid fa-receipt"></i>
+        </div>
+
+        <div class="detail-title" id="detailTitle">
+          Transaction
+        </div>
+
+        <div class="detail-amount" id="detailAmount">
+          $0.00
+        </div>
+
+      </div>
+
+      <div class="detail-list">
+
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span class="detail-value" id="detailStatus">
+            Completed
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Transaction Type</span>
+          <span class="detail-value" id="detailType">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Date</span>
+          <span class="detail-value" id="detailDate">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Transaction ID</span>
+          <span class="detail-value" id="detailId">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row" id="recipientRow">
+          <span class="detail-label">Recipient</span>
+          <span class="detail-value" id="detailRecipient">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row" id="accountRow">
+          <span class="detail-label">Account</span>
+          <span class="detail-value" id="detailAccount">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row" id="sourceRow">
+          <span class="detail-label">Source</span>
+          <span class="detail-value" id="detailSource">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row" id="destinationRow">
+          <span class="detail-label">Destination</span>
+          <span class="detail-value" id="detailDestination">
+            —
+          </span>
+        </div>
+
+        <div class="detail-row" id="noteRow">
+          <span class="detail-label">Note</span>
+          <span class="detail-value" id="detailNote">
+            —
+          </span>
+        </div>
+
+      </div>
+
+      <button class="modal-button" id="doneModal">
+        Done
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      collection,
+      query,
+      orderBy,
+      limit,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    /* ELEMENTS */
+
+    const backBtn = document.getElementById("backBtn");
+    const refreshBtn = document.getElementById("refreshBtn");
+
+    const balanceAmount = document.getElementById("balanceAmount");
+
+    const searchInput = document.getElementById("searchInput");
+    const typeFilter = document.getElementById("typeFilter");
+    const transactionFilter = document.getElementById("transactionFilter");
+
+    const loadingState = document.getElementById("loadingState");
+    const transactionList = document.getElementById("transactionList");
+    const emptyState = document.getElementById("emptyState");
+    const transactionCount = document.getElementById("transactionCount");
+
+    const transactionModal = document.getElementById("transactionModal");
+    const closeModal = document.getElementById("closeModal");
+    const doneModal = document.getElementById("doneModal");
+
+
+    let allTransactions = [];
+    let currentUser = null;
+
+
+    /* NAVIGATION */
+
+    backBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+
+    refreshBtn.addEventListener("click", async () => {
+
+      if (!currentUser) return;
+
+      refreshBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+      await loadAccountData(currentUser);
+
+      refreshBtn.innerHTML =
+        '<i class="fa-solid fa-rotate-right"></i>';
+
+    });
+
+
+    /* AUTH */
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = user;
+
+      await loadAccountData(user);
+
+    });
+
+
+    /* LOAD DATA */
+
+    async function loadAccountData(user) {
+
+      loadingState.style.display = "block";
+      transactionList.style.display = "none";
+      emptyState.style.display = "none";
+
+      try {
+
+        const userRef = doc(db, "users", user.uid);
+
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+
+          const userData = userSnap.data();
+
+          const balance =
+            typeof userData.balance === "number"
+              ? userData.balance
+              : 0;
+
+          balanceAmount.textContent =
+            formatCurrency(balance);
+
+        }
+
+
+        const transactionsRef =
+          collection(db, "users", user.uid, "transactions");
+
+        const transactionsQuery =
+          query(
+            transactionsRef,
+            orderBy("createdAt", "desc"),
+            limit(100)
+          );
+
+        const snapshot =
+          await getDocs(transactionsQuery);
+
+
+        allTransactions = [];
+
+        snapshot.forEach((transactionDoc) => {
+
+          allTransactions.push({
+            id: transactionDoc.id,
+            ...transactionDoc.data()
+          });
+
+        });
+
+
+        renderTransactions();
+
+      } catch (error) {
+
+        console.error(error);
+
+        allTransactions = [];
+
+        renderTransactions();
+
+      }
+
+    }
+
+
+    /* RENDER */
+
+    function renderTransactions() {
+
+      const searchTerm =
+        searchInput.value.trim().toLowerCase();
+
+      const selectedDirection =
+        typeFilter.value;
+
+      const selectedType =
+        transactionFilter.value;
+
+
+      const filtered =
+        allTransactions.filter((transaction) => {
+
+          const title =
+            String(transaction.title || "").toLowerCase();
+
+          const type =
+            String(transaction.type || "").toLowerCase();
+
+          const recipient =
+            String(transaction.recipient || "").toLowerCase();
+
+          const note =
+            String(transaction.note || "").toLowerCase();
+
+          const source =
+            String(transaction.source || "").toLowerCase();
+
+          const destination =
+            String(transaction.destination || "").toLowerCase();
+
+
+          const matchesSearch =
+            !searchTerm ||
+            title.includes(searchTerm) ||
+            type.includes(searchTerm) ||
+            recipient.includes(searchTerm) ||
+            note.includes(searchTerm) ||
+            source.includes(searchTerm) ||
+            destination.includes(searchTerm);
+
+
+          const matchesDirection =
+            selectedDirection === "all" ||
+            transaction.direction === selectedDirection;
+
+
+          const matchesType =
+            selectedType === "all" ||
+            transaction.type === selectedType;
+
+
+          return (
+            matchesSearch &&
+            matchesDirection &&
+            matchesType
+          );
+
+        });
+
+
+      transactionCount.textContent =
+        `${filtered.length} ${
+          filtered.length === 1
+            ? "transaction"
+            : "transactions"
+        }`;
+
+
+      loadingState.style.display = "none";
+
+
+      if (filtered.length === 0) {
+
+        transactionList.innerHTML = "";
+
+        transactionList.style.display = "none";
+
+        emptyState.style.display = "block";
+
+        return;
+
+      }
+
+
+      emptyState.style.display = "none";
+
+      transactionList.style.display = "flex";
+
+      transactionList.innerHTML =
+        filtered.map(createTransactionCard).join("");
+
+
+      transactionList
+        .querySelectorAll(".transaction-card")
+        .forEach((card) => {
+
+          card.addEventListener("click", () => {
+
+            const transactionId =
+              card.dataset.id;
+
+            const transaction =
+              allTransactions.find(
+                item => item.id === transactionId
+              );
+
+            if (transaction) {
+              openTransaction(transaction);
+            }
+
+          });
+
+        });
+
+    }
+
+
+    /* TRANSACTION CARD */
+
+    function createTransactionCard(transaction) {
+
+      const direction =
+        transaction.direction === "credit"
+          ? "credit"
+          : "debit";
+
+
+      const icon =
+        getTransactionIcon(transaction.type);
+
+
+      const amount =
+        Number(transaction.amount || 0);
+
+
+      const prefix =
+        direction === "credit"
+          ? "+"
+          : "-";
+
+
+      const title =
+        transaction.title ||
+        getTransactionTitle(transaction.type);
+
+
+      const meta =
+        getTransactionMeta(transaction);
+
+
+      const date =
+        formatDate(transaction.createdAt);
+
+
+      return `
+        <article
+          class="transaction-card"
+          data-id="${escapeHtml(transaction.id)}"
+        >
+
+          <div class="transaction-icon ${direction}">
+            <i class="${icon}"></i>
+          </div>
+
+          <div class="transaction-info">
+
+            <div class="transaction-title">
+              ${escapeHtml(title)}
+            </div>
+
+            <div class="transaction-meta">
+              ${escapeHtml(meta)} • ${escapeHtml(date)}
+            </div>
+
+          </div>
+
+          <div class="transaction-right">
+
+            <div class="transaction-amount ${direction}">
+              ${prefix}${formatCurrency(amount)}
+            </div>
+
+            <div class="transaction-status">
+              <span class="status-dot"></span>
+              ${escapeHtml(
+                capitalize(transaction.status || "completed")
+              )}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }
+
+
+    /* TRANSACTION ICONS */
+
+    function getTransactionIcon(type) {
+
+      switch (type) {
+
+        case "send":
+          return "fa-solid fa-paper-plane";
+
+        case "zelle":
+          return "fa-solid fa-bolt";
+
+        case "deposit":
+          return "fa-solid fa-arrow-down";
+
+        case "withdrawal":
+          return "fa-solid fa-arrow-up";
+
+        case "transfer":
+          return "fa-solid fa-right-left";
+
+        default:
+          return "fa-solid fa-receipt";
+
+      }
+
+    }
+
+
+    /* TITLES */
+
+    function getTransactionTitle(type) {
+
+      switch (type) {
+
+        case "send":
+          return "Money Sent";
+
+        case "zelle":
+          return "Zelle Payment";
+
+        case "deposit":
+          return "Money Added";
+
+        case "withdrawal":
+          return "Withdrawal";
+
+        case "transfer":
+          return "Bank Transfer";
+
+        default:
+          return "Transaction";
+
+      }
+
+    }
+
+
+    /* META */
+
+    function getTransactionMeta(transaction) {
+
+      if (transaction.recipient) {
+        return `To ${transaction.recipient}`;
+      }
+
+      if (transaction.source) {
+        return `From ${transaction.source}`;
+      }
+
+      if (transaction.destination) {
+        return `To ${transaction.destination}`;
+      }
+
+      if (transaction.type) {
+        return capitalize(
+          String(transaction.type)
+            .replace("-", " ")
+        );
+      }
+
+      return "Account activity";
+
+    }
+
+
+    /* MODAL */
+
+    function openTransaction(transaction) {
+
+      const direction =
+        transaction.direction === "credit"
+          ? "credit"
+          : "debit";
+
+
+      const icon =
+        getTransactionIcon(transaction.type);
+
+
+      const amount =
+        Number(transaction.amount || 0);
+
+
+      const prefix =
+        direction === "credit"
+          ? "+"
+          : "-";
+
+
+      document.getElementById("detailIcon").className =
+        `detail-icon ${direction}`;
+
+      document.getElementById("detailIcon").innerHTML =
+        `<i class="${icon}"></i>`;
+
+
+      document.getElementById("detailTitle").textContent =
+        transaction.title ||
+        getTransactionTitle(transaction.type);
+
+
+      const detailAmount =
+        document.getElementById("detailAmount");
+
+      detailAmount.className =
+        `detail-amount ${direction}`;
+
+      detailAmount.textContent =
+        `${prefix}${formatCurrency(amount)}`;
+
+
+      document.getElementById("detailStatus").textContent =
+        capitalize(transaction.status || "completed");
+
+
+      document.getElementById("detailType").textContent =
+        formatType(transaction.type);
+
+
+      document.getElementById("detailDate").textContent =
+        formatDateTime(transaction.createdAt);
+
+
+      document.getElementById("detailId").textContent =
+        transaction.id || "—";
+
+
+      setDetailRow(
+        "recipientRow",
+        "detailRecipient",
+        transaction.recipient
+      );
+
+
+      setDetailRow(
+        "accountRow",
+        "detailAccount",
+        transaction.recipientAccount ||
+        transaction.accountNumber
+      );
+
+
+      setDetailRow(
+        "sourceRow",
+        "detailSource",
+        transaction.source
+      );
+
+
+      setDetailRow(
+        "destinationRow",
+        "detailDestination",
+        transaction.destination
+      );
+
+
+      setDetailRow(
+        "noteRow",
+        "detailNote",
+        transaction.note
+      );
+
+
+      transactionModal.classList.add("show");
+
+      document.body.style.overflow = "hidden";
+
+    }
+
+
+    function setDetailRow(rowId, valueId, value) {
+
+      const row =
+        document.getElementById(rowId);
+
+      const element =
+        document.getElementById(valueId);
+
+
+      if (
+        value !== undefined &&
+        value !== null &&
+        String(value).trim() !== ""
+      ) {
+
+        row.style.display = "flex";
+
+        element.textContent = String(value);
+
+      } else {
+
+        row.style.display = "none";
+
+      }
+
+    }
+
+
+    function closeTransactionModal() {
+
+      transactionModal.classList.remove("show");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    closeModal.addEventListener(
+      "click",
+      closeTransactionModal
+    );
+
+
+    doneModal.addEventListener(
+      "click",
+      closeTransactionModal
+    );
+
+
+    transactionModal.addEventListener(
+      "click",
+      (event) => {
+
+        if (
+          event.target === transactionModal
+        ) {
+          closeTransactionModal();
+        }
+
+      }
+    );
+
+
+    /* FILTERS */
+
+    searchInput.addEventListener(
+      "input",
+      renderTransactions
+    );
+
+    typeFilter.addEventListener(
+      "change",
+      renderTransactions
+    );
+
+    transactionFilter.addEventListener(
+      "change",
+      renderTransactions
+    );
+
+
+    /* FORMATTING */
+
+    function formatCurrency(amount) {
+
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(Number(amount) || 0);
+
+    }
+
+
+    function formatDate(timestamp) {
+
+      if (!timestamp) {
+        return "Recent";
+      }
+
+
+      let date;
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate === "function"
+      ) {
+
+        date = timestamp.toDate();
+
+      } else if (timestamp instanceof Date) {
+
+        date = timestamp;
+
+      } else {
+
+        date = new Date(timestamp);
+
+      }
+
+
+      if (isNaN(date.getTime())) {
+        return "Recent";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    function formatDateTime(timestamp) {
+
+      if (!timestamp) {
+        return "—";
+      }
+
+
+      let date;
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate === "function"
+      ) {
+
+        date = timestamp.toDate();
+
+      } else if (timestamp instanceof Date) {
+
+        date = timestamp;
+
+      } else {
+
+        date = new Date(timestamp);
+
+      }
+
+
+      if (isNaN(date.getTime())) {
+        return "—";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      ).format(date);
+
+    }
+
+
+    function formatType(type) {
+
+      if (!type) {
+        return "Account Activity";
+      }
+
+
+      const formatted =
+        String(type)
+          .replace(/[-_]/g, " ");
+
+
+      return formatted
+        .replace(/\b\w/g, letter =>
+          letter.toUpperCase()
+        );
+
+    }
+
+
+    function capitalize(value) {
+
+      if (!value) {
+        return "";
+      }
+
+
+      return String(value).charAt(0).toUpperCase() +
+        String(value).slice(1);
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+  </script>
+
+</body>
+</html>
