@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Settings | First Merit Bank</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ecf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn,
+    .refresh-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .page-label {
+      color: #8994a4;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 900px);
+      margin: 0 auto;
+      padding: 27px 16px 55px;
+    }
+
+    .heading {
+      margin-bottom: 20px;
+    }
+
+    .heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.7px;
+    }
+
+    .heading p {
+      color: #7d8898;
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    /* PROFILE CARD */
+
+    .profile-card {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      border-radius: 22px;
+      padding: 21px;
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(18, 59, 114, 0.16);
+      margin-bottom: 22px;
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .profile-avatar {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      border-radius: 17px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .profile-name {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .profile-email {
+      font-size: 11px;
+      opacity: 0.75;
+      margin-top: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-status {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile-status-label {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    .profile-status-value {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #55d88a;
+    }
+
+    /* SECTIONS */
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin: 22px 2px 10px;
+    }
+
+    .settings-card {
+      background: #ffffff;
+      border: 1px solid #e6ebf1;
+      border-radius: 19px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+    }
+
+    .setting-row {
+      width: 100%;
+      min-height: 67px;
+      padding: 13px 15px;
+      border: 0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-align: left;
+      color: #172033;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .setting-row:last-child {
+      border-bottom: 0;
+    }
+
+    .setting-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .setting-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .setting-title {
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .setting-description {
+      color: #8994a4;
+      font-size: 11px;
+      line-height: 1.4;
+      margin-top: 4px;
+    }
+
+    .setting-value {
+      color: #7d8898;
+      font-size: 11px;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .arrow {
+      color: #a0a9b7;
+      font-size: 11px;
+    }
+
+    /* TOGGLE */
+
+    .toggle {
+      position: relative;
+      width: 45px;
+      height: 25px;
+      border: 0;
+      border-radius: 20px;
+      background: #cbd3de;
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #ffffff;
+      transition: 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+
+    .toggle.active {
+      background: #123b72;
+    }
+
+    .toggle.active::after {
+      transform: translateX(20px);
+    }
+
+    /* LOGOUT */
+
+    .logout-btn {
+      width: 100%;
+      height: 49px;
+      margin-top: 22px;
+      border: 1px solid #f0cccc;
+      border-radius: 14px;
+      background: #fff7f7;
+      color: #b63f3f;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 23, 40, 0.54);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 14px;
+      z-index: 100;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(100%, 500px);
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 21px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .modal-header h2 {
+      font-size: 18px;
+    }
+
+    .close-btn {
+      width: 37px;
+      height: 37px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #667085;
+    }
+
+    .modal-description {
+      color: #7d8898;
+      font-size: 12px;
+      line-height: 1.55;
+      margin-bottom: 17px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      color: #596579;
+      font-size: 11px;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #dfe5ec;
+      border-radius: 13px;
+      padding: 0 13px;
+      outline: none;
+      background: #ffffff;
+      color: #172033;
+      font-size: 13px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #123b72;
+    }
+
+    .primary-btn {
+      width: 100%;
+      height: 47px;
+      border: 0;
+      border-radius: 13px;
+      background: #123b72;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      height: 45px;
+      border: 1px solid #dfe5ec;
+      border-radius: 13px;
+      background: #ffffff;
+      color: #263145;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 9px;
+    }
+
+    .message {
+      text-align: center;
+      font-size: 11px;
+      margin-top: 10px;
+      min-height: 15px;
+    }
+
+    .message.success {
+      color: #168452;
+    }
+
+    .message.error {
+      color: #c54848;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 20px);
+      background: #172033;
+      color: #ffffff;
+      padding: 12px 17px;
+      border-radius: 13px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+      max-width: calc(100% - 30px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 430px) {
+      .topbar {
+        padding: 0 14px;
+      }
+
+      .content {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      .heading h1 {
+        font-size: 25px;
+      }
+
+      .profile-card {
+        padding: 18px;
+      }
+
+      .setting-description {
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          class="back-btn"
+          id="backBtn"
+          aria-label="Back"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+
+          <div class="bank-logo">
+            FM
+          </div>
+
+          <div>
+
+            <div class="bank-name">
+              First Merit Bank
+            </div>
+
+            <div class="page-label">
+              Settings
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="refresh-btn"
+        id="refreshBtn"
+        aria-label="Refresh"
+      >
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </header>
+
+
+    <main class="content">
+
+      <!-- HEADING -->
+
+      <div class="heading">
+
+        <h1>
+          Settings
+        </h1>
+
+        <p>
+          Manage your account preferences and information.
+        </p>
+
+      </div>
+
+
+      <!-- PROFILE -->
+
+      <section class="profile-card">
+
+        <div class="profile-top">
+
+          <div
+            class="profile-avatar"
+            id="profileAvatar"
+          >
+            FM
+          </div>
+
+          <div>
+
+            <div
+              class="profile-name"
+              id="profileName"
+            >
+              Account Holder
+            </div>
+
+            <div
+              class="profile-email"
+              id="profileEmail"
+            >
+              Loading...
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="profile-status">
+
+          <div class="profile-status-label">
+            Account status
+          </div>
+
+          <div class="profile-status-value">
+            <span class="status-dot"></span>
+            Active
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PERSONAL -->
+
+      <div class="section-title">
+        Personal Information
+      </div>
+
+      <section class="settings-card">
+
+        <button
+          class="setting-row"
+          id="profileBtn"
+        >
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Personal Details
+            </div>
+
+            <div class="setting-description">
+              View your name and account contact information.
+            </div>
+
+          </div>
+
+          <div class="arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+
+        <button
+          class="setting-row"
+          id="accountInfoBtn"
+        >
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Account Information
+            </div>
+
+            <div class="setting-description">
+              View your checking account details.
+            </div>
+
+          </div>
+
+          <div class="arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+      </section>
+
+
+      <!-- PREFERENCES -->
+
+      <div class="section-title">
+        Preferences
+      </div>
+
+      <section class="settings-card">
+
+        <div class="setting-row">
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Notifications
+            </div>
+
+            <div class="setting-description">
+              Receive account and transaction notifications.
+            </div>
+
+          </div>
+
+          <button
+            class="toggle active"
+            id="notificationsToggle"
+            aria-label="Notifications"
+          ></button>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Email Updates
+            </div>
+
+            <div class="setting-description">
+              Receive important account information by email.
+            </div>
+
+          </div>
+
+          <button
+            class="toggle active"
+            id="emailToggle"
+            aria-label="Email updates"
+          ></button>
+
+        </div>
+
+
+        <button
+          class="setting-row"
+          id="currencyBtn"
+        >
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Currency
+            </div>
+
+            <div class="setting-description">
+              Select your preferred display currency.
+            </div>
+
+          </div>
+
+          <div
+            class="setting-value"
+            id="currencyValue"
+          >
+            USD
+          </div>
+
+          <div class="arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+      </section>
+
+
+      <!-- SECURITY -->
+
+      <div class="section-title">
+        Security & Privacy
+      </div>
+
+      <section class="settings-card">
+
+        <button
+          class="setting-row"
+          id="securityBtn"
+        >
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Security
+            </div>
+
+            <div class="setting-description">
+              Manage password, login protection and security settings.
+            </div>
+
+          </div>
+
+          <div class="arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+
+        <button
+          class="setting-row"
+          id="privacyBtn"
+        >
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-user-lock"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Privacy
+            </div>
+
+            <div class="setting-description">
+              Review how your account information is handled.
+            </div>
+
+          </div>
+
+          <div class="arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+      </section>
+
+
+      <!-- SUPPORT -->
+
+      <div class="section-title">
+        Support
+      </div>
+
+      <section class="settings-card">
+
+        <button
+          class="setting-row"
+          id="supportBtn"
+        >
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Help & Support
+            </div>
+
+            <div class="setting-description">
+              Get assistance with your account and services.
+            </div>
+
+          </div>
+
+          <div class="arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+      </section>
+
+
+      <!-- LOGOUT -->
+
+      <button
+        class="logout-btn"
+        id="logoutBtn"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        &nbsp; Sign Out
+      </button>
+
+    </main>
+
+  </div>
+
+
+  <!-- PERSONAL DETAILS MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="profileModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Personal Details
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closeProfileModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <form id="profileForm">
+
+        <div class="field">
+
+          <label for="fullName">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            id="fullName"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="email">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            readonly
+          >
+
+        </div>
+
+
+        <button
+          class="primary-btn"
+          type="submit"
+          id="saveProfileBtn"
+        >
+          Save Changes
+        </button>
+
+        <div
+          class="message"
+          id="profileMessage"
+        ></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- ACCOUNT INFO MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="accountModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Account Information
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closeAccountModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <div class="settings-card">
+
+        <div class="setting-row">
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-hashtag"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Account Number
+            </div>
+
+            <div
+              class="setting-description"
+              id="accountNumber"
+            >
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Account Type
+            </div>
+
+            <div
+              class="setting-description"
+              id="accountType"
+            >
+              Checking
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div class="setting-icon">
+            <i class="fa-solid fa-money-bill"></i>
+          </div>
+
+          <div class="setting-content">
+
+            <div class="setting-title">
+              Currency
+            </div>
+
+            <div
+              class="setting-description"
+              id="accountCurrency"
+            >
+              USD
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="secondary-btn"
+        id="closeAccountBtn"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- CURRENCY MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="currencyModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Currency
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closeCurrencyModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <p class="modal-description">
+        Choose the currency displayed throughout your account.
+      </p>
+
+
+      <div class="field">
+
+        <label for="currencySelect">
+          Preferred Currency
+        </label>
+
+        <select id="currencySelect">
+
+          <option value="USD">
+            USD — US Dollar
+          </option>
+
+          <option value="NGN">
+            NGN — Nigerian Naira
+          </option>
+
+          <option value="GBP">
+            GBP — British Pound
+          </option>
+
+          <option value="EUR">
+            EUR — Euro
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <button
+        class="primary-btn"
+        id="saveCurrencyBtn"
+      >
+        Save Currency
+      </button>
+
+
+      <button
+        class="secondary-btn"
+        id="cancelCurrencyBtn"
+      >
+        Cancel
+      </button>
+
+
+      <div
+        class="message"
+        id="currencyMessage"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- PRIVACY MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="privacyModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Privacy
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closePrivacyModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <p class="modal-description">
+        Your account information is used to provide account features,
+        transaction history and account security. Keep your login
+        credentials private and review your security settings regularly.
+      </p>
+
+
+      <button
+        class="secondary-btn"
+        id="closePrivacyBtn"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged,
+      updateProfile,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    /* ELEMENTS */
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const profileName =
+      document.getElementById("profileName");
+
+    const profileEmail =
+      document.getElementById("profileEmail");
+
+    const profileAvatar =
+      document.getElementById("profileAvatar");
+
+    const currencyValue =
+      document.getElementById("currencyValue");
+
+    const notificationsToggle =
+      document.getElementById("notificationsToggle");
+
+    const emailToggle =
+      document.getElementById("emailToggle");
+
+    const profileBtn =
+      document.getElementById("profileBtn");
+
+    const accountInfoBtn =
+      document.getElementById("accountInfoBtn");
+
+    const currencyBtn =
+      document.getElementById("currencyBtn");
+
+    const securityBtn =
+      document.getElementById("securityBtn");
+
+    const privacyBtn =
+      document.getElementById("privacyBtn");
+
+    const supportBtn =
+      document.getElementById("supportBtn");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+
+    /* PROFILE MODAL */
+
+    const profileModal =
+      document.getElementById("profileModal");
+
+    const closeProfileModal =
+      document.getElementById("closeProfileModal");
+
+    const profileForm =
+      document.getElementById("profileForm");
+
+    const fullName =
+      document.getElementById("fullName");
+
+    const email =
+      document.getElementById("email");
+
+    const saveProfileBtn =
+      document.getElementById("saveProfileBtn");
+
+    const profileMessage =
+      document.getElementById("profileMessage");
+
+
+    /* ACCOUNT MODAL */
+
+    const accountModal =
+      document.getElementById("accountModal");
+
+    const closeAccountModal =
+      document.getElementById("closeAccountModal");
+
+    const closeAccountBtn =
+      document.getElementById("closeAccountBtn");
+
+    const accountNumber =
+      document.getElementById("accountNumber");
+
+    const accountType =
+      document.getElementById("accountType");
+
+    const accountCurrency =
+      document.getElementById("accountCurrency");
+
+
+    /* CURRENCY MODAL */
+
+    const currencyModal =
+      document.getElementById("currencyModal");
+
+    const closeCurrencyModal =
+      document.getElementById("closeCurrencyModal");
+
+    const cancelCurrencyBtn =
+      document.getElementById("cancelCurrencyBtn");
+
+    const currencySelect =
+      document.getElementById("currencySelect");
+
+    const saveCurrencyBtn =
+      document.getElementById("saveCurrencyBtn");
+
+    const currencyMessage =
+      document.getElementById("currencyMessage");
+
+
+    /* PRIVACY */
+
+    const privacyModal =
+      document.getElementById("privacyModal");
+
+    const closePrivacyModal =
+      document.getElementById("closePrivacyModal");
+
+    const closePrivacyBtn =
+      document.getElementById("closePrivacyBtn");
+
+
+    /* TOAST */
+
+    const toast =
+      document.getElementById("toast");
+
+
+    let currentUser = null;
+    let userData = {};
+
+
+    /* AUTH */
+
+    onAuthStateChanged(
+      auth,
+      async user => {
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        currentUser = user;
+
+        await loadSettings(user);
+
+      }
+    );
+
+
+    /* LOAD SETTINGS */
+
+    async function loadSettings(user) {
+
+      try {
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            user.uid
+          );
+
+
+        const snapshot =
+          await getDoc(userRef);
+
+
+        userData =
+          snapshot.exists()
+            ? snapshot.data()
+            : {};
+
+
+        const name =
+          userData.fullName ||
+          user.displayName ||
+          "Account Holder";
+
+
+        profileName.textContent =
+          name;
+
+
+        profileEmail.textContent =
+          user.email ||
+          userData.email ||
+          "No email address";
+
+
+        profileAvatar.textContent =
+          getInitials(name);
+
+
+        fullName.value =
+          name;
+
+
+        email.value =
+          user.email ||
+          userData.email ||
+          "";
+
+
+        const currency =
+          userData.currency ||
+          "USD";
+
+
+        currencyValue.textContent =
+          currency;
+
+
+        currencySelect.value =
+          supportedCurrency(
+            currency
+          );
+
+
+        accountNumber.textContent =
+          userData.accountNumber ||
+          "Not available";
+
+
+        accountType.textContent =
+          userData.accountType ||
+          "Checking";
+
+
+        accountCurrency.textContent =
+          currency;
+
+
+        const settings =
+          userData.settings || {};
+
+
+        setToggleState(
+          notificationsToggle,
+          settings.notifications !== false
+        );
+
+
+        setToggleState(
+          emailToggle,
+          settings.emailUpdates !== false
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Settings loading error:",
+          error
+        );
+
+        showToast(
+          "Unable to load account settings."
+        );
+
+      }
+
+    }
+
+
+    /* TOGGLES */
+
+    notificationsToggle.addEventListener(
+      "click",
+      () => {
+
+        updateToggleSetting(
+          "notifications",
+          notificationsToggle
+        );
+
+      }
+    );
+
+
+    emailToggle.addEventListener(
+      "click",
+      () => {
+
+        updateToggleSetting(
+          "emailUpdates",
+          emailToggle
+        );
+
+      }
+    );
+
+
+    async function updateToggleSetting(
+      settingName,
+      button
+    ) {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      const oldValue =
+        button.classList.contains(
+          "active"
+        );
+
+
+      const newValue =
+        !oldValue;
+
+
+      setToggleState(
+        button,
+        newValue
+      );
+
+
+      try {
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          );
+
+
+        await setDoc(
+          userRef,
+          {
+            settings: {
+              [settingName]:
+                newValue,
+              updatedAt:
+                serverTimestamp()
+            }
+          },
+          {
+            merge: true
+          }
+        );
+
+
+        showToast(
+          newValue
+            ? "Setting enabled."
+            : "Setting disabled."
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        setToggleState(
+          button,
+          oldValue
+        );
+
+        showToast(
+          "Unable to update setting."
+        );
+
+      }
+
+    }
+
+
+    function setToggleState(
+      button,
+      active
+    ) {
+
+      button.classList.toggle(
+        "active",
+        active
+      );
+
+    }
+
+
+    /* PROFILE */
+
+    profileBtn.addEventListener(
+      "click",
+      () => {
+
+        profileMessage.textContent =
+          "";
+
+        profileMessage.className =
+          "message";
+
+        profileModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closeProfileModal.addEventListener(
+      "click",
+      closeProfile
+    );
+
+
+    profileModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          profileModal
+        ) {
+
+          closeProfile();
+
+        }
+
+      }
+    );
+
+
+    function closeProfile() {
+
+      profileModal.classList.remove(
+        "show"
+      );
+
+    }
+
+
+    profileForm.addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        if (!currentUser) {
+          return;
+        }
+
+
+        const name =
+          fullName.value.trim();
+
+
+        if (!name) {
+
+          showProfileMessage(
+            "Please enter your full name.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        saveProfileBtn.disabled =
+          true;
+
+        saveProfileBtn.textContent =
+          "Saving...";
+
+
+        try {
+
+          await updateProfile(
+            currentUser,
+            {
+              displayName: name
+            }
+          );
+
+
+          const userRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid
+            );
+
+
+          await setDoc(
+            userRef,
+            {
+              fullName: name,
+              updatedAt:
+                serverTimestamp()
+            },
+            {
+              merge: true
+            }
+          );
+
+
+          profileName.textContent =
+            name;
+
+
+          profileAvatar.textContent =
+            getInitials(name);
+
+
+          showProfileMessage(
+            "Personal details updated.",
+            "success"
+          );
+
+
+          showToast(
+            "Profile updated."
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showProfileMessage(
+            "Unable to save your changes.",
+            "error"
+          );
+
+        } finally {
+
+          saveProfileBtn.disabled =
+            false;
+
+          saveProfileBtn.textContent =
+            "Save Changes";
+
+        }
+
+      }
+    );
+
+
+    function showProfileMessage(
+      message,
+      type
+    ) {
+
+      profileMessage.textContent =
+        message;
+
+      profileMessage.className =
+        "message " +
+        type;
+
+    }
+
+
+    /* ACCOUNT INFO */
+
+    accountInfoBtn.addEventListener(
+      "click",
+      () => {
+
+        accountModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closeAccountModal.addEventListener(
+      "click",
+      closeAccount
+    );
+
+
+    closeAccountBtn.addEventListener(
+      "click",
+      closeAccount
+    );
+
+
+    accountModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          accountModal
+        ) {
+
+          closeAccount();
+
+        }
+
+      }
+    );
+
+
+    function closeAccount() {
+
+      accountModal.classList.remove(
+        "show"
+      );
+
+    }
+
+
+    /* CURRENCY */
+
+    currencyBtn.addEventListener(
+      "click",
+      () => {
+
+        currencyMessage.textContent =
+          "";
+
+        currencyMessage.className =
+          "message";
+
+        currencyModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closeCurrencyModal.addEventListener(
+      "click",
+      closeCurrency
+    );
+
+
+    cancelCurrencyBtn.addEventListener(
+      "click",
+      closeCurrency
+    );
+
+
+    currencyModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          currencyModal
+        ) {
+
+          closeCurrency();
+
+        }
+
+      }
+    );
+
+
+    function closeCurrency() {
+
+      currencyModal.classList.remove(
+        "show"
+      );
+
+    }
+
+
+    saveCurrencyBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentUser) {
+          return;
+        }
+
+
+        const selected =
+          currencySelect.value;
+
+
+        saveCurrencyBtn.disabled =
+          true;
+
+        saveCurrencyBtn.textContent =
+          "Saving...";
+
+
+        try {
+
+          const userRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid
+            );
+
+
+          await setDoc(
+            userRef,
+            {
+              currency: selected,
+              updatedAt:
+                serverTimestamp()
+            },
+            {
+              merge: true
+            }
+          );
+
+
+          currencyValue.textContent =
+            selected;
+
+
+          accountCurrency.textContent =
+            selected;
+
+
+          userData.currency =
+            selected;
+
+
+          currencyMessage.textContent =
+            "Currency preference saved.";
+
+          currencyMessage.className =
+            "message success";
+
+
+          showToast(
+            "Currency preference updated."
+          );
+
+
+          setTimeout(
+            closeCurrency,
+            900
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          currencyMessage.textContent =
+            "Unable to save currency preference.";
+
+          currencyMessage.className =
+            "message error";
+
+        } finally {
+
+          saveCurrencyBtn.disabled =
+            false;
+
+          saveCurrencyBtn.textContent =
+            "Save Currency";
+
+        }
+
+      }
+    );
+
+
+    /* SECURITY */
+
+    securityBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "security.html";
+
+      }
+    );
+
+
+    /* PRIVACY */
+
+    privacyBtn.addEventListener(
+      "click",
+      () => {
+
+        privacyModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closePrivacyModal.addEventListener(
+      "click",
+      closePrivacy
+    );
+
+
+    closePrivacyBtn.addEventListener(
+      "click",
+      closePrivacy
+    );
+
+
+    privacyModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          privacyModal
+        ) {
+
+          closePrivacy();
+
+        }
+
+      }
+    );
+
+
+    function closePrivacy() {
+
+      privacyModal.classList.remove(
+        "show"
+      );
+
+    }
+
+
+    /* SUPPORT */
+
+    supportBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "support.html";
+
+      }
+    );
+
+
+    /* BACK */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+
+    /* REFRESH */
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentUser) {
+          return;
+        }
+
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+
+        await loadSettings(
+          currentUser
+        );
+
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-rotate-right"></i>';
+
+
+        showToast(
+          "Settings refreshed."
+        );
+
+      }
+    );
+
+
+    /* LOGOUT */
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        logoutBtn.disabled =
+          true;
+
+        logoutBtn.textContent =
+          "Signing Out...";
+
+
+        try {
+
+          await signOut(auth);
+
+          window.location.href =
+            "login.html";
+
+        } catch (error) {
+
+          console.error(error);
+
+          logoutBtn.disabled =
+            false;
+
+          logoutBtn.innerHTML =
+            '<i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Sign Out';
+
+          showToast(
+            "Unable to sign out."
+          );
+
+        }
+
+      }
+    );
+
+
+    /* HELPERS */
+
+    function getInitials(
+      name
+    ) {
+
+      const parts =
+        String(name)
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean);
+
+
+      if (!parts.length) {
+        return "FM";
+      }
+
+
+      if (parts.length === 1) {
+
+        return parts[0]
+          .slice(0, 2)
+          .toUpperCase();
+
+      }
+
+
+      return (
+        parts[0][0] +
+        parts[parts.length - 1][0]
+      ).toUpperCase();
+
+    }
+
+
+    function supportedCurrency(
+      currency
+    ) {
+
+      const supported = [
+        "USD",
+        "NGN",
+        "GBP",
+        "EUR"
+      ];
+
+
+      return supported.includes(
+        currency
+      )
+        ? currency
+        : "USD";
+
+    }
+
+
+    function showToast(
+      message
+    ) {
+
+      toast.textContent =
+        message;
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        () => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        2200
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
