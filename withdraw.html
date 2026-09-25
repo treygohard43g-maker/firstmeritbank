@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Add Money | First Merit Bank</title>
+  <title>Withdraw | First Merit Bank</title>
 
   <link
     rel="stylesheet"
@@ -116,7 +116,7 @@
       border-radius: 18px;
       padding: 20px;
       margin-bottom: 18px;
-      box-shadow: 0 10px 25px rgba(11, 87, 208, 0.18);
+      box-shadow: 0 10px 25px rgba(11, 87, 208, .18);
     }
 
     .balance-label {
@@ -166,19 +166,6 @@
       margin-bottom: 8px;
     }
 
-    .amount-wrap {
-      position: relative;
-    }
-
-    .currency {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #536078;
-      font-weight: 700;
-    }
-
     input,
     select {
       width: 100%;
@@ -192,16 +179,29 @@
       color: #172033;
     }
 
-    .amount-input {
-      padding-left: 38px;
-      font-size: 19px;
-      font-weight: 700;
-    }
-
     input:focus,
     select:focus {
       border-color: #0b57d0;
       box-shadow: 0 0 0 3px rgba(11, 87, 208, .09);
+    }
+
+    .amount-wrap {
+      position: relative;
+    }
+
+    .currency {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #536078;
+      font-weight: 700;
+    }
+
+    .amount-input {
+      padding-left: 38px;
+      font-size: 19px;
+      font-weight: 700;
     }
 
     .primary-btn {
@@ -221,7 +221,8 @@
       background: #0847ad;
     }
 
-    .primary-btn:disabled {
+    .primary-btn:disabled,
+    .confirm-btn:disabled {
       opacity: .55;
       cursor: not-allowed;
     }
@@ -416,7 +417,11 @@
 
     <header class="topbar">
 
-      <button class="back-btn" id="backBtn" type="button">
+      <button
+        class="back-btn"
+        id="backBtn"
+        type="button"
+      >
         <i class="fa-solid fa-arrow-left"></i>
       </button>
 
@@ -438,20 +443,25 @@
 
     <main class="content">
 
-      <!-- ADD MONEY FORM -->
+      <!-- WITHDRAW FORM -->
 
       <section id="formSection">
 
         <div class="page-title">
-          <h2>Add Money</h2>
-          <p>Add funds to your First Merit Bank account.</p>
+
+          <h2>Withdraw</h2>
+
+          <p>
+            Withdraw funds from your checking account.
+          </p>
+
         </div>
 
 
         <div class="balance-card">
 
           <div class="balance-label">
-            Current Balance
+            Available Balance
           </div>
 
           <div class="balance-row">
@@ -487,7 +497,9 @@
 
             <div class="amount-wrap">
 
-              <span class="currency">$</span>
+              <span class="currency">
+                $
+              </span>
 
               <input
                 class="amount-input"
@@ -505,25 +517,41 @@
 
           <div class="field">
 
-            <label for="source">
-              Funding Source
+            <label for="destination">
+              Withdrawal Destination
             </label>
 
-            <select id="source">
+            <select id="destination">
 
               <option value="Bank Account">
                 Bank Account
-              </option>
-
-              <option value="Debit Card">
-                Debit Card
               </option>
 
               <option value="External Account">
                 External Account
               </option>
 
+              <option value="Cash Withdrawal">
+                Cash Withdrawal
+              </option>
+
             </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="reference">
+              Reference
+            </label>
+
+            <input
+              type="text"
+              id="reference"
+              placeholder="Optional reference"
+              maxlength="100"
+            >
 
           </div>
 
@@ -539,7 +567,7 @@
             id="reviewBtn"
             type="button"
           >
-            Review Deposit
+            Review Withdrawal
           </button>
 
         </div>
@@ -555,8 +583,13 @@
       >
 
         <div class="page-title">
-          <h2>Review Deposit</h2>
-          <p>Review the deposit details before confirming.</p>
+
+          <h2>Review Withdrawal</h2>
+
+          <p>
+            Review the withdrawal details before confirming.
+          </p>
+
         </div>
 
 
@@ -564,7 +597,9 @@
 
           <div class="review-header">
 
-            <h3>Deposit Details</h3>
+            <h3>
+              Withdrawal Details
+            </h3>
 
             <p>
               Confirm the information below.
@@ -576,7 +611,7 @@
           <div class="review-amount">
 
             <span>
-              Deposit Amount
+              Withdrawal Amount
             </span>
 
             <strong id="reviewAmount">
@@ -594,20 +629,7 @@
                 Destination
               </span>
 
-              <span>
-                Checking Account
-              </span>
-
-            </div>
-
-
-            <div class="detail-row">
-
-              <span>
-                Funding Source
-              </span>
-
-              <span id="reviewSource">
+              <span id="reviewDestination">
                 Bank Account
               </span>
 
@@ -617,11 +639,37 @@
             <div class="detail-row">
 
               <span>
-                New Balance
+                Current Balance
               </span>
 
-              <span id="reviewNewBalance">
+              <span id="reviewCurrentBalance">
                 $0.00
+              </span>
+
+            </div>
+
+
+            <div class="detail-row">
+
+              <span>
+                Remaining Balance
+              </span>
+
+              <span id="reviewRemainingBalance">
+                $0.00
+              </span>
+
+            </div>
+
+
+            <div class="detail-row">
+
+              <span>
+                Reference
+              </span>
+
+              <span id="reviewReference">
+                —
               </span>
 
             </div>
@@ -642,7 +690,7 @@
               id="editBtn"
               type="button"
             >
-              Edit Deposit
+              Edit Withdrawal
             </button>
 
             <button
@@ -650,7 +698,7 @@
               id="confirmBtn"
               type="button"
             >
-              Confirm Deposit
+              Confirm Withdrawal
             </button>
 
           </div>
@@ -674,11 +722,11 @@
           </div>
 
           <h2>
-            Deposit Successful
+            Withdrawal Successful
           </h2>
 
           <p>
-            The funds have been added to your account successfully.
+            Your withdrawal has been processed successfully.
           </p>
 
 
@@ -764,8 +812,11 @@
     const amount =
       document.getElementById("amount");
 
-    const source =
-      document.getElementById("source");
+    const destination =
+      document.getElementById("destination");
+
+    const reference =
+      document.getElementById("reference");
 
 
     const currentBalance =
@@ -785,11 +836,17 @@
     const reviewAmount =
       document.getElementById("reviewAmount");
 
-    const reviewSource =
-      document.getElementById("reviewSource");
+    const reviewDestination =
+      document.getElementById("reviewDestination");
 
-    const reviewNewBalance =
-      document.getElementById("reviewNewBalance");
+    const reviewCurrentBalance =
+      document.getElementById("reviewCurrentBalance");
+
+    const reviewRemainingBalance =
+      document.getElementById("reviewRemainingBalance");
+
+    const reviewReference =
+      document.getElementById("reviewReference");
 
     const transactionId =
       document.getElementById("transactionId");
@@ -799,9 +856,11 @@
 
     let userBalance = 0;
 
-    let pendingAmount = 0;
-
-    let pendingSource = "";
+    let pendingWithdrawal = {
+      amount: 0,
+      destination: "",
+      reference: ""
+    };
 
 
     function formatCurrency(value) {
@@ -952,18 +1011,18 @@
 
         clearMessage(formMessage);
 
-        const enteredAmount =
+        const withdrawalAmount =
           Number(amount.value);
 
 
         if (
-          !enteredAmount ||
-          enteredAmount <= 0
+          !withdrawalAmount ||
+          withdrawalAmount <= 0
         ) {
 
           showMessage(
             formMessage,
-            "Please enter a valid amount."
+            "Please enter a valid withdrawal amount."
           );
 
           amount.focus();
@@ -973,11 +1032,14 @@
         }
 
 
-        if (enteredAmount > 1000000) {
+        if (
+          withdrawalAmount >
+          userBalance
+        ) {
 
           showMessage(
             formMessage,
-            "Please enter an amount below $1,000,000."
+            "Insufficient available balance."
           );
 
           return;
@@ -985,28 +1047,46 @@
         }
 
 
-        pendingAmount =
-          enteredAmount;
+        pendingWithdrawal = {
 
-        pendingSource =
-          source.value;
+          amount:
+            withdrawalAmount,
+
+          destination:
+            destination.value,
+
+          reference:
+            reference.value.trim()
+
+        };
 
 
         reviewAmount.textContent =
           formatCurrency(
-            pendingAmount
+            pendingWithdrawal.amount
           );
 
 
-        reviewSource.textContent =
-          pendingSource;
+        reviewDestination.textContent =
+          pendingWithdrawal.destination;
 
 
-        reviewNewBalance.textContent =
+        reviewCurrentBalance.textContent =
           formatCurrency(
-            userBalance +
-            pendingAmount
+            userBalance
           );
+
+
+        reviewRemainingBalance.textContent =
+          formatCurrency(
+            userBalance -
+            pendingWithdrawal.amount
+          );
+
+
+        reviewReference.textContent =
+          pendingWithdrawal.reference ||
+          "—";
 
 
         formSection.style.display =
@@ -1031,9 +1111,7 @@
       "click",
       () => {
 
-        clearMessage(
-          reviewMessage
-        );
+        clearMessage(reviewMessage);
 
         reviewSection.style.display =
           "none";
@@ -1057,9 +1135,7 @@
       "click",
       async () => {
 
-        clearMessage(
-          reviewMessage
-        );
+        clearMessage(reviewMessage);
 
 
         if (!currentUser) {
@@ -1129,9 +1205,21 @@
                 );
 
 
+              if (
+                pendingWithdrawal.amount >
+                balance
+              ) {
+
+                throw new Error(
+                  "Insufficient available balance."
+                );
+
+              }
+
+
               const newBalance =
-                balance +
-                pendingAmount;
+                balance -
+                pendingWithdrawal.amount;
 
 
               transaction.update(
@@ -1147,19 +1235,22 @@
                 {
 
                   type:
-                    "deposit",
+                    "withdrawal",
 
                   title:
-                    "Money Added",
+                    "Withdrawal",
 
                   amount:
-                    pendingAmount,
+                    pendingWithdrawal.amount,
 
                   direction:
-                    "credit",
+                    "debit",
 
-                  source:
-                    pendingSource,
+                  destination:
+                    pendingWithdrawal.destination,
+
+                  reference:
+                    pendingWithdrawal.reference,
 
                   status:
                     "completed",
@@ -1174,8 +1265,9 @@
           );
 
 
-          userBalance +=
-            pendingAmount;
+          userBalance =
+            userBalance -
+            pendingWithdrawal.amount;
 
 
           transactionId.textContent =
@@ -1205,7 +1297,7 @@
           showMessage(
             reviewMessage,
             error.message ||
-            "Unable to complete the deposit."
+            "Unable to complete the withdrawal."
           );
 
 
@@ -1213,7 +1305,7 @@
             false;
 
           confirmBtn.textContent =
-            "Confirm Deposit";
+            "Confirm Withdrawal";
 
         }
 
