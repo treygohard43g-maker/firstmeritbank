@@ -6,43 +6,1267 @@
 
   <title>First Merit Bank</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================================
+       FIRST MERIT HOME
+       ORIGINAL BLUE COLOR SYSTEM
+    ========================================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .fm-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      height: 70px;
+
+      background: #ffffff;
+
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .fm-header-inner {
+      width: min(100% - 32px, 1050px);
+      height: 100%;
+
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fm-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: #111827;
+
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .fm-logo {
+      width: 40px;
+      height: 40px;
+
+      border-radius: 11px;
+
+      background: #123b8f;
+      color: #ffffff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      box-shadow:
+        0 7px 18px rgba(18, 59, 143, 0.20);
+    }
+
+    .fm-menu {
+      width: 40px;
+      height: 40px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: #eef2ff;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 4px;
+
+      cursor: pointer;
+    }
+
+    .fm-menu span {
+      width: 20px;
+      height: 2px;
+
+      border-radius: 5px;
+
+      background: #123b8f;
+    }
+
+    /* =========================================
+       HERO
+    ========================================= */
+
+    .fm-hero {
+      background: #ffffff;
+
+      padding: 55px 16px 65px;
+    }
+
+    .fm-container {
+      width: min(100%, 1000px);
+      margin: auto;
+    }
+
+    .fm-welcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 8px 13px;
+
+      border-radius: 30px;
+
+      background: #eef2ff;
+      color: #123b8f;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      margin-bottom: 23px;
+    }
+
+    .fm-hero h1 {
+      max-width: 760px;
+
+      margin: 0;
+
+      font-size: clamp(40px, 8vw, 66px);
+
+      line-height: 1.04;
+
+      letter-spacing: -1.8px;
+
+      color: #123b8f;
+
+      font-weight: 800;
+    }
+
+    .fm-hero h1 span {
+      color: #111827;
+    }
+
+    .fm-hero-text {
+      max-width: 640px;
+
+      margin: 20px 0 27px;
+
+      color: #6b7280;
+
+      font-size: 17px;
+
+      line-height: 1.6;
+    }
+
+    .fm-actions {
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+
+      max-width: 430px;
+    }
+
+    .fm-button {
+      min-height: 51px;
+
+      border-radius: 11px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px 20px;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      transition: 0.2s ease;
+    }
+
+    .fm-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .fm-primary {
+      background: #123b8f;
+      color: #ffffff;
+
+      box-shadow:
+        0 8px 18px rgba(18, 59, 143, 0.18);
+    }
+
+    .fm-secondary {
+      background: #eef2ff;
+      color: #123b8f;
+    }
+
+    .fm-trust-text {
+      margin-top: 16px;
+
+      color: #9ca3af;
+
+      font-size: 12px;
+    }
+
+    /* =========================================
+       SERVICES
+    ========================================= */
+
+    .fm-services {
+      padding: 62px 16px;
+
+      background: #f5f7fb;
+    }
+
+    .fm-section-heading {
+      max-width: 680px;
+
+      margin: 0 auto 35px;
+
+      text-align: center;
+    }
+
+    .fm-section-heading h2 {
+      margin: 0 0 10px;
+
+      color: #123b8f;
+
+      font-size: clamp(29px, 6vw, 43px);
+
+      line-height: 1.15;
+
+      font-weight: 800;
+    }
+
+    .fm-section-heading p {
+      margin: 0;
+
+      color: #6b7280;
+
+      font-size: 15px;
+
+      line-height: 1.55;
+    }
+
+    .fm-service-grid {
+      width: min(100%, 920px);
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 12px;
+    }
+
+    .fm-service-card {
+      background: #ffffff;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 16px;
+
+      padding: 21px 17px;
+
+      min-height: 175px;
+
+      box-shadow:
+        0 5px 16px rgba(17, 24, 39, 0.04);
+
+      transition: 0.2s ease;
+    }
+
+    .fm-service-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 10px 22px rgba(17, 24, 39, 0.07);
+    }
+
+    .fm-service-icon {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 13px;
+
+      background: #eef2ff;
+      color: #123b8f;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 21px;
+
+      margin-bottom: 16px;
+    }
+
+    .fm-service-card h3 {
+      margin: 0 0 6px;
+
+      color: #111827;
+
+      font-size: 15px;
+    }
+
+    .fm-service-card p {
+      margin: 0;
+
+      color: #6b7280;
+
+      font-size: 12px;
+
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       FEATURES
+    ========================================= */
+
+    .fm-features {
+      padding: 65px 16px;
+
+      background: #ffffff;
+    }
+
+    .fm-feature-list {
+      width: min(100%, 850px);
+
+      margin: auto;
+
+      display: grid;
+
+      gap: 12px;
+    }
+
+    .fm-feature {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 14px;
+
+      padding: 19px;
+
+      background: #ffffff;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 4px 14px rgba(17, 24, 39, 0.035);
+    }
+
+    .fm-feature-icon {
+      width: 46px;
+      height: 46px;
+
+      min-width: 46px;
+
+      border-radius: 13px;
+
+      background: #eef2ff;
+      color: #123b8f;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 20px;
+    }
+
+    .fm-feature h3 {
+      margin: 1px 0 5px;
+
+      color: #111827;
+
+      font-size: 16px;
+    }
+
+    .fm-feature p {
+      margin: 0;
+
+      color: #6b7280;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       MEMBER REVIEWS
+    ========================================= */
+
+    .fm-reviews {
+      padding: 65px 16px;
+
+      background: #f5f7fb;
+    }
+
+    .fm-review-heading {
+      max-width: 680px;
+
+      margin: 0 auto 32px;
+
+      text-align: center;
+    }
+
+    .fm-review-heading h2 {
+      margin: 0 0 10px;
+
+      color: #123b8f;
+
+      font-size: clamp(29px, 6vw, 43px);
+
+      line-height: 1.15;
+    }
+
+    .fm-review-heading p {
+      margin: 0;
+
+      color: #6b7280;
+
+      font-size: 15px;
+
+      line-height: 1.55;
+    }
+
+    .fm-review-grid {
+      width: min(100%, 950px);
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 13px;
+    }
+
+    .fm-review {
+      background: #ffffff;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 16px;
+
+      padding: 19px;
+
+      box-shadow:
+        0 5px 17px rgba(17, 24, 39, 0.045);
+    }
+
+    .fm-stars {
+      color: #123b8f;
+
+      font-size: 14px;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 11px;
+    }
+
+    .fm-review h3 {
+      margin: 0 0 8px;
+
+      color: #111827;
+
+      font-size: 15px;
+    }
+
+    .fm-review p {
+      margin: 0 0 16px;
+
+      color: #6b7280;
+
+      font-size: 13px;
+
+      line-height: 1.55;
+    }
+
+    .fm-review-user {
+      border-top: 1px solid #eeeeee;
+
+      padding-top: 11px;
+
+      color: #9ca3af;
+
+      font-size: 11px;
+
+      font-weight: 600;
+    }
+
+    /* =========================================
+       CTA
+    ========================================= */
+
+    .fm-cta {
+      padding: 60px 16px;
+
+      background: #123b8f;
+
+      color: #ffffff;
+
+      text-align: center;
+    }
+
+    .fm-cta h2 {
+      max-width: 650px;
+
+      margin: 0 auto 11px;
+
+      font-size: clamp(29px, 6vw, 43px);
+
+      line-height: 1.15;
+    }
+
+    .fm-cta p {
+      max-width: 570px;
+
+      margin: 0 auto 23px;
+
+      color: rgba(255,255,255,0.82);
+
+      font-size: 15px;
+
+      line-height: 1.55;
+    }
+
+    .fm-cta-button {
+      display: inline-flex;
+
+      min-height: 50px;
+
+      padding: 12px 25px;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background: #ffffff;
+
+      color: #123b8f;
+
+      font-size: 14px;
+
+      font-weight: 800;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    .fm-footer {
+      padding: 34px 16px;
+
+      background: #111827;
+
+      color: #ffffff;
+
+      text-align: center;
+    }
+
+    .fm-footer-brand {
+      font-size: 17px;
+
+      font-weight: 800;
+
+      margin-bottom: 16px;
+    }
+
+    .fm-footer-links {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 17px;
+
+      margin-bottom: 18px;
+    }
+
+    .fm-footer-links a {
+      color: #cbd5e1;
+
+      font-size: 12px;
+    }
+
+    .fm-footer-copy {
+      margin: 0;
+
+      color: #6b7280;
+
+      font-size: 11px;
+    }
+
+    .fm-demo {
+      margin-top: 7px;
+
+      color: #6b7280;
+
+      font-size: 10px;
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 700px) {
+
+      .fm-header {
+        height: 68px;
+      }
+
+      .fm-brand {
+        font-size: 16px;
+      }
+
+      .fm-logo {
+        width: 38px;
+        height: 38px;
+      }
+
+      .fm-hero {
+        padding: 47px 16px 57px;
+      }
+
+      .fm-hero h1 {
+        font-size: 43px;
+
+        letter-spacing: -1.4px;
+      }
+
+      .fm-hero-text {
+        font-size: 15px;
+      }
+
+      .fm-services,
+      .fm-features,
+      .fm-reviews {
+        padding: 56px 16px;
+      }
+
+      .fm-service-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .fm-review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fm-section-heading h2,
+      .fm-review-heading h2 {
+        font-size: 30px;
+      }
+
+      .fm-section-heading p,
+      .fm-review-heading p {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .fm-hero h1 {
+        font-size: 39px;
+      }
+
+      .fm-service-card {
+        padding: 18px 14px;
+      }
+
+      .fm-service-card h3 {
+        font-size: 14px;
+      }
+
+      .fm-service-card p {
+        font-size: 11px;
+      }
+    }
+
+    @media (min-width: 701px) {
+
+      .fm-actions {
+        flex-direction: row;
+      }
+
+      .fm-button {
+        min-width: 190px;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
 
-  <main class="hero">
+  <!-- =========================================
+       HEADER
+  ========================================== -->
 
-    <div class="container">
+  <header class="fm-header">
 
-      <div class="logo">FM</div>
+    <div class="fm-header-inner">
 
-      <h1>First Merit Bank</h1>
+      <a href="index.html" class="fm-brand">
 
-      <p class="subtitle">
-        Banking made simple. Manage your account, move money,
-        and keep track of your finances—all in one place.
+        <span class="fm-logo">
+          FM
+        </span>
+
+        <span>
+          First Merit Bank
+        </span>
+
+      </a>
+
+      <button
+        class="fm-menu"
+        type="button"
+        aria-label="Open menu"
+      >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================
+       HERO
+  ========================================== -->
+
+  <section class="fm-hero">
+
+    <div class="fm-container">
+
+      <div class="fm-welcome">
+        🛡️ Secure digital banking
+      </div>
+
+      <h1>
+        Banking Made
+        <span>Simple.</span>
+      </h1>
+
+      <p class="fm-hero-text">
+        Manage your account, move money, and keep track
+        of your finances—all in one simple and convenient
+        banking experience.
       </p>
 
-      <div class="card">
+      <div class="fm-actions">
 
-        <a href="signup.html" class="button primary">
-          Create Account
+        <a
+          href="signup.html"
+          class="fm-button fm-primary"
+        >
+          Create Account&nbsp; →
         </a>
 
-        <a href="login.html" class="button secondary">
+        <a
+          href="login.html"
+          class="fm-button fm-secondary"
+        >
           Sign In
         </a>
 
       </div>
 
-      <p class="demo">
-        Demo banking environment • No real money
+      <div class="fm-trust-text">
+        First Merit Bank • Demo banking environment
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       SERVICES
+  ========================================== -->
+
+  <section class="fm-services">
+
+    <div class="fm-section-heading">
+
+      <h2>
+        Banking Services
+      </h2>
+
+      <p>
+        Simple financial tools designed to help you
+        manage your money with confidence.
       </p>
 
     </div>
 
-  </main>
+
+    <div class="fm-service-grid">
+
+      <article class="fm-service-card">
+
+        <div class="fm-service-icon">
+          💳
+        </div>
+
+        <h3>
+          Checking Account
+        </h3>
+
+        <p>
+          Convenient everyday banking and easy
+          access to your account.
+        </p>
+
+      </article>
+
+
+      <article class="fm-service-card">
+
+        <div class="fm-service-icon">
+          💰
+        </div>
+
+        <h3>
+          Savings
+        </h3>
+
+        <p>
+          Keep track of your savings and work
+          toward your financial goals.
+        </p>
+
+      </article>
+
+
+      <article class="fm-service-card">
+
+        <div class="fm-service-icon">
+          🏠
+        </div>
+
+        <h3>
+          Loans
+        </h3>
+
+        <p>
+          Explore borrowing options for your
+          important financial plans.
+        </p>
+
+      </article>
+
+
+      <article class="fm-service-card">
+
+        <div class="fm-service-icon">
+          📱
+        </div>
+
+        <h3>
+          Digital Banking
+        </h3>
+
+        <p>
+          Manage your banking experience wherever
+          you are.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       FEATURES
+  ========================================== -->
+
+  <section class="fm-features">
+
+    <div class="fm-section-heading">
+
+      <h2>
+        Banking Built Around You
+      </h2>
+
+      <p>
+        Everything you need to stay connected
+        to your finances.
+      </p>
+
+    </div>
+
+
+    <div class="fm-feature-list">
+
+      <article class="fm-feature">
+
+        <div class="fm-feature-icon">
+          🔒
+        </div>
+
+        <div>
+
+          <h3>
+            Account Security
+          </h3>
+
+          <p>
+            Designed with secure account access
+            and modern protection features.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="fm-feature">
+
+        <div class="fm-feature-icon">
+          🔔
+        </div>
+
+        <div>
+
+          <h3>
+            Account Notifications
+          </h3>
+
+          <p>
+            Stay informed about important
+            activity on your account.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="fm-feature">
+
+        <div class="fm-feature-icon">
+          📱
+        </div>
+
+        <div>
+
+          <h3>
+            Mobile Access
+          </h3>
+
+          <p>
+            Keep your banking information
+            close wherever you go.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="fm-feature">
+
+        <div class="fm-feature-icon">
+          📊
+        </div>
+
+        <div>
+
+          <h3>
+            Money Management
+          </h3>
+
+          <p>
+            Review your balance and transactions
+            from one convenient place.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       MEMBER REVIEWS
+  ========================================== -->
+
+  <section class="fm-reviews">
+
+    <div class="fm-review-heading">
+
+      <h2>
+        What Our Members Say
+      </h2>
+
+      <p>
+        Join thousands of satisfied members who have
+        transformed their financial lives with First Merit Bank.
+      </p>
+
+    </div>
+
+
+    <div class="fm-review-grid">
+
+      <article class="fm-review">
+
+        <div class="fm-stars">
+          ★★★★★
+        </div>
+
+        <h3>
+          Simple and easy to use
+        </h3>
+
+        <p>
+          “The banking experience is simple and
+          everything I need is easy to find.”
+        </p>
+
+        <div class="fm-review-user">
+          Alex R. · Demo member
+        </div>
+
+      </article>
+
+
+      <article class="fm-review">
+
+        <div class="fm-stars">
+          ★★★★★
+        </div>
+
+        <h3>
+          Clean experience
+        </h3>
+
+        <p>
+          “I really like how organized the account
+          dashboard feels. Everything is easy to see.”
+        </p>
+
+        <div class="fm-review-user">
+          Jordan M. · Demo member
+        </div>
+
+      </article>
+
+
+      <article class="fm-review">
+
+        <div class="fm-stars">
+          ★★★★★
+        </div>
+
+        <h3>
+          Very convenient
+        </h3>
+
+        <p>
+          “Being able to quickly check my account
+          information from my phone is convenient.”
+        </p>
+
+        <div class="fm-review-user">
+          Taylor S. · Demo member
+        </div>
+
+      </article>
+
+
+      <article class="fm-review">
+
+        <div class="fm-stars">
+          ★★★★★
+        </div>
+
+        <h3>
+          Easy banking
+        </h3>
+
+        <p>
+          “The layout makes it easy to understand
+          where everything is.”
+        </p>
+
+        <div class="fm-review-user">
+          Morgan K. · Demo member
+        </div>
+
+      </article>
+
+
+      <article class="fm-review">
+
+        <div class="fm-stars">
+          ★★★★★
+        </div>
+
+        <h3>
+          Modern and simple
+        </h3>
+
+        <p>
+          “I like the clean design. It doesn't feel
+          complicated or crowded.”
+        </p>
+
+        <div class="fm-review-user">
+          Chris D. · Demo member
+        </div>
+
+      </article>
+
+
+      <article class="fm-review">
+
+        <div class="fm-stars">
+          ★★★★★
+        </div>
+
+        <h3>
+          Everything in one place
+        </h3>
+
+        <p>
+          “The important account information is easy
+          to see without searching through menus.”
+        </p>
+
+        <div class="fm-review-user">
+          Jamie P. · Demo member
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       CTA
+  ========================================== -->
+
+  <section class="fm-cta">
+
+    <h2>
+      Ready to Get Started?
+    </h2>
+
+    <p>
+      Create your First Merit account and experience
+      a simple way to manage your finances.
+    </p>
+
+    <a
+      href="signup.html"
+      class="fm-cta-button"
+    >
+      Create Account&nbsp; →
+    </a>
+
+  </section>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+
+  <footer class="fm-footer">
+
+    <div class="fm-footer-brand">
+      First Merit Bank
+    </div>
+
+    <div class="fm-footer-links">
+
+      <a href="#">
+        About
+      </a>
+
+      <a href="#">
+        Security
+      </a>
+
+      <a href="#">
+        Contact
+      </a>
+
+      <a href="#">
+        Privacy
+      </a>
+
+      <a href="#">
+        Terms
+      </a>
+
+    </div>
+
+    <p class="fm-footer-copy">
+      © 2026 First Merit Bank
+    </p>
+
+    <div class="fm-demo">
+      Demo banking environment • No real money
+    </div>
+
+  </footer>
+
 
   <script src="script.js"></script>
 
