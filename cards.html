@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cards | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #182230;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: auto;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ebf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0b5cff;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .brand-text span {
+      display: block;
+      color: #8993a4;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .back-btn {
+      border: 0;
+      background: #f1f4f8;
+      color: #273447;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+    }
+
+    .back-btn:hover {
+      background: #e7edf5;
+    }
+
+    /* MAIN */
+
+    .content {
+      padding: 30px 24px;
+    }
+
+    .page-heading {
+      margin-bottom: 24px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.5px;
+      margin-bottom: 7px;
+    }
+
+    .page-heading p {
+      color: #7c8798;
+      font-size: 14px;
+    }
+
+    /* CARD PREVIEW */
+
+    .card-section {
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 28px rgba(24, 34, 48, 0.05);
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+      font-size: 17px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border-radius: 20px;
+      background: #eaf8f0;
+      color: #16834b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22a862;
+    }
+
+    .bank-card {
+      position: relative;
+      overflow: hidden;
+      max-width: 600px;
+      min-height: 285px;
+      border-radius: 24px;
+      padding: 27px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,.20), transparent 30%),
+        radial-gradient(circle at 10% 100%, rgba(255,255,255,.12), transparent 35%),
+        linear-gradient(135deg, #071d45, #0b5cff 55%, #1649a4);
+      box-shadow: 0 18px 35px rgba(11, 92, 255, 0.20);
+    }
+
+    .bank-card::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      right: -75px;
+      bottom: -85px;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-name {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+
+    .card-type {
+      font-size: 11px;
+      opacity: .72;
+      margin-top: 4px;
+    }
+
+    .contactless {
+      font-size: 22px;
+      transform: rotate(90deg);
+      opacity: .9;
+    }
+
+    .chip {
+      width: 49px;
+      height: 37px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #e9d49a, #b89b55);
+      margin-top: 38px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .chip::before,
+    .chip::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(70, 55, 20, .35);
+    }
+
+    .chip::before {
+      inset: 7px 17px;
+      border-radius: 4px;
+    }
+
+    .chip::after {
+      left: 7px;
+      right: 7px;
+      top: 17px;
+    }
+
+    .card-number {
+      position: relative;
+      z-index: 2;
+      margin-top: 25px;
+      font-size: 23px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    .card-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 29px;
+      gap: 20px;
+    }
+
+    .card-label {
+      font-size: 9px;
+      opacity: .65;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 5px;
+    }
+
+    .card-value {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .card-network {
+      font-size: 20px;
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: -1px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .action-btn {
+      border: 1px solid #dfe5ee;
+      background: #ffffff;
+      color: #253347;
+      border-radius: 11px;
+      padding: 11px 14px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .action-btn:hover {
+      background: #f4f7fb;
+    }
+
+    .action-btn.primary {
+      background: #0b5cff;
+      color: #ffffff;
+      border-color: #0b5cff;
+    }
+
+    /* BALANCE */
+
+    .balance-box {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .info-box {
+      background: #f7f9fc;
+      border: 1px solid #e9edf3;
+      border-radius: 15px;
+      padding: 17px;
+    }
+
+    .info-box span {
+      color: #7d8899;
+      font-size: 12px;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .info-box strong {
+      font-size: 18px;
+    }
+
+    /* CONTROLS */
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .control-card {
+      border: 1px solid #e5eaf1;
+      background: #ffffff;
+      border-radius: 17px;
+      padding: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .control-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .control-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #eef4ff;
+      color: #0b5cff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .control-left strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .control-left span {
+      display: block;
+      font-size: 12px;
+      color: #8791a0;
+    }
+
+    .toggle {
+      width: 48px;
+      height: 27px;
+      border: 0;
+      border-radius: 20px;
+      background: #cdd4df;
+      padding: 3px;
+      transition: .2s;
+    }
+
+    .toggle span {
+      display: block;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: #ffffff;
+      transition: .2s;
+    }
+
+    .toggle.active {
+      background: #0b5cff;
+    }
+
+    .toggle.active span {
+      transform: translateX(21px);
+    }
+
+    /* ACTIVITY */
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      background: #f8fafd;
+      border: 1px solid #edf0f5;
+      border-radius: 14px;
+    }
+
+    .activity-icon {
+      width: 39px;
+      height: 39px;
+      border-radius: 11px;
+      background: #eef4ff;
+      color: #0b5cff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .activity-info {
+      flex: 1;
+    }
+
+    .activity-info strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .activity-info span {
+      color: #8a94a3;
+      font-size: 11px;
+    }
+
+    .activity-amount {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 18, 35, .55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 430px;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,.2);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 10px;
+      background: #f1f4f8;
+      color: #4b5666;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: #687486;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #dce2eb;
+      border-radius: 11px;
+      outline: none;
+      background: #ffffff;
+      color: #172235;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #0b5cff;
+    }
+
+    .save-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      background: #0b5cff;
+      color: #ffffff;
+      padding: 14px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 100px);
+      background: #182230;
+      color: #ffffff;
+      padding: 13px 17px;
+      border-radius: 11px;
+      font-size: 13px;
+      opacity: 0;
+      transition: .25s;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        padding: 0 16px;
+      }
+
+      .content {
+        padding: 24px 16px;
+      }
+
+      .page-heading h1 {
+        font-size: 24px;
+      }
+
+      .card-section {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .bank-card {
+        min-height: 245px;
+        padding: 21px;
+        border-radius: 20px;
+      }
+
+      .card-number {
+        font-size: 17px;
+        letter-spacing: 2px;
+        margin-top: 22px;
+      }
+
+      .card-bottom {
+        margin-top: 23px;
+      }
+
+      .balance-box,
+      .controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .brand-text span {
+        display: none;
+      }
+
+      .bank-card {
+        min-height: 225px;
+      }
+
+      .chip {
+        margin-top: 28px;
+      }
+
+      .card-number {
+        font-size: 15px;
+      }
+
+      .card-network {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="topbar">
+
+      <div class="brand">
+        <div class="brand-logo">FM</div>
+
+        <div class="brand-text">
+          <strong>First Merit Bank</strong>
+          <span>Cards</span>
+        </div>
+      </div>
+
+      <button class="back-btn" id="backBtn" aria-label="Back">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+    </header>
+
+    <main class="content">
+
+      <section class="page-heading">
+        <h1>Cards</h1>
+        <p>Manage your cards, security settings and card activity.</p>
+      </section>
+
+      <!-- CARD OVERVIEW -->
+
+      <section class="card-section">
+
+        <div class="section-title">
+          <h2>Primary Card</h2>
+
+          <div class="status" id="cardStatus">
+            <span class="status-dot"></span>
+            Active
+          </div>
+        </div>
+
+        <div class="bank-card">
+
+          <div class="card-top">
+            <div>
+              <div class="card-name">FIRST MERIT BANK</div>
+              <div class="card-type">DEBIT CARD</div>
+            </div>
+
+            <i class="fa-solid fa-wifi contactless"></i>
+          </div>
+
+          <div class="chip"></div>
+
+          <div class="card-number" id="cardNumber">
+            •••• •••• •••• 4827
+          </div>
+
+          <div class="card-bottom">
+
+            <div>
+              <div class="card-label">Card Holder</div>
+              <div class="card-value" id="cardHolder">
+                Account Holder
+              </div>
+            </div>
+
+            <div>
+              <div class="card-label">Expires</div>
+              <div class="card-value" id="cardExpiry">
+                09/29
+              </div>
+            </div>
+
+            <div>
+              <div class="card-label">Network</div>
+              <div class="card-network">VISA</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="card-actions">
+
+          <button class="action-btn primary" id="showCardBtn">
+            <i class="fa-solid fa-eye"></i>
+            Show Card Number
+          </button>
+
+          <button class="action-btn" id="freezeCardBtn">
+            <i class="fa-solid fa-snowflake"></i>
+            Freeze Card
+          </button>
+
+        </div>
+
+        <div class="balance-box">
+
+          <div class="info-box">
+            <span>Available Balance</span>
+            <strong id="availableBalance">$400,000.00</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Card Type</span>
+            <strong>Checking Debit</strong>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CARD CONTROLS -->
+
+      <section class="card-section">
+
+        <div class="section-title">
+          <h2>Card Controls</h2>
+        </div>
+
+        <div class="controls">
+
+          <div class="control-card">
+
+            <div class="control-left">
+              <div class="control-icon">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+
+              <div>
+                <strong>Card Security</strong>
+                <span>Protect your card from unauthorized use</span>
+              </div>
+            </div>
+
+            <button class="toggle active" id="securityToggle">
+              <span></span>
+            </button>
+
+          </div>
+
+          <div class="control-card">
+
+            <div class="control-left">
+              <div class="control-icon">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+
+              <div>
+                <strong>Online Purchases</strong>
+                <span>Allow card payments online</span>
+              </div>
+            </div>
+
+            <button class="toggle active" id="onlineToggle">
+              <span></span>
+            </button>
+
+          </div>
+
+          <div class="control-card">
+
+            <div class="control-left">
+              <div class="control-icon">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+
+              <div>
+                <strong>ATM Withdrawals</strong>
+                <span>Allow cash withdrawals</span>
+              </div>
+            </div>
+
+            <button class="toggle active" id="atmToggle">
+              <span></span>
+            </button>
+
+          </div>
+
+          <div class="control-card">
+
+            <div class="control-left">
+              <div class="control-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+
+              <div>
+                <strong>Location Protection</strong>
+                <span>Use location checks for card activity</span>
+              </div>
+            </div>
+
+            <button class="toggle active" id="locationToggle">
+              <span></span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CARD SETTINGS -->
+
+      <section class="card-section">
+
+        <div class="section-title">
+          <h2>Card Settings</h2>
+        </div>
+
+        <div class="controls">
+
+          <div class="control-card" id="changePinBtn" style="cursor:pointer;">
+            <div class="control-left">
+              <div class="control-icon">
+                <i class="fa-solid fa-key"></i>
+              </div>
+
+              <div>
+                <strong>Change PIN</strong>
+                <span>Update your card PIN</span>
+              </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+          <div class="control-card" id="cardLimitsBtn" style="cursor:pointer;">
+            <div class="control-left">
+              <div class="control-icon">
+                <i class="fa-solid fa-sliders"></i>
+              </div>
+
+              <div>
+                <strong>Card Limits</strong>
+                <span>Review your daily limits</span>
+              </div>
+            </div>
+
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- RECENT ACTIVITY -->
+
+      <section class="card-section">
+
+        <div class="section-title">
+          <h2>Recent Card Activity</h2>
+
+          <button class="action-btn" id="refreshActivityBtn">
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+        </div>
+
+        <div class="activity-list" id="activityList">
+
+          <div class="activity-item">
+
+            <div class="activity-icon">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+
+            <div class="activity-info">
+              <strong>Card Activated</strong>
+              <span>Primary debit card</span>
+            </div>
+
+            <div class="activity-amount">
+              Active
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- CARD NUMBER MODAL -->
+
+  <div class="modal" id="cardModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Card Information</h3>
+
+        <button class="close-btn" id="closeCardModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="field">
+        <label>Card Number</label>
+        <input
+          type="text"
+          id="fullCardNumber"
+          value="4532 1187 9043 4827"
+          readonly
+        >
+      </div>
+
+      <div class="field">
+        <label>Expiration Date</label>
+        <input
+          type="text"
+          id="fullCardExpiry"
+          value="09/29"
+          readonly
+        >
+      </div>
+
+      <div class="field">
+        <label>Security Code</label>
+        <input
+          type="text"
+          value="•••"
+          readonly
+        >
+      </div>
+
+      <button class="save-btn" id="closeCardBtn">
+        Done
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- PIN MODAL -->
+
+  <div class="modal" id="pinModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Change PIN</h3>
+
+        <button class="close-btn" id="closePinModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="field">
+        <label>New PIN</label>
+        <input
+          type="password"
+          id="newPin"
+          maxlength="4"
+          inputmode="numeric"
+          placeholder="Enter 4-digit PIN"
+        >
+      </div>
+
+      <div class="field">
+        <label>Confirm PIN</label>
+        <input
+          type="password"
+          id="confirmPin"
+          maxlength="4"
+          inputmode="numeric"
+          placeholder="Confirm new PIN"
+        >
+      </div>
+
+      <button class="save-btn" id="savePinBtn">
+        Update PIN
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- LIMITS MODAL -->
+
+  <div class="modal" id="limitsModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Card Limits</h3>
+
+        <button class="close-btn" id="closeLimitsModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="info-box" style="margin-bottom:12px;">
+        <span>Daily Purchase Limit</span>
+        <strong>$10,000.00</strong>
+      </div>
+
+      <div class="info-box" style="margin-bottom:12px;">
+        <span>Daily ATM Limit</span>
+        <strong>$5,000.00</strong>
+      </div>
+
+      <div class="info-box">
+        <span>Contactless Limit</span>
+        <strong>$500.00</strong>
+      </div>
+
+      <button class="save-btn" id="closeLimitsBtn">
+        Done
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      updateDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    const backBtn = document.getElementById("backBtn");
+
+    const cardNumber = document.getElementById("cardNumber");
+    const showCardBtn = document.getElementById("showCardBtn");
+    const freezeCardBtn = document.getElementById("freezeCardBtn");
+    const cardStatus = document.getElementById("cardStatus");
+    const availableBalance = document.getElementById("availableBalance");
+    const cardHolder = document.getElementById("cardHolder");
+
+    const cardModal = document.getElementById("cardModal");
+    const closeCardModal = document.getElementById("closeCardModal");
+    const closeCardBtn = document.getElementById("closeCardBtn");
+
+    const pinModal = document.getElementById("pinModal");
+    const changePinBtn = document.getElementById("changePinBtn");
+    const closePinModal = document.getElementById("closePinModal");
+    const savePinBtn = document.getElementById("savePinBtn");
+
+    const limitsModal = document.getElementById("limitsModal");
+    const cardLimitsBtn = document.getElementById("cardLimitsBtn");
+    const closeLimitsModal = document.getElementById("closeLimitsModal");
+    const closeLimitsBtn = document.getElementById("closeLimitsBtn");
+
+    const toast = document.getElementById("toast");
+
+
+    let currentUser = null;
+    let currentCard = null;
+    let cardVisible = false;
+    let cardFrozen = false;
+
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+    }
+
+
+    function generateCardNumber() {
+      const first = "4532";
+
+      const randomPart =
+        Math.floor(100000000000 + Math.random() * 899999999999)
+        .toString();
+
+      return first + randomPart;
+    }
+
+
+    function formatCardNumber(number, visible = false) {
+
+      if (!number) {
+        return "•••• •••• •••• 4827";
+      }
+
+      const clean = String(number).replace(/\D/g, "");
+
+      if (visible) {
+        return clean.match(/.{1,4}/g)?.join(" ") || clean;
+      }
+
+      const lastFour = clean.slice(-4);
+
+      return "•••• •••• •••• " + lastFour;
+    }
+
+
+    function formatMoney(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(Number(value || 0));
+    }
+
+
+    function renderCard() {
+
+      if (!currentCard) return;
+
+      cardNumber.textContent =
+        formatCardNumber(currentCard.number, cardVisible);
+
+      document.getElementById("fullCardNumber").value =
+        formatCardNumber(currentCard.number, true);
+
+      document.getElementById("fullCardExpiry").value =
+        currentCard.expiry || "09/29";
+
+      cardHolder.textContent =
+        currentCard.cardHolder || "Account Holder";
+
+      document.getElementById("cardExpiry").textContent =
+        currentCard.expiry || "09/29";
+
+      if (currentCard.frozen) {
+        cardStatus.innerHTML =
+          '<span class="status-dot" style="background:#d14343;"></span> Frozen';
+
+        cardStatus.style.background = "#fff0f0";
+        cardStatus.style.color = "#c03939";
+
+        freezeCardBtn.innerHTML =
+          '<i class="fa-solid fa-unlock"></i> Unfreeze Card';
+
+      } else {
+        cardStatus.innerHTML =
+          '<span class="status-dot"></span> Active';
+
+        cardStatus.style.background = "#eaf8f0";
+        cardStatus.style.color = "#16834b";
+
+        freezeCardBtn.innerHTML =
+          '<i class="fa-solid fa-snowflake"></i> Freeze Card';
+      }
+
+      showCardBtn.innerHTML = cardVisible
+        ? '<i class="fa-solid fa-eye-slash"></i> Hide Card Number'
+        : '<i class="fa-solid fa-eye"></i> Show Card Number';
+    }
+
+
+    async function loadUser() {
+
+      onAuthStateChanged(auth, async (user) => {
+
+        if (!user) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        currentUser = user;
+
+        try {
+
+          const userRef = doc(db, "users", user.uid);
+          const snap = await getDoc(userRef);
+
+          if (!snap.exists()) {
+            showToast("Unable to load account.");
+            return;
+          }
+
+          const data = snap.data();
+
+          availableBalance.textContent =
+            formatMoney(data.balance ?? 400000);
+
+          cardHolder.textContent =
+            data.fullName ||
+            user.displayName ||
+            "Account Holder";
+
+          if (data.card) {
+
+            currentCard = data.card;
+
+          } else {
+
+            currentCard = {
+              number: generateCardNumber(),
+              expiry: "09/29",
+              cardHolder:
+                data.fullName ||
+                user.displayName ||
+                "Account Holder",
+              frozen: false,
+              createdAt: new Date()
+            };
+
+            await updateDoc(userRef, {
+              card: currentCard
+            });
+          }
+
+          cardFrozen = Boolean(currentCard.frozen);
+
+          renderCard();
+
+        } catch (error) {
+
+          console.error(error);
+          showToast("Unable to load card information.");
+
+        }
+
+      });
+
+    }
+
+
+    showCardBtn.addEventListener("click", () => {
+
+      cardVisible = !cardVisible;
+
+      renderCard();
+
+    });
+
+
+    freezeCardBtn.addEventListener("click", async () => {
+
+      if (!currentUser || !currentCard) return;
+
+      const newState = !Boolean(currentCard.frozen);
+
+      try {
+
+        const userRef = doc(db, "users", currentUser.uid);
+
+        await updateDoc(userRef, {
+          "card.frozen": newState,
+          "card.updatedAt": serverTimestamp()
+        });
+
+        currentCard.frozen = newState;
+        cardFrozen = newState;
+
+        renderCard();
+
+        showToast(
+          newState
+            ? "Your card has been frozen."
+            : "Your card has been unfrozen."
+        );
+
+      } catch (error) {
+
+        console.error(error);
+        showToast("Unable to update card status.");
+
+      }
+
+    });
+
+
+    function toggleControl(button) {
+
+      button.classList.toggle("active");
+
+      showToast(
+        button.classList.contains("active")
+          ? "Card control enabled."
+          : "Card control disabled."
+      );
+
+    }
+
+
+    document
+      .querySelectorAll(".toggle")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+          toggleControl(button);
+        });
+
+      });
+
+
+    changePinBtn.addEventListener("click", () => {
+      pinModal.classList.add("show");
+    });
+
+
+    closePinModal.addEventListener("click", () => {
+      pinModal.classList.remove("show");
+    });
+
+
+    savePinBtn.addEventListener("click", async () => {
+
+      const newPin =
+        document.getElementById("newPin").value.trim();
+
+      const confirmPin =
+        document.getElementById("confirmPin").value.trim();
+
+      if (!/^\d{4}$/.test(newPin)) {
+        showToast("Enter a valid 4-digit PIN.");
+        return;
+      }
+
+      if (newPin !== confirmPin) {
+        showToast("PINs do not match.");
+        return;
+      }
+
+      try {
+
+        await updateDoc(
+          doc(db, "users", currentUser.uid),
+          {
+            "card.pinUpdatedAt": serverTimestamp()
+          }
+        );
+
+        document.getElementById("newPin").value = "";
+        document.getElementById("confirmPin").value = "";
+
+        pinModal.classList.remove("show");
+
+        showToast("Card PIN updated.");
+
+      } catch (error) {
+
+        console.error(error);
+        showToast("Unable to update PIN.");
+
+      }
+
+    });
+
+
+    cardLimitsBtn.addEventListener("click", () => {
+      limitsModal.classList.add("show");
+    });
+
+
+    closeLimitsModal.addEventListener("click", () => {
+      limitsModal.classList.remove("show");
+    });
+
+
+    closeLimitsBtn.addEventListener("click", () => {
+      limitsModal.classList.remove("show");
+    });
+
+
+    closeCardModal.addEventListener("click", () => {
+      cardModal.classList.remove("show");
+    });
+
+
+    closeCardBtn.addEventListener("click", () => {
+      cardModal.classList.remove("show");
+    });
+
+
+    backBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+
+    document
+      .querySelectorAll(".modal")
+      .forEach(modal => {
+
+        modal.addEventListener("click", (event) => {
+
+          if (event.target === modal) {
+            modal.classList.remove("show");
+          }
+
+        });
+
+      });
+
+
+    loadUser();
+
+  </script>
+
+</body>
+</html>
