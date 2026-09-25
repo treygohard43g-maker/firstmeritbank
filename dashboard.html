@@ -6,37 +6,41 @@
 
   <title>Dashboard | First Merit Bank</title>
 
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      background: #f4f7fb;
-      color: #172033;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .dashboard-page {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
       min-height: 100vh;
     }
 
-    /* HEADER */
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
 
     .dashboard-header {
-      height: 72px;
+      height: 68px;
       background: #ffffff;
-      border-bottom: 1px solid #e8edf4;
+      border-bottom: 1px solid #e8ebf2;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 22px;
+      padding: 0 20px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -46,416 +50,531 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 14px;
     }
 
     .menu-btn,
-    .header-icon,
-    .profile-btn {
+    .header-icon {
+      width: 42px;
+      height: 42px;
       border: none;
-      background: transparent;
+      background: #f4f6fa;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #172554;
+      font-size: 17px;
       cursor: pointer;
-      color: #172033;
     }
 
     .menu-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      font-size: 20px;
+      margin-right: 12px;
     }
 
-    .menu-btn:hover,
-    .header-icon:hover {
-      background: #f1f5f9;
-    }
-
-    .brand {
+    .header-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 17px;
+      gap: 9px;
     }
 
     .brand-logo {
-      width: 38px;
-      height: 38px;
-      border-radius: 11px;
-      background: #0b3b91;
-      color: #ffffff;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #123b78;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
+      font-size: 13px;
     }
 
-    .header-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      font-size: 18px;
+    .brand-name {
+      font-size: 15px;
+      font-weight: 750;
+      color: #172554;
     }
 
-    .profile-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #e9eff8;
-      color: #0b3b91;
-      font-size: 17px;
+    .header-right {
+      gap: 8px;
     }
 
-    /* MAIN */
+    /* =========================
+       MAIN
+    ========================= */
 
     .dashboard-main {
-      width: min(1100px, calc(100% - 32px));
+      width: min(100%, 1080px);
       margin: 0 auto;
-      padding: 32px 0 60px;
+      padding: 24px 18px 45px;
     }
 
-    /* GREETING */
-
     .welcome-section {
-      margin-bottom: 25px;
+      margin-bottom: 18px;
     }
 
     .welcome-section h1 {
-      margin: 0;
-      font-size: 29px;
-      line-height: 1.2;
-      color: #101828;
-      font-weight: 700;
+      font-size: 23px;
+      line-height: 1.25;
+      color: #111827;
+      font-weight: 750;
+      margin-bottom: 5px;
     }
 
     .welcome-section p {
-      margin: 8px 0 0;
-      color: #667085;
-      font-size: 15px;
-    }
-
-    /* ACCOUNT CARD */
-
-    .account-card {
-      background: linear-gradient(135deg, #092d70, #0b4ca2);
-      color: white;
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 18px 45px rgba(11, 59, 145, 0.20);
-      margin-bottom: 25px;
-    }
-
-    .account-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 15px;
-    }
-
-    .account-label {
+      color: #7b8495;
       font-size: 13px;
-      opacity: 0.78;
-      margin-bottom: 8px;
     }
 
-    .account-balance-row {
+    /* =========================
+       BALANCE CARD
+    ========================= */
+
+    .balance-card {
+      width: 100%;
+      min-height: 138px;
+      background: linear-gradient(135deg, #123b78, #1c579e);
+      border-radius: 20px;
+      padding: 20px 21px;
+      color: white;
+      box-shadow: 0 12px 28px rgba(18, 59, 120, 0.17);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .balance-card::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      right: -55px;
+      top: -65px;
+    }
+
+    .balance-top {
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
     }
 
-    .account-balance {
-      margin: 0;
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: -1px;
+    .balance-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 4px;
+    }
+
+    .balance-amount {
+      font-size: 29px;
+      font-weight: 780;
+      letter-spacing: -0.8px;
+      line-height: 1.1;
     }
 
     .balance-toggle {
+      width: 36px;
+      height: 36px;
       border: none;
-      background: rgba(255,255,255,0.12);
+      border-radius: 11px;
+      background: rgba(255,255,255,0.13);
       color: white;
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .balance-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 16px;
+      position: relative;
+      z-index: 2;
     }
 
     .account-number-area {
-      text-align: right;
-    }
-
-    .account-number-area small {
-      display: block;
-      opacity: 0.7;
-      font-size: 12px;
-      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
 
     .account-number {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-size: 13px;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,0.86);
     }
 
     .copy-account {
       border: none;
       background: transparent;
-      color: white;
+      color: rgba(255,255,255,0.78);
       cursor: pointer;
-      margin-left: 5px;
-      opacity: 0.8;
-    }
-
-    .account-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.16);
-      margin-top: 25px;
-      padding-top: 18px;
+      font-size: 12px;
     }
 
     .account-meta {
       display: flex;
-      gap: 28px;
-    }
-
-    .account-meta-item span {
-      display: block;
-      font-size: 11px;
-      opacity: 0.65;
-      margin-bottom: 5px;
-    }
-
-    .account-meta-item strong {
-      font-size: 14px;
-    }
-
-    .status {
-      display: inline-flex;
       align-items: center;
-      gap: 7px;
-      font-size: 13px;
+      gap: 10px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: #50d890;
+    .active-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .active-dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
+      background: #6ee7b7;
     }
 
-    /* MONEY ACTIONS */
+    /* =========================
+       SECTION TITLES
+    ========================= */
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 750;
+      color: #1f2937;
+      margin: 22px 0 11px;
+    }
+
+    /* =========================
+       MONEY ACTIONS
+    ========================= */
 
     .money-actions {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 13px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
     }
 
     .money-action {
-      border: 1px solid #e3e8f0;
+      min-height: 82px;
       background: #ffffff;
-      border-radius: 17px;
-      padding: 18px 10px;
+      border: 1px solid #e8ebf2;
+      border-radius: 16px;
+      padding: 13px 8px;
       cursor: pointer;
-      color: #172033;
+      text-align: center;
       transition: 0.2s ease;
+      color: #172554;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
     }
 
     .money-action:hover {
-      transform: translateY(-3px);
-      border-color: #cbd7e8;
-      box-shadow: 0 10px 25px rgba(16, 24, 40, 0.07);
+      transform: translateY(-2px);
+      border-color: #d5ddea;
     }
 
-    .money-action i {
+    .action-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #eef4ff;
+      color: #1d4f91;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 43px;
-      height: 43px;
-      margin: 0 auto 10px;
-      border-radius: 12px;
-      background: #edf4ff;
-      color: #0b4ca2;
-      font-size: 18px;
+      margin: 0 auto 7px;
+      font-size: 14px;
     }
 
     .money-action span {
       display: block;
+      font-size: 11px;
+      font-weight: 650;
+      color: #3c4657;
+    }
+
+    /* Transfer wide card */
+
+    .transfer-card {
+      width: 100%;
+      min-height: 64px;
+      border: 1px solid #e8ebf2;
+      background: #ffffff;
+      border-radius: 16px;
+      margin-top: 10px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+      transition: 0.2s ease;
+    }
+
+    .transfer-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .transfer-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .transfer-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #eef4ff;
+      color: #1d4f91;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .transfer-text strong {
+      display: block;
       font-size: 13px;
-      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 2px;
     }
 
-    /* CONTENT GRID */
+    .transfer-text span {
+      font-size: 11px;
+      color: #8a93a3;
+    }
 
-    .dashboard-grid {
+    .transfer-arrow {
+      color: #9aa3b2;
+      font-size: 13px;
+    }
+
+    /* =========================
+       INFORMATION CARDS
+    ========================= */
+
+    .info-grid {
       display: grid;
-      grid-template-columns: 1.35fr 0.85fr;
-      gap: 22px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
     }
 
-    .dashboard-card {
-      background: white;
-      border: 1px solid #e7ebf1;
-      border-radius: 20px;
-      padding: 23px;
-      box-shadow: 0 7px 25px rgba(16, 24, 40, 0.04);
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e8ebf2;
+      border-radius: 17px;
+      padding: 16px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
     }
 
-    .card-header {
+    .info-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
+      margin-bottom: 13px;
     }
 
-    .card-header h2 {
-      margin: 0;
-      font-size: 17px;
-      color: #172033;
+    .info-card-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
     }
 
-    .transaction {
+    .small-card-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #eef4ff;
+      color: #1d4f91;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .info-card h3 {
+      font-size: 13px;
+      color: #1f2937;
+    }
+
+    .info-arrow {
+      border: none;
+      background: transparent;
+      color: #9aa3b2;
+      cursor: pointer;
+    }
+
+    .transaction-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .transaction-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 0;
-      border-bottom: 1px solid #eef1f5;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #f0f2f6;
     }
 
-    .transaction:last-child {
+    .transaction-item:last-child {
       border-bottom: none;
+      padding-bottom: 0;
     }
 
     .transaction-left {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 9px;
+      min-width: 0;
     }
 
     .transaction-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: #edf4ff;
-      color: #0b4ca2;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: #f4f6fa;
+      color: #536176;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .transaction-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .transaction-date {
+      flex-shrink: 0;
       font-size: 12px;
-      color: #8a94a6;
-      margin-top: 4px;
+    }
+
+    .transaction-info {
+      min-width: 0;
+    }
+
+    .transaction-info strong {
+      display: block;
+      font-size: 11px;
+      color: #303949;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .transaction-info span {
+      font-size: 10px;
+      color: #9aa3b2;
     }
 
     .transaction-amount {
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 700;
-    }
-
-    /* INHERITANCE */
-
-    .inheritance-card {
-      margin-top: 22px;
-      background: #ffffff;
-      border: 1px solid #e7ebf1;
-      border-radius: 20px;
-      padding: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      box-shadow: 0 7px 25px rgba(16, 24, 40, 0.04);
-    }
-
-    .inheritance-info {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .inheritance-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: #edf4ff;
-      color: #0b4ca2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-
-    .inheritance-info h3 {
-      margin: 0 0 5px;
-      font-size: 16px;
-    }
-
-    .inheritance-info p {
-      margin: 0;
-      color: #7a8495;
-      font-size: 13px;
-    }
-
-    .inheritance-btn {
-      border: none;
-      background: #0b3b91;
-      color: white;
-      padding: 12px 17px;
-      border-radius: 11px;
-      cursor: pointer;
-      font-weight: 600;
       white-space: nowrap;
     }
 
-    /* ACCOUNT DETAILS */
+    .credit {
+      color: #16845b;
+    }
+
+    .debit {
+      color: #c94b55;
+    }
+
+    .empty-transactions {
+      font-size: 11px;
+      color: #9aa3b2;
+      padding: 5px 0;
+    }
+
+    /* =========================
+       ACCOUNT DETAILS
+    ========================= */
 
     .detail-row {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
-      padding: 13px 0;
-      border-bottom: 1px solid #eef1f5;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f2f6;
+      font-size: 11px;
     }
 
     .detail-row:last-child {
       border-bottom: none;
     }
 
-    .detail-row span {
-      color: #7a8495;
-      font-size: 13px;
+    .detail-label {
+      color: #8a93a3;
     }
 
-    .detail-row strong {
-      font-size: 13px;
+    .detail-value {
+      color: #374151;
+      font-weight: 650;
       text-align: right;
     }
 
-    /* SIDE MENU */
+    /* =========================
+       INHERITANCE
+    ========================= */
+
+    .inheritance-card {
+      margin-top: 12px;
+      background: #ffffff;
+      border: 1px solid #e8ebf2;
+      border-radius: 17px;
+      min-height: 78px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+    }
+
+    .inheritance-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .inheritance-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inheritance-text strong {
+      display: block;
+      font-size: 13px;
+      color: #263142;
+      margin-bottom: 3px;
+    }
+
+    .inheritance-text span {
+      font-size: 10px;
+      color: #9199a8;
+    }
+
+    /* =========================
+       SIDE MENU
+    ========================= */
 
     .menu-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.42);
+      background: rgba(15, 23, 42, 0.45);
+      z-index: 200;
       opacity: 0;
       visibility: hidden;
-      transition: 0.25s;
-      z-index: 500;
+      transition: 0.25s ease;
     }
 
-    .menu-overlay.open {
+    .menu-overlay.show {
       opacity: 1;
       visibility: visible;
     }
@@ -465,13 +584,13 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 300px;
-      max-width: 88%;
-      background: white;
-      z-index: 600;
+      width: min(82%, 320px);
+      background: #ffffff;
+      z-index: 201;
       transform: translateX(-100%);
       transition: 0.28s ease;
-      padding: 22px 17px;
+      box-shadow: 12px 0 30px rgba(0,0,0,0.12);
+      padding: 20px 15px;
       overflow-y: auto;
     }
 
@@ -479,258 +598,318 @@
       transform: translateX(0);
     }
 
-    .side-menu-header {
+    .menu-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 5px 5px 20px;
+      padding: 3px 5px 20px;
       border-bottom: 1px solid #edf0f4;
       margin-bottom: 10px;
     }
 
-    .side-menu-brand {
+    .menu-brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 700;
+    }
+
+    .menu-brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b78;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .menu-brand strong {
+      font-size: 14px;
+      color: #172554;
     }
 
     .close-menu {
+      width: 36px;
+      height: 36px;
       border: none;
-      background: transparent;
-      font-size: 20px;
+      border-radius: 10px;
+      background: #f4f6fa;
+      color: #475569;
       cursor: pointer;
-      color: #667085;
+    }
+
+    .menu-section {
+      margin-top: 8px;
     }
 
     .menu-item {
       width: 100%;
+      height: 47px;
       border: none;
       background: transparent;
       display: flex;
       align-items: center;
-      gap: 13px;
-      padding: 13px 12px;
+      gap: 12px;
+      padding: 0 12px;
       border-radius: 11px;
+      color: #4b5563;
       cursor: pointer;
-      color: #344054;
       text-align: left;
-      font-size: 14px;
-      margin: 2px 0;
-    }
-
-    .menu-item:hover {
-      background: #f3f6fa;
-      color: #0b3b91;
+      font-size: 13px;
+      margin-bottom: 3px;
     }
 
     .menu-item i {
-      width: 22px;
+      width: 19px;
       text-align: center;
+      color: #64748b;
+    }
+
+    .menu-item:hover {
+      background: #f2f5fa;
+      color: #123b78;
     }
 
     .menu-divider {
       height: 1px;
       background: #edf0f4;
-      margin: 12px 0;
+      margin: 10px 8px;
     }
 
     .logout-item {
-      color: #c62828;
+      color: #c94b55;
     }
 
-    /* TOAST */
-
-    .dashboard-toast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translate(-50%, 20px);
-      background: #172033;
-      color: white;
-      padding: 13px 18px;
-      border-radius: 11px;
-      font-size: 13px;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.25s;
-      z-index: 1000;
+    .logout-item i {
+      color: #c94b55;
     }
 
-    .dashboard-toast.show {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-
-    /* INHERITANCE MODAL */
+    /* =========================
+       INHERITANCE MODAL
+    ========================= */
 
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(9, 18, 35, 0.55);
+      background: rgba(15,23,42,0.48);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 18px;
+      z-index: 300;
       opacity: 0;
       visibility: hidden;
-      transition: 0.2s;
-      z-index: 800;
+      transition: 0.2s ease;
     }
 
-    .modal-overlay.open {
+    .modal-overlay.show {
       opacity: 1;
       visibility: visible;
     }
 
     .modal-card {
-      width: min(470px, 100%);
-      background: white;
-      border-radius: 22px;
-      padding: 25px;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+      width: min(100%, 430px);
+      background: #fff;
+      border-radius: 21px;
+      padding: 22px;
+      transform: translateY(12px);
+      transition: 0.2s ease;
+    }
+
+    .modal-overlay.show .modal-card {
+      transform: translateY(0);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .modal-header h2 {
-      margin: 0;
-      font-size: 20px;
+      font-size: 18px;
+      color: #172554;
     }
 
-    .modal-close {
+    .close-modal {
+      width: 35px;
+      height: 35px;
       border: none;
-      background: #f2f4f7;
-      width: 36px;
-      height: 36px;
       border-radius: 10px;
+      background: #f3f5f8;
       cursor: pointer;
+      color: #64748b;
     }
 
-    .inheritance-balance {
-      background: #f5f8fc;
-      border-radius: 15px;
-      padding: 18px;
-      margin-bottom: 16px;
+    .inheritance-balance-box {
+      background: #f5f8fd;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 15px;
     }
 
-    .inheritance-balance span {
-      color: #667085;
+    .inheritance-balance-box span {
+      display: block;
+      font-size: 11px;
+      color: #8993a4;
+      margin-bottom: 4px;
+    }
+
+    .inheritance-balance-box strong {
+      font-size: 25px;
+      color: #172554;
+    }
+
+    .modal-detail {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf0f4;
       font-size: 12px;
     }
 
-    .inheritance-balance strong {
-      display: block;
-      margin-top: 6px;
-      font-size: 27px;
+    .modal-detail span:first-child {
+      color: #8993a4;
     }
 
-    .verification-box {
-      background: #fff8e8;
-      border: 1px solid #f4dfad;
-      border-radius: 14px;
-      padding: 15px;
-      margin-top: 18px;
+    .modal-detail span:last-child {
+      font-weight: 650;
+      color: #374151;
     }
 
-    .verification-box h3 {
-      margin: 0 0 6px;
-      font-size: 14px;
+    .verification-required {
+      color: #b7791f !important;
     }
 
-    .verification-box p {
-      margin: 0;
-      color: #74633d;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .verification-btn {
+    .verification-button {
       width: 100%;
-      margin-top: 14px;
+      height: 45px;
       border: none;
-      background: #0b3b91;
+      border-radius: 12px;
+      background: #123b78;
       color: white;
-      padding: 13px;
-      border-radius: 11px;
+      font-weight: 700;
       cursor: pointer;
-      font-weight: 600;
+      margin-top: 17px;
     }
 
-    /* MOBILE */
+    /* =========================
+       TOAST
+    ========================= */
 
-    @media (max-width: 760px) {
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 20px);
+      background: #172554;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 11px;
+      font-size: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 500;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 650px) {
+
       .dashboard-main {
-        width: min(100% - 24px, 600px);
-        padding-top: 25px;
+        padding: 21px 14px 35px;
       }
 
       .dashboard-header {
         padding: 0 14px;
       }
 
-      .brand span {
-        display: none;
+      .brand-name {
+        font-size: 14px;
       }
 
-      .welcome-section h1 {
-        font-size: 25px;
+      .header-icon,
+      .menu-btn {
+        width: 39px;
+        height: 39px;
       }
 
-      .account-card {
-        padding: 21px;
-        border-radius: 20px;
+      .balance-card {
+        min-height: 132px;
+        padding: 18px;
+        border-radius: 18px;
       }
 
-      .account-top {
-        flex-direction: column;
-      }
-
-      .account-number-area {
-        text-align: left;
-      }
-
-      .account-balance {
-        font-size: 31px;
-      }
-
-      .account-bottom {
-        align-items: flex-start;
-        gap: 15px;
-        flex-direction: column;
+      .balance-amount {
+        font-size: 27px;
       }
 
       .money-actions {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
       }
 
-      .money-action:nth-child(4),
-      .money-action:nth-child(5) {
-        grid-column: span 1;
+      .money-action {
+        min-height: 78px;
+        padding: 11px 5px;
+        border-radius: 14px;
       }
 
-      .dashboard-grid {
+      .action-icon {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 6px;
+      }
+
+      .money-action span {
+        font-size: 10px;
+      }
+
+      .info-grid {
         grid-template-columns: 1fr;
-      }
-
-      .inheritance-card {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .inheritance-btn {
-        width: 100%;
       }
     }
 
-    @media (max-width: 430px) {
+    @media (max-width: 390px) {
+
+      .dashboard-main {
+        padding-left: 11px;
+        padding-right: 11px;
+      }
+
+      .welcome-section h1 {
+        font-size: 21px;
+      }
+
+      .balance-amount {
+        font-size: 25px;
+      }
+
+      .account-meta {
+        gap: 7px;
+      }
+
       .money-actions {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+
+      .money-action {
+        padding-left: 3px;
+        padding-right: 3px;
       }
     }
   </style>
@@ -738,428 +917,426 @@
 
 <body>
 
-  <div class="dashboard-page">
+  <!-- HEADER -->
+  <header class="dashboard-header">
 
-    <!-- HEADER -->
-    <header class="dashboard-header">
+    <div class="header-left">
 
-      <div class="header-left">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <div class="brand">
-          <div class="brand-logo">FM</div>
-          <span>First Merit Bank</span>
-        </div>
-
+      <div class="header-brand">
+        <div class="brand-logo">FM</div>
+        <div class="brand-name">First Merit Bank</div>
       </div>
 
-      <div class="header-right">
+    </div>
 
-        <button class="header-icon"
-                id="notificationBtn"
-                aria-label="Notifications">
-          <i class="fa-regular fa-bell"></i>
-        </button>
+    <div class="header-right">
 
-        <button class="profile-btn"
-                id="profileBtn"
-                aria-label="Profile">
-          <i class="fa-regular fa-user"></i>
-        </button>
+      <button class="header-icon" id="notificationBtn" aria-label="Notifications">
+        <i class="fa-regular fa-bell"></i>
+      </button>
 
-      </div>
+      <button class="header-icon" id="profileBtn" aria-label="Profile">
+        <i class="fa-regular fa-user"></i>
+      </button>
 
-    </header>
+    </div>
+
+  </header>
 
 
-    <!-- MAIN -->
-    <main class="dashboard-main">
+  <!-- MAIN DASHBOARD -->
+  <main class="dashboard-main">
 
-      <!-- WELCOME -->
-      <section class="welcome-section">
-
-        <h1>
-          Welcome back, <span id="userName">Johnny</span>
-        </h1>
-
-        <p id="dashboardDate">
-          Friday, September 25, 2026
-        </p>
-
-      </section>
+    <!-- GREETING -->
+    <section class="welcome-section">
+      <h1>Welcome back, <span id="userName">Johnny</span></h1>
+      <p id="dashboardDate">Friday, September 25, 2026</p>
+    </section>
 
 
-      <!-- ACCOUNT -->
-      <section class="account-card">
+    <!-- BALANCE -->
+    <section class="balance-card">
 
-        <div class="account-top">
+      <div class="balance-top">
 
-          <div>
-
-            <div class="account-label">
-              Available balance
-            </div>
-
-            <div class="account-balance-row">
-
-              <h2 class="account-balance" id="mainBalance">
-                $400,000.00
-              </h2>
-
-              <button
-                class="balance-toggle"
-                id="balanceToggle"
-                aria-label="Hide balance">
-                <i class="fa-regular fa-eye"></i>
-              </button>
-
-            </div>
-
+        <div>
+          <div class="balance-label">Available Balance</div>
+          <div class="balance-amount" id="mainBalance">
+            $400,000.00
           </div>
-
-
-          <div class="account-number-area">
-
-            <small>Account number</small>
-
-            <span class="account-number" id="accountNumber">
-              Account •••• 0000
-            </span>
-
-            <button
-              class="copy-account"
-              id="copyAccountBtn"
-              aria-label="Copy account number">
-              <i class="fa-regular fa-copy"></i>
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <div class="account-bottom">
-
-          <div class="account-meta">
-
-            <div class="account-meta-item">
-              <span>Account type</span>
-              <strong>Checking</strong>
-            </div>
-
-            <div class="account-meta-item">
-              <span>Currency</span>
-              <strong>USD</strong>
-            </div>
-
-          </div>
-
-          <div class="status">
-            <span class="status-dot"></span>
-            Active
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- MONEY MOVEMENT -->
-      <section class="money-actions">
-
-        <button class="money-action" id="sendMoneyBtn">
-          <i class="fa-solid fa-arrow-up"></i>
-          <span>Send Money</span>
-        </button>
-
-        <button class="money-action" id="zelleBtn">
-          <i class="fa-solid fa-z"></i>
-          <span>Zelle</span>
-        </button>
-
-        <button class="money-action" id="addMoneyBtn">
-          <i class="fa-solid fa-plus"></i>
-          <span>Add Money</span>
-        </button>
-
-        <button class="money-action" id="withdrawBtn">
-          <i class="fa-solid fa-arrow-down"></i>
-          <span>Withdraw</span>
-        </button>
-
-        <button class="money-action" id="transferBtn">
-          <i class="fa-solid fa-right-left"></i>
-          <span>Transfer</span>
-        </button>
-
-      </section>
-
-
-      <!-- CONTENT -->
-      <div class="dashboard-grid">
-
-        <!-- TRANSACTIONS -->
-        <section class="dashboard-card">
-
-          <div class="card-header">
-            <h2>Recent transactions</h2>
-          </div>
-
-          <div class="transaction">
-
-            <div class="transaction-left">
-
-              <div class="transaction-icon">
-                <i class="fa-solid fa-building-columns"></i>
-              </div>
-
-              <div>
-                <div class="transaction-title">
-                  Opening balance
-                </div>
-
-                <div class="transaction-date">
-                  Account opening
-                </div>
-              </div>
-
-            </div>
-
-            <div class="transaction-amount">
-              +$400,000.00
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- ACCOUNT DETAILS -->
-        <section class="dashboard-card">
-
-          <div class="card-header">
-            <h2>Account details</h2>
-          </div>
-
-          <div class="detail-row">
-            <span>Account holder</span>
-            <strong id="detailName">Johnny</strong>
-          </div>
-
-          <div class="detail-row">
-            <span>Account number</span>
-            <strong id="detailAccountNumber">—</strong>
-          </div>
-
-          <div class="detail-row">
-            <span>Account type</span>
-            <strong>Checking</strong>
-          </div>
-
-          <div class="detail-row">
-            <span>Currency</span>
-            <strong>USD</strong>
-          </div>
-
-        </section>
-
-      </div>
-
-
-      <!-- INHERITANCE -->
-      <section class="inheritance-card">
-
-        <div class="inheritance-info">
-
-          <div class="inheritance-icon">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-          </div>
-
-          <div>
-            <h3>Inheritance information</h3>
-            <p>
-              Review transfer details and verification status.
-            </p>
-          </div>
-
         </div>
 
         <button
-          class="inheritance-btn"
-          id="inheritanceBtn">
-          View details
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
-
-      </section>
-
-    </main>
-
-
-    <!-- SIDE MENU -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <aside class="side-menu" id="sideMenu">
-
-      <div class="side-menu-header">
-
-        <div class="side-menu-brand">
-          <div class="brand-logo">FM</div>
-          <span>First Merit Bank</span>
-        </div>
-
-        <button class="close-menu" id="closeMenuBtn">
-          <i class="fa-solid fa-xmark"></i>
+          class="balance-toggle"
+          id="balanceToggle"
+          aria-label="Show or hide balance"
+        >
+          <i class="fa-regular fa-eye"></i>
         </button>
 
       </div>
 
+      <div class="balance-bottom">
+
+        <div class="account-number-area">
+
+          <span class="account-number" id="accountNumber">
+            •••• •••• •••• 4821
+          </span>
+
+          <button
+            class="copy-account"
+            id="copyAccountBtn"
+            aria-label="Copy account number"
+          >
+            <i class="fa-regular fa-copy"></i>
+          </button>
+
+        </div>
+
+        <div class="account-meta">
+          <span>Checking</span>
+          <span>USD</span>
+
+          <span class="active-status">
+            <span class="active-dot"></span>
+            Active
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MONEY -->
+    <h2 class="section-title">Money</h2>
+
+    <section class="money-actions">
+
+      <button class="money-action" id="sendMoneyBtn">
+        <div class="action-icon">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </div>
+        <span>Send Money</span>
+      </button>
+
+      <button class="money-action" id="zelleBtn">
+        <div class="action-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <span>Zelle</span>
+      </button>
+
+      <button class="money-action" id="addMoneyBtn">
+        <div class="action-icon">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <span>Add Money</span>
+      </button>
+
+      <button class="money-action" id="withdrawBtn">
+        <div class="action-icon">
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+        <span>Withdraw</span>
+      </button>
+
+    </section>
+
+
+    <!-- TRANSFER -->
+    <button class="transfer-card" id="transferBtn">
+
+      <div class="transfer-left">
+
+        <div class="transfer-icon">
+          <i class="fa-solid fa-right-left"></i>
+        </div>
+
+        <div class="transfer-text">
+          <strong>Transfer</strong>
+          <span>Move money between accounts</span>
+        </div>
+
+      </div>
+
+      <div class="transfer-arrow">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+
+    </button>
+
+
+    <!-- INFORMATION -->
+    <h2 class="section-title">Overview</h2>
+
+    <div class="info-grid">
+
+      <!-- RECENT TRANSACTIONS -->
+      <section class="info-card">
+
+        <div class="info-card-header">
+
+          <div class="info-card-title">
+
+            <div class="small-card-icon">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+
+            <h3>Recent Transactions</h3>
+
+          </div>
+
+          <button class="info-arrow" id="transactionsBtn">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+        </div>
+
+        <div class="transaction-list" id="transactionList">
+
+          <div class="empty-transactions">
+            No recent transactions
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOUNT DETAILS -->
+      <section class="info-card">
+
+        <div class="info-card-header">
+
+          <div class="info-card-title">
+
+            <div class="small-card-icon">
+              <i class="fa-regular fa-id-card"></i>
+            </div>
+
+            <h3>Account Details</h3>
+
+          </div>
+
+          <button class="info-arrow" id="accountDetailsBtn">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Name</span>
+          <span class="detail-value" id="detailName">Johnny</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Account</span>
+          <span class="detail-value" id="detailAccountNumber">
+            •••• 4821
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Type</span>
+          <span class="detail-value">Checking</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Currency</span>
+          <span class="detail-value">USD</span>
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- INHERITANCE -->
+    <button class="inheritance-card" id="inheritanceBtn">
+
+      <div class="inheritance-left">
+
+        <div class="inheritance-icon">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+
+        <div class="inheritance-text">
+          <strong>Inheritance Information</strong>
+          <span>View transfer and verification details</span>
+        </div>
+
+      </div>
+
+      <i class="fa-solid fa-chevron-right info-arrow"></i>
+
+    </button>
+
+  </main>
+
+
+  <!-- SIDE MENU OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+
+  <!-- SIDE MENU -->
+  <aside class="side-menu" id="sideMenu">
+
+    <div class="menu-header">
+
+      <div class="menu-brand">
+
+        <div class="menu-brand-logo">FM</div>
+
+        <strong>First Merit Bank</strong>
+
+      </div>
+
+      <button class="close-menu" id="closeMenuBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <div class="menu-section">
 
       <button class="menu-item" id="menuDashboard">
         <i class="fa-solid fa-house"></i>
-        Dashboard
+        <span>Dashboard</span>
       </button>
 
       <button class="menu-item" id="menuAccount">
         <i class="fa-regular fa-user"></i>
-        My Account
+        <span>My Account</span>
       </button>
 
       <button class="menu-item" id="menuTransfer">
         <i class="fa-solid fa-right-left"></i>
-        Transfers
+        <span>Transfers</span>
       </button>
 
       <button class="menu-item" id="menuPayments">
-        <i class="fa-solid fa-credit-card"></i>
-        Payments
+        <i class="fa-regular fa-credit-card"></i>
+        <span>Payments</span>
       </button>
 
       <button class="menu-item" id="menuCards">
-        <i class="fa-regular fa-credit-card"></i>
-        Cards
+        <i class="fa-solid fa-credit-card"></i>
+        <span>Cards</span>
       </button>
 
       <button class="menu-item" id="menuTransactions">
-        <i class="fa-solid fa-list"></i>
-        Transactions
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Transactions</span>
       </button>
 
       <button class="menu-item" id="menuStatements">
-        <i class="fa-solid fa-file-lines"></i>
-        Statements
+        <i class="fa-regular fa-file-lines"></i>
+        <span>Statements</span>
       </button>
 
       <button class="menu-item" id="menuNotifications">
         <i class="fa-regular fa-bell"></i>
-        Notifications
+        <span>Notifications</span>
       </button>
 
       <button class="menu-item" id="menuSupport">
         <i class="fa-solid fa-headset"></i>
-        Help & Support
+        <span>Help &amp; Support</span>
       </button>
 
       <button class="menu-item" id="menuSecurity">
         <i class="fa-solid fa-shield-halved"></i>
-        Security
+        <span>Security</span>
       </button>
 
       <button class="menu-item" id="menuSettings">
         <i class="fa-solid fa-gear"></i>
-        Settings
+        <span>Settings</span>
       </button>
 
       <div class="menu-divider"></div>
 
       <button class="menu-item logout-item" id="logoutBtn">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        Sign Out
+        <span>Sign Out</span>
       </button>
-
-    </aside>
-
-
-    <!-- INHERITANCE MODAL -->
-    <div class="modal-overlay" id="inheritanceModal">
-
-      <div class="modal-card">
-
-        <div class="modal-header">
-
-          <h2>Inheritance information</h2>
-
-          <button
-            class="modal-close"
-            id="closeInheritanceBtn">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-        </div>
-
-
-        <div class="inheritance-balance">
-
-          <span>Inheritance balance</span>
-
-          <strong id="inheritanceBalance">
-            $250,000.00
-          </strong>
-
-        </div>
-
-
-        <div class="detail-row">
-          <span>Transfer date</span>
-          <strong id="inheritanceTransferDate">
-            —
-          </strong>
-        </div>
-
-        <div class="detail-row">
-          <span>Transfer status</span>
-          <strong id="inheritanceTransferStatus">
-            Inaccessible
-          </strong>
-        </div>
-
-        <div class="detail-row">
-          <span>Verification status</span>
-          <strong id="verificationStatus">
-            Required
-          </strong>
-        </div>
-
-
-        <div class="verification-box">
-
-          <h3>Verification required</h3>
-
-          <p>
-            Verification is required before these funds can be accessed.
-            Submit a verification request to continue.
-          </p>
-
-          <button
-            class="verification-btn"
-            id="submitVerificationBtn">
-            Submit verification
-          </button>
-
-        </div>
-
-      </div>
 
     </div>
 
+  </aside>
 
-    <!-- TOAST -->
-    <div class="dashboard-toast" id="dashboardToast"></div>
+
+  <!-- INHERITANCE MODAL -->
+  <div class="modal-overlay" id="inheritanceModal">
+
+    <div class="modal-card">
+
+      <div class="modal-header">
+
+        <h2>Inheritance Information</h2>
+
+        <button class="close-modal" id="closeInheritanceBtn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <div class="inheritance-balance-box">
+
+        <span>Inheritance Balance</span>
+
+        <strong id="inheritanceBalance">
+          $250,000.00
+        </strong>
+
+      </div>
+
+
+      <div class="modal-detail">
+        <span>Transfer Date</span>
+        <span id="inheritanceTransferDate">Pending</span>
+      </div>
+
+      <div class="modal-detail">
+        <span>Transfer Status</span>
+        <span id="inheritanceTransferStatus">
+          Inaccessible
+        </span>
+      </div>
+
+      <div class="modal-detail">
+        <span>Verification</span>
+        <span
+          id="verificationStatus"
+          class="verification-required"
+        >
+          Required
+        </span>
+      </div>
+
+
+      <button
+        class="verification-button"
+        id="submitVerificationBtn"
+      >
+        Submit Verification
+      </button>
+
+    </div>
 
   </div>
+
+
+  <!-- TOAST -->
+  <div class="toast" id="dashboardToast"></div>
 
 
   <script type="module" src="dashboard.js"></script>
