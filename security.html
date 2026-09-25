@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Security | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ecf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn,
+    .refresh-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .page-label {
+      color: #8994a4;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 900px);
+      margin: 0 auto;
+      padding: 27px 16px 55px;
+    }
+
+    .heading {
+      margin-bottom: 20px;
+    }
+
+    .heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.7px;
+    }
+
+    .heading p {
+      color: #7d8898;
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    /* SECURITY STATUS */
+
+    .security-card {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      border-radius: 22px;
+      padding: 21px;
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(18, 59, 114, 0.16);
+      margin-bottom: 18px;
+    }
+
+    .security-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .security-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .security-title {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .security-subtitle {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-top: 4px;
+    }
+
+    .security-status {
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .status-label {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    .status-value {
+      font-size: 13px;
+      font-weight: 750;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #55d88a;
+    }
+
+    /* SECTION */
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin: 23px 2px 10px;
+    }
+
+    /* SECURITY LIST */
+
+    .settings-card {
+      background: #ffffff;
+      border: 1px solid #e6ebf1;
+      border-radius: 19px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+    }
+
+    .security-row {
+      width: 100%;
+      border: 0;
+      background: #ffffff;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-align: left;
+      color: #172033;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .security-row:last-child {
+      border-bottom: 0;
+    }
+
+    .row-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .row-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .row-title {
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .row-description {
+      color: #8994a4;
+      font-size: 11px;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .row-arrow {
+      color: #a0a9b7;
+      font-size: 12px;
+    }
+
+    /* TOGGLE */
+
+    .toggle-row {
+      cursor: default;
+    }
+
+    .toggle {
+      position: relative;
+      width: 45px;
+      height: 25px;
+      border: 0;
+      border-radius: 20px;
+      background: #cbd3de;
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #ffffff;
+      transition: 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+
+    .toggle.active {
+      background: #123b72;
+    }
+
+    .toggle.active::after {
+      transform: translateX(20px);
+    }
+
+    /* ACTIVITY */
+
+    .activity-item {
+      padding: 15px;
+      border-bottom: 1px solid #edf0f4;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .activity-item:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-icon {
+      width: 39px;
+      height: 39px;
+      min-width: 39px;
+      border-radius: 12px;
+      background: #eef4fb;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .activity-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .activity-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .activity-meta {
+      font-size: 10px;
+      color: #8994a4;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .activity-status {
+      color: #168452;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 23, 40, 0.54);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 14px;
+      z-index: 100;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(100%, 500px);
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 21px;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.2);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 17px;
+    }
+
+    .modal-header h2 {
+      font-size: 18px;
+    }
+
+    .close-btn {
+      width: 37px;
+      height: 37px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #667085;
+    }
+
+    .modal-description {
+      color: #7d8898;
+      font-size: 12px;
+      line-height: 1.55;
+      margin-bottom: 17px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      color: #596579;
+      font-size: 11px;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #dfe5ec;
+      border-radius: 13px;
+      padding: 0 13px;
+      outline: none;
+      color: #172033;
+      background: #ffffff;
+      font-size: 13px;
+    }
+
+    .field input:focus {
+      border-color: #123b72;
+    }
+
+    .primary-btn {
+      width: 100%;
+      height: 47px;
+      border: 0;
+      border-radius: 13px;
+      background: #123b72;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 750;
+      margin-top: 4px;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      height: 45px;
+      border: 1px solid #dfe5ec;
+      border-radius: 13px;
+      background: #ffffff;
+      color: #263145;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 9px;
+    }
+
+    .modal-message {
+      font-size: 11px;
+      margin-top: 11px;
+      display: none;
+      text-align: center;
+    }
+
+    .modal-message.success {
+      color: #168452;
+      display: block;
+    }
+
+    .modal-message.error {
+      color: #c54848;
+      display: block;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%, 20px);
+      background: #172033;
+      color: #ffffff;
+      padding: 12px 17px;
+      border-radius: 13px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+      white-space: nowrap;
+      max-width: calc(100% - 30px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 430px) {
+
+      .topbar {
+        padding: 0 14px;
+      }
+
+      .content {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      .heading h1 {
+        font-size: 25px;
+      }
+
+      .security-card {
+        padding: 18px;
+      }
+
+      .row-description {
+        max-width: 250px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          class="back-btn"
+          id="backBtn"
+          aria-label="Back"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+
+          <div class="bank-logo">
+            FM
+          </div>
+
+          <div>
+
+            <div class="bank-name">
+              First Merit Bank
+            </div>
+
+            <div class="page-label">
+              Security
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="refresh-btn"
+        id="refreshBtn"
+        aria-label="Refresh"
+      >
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </header>
+
+
+    <main class="content">
+
+      <!-- HEADING -->
+
+      <div class="heading">
+
+        <h1>
+          Security
+        </h1>
+
+        <p>
+          Manage your account protection and sign-in security.
+        </p>
+
+      </div>
+
+
+      <!-- SECURITY STATUS -->
+
+      <section class="security-card">
+
+        <div class="security-top">
+
+          <div class="security-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <div>
+
+            <div class="security-title">
+              Account Security
+            </div>
+
+            <div class="security-subtitle">
+              Your security settings are managed here.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="security-status">
+
+          <div>
+            <div class="status-label">
+              Security status
+            </div>
+          </div>
+
+          <div class="status-value">
+            <span class="status-dot"></span>
+            Protected
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SIGN-IN SECURITY -->
+
+      <div class="section-title">
+        Sign-in Security
+      </div>
+
+
+      <section class="settings-card">
+
+        <button
+          class="security-row"
+          id="changePasswordBtn"
+        >
+
+          <div class="row-icon">
+            <i class="fa-solid fa-key"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Change Password
+            </div>
+
+            <div class="row-description">
+              Update the password used to access your account.
+            </div>
+
+          </div>
+
+          <div class="row-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+
+        <div class="security-row toggle-row">
+
+          <div class="row-icon">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Security Notifications
+            </div>
+
+            <div class="row-description">
+              Receive account security notifications.
+            </div>
+
+          </div>
+
+          <button
+            class="toggle active"
+            id="securityNotificationsToggle"
+            aria-label="Security notifications"
+          ></button>
+
+        </div>
+
+
+        <div class="security-row toggle-row">
+
+          <div class="row-icon">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Login Protection
+            </div>
+
+            <div class="row-description">
+              Add additional protection around account sign-ins.
+            </div>
+
+          </div>
+
+          <button
+            class="toggle active"
+            id="loginProtectionToggle"
+            aria-label="Login protection"
+          ></button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOUNT PROTECTION -->
+
+      <div class="section-title">
+        Account Protection
+      </div>
+
+
+      <section class="settings-card">
+
+        <button
+          class="security-row"
+          id="sessionsBtn"
+        >
+
+          <div class="row-icon">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Active Sessions
+            </div>
+
+            <div class="row-description">
+              Review devices currently associated with your account.
+            </div>
+
+          </div>
+
+          <div class="row-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+
+        <button
+          class="security-row"
+          id="verificationBtn"
+        >
+
+          <div class="row-icon">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Identity Verification
+            </div>
+
+            <div class="row-description">
+              Review your account verification information.
+            </div>
+
+          </div>
+
+          <div class="row-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+      </section>
+
+
+      <!-- LOGIN ACTIVITY -->
+
+      <div class="section-title">
+        Recent Login Activity
+      </div>
+
+
+      <section class="settings-card">
+
+        <div id="activityList">
+
+          <div class="activity-item">
+
+            <div class="activity-icon">
+              <i class="fa-solid fa-right-to-bracket"></i>
+            </div>
+
+            <div class="activity-content">
+
+              <div class="activity-title">
+                Current sign-in
+              </div>
+
+              <div
+                class="activity-meta"
+                id="currentLoginInfo"
+              >
+                Loading account activity...
+              </div>
+
+              <div class="activity-status">
+                Current session
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOUNT ACCESS -->
+
+      <div class="section-title">
+        Account Access
+      </div>
+
+
+      <section class="settings-card">
+
+        <button
+          class="security-row"
+          id="settingsBtn"
+        >
+
+          <div class="row-icon">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Security Settings
+            </div>
+
+            <div class="row-description">
+              Manage your account preferences and access settings.
+            </div>
+
+          </div>
+
+          <div class="row-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+
+        </button>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- CHANGE PASSWORD MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="passwordModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Change Password
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closePasswordModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <p class="modal-description">
+        Enter a new password for your First Merit Bank account.
+      </p>
+
+
+      <form id="passwordForm">
+
+        <div class="field">
+
+          <label for="newPassword">
+            New Password
+          </label>
+
+          <input
+            type="password"
+            id="newPassword"
+            minlength="6"
+            autocomplete="new-password"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="confirmPassword">
+            Confirm New Password
+          </label>
+
+          <input
+            type="password"
+            id="confirmPassword"
+            minlength="6"
+            autocomplete="new-password"
+            required
+          >
+
+        </div>
+
+
+        <button
+          class="primary-btn"
+          type="submit"
+          id="changePasswordSubmit"
+        >
+          Update Password
+        </button>
+
+        <div
+          class="modal-message"
+          id="passwordMessage"
+        ></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- SESSION MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="sessionsModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Active Sessions
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closeSessionsModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <p class="modal-description">
+        This device is currently signed in to your account.
+        If you notice activity you do not recognize, change your password immediately.
+      </p>
+
+
+      <div class="settings-card">
+
+        <div class="security-row">
+
+          <div class="row-icon">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Current Device
+            </div>
+
+            <div
+              class="row-description"
+              id="deviceInfo"
+            >
+              Loading device information...
+            </div>
+
+          </div>
+
+          <div
+            style="font-size:10px;color:#168452;font-weight:700;"
+          >
+            Active
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VERIFICATION MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="verificationModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Identity Verification
+        </h2>
+
+        <button
+          class="close-btn"
+          id="closeVerificationModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <p class="modal-description">
+        Review the verification information associated with your account.
+      </p>
+
+
+      <div class="settings-card">
+
+        <div class="security-row">
+
+          <div class="row-icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+
+          <div class="row-content">
+
+            <div class="row-title">
+              Account Verification
+            </div>
+
+            <div
+              class="row-description"
+              id="verificationInfo"
+            >
+              Checking verification status...
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="secondary-btn"
+        id="closeVerificationBtn"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged,
+      updatePassword
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    /* ELEMENTS */
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const changePasswordBtn =
+      document.getElementById("changePasswordBtn");
+
+    const passwordModal =
+      document.getElementById("passwordModal");
+
+    const closePasswordModal =
+      document.getElementById("closePasswordModal");
+
+    const passwordForm =
+      document.getElementById("passwordForm");
+
+    const passwordMessage =
+      document.getElementById("passwordMessage");
+
+    const changePasswordSubmit =
+      document.getElementById("changePasswordSubmit");
+
+    const sessionsBtn =
+      document.getElementById("sessionsBtn");
+
+    const sessionsModal =
+      document.getElementById("sessionsModal");
+
+    const closeSessionsModal =
+      document.getElementById("closeSessionsModal");
+
+    const verificationBtn =
+      document.getElementById("verificationBtn");
+
+    const verificationModal =
+      document.getElementById("verificationModal");
+
+    const closeVerificationModal =
+      document.getElementById("closeVerificationModal");
+
+    const closeVerificationBtn =
+      document.getElementById("closeVerificationBtn");
+
+    const verificationInfo =
+      document.getElementById("verificationInfo");
+
+    const deviceInfo =
+      document.getElementById("deviceInfo");
+
+    const currentLoginInfo =
+      document.getElementById("currentLoginInfo");
+
+    const settingsBtn =
+      document.getElementById("settingsBtn");
+
+    const toast =
+      document.getElementById("toast");
+
+    const securityNotificationsToggle =
+      document.getElementById(
+        "securityNotificationsToggle"
+      );
+
+    const loginProtectionToggle =
+      document.getElementById(
+        "loginProtectionToggle"
+      );
+
+
+    let currentUser = null;
+    let userData = {};
+
+
+    /* AUTH */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+        currentUser = user;
+
+        await loadSecuritySettings(user);
+
+        updateDeviceInformation();
+
+      }
+    );
+
+
+    /* LOAD SETTINGS */
+
+    async function loadSecuritySettings(user) {
+
+      try {
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            user.uid
+          );
+
+        const snapshot =
+          await getDoc(userRef);
+
+
+        if (snapshot.exists()) {
+
+          userData =
+            snapshot.data();
+
+        }
+
+
+        const security =
+          userData.security || {};
+
+
+        setToggleState(
+          securityNotificationsToggle,
+          security.securityNotifications !== false
+        );
+
+
+        setToggleState(
+          loginProtectionToggle,
+          security.loginProtection !== false
+        );
+
+
+        if (
+          userData.verificationStatus
+        ) {
+
+          verificationInfo.textContent =
+            String(
+              userData.verificationStatus
+            );
+
+        } else {
+
+          verificationInfo.textContent =
+            "Account verification information is available in your account profile.";
+
+        }
+
+
+        const loginDate =
+          userData.lastLoginAt;
+
+
+        if (loginDate) {
+
+          currentLoginInfo.textContent =
+            "Last account activity: " +
+            formatDate(loginDate);
+
+        } else {
+
+          currentLoginInfo.textContent =
+            "Current authenticated session";
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Security settings error:",
+          error
+        );
+
+        currentLoginInfo.textContent =
+          "Current authenticated session";
+
+      }
+
+    }
+
+
+    /* TOGGLES */
+
+    securityNotificationsToggle.addEventListener(
+      "click",
+      async () => {
+
+        await toggleSetting(
+          "securityNotifications",
+          securityNotificationsToggle
+        );
+
+      }
+    );
+
+
+    loginProtectionToggle.addEventListener(
+      "click",
+      async () => {
+
+        await toggleSetting(
+          "loginProtection",
+          loginProtectionToggle
+        );
+
+      }
+    );
+
+
+    async function toggleSetting(
+      settingName,
+      button
+    ) {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      const currentlyActive =
+        button.classList.contains(
+          "active"
+        );
+
+
+      const newValue =
+        !currentlyActive;
+
+
+      setToggleState(
+        button,
+        newValue
+      );
+
+
+      try {
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          );
+
+
+        await setDoc(
+          userRef,
+          {
+            security: {
+              [settingName]:
+                newValue,
+              updatedAt:
+                serverTimestamp()
+            }
+          },
+          {
+            merge: true
+          }
+        );
+
+
+        showToast(
+          newValue
+            ? "Security setting enabled."
+            : "Security setting disabled."
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        setToggleState(
+          button,
+          currentlyActive
+        );
+
+        showToast(
+          "Unable to update security setting."
+        );
+
+      }
+
+    }
+
+
+    function setToggleState(
+      button,
+      active
+    ) {
+
+      button.classList.toggle(
+        "active",
+        active
+      );
+
+    }
+
+
+    /* CHANGE PASSWORD */
+
+    changePasswordBtn.addEventListener(
+      "click",
+      () => {
+
+        passwordForm.reset();
+
+        passwordMessage.className =
+          "modal-message";
+
+        passwordMessage.textContent =
+          "";
+
+        passwordModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closePasswordModal.addEventListener(
+      "click",
+      () => {
+
+        passwordModal.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    passwordModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          passwordModal
+        ) {
+
+          passwordModal.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+
+    passwordForm.addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        if (!currentUser) {
+          return;
+        }
+
+
+        const newPassword =
+          document.getElementById(
+            "newPassword"
+          ).value.trim();
+
+
+        const confirmPassword =
+          document.getElementById(
+            "confirmPassword"
+          ).value.trim();
+
+
+        if (
+          newPassword.length < 6
+        ) {
+
+          showPasswordMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          newPassword !==
+          confirmPassword
+        ) {
+
+          showPasswordMessage(
+            "The passwords do not match.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        changePasswordSubmit.disabled =
+          true;
+
+        changePasswordSubmit.textContent =
+          "Updating...";
+
+
+        try {
+
+          await updatePassword(
+            currentUser,
+            newPassword
+          );
+
+
+          showPasswordMessage(
+            "Password updated successfully.",
+            "success"
+          );
+
+
+          passwordForm.reset();
+
+
+          setTimeout(
+            () => {
+
+              passwordModal.classList.remove(
+                "show"
+              );
+
+            },
+            1300
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Password update error:",
+            error
+          );
+
+
+          let message =
+            "Unable to update password.";
+
+
+          if (
+            error.code ===
+            "auth/requires-recent-login"
+          ) {
+
+            message =
+              "Please sign in again before changing your password.";
+
+          } else if (
+            error.code ===
+            "auth/weak-password"
+          ) {
+
+            message =
+              "Please choose a stronger password.";
+
+          }
+
+
+          showPasswordMessage(
+            message,
+            "error"
+          );
+
+        } finally {
+
+          changePasswordSubmit.disabled =
+            false;
+
+          changePasswordSubmit.textContent =
+            "Update Password";
+
+        }
+
+      }
+    );
+
+
+    function showPasswordMessage(
+      message,
+      type
+    ) {
+
+      passwordMessage.textContent =
+        message;
+
+      passwordMessage.className =
+        "modal-message " +
+        type;
+
+    }
+
+
+    /* SESSIONS */
+
+    sessionsBtn.addEventListener(
+      "click",
+      () => {
+
+        updateDeviceInformation();
+
+        sessionsModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closeSessionsModal.addEventListener(
+      "click",
+      () => {
+
+        sessionsModal.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    sessionsModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          sessionsModal
+        ) {
+
+          sessionsModal.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* VERIFICATION */
+
+    verificationBtn.addEventListener(
+      "click",
+      () => {
+
+        verificationModal.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    closeVerificationModal.addEventListener(
+      "click",
+      () => {
+
+        verificationModal.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    closeVerificationBtn.addEventListener(
+      "click",
+      () => {
+
+        verificationModal.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    verificationModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          verificationModal
+        ) {
+
+          verificationModal.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* DEVICE INFORMATION */
+
+    function updateDeviceInformation() {
+
+      const userAgent =
+        navigator.userAgent;
+
+
+      let device =
+        "Unknown device";
+
+
+      if (
+        /iPhone/i.test(
+          userAgent
+        )
+      ) {
+
+        device =
+          "iPhone";
+
+      } else if (
+        /iPad/i.test(
+          userAgent
+        )
+      ) {
+
+        device =
+          "iPad";
+
+      } else if (
+        /Windows/i.test(
+          userAgent
+        )
+      ) {
+
+        device =
+          "Windows PC";
+
+      } else if (
+        /Macintosh/i.test(
+          userAgent
+        )
+      ) {
+
+        device =
+          "Mac";
+
+      } else if (
+        /Android/i.test(
+          userAgent
+        )
+      ) {
+
+        device =
+          "Android device";
+
+      }
+
+
+      let browser =
+        "Browser";
+
+
+      if (
+        /Edg/i.test(
+          userAgent
+        )
+      ) {
+
+        browser =
+          "Microsoft Edge";
+
+      } else if (
+        /Chrome/i.test(
+          userAgent
+        )
+      ) {
+
+        browser =
+          "Google Chrome";
+
+      } else if (
+        /Safari/i.test(
+          userAgent
+        ) &&
+        !/Chrome/i.test(
+          userAgent
+        )
+      ) {
+
+        browser =
+          "Safari";
+
+      } else if (
+        /Firefox/i.test(
+          userAgent
+        )
+      ) {
+
+        browser =
+          "Firefox";
+
+      }
+
+
+      deviceInfo.textContent =
+        `${device} • ${browser}`;
+
+      currentLoginInfo.textContent =
+        `${device} • ${browser} • Current session`;
+
+    }
+
+
+    /* SETTINGS */
+
+    settingsBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "settings.html";
+
+      }
+    );
+
+
+    /* REFRESH */
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentUser) {
+          return;
+        }
+
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+
+        await loadSecuritySettings(
+          currentUser
+        );
+
+
+        updateDeviceInformation();
+
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-rotate-right"></i>';
+
+
+        showToast(
+          "Security settings refreshed."
+        );
+
+      }
+    );
+
+
+    /* BACK */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+
+    /* TOAST */
+
+    function showToast(
+      message
+    ) {
+
+      toast.textContent =
+        message;
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        () => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        2200
+      );
+
+    }
+
+
+    /* DATE */
+
+    function formatDate(
+      timestamp
+    ) {
+
+      let date = null;
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate ===
+          "function"
+      ) {
+
+        date =
+          timestamp.toDate();
+
+      } else if (
+        timestamp &&
+        typeof timestamp.seconds ===
+          "number"
+      ) {
+
+        date =
+          new Date(
+            timestamp.seconds * 1000
+          );
+
+      } else {
+
+        date =
+          new Date(timestamp);
+
+      }
+
+
+      if (
+        !date ||
+        isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return "Recent activity";
+
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      ).format(date);
+
+    }
+
+  </script>
+
+</body>
+</html>
