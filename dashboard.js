@@ -108,6 +108,10 @@ let balanceVisible = true;
 
 function showToast(message) {
 
+  if (!toast) {
+    return;
+  }
+
   toast.textContent = message;
 
   toast.classList.add("show");
@@ -123,6 +127,10 @@ function showToast(message) {
 ----------------------------- */
 
 function updateDate() {
+
+  if (!dashboardDate) {
+    return;
+  }
 
   const today = new Date();
 
@@ -187,6 +195,10 @@ function formatCurrency(amount) {
 
 function renderBalance() {
 
+  if (!mainBalance || !balanceToggle) {
+    return;
+  }
+
   if (balanceVisible) {
 
     mainBalance.textContent =
@@ -235,7 +247,7 @@ async function loadUserProfile(user) {
       await getDoc(userRef);
 
 
-    /* Existing user */
+    /* EXISTING USER */
 
     if (snapshot.exists()) {
 
@@ -248,17 +260,17 @@ async function loadUserProfile(user) {
         user.displayName ||
         "Member";
 
-      userName.textContent = name;
-      detailName.textContent = name;
+
+      if (userName) {
+        userName.textContent = name;
+      }
+
+      if (detailName) {
+        detailName.textContent = name;
+      }
 
 
-      /*
-        Existing accounts created before
-        the $400,000 starting balance was added
-        may have balance = 0.
-
-        We initialize those accounts once.
-      */
+      /* BALANCE */
 
       if (data.balanceInitialized !== true) {
 
@@ -297,7 +309,7 @@ async function loadUserProfile(user) {
       }
 
 
-      /* Account number */
+      /* ACCOUNT NUMBER */
 
       if (data.accountNumber) {
 
@@ -319,7 +331,7 @@ async function loadUserProfile(user) {
       }
 
 
-      /* Inheritance */
+      /* INHERITANCE */
 
       if (!data.inheritance) {
 
@@ -346,9 +358,11 @@ async function loadUserProfile(user) {
 
           balance: 250000,
 
-          transferStatus: "inaccessible",
+          transferStatus:
+            "inaccessible",
 
-          verificationStatus: "required"
+          verificationStatus:
+            "required"
 
         });
 
@@ -363,7 +377,7 @@ async function loadUserProfile(user) {
     }
 
 
-    /* New user */
+    /* NEW USER */
 
     else {
 
@@ -422,11 +436,15 @@ async function loadUserProfile(user) {
       });
 
 
-      userName.textContent =
-        user.displayName || "Member";
+      if (userName) {
+        userName.textContent =
+          user.displayName || "Member";
+      }
 
-      detailName.textContent =
-        user.displayName || "Member";
+      if (detailName) {
+        detailName.textContent =
+          user.displayName || "Member";
+      }
 
 
       loadInheritanceData({
@@ -444,13 +462,22 @@ async function loadUserProfile(user) {
     }
 
 
-    accountNumber.textContent =
-      formatAccountNumber(
-        currentAccountNumber
-      );
+    if (accountNumber) {
 
-    detailAccountNumber.textContent =
-      currentAccountNumber;
+      accountNumber.textContent =
+        formatAccountNumber(
+          currentAccountNumber
+        );
+
+    }
+
+
+    if (detailAccountNumber) {
+
+      detailAccountNumber.textContent =
+        currentAccountNumber;
+
+    }
 
 
     renderBalance();
@@ -463,13 +490,25 @@ async function loadUserProfile(user) {
       error
     );
 
-    userName.textContent =
-      user.displayName || "Member";
 
-    detailName.textContent =
-      user.displayName || "Member";
+    if (userName) {
+
+      userName.textContent =
+        user.displayName || "Member";
+
+    }
+
+
+    if (detailName) {
+
+      detailName.textContent =
+        user.displayName || "Member";
+
+    }
+
 
     renderBalance();
+
 
     showToast(
       "Unable to load some account information"
@@ -491,33 +530,48 @@ function loadInheritanceData(data) {
   }
 
 
-  const balance =
-    typeof data.balance === "number"
-      ? data.balance
-      : 250000;
+  if (inheritanceBalance) {
+
+    const balance =
+      typeof data.balance === "number"
+        ? data.balance
+        : 250000;
+
+    inheritanceBalance.textContent =
+      formatCurrency(balance);
+
+  }
 
 
-  inheritanceBalance.textContent =
-    formatCurrency(balance);
+  if (inheritanceTransferStatus) {
+
+    inheritanceTransferStatus.textContent =
+      capitalize(
+        data.transferStatus ||
+        "inaccessible"
+      );
+
+  }
 
 
-  inheritanceTransferStatus.textContent =
-    capitalize(
-      data.transferStatus ||
-      "inaccessible"
-    );
+  if (verificationStatus) {
+
+    verificationStatus.textContent =
+      capitalize(
+        data.verificationStatus ||
+        "required"
+      );
+
+  }
 
 
-  verificationStatus.textContent =
-    capitalize(
-      data.verificationStatus ||
-      "required"
-    );
-
-
-  if (data.transferDate) {
+  if (
+    inheritanceTransferDate &&
+    data.transferDate
+  ) {
 
     let date;
+
 
     if (
       typeof data.transferDate.toDate ===
@@ -593,57 +647,65 @@ onAuthStateChanged(
    BALANCE TOGGLE
 ----------------------------- */
 
-balanceToggle.addEventListener(
-  "click",
-  () => {
+if (balanceToggle) {
 
-    balanceVisible =
-      !balanceVisible;
+  balanceToggle.addEventListener(
+    "click",
+    () => {
 
-    renderBalance();
+      balanceVisible =
+        !balanceVisible;
 
-  }
-);
+      renderBalance();
+
+    }
+  );
+
+}
 
 
 /* -----------------------------
    COPY ACCOUNT
 ----------------------------- */
 
-copyAccountBtn.addEventListener(
-  "click",
-  async () => {
+if (copyAccountBtn) {
 
-    if (!currentAccountNumber) {
-      return;
-    }
+  copyAccountBtn.addEventListener(
+    "click",
+    async () => {
 
-    try {
+      if (!currentAccountNumber) {
+        return;
+      }
 
-      await navigator.clipboard
-        .writeText(
-          currentAccountNumber
+      try {
+
+        await navigator.clipboard
+          .writeText(
+            currentAccountNumber
+          );
+
+        showToast(
+          "Account number copied"
         );
 
-      showToast(
-        "Account number copied"
-      );
+      } catch (error) {
 
-    } catch (error) {
+        console.error(
+          "Copy error:",
+          error
+        );
 
-      console.error(
-        "Copy error:",
-        error
-      );
+        showToast(
+          "Unable to copy account number"
+        );
 
-      showToast(
-        "Unable to copy account number"
-      );
+      }
 
     }
+  );
 
-  }
-);
+}
 
 
 /* -----------------------------
@@ -652,286 +714,287 @@ copyAccountBtn.addEventListener(
 
 function openMenu() {
 
-  sideMenu.classList.add("open");
+  if (sideMenu) {
+    sideMenu.classList.add("open");
+  }
 
-  menuOverlay.classList.add("open");
+  if (menuOverlay) {
+    menuOverlay.classList.add("open");
+  }
 
 }
 
 
 function closeMenu() {
 
-  sideMenu.classList.remove("open");
+  if (sideMenu) {
+    sideMenu.classList.remove("open");
+  }
 
-  menuOverlay.classList.remove("open");
+  if (menuOverlay) {
+    menuOverlay.classList.remove("open");
+  }
 
 }
 
 
-menuBtn.addEventListener(
-  "click",
-  openMenu
-);
+if (menuBtn) {
 
-closeMenuBtn.addEventListener(
-  "click",
-  closeMenu
-);
+  menuBtn.addEventListener(
+    "click",
+    openMenu
+  );
 
-menuOverlay.addEventListener(
-  "click",
-  closeMenu
-);
+}
+
+
+if (closeMenuBtn) {
+
+  closeMenuBtn.addEventListener(
+    "click",
+    closeMenu
+  );
+
+}
+
+
+if (menuOverlay) {
+
+  menuOverlay.addEventListener(
+    "click",
+    closeMenu
+  );
+
+}
 
 
 /* -----------------------------
    HEADER BUTTONS
 ----------------------------- */
 
-profileBtn.addEventListener(
-  "click",
-  () => {
+if (profileBtn) {
 
-    closeMenu();
+  profileBtn.addEventListener(
+    "click",
+    () => {
 
-    showToast(
-      "Opening your profile"
-    );
+      window.location.href =
+        "settings.html";
 
-  }
-);
+    }
+  );
+
+}
 
 
-notificationBtn.addEventListener(
-  "click",
-  () => {
+if (notificationBtn) {
 
-    showToast(
-      "You have no new notifications"
-    );
+  notificationBtn.addEventListener(
+    "click",
+    () => {
 
-  }
-);
+      window.location.href =
+        "notifications.html";
+
+    }
+  );
+
+}
 
 
 /* -----------------------------
    MONEY ACTIONS
 ----------------------------- */
 
-document
-  .getElementById("sendMoneyBtn")
-  .addEventListener(
+function goToPage(page) {
+
+  closeMenu();
+
+  window.location.href = page;
+
+}
+
+
+/* SEND MONEY */
+
+const sendMoneyBtn =
+  document.getElementById("sendMoneyBtn");
+
+if (sendMoneyBtn) {
+
+  sendMoneyBtn.addEventListener(
     "click",
     () => {
-      showToast(
-        "Send Money selected"
-      );
+      goToPage("send-money.html");
     }
   );
 
+}
 
-document
-  .getElementById("zelleBtn")
-  .addEventListener(
+
+/* ZELLE */
+
+const zelleBtn =
+  document.getElementById("zelleBtn");
+
+if (zelleBtn) {
+
+  zelleBtn.addEventListener(
     "click",
     () => {
-      showToast(
-        "Zelle selected"
-      );
+      goToPage("zelle.html");
     }
   );
 
+}
 
-document
-  .getElementById("addMoneyBtn")
-  .addEventListener(
+
+/* ADD MONEY */
+
+const addMoneyBtn =
+  document.getElementById("addMoneyBtn");
+
+if (addMoneyBtn) {
+
+  addMoneyBtn.addEventListener(
     "click",
     () => {
-      showToast(
-        "Add Money selected"
-      );
+      goToPage("add-money.html");
     }
   );
 
+}
 
-document
-  .getElementById("withdrawBtn")
-  .addEventListener(
+
+/* WITHDRAW */
+
+const withdrawBtn =
+  document.getElementById("withdrawBtn");
+
+if (withdrawBtn) {
+
+  withdrawBtn.addEventListener(
     "click",
     () => {
-      showToast(
-        "Withdraw selected"
-      );
+      goToPage("withdraw.html");
     }
   );
 
+}
 
-document
-  .getElementById("transferBtn")
-  .addEventListener(
+
+/* TRANSFER */
+
+const transferBtn =
+  document.getElementById("transferBtn");
+
+if (transferBtn) {
+
+  transferBtn.addEventListener(
     "click",
     () => {
-      showToast(
-        "Transfer selected"
-      );
+      goToPage("transfer.html");
     }
   );
+
+}
+
+
+/* TRANSACTIONS */
+
+const transactionsBtn =
+  document.getElementById("transactionsBtn");
+
+if (transactionsBtn) {
+
+  transactionsBtn.addEventListener(
+    "click",
+    () => {
+      goToPage("transactions.html");
+    }
+  );
+
+}
+
+
+/* ACCOUNT DETAILS */
+
+const accountDetailsBtn =
+  document.getElementById("accountDetailsBtn");
+
+if (accountDetailsBtn) {
+
+  accountDetailsBtn.addEventListener(
+    "click",
+    () => {
+      goToPage("account.html");
+    }
+  );
+
+}
+
+
+/* INHERITANCE */
+
+if (inheritanceBtn) {
+
+  inheritanceBtn.addEventListener(
+    "click",
+    () => {
+
+      window.location.href =
+        "inheritance.html";
+
+    }
+  );
+
+}
 
 
 /* -----------------------------
-   INHERITANCE MODAL
+   MENU NAVIGATION
 ----------------------------- */
 
-inheritanceBtn.addEventListener(
-  "click",
-  () => {
+const menuPages = {
 
-    inheritanceModal.classList.add(
-      "open"
-    );
+  menuDashboard:
+    "dashboard.html",
 
-  }
-);
+  menuAccount:
+    "account.html",
 
+  menuTransfer:
+    "transfer.html",
 
-closeInheritanceBtn.addEventListener(
-  "click",
-  () => {
+  menuPayments:
+    "payments.html",
 
-    inheritanceModal.classList.remove(
-      "open"
-    );
+  menuCards:
+    "cards.html",
 
-  }
-);
+  menuTransactions:
+    "transactions.html",
 
+  menuStatements:
+    "statements.html",
 
-inheritanceModal.addEventListener(
-  "click",
-  (event) => {
+  menuNotifications:
+    "notifications.html",
 
-    if (
-      event.target ===
-      inheritanceModal
-    ) {
+  menuSupport:
+    "support.html",
 
-      inheritanceModal.classList.remove(
-        "open"
-      );
+  menuSecurity:
+    "security.html",
 
-    }
+  menuSettings:
+    "settings.html"
 
-  }
-);
+};
 
 
-/* -----------------------------
-   VERIFICATION
------------------------------ */
-
-submitVerificationBtn.addEventListener(
-  "click",
-  async () => {
-
-    if (!currentUser) {
-      return;
-    }
-
-    submitVerificationBtn.disabled =
-      true;
-
-    submitVerificationBtn.textContent =
-      "Submitting...";
-
-
-    try {
-
-      const userRef =
-        doc(
-          db,
-          "users",
-          currentUser.uid
-        );
-
-
-      await updateDoc(
-        userRef,
-        {
-          "inheritance.verificationStatus":
-            "submitted"
-        }
-      );
-
-
-      verificationStatus.textContent =
-        "Submitted";
-
-
-      submitVerificationBtn.textContent =
-        "Verification submitted";
-
-
-      showToast(
-        "Verification request submitted"
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        "Verification error:",
-        error
-      );
-
-      submitVerificationBtn.disabled =
-        false;
-
-      submitVerificationBtn.textContent =
-        "Submit verification";
-
-      showToast(
-        "Unable to submit verification"
-      );
-
-    }
-
-  }
-);
-
-
-/* -----------------------------
-   MENU ITEMS
------------------------------ */
-
-const menuActions = [
-
-  ["menuDashboard", "Dashboard"],
-
-  ["menuAccount", "My Account"],
-
-  ["menuTransfer", "Transfers"],
-
-  ["menuPayments", "Payments"],
-
-  ["menuCards", "Cards"],
-
-  ["menuTransactions", "Transactions"],
-
-  ["menuStatements", "Statements"],
-
-  ["menuNotifications", "Notifications"],
-
-  ["menuSupport", "Help & Support"],
-
-  ["menuSecurity", "Security"],
-
-  ["menuSettings", "Settings"]
-
-];
-
-
-menuActions.forEach(
-  ([id, name]) => {
+Object.entries(menuPages).forEach(
+  ([id, page]) => {
 
     const button =
       document.getElementById(id);
@@ -947,18 +1010,8 @@ menuActions.forEach(
 
         closeMenu();
 
-        if (id === "menuDashboard") {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-          return;
-        }
-
-        showToast(
-          `${name} selected`
-        );
+        window.location.href =
+          page;
 
       }
     );
@@ -968,32 +1021,121 @@ menuActions.forEach(
 
 
 /* -----------------------------
+   INHERITANCE VERIFICATION
+----------------------------- */
+
+if (submitVerificationBtn) {
+
+  submitVerificationBtn.addEventListener(
+    "click",
+    async () => {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      submitVerificationBtn.disabled =
+        true;
+
+      submitVerificationBtn.textContent =
+        "Submitting...";
+
+
+      try {
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          );
+
+
+        await updateDoc(
+          userRef,
+          {
+            "inheritance.verificationStatus":
+              "submitted"
+          }
+        );
+
+
+        if (verificationStatus) {
+
+          verificationStatus.textContent =
+            "Submitted";
+
+        }
+
+
+        submitVerificationBtn.textContent =
+          "Verification submitted";
+
+
+        showToast(
+          "Verification request submitted"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Verification error:",
+          error
+        );
+
+
+        submitVerificationBtn.disabled =
+          false;
+
+        submitVerificationBtn.textContent =
+          "Submit verification";
+
+
+        showToast(
+          "Unable to submit verification"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* -----------------------------
    LOGOUT
 ----------------------------- */
 
-logoutBtn.addEventListener(
-  "click",
-  async () => {
+if (logoutBtn) {
 
-    try {
+  logoutBtn.addEventListener(
+    "click",
+    async () => {
 
-      await signOut(auth);
+      try {
 
-      window.location.href =
-        "login.html";
+        await signOut(auth);
 
-    } catch (error) {
+        window.location.href =
+          "login.html";
 
-      console.error(
-        "Logout error:",
-        error
-      );
+      } catch (error) {
 
-      showToast(
-        "Unable to sign out"
-      );
+        console.error(
+          "Logout error:",
+          error
+        );
+
+        showToast(
+          "Unable to sign out"
+        );
+
+      }
 
     }
+  );
 
-  }
-);
+}
