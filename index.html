@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>First Merit Bank | Banking Made Simple</title>
+  <title>First Merit Bank | Banking That Moves With You</title>
 
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -16,6 +16,26 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --navy: #123B8F;
+      --midnight: #0B1F4A;
+      --deep: #081735;
+      --blue: #2563EB;
+      --soft-blue: #EEF2FF;
+      --light-blue: #F4F7FF;
+      --cyan: #06B6D4;
+      --cyan-soft: #ECFEFF;
+      --green: #16A34A;
+      --green-soft: #ECFDF3;
+      --amber: #D97706;
+      --background: #F5F7FB;
+      --text: #172033;
+      --muted: #667085;
+      --white: #FFFFFF;
+      --border: #E6EAF2;
+      --gold: #F5B942;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -23,9 +43,9 @@
     body {
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, Arial, sans-serif;
-      background: #f5f7fb;
-      color: #0b1f4a;
-      line-height: 1.5;
+      background: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
     a {
@@ -33,30 +53,22 @@
       color: inherit;
     }
 
-    button {
-      font-family: inherit;
-    }
+    /* ================= HEADER ================= */
 
-    /* =========================
-       HEADER
-    ========================= */
-
-    .header {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid #e8edf5;
+    header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(230,234,242,0.9);
+      animation: headerDrop 0.7s ease both;
     }
 
-    .header-inner {
-      max-width: 1180px;
-      height: 76px;
+    .nav {
+      width: min(1180px, calc(100% - 40px));
       margin: auto;
-      padding: 0 24px;
-
+      height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -67,252 +79,338 @@
       align-items: center;
       gap: 11px;
       font-weight: 800;
-      font-size: 20px;
-      color: #0b1f4a;
+      color: var(--midnight);
+      font-size: 19px;
     }
 
-    .brand-logo {
+    .brand-icon {
       width: 42px;
       height: 42px;
-      border-radius: 12px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: linear-gradient(135deg, #123b8f, #2563eb);
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
       color: white;
-      font-size: 17px;
-      font-weight: 800;
-
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.20);
     }
 
-    .nav {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 30px;
     }
 
-    .nav a {
-      color: #536174;
+    .nav-links a {
+      color: #526071;
       font-size: 14px;
       font-weight: 600;
-      transition: 0.2s ease;
+      transition: 0.25s ease;
     }
 
-    .nav a:hover {
-      color: #123b8f;
+    .nav-links a:hover {
+      color: var(--blue);
     }
 
-    .nav-buttons {
+    .nav-actions {
       display: flex;
-      align-items: center;
       gap: 10px;
+      align-items: center;
     }
 
-    .btn {
-      border: none;
-      cursor: pointer;
-      border-radius: 11px;
-      padding: 12px 19px;
+    .nav-signin {
+      padding: 10px 17px;
+      border-radius: 10px;
+      color: var(--navy);
       font-size: 14px;
       font-weight: 700;
-      transition: 0.2s ease;
+      transition: 0.25s ease;
+    }
+
+    .nav-signin:hover {
+      background: var(--soft-blue);
+    }
+
+    .nav-start {
+      padding: 11px 18px;
+      border-radius: 11px;
+      background: var(--navy);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      box-shadow: 0 7px 18px rgba(18,59,143,0.18);
+    }
+
+    .nav-start:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 650px;
+      padding: 76px 0 70px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(6,182,212,0.10), transparent 25%),
+        radial-gradient(circle at 15% 70%, rgba(37,99,235,0.08), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #f7f9fd 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.045);
+      right: -170px;
+      top: -120px;
+      animation: glowMove 7s ease-in-out infinite;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 620px;
+    }
+
+    .hero-badge {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 30px;
+      background: var(--cyan-soft);
+      color: #087F95;
+      border: 1px solid #C9F5FA;
+      font-size: 13px;
+      font-weight: 700;
+
+      opacity: 0;
+      animation: fadeUp 0.6s 0.10s ease both;
+    }
+
+    .hero-badge i {
+      font-size: 11px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+      color: var(--midnight);
+      font-size: clamp(42px, 5vw, 66px);
+      line-height: 1.02;
+      letter-spacing: -2.5px;
+      font-weight: 850;
+
+      opacity: 0;
+      animation: fadeUp 0.7s 0.22s ease both;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-description {
+      margin-top: 22px;
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+
+      opacity: 0;
+      animation: fadeUp 0.7s 0.34s ease both;
+    }
+
+    /* BUTTON ENTRANCE */
+
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-actions .btn {
+      min-width: 155px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      font-size: 14px;
+      font-weight: 750;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+      opacity: 0;
+    }
+
+    /*
+      The two buttons deliberately enter separately.
+      Open Account appears first, followed shortly by Sign In.
+    */
+
+    .hero-actions .btn:first-child {
+      animation: buttonEnter 0.7s 0.47s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .hero-actions .btn:last-child {
+      animation: buttonEnter 0.7s 0.60s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+      box-shadow: 0 10px 24px rgba(18,59,143,0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 28px rgba(37,99,235,0.23);
     }
 
     .btn-outline {
       background: white;
-      color: #123b8f;
-      border: 1px solid #d8e0ed;
+      color: var(--navy);
+      border: 1px solid #D7DDEA;
     }
 
     .btn-outline:hover {
-      background: #f4f7ff;
-    }
-
-    .btn-primary {
-      background: #123b8f;
-      color: white;
-      box-shadow: 0 8px 18px rgba(18, 59, 143, 0.18);
-    }
-
-    .btn-primary:hover {
-      background: #0d327d;
-      transform: translateY(-1px);
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      max-width: 1180px;
-      margin: auto;
-      padding: 72px 24px 60px;
-
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: center;
-      gap: 65px;
-    }
-
-    .hero-content {
-      max-width: 600px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      padding: 8px 13px;
-      border-radius: 999px;
-
-      background: #ecfeff;
-      color: #087f8c;
-
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
-
-    .hero-badge i {
-      font-size: 10px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 5vw, 64px);
-      line-height: 1.04;
-      letter-spacing: -2.5px;
-      color: #0b1f4a;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 span {
-      color: #2563eb;
-    }
-
-    .hero p {
-      color: #667085;
-      font-size: 17px;
-      line-height: 1.7;
-      max-width: 540px;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .hero-actions .btn {
-      padding: 14px 22px;
+      border-color: var(--blue);
+      background: var(--soft-blue);
+      transform: translateY(-3px);
     }
 
     .hero-note {
+      margin-top: 19px;
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 20px;
-      color: #6b7280;
+      color: #718096;
       font-size: 12px;
+
+      opacity: 0;
+      animation: fadeUp 0.65s 0.75s ease both;
     }
 
     .hero-note i {
-      color: #16a34a;
+      color: var(--green);
     }
 
-    /* =========================
-       BANK CARD
-    ========================= */
+    /* ================= BANK CARD ================= */
 
     .hero-visual {
       display: flex;
       justify-content: center;
+      align-items: center;
+      min-height: 430px;
     }
 
-    .bank-card-wrapper {
+    .bank-card-wrap {
       position: relative;
-      width: min(100%, 460px);
+      width: min(420px, 100%);
+      animation:
+        cardEnter 0.9s 0.65s cubic-bezier(.2,.8,.2,1) both,
+        cardFloat 5s 1.7s ease-in-out infinite;
     }
 
     .bank-card {
-      min-height: 285px;
-      padding: 28px;
-
+      width: 100%;
+      aspect-ratio: 1.58 / 1;
       border-radius: 25px;
-
-      background:
-        radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.3), transparent 32%),
-        linear-gradient(145deg, #0b1f4a, #123b8f 65%, #2563eb);
-
+      padding: 28px;
       color: white;
-
-      box-shadow: 0 25px 55px rgba(11, 31, 74, 0.25);
-
       position: relative;
       overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(6,182,212,0.42), transparent 30%),
+        linear-gradient(135deg, #0B1F4A 0%, #123B8F 58%, #2563EB 100%);
+      box-shadow:
+        0 30px 60px rgba(11,31,74,0.24),
+        0 10px 25px rgba(37,99,235,0.13);
+    }
+
+    .bank-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      right: -100px;
+      bottom: -130px;
     }
 
     .bank-card::after {
       content: "";
       position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.14);
-      right: -50px;
-      bottom: -70px;
+      top: 0;
+      left: -120%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        100deg,
+        transparent,
+        rgba(255,255,255,0.10),
+        transparent
+      );
+      transform: skewX(-20deg);
+      animation: shimmer 4.5s 2s ease-in-out infinite;
     }
 
     .card-top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-    }
-
-    .card-bank-name {
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .card-chip {
-      width: 42px;
-      height: 31px;
-      border-radius: 7px;
-
-      background: linear-gradient(
-        135deg,
-        #d8dde6,
-        #ffffff,
-        #adb5c1
-      );
-
+      align-items: center;
       position: relative;
+      z-index: 2;
     }
 
-    .card-chip::after {
-      content: "";
-      position: absolute;
-      inset: 7px 10px;
-      border: 1px solid #8993a1;
-      border-radius: 4px;
+    .card-bank {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .card-type {
+      font-size: 12px;
+      opacity: 0.75;
+      letter-spacing: 1px;
     }
 
     .card-balance-label {
-      margin-top: 55px;
-      font-size: 12px;
-      opacity: 0.72;
+      margin-top: 50px;
+      font-size: 11px;
+      opacity: 0.70;
+      position: relative;
+      z-index: 2;
     }
 
     .card-balance {
-      margin-top: 5px;
-      font-size: 35px;
+      margin-top: 6px;
+      font-size: 31px;
       font-weight: 800;
       letter-spacing: -1px;
+      position: relative;
+      z-index: 2;
     }
 
     .card-bottom {
@@ -320,130 +418,127 @@
       left: 28px;
       right: 28px;
       bottom: 25px;
-
       display: flex;
-      align-items: flex-end;
       justify-content: space-between;
+      align-items: end;
+      z-index: 2;
     }
 
     .card-number {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 2px;
-      opacity: 0.78;
+      opacity: 0.75;
     }
 
     .card-status {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      opacity: 0.82;
+      gap: 5px;
+      font-size: 10px;
+      opacity: 0.85;
     }
 
-    .card-status i {
-      color: #4ade80;
-      font-size: 8px;
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #42E28A;
+      box-shadow: 0 0 10px rgba(66,226,138,0.65);
     }
 
-    /* =========================
-       TRUST STRIP
-    ========================= */
+    /* ================= TRUST ================= */
 
     .trust-strip {
-      max-width: 1180px;
-      margin: 0 auto 70px;
-      padding: 0 24px;
+      background: white;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .trust-inner {
-      background: white;
-      border: 1px solid #e7ebf2;
-      border-radius: 18px;
-      padding: 22px 26px;
-
+      width: min(1050px, calc(100% - 40px));
+      margin: auto;
+      min-height: 88px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-
-      box-shadow: 0 8px 25px rgba(11, 31, 74, 0.04);
+      align-items: center;
     }
 
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 13px;
-    }
-
-    .trust-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-
-      display: flex;
-      align-items: center;
       justify-content: center;
-
-      background: #eef2ff;
-      color: #2563eb;
-      flex-shrink: 0;
+      gap: 12px;
+      color: #526071;
+      font-size: 13px;
+      font-weight: 650;
     }
 
-    .trust-item strong {
-      display: block;
-      font-size: 14px;
-      color: #0b1f4a;
+    .trust-item i {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--soft-blue);
+      color: var(--blue);
     }
 
-    .trust-item span {
-      display: block;
-      margin-top: 2px;
-      color: #7a8494;
-      font-size: 12px;
+    .trust-item:nth-child(2) i {
+      background: var(--cyan-soft);
+      color: #0891B2;
     }
 
-    /* =========================
-       SECTION HEADINGS
-    ========================= */
+    .trust-item:nth-child(3) i {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    /* ================= GENERAL SECTIONS ================= */
 
     .section {
-      max-width: 1180px;
+      padding: 95px 0;
+    }
+
+    .section-inner {
+      width: min(1180px, calc(100% - 40px));
       margin: auto;
-      padding: 0 24px 80px;
     }
 
     .section-heading {
-      text-align: center;
       max-width: 650px;
-      margin: 0 auto 40px;
+      margin: 0 auto 50px;
+      text-align: center;
     }
 
     .section-heading .eyebrow {
-      color: #2563eb;
+      color: var(--blue);
       font-size: 12px;
-      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 9px;
+      letter-spacing: 1.5px;
+      font-weight: 800;
     }
 
     .section-heading h2 {
-      color: #0b1f4a;
-      font-size: 34px;
-      letter-spacing: -1px;
-      margin-bottom: 10px;
+      margin-top: 10px;
+      color: var(--midnight);
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -1.2px;
     }
 
     .section-heading p {
-      color: #717b8c;
-      font-size: 14px;
+      margin-top: 13px;
+      color: var(--muted);
       line-height: 1.7;
+      font-size: 15px;
     }
 
-    /* =========================
-       SERVICES
-    ========================= */
+    /* ================= SERVICES ================= */
 
-    .services-grid {
+    .services {
+      background: var(--background);
+    }
+
+    .service-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
@@ -451,268 +546,242 @@
 
     .service-card {
       background: white;
-      border: 1px solid #e7ebf2;
+      border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 26px;
-
-      box-shadow: 0 8px 25px rgba(11, 31, 74, 0.035);
-
-      transition: 0.25s ease;
+      padding: 25px;
+      transition: 0.3s ease;
     }
 
     .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 35px rgba(11, 31, 74, 0.08);
+      transform: translateY(-7px);
+      border-color: #D8E1F5;
+      box-shadow: 0 18px 35px rgba(11,31,74,0.08);
     }
 
     .service-icon {
       width: 48px;
       height: 48px;
       border-radius: 14px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin-bottom: 18px;
-
+      display: grid;
+      place-items: center;
+      background: var(--soft-blue);
+      color: var(--blue);
       font-size: 18px;
+      margin-bottom: 20px;
+      transition: 0.3s ease;
     }
 
-    .service-icon.blue {
-      background: #eef2ff;
-      color: #2563eb;
+    .service-card:hover .service-icon {
+      transform: scale(1.08) rotate(-3deg);
     }
 
-    .service-icon.cyan {
-      background: #ecfeff;
-      color: #0891b2;
+    .service-card:nth-child(2) .service-icon {
+      background: var(--cyan-soft);
+      color: #0891B2;
     }
 
-    .service-icon.green {
-      background: #ecfdf3;
-      color: #16a34a;
+    .service-card:nth-child(3) .service-icon {
+      background: var(--green-soft);
+      color: var(--green);
     }
 
-    .service-icon.amber {
-      background: #fff7ed;
-      color: #d97706;
+    .service-card:nth-child(4) .service-icon {
+      background: #FFF7ED;
+      color: var(--amber);
+    }
+
+    .service-card:nth-child(5) .service-icon {
+      background: #F5F3FF;
+      color: #7C3AED;
+    }
+
+    .service-card:nth-child(6) .service-icon {
+      background: #FFF1F2;
+      color: #E11D48;
     }
 
     .service-card h3 {
-      color: #0b1f4a;
+      color: var(--midnight);
       font-size: 17px;
-      margin-bottom: 7px;
+      margin-bottom: 9px;
     }
 
     .service-card p {
-      color: #758093;
+      color: var(--muted);
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
-    /* =========================
-       REVIEWS
-    ========================= */
+    /* ================= REVIEWS ================= */
 
-    .reviews-section {
-      max-width: 1180px;
-      margin: auto;
-      padding: 0 24px 85px;
+    .reviews {
+      background: white;
     }
 
-    .reviews-grid {
+    .review-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
 
     .review-card {
-      background: white;
-      border: 1px solid #e6eaf1;
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 24px;
-
-      box-shadow: 0 8px 25px rgba(11, 31, 74, 0.035);
-
-      display: flex;
-      flex-direction: column;
-      min-height: 245px;
+      background: white;
+      transition: 0.3s ease;
     }
 
-    .review-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 38px rgba(11,31,74,0.08);
     }
 
     .review-person {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
     }
 
-    .review-photo {
-      width: 48px;
-      height: 48px;
+    .review-person img {
+      width: 47px;
+      height: 47px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #eef2ff;
+      border: 3px solid #F1F4FA;
+      transition: 0.3s ease;
+    }
+
+    .review-card:hover .review-person img {
+      transform: scale(1.07);
     }
 
     .review-name {
-      color: #0b1f4a;
+      color: var(--midnight);
+      font-weight: 750;
       font-size: 14px;
-      font-weight: 800;
     }
 
-    .review-location {
-      color: #8a93a2;
+    .review-role {
+      color: #8993A4;
       font-size: 11px;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
-    .review-stars {
+    .stars {
+      margin-top: 19px;
       display: flex;
-      align-items: center;
-      gap: 2px;
-      color: #f5b301;
+      gap: 3px;
+      color: var(--gold);
       font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .review-stars .empty {
-      color: #d9dde5;
-    }
-
-    .half-star {
-      position: relative;
-      display: inline-block;
-      color: #d9dde5;
-    }
-
-    .half-star::before {
-      content: "\f005";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-
-      position: absolute;
-      left: 0;
-      top: 0;
-
-      width: 50%;
-      overflow: hidden;
-      color: #f5b301;
     }
 
     .review-text {
-      color: #5f6b7d;
+      margin-top: 13px;
+      color: #5D6878;
       font-size: 13px;
       line-height: 1.75;
-      flex: 1;
     }
 
     .review-footer {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #EDF0F5;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 6px;
-
-      margin-top: 18px;
-      padding-top: 15px;
-
-      border-top: 1px solid #edf0f5;
-
-      color: #8a93a2;
-      font-size: 11px;
     }
 
-    .review-footer i {
-      color: #16a34a;
-      font-size: 11px;
-    }
-
-    /* =========================
-       CTA
-    ========================= */
+    /* ================= CTA ================= */
 
     .cta-section {
-      max-width: 1180px;
-      margin: 0 auto 70px;
-      padding: 0 24px;
+      padding: 70px 0;
+      background: var(--background);
     }
 
     .cta {
-      border-radius: 25px;
-      padding: 50px;
-
-      background:
-        radial-gradient(
-          circle at 90% 0%,
-          rgba(6, 182, 212, 0.25),
-          transparent 30%
-        ),
-        linear-gradient(135deg, #0b1f4a, #123b8f);
-
+      width: min(1050px, calc(100% - 40px));
+      margin: auto;
+      border-radius: 28px;
+      padding: 55px;
       color: white;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(6,182,212,0.30), transparent 25%),
+        linear-gradient(135deg, var(--midnight), var(--navy));
+      box-shadow: 0 25px 55px rgba(11,31,74,0.18);
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 50%;
+      right: -80px;
+      bottom: -120px;
     }
 
     .cta-content {
-      max-width: 620px;
+      position: relative;
+      z-index: 2;
     }
 
     .cta h2 {
-      font-size: 31px;
-      letter-spacing: -0.8px;
-      margin-bottom: 9px;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -1px;
     }
 
     .cta p {
+      max-width: 570px;
+      margin-top: 12px;
       color: rgba(255,255,255,0.72);
+      line-height: 1.7;
       font-size: 14px;
-      line-height: 1.65;
     }
 
-    .cta .btn {
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 25px;
       background: white;
-      color: #123b8f;
-      white-space: nowrap;
+      color: var(--navy);
+      padding: 13px 19px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.25s ease;
     }
 
-    .cta .btn:hover {
-      background: #f4f7ff;
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.18);
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    /* ================= FOOTER ================= */
 
     footer {
-      background: #081735;
+      background: var(--deep);
       color: white;
-      padding: 45px 24px 28px;
+      padding: 55px 0 25px;
     }
 
     .footer-inner {
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 40px));
       margin: auto;
     }
 
     .footer-top {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
       gap: 40px;
-      padding-bottom: 35px;
+      padding-bottom: 40px;
     }
 
     .footer-brand {
@@ -721,10 +790,10 @@
 
     .footer-brand .brand {
       color: white;
-      margin-bottom: 14px;
     }
 
     .footer-brand p {
+      margin-top: 14px;
       color: rgba(255,255,255,0.58);
       font-size: 13px;
       line-height: 1.7;
@@ -732,19 +801,23 @@
 
     .footer-links {
       display: flex;
-      gap: 55px;
+      gap: 65px;
     }
 
     .footer-column h4 {
-      font-size: 13px;
-      margin-bottom: 13px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      color: rgba(255,255,255,0.85);
     }
 
     .footer-column a {
       display: block;
       color: rgba(255,255,255,0.55);
       font-size: 12px;
-      margin-bottom: 9px;
+      margin-bottom: 10px;
+      transition: 0.2s ease;
     }
 
     .footer-column a:hover {
@@ -752,88 +825,218 @@
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.10);
       padding-top: 20px;
-
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.42);
       font-size: 11px;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* ================= SCROLL ANIMATIONS ================= */
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card:nth-child(2) {
+      transition-delay: 0.06s;
+    }
+
+    .service-card:nth-child(3) {
+      transition-delay: 0.12s;
+    }
+
+    .service-card:nth-child(4) {
+      transition-delay: 0.18s;
+    }
+
+    .service-card:nth-child(5) {
+      transition-delay: 0.24s;
+    }
+
+    .service-card:nth-child(6) {
+      transition-delay: 0.30s;
+    }
+
+    .review-card:nth-child(2) {
+      transition-delay: 0.10s;
+    }
+
+    .review-card:nth-child(3) {
+      transition-delay: 0.20s;
+    }
+
+    /* ================= ANIMATIONS ================= */
+
+    @keyframes headerDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes buttonEnter {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.97);
+      }
+      65% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.01);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateX(50px) rotate(4deg) scale(0.94);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes cardFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes glowMove {
+      0%, 100% {
+        transform: translate(0,0);
+      }
+      50% {
+        transform: translate(-20px,20px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -120%;
+      }
+      35%, 100% {
+        left: 140%;
+      }
+    }
+
+    /* ================= MOBILE ================= */
 
     @media (max-width: 900px) {
 
-      .nav {
+      .nav-links {
         display: none;
       }
 
       .hero {
+        padding: 55px 0 60px;
+      }
+
+      .hero-inner {
         grid-template-columns: 1fr;
         gap: 45px;
-        padding-top: 50px;
       }
 
       .hero-content {
-        max-width: 680px;
+        max-width: 700px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .hero-badge {
+        margin: auto;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-note {
+        justify-content: center;
       }
 
       .hero-visual {
-        justify-content: flex-start;
+        min-height: auto;
       }
 
-      .services-grid,
-      .reviews-grid {
+      .service-grid,
+      .review-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .trust-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .cta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-top {
-        flex-direction: column;
       }
     }
 
-    @media (max-width: 620px) {
+    @media (max-width: 650px) {
 
-      .header-inner {
+      .nav {
+        width: min(100% - 28px, 1180px);
         height: 68px;
-        padding: 0 17px;
       }
 
       .brand {
-        font-size: 17px;
+        font-size: 16px;
       }
 
-      .brand-logo {
+      .brand-icon {
         width: 38px;
         height: 38px;
         border-radius: 11px;
       }
 
-      .nav-buttons .btn-outline {
+      .nav-signin {
         display: none;
       }
 
-      .nav-buttons .btn {
+      .nav-start {
         padding: 10px 14px;
         font-size: 12px;
       }
 
       .hero {
-        padding: 45px 18px 45px;
+        min-height: auto;
+        padding: 48px 0 55px;
+      }
+
+      .hero-inner {
+        width: min(100% - 28px, 1180px);
+        gap: 38px;
       }
 
       .hero h1 {
@@ -841,82 +1044,13 @@
         letter-spacing: -1.8px;
       }
 
-      .hero p {
+      .hero-description {
         font-size: 15px;
-      }
-
-      .bank-card {
-        min-height: 250px;
-        padding: 23px;
-      }
-
-      .card-balance-label {
-        margin-top: 43px;
-      }
-
-      .card-balance {
-        font-size: 30px;
-      }
-
-      .card-bottom {
-        left: 23px;
-        right: 23px;
-        bottom: 21px;
-      }
-
-      .trust-strip {
-        padding: 0 18px;
-        margin-bottom: 55px;
-      }
-
-      .section,
-      .reviews-section {
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-
-      .services-grid,
-      .reviews-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-heading h2 {
-        font-size: 29px;
-      }
-
-      .review-card {
-        min-height: auto;
-      }
-
-      .cta-section {
-        padding: 0 18px;
-      }
-
-      .cta {
-        padding: 35px 25px;
-      }
-
-      .cta h2 {
-        font-size: 27px;
-      }
-
-      .footer-links {
-        gap: 35px;
-        flex-wrap: wrap;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 400px) {
-
-      .hero h1 {
-        font-size: 38px;
+        line-height: 1.65;
       }
 
       .hero-actions {
+        flex-direction: column;
         width: 100%;
       }
 
@@ -924,8 +1058,104 @@
         width: 100%;
       }
 
-      .card-number {
-        font-size: 11px;
+      .hero-visual {
+        width: 100%;
+      }
+
+      .bank-card-wrap {
+        width: 100%;
+      }
+
+      .bank-card {
+        border-radius: 21px;
+        padding: 22px;
+      }
+
+      .card-balance-label {
+        margin-top: 38px;
+      }
+
+      .card-balance {
+        font-size: 27px;
+      }
+
+      .card-bottom {
+        left: 22px;
+        right: 22px;
+        bottom: 20px;
+      }
+
+      .trust-inner {
+        width: calc(100% - 28px);
+        grid-template-columns: 1fr;
+        gap: 17px;
+        padding: 25px 0;
+      }
+
+      .trust-item {
+        justify-content: flex-start;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-inner {
+        width: calc(100% - 28px);
+      }
+
+      .section-heading {
+        margin-bottom: 32px;
+      }
+
+      .service-grid,
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card,
+      .review-card {
+        padding: 22px;
+      }
+
+      .cta-section {
+        padding: 50px 0;
+      }
+
+      .cta {
+        width: calc(100% - 28px);
+        padding: 38px 25px;
+        border-radius: 23px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .animate-on-scroll {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -933,101 +1163,114 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-inner">
+  <!-- ================= HEADER ================= -->
+
+  <header>
+    <nav class="nav">
 
       <a href="index.html" class="brand">
-        <div class="brand-logo">FM</div>
+        <span class="brand-icon">FM</span>
         <span>First Merit Bank</span>
       </a>
 
-      <nav class="nav">
+      <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#reviews">Reviews</a>
         <a href="#about">About</a>
-      </nav>
-
-      <div class="nav-buttons">
-        <a href="login.html" class="btn btn-outline">Sign In</a>
-        <a href="signup.html" class="btn btn-primary">Get Started</a>
       </div>
 
-    </div>
+      <div class="nav-actions">
+        <a href="login.html" class="nav-signin">Sign In</a>
+        <a href="signup.html" class="nav-start">Get Started</a>
+      </div>
+
+    </nav>
   </header>
 
 
-  <!-- HERO -->
+  <!-- ================= HERO ================= -->
+
   <main>
 
     <section class="hero">
 
-      <div class="hero-content">
+      <div class="hero-inner">
 
-        <div class="hero-badge">
-          <i class="fa-solid fa-circle"></i>
-          Banking built around you
+        <div class="hero-content">
+
+          <div class="hero-badge">
+            <i class="fa-solid fa-sparkles"></i>
+            Banking built around you
+          </div>
+
+          <h1>
+            Banking that <span>moves with you.</span>
+          </h1>
+
+          <p class="hero-description">
+            Join thousands of satisfied members who have transformed their
+            financial lives with First Merit Bank.
+          </p>
+
+          <div class="hero-actions">
+
+            <a href="signup.html" class="btn btn-primary">
+              <i class="fa-solid fa-user-plus"></i>
+              Open an Account
+            </a>
+
+            <a href="login.html" class="btn btn-outline">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              Sign In
+            </a>
+
+          </div>
+
+          <div class="hero-note">
+            <i class="fa-solid fa-circle-check"></i>
+            Secure access • Simple banking • Member focused
+          </div>
+
         </div>
 
-        <h1>
-          Banking that
-          <span>moves with you.</span>
-        </h1>
 
-        <p>
-          Join thousands of satisfied members who have transformed
-          their financial lives with First Merit Bank.
-        </p>
+        <!-- BANK CARD -->
 
-        <div class="hero-actions">
-          <a href="signup.html" class="btn btn-primary">
-            Open an Account
-          </a>
+        <div class="hero-visual">
 
-          <a href="login.html" class="btn btn-outline">
-            Sign In
-          </a>
-        </div>
+          <div class="bank-card-wrap">
 
-        <div class="hero-note">
-          <i class="fa-solid fa-shield-halved"></i>
-          Secure access and convenient digital banking
-        </div>
+            <div class="bank-card">
 
-      </div>
+              <div class="card-top">
+                <div class="card-bank">
+                  First Merit Bank
+                </div>
 
-
-      <div class="hero-visual">
-
-        <div class="bank-card-wrapper">
-
-          <div class="bank-card">
-
-            <div class="card-top">
-              <div class="card-bank-name">
-                First Merit Bank
+                <div class="card-type">
+                  MEMBER
+                </div>
               </div>
 
-              <div class="card-chip"></div>
-            </div>
-
-            <div class="card-balance-label">
-              Available Balance
-            </div>
-
-            <div class="card-balance">
-              $24,850.00
-            </div>
-
-            <div class="card-bottom">
-
-              <div class="card-number">
-                •••• &nbsp; •••• &nbsp; •••• &nbsp; 4821
+              <div class="card-balance-label">
+                Available balance
               </div>
 
-              <div class="card-status">
-                <i class="fa-solid fa-circle"></i>
-                Active
+              <div class="card-balance">
+                $24,850.00
+              </div>
+
+              <div class="card-bottom">
+
+                <div class="card-number">
+                  •••• &nbsp; •••• &nbsp; •••• &nbsp; 4826
+                </div>
+
+                <div class="card-status">
+                  <span class="status-dot"></span>
+                  Active
+                </div>
+
               </div>
 
             </div>
@@ -1041,44 +1284,25 @@
     </section>
 
 
-    <!-- TRUST -->
+    <!-- ================= TRUST STRIP ================= -->
+
     <section class="trust-strip">
 
       <div class="trust-inner">
 
         <div class="trust-item">
-          <div class="trust-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-
-          <div>
-            <strong>Secure Banking</strong>
-            <span>Designed with security in mind</span>
-          </div>
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Secure Banking</span>
         </div>
 
-
         <div class="trust-item">
-          <div class="trust-icon">
-            <i class="fa-solid fa-bolt"></i>
-          </div>
-
-          <div>
-            <strong>Fast & Convenient</strong>
-            <span>Manage your account from anywhere</span>
-          </div>
+          <i class="fa-solid fa-bolt"></i>
+          <span>Fast & Convenient</span>
         </div>
 
-
         <div class="trust-item">
-          <div class="trust-icon">
-            <i class="fa-solid fa-headset"></i>
-          </div>
-
-          <div>
-            <strong>Member Support</strong>
-            <span>Help when you need it</span>
-          </div>
+          <i class="fa-solid fa-headset"></i>
+          <span>Member Support</span>
         </div>
 
       </div>
@@ -1086,121 +1310,127 @@
     </section>
 
 
-    <!-- SERVICES -->
-    <section class="section" id="services">
+    <!-- ================= SERVICES ================= -->
 
-      <div class="section-heading">
+    <section class="section services" id="services">
 
-        <div class="eyebrow">
-          Banking services
-        </div>
+      <div class="section-inner">
 
-        <h2>
-          Everything you need in one place
-        </h2>
+        <div class="section-heading animate-on-scroll">
 
-        <p>
-          Simple tools designed to help you manage your
-          everyday banking with confidence.
-        </p>
-
-      </div>
-
-
-      <div class="services-grid">
-
-        <div class="service-card">
-
-          <div class="service-icon blue">
-            <i class="fa-solid fa-wallet"></i>
+          <div class="eyebrow">
+            Banking made simple
           </div>
 
-          <h3>Everyday Banking</h3>
+          <h2>
+            Everything you need,
+            in one place.
+          </h2>
 
           <p>
-            Keep track of your balance, account activity and
-            everyday finances from one convenient dashboard.
+            Manage your everyday finances with simple tools designed
+            around the way modern members bank.
           </p>
 
         </div>
 
 
-        <div class="service-card">
+        <div class="service-grid">
 
-          <div class="service-icon cyan">
-            <i class="fa-solid fa-money-bill-transfer"></i>
-          </div>
+          <article class="service-card animate-on-scroll">
 
-          <h3>Money Transfers</h3>
+            <div class="service-icon">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
 
-          <p>
-            Move money between accounts with simple and
-            convenient transfer tools.
-          </p>
+            <h3>Everyday Banking</h3>
 
-        </div>
+            <p>
+              Keep your money organized and manage your everyday
+              banking from one convenient place.
+            </p>
 
-
-        <div class="service-card">
-
-          <div class="service-icon green">
-            <i class="fa-solid fa-chart-line"></i>
-          </div>
-
-          <h3>Financial Overview</h3>
-
-          <p>
-            Stay informed with a clear view of your account
-            activity and financial information.
-          </p>
-
-        </div>
+          </article>
 
 
-        <div class="service-card">
+          <article class="service-card animate-on-scroll">
 
-          <div class="service-icon amber">
-            <i class="fa-solid fa-credit-card"></i>
-          </div>
+            <div class="service-icon">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
 
-          <h3>Card Management</h3>
+            <h3>Easy Transfers</h3>
 
-          <p>
-            Keep your banking tools organized and easily
-            accessible from your account.
-          </p>
+            <p>
+              Move money when you need it with a straightforward
+              transfer experience.
+            </p>
 
-        </div>
-
-
-        <div class="service-card">
-
-          <div class="service-icon blue">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-          </div>
-
-          <h3>Account Statements</h3>
-
-          <p>
-            Review your account information and transaction
-            history whenever you need it.
-          </p>
-
-        </div>
+          </article>
 
 
-        <div class="service-card">
+          <article class="service-card animate-on-scroll">
 
-          <div class="service-icon cyan">
-            <i class="fa-solid fa-headset"></i>
-          </div>
+            <div class="service-icon">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
 
-          <h3>Member Support</h3>
+            <h3>Mobile Access</h3>
 
-          <p>
-            Get assistance and find helpful information through
-            your banking experience.
-          </p>
+            <p>
+              Stay connected to your account wherever you are
+              with a modern mobile-friendly experience.
+            </p>
+
+          </article>
+
+
+          <article class="service-card animate-on-scroll">
+
+            <div class="service-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <h3>Financial Overview</h3>
+
+            <p>
+              Understand your balances and activity with a clear
+              view of your financial information.
+            </p>
+
+          </article>
+
+
+          <article class="service-card animate-on-scroll">
+
+            <div class="service-icon">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+
+            <h3>Card Management</h3>
+
+            <p>
+              Keep track of your cards and account activity
+              through one convenient dashboard.
+            </p>
+
+          </article>
+
+
+          <article class="service-card animate-on-scroll">
+
+            <div class="service-icon">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <h3>Member Support</h3>
+
+            <p>
+              Get assistance when you need it with support
+              designed around your banking experience.
+            </p>
+
+          </article>
 
         </div>
 
@@ -1209,40 +1439,40 @@
     </section>
 
 
-    <!-- REVIEWS -->
-    <section class="reviews-section" id="reviews">
+    <!-- ================= REVIEWS ================= -->
 
-      <div class="section-heading">
+    <section class="section reviews" id="reviews">
 
-        <div class="eyebrow">
-          Member reviews
+      <div class="section-inner">
+
+        <div class="section-heading animate-on-scroll">
+
+          <div class="eyebrow">
+            Member experiences
+          </div>
+
+          <h2>
+            Trusted by our members.
+          </h2>
+
+          <p>
+            See what members have to say about their experience
+            with First Merit Bank.
+          </p>
+
         </div>
 
-        <h2>
-          What our members say
-        </h2>
 
-        <p>
-          A few words from members about their First Merit
-          banking experience.
-        </p>
+        <div class="review-grid">
 
-      </div>
+          <!-- REVIEW 1 -->
 
-
-      <div class="reviews-grid">
-
-
-        <!-- REVIEW 1 — 5 STARS -->
-        <article class="review-card">
-
-          <div class="review-top">
+          <article class="review-card animate-on-scroll">
 
             <div class="review-person">
 
               <img
-                class="review-photo"
-                src="https://i.pravatar.cc/100?img=47"
+                src="https://i.pravatar.cc/150?img=47"
                 alt="Emily Carter">
 
               <div>
@@ -1250,14 +1480,14 @@
                   Emily Carter
                 </div>
 
-                <div class="review-location">
+                <div class="review-role">
                   Member
                 </div>
               </div>
 
             </div>
 
-            <div class="review-stars" aria-label="5 out of 5 stars">
+            <div class="stars" aria-label="5 out of 5 stars">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -1265,35 +1495,28 @@
               <i class="fa-solid fa-star"></i>
             </div>
 
-          </div>
+            <p class="review-text">
+              “The whole banking experience feels simple and
+              organized. I really like how easy it is to keep
+              track of everything.”
+            </p>
+
+            <div class="review-footer">
+              <i class="fa-solid fa-circle-check"></i>
+              Verified member
+            </div>
+
+          </article>
 
 
-          <p class="review-text">
-            “The banking experience feels really simple and
-            organized. I like being able to see my account
-            information clearly without having to search through
-            different pages.”
-          </p>
+          <!-- REVIEW 2 -->
 
-
-          <div class="review-footer">
-            <i class="fa-solid fa-circle-check"></i>
-            Member review
-          </div>
-
-        </article>
-
-
-        <!-- REVIEW 2 — 4 STARS -->
-        <article class="review-card">
-
-          <div class="review-top">
+          <article class="review-card animate-on-scroll">
 
             <div class="review-person">
 
               <img
-                class="review-photo"
-                src="https://i.pravatar.cc/100?img=12"
+                src="https://i.pravatar.cc/150?img=12"
                 alt="Daniel Brooks">
 
               <div>
@@ -1301,49 +1524,43 @@
                   Daniel Brooks
                 </div>
 
-                <div class="review-location">
+                <div class="review-role">
                   Member
                 </div>
               </div>
 
             </div>
 
-            <div class="review-stars" aria-label="4 out of 5 stars">
+            <div class="stars" aria-label="4 out of 5 stars">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star empty"></i>
+              <i class="fa-regular fa-star"></i>
             </div>
 
-          </div>
+            <p class="review-text">
+              “I like the clean layout and how quickly I can
+              find the information I need. The dashboard is
+              especially convenient.”
+            </p>
+
+            <div class="review-footer">
+              <i class="fa-solid fa-circle-check"></i>
+              Verified member
+            </div>
+
+          </article>
 
 
-          <p class="review-text">
-            “I like how clean the account dashboard is. The
-            different banking options are easy to find and the
-            overall experience feels straightforward.”
-          </p>
+          <!-- REVIEW 3 -->
 
-
-          <div class="review-footer">
-            <i class="fa-solid fa-circle-check"></i>
-            Member review
-          </div>
-
-        </article>
-
-
-        <!-- REVIEW 3 — 4.5 STARS -->
-        <article class="review-card">
-
-          <div class="review-top">
+          <article class="review-card animate-on-scroll">
 
             <div class="review-person">
 
               <img
-                class="review-photo"
-                src="https://i.pravatar.cc/100?img=32"
+                src="https://i.pravatar.cc/150?img=32"
                 alt="Sophia Williams">
 
               <div>
@@ -1351,67 +1568,66 @@
                   Sophia Williams
                 </div>
 
-                <div class="review-location">
+                <div class="review-role">
                   Member
                 </div>
               </div>
 
             </div>
 
-            <div class="review-stars" aria-label="4.5 out of 5 stars">
+            <div class="stars" aria-label="4.5 out of 5 stars">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
-              <span class="half-star">
-                <i class="fa-solid fa-star"></i>
-              </span>
+              <i class="fa-solid fa-star-half-stroke"></i>
             </div>
 
-          </div>
+            <p class="review-text">
+              “The experience feels modern without being
+              complicated. Everything is laid out clearly,
+              which makes banking much easier.”
+            </p>
 
+            <div class="review-footer">
+              <i class="fa-solid fa-circle-check"></i>
+              Verified member
+            </div>
 
-          <p class="review-text">
-            “I really enjoy the clean layout and how quickly I
-            can find the things I need. It gives the whole banking
-            experience a much more modern feel.”
-          </p>
+          </article>
 
-
-          <div class="review-footer">
-            <i class="fa-solid fa-circle-check"></i>
-            Member review
-          </div>
-
-        </article>
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- CTA -->
+    <!-- ================= CTA ================= -->
+
     <section class="cta-section" id="about">
 
-      <div class="cta">
+      <div class="cta animate-on-scroll">
 
         <div class="cta-content">
 
           <h2>
-            Your banking, made simpler.
+            Your banking,
+            made simpler.
           </h2>
 
           <p>
-            Create your First Merit Bank account and experience
-            a cleaner, more convenient way to manage your finances.
+            Experience a modern banking environment designed
+            to give you a clearer and more convenient way to
+            manage your finances.
           </p>
 
-        </div>
+          <a href="signup.html" class="cta-button">
+            Get Started
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
 
-        <a href="signup.html" class="btn">
-          Get Started
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        </div>
 
       </div>
 
@@ -1420,7 +1636,8 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- ================= FOOTER ================= -->
+
   <footer>
 
     <div class="footer-inner">
@@ -1431,19 +1648,16 @@
 
           <a href="index.html" class="brand">
 
-            <div class="brand-logo">
-              FM
-            </div>
+            <span class="brand-icon">FM</span>
 
-            <span>
-              First Merit Bank
-            </span>
+            <span>First Merit Bank</span>
 
           </a>
 
           <p>
-            A modern banking experience designed to make
-            everyday account management simple and convenient.
+            A modern banking experience designed around
+            simplicity, accessibility and better everyday
+            financial management.
           </p>
 
         </div>
@@ -1455,8 +1669,8 @@
 
             <h4>Banking</h4>
 
-            <a href="signup.html">Open Account</a>
             <a href="login.html">Sign In</a>
+            <a href="signup.html">Open Account</a>
             <a href="#services">Services</a>
 
           </div>
@@ -1468,7 +1682,17 @@
 
             <a href="#about">About</a>
             <a href="#reviews">Reviews</a>
-            <a href="#services">Support</a>
+
+          </div>
+
+
+          <div class="footer-column">
+
+            <h4>Support</h4>
+
+            <a href="#">Help Center</a>
+            <a href="#">Contact</a>
+            <a href="#">Security</a>
 
           </div>
 
@@ -1480,11 +1704,11 @@
       <div class="footer-bottom">
 
         <span>
-          © 2022 First Merit Bank. All rights reserved.
+          © 2026 First Merit Bank. All rights reserved.
         </span>
 
         <span>
-          Privacy · Security · Terms
+          Secure banking experience
         </span>
 
       </div>
@@ -1492,6 +1716,43 @@
     </div>
 
   </footer>
+
+
+  <!-- ================= SCROLL ANIMATION ================= -->
+
+  <script>
+
+    const animatedElements =
+      document.querySelectorAll(".animate-on-scroll");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+
+    animatedElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+  </script>
 
 </body>
 </html>
