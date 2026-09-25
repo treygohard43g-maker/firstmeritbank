@@ -6,6 +6,9 @@
 
   <title>Dashboard | First Merit Bank</title>
 
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,16 +18,25 @@
   <header class="dashboard-header">
 
     <div class="dashboard-brand">
-      <div class="dashboard-logo">FM</div>
 
-      <div>
+      <div class="dashboard-logo">
+        FM
+      </div>
+
+      <div class="brand-text">
         <span class="bank-name">First Merit</span>
         <span class="bank-small">Bank</span>
       </div>
+
     </div>
 
-    <button class="notification-button" aria-label="Notifications">
-      🔔
+    <button
+      class="notification-button"
+      id="notificationBtn"
+      aria-label="Notifications"
+    >
+      <i class="fa-regular fa-bell"></i>
+      <span class="notification-dot"></span>
     </button>
 
   </header>
@@ -36,29 +48,42 @@
     <section class="dashboard-greeting">
 
       <div>
-        <p class="greeting-small">Welcome back</p>
+        <p class="greeting-small">
+          Welcome back
+        </p>
 
         <h1 id="userName">
           Member
         </h1>
+
+        <p class="dashboard-date" id="dashboardDate">
+          Today
+        </p>
       </div>
 
-      <div class="profile-circle">
-        👤
-      </div>
+      <button
+        class="profile-circle"
+        id="profileBtn"
+        aria-label="Profile"
+      >
+        <i class="fa-regular fa-user"></i>
+      </button>
 
     </section>
 
 
     <!-- SEARCH -->
     <div class="dashboard-search">
-      <span>⌕</span>
+
+      <i class="fa-solid fa-magnifying-glass"></i>
 
       <input
         type="text"
-        placeholder="How can we help?"
+        placeholder="Search"
         id="dashboardSearch"
+        autocomplete="off"
       >
+
     </div>
 
 
@@ -77,22 +102,30 @@
           </span>
         </div>
 
-        <span class="account-menu">•••</span>
+        <button
+          class="account-menu"
+          aria-label="Account options"
+        >
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
 
       </div>
+
 
       <div class="balance-label">
         Available balance
       </div>
 
+
       <div class="main-balance" id="mainBalance">
-        $12,450.00
+        $0.00
       </div>
+
 
       <div class="account-card-bottom">
 
         <span>
-          Demo funds
+          Demo checking
         </span>
 
         <span>
@@ -110,7 +143,7 @@
       <div class="inheritance-top">
 
         <div class="inheritance-icon">
-          🏦
+          <i class="fa-solid fa-building-columns"></i>
         </div>
 
         <div>
@@ -125,16 +158,26 @@
 
       </div>
 
+
       <div class="inheritance-label">
         Inheritance balance
       </div>
 
-      <div class="inheritance-balance" id="inheritanceBalance">
+
+      <div
+        class="inheritance-balance"
+        id="inheritanceBalance"
+      >
         $250,000.00
       </div>
 
+
       <div class="inheritance-note">
-        Demo inheritance funds • Not real money
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+          Demo inheritance funds • Not real money
+        </span>
       </div>
 
     </section>
@@ -144,18 +187,37 @@
     <section class="dashboard-section">
 
       <div class="section-heading">
-        <h2>Quick actions</h2>
+
+        <div>
+          <p class="section-kicker">
+            Manage your money
+          </p>
+
+          <h2>
+            Quick actions
+          </h2>
+        </div>
+
       </div>
+
 
       <div class="quick-actions">
 
-        <button class="quick-action-card" id="sendMoneyBtn">
+
+        <!-- SEND MONEY -->
+
+        <button
+          class="quick-action-card"
+          id="sendMoneyBtn"
+        >
 
           <div class="quick-action-icon">
-            💸
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </div>
 
-          <strong>Send Money</strong>
+          <strong>
+            Send Money
+          </strong>
 
           <span>
             Transfer demo funds
@@ -164,13 +226,20 @@
         </button>
 
 
-        <button class="quick-action-card">
+        <!-- PAYMENTS -->
+
+        <button
+          class="quick-action-card"
+          id="paymentsBtn"
+        >
 
           <div class="quick-action-icon">
-            🛒
+            <i class="fa-regular fa-credit-card"></i>
           </div>
 
-          <strong>Payments</strong>
+          <strong>
+            Payments
+          </strong>
 
           <span>
             Manage payments
@@ -179,13 +248,20 @@
         </button>
 
 
-        <button class="quick-action-card">
+        <!-- TRANSACTIONS -->
+
+        <button
+          class="quick-action-card"
+          id="transactionsBtn"
+        >
 
           <div class="quick-action-icon">
-            📄
+            <i class="fa-solid fa-list-check"></i>
           </div>
 
-          <strong>Transactions</strong>
+          <strong>
+            Transactions
+          </strong>
 
           <span>
             View activity
@@ -194,13 +270,20 @@
         </button>
 
 
-        <button class="quick-action-card">
+        <!-- ACCOUNT DETAILS -->
+
+        <button
+          class="quick-action-card"
+          id="accountDetailsBtn"
+        >
 
           <div class="quick-action-icon">
-            👤
+            <i class="fa-regular fa-id-card"></i>
           </div>
 
-          <strong>Account Details</strong>
+          <strong>
+            Account Details
+          </strong>
 
           <span>
             View account information
@@ -218,21 +301,38 @@
 
       <div class="section-heading">
 
-        <h2>Recent activity</h2>
+        <div>
+          <p class="section-kicker">
+            Account activity
+          </p>
 
-        <button class="view-all">
+          <h2>
+            Recent activity
+          </h2>
+        </div>
+
+        <button
+          class="view-all"
+          id="viewAllTransactions"
+        >
           View all
+          <i class="fa-solid fa-chevron-right"></i>
         </button>
 
       </div>
 
 
-      <div class="transaction-list">
+      <div
+        class="transaction-list"
+        id="transactionList"
+      >
+
+        <!-- DEMO TRANSACTION -->
 
         <div class="transaction-item">
 
-          <div class="transaction-icon">
-            🛒
+          <div class="transaction-icon purchase">
+            <i class="fa-regular fa-credit-card"></i>
           </div>
 
           <div class="transaction-info">
@@ -254,10 +354,12 @@
         </div>
 
 
+        <!-- DEMO DEPOSIT -->
+
         <div class="transaction-item">
 
-          <div class="transaction-icon">
-            💰
+          <div class="transaction-icon deposit">
+            <i class="fa-solid fa-arrow-down"></i>
           </div>
 
           <div class="transaction-info">
@@ -279,10 +381,12 @@
         </div>
 
 
+        <!-- DEMO TRANSFER -->
+
         <div class="transaction-item">
 
-          <div class="transaction-icon">
-            💸
+          <div class="transaction-icon transfer">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
           </div>
 
           <div class="transaction-info">
@@ -305,18 +409,51 @@
 
       </div>
 
+
+      <!-- EMPTY STATE -->
+
+      <div
+        class="transaction-empty"
+        id="transactionEmpty"
+        hidden
+      >
+
+        <div class="empty-icon">
+          <i class="fa-solid fa-receipt"></i>
+        </div>
+
+        <strong>
+          No transactions yet
+        </strong>
+
+        <span>
+          Your account activity will appear here.
+        </span>
+
+      </div>
+
     </section>
 
 
     <!-- DEMO NOTICE -->
     <div class="dashboard-demo-notice">
 
-      <strong>Demo banking environment</strong>
+      <div class="demo-notice-icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
 
-      <span>
-        All balances and transactions shown here are simulated.
-        No real money is involved.
-      </span>
+      <div>
+
+        <strong>
+          Demo banking environment
+        </strong>
+
+        <span>
+          All balances and transactions shown here are simulated.
+          No real money is involved.
+        </span>
+
+      </div>
 
     </div>
 
@@ -324,36 +461,61 @@
 
 
   <!-- BOTTOM NAVIGATION -->
+
   <nav class="bottom-navigation">
 
-    <button class="bottom-nav-item active">
+    <button
+      class="bottom-nav-item active"
+      id="homeNav"
+    >
 
-      <span>⌂</span>
-      <small>Home</small>
+      <i class="fa-solid fa-house"></i>
 
-    </button>
-
-
-    <button class="bottom-nav-item" id="transferNav">
-
-      <span>⇄</span>
-      <small>Transfer</small>
+      <small>
+        Home
+      </small>
 
     </button>
 
 
-    <button class="bottom-nav-item">
+    <button
+      class="bottom-nav-item"
+      id="transferNav"
+    >
 
-      <span>▣</span>
-      <small>Payments</small>
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+      <small>
+        Transfer
+      </small>
 
     </button>
 
 
-    <button class="bottom-nav-item" id="logoutBtn">
+    <button
+      class="bottom-nav-item"
+      id="paymentsNav"
+    >
 
-      <span>☰</span>
-      <small>Menu</small>
+      <i class="fa-regular fa-credit-card"></i>
+
+      <small>
+        Payments
+      </small>
+
+    </button>
+
+
+    <button
+      class="bottom-nav-item"
+      id="logoutBtn"
+    >
+
+      <i class="fa-solid fa-bars"></i>
+
+      <small>
+        Menu
+      </small>
 
     </button>
 
