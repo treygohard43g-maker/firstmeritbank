@@ -6,1370 +6,1095 @@
 
   <title>Dashboard | First Merit Bank</title>
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
-<style>
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --navy: #123b8f;
-  --navy-dark: #0b1f4a;
-  --navy-deep: #081735;
-
-  --blue: #2563eb;
-  --blue-soft: #eef2ff;
-
-  --cyan: #06b6d4;
-  --cyan-soft: #ecfeff;
-
-  --green: #16a34a;
-  --green-soft: #ecfdf3;
-
-  --amber: #d97706;
-  --amber-soft: #fff7ed;
-
-  --red: #dc2626;
-  --red-soft: #fef2f2;
-
-  --background: #f5f7fb;
-  --surface: #ffffff;
-
-  --text: #14213d;
-  --text-secondary: #64748b;
-  --text-light: #94a3b8;
-
-  --border: #e7ebf2;
-}
-
-html,
-body {
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
-  background: var(--background);
-  color: var(--text);
-}
-
-button {
-  font: inherit;
-  border: 0;
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* ================================
-   HEADER
-================================ */
-
-.dashboard-header {
-  height: 76px;
-  background: rgba(255,255,255,.96);
-  border-bottom: 1px solid var(--border);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 24px;
-
-  position: sticky;
-  top: 0;
-  z-index: 30;
-
-  backdrop-filter: blur(14px);
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  min-width: 0;
-}
-
-.menu-btn,
-.header-icon {
-  width: 44px;
-  height: 44px;
-
-  border-radius: 13px;
-
-  background: #f3f6fb;
-  color: var(--navy-dark);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  transition: .2s ease;
-}
-
-.menu-btn:hover,
-.header-icon:hover {
-  background: var(--blue-soft);
-  color: var(--blue);
-}
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #123b8f;
+      --navy-dark: #0b1f4a;
+      --blue: #2563eb;
+      --cyan: #06b6d4;
+      --green: #16a34a;
+      --amber: #d97706;
+      --red: #dc2626;
+
+      --bg: #f5f7fb;
+      --white: #ffffff;
+      --text: #17233d;
+      --muted: #718096;
+      --border: #e7ebf2;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* ================= HEADER ================= */
+
+    .dashboard-header {
+      height: 72px;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 24px;
+
+      position: sticky;
+      top: 0;
+      z-index: 30;
+
+      backdrop-filter: blur(16px);
+    }
+
+    .header-left,
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-left {
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .header-right {
+      gap: 8px;
+    }
+
+    .menu-btn,
+    .header-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #f3f6fb;
+      color: var(--navy-dark);
+
+      transition: .2s ease;
+    }
 
-.menu-btn i {
-  font-size: 18px;
-}
+    .menu-btn:hover,
+    .header-icon:hover {
+      background: #eef3ff;
+      color: var(--blue);
+    }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
 
-.brand-logo {
-  width: 43px;
-  height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  border-radius: 13px;
+      background: linear-gradient(145deg, var(--navy), var(--blue));
+      color: #fff;
 
-  background:
-    linear-gradient(
-      145deg,
-      var(--navy),
-      var(--blue)
-    );
+      font-size: 15px;
+      font-weight: 800;
 
-  color: #fff;
+      box-shadow: 0 6px 15px rgba(37,99,235,.18);
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .brand-name {
+      color: var(--navy-dark);
+      font-size: 16px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
-  font-size: 17px;
-  font-weight: 800;
+    /* ================= MAIN ================= */
 
-  box-shadow:
-    0 6px 14px rgba(37,99,235,.18);
+    .dashboard-content {
+      width: min(100%, 1080px);
+      margin: auto;
 
-  flex-shrink: 0;
-}
+      padding: 27px 24px 50px;
+    }
 
-.brand-name {
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--navy-dark);
-  white-space: nowrap;
-}
+    .welcome {
+      margin-bottom: 18px;
+    }
 
-.header-icon {
-  font-size: 17px;
-}
+    .welcome h1 {
+      font-size: 25px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
 
-/* ================================
-   MAIN
-================================ */
+    .welcome-date {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-.dashboard-content {
-  width: min(100%, 1080px);
-  margin: 0 auto;
+    /* ================= BALANCE ================= */
 
-  padding: 28px 24px 55px;
-}
+    .balance-card {
+      position: relative;
+      overflow: hidden;
 
-.welcome {
-  margin-bottom: 19px;
-}
+      min-height: 190px;
 
-.welcome h1 {
-  font-size: 25px;
-  line-height: 1.2;
-  letter-spacing: -.5px;
-  font-weight: 800;
-}
+      padding: 23px 25px;
 
-.welcome-date {
-  margin-top: 5px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 500;
-}
+      border-radius: 21px;
 
-/* ================================
-   BALANCE CARD
-================================ */
+      background:
+        linear-gradient(
+          135deg,
+          #0b1f4a,
+          #123b8f 58%,
+          #2563eb
+        );
 
-.balance-card {
-  position: relative;
-  overflow: hidden;
+      color: #fff;
 
-  min-height: 196px;
+      box-shadow:
+        0 15px 32px rgba(11,31,74,.16);
 
-  padding: 24px 25px;
+      margin-bottom: 25px;
+    }
 
-  border-radius: 22px;
+    .balance-card::before {
+      content: "";
 
-  color: #fff;
+      position: absolute;
 
-  background:
-    linear-gradient(
-      135deg,
-      #0b1f4a 0%,
-      #123b8f 58%,
-      #2563eb 100%
-    );
+      width: 250px;
+      height: 250px;
 
-  box-shadow:
-    0 15px 35px rgba(11,31,74,.16);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 50%;
 
-  margin-bottom: 25px;
-}
+      right: -105px;
+      top: -145px;
+    }
 
-.balance-card::before {
-  content: "";
+    .balance-card::after {
+      content: "";
 
-  position: absolute;
+      position: absolute;
 
-  width: 240px;
-  height: 240px;
+      width: 180px;
+      height: 180px;
 
-  border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(6,182,212,.2);
+      border-radius: 50%;
 
-  border-radius: 50%;
+      right: 70px;
+      bottom: -145px;
+    }
 
-  right: -90px;
-  top: -135px;
-}
+    .balance-top {
+      position: relative;
+      z-index: 2;
 
-.balance-card::after {
-  content: "";
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
 
-  position: absolute;
+    .balance-label {
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      font-weight: 600;
+    }
 
-  width: 170px;
-  height: 170px;
+    .balance-amount {
+      margin-top: 5px;
 
-  border: 1px solid rgba(6,182,212,.18);
+      font-size: 37px;
+      line-height: 1.1;
 
-  border-radius: 50%;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
 
-  right: 55px;
-  bottom: -130px;
-}
+    .balance-eye {
+      width: 40px;
+      height: 40px;
 
-.balance-top {
-  position: relative;
-  z-index: 2;
+      border-radius: 12px;
 
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
+      background: rgba(255,255,255,.11);
+      color: #fff;
 
-.balance-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255,255,255,.68);
-  letter-spacing: .1px;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-.balance-amount {
-  position: relative;
-  z-index: 2;
+      position: relative;
+      z-index: 4;
+    }
 
-  font-size: 37px;
-  line-height: 1.1;
+    .balance-bottom {
+      position: relative;
+      z-index: 3;
 
-  font-weight: 800;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
 
-  letter-spacing: -.9px;
+      gap: 15px;
 
-  margin-top: 5px;
-}
+      margin-top: 25px;
+    }
 
-.balance-eye {
-  width: 42px;
-  height: 42px;
+    .account-label {
+      color: rgba(255,255,255,.52);
+      font-size: 8px;
+      letter-spacing: .7px;
+      margin-bottom: 4px;
+    }
 
-  border-radius: 13px;
+    .account-number {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+    }
 
-  background: rgba(255,255,255,.11);
-  color: #fff;
+    .copy-account {
+      margin-left: 5px;
+      background: transparent;
+      color: rgba(255,255,255,.7);
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .balance-meta {
+      display: flex;
+      align-items: center;
+      gap: 9px;
 
-  font-size: 16px;
+      font-size: 9px;
+      color: rgba(255,255,255,.8);
+      white-space: nowrap;
+    }
 
-  flex-shrink: 0;
+    .active-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-  position: relative;
-  z-index: 4;
+    .active-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34d399;
+    }
 
-  transition: .2s ease;
-}
+    /* ================= SECTION ================= */
 
-.balance-eye:hover {
-  background: rgba(255,255,255,.18);
-}
+    .section-title {
+      margin-bottom: 12px;
 
-.balance-bottom {
-  position: relative;
-  z-index: 3;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.2px;
+    }
 
-  margin-top: 25px;
+    /* ================= QUICK ACTIONS ================= */
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+    .money-section {
+      margin-bottom: 23px;
+    }
 
-  gap: 16px;
-}
+    .money-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 11px;
+    }
 
-.account-number-box {
-  min-width: 0;
-}
+    .money-card {
+      min-height: 106px;
 
-.account-label {
-  font-size: 9px;
-  color: rgba(255,255,255,.55);
-  margin-bottom: 4px;
-  letter-spacing: .6px;
-}
+      background: var(--white);
 
-.account-number {
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  font-weight: 700;
-}
+      border: 1px solid var(--border);
+      border-radius: 17px;
 
-.copy-account {
-  margin-left: 6px;
+      padding: 12px 7px;
 
-  background: transparent;
-  color: rgba(255,255,255,.72);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
-  font-size: 12px;
-}
+      text-align: center;
 
-.balance-meta {
-  display: flex;
-  align-items: center;
-  gap: 9px;
+      box-shadow: 0 3px 12px rgba(15,23,42,.035);
 
-  white-space: nowrap;
+      transition: .2s ease;
+    }
 
-  font-size: 10px;
-  color: rgba(255,255,255,.82);
-}
+    .money-card:hover {
+      transform: translateY(-3px);
 
-.active-status {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
+      border-color: #d5def0;
 
-.active-dot {
-  width: 7px;
-  height: 7px;
+      box-shadow:
+        0 10px 22px rgba(15,23,42,.08);
+    }
 
-  border-radius: 50%;
+    .money-icon {
+      width: 42px;
+      height: 42px;
 
-  background: #34d399;
+      border-radius: 12px;
 
-  box-shadow:
-    0 0 0 3px rgba(52,211,153,.12);
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-/* ================================
-   SECTION TITLES
-================================ */
+      margin-bottom: 8px;
 
-.section-title {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -.25px;
+      font-size: 16px;
+    }
 
-  margin-bottom: 12px;
-}
+    /* Professional banking icons */
 
-/* ================================
-   MONEY ACTIONS
-================================ */
+    .money-card:nth-child(1) .money-icon {
+      background: #eef2ff;
+      color: #2563eb;
+    }
 
-.money-section {
-  margin-bottom: 24px;
-}
+    .money-card:nth-child(2) .money-icon {
+      background: #ecfeff;
+      color: #0891b2;
+    }
 
-.money-grid {
-  display: grid;
+    .money-card:nth-child(3) .money-icon {
+      background: #ecfdf3;
+      color: #16a34a;
+    }
 
-  grid-template-columns:
-    repeat(5, 1fr);
+    .money-card:nth-child(4) .money-icon {
+      background: #fff7ed;
+      color: #d97706;
+    }
 
-  gap: 11px;
-}
+    .money-card:nth-child(5) .money-icon {
+      background: #f1f5f9;
+      color: #123b8f;
+    }
 
-.money-card {
-  min-height: 108px;
+    .money-name {
+      color: #334155;
+      font-size: 11px;
+      font-weight: 700;
+    }
 
-  background: #fff;
+    /* ================= TRANSFER ================= */
 
-  border: 1px solid var(--border);
+    .transfer-card {
+      background: #fff;
 
-  border-radius: 17px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
 
-  display: flex;
-  flex-direction: column;
+      padding: 15px 17px;
 
-  align-items: center;
-  justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  text-align: center;
+      gap: 15px;
 
-  padding: 11px 7px;
+      margin-bottom: 23px;
 
-  box-shadow:
-    0 3px 12px rgba(15,23,42,.035);
+      box-shadow: 0 3px 12px rgba(15,23,42,.035);
+    }
 
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
-}
+    .transfer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
 
-.money-card:hover {
-  transform: translateY(-3px);
+    .transfer-icon {
+      width: 42px;
+      height: 42px;
 
-  border-color: #d7e1f7;
+      border-radius: 12px;
 
-  box-shadow:
-    0 10px 22px rgba(15,23,42,.08);
-}
+      background: #ecfeff;
+      color: var(--cyan);
 
-.money-icon {
-  width: 42px;
-  height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  border-radius: 13px;
+      flex-shrink: 0;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .transfer-title {
+      font-size: 13px;
+      font-weight: 800;
+    }
 
-  font-size: 16px;
+    .transfer-text {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
 
-  margin-bottom: 8px;
-}
+    .transfer-button {
+      padding: 9px 14px;
 
-/* Different accent colors */
+      border-radius: 10px;
 
-.money-card:nth-child(1) .money-icon {
-  background: var(--blue-soft);
-  color: var(--blue);
-}
+      background: var(--navy);
+      color: #fff;
 
-.money-card:nth-child(2) .money-icon {
-  background: var(--cyan-soft);
-  color: var(--cyan);
-}
+      font-size: 10px;
+      font-weight: 700;
 
-.money-card:nth-child(3) .money-icon {
-  background: var(--green-soft);
-  color: var(--green);
-}
+      flex-shrink: 0;
+    }
 
-.money-card:nth-child(4) .money-icon {
-  background: var(--amber-soft);
-  color: var(--amber);
-}
+    /* ================= OVERVIEW ================= */
 
-.money-card:nth-child(5) .money-icon {
-  background: #f1f5f9;
-  color: var(--navy);
-}
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
 
-.money-name {
-  font-size: 11px;
-  font-weight: 700;
-  color: #334155;
-}
+      margin-bottom: 14px;
+    }
 
-/* ================================
-   TRANSFER
-================================ */
+    .overview-card {
+      background: #fff;
 
-.transfer-card {
-  background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
 
-  border: 1px solid var(--border);
+      padding: 17px;
 
-  border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(15,23,42,.035);
+    }
 
-  padding: 15px 17px;
+    .overview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+      margin-bottom: 10px;
+    }
 
-  gap: 15px;
+    .overview-title {
+      font-size: 13px;
+      font-weight: 800;
+    }
 
-  margin-bottom: 24px;
+    .overview-link {
+      background: transparent;
+      color: var(--blue);
 
-  box-shadow:
-    0 3px 12px rgba(15,23,42,.035);
-}
+      font-size: 10px;
+      font-weight: 700;
+    }
 
-.transfer-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    /* Transactions */
 
-  min-width: 0;
-}
+    .transaction-item {
+      display: flex;
+      align-items: center;
 
-.transfer-icon {
-  width: 42px;
-  height: 42px;
+      gap: 9px;
 
-  border-radius: 12px;
+      padding: 9px 0;
 
-  background: var(--cyan-soft);
-  color: var(--cyan);
+      border-bottom: 1px solid #eef1f5;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .transaction-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
 
-  flex-shrink: 0;
-}
+    .transaction-icon {
+      width: 34px;
+      height: 34px;
 
-.transfer-title {
-  font-size: 13px;
-  font-weight: 750;
-}
+      border-radius: 10px;
 
-.transfer-text {
-  color: var(--text-secondary);
-  font-size: 10px;
-  margin-top: 3px;
-}
+      background: #eef2ff;
+      color: var(--blue);
 
-.transfer-button {
-  background: var(--navy);
-  color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  padding: 9px 14px;
+      flex-shrink: 0;
 
-  border-radius: 10px;
+      font-size: 12px;
+    }
 
-  font-size: 10px;
-  font-weight: 700;
+    .transaction-info {
+      flex: 1;
+      min-width: 0;
+    }
 
-  flex-shrink: 0;
+    .transaction-title {
+      font-size: 11px;
+      font-weight: 700;
 
-  transition: .2s ease;
-}
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-.transfer-button:hover {
-  background: var(--blue);
-}
+    .transaction-date {
+      margin-top: 2px;
+      color: #94a3b8;
+      font-size: 9px;
+    }
 
-/* ================================
-   OVERVIEW
-================================ */
+    .transaction-amount {
+      font-size: 11px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
 
-.overview-grid {
-  display: grid;
+    .credit {
+      color: var(--green);
+    }
 
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr);
+    .debit {
+      color: #334155;
+    }
 
-  gap: 14px;
+    /* Account details */
 
-  margin-bottom: 14px;
-}
+    .account-detail-row {
+      display: flex;
+      justify-content: space-between;
 
-.overview-card {
-  background: #fff;
+      gap: 12px;
 
-  border: 1px solid var(--border);
+      padding: 9px 0;
 
-  border-radius: 18px;
+      border-bottom: 1px solid #eef1f5;
 
-  padding: 17px;
+      font-size: 10px;
+    }
 
-  min-width: 0;
+    .account-detail-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
 
-  box-shadow:
-    0 3px 12px rgba(15,23,42,.035);
-}
+    .account-detail-label {
+      color: var(--muted);
+    }
 
-.overview-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    .account-detail-value {
+      color: #29364d;
+      font-weight: 700;
+      text-align: right;
+    }
 
-  margin-bottom: 11px;
-}
+    /* ================= INHERITANCE ================= */
 
-.overview-title {
-  font-size: 13px;
-  font-weight: 800;
-}
+    .inheritance-card {
+      width: 100%;
 
-.overview-link {
-  background: transparent;
-  color: var(--blue);
-  font-size: 10px;
-  font-weight: 700;
-}
+      background: linear-gradient(
+        135deg,
+        #fff,
+        #f7faff
+      );
 
-.transaction-item {
-  display: flex;
-  align-items: center;
+      border: 1px solid #dfe7f4;
+      border-radius: 18px;
 
-  gap: 9px;
+      padding: 16px 18px;
 
-  padding: 9px 0;
+      display: flex;
+      align-items: center;
 
-  border-bottom: 1px solid #eef1f5;
-}
+      gap: 13px;
 
-.transaction-item:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
+      text-align: left;
 
-.transaction-icon {
-  width: 34px;
-  height: 34px;
+      box-shadow: 0 3px 12px rgba(15,23,42,.035);
 
-  border-radius: 10px;
+      transition: .2s ease;
+    }
 
-  background: var(--blue-soft);
-  color: var(--blue);
+    .inheritance-card:hover {
+      transform: translateY(-2px);
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .inheritance-icon {
+      width: 43px;
+      height: 43px;
 
-  flex-shrink: 0;
+      min-width: 43px;
 
-  font-size: 12px;
-}
+      border-radius: 13px;
 
-.transaction-info {
-  flex: 1;
-  min-width: 0;
-}
+      background: #fff7ed;
+      color: var(--amber);
 
-.transaction-title {
-  font-size: 11px;
-  font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+      font-size: 17px;
+    }
 
-.transaction-date {
-  color: var(--text-light);
-  font-size: 9px;
-  margin-top: 2px;
-}
+    .inheritance-content {
+      flex: 1;
+      min-width: 0;
+    }
 
-.transaction-amount {
-  font-size: 11px;
-  font-weight: 750;
-  white-space: nowrap;
-}
+    .inheritance-title {
+      font-size: 13px;
+      font-weight: 800;
+    }
 
-.credit {
-  color: var(--green);
-}
+    .inheritance-text {
+      margin-top: 3px;
 
-.debit {
-  color: #334155;
-}
+      color: var(--muted);
 
-.account-detail-row {
-  display: flex;
-  justify-content: space-between;
+      font-size: 10px;
+      line-height: 1.4;
+    }
 
-  gap: 12px;
+    .inheritance-arrow {
+      width: 31px;
+      height: 31px;
 
-  padding: 9px 0;
+      border-radius: 10px;
 
-  border-bottom: 1px solid #eef1f5;
+      background: #eef2ff;
+      color: var(--blue);
 
-  font-size: 10px;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-.account-detail-row:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
+      flex-shrink: 0;
+    }
 
-.account-detail-label {
-  color: var(--text-secondary);
-}
+    /* ================= SIDE MENU ================= */
 
-.account-detail-value {
-  color: #29364d;
-  font-weight: 700;
-  text-align: right;
-  word-break: break-word;
-}
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
 
-/* ================================
-   INHERITANCE
-================================ */
+      background: rgba(8,23,53,.43);
 
-.inheritance-card {
-  width: 100%;
+      opacity: 0;
+      visibility: hidden;
 
-  background:
-    linear-gradient(
-      135deg,
-      #ffffff 0%,
-      #f8fbff 100%
-    );
+      transition: .25s ease;
 
-  border: 1px solid #dfe7f4;
+      z-index: 50;
+    }
 
-  border-radius: 18px;
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
 
-  padding: 16px 18px;
+    .side-menu {
+      position: fixed;
 
-  display: flex;
-  align-items: center;
+      top: 0;
+      left: 0;
+      bottom: 0;
 
-  gap: 13px;
+      width: min(300px, 86vw);
 
-  cursor: pointer;
+      background: #fff;
 
-  box-shadow:
-    0 3px 12px rgba(15,23,42,.035);
+      transform: translateX(-100%);
 
-  transition: .2s ease;
-}
+      transition: .28s ease;
 
-.inheritance-card:hover {
-  transform: translateY(-2px);
+      z-index: 60;
 
-  border-color: #cbd8ee;
+      box-shadow: 10px 0 30px rgba(0,0,0,.12);
 
-  box-shadow:
-    0 9px 20px rgba(15,23,42,.07);
-}
+      display: flex;
+      flex-direction: column;
+    }
 
-.inheritance-icon {
-  width: 43px;
-  height: 43px;
+    .side-menu.open {
+      transform: translateX(0);
+    }
 
-  min-width: 43px;
+    .menu-header {
+      padding: 18px;
 
-  border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  background: var(--amber-soft);
+      border-bottom: 1px solid #edf0f4;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .menu-brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
 
-  font-size: 19px;
-}
+    .menu-logo {
+      width: 39px;
+      height: 39px;
 
-.inheritance-content {
-  flex: 1;
-  min-width: 0;
-}
+      border-radius: 12px;
 
-.inheritance-title {
-  font-size: 13px;
-  font-weight: 800;
+      background: linear-gradient(145deg,var(--navy),var(--blue));
 
-  color: #25334a;
-}
+      color: #fff;
 
-.inheritance-text {
-  color: var(--text-secondary);
-  font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  margin-top: 3px;
+      font-size: 14px;
+      font-weight: 800;
+    }
 
-  line-height: 1.4;
-}
+    .menu-brand-name {
+      font-size: 13px;
+      font-weight: 800;
+    }
 
-.inheritance-arrow {
-  width: 32px;
-  height: 32px;
+    .menu-close {
+      width: 35px;
+      height: 35px;
 
-  border-radius: 10px;
+      border-radius: 10px;
 
-  background: var(--blue-soft);
+      background: #f2f5f9;
+      color: #526176;
+    }
 
-  color: var(--blue);
+    .menu-items {
+      padding: 12px 10px;
+      overflow-y: auto;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    .menu-item {
+      width: 100%;
+      min-height: 43px;
 
-  flex-shrink: 0;
+      display: flex;
+      align-items: center;
 
-  font-size: 10px;
-}
+      gap: 12px;
 
-/* ================================
-   SIDE MENU
-================================ */
+      padding: 0 12px;
 
-.menu-overlay {
-  position: fixed;
-  inset: 0;
+      margin-bottom: 2px;
 
-  background: rgba(8,23,53,.42);
+      border-radius: 11px;
 
-  opacity: 0;
-  visibility: hidden;
+      background: transparent;
 
-  transition: .25s ease;
+      color: #354156;
 
-  z-index: 50;
-}
+      text-align: left;
 
-.menu-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
+      font-size: 11px;
+      font-weight: 650;
+    }
 
-.side-menu {
-  position: fixed;
+    .menu-item:hover {
+      background: #eef2ff;
+      color: var(--navy);
+    }
 
-  top: 0;
-  left: 0;
-  bottom: 0;
+    .menu-item i {
+      width: 19px;
+      text-align: center;
+      color: #64748b;
+    }
 
-  width: min(300px, 86vw);
+    .menu-divider {
+      height: 1px;
+      background: #edf0f4;
+      margin: 9px 5px;
+    }
 
-  background: #fff;
+    .logout-item,
+    .logout-item i {
+      color: var(--red);
+    }
 
-  transform: translateX(-100%);
+    /* ================= LOADING ================= */
 
-  transition: .28s ease;
+    .loading-screen {
+      position: fixed;
+      inset: 0;
 
-  z-index: 60;
+      background: var(--bg);
 
-  box-shadow:
-    10px 0 30px rgba(0,0,0,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  display: flex;
-  flex-direction: column;
-}
+      z-index: 100;
 
-.side-menu.open {
-  transform: translateX(0);
-}
+      transition: .25s ease;
+    }
 
-.menu-header {
-  padding: 19px 18px;
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    .loading-logo {
+      width: 54px;
+      height: 54px;
 
-  border-bottom: 1px solid #edf0f4;
-}
+      border-radius: 16px;
 
-.menu-brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
+      background: linear-gradient(145deg,var(--navy),var(--blue));
 
-.menu-logo {
-  width: 39px;
-  height: 39px;
+      color: #fff;
 
-  border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  background:
-    linear-gradient(
-      145deg,
-      var(--navy),
-      var(--blue)
-    );
+      font-weight: 800;
+    }
 
-  color: #fff;
+    .loading-spinner {
+      position: absolute;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      width: 72px;
+      height: 72px;
 
-  font-weight: 800;
-  font-size: 14px;
-}
+      border: 3px solid #dce5f1;
+      border-top-color: var(--cyan);
 
-.menu-brand-name {
-  font-weight: 800;
-  font-size: 13px;
-}
+      border-radius: 50%;
 
-.menu-close {
-  width: 35px;
-  height: 35px;
+      animation: spin .8s linear infinite;
+    }
 
-  border-radius: 10px;
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-  background: #f2f5f9;
-  color: #526176;
+    /* ================= TOAST ================= */
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .toast {
+      position: fixed;
 
-.menu-items {
-  padding: 12px 10px;
-  overflow-y: auto;
-}
+      left: 50%;
+      bottom: 22px;
 
-.menu-item {
-  width: 100%;
+      transform: translate(-50%,20px);
 
-  min-height: 43px;
+      background: var(--navy-dark);
+      color: #fff;
 
-  border-radius: 11px;
+      padding: 10px 14px;
 
-  background: transparent;
+      border-radius: 11px;
 
-  color: #354156;
+      font-size: 11px;
 
-  display: flex;
-  align-items: center;
+      opacity: 0;
+      pointer-events: none;
 
-  gap: 12px;
+      transition: .25s ease;
 
-  padding: 0 12px;
+      z-index: 100;
+    }
 
-  text-align: left;
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%,0);
+    }
 
-  font-size: 11px;
-  font-weight: 650;
+    /* ================= TABLET ================= */
 
-  margin-bottom: 2px;
-}
+    @media (max-width:850px) {
 
-.menu-item:hover {
-  background: var(--blue-soft);
-  color: var(--navy);
-}
+      .money-grid {
+        grid-template-columns: repeat(3,1fr);
+      }
 
-.menu-item i {
-  width: 19px;
-  text-align: center;
-  color: #64748b;
-}
+    }
 
-.menu-divider {
-  height: 1px;
-  background: #edf0f4;
-  margin: 9px 5px;
-}
+    /* ================= MOBILE ================= */
 
-.logout-item {
-  color: var(--red);
-}
+    @media (max-width:600px) {
 
-.logout-item i {
-  color: var(--red);
-}
+      .dashboard-header {
+        height: 66px;
+        padding: 0 13px;
+      }
 
-/* ================================
-   LOADING
-================================ */
+      .menu-btn,
+      .header-icon {
+        width: 39px;
+        height: 39px;
+      }
 
-.loading-screen {
-  position: fixed;
-  inset: 0;
+      .brand-logo {
+        width: 38px;
+        height: 38px;
+      }
 
-  background: var(--background);
+      .brand-name {
+        font-size: 14px;
+      }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      .dashboard-content {
+        padding: 21px 14px 40px;
+      }
 
-  z-index: 100;
+      .welcome h1 {
+        font-size: 22px;
+      }
 
-  transition: .25s ease;
-}
+      .balance-card {
+        min-height: 184px;
+        padding: 20px;
+        border-radius: 19px;
+      }
 
-.loading-screen.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
+      .balance-amount {
+        font-size: 31px;
+      }
 
-.loading-logo {
-  width: 54px;
-  height: 54px;
+      .money-grid {
+        grid-template-columns: repeat(2,1fr);
+        gap: 10px;
+      }
 
-  border-radius: 16px;
+      .money-card {
+        min-height: 100px;
+      }
 
-  background:
-    linear-gradient(
-      145deg,
-      var(--navy),
-      var(--blue)
-    );
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
 
-  color: white;
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    /* ================= SMALL PHONE ================= */
 
-  font-weight: 800;
-  font-size: 18px;
-}
+    @media (max-width:430px) {
 
-.loading-spinner {
-  position: absolute;
+      .dashboard-content {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
 
-  width: 72px;
-  height: 72px;
+      .balance-card {
+        min-height: 178px;
+        padding: 18px;
+      }
 
-  border: 3px solid #dce5f1;
-  border-top-color: var(--cyan);
+      .balance-amount {
+        font-size: 29px;
+      }
 
-  border-radius: 50%;
+      .account-number {
+        font-size: 12px;
+      }
 
-  animation: spin .8s linear infinite;
-}
+      .balance-meta {
+        font-size: 8px;
+      }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+      .money-card {
+        min-height: 96px;
+      }
 
-/* ================================
-   TOAST
-================================ */
+      .money-name {
+        font-size: 10px;
+      }
 
-.toast {
-  position: fixed;
+    }
 
-  left: 50%;
-  bottom: 22px;
-
-  transform:
-    translate(-50%, 20px);
-
-  background: var(--navy-deep);
-  color: white;
-
-  padding: 10px 14px;
-
-  border-radius: 11px;
-
-  font-size: 11px;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: .25s ease;
-
-  z-index: 100;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-/* ================================
-   TABLET
-================================ */
-
-@media (max-width: 850px) {
-
-  .money-grid {
-    grid-template-columns:
-      repeat(3, 1fr);
-  }
-
-}
-
-/* ================================
-   MOBILE
-================================ */
-
-@media (max-width: 600px) {
-
-  .dashboard-header {
-    height: 68px;
-    padding: 0 13px;
-  }
-
-  .header-left {
-    gap: 9px;
-  }
-
-  .menu-btn,
-  .header-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-  }
-
-  .brand {
-    gap: 8px;
-  }
-
-  .brand-logo {
-    width: 39px;
-    height: 39px;
-    border-radius: 12px;
-    font-size: 16px;
-  }
-
-  .brand-name {
-    font-size: 15px;
-  }
-
-  .header-right {
-    gap: 5px;
-  }
-
-  .dashboard-content {
-    width: 100%;
-    padding: 22px 14px 40px;
-  }
-
-  .welcome {
-    margin-bottom: 16px;
-  }
-
-  .welcome h1 {
-    font-size: 23px;
-  }
-
-  .welcome-date {
-    font-size: 12px;
-  }
-
-  .balance-card {
-    min-height: 188px;
-
-    padding: 21px 19px;
-
-    border-radius: 20px;
-
-    margin-bottom: 22px;
-  }
-
-  .balance-amount {
-    font-size: 32px;
-  }
-
-  .balance-eye {
-    width: 40px;
-    height: 40px;
-  }
-
-  .balance-bottom {
-    margin-top: 23px;
-  }
-
-  .account-number {
-    font-size: 13px;
-  }
-
-  .balance-meta {
-    gap: 7px;
-    font-size: 9px;
-  }
-
-  .section-title {
-    font-size: 17px;
-  }
-
-  .money-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-
-    gap: 10px;
-  }
-
-  .money-card {
-    min-height: 101px;
-  }
-
-  .money-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-  }
-
-  .transfer-card {
-    padding: 14px;
-  }
-
-  .overview-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .inheritance-card {
-    padding: 15px;
-  }
-
-}
-
-/* ================================
-   SMALL PHONES
-================================ */
-
-@media (max-width: 430px) {
-
-  .dashboard-content {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .brand-name {
-    font-size: 14px;
-  }
-
-  .welcome h1 {
-    font-size: 22px;
-  }
-
-  .balance-card {
-    min-height: 180px;
-    padding: 19px 17px;
-    border-radius: 19px;
-  }
-
-  .balance-label {
-    font-size: 12px;
-  }
-
-  .balance-amount {
-    font-size: 29px;
-  }
-
-  .balance-bottom {
-    margin-top: 21px;
-    gap: 8px;
-  }
-
-  .account-label {
-    font-size: 8px;
-  }
-
-  .account-number {
-    font-size: 12px;
-  }
-
-  .balance-meta {
-    font-size: 8px;
-    gap: 5px;
-  }
-
-  .money-card {
-    min-height: 98px;
-    border-radius: 16px;
-  }
-
-  .money-name {
-    font-size: 10px;
-  }
-
-  .overview-card {
-    padding: 15px;
-  }
-
-}
-
-</style>
+  </style>
 </head>
 
 <body>
 
-  <!-- =====================================
-       HEADER
-  ====================================== -->
+  <!-- HEADER -->
 
   <header class="dashboard-header">
 
     <div class="header-left">
 
-      <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Open menu"
-      >
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
         <i class="fa-solid fa-bars"></i>
       </button>
 
-
       <div class="brand">
-
-        <div class="brand-logo">
-          FM
-        </div>
-
-        <div class="brand-name">
-          First Merit Bank
-        </div>
-
+        <div class="brand-logo">FM</div>
+        <div class="brand-name">First Merit Bank</div>
       </div>
 
     </div>
 
-
     <div class="header-right">
 
-      <button
-        class="header-icon"
-        id="notificationBtn"
-        aria-label="Notifications"
-      >
+      <button class="header-icon" id="notificationBtn" aria-label="Notifications">
         <i class="fa-regular fa-bell"></i>
       </button>
 
-
-      <button
-        class="header-icon"
-        id="profileBtn"
-        aria-label="Profile"
-      >
+      <button class="header-icon" id="profileBtn" aria-label="Profile">
         <i class="fa-regular fa-user"></i>
       </button>
 
@@ -1378,34 +1103,22 @@ a {
   </header>
 
 
-  <!-- =====================================
-       MAIN CONTENT
-  ====================================== -->
+  <!-- MAIN -->
 
   <main class="dashboard-content">
 
-
-    <!-- WELCOME -->
-
     <section class="welcome">
 
-      <h1 id="welcomeText">
-        Welcome back
-      </h1>
+      <h1 id="welcomeText">Welcome back</h1>
 
-      <div
-        class="welcome-date"
-        id="currentDate"
-      >
-        Loading date...
+      <div class="welcome-date" id="currentDate">
+        Today
       </div>
 
     </section>
 
 
-    <!-- =====================================
-         BALANCE
-    ====================================== -->
+    <!-- BALANCE -->
 
     <section class="balance-card">
 
@@ -1414,28 +1127,17 @@ a {
         <div>
 
           <div class="balance-label">
-            Available Balance
+            Available balance
           </div>
 
-          <div
-            class="balance-amount"
-            id="balanceAmount"
-          >
-            $400,000.00
+          <div class="balance-amount" id="balanceAmount">
+            $0.00
           </div>
 
         </div>
 
-
-        <button
-          class="balance-eye"
-          id="balanceToggle"
-          aria-label="Show or hide balance"
-        >
-          <i
-            class="fa-regular fa-eye"
-            id="balanceEyeIcon"
-          ></i>
+        <button class="balance-eye" id="balanceToggle">
+          <i class="fa-regular fa-eye" id="balanceEyeIcon"></i>
         </button>
 
       </div>
@@ -1446,26 +1148,18 @@ a {
         <div class="account-number-box">
 
           <div class="account-label">
-            ACCOUNT
+            ACCOUNT NUMBER
           </div>
 
-          <span
-            class="account-number"
-            id="accountNumber"
-          >
-            •••• 0000
+          <span class="account-number" id="accountNumber">
+            **** **** ****
           </span>
 
-          <button
-            class="copy-account"
-            id="copyAccount"
-            aria-label="Copy account number"
-          >
+          <button class="copy-account" id="copyAccount">
             <i class="fa-regular fa-copy"></i>
           </button>
 
         </div>
-
 
         <div class="balance-meta">
 
@@ -1473,16 +1167,15 @@ a {
             Checking
           </span>
 
+          <span>•</span>
+
           <span id="currency">
             USD
           </span>
 
           <span class="active-status">
-
             <span class="active-dot"></span>
-
             Active
-
           </span>
 
         </div>
@@ -1492,26 +1185,21 @@ a {
     </section>
 
 
-    <!-- =====================================
-         MONEY
-    ====================================== -->
+    <!-- QUICK ACTIONS -->
 
     <section class="money-section">
 
-      <div class="section-title">
-        Money
-      </div>
-
+      <h2 class="section-title">
+        Quick actions
+      </h2>
 
       <div class="money-grid">
 
-        <button
-          class="money-card"
-          data-page="send-money.html"
-        >
+
+        <button class="money-card" data-page="send-money.html">
 
           <div class="money-icon">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <i class="fa-solid fa-paper-plane"></i>
           </div>
 
           <div class="money-name">
@@ -1521,13 +1209,10 @@ a {
         </button>
 
 
-        <button
-          class="money-card"
-          data-page="zelle.html"
-        >
+        <button class="money-card" data-page="zelle.html">
 
           <div class="money-icon">
-            <i class="fa-solid fa-bolt"></i>
+            <i class="fa-solid fa-mobile-screen-button"></i>
           </div>
 
           <div class="money-name">
@@ -1537,13 +1222,10 @@ a {
         </button>
 
 
-        <button
-          class="money-card"
-          data-page="add-money.html"
-        >
+        <button class="money-card" data-page="add-money.html">
 
           <div class="money-icon">
-            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-circle-plus"></i>
           </div>
 
           <div class="money-name">
@@ -1553,13 +1235,10 @@ a {
         </button>
 
 
-        <button
-          class="money-card"
-          data-page="withdraw.html"
-        >
+        <button class="money-card" data-page="withdraw.html">
 
           <div class="money-icon">
-            <i class="fa-solid fa-arrow-down"></i>
+            <i class="fa-solid fa-money-bill-transfer"></i>
           </div>
 
           <div class="money-name">
@@ -1569,13 +1248,10 @@ a {
         </button>
 
 
-        <button
-          class="money-card"
-          data-page="transfer.html"
-        >
+        <button class="money-card" data-page="transfer.html">
 
           <div class="money-icon">
-            <i class="fa-solid fa-right-left"></i>
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
           </div>
 
           <div class="money-name">
@@ -1589,9 +1265,7 @@ a {
     </section>
 
 
-    <!-- =====================================
-         TRANSFER
-    ====================================== -->
+    <!-- BANK TRANSFER -->
 
     <section class="transfer-card">
 
@@ -1601,101 +1275,85 @@ a {
           <i class="fa-solid fa-building-columns"></i>
         </div>
 
-
         <div>
 
           <div class="transfer-title">
-            Bank Transfer
+            Bank transfer
           </div>
 
           <div class="transfer-text">
-            Transfer money between accounts.
+            Move money securely between accounts
           </div>
 
         </div>
 
       </div>
 
-
-      <button
-        class="transfer-button"
-        id="transferButton"
-      >
+      <button class="transfer-button" id="transferButton">
         Transfer
       </button>
 
     </section>
 
 
-    <!-- =====================================
-         OVERVIEW
-    ====================================== -->
+    <!-- OVERVIEW -->
 
-    <div class="overview-grid">
+    <section class="overview-grid">
 
 
-      <!-- RECENT TRANSACTIONS -->
+      <!-- TRANSACTIONS -->
 
-      <section class="overview-card">
+      <div class="overview-card">
 
         <div class="overview-header">
 
           <div class="overview-title">
-            Recent Transactions
+            Recent transactions
           </div>
 
-          <button
-            class="overview-link"
-            id="transactionsBtn"
-          >
+          <button class="overview-link" id="transactionsBtn">
             View all
           </button>
 
         </div>
 
-
         <div id="transactionsList">
-
           <div class="transaction-item">
 
             <div class="transaction-icon">
-              <i class="fa-solid fa-clock"></i>
+              <i class="fa-solid fa-clock-rotate-left"></i>
             </div>
 
             <div class="transaction-info">
 
               <div class="transaction-title">
-                Loading transactions
+                No recent transactions
               </div>
 
               <div class="transaction-date">
-                Please wait
+                Your transactions will appear here
               </div>
 
             </div>
 
           </div>
-
         </div>
 
-      </section>
+      </div>
 
 
-      <!-- ACCOUNT DETAILS -->
+      <!-- ACCOUNT -->
 
-      <section class="overview-card">
+      <div class="overview-card">
 
         <div class="overview-header">
 
           <div class="overview-title">
-            Account Details
+            Account details
           </div>
 
-          <button
-            class="overview-link"
-            id="accountDetailsBtn"
-          >
-            View
+          <button class="overview-link" id="accountDetailsBtn">
+            Details
           </button>
 
         </div>
@@ -1704,13 +1362,10 @@ a {
         <div class="account-detail-row">
 
           <span class="account-detail-label">
-            Account Type
+            Account type
           </span>
 
-          <span
-            class="account-detail-value"
-            id="detailAccountType"
-          >
+          <span class="account-detail-value" id="detailAccountType">
             Checking
           </span>
 
@@ -1723,24 +1378,8 @@ a {
             Currency
           </span>
 
-          <span
-            class="account-detail-value"
-            id="detailCurrency"
-          >
+          <span class="account-detail-value" id="detailCurrency">
             USD
-          </span>
-
-        </div>
-
-
-        <div class="account-detail-row">
-
-          <span class="account-detail-label">
-            Status
-          </span>
-
-          <span class="account-detail-value">
-            Active
           </span>
 
         </div>
@@ -1752,75 +1391,54 @@ a {
             Customer ID
           </span>
 
-          <span
-            class="account-detail-value"
-            id="customerId"
-          >
+          <span class="account-detail-value" id="customerId">
             —
           </span>
 
         </div>
 
-      </section>
-
-    </div>
-
-
-    <!-- =====================================
-         INHERITANCE
-    ====================================== -->
-
-    <section
-      class="inheritance-card"
-      id="inheritanceBtn"
-    >
-
-      <div class="inheritance-icon">
-        🏦
-      </div>
-
-
-      <div class="inheritance-content">
-
-        <div class="inheritance-title">
-          Inheritance Information
-        </div>
-
-        <div class="inheritance-text">
-          View transfer and verification details.
-        </div>
-
-      </div>
-
-
-      <div class="inheritance-arrow">
-        <i class="fa-solid fa-chevron-right"></i>
       </div>
 
     </section>
 
 
+    <!-- INHERITANCE -->
+
+    <button class="inheritance-card" id="inheritanceBtn">
+
+      <div class="inheritance-icon">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+      </div>
+
+      <div class="inheritance-content">
+
+        <div class="inheritance-title">
+          Inheritance &amp; beneficiary
+        </div>
+
+        <div class="inheritance-text">
+          Manage beneficiary and inheritance information
+        </div>
+
+      </div>
+
+      <div class="inheritance-arrow">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+
+    </button>
+
   </main>
 
 
-  <!-- =====================================
-       MENU OVERLAY
-  ====================================== -->
+  <!-- MENU OVERLAY -->
 
-  <div
-    class="menu-overlay"
-    id="menuOverlay"
-  ></div>
+  <div class="menu-overlay" id="menuOverlay"></div>
 
 
-  <!-- =====================================
-       SIDE MENU
-  ====================================== -->
+  <!-- SIDE MENU -->
 
-  <aside
-    class="side-menu"
-    id="sideMenu"
-  >
+  <aside class="side-menu" id="sideMenu">
 
     <div class="menu-header">
 
@@ -1836,11 +1454,7 @@ a {
 
       </div>
 
-
-      <button
-        class="menu-close"
-        id="menuClose"
-      >
+      <button class="menu-close" id="menuClose">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
@@ -1849,100 +1463,68 @@ a {
 
     <div class="menu-items">
 
-      <button
-        class="menu-item"
-        data-menu-page="dashboard.html"
-      >
+
+      <button class="menu-item" data-menu-page="dashboard.html">
         <i class="fa-solid fa-house"></i>
         Dashboard
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="account.html"
-      >
-        <i class="fa-solid fa-user"></i>
-        My Account
+      <button class="menu-item" data-menu-page="account.html">
+        <i class="fa-regular fa-user"></i>
+        Account
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="transfer.html"
-      >
-        <i class="fa-solid fa-right-left"></i>
-        Transfers
+      <button class="menu-item" data-menu-page="transfer.html">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        Transfer
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="payments.html"
-      >
-        <i class="fa-solid fa-credit-card"></i>
+      <button class="menu-item" data-menu-page="payments.html">
+        <i class="fa-regular fa-credit-card"></i>
         Payments
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="cards.html"
-      >
-        <i class="fa-solid fa-wallet"></i>
+      <button class="menu-item" data-menu-page="cards.html">
+        <i class="fa-solid fa-credit-card"></i>
         Cards
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="transactions.html"
-      >
-        <i class="fa-solid fa-list"></i>
+      <button class="menu-item" data-menu-page="transactions.html">
+        <i class="fa-solid fa-clock-rotate-left"></i>
         Transactions
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="statements.html"
-      >
+      <button class="menu-item" data-menu-page="statements.html">
         <i class="fa-solid fa-file-lines"></i>
         Statements
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="notifications.html"
-      >
+      <button class="menu-item" data-menu-page="notifications.html">
         <i class="fa-regular fa-bell"></i>
         Notifications
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="support.html"
-      >
-        <i class="fa-solid fa-circle-question"></i>
-        Help &amp; Support
+      <button class="menu-item" data-menu-page="support.html">
+        <i class="fa-solid fa-headset"></i>
+        Support
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="security.html"
-      >
+      <button class="menu-item" data-menu-page="security.html">
         <i class="fa-solid fa-shield-halved"></i>
         Security
       </button>
 
 
-      <button
-        class="menu-item"
-        data-menu-page="settings.html"
-      >
+      <button class="menu-item" data-menu-page="settings.html">
         <i class="fa-solid fa-gear"></i>
         Settings
       </button>
@@ -1951,12 +1533,12 @@ a {
       <div class="menu-divider"></div>
 
 
-      <button
-        class="menu-item logout-item"
-        id="logoutBtn"
-      >
+      <button class="menu-item logout-item" id="logoutBtn">
+
         <i class="fa-solid fa-right-from-bracket"></i>
-        Sign Out
+
+        Sign out
+
       </button>
 
     </div>
@@ -1964,14 +1546,9 @@ a {
   </aside>
 
 
-  <!-- =====================================
-       LOADING
-  ====================================== -->
+  <!-- LOADING -->
 
-  <div
-    class="loading-screen"
-    id="loadingScreen"
-  >
+  <div class="loading-screen" id="loadingScreen">
 
     <div class="loading-logo">
       FM
@@ -1984,29 +1561,19 @@ a {
 
   <!-- TOAST -->
 
-  <div
-    class="toast"
-    id="toast"
-  ></div>
+  <div class="toast" id="toast"></div>
 
 
-  <!-- =====================================
-       FIREBASE
-  ====================================== -->
+  <!-- FIREBASE -->
 
   <script type="module">
 
-    import {
-      auth,
-      db
-    } from "./firebase.js";
-
+    import { auth, db } from "./firebase.js";
 
     import {
       onAuthStateChanged,
       signOut
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     import {
       doc,
@@ -2018,590 +1585,326 @@ a {
       orderBy,
       limit,
       getDocs
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-    /* =====================================
-       ELEMENTS
-    ===================================== */
-
-    const menuBtn =
-      document.getElementById("menuBtn");
-
-    const menuClose =
-      document.getElementById("menuClose");
-
-    const sideMenu =
-      document.getElementById("sideMenu");
-
-    const menuOverlay =
-      document.getElementById("menuOverlay");
-
-    const logoutBtn =
-      document.getElementById("logoutBtn");
+    const menuBtn = document.getElementById("menuBtn");
+    const menuClose = document.getElementById("menuClose");
+    const sideMenu = document.getElementById("sideMenu");
+    const menuOverlay = document.getElementById("menuOverlay");
 
     const loadingScreen =
       document.getElementById("loadingScreen");
 
-    const balanceAmount =
-      document.getElementById("balanceAmount");
-
-    const balanceToggle =
-      document.getElementById("balanceToggle");
-
-    const balanceEyeIcon =
-      document.getElementById("balanceEyeIcon");
-
-    const copyAccount =
-      document.getElementById("copyAccount");
-
-    const toast =
-      document.getElementById("toast");
-
-
-    let currentUserData = null;
-    let currentUser = null;
-
-    let balanceVisible = true;
-
-    let currentBalance = 400000;
-    let currentCurrency = "USD";
-    let currentAccountNumber = "";
-
-
-    /* =====================================
-       MENU
-    ===================================== */
 
     function openMenu() {
-
       sideMenu.classList.add("open");
       menuOverlay.classList.add("open");
-
     }
 
 
     function closeMenu() {
-
       sideMenu.classList.remove("open");
       menuOverlay.classList.remove("open");
-
     }
 
 
-    menuBtn.addEventListener(
-      "click",
-      openMenu
-    );
+    menuBtn.addEventListener("click", openMenu);
+    menuClose.addEventListener("click", closeMenu);
+    menuOverlay.addEventListener("click", closeMenu);
 
 
-    menuClose.addEventListener(
-      "click",
-      closeMenu
-    );
+    document.querySelectorAll("[data-page]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const page = button.dataset.page;
+
+        if (page) {
+          window.location.href = page;
+        }
+
+      });
+
+    });
 
 
-    menuOverlay.addEventListener(
-      "click",
-      closeMenu
-    );
+    document.querySelectorAll("[data-menu-page]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const page = button.dataset.menuPage;
+
+        if (page) {
+          window.location.href = page;
+        }
+
+      });
+
+    });
 
 
-    /* =====================================
-       NAVIGATION
-    ===================================== */
+    document.getElementById("notificationBtn")
+      .addEventListener("click", () => {
 
-    document
-      .querySelectorAll("[data-page]")
-      .forEach(button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            const page =
-              button.dataset.page;
-
-            window.location.href =
-              page;
-
-          }
-        );
+        window.location.href = "notifications.html";
 
       });
 
 
-    document
-      .querySelectorAll("[data-menu-page]")
-      .forEach(button => {
+    document.getElementById("profileBtn")
+      .addEventListener("click", () => {
 
-        button.addEventListener(
-          "click",
-          () => {
-
-            window.location.href =
-              button.dataset.menuPage;
-
-          }
-        );
+        window.location.href = "account.html";
 
       });
 
 
-    document
-      .getElementById("notificationBtn")
-      .addEventListener(
-        "click",
-        () => {
+    document.getElementById("transferButton")
+      .addEventListener("click", () => {
 
-          window.location.href =
-            "notifications.html";
+        window.location.href = "transfer.html";
 
-        }
-      );
+      });
 
 
-    document
-      .getElementById("profileBtn")
-      .addEventListener(
-        "click",
-        () => {
+    document.getElementById("transactionsBtn")
+      .addEventListener("click", () => {
 
-          window.location.href =
-            "settings.html";
+        window.location.href = "transactions.html";
 
-        }
-      );
+      });
 
 
-    document
-      .getElementById("transferButton")
-      .addEventListener(
-        "click",
-        () => {
+    document.getElementById("accountDetailsBtn")
+      .addEventListener("click", () => {
 
-          window.location.href =
-            "transfer.html";
+        window.location.href = "account.html";
 
-        }
-      );
+      });
 
 
-    document
-      .getElementById("transactionsBtn")
-      .addEventListener(
-        "click",
-        () => {
+    document.getElementById("inheritanceBtn")
+      .addEventListener("click", () => {
 
-          window.location.href =
-            "transactions.html";
+        window.location.href = "inheritance.html";
 
-        }
-      );
+      });
+
+
+    /* ================= BALANCE ================= */
+
+    let balanceVisible = true;
+    let actualBalance = 0;
 
 
     document
-      .getElementById("accountDetailsBtn")
-      .addEventListener(
-        "click",
-        () => {
+      .getElementById("balanceToggle")
+      .addEventListener("click", () => {
 
-          window.location.href =
-            "account.html";
+        balanceVisible = !balanceVisible;
 
-        }
-      );
+        document.getElementById("balanceAmount").textContent =
+          balanceVisible
+            ? formatCurrency(actualBalance)
+            : "••••••••";
 
+
+        document.getElementById("balanceEyeIcon").className =
+          balanceVisible
+            ? "fa-regular fa-eye"
+            : "fa-regular fa-eye-slash";
+
+      });
+
+
+    /* ================= COPY ACCOUNT ================= */
 
     document
-      .getElementById("inheritanceBtn")
-      .addEventListener(
-        "click",
-        () => {
+      .getElementById("copyAccount")
+      .addEventListener("click", async () => {
 
-          window.location.href =
-            "inheritance.html";
-
-        }
-      );
-
-
-    /* =====================================
-       BALANCE VISIBILITY
-    ===================================== */
-
-    balanceToggle.addEventListener(
-      "click",
-      () => {
-
-        balanceVisible =
-          !balanceVisible;
-
-
-        if (balanceVisible) {
-
-          balanceAmount.textContent =
-            formatCurrency(
-              currentBalance,
-              currentCurrency
-            );
-
-          balanceEyeIcon.className =
-            "fa-regular fa-eye";
-
-        } else {
-
-          balanceAmount.textContent =
-            "••••••••";
-
-          balanceEyeIcon.className =
-            "fa-regular fa-eye-slash";
-
-        }
-
-      }
-    );
-
-
-    /* =====================================
-       COPY ACCOUNT
-    ===================================== */
-
-    copyAccount.addEventListener(
-      "click",
-      async () => {
-
-        if (!currentAccountNumber) {
-
-          return;
-
-        }
-
+        const accountNumber =
+          document.getElementById("accountNumber").textContent;
 
         try {
 
-          await navigator.clipboard.writeText(
-            currentAccountNumber
-          );
+          await navigator.clipboard.writeText(accountNumber);
 
-          showToast(
-            "Account number copied"
-          );
+          showToast("Account number copied");
 
         } catch {
 
-          showToast(
-            "Unable to copy account number"
-          );
+          showToast("Unable to copy account number");
 
         }
+
+      });
+
+
+    /* ================= AUTH ================= */
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+
+        window.location.href = "login.html";
+        return;
 
       }
-    );
 
+      try {
 
-    /* =====================================
-       AUTH
-    ===================================== */
+        await loadDashboard(user);
 
-    onAuthStateChanged(
-      auth,
-      async user => {
+      } catch (error) {
 
-        if (!user) {
+        console.error(error);
 
-          window.location.href =
-            "login.html";
-
-          return;
-
-        }
-
-
-        currentUser =
-          user;
-
-
-        try {
-
-          await loadDashboard(
-            user
-          );
-
-        } catch (error) {
-
-          console.error(
-            error
-          );
-
-          showToast(
-            "Unable to load account information"
-          );
-
-        } finally {
-
-          loadingScreen.classList.add(
-            "hidden"
-          );
-
-        }
+        showToast("Unable to load dashboard");
 
       }
-    );
+
+      setTimeout(() => {
+
+        loadingScreen.classList.add("hidden");
+
+      }, 350);
+
+    });
 
 
-    /* =====================================
-       LOAD DASHBOARD
-    ===================================== */
+    /* ================= DASHBOARD ================= */
 
     async function loadDashboard(user) {
 
-      const userRef =
-        doc(
-          db,
-          "users",
-          user.uid
+      const userRef = doc(db, "users", user.uid);
+
+      const userSnap = await getDoc(userRef);
+
+      let data = {};
+
+      if (userSnap.exists()) {
+
+        data = userSnap.data();
+
+      } else {
+
+        data = {
+
+          balance: 400000,
+          currency: "USD",
+          accountType: "Checking"
+
+        };
+
+        await setDoc(
+          userRef,
+          {
+            ...data,
+            createdAt: serverTimestamp()
+          },
+          { merge: true }
         );
 
-
-      const snapshot =
-        await getDoc(userRef);
-
-
-      let data =
-        snapshot.exists()
-          ? snapshot.data()
-          : {};
-
-
-      const updates = {};
-
-
-      /* NAME */
-
-      const fullName =
-        data.fullName ||
-        user.displayName ||
-        "Account Holder";
+      }
 
 
       const firstName =
-        fullName
-          .trim()
-          .split(/\s+/)[0];
+        data.firstName ||
+        data.firstname ||
+        data.name ||
+        "Member";
 
 
-      document.getElementById(
-        "welcomeText"
-      ).textContent =
+      document.getElementById("welcomeText").textContent =
         `Welcome back, ${firstName}`;
 
 
-      /* DATE */
-
-      document.getElementById(
-        "currentDate"
-      ).textContent =
-        new Intl.DateTimeFormat(
-          "en-US",
+      document.getElementById("currentDate").textContent =
+        new Date().toLocaleDateString(
+          undefined,
           {
             weekday: "long",
             month: "long",
             day: "numeric",
             year: "numeric"
           }
-        ).format(
-          new Date()
         );
 
 
-      /* ACCOUNT NUMBER */
-
-      currentAccountNumber =
-        data.accountNumber ||
-        generateAccountNumber();
+      actualBalance =
+        Number(data.balance ?? 400000);
 
 
-      if (!data.accountNumber) {
-
-        updates.accountNumber =
-          currentAccountNumber;
-
-      }
+      const currency =
+        data.currency || "USD";
 
 
-      document.getElementById(
-        "accountNumber"
-      ).textContent =
-        `•••• ${currentAccountNumber.slice(-4)}`;
+      const accountType =
+        data.accountType || "Checking";
 
 
-      /* BALANCE */
-
-      currentBalance =
-        Number(data.balance);
+      document.getElementById("balanceAmount").textContent =
+        formatCurrency(actualBalance, currency);
 
 
-      if (
-        !Number.isFinite(
-          currentBalance
-        )
-      ) {
-
-        currentBalance =
-          400000;
-
-        updates.balance =
-          currentBalance;
-
-      }
+      document.getElementById("currency").textContent =
+        currency;
 
 
-      /* CURRENCY */
-
-      currentCurrency =
-        data.currency ||
-        "USD";
+      document.getElementById("accountType").textContent =
+        accountType;
 
 
-      if (!data.currency) {
-
-        updates.currency =
-          "USD";
-
-      }
+      document.getElementById("detailCurrency").textContent =
+        currency;
 
 
-      /* ACCOUNT TYPE */
-
-      let accountType =
-        data.accountType ||
-        "Checking";
+      document.getElementById("detailAccountType").textContent =
+        accountType;
 
 
-      if (
-        String(accountType)
-          .toLowerCase()
-          .includes("checking")
-      ) {
-
-        accountType =
-          "Checking";
-
-      }
+      let accountNumber =
+        data.accountNumber;
 
 
-      if (!data.accountType) {
+      if (!accountNumber) {
 
-        updates.accountType =
-          "Checking";
-
-      }
-
-
-      /* INHERITANCE */
-
-      if (!data.inheritance) {
-
-        updates.inheritance = {
-
-          balance: 250000,
-
-          transferDate:
-            serverTimestamp(),
-
-          transferStatus:
-            "Inaccessible",
-
-          verificationStatus:
-            "Required"
-
-        };
-
-      }
-
-
-      if (
-        Object.keys(updates).length
-      ) {
+        accountNumber =
+          generateAccountNumber(user.uid);
 
         await setDoc(
           userRef,
-          updates,
           {
-            merge: true
-          }
+            accountNumber
+          },
+          { merge: true }
         );
 
       }
 
 
-      currentUserData = {
-        ...data,
-        ...updates
-      };
+      document.getElementById("accountNumber").textContent =
+        accountNumber;
 
 
-      /* DISPLAY BALANCE */
-
-      balanceAmount.textContent =
-        formatCurrency(
-          currentBalance,
-          currentCurrency
-        );
+      document.getElementById("customerId").textContent =
+        data.customerId ||
+        shortId(user.uid);
 
 
-      document.getElementById(
-        "accountType"
-      ).textContent =
-        accountType;
-
-
-      document.getElementById(
-        "currency"
-      ).textContent =
-        currentCurrency;
-
-
-      document.getElementById(
-        "detailAccountType"
-      ).textContent =
-        accountType;
-
-
-      document.getElementById(
-        "detailCurrency"
-      ).textContent =
-        currentCurrency;
-
-
-      document.getElementById(
-        "customerId"
-      ).textContent =
-        shortenId(
-          user.uid
-        );
-
-
-      await loadTransactions(
-        user.uid
-      );
+      await loadTransactions(user.uid, currency);
 
     }
 
 
-    /* =====================================
-       LOAD TRANSACTIONS
-    ===================================== */
+    /* ================= TRANSACTIONS ================= */
 
-    async function loadTransactions(
-      uid
-    ) {
+    async function loadTransactions(uid, currency) {
 
       const list =
-        document.getElementById(
-          "transactionsList"
-        );
+        document.getElementById("transactionsList");
 
 
       try {
@@ -2615,48 +1918,19 @@ a {
           );
 
 
-        const q =
+        const transactionsQuery =
           query(
             transactionsRef,
-            orderBy(
-              "createdAt",
-              "desc"
-            ),
+            orderBy("createdAt", "desc"),
             limit(3)
           );
 
 
         const snapshot =
-          await getDocs(q);
+          await getDocs(transactionsQuery);
 
 
-        if (
-          snapshot.empty
-        ) {
-
-          list.innerHTML = `
-
-            <div class="transaction-item">
-
-              <div class="transaction-icon">
-                <i class="fa-solid fa-receipt"></i>
-              </div>
-
-              <div class="transaction-info">
-
-                <div class="transaction-title">
-                  No recent transactions
-                </div>
-
-                <div class="transaction-date">
-                  Your recent activity will appear here.
-                </div>
-
-              </div>
-
-            </div>
-
-          `;
+        if (snapshot.empty) {
 
           return;
 
@@ -2666,89 +1940,77 @@ a {
         list.innerHTML = "";
 
 
-        snapshot.forEach(
-          transactionDoc => {
+        snapshot.forEach(transactionDoc => {
 
-            const data =
-              transactionDoc.data();
-
-
-            const amount =
-              Number(
-                data.amount
-              ) || 0;
+          const transaction =
+            transactionDoc.data();
 
 
-            const isCredit =
-              data.direction ===
-              "credit";
+          const item =
+            document.createElement("div");
 
 
-            const icon =
-              getTransactionIcon(
-                data.type
-              );
+          item.className =
+            "transaction-item";
 
 
-            const date =
-              formatTransactionDate(
-                data.createdAt
-              );
+          const amount =
+            Number(transaction.amount || 0);
 
 
-            const item =
-              document.createElement(
-                "div"
-              );
+          const isCredit =
+            transaction.type === "credit" ||
+            amount > 0;
 
 
-            item.className =
-              "transaction-item";
+          item.innerHTML = `
 
+            <div class="transaction-icon">
 
-            item.innerHTML = `
+              <i class="fa-solid ${
+                isCredit
+                  ? "fa-arrow-down"
+                  : "fa-arrow-up"
+              }"></i>
 
-              <div class="transaction-icon">
-                <i class="${icon}"></i>
-              </div>
+            </div>
 
-              <div class="transaction-info">
+            <div class="transaction-info">
 
-                <div class="transaction-title">
-                  ${escapeHtml(
-                    data.title ||
-                    transactionTitle(
-                      data.type
-                    )
-                  )}
-                </div>
-
-                <div class="transaction-date">
-                  ${date}
-                </div>
-
-              </div>
-
-              <div class="
-                transaction-amount
-                ${isCredit ? "credit" : "debit"}
-              ">
-                ${isCredit ? "+" : "-"}
-                ${formatCurrency(
-                  amount,
-                  currentCurrency
+              <div class="transaction-title">
+                ${escapeHtml(
+                  transaction.title ||
+                  transaction.description ||
+                  "Transaction"
                 )}
               </div>
 
-            `;
+              <div class="transaction-date">
+                ${formatDate(transaction.createdAt)}
+              </div>
+
+            </div>
+
+            <div class="transaction-amount ${
+              isCredit ? "credit" : "debit"
+            }">
+
+              ${
+                isCredit ? "+" : "-"
+              }${formatCurrency(
+                Math.abs(amount),
+                currency
+              )}
+
+            </div>
+
+          `;
 
 
-            list.appendChild(
-              item
-            );
+          list.appendChild(item);
 
-          }
-        );
+        });
+
 
       } catch (error) {
 
@@ -2757,386 +2019,138 @@ a {
           error
         );
 
-
-        list.innerHTML = `
-
-          <div class="transaction-item">
-
-            <div class="transaction-icon">
-              <i class="fa-solid fa-receipt"></i>
-            </div>
-
-            <div class="transaction-info">
-
-              <div class="transaction-title">
-                Recent transactions
-              </div>
-
-              <div class="transaction-date">
-                View Transactions for full activity.
-              </div>
-
-            </div>
-
-          </div>
-
-        `;
-
       }
 
     }
 
 
-    /* =====================================
-       TRANSACTION ICON
-    ===================================== */
+    /* ================= HELPERS ================= */
 
-    function getTransactionIcon(
-      type
-    ) {
-
-      const icons = {
-
-        send:
-          "fa-solid fa-arrow-up",
-
-        zelle:
-          "fa-solid fa-bolt",
-
-        deposit:
-          "fa-solid fa-plus",
-
-        withdrawal:
-          "fa-solid fa-arrow-down",
-
-        transfer:
-          "fa-solid fa-right-left",
-
-        payment:
-          "fa-solid fa-file-invoice-dollar"
-
-      };
-
-
-      return (
-        icons[type] ||
-        "fa-solid fa-receipt"
-      );
-
-    }
-
-
-    /* =====================================
-       TRANSACTION TITLE
-    ===================================== */
-
-    function transactionTitle(
-      type
-    ) {
-
-      const titles = {
-
-        send:
-          "Money Sent",
-
-        zelle:
-          "Zelle Payment",
-
-        deposit:
-          "Money Added",
-
-        withdrawal:
-          "Withdrawal",
-
-        transfer:
-          "Bank Transfer",
-
-        payment:
-          "Payment"
-
-      };
-
-
-      return (
-        titles[type] ||
-        "Transaction"
-      );
-
-    }
-
-
-    /* =====================================
-       DATE
-    ===================================== */
-
-    function formatTransactionDate(
-      timestamp
-    ) {
-
-      if (!timestamp) {
-
-        return "Recently";
-
-      }
-
-
-      let date;
-
-
-      if (
-        typeof timestamp.toDate ===
-        "function"
-      ) {
-
-        date =
-          timestamp.toDate();
-
-      } else if (
-        typeof timestamp.seconds ===
-        "number"
-      ) {
-
-        date =
-          new Date(
-            timestamp.seconds * 1000
-          );
-
-      } else {
-
-        date =
-          new Date(timestamp);
-
-      }
-
-
-      if (
-        Number.isNaN(
-          date.getTime()
-        )
-      ) {
-
-        return "Recently";
-
-      }
-
-
-      return new Intl.DateTimeFormat(
-        "en-US",
-        {
-          month: "short",
-          day: "numeric",
-          year: "numeric"
-        }
-      ).format(
-        date
-      );
-
-    }
-
-
-    /* =====================================
-       CURRENCY
-    ===================================== */
-
-    function formatCurrency(
-      amount,
-      currency
-    ) {
-
-      const supported = [
-        "USD",
-        "NGN",
-        "GBP",
-        "EUR"
-      ];
-
-
-      const safeCurrency =
-        supported.includes(
-          currency
-        )
-          ? currency
-          : "USD";
-
+    function formatCurrency(amount, currency = "USD") {
 
       return new Intl.NumberFormat(
-        "en-US",
+        undefined,
         {
           style: "currency",
-          currency: safeCurrency,
-          minimumFractionDigits: 2,
+          currency,
           maximumFractionDigits: 2
         }
-      ).format(
-        Number(amount) || 0
-      );
+      ).format(amount);
 
     }
 
 
-    /* =====================================
-       ACCOUNT NUMBER
-    ===================================== */
+    function formatDate(timestamp) {
 
-    function generateAccountNumber() {
-
-      let number = "";
-
-      for (
-        let i = 0;
-        i < 12;
-        i++
-      ) {
-
-        number +=
-          Math.floor(
-            Math.random() * 10
-          );
-
+      if (!timestamp) {
+        return "Recent";
       }
 
-      return number;
+      try {
+
+        const date =
+          timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
+
+
+        return date.toLocaleDateString(
+          undefined,
+          {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          }
+        );
+
+      } catch {
+
+        return "Recent";
+
+      }
 
     }
 
 
-    /* =====================================
-       SHORT ID
-    ===================================== */
+    function generateAccountNumber(uid) {
 
-    function shortenId(
-      id
-    ) {
-
-      if (!id) {
-
-        return "—";
-
-      }
+      const digits =
+        uid
+          .replace(/\D/g, "")
+          .padEnd(12, "7")
+          .slice(0, 12);
 
 
-      if (id.length <= 15) {
-
-        return id;
-
-      }
-
-
-      return (
-        id.substring(0, 7) +
-        "..." +
-        id.substring(
-          id.length - 5
-        )
-      );
+      return digits
+        .replace(/(\d{4})(?=\d)/g, "$1 ")
+        .trim();
 
     }
 
 
-    /* =====================================
-       ESCAPE
-    ===================================== */
+    function shortId(uid) {
 
-    function escapeHtml(
-      value
-    ) {
+      return uid
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .slice(0, 10)
+        .toUpperCase();
+
+    }
+
+
+    function escapeHtml(value) {
 
       return String(value)
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     }
 
 
-    /* =====================================
-       TOAST
-    ===================================== */
+    function showToast(message) {
 
-    let toastTimer;
-
-
-    function showToast(
-      message
-    ) {
-
-      toast.textContent =
-        message;
+      const toast =
+        document.getElementById("toast");
 
 
-      toast.classList.add(
-        "show"
-      );
+      toast.textContent = message;
+
+      toast.classList.add("show");
 
 
-      clearTimeout(
-        toastTimer
-      );
+      setTimeout(() => {
 
+        toast.classList.remove("show");
 
-      toastTimer =
-        setTimeout(
-          () => {
-
-            toast.classList.remove(
-              "show"
-            );
-
-          },
-          2200
-        );
+      }, 2200);
 
     }
 
 
-    /* =====================================
-       LOGOUT
-    ===================================== */
+    /* ================= LOGOUT ================= */
 
-    logoutBtn.addEventListener(
-      "click",
-      async () => {
+    document
+      .getElementById("logoutBtn")
+      .addEventListener("click", async () => {
 
         try {
 
-          await signOut(
-            auth
-          );
+          await signOut(auth);
 
-          window.location.href =
-            "login.html";
+          window.location.href = "login.html";
 
         } catch (error) {
 
-          console.error(
-            error
-          );
+          console.error(error);
 
-          showToast(
-            "Unable to sign out"
-          );
+          showToast("Unable to sign out");
 
         }
 
-      }
-    );
+      });
 
   </script>
 
