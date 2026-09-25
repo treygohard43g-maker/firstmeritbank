@@ -43,56 +43,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       margin-bottom: 26px;
     }
 
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #123b8f, #2563eb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      box-shadow: 0 7px 18px rgba(18, 59, 143, .18);
-      position: relative;
-    }
-
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 4px;
-      border-radius: 4px;
-      background: #22d3ee;
-      bottom: 7px;
-    }
-
-    .logo-text {
-      text-align: left;
-      line-height: 1.05;
-    }
-
-    .logo-name {
+    .brand-logo img {
       display: block;
-      font-size: 17px;
-      font-weight: 750;
-      color: #123b8f;
-      letter-spacing: -.3px;
-    }
-
-    .logo-bank {
-      display: block;
-      margin-top: 3px;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #7a8496;
+      width: 190px;
+      height: auto;
+      max-width: 100%;
     }
 
     /* HEADER */
@@ -307,6 +265,7 @@
     /* MOBILE */
 
     @media (max-width: 480px) {
+
       .auth-page {
         padding: 24px 14px;
         align-items: flex-start;
@@ -318,6 +277,10 @@
 
       .brand-logo {
         margin-bottom: 22px;
+      }
+
+      .brand-logo img {
+        width: 175px;
       }
 
       .auth-heading h1 {
@@ -347,14 +310,12 @@
 
       <div class="brand-logo">
 
-        <div class="logo-mark">
-          FM
-        </div>
-
-        <div class="logo-text">
-          <span class="logo-name">First Merit</span>
-          <span class="logo-bank">BANK</span>
-        </div>
+        <a href="index.html">
+          <img
+            src="first-merit-logo.svg"
+            alt="First Merit Bank"
+          >
+        </a>
 
       </div>
 
