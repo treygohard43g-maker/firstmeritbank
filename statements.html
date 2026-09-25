@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Statements | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e8edf4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .back-btn,
+    .refresh-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .back-btn:active,
+    .refresh-btn:active {
+      transform: scale(0.96);
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .page-title-small {
+      color: #7b8798;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      padding: 26px 18px 55px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.8px;
+    }
+
+    .page-heading p {
+      color: #7b8798;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    /* ACCOUNT CARD */
+
+    .account-card {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      border-radius: 22px;
+      padding: 22px;
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(18, 59, 114, 0.16);
+      margin-bottom: 18px;
+    }
+
+    .account-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .account-label {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .account-name {
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    .account-number {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-top: 5px;
+    }
+
+    .account-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .account-balance {
+      margin-top: 22px;
+    }
+
+    .balance-label {
+      font-size: 11px;
+      opacity: 0.72;
+      margin-bottom: 4px;
+    }
+
+    .balance-value {
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    /* ACTIONS */
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .action-btn {
+      min-height: 48px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #ffffff;
+      color: #263145;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .action-btn i {
+      color: #123b72;
+    }
+
+    /* PERIOD */
+
+    .period-card {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 20px;
+      padding: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+    }
+
+    .period-title {
+      font-size: 14px;
+      font-weight: 750;
+      margin-bottom: 12px;
+    }
+
+    .period-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field-label {
+      display: block;
+      color: #8994a4;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+
+    .date-input {
+      width: 100%;
+      height: 45px;
+      border: 1px solid #e1e7ee;
+      border-radius: 13px;
+      padding: 0 11px;
+      color: #263145;
+      background: #ffffff;
+      outline: none;
+      font-size: 13px;
+    }
+
+    .apply-btn {
+      width: 100%;
+      height: 45px;
+      border: 0;
+      border-radius: 13px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 11px;
+    }
+
+    /* SUMMARY */
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .summary-box {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 17px;
+      padding: 15px 13px;
+      min-width: 0;
+    }
+
+    .summary-box i {
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .summary-box.income i {
+      color: #168452;
+    }
+
+    .summary-box.expense i {
+      color: #c54848;
+    }
+
+    .summary-box.count i {
+      color: #123b72;
+    }
+
+    .summary-box-label {
+      color: #8994a4;
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .summary-box-value {
+      font-size: 15px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .summary-box.income .summary-box-value {
+      color: #168452;
+    }
+
+    .summary-box.expense .summary-box-value {
+      color: #c54848;
+    }
+
+    /* STATEMENT */
+
+    .statement-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 11px;
+    }
+
+    .statement-header h2 {
+      font-size: 16px;
+    }
+
+    .statement-count {
+      color: #8994a4;
+      font-size: 12px;
+    }
+
+    .statement-card {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(24, 39, 75, 0.04);
+    }
+
+    .transaction-row {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .transaction-row:last-child {
+      border-bottom: 0;
+    }
+
+    .transaction-icon {
+      width: 43px;
+      height: 43px;
+      min-width: 43px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .transaction-icon.credit {
+      background: #eaf8f1;
+      color: #168452;
+    }
+
+    .transaction-icon.debit {
+      background: #fff0f0;
+      color: #c54848;
+    }
+
+    .transaction-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .transaction-title {
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .transaction-meta {
+      color: #8994a4;
+      font-size: 10px;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .transaction-amount {
+      font-size: 13px;
+      font-weight: 750;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .transaction-amount.credit {
+      color: #168452;
+    }
+
+    .transaction-amount.debit {
+      color: #c54848;
+    }
+
+    /* LOADING */
+
+    .loading,
+    .empty,
+    .error {
+      background: #ffffff;
+      border: 1px solid #e7ecf2;
+      border-radius: 20px;
+      padding: 42px 20px;
+      text-align: center;
+      color: #8994a4;
+      font-size: 13px;
+    }
+
+    .loading i,
+    .empty i,
+    .error i {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 11px;
+    }
+
+    .empty,
+    .error {
+      display: none;
+    }
+
+    .empty h3,
+    .error h3 {
+      color: #263145;
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .retry-btn {
+      height: 43px;
+      border: 0;
+      border-radius: 13px;
+      padding: 0 18px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 15px;
+    }
+
+    /* PRINT AREA */
+
+    .print-header {
+      display: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 430px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .content {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .account-card {
+        padding: 19px;
+      }
+
+      .balance-value {
+        font-size: 26px;
+      }
+
+      .summary-grid {
+        gap: 7px;
+      }
+
+      .summary-box {
+        padding: 13px 9px;
+      }
+
+      .summary-box-value {
+        font-size: 13px;
+      }
+
+      .transaction-row {
+        padding: 13px;
+      }
+
+      .transaction-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .content {
+        padding-top: 35px;
+      }
+
+      .action-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .transaction-row:hover {
+        background: #fafcff;
+      }
+    }
+
+    /* PRINT */
+
+    @media print {
+
+      body {
+        background: #ffffff;
+      }
+
+      .topbar,
+      .page-heading,
+      .action-grid,
+      .period-card {
+        display: none !important;
+      }
+
+      .content {
+        width: 100%;
+        padding: 0;
+      }
+
+      .account-card {
+        background: #ffffff;
+        color: #172033;
+        box-shadow: none;
+        border: 1px solid #dce3eb;
+      }
+
+      .account-icon {
+        background: #f1f5f9;
+        color: #123b72;
+      }
+
+      .account-label,
+      .account-number,
+      .balance-label {
+        color: #667085;
+        opacity: 1;
+      }
+
+      .print-header {
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .print-header h1 {
+        font-size: 25px;
+      }
+
+      .print-header p {
+        color: #667085;
+        margin-top: 5px;
+        font-size: 12px;
+      }
+
+      .summary-grid {
+        page-break-inside: avoid;
+      }
+
+      .statement-card {
+        box-shadow: none;
+      }
+
+      .transaction-row {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          class="back-btn"
+          id="backBtn"
+          aria-label="Back"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+
+          <div class="bank-logo">
+            FM
+          </div>
+
+          <div>
+            <div class="bank-name">
+              First Merit Bank
+            </div>
+
+            <div class="page-title-small">
+              Statements
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="refresh-btn"
+        id="refreshBtn"
+        aria-label="Refresh"
+      >
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </header>
+
+
+    <main class="content">
+
+      <!-- PRINT HEADER -->
+
+      <div class="print-header">
+        <h1>First Merit Bank</h1>
+        <p>Account Statement</p>
+      </div>
+
+
+      <!-- PAGE HEADING -->
+
+      <div class="page-heading">
+        <h1>Statements</h1>
+
+        <p>
+          Review your account activity and statement period.
+        </p>
+      </div>
+
+
+      <!-- ACCOUNT -->
+
+      <section class="account-card">
+
+        <div class="account-top">
+
+          <div>
+
+            <div class="account-label">
+              Account
+            </div>
+
+            <div class="account-name">
+              Checking Account
+            </div>
+
+            <div
+              class="account-number"
+              id="accountNumber"
+            >
+              Account ending —
+            </div>
+
+          </div>
+
+          <div class="account-icon">
+            <i class="fa-solid fa-file-invoice"></i>
+          </div>
+
+        </div>
+
+
+        <div class="account-balance">
+
+          <div class="balance-label">
+            Current Balance
+          </div>
+
+          <div
+            class="balance-value"
+            id="balanceAmount"
+          >
+            $0.00
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACTIONS -->
+
+      <div class="action-grid">
+
+        <button
+          class="action-btn"
+          id="printBtn"
+        >
+          <i class="fa-solid fa-print"></i>
+          Print Statement
+        </button>
+
+        <button
+          class="action-btn"
+          id="transactionsBtn"
+        >
+          <i class="fa-solid fa-list"></i>
+          All Transactions
+        </button>
+
+      </div>
+
+
+      <!-- STATEMENT PERIOD -->
+
+      <section class="period-card">
+
+        <div class="period-title">
+          Statement Period
+        </div>
+
+        <div class="period-grid">
+
+          <div>
+
+            <label
+              class="field-label"
+              for="startDate"
+            >
+              From
+            </label>
+
+            <input
+              type="date"
+              id="startDate"
+              class="date-input"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label
+              class="field-label"
+              for="endDate"
+            >
+              To
+            </label>
+
+            <input
+              type="date"
+              id="endDate"
+              class="date-input"
+            >
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="apply-btn"
+          id="applyBtn"
+        >
+          Apply Date Range
+        </button>
+
+      </section>
+
+
+      <!-- SUMMARY -->
+
+      <section class="summary-grid">
+
+        <div class="summary-box income">
+
+          <i class="fa-solid fa-arrow-down"></i>
+
+          <div class="summary-box-label">
+            Money Received
+          </div>
+
+          <div
+            class="summary-box-value"
+            id="totalCredits"
+          >
+            $0.00
+          </div>
+
+        </div>
+
+
+        <div class="summary-box expense">
+
+          <i class="fa-solid fa-arrow-up"></i>
+
+          <div class="summary-box-label">
+            Money Sent
+          </div>
+
+          <div
+            class="summary-box-value"
+            id="totalDebits"
+          >
+            $0.00
+          </div>
+
+        </div>
+
+
+        <div class="summary-box count">
+
+          <i class="fa-solid fa-receipt"></i>
+
+          <div class="summary-box-label">
+            Transactions
+          </div>
+
+          <div
+            class="summary-box-value"
+            id="totalCount"
+          >
+            0
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- STATEMENT -->
+
+      <section>
+
+        <div class="statement-header">
+
+          <h2>
+            Account Activity
+          </h2>
+
+          <span
+            class="statement-count"
+            id="statementCount"
+          >
+            0 transactions
+          </span>
+
+        </div>
+
+
+        <div
+          id="loadingState"
+          class="loading"
+        >
+
+          <i class="fa-solid fa-spinner fa-spin"></i>
+
+          Loading statement...
+
+        </div>
+
+
+        <div
+          id="statementCard"
+          class="statement-card"
+          style="display:none;"
+        ></div>
+
+
+        <div
+          id="emptyState"
+          class="empty"
+        >
+
+          <i class="fa-solid fa-file-circle-xmark"></i>
+
+          <h3>
+            No transactions in this period
+          </h3>
+
+          <p>
+            Choose another date range to view account activity.
+          </p>
+
+        </div>
+
+
+        <div
+          id="errorState"
+          class="error"
+        >
+
+          <i class="fa-solid fa-triangle-exclamation"></i>
+
+          <h3>
+            Unable to load statement
+          </h3>
+
+          <p>
+            Please try again.
+          </p>
+
+          <button
+            class="retry-btn"
+            id="retryBtn"
+          >
+            Try Again
+          </button>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      collection,
+      query,
+      orderBy,
+      limit,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    /* ELEMENTS */
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const retryBtn =
+      document.getElementById("retryBtn");
+
+    const printBtn =
+      document.getElementById("printBtn");
+
+    const transactionsBtn =
+      document.getElementById("transactionsBtn");
+
+    const applyBtn =
+      document.getElementById("applyBtn");
+
+    const startDate =
+      document.getElementById("startDate");
+
+    const endDate =
+      document.getElementById("endDate");
+
+    const balanceAmount =
+      document.getElementById("balanceAmount");
+
+    const accountNumber =
+      document.getElementById("accountNumber");
+
+    const totalCredits =
+      document.getElementById("totalCredits");
+
+    const totalDebits =
+      document.getElementById("totalDebits");
+
+    const totalCount =
+      document.getElementById("totalCount");
+
+    const statementCount =
+      document.getElementById("statementCount");
+
+    const loadingState =
+      document.getElementById("loadingState");
+
+    const statementCard =
+      document.getElementById("statementCard");
+
+    const emptyState =
+      document.getElementById("emptyState");
+
+    const errorState =
+      document.getElementById("errorState");
+
+
+    let currentUser = null;
+    let allTransactions = [];
+
+
+    /* DEFAULT DATE RANGE */
+
+    function setDefaultDates() {
+
+      const today =
+        new Date();
+
+      const firstDay =
+        new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          1
+        );
+
+
+      startDate.value =
+        toInputDate(firstDay);
+
+      endDate.value =
+        toInputDate(today);
+
+    }
+
+
+    setDefaultDates();
+
+
+    /* NAVIGATION */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+
+    transactionsBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "transactions.html";
+
+      }
+    );
+
+
+    printBtn.addEventListener(
+      "click",
+      () => {
+
+        window.print();
+
+      }
+    );
+
+
+    /* APPLY */
+
+    applyBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          startDate.value &&
+          endDate.value &&
+          startDate.value >
+            endDate.value
+        ) {
+
+          alert(
+            "The start date cannot be after the end date."
+          );
+
+          return;
+
+        }
+
+        renderStatement();
+
+      }
+    );
+
+
+    /* REFRESH */
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentUser) {
+          return;
+        }
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+        await loadAccountData(
+          currentUser
+        );
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-rotate-right"></i>';
+
+      }
+    );
+
+
+    retryBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!currentUser) {
+          return;
+        }
+
+        await loadAccountData(
+          currentUser
+        );
+
+      }
+    );
+
+
+    /* AUTH */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+        currentUser = user;
+
+        await loadAccountData(user);
+
+      }
+    );
+
+
+    /* LOAD */
+
+    async function loadAccountData(user) {
+
+      loadingState.style.display =
+        "block";
+
+      statementCard.style.display =
+        "none";
+
+      emptyState.style.display =
+        "none";
+
+      errorState.style.display =
+        "none";
+
+
+      try {
+
+        /* USER */
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            user.uid
+          );
+
+        const userSnap =
+          await getDoc(userRef);
+
+
+        if (userSnap.exists()) {
+
+          const userData =
+            userSnap.data();
+
+
+          const balance =
+            typeof userData.balance ===
+            "number"
+              ? userData.balance
+              : 0;
+
+
+          balanceAmount.textContent =
+            formatCurrency(balance);
+
+
+          if (
+            userData.accountNumber
+          ) {
+
+            accountNumber.textContent =
+              "Account ending " +
+              maskAccountNumber(
+                userData.accountNumber
+              );
+
+          } else {
+
+            accountNumber.textContent =
+              "Checking Account";
+
+          }
+
+        }
+
+
+        /* TRANSACTIONS */
+
+        const transactionsRef =
+          collection(
+            db,
+            "users",
+            user.uid,
+            "transactions"
+          );
+
+
+        const transactionsQuery =
+          query(
+            transactionsRef,
+            orderBy(
+              "createdAt",
+              "desc"
+            ),
+            limit(100)
+          );
+
+
+        const snapshot =
+          await getDocs(
+            transactionsQuery
+          );
+
+
+        allTransactions = [];
+
+
+        snapshot.forEach(
+          (transactionDoc) => {
+
+            allTransactions.push({
+
+              id:
+                transactionDoc.id,
+
+              ...transactionDoc.data()
+
+            });
+
+          }
+        );
+
+
+        renderStatement();
+
+      } catch (error) {
+
+        console.error(
+          "Statement loading error:",
+          error
+        );
+
+
+        loadingState.style.display =
+          "none";
+
+        statementCard.style.display =
+          "none";
+
+        emptyState.style.display =
+          "none";
+
+        errorState.style.display =
+          "block";
+
+      }
+
+    }
+
+
+    /* RENDER STATEMENT */
+
+    function renderStatement() {
+
+      const from =
+        startDate.value
+          ? new Date(
+              startDate.value +
+              "T00:00:00"
+            )
+          : null;
+
+
+      const to =
+        endDate.value
+          ? new Date(
+              endDate.value +
+              "T23:59:59.999"
+            )
+          : null;
+
+
+      const filtered =
+        allTransactions.filter(
+          transaction => {
+
+            const date =
+              getTransactionDate(
+                transaction.createdAt
+              );
+
+
+            if (!date) {
+              return false;
+            }
+
+
+            if (
+              from &&
+              date < from
+            ) {
+
+              return false;
+
+            }
+
+
+            if (
+              to &&
+              date > to
+            ) {
+
+              return false;
+
+            }
+
+
+            return true;
+
+          }
+        );
+
+
+      let credits = 0;
+      let debits = 0;
+
+
+      filtered.forEach(
+        transaction => {
+
+          const amount =
+            Number(
+              transaction.amount || 0
+            );
+
+
+          if (
+            transaction.direction ===
+            "credit"
+          ) {
+
+            credits += amount;
+
+          } else {
+
+            debits += amount;
+
+          }
+
+        }
+      );
+
+
+      totalCredits.textContent =
+        formatCurrency(credits);
+
+
+      totalDebits.textContent =
+        formatCurrency(debits);
+
+
+      totalCount.textContent =
+        String(filtered.length);
+
+
+      statementCount.textContent =
+        `${filtered.length} ${
+          filtered.length === 1
+            ? "transaction"
+            : "transactions"
+        }`;
+
+
+      loadingState.style.display =
+        "none";
+
+
+      if (filtered.length === 0) {
+
+        statementCard.innerHTML =
+          "";
+
+        statementCard.style.display =
+          "none";
+
+        emptyState.style.display =
+          "block";
+
+        return;
+
+      }
+
+
+      emptyState.style.display =
+        "none";
+
+      statementCard.style.display =
+        "block";
+
+
+      statementCard.innerHTML =
+        filtered
+          .map(
+            createTransactionRow
+          )
+          .join("");
+
+    }
+
+
+    /* TRANSACTION ROW */
+
+    function createTransactionRow(
+      transaction
+    ) {
+
+      const direction =
+        transaction.direction ===
+        "credit"
+          ? "credit"
+          : "debit";
+
+
+      const amount =
+        Number(
+          transaction.amount || 0
+        );
+
+
+      const prefix =
+        direction === "credit"
+          ? "+"
+          : "-";
+
+
+      const title =
+        transaction.title ||
+        getTransactionTitle(
+          transaction.type
+        );
+
+
+      const meta =
+        getTransactionMeta(
+          transaction
+        );
+
+
+      const date =
+        formatDate(
+          transaction.createdAt
+        );
+
+
+      return `
+
+        <div class="transaction-row">
+
+          <div
+            class="transaction-icon ${direction}"
+          >
+            <i class="${getTransactionIcon(
+              transaction.type
+            )}"></i>
+          </div>
+
+
+          <div class="transaction-info">
+
+            <div class="transaction-title">
+              ${escapeHtml(title)}
+            </div>
+
+            <div class="transaction-meta">
+              ${escapeHtml(meta)}
+              •
+              ${escapeHtml(date)}
+            </div>
+
+          </div>
+
+
+          <div
+            class="transaction-amount ${direction}"
+          >
+            ${prefix}${formatCurrency(
+              amount
+            )}
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* ICONS */
+
+    function getTransactionIcon(type) {
+
+      switch (type) {
+
+        case "send":
+          return "fa-solid fa-paper-plane";
+
+        case "zelle":
+          return "fa-solid fa-bolt";
+
+        case "deposit":
+          return "fa-solid fa-arrow-down";
+
+        case "withdrawal":
+          return "fa-solid fa-arrow-up";
+
+        case "transfer":
+          return "fa-solid fa-right-left";
+
+        case "payment":
+          return "fa-solid fa-file-invoice-dollar";
+
+        default:
+          return "fa-solid fa-receipt";
+
+      }
+
+    }
+
+
+    /* TITLES */
+
+    function getTransactionTitle(type) {
+
+      switch (type) {
+
+        case "send":
+          return "Money Sent";
+
+        case "zelle":
+          return "Zelle Payment";
+
+        case "deposit":
+          return "Money Added";
+
+        case "withdrawal":
+          return "Withdrawal";
+
+        case "transfer":
+          return "Bank Transfer";
+
+        case "payment":
+          return "Payment";
+
+        default:
+          return "Transaction";
+
+      }
+
+    }
+
+
+    /* META */
+
+    function getTransactionMeta(
+      transaction
+    ) {
+
+      if (
+        transaction.payee
+      ) {
+
+        return (
+          "To " +
+          String(
+            transaction.payee
+          )
+        );
+
+      }
+
+
+      if (
+        transaction.recipient
+      ) {
+
+        return (
+          "To " +
+          String(
+            transaction.recipient
+          )
+        );
+
+      }
+
+
+      if (
+        transaction.source
+      ) {
+
+        return (
+          "From " +
+          String(
+            transaction.source
+          )
+        );
+
+      }
+
+
+      if (
+        transaction.destination
+      ) {
+
+        return (
+          "To " +
+          String(
+            transaction.destination
+          )
+        );
+
+      }
+
+
+      if (
+        transaction.reference
+      ) {
+
+        return String(
+          transaction.reference
+        );
+
+      }
+
+
+      if (
+        transaction.type
+      ) {
+
+        return capitalize(
+          String(
+            transaction.type
+          ).replace(
+            /[-_]/g,
+            " "
+          )
+        );
+
+      }
+
+
+      return "Account activity";
+
+    }
+
+
+    /* TRANSACTION DATE */
+
+    function getTransactionDate(
+      timestamp
+    ) {
+
+      if (!timestamp) {
+        return null;
+      }
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate ===
+          "function"
+      ) {
+
+        return timestamp.toDate();
+
+      }
+
+
+      if (
+        timestamp instanceof Date
+      ) {
+
+        return timestamp;
+
+      }
+
+
+      if (
+        timestamp &&
+        typeof timestamp ===
+          "object" &&
+        typeof timestamp.seconds ===
+          "number"
+      ) {
+
+        return new Date(
+          timestamp.seconds * 1000
+        );
+
+      }
+
+
+      const date =
+        new Date(timestamp);
+
+
+      if (
+        isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return null;
+
+      }
+
+
+      return date;
+
+    }
+
+
+    /* DATE */
+
+    function formatDate(
+      timestamp
+    ) {
+
+      const date =
+        getTransactionDate(
+          timestamp
+        );
+
+
+      if (!date) {
+        return "Recent";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    /* CURRENCY */
+
+    function formatCurrency(
+      amount
+    ) {
+
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        Number(amount) || 0
+      );
+
+    }
+
+
+    /* ACCOUNT NUMBER */
+
+    function maskAccountNumber(
+      account
+    ) {
+
+      const value =
+        String(account);
+
+
+      if (
+        value.length <= 4
+      ) {
+
+        return value;
+
+      }
+
+
+      return (
+        "•••• " +
+        value.slice(-4)
+      );
+
+    }
+
+
+    /* INPUT DATE */
+
+    function toInputDate(
+      date
+    ) {
+
+      const year =
+        date.getFullYear();
+
+
+      const month =
+        String(
+          date.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      const day =
+        String(
+          date.getDate()
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+      );
+
+    }
+
+
+    /* CAPITALIZE */
+
+    function capitalize(
+      value
+    ) {
+
+      if (!value) {
+        return "";
+      }
+
+
+      const stringValue =
+        String(value);
+
+
+      return (
+        stringValue
+          .charAt(0)
+          .toUpperCase() +
+        stringValue.slice(1)
+      );
+
+    }
+
+
+    /* ESCAPE HTML */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+  </script>
+
+</body>
+</html>
