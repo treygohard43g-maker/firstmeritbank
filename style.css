@@ -270,3 +270,29 @@ h1 {
   border-color: #123b8f;
   box-shadow: 0 0 0 3px rgba(18, 59, 143, 0.08);
 }
+
+/* =========================
+   PASSWORD LABEL
+========================= */
+
+.password-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.password-label label {
+  margin-bottom: 0;
+}
+
+.password-label a {
+  color: #123b8f;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.password-label a:hover {
+  text-decoration: underline;
+}
