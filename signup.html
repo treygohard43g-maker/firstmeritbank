@@ -33,10 +33,11 @@
         </div>
 
         <div class="input-group">
-          <label for="fullName">Full Name</label>
+          <label for="signupFullName">Full Name</label>
+
           <input
             type="text"
-            id="fullName"
+            id="signupFullName"
             placeholder="Enter your full name"
             autocomplete="name"
             required
@@ -44,10 +45,11 @@
         </div>
 
         <div class="input-group">
-          <label for="email">Email Address</label>
+          <label for="signupEmail">Email Address</label>
+
           <input
             type="email"
-            id="email"
+            id="signupEmail"
             placeholder="Enter your email"
             autocomplete="email"
             required
@@ -61,23 +63,29 @@
         </div>
 
         <div class="input-group">
-          <label for="password">Password</label>
+          <label for="signupPassword">Password</label>
+
           <input
             type="password"
-            id="password"
+            id="signupPassword"
             placeholder="Create a password"
             autocomplete="new-password"
+            minlength="6"
             required
           >
         </div>
 
         <div class="input-group">
-          <label for="confirmPassword">Confirm Password</label>
+          <label for="signupConfirmPassword">
+            Confirm Password
+          </label>
+
           <input
             type="password"
-            id="confirmPassword"
+            id="signupConfirmPassword"
             placeholder="Confirm your password"
             autocomplete="new-password"
+            minlength="6"
             required
           >
         </div>
@@ -92,6 +100,7 @@
 
           <div class="verification-notice">
             <strong>Demo verification</strong>
+
             <p>
               This is a simulated banking environment.
               Do not enter real SSNs, government ID numbers,
@@ -100,37 +109,45 @@
           </div>
 
           <div class="input-group">
-            <label for="idType">ID Type</label>
+            <label for="signupIdType">
+              ID Type
+            </label>
 
-            <select id="idType" required>
+            <select id="signupIdType" required>
               <option value="">Select ID type</option>
-              <option value="drivers-license">Driver's License</option>
-              <option value="national-id">National ID</option>
-              <option value="passport">Passport</option>
+              <option value="drivers-license">
+                Driver's License
+              </option>
+              <option value="national-id">
+                National ID
+              </option>
+              <option value="passport">
+                Passport
+              </option>
             </select>
           </div>
 
           <div class="input-group">
-            <label for="demoIdNumber">
+            <label for="signupDemoIdNumber">
               Demo ID Number
             </label>
 
             <input
               type="text"
-              id="demoIdNumber"
+              id="signupDemoIdNumber"
               placeholder="Example: DEMO-ID-123456"
               required
             >
           </div>
 
           <div class="input-group">
-            <label for="demoSsn">
+            <label for="signupDemoSsn">
               Demo SSN
             </label>
 
             <input
               type="text"
-              id="demoSsn"
+              id="signupDemoSsn"
               placeholder="Example: XXX-XX-1234"
               maxlength="11"
               required
@@ -139,11 +156,19 @@
 
         </div>
 
-        <button type="submit" class="auth-button">
+        <button
+          type="submit"
+          id="signupButton"
+          class="auth-button"
+        >
           Create Account
         </button>
 
-        <p id="signupMessage" class="auth-message"></p>
+        <p
+          id="signupMessage"
+          class="auth-message"
+          aria-live="polite"
+        ></p>
 
       </form>
 
@@ -155,6 +180,8 @@
       <a href="index.html" class="back-home">
         ← Back to First Merit Bank
       </a>
+
+    </div>
 
   </main>
 
