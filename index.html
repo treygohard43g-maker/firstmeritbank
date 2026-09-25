@@ -1169,11 +1169,6 @@
 
     .footer-brand .brand-logo {
       width: 174px;
-
-      /*
-        The SVG contains a light/dark wordmark.
-        Keep it compact in the footer.
-      */
     }
 
     .footer-description {
@@ -1236,6 +1231,227 @@
 
 
     /* =========================================================
+       REQUESTED ANIMATIONS ONLY
+    ========================================================= */
+
+    .hero-actions .btn-primary {
+      animation: firstMeritSlideLeft 0.75s ease-out both;
+    }
+
+    .hero-actions .btn-secondary {
+      animation: firstMeritSlideRight 0.75s ease-out 0.08s both;
+    }
+
+    @keyframes firstMeritSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-70px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes firstMeritSlideRight {
+      from {
+        opacity: 0;
+        transform: translateX(70px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+
+    /* =========================================================
+       REVIEW SCROLL POP
+    ========================================================= */
+
+    .review-card {
+      opacity: 0;
+      transform: translateY(45px) scale(0.96);
+
+      transition:
+        opacity 0.65s ease,
+        transform 0.65s ease;
+    }
+
+    .review-card.review-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .review-card:nth-child(2) {
+      transition-delay: 0.12s;
+    }
+
+    .review-card:nth-child(3) {
+      transition-delay: 0.24s;
+    }
+
+
+    /* =========================================================
+       REVIEW PHOTOS
+    ========================================================= */
+
+    .review-avatar {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .review-avatar img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+    }
+
+
+    /* =========================================================
+       HOW TO USE
+       Answers open only when user taps.
+    ========================================================= */
+
+    .help-section {
+      background: white;
+
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .help-grid {
+      display: grid;
+
+      grid-template-columns: 0.75fr 1.25fr;
+
+      gap: 45px;
+
+      align-items: start;
+    }
+
+    .help-intro {
+      max-width: 360px;
+    }
+
+    .help-intro h2 {
+      margin-top: 7px;
+
+      color: var(--navy-dark);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: clamp(27px, 3.2vw, 36px);
+      font-weight: 800;
+
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .help-intro p {
+      margin-top: 10px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .help-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .help-item {
+      background: white;
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+
+      overflow: hidden;
+    }
+
+    .help-question {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 15px 16px;
+
+      border: 0;
+      background: white;
+
+      color: var(--navy-dark);
+
+      font-family: inherit;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      text-align: left;
+
+      cursor: pointer;
+    }
+
+    .help-question i {
+      flex-shrink: 0;
+
+      color: var(--blue);
+
+      font-size: 10px;
+
+      transition: transform 0.2s ease;
+    }
+
+    .help-answer {
+      display: none;
+
+      padding: 0 16px 16px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .help-item.open .help-answer {
+      display: block;
+    }
+
+    .help-item.open .help-question i {
+      transform: rotate(180deg);
+    }
+
+    .help-category {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      margin-bottom: 9px;
+
+      color: var(--blue);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.6px;
+    }
+
+
+    /* =========================================================
        MOBILE
     ========================================================= */
 
@@ -1290,7 +1506,9 @@
 
       .feature-content {
         max-width: 650px;
+
         margin: auto;
+
         text-align: center;
       }
 
@@ -1301,6 +1519,21 @@
       .feature-image {
         min-height: 300px;
       }
+
+      .help-grid {
+        grid-template-columns: 1fr;
+
+        gap: 28px;
+      }
+
+      .help-intro {
+        max-width: 650px;
+
+        margin: auto;
+
+        text-align: center;
+      }
+
     }
 
 
@@ -1324,6 +1557,7 @@
 
       .nav-signup {
         padding: 8px 11px;
+
         font-size: 10px;
       }
 
@@ -1333,6 +1567,7 @@
 
       .hero h1 {
         font-size: 39px;
+
         letter-spacing: -1.6px;
       }
 
@@ -1352,6 +1587,7 @@
 
       .bank-card {
         padding: 21px;
+
         border-radius: 17px;
       }
 
@@ -1411,6 +1647,7 @@
 
       .cta {
         padding: 31px 24px;
+
         border-radius: 15px;
       }
 
@@ -1431,267 +1668,39 @@
 
         gap: 6px;
       }
+
+      .help-question {
+        padding: 14px;
+      }
+
+      .help-answer {
+        padding: 0 14px 14px;
+      }
+
     }
 
+
     /* =========================================================
-   REQUESTED ANIMATIONS ONLY
-   ========================================================= */
+       REDUCED MOTION
+    ========================================================= */
 
-/* Hero buttons: Open Account from LEFT */
-.hero-actions .btn-primary {
-  animation: firstMeritSlideLeft 0.75s ease-out both;
-}
+    @media (prefers-reduced-motion: reduce) {
 
-/* Hero buttons: Sign In from RIGHT */
-.hero-actions .btn-secondary {
-  animation: firstMeritSlideRight 0.75s ease-out 0.08s both;
-}
+      .hero-actions .btn-primary,
+      .hero-actions .btn-secondary {
+        animation: none;
+      }
 
-@keyframes firstMeritSlideLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-70px);
-  }
+      .review-card {
+        opacity: 1;
 
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+        transform: none;
 
-@keyframes firstMeritSlideRight {
-  from {
-    opacity: 0;
-    transform: translateX(70px);
-  }
+        transition: none;
+      }
 
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+    }
 
-
-/* =========================================================
-   REVIEW SCROLL POP
-   Only review cards use this animation.
-   ========================================================= */
-
-.review-card {
-  opacity: 0;
-  transform: translateY(45px) scale(0.96);
-  transition:
-    opacity 0.65s ease,
-    transform 0.65s ease;
-}
-
-.review-card.review-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.review-card:nth-child(2) {
-  transition-delay: 0.12s;
-}
-
-.review-card:nth-child(3) {
-  transition-delay: 0.24s;
-}
-
-
-/* =========================================================
-   REVIEW PHOTOS
-   ========================================================= */
-
-.review-avatar {
-  overflow: hidden;
-  padding: 0;
-}
-
-.review-avatar img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-
-/* =========================================================
-   HOW TO USE
-   No automatic animation.
-   Answers only open when the user taps.
-   ========================================================= */
-
-.help-section {
-  background: white;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.help-grid {
-  display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
-  gap: 45px;
-  align-items: start;
-}
-
-.help-intro {
-  max-width: 360px;
-}
-
-.help-intro h2 {
-  margin-top: 7px;
-
-  color: var(--navy-dark);
-
-  font-family: "Manrope", sans-serif;
-
-  font-size: clamp(27px, 3.2vw, 36px);
-  font-weight: 800;
-
-  line-height: 1.15;
-  letter-spacing: -1px;
-}
-
-.help-intro p {
-  margin-top: 10px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-.help-list {
-  display: grid;
-  gap: 9px;
-}
-
-.help-item {
-  background: white;
-
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-
-  overflow: hidden;
-}
-
-.help-question {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-
-  padding: 15px 16px;
-
-  border: 0;
-  background: white;
-
-  color: var(--navy-dark);
-
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
-
-  text-align: left;
-
-  cursor: pointer;
-}
-
-.help-question i {
-  flex-shrink: 0;
-
-  color: var(--blue);
-
-  font-size: 10px;
-
-  transition: transform 0.2s ease;
-}
-
-.help-answer {
-  display: none;
-
-  padding: 0 16px 16px;
-
-  color: var(--muted);
-
-  font-size: 11px;
-  line-height: 1.7;
-}
-
-.help-item.open .help-answer {
-  display: block;
-}
-
-.help-item.open .help-question i {
-  transform: rotate(180deg);
-}
-
-.help-category {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  margin-bottom: 9px;
-
-  color: var(--blue);
-
-  font-size: 9px;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-}
-
-
-/* Mobile */
-
-@media (max-width: 850px) {
-
-  .help-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .help-intro {
-    max-width: 650px;
-    margin: auto;
-    text-align: center;
-  }
-
-}
-
-@media (max-width: 650px) {
-
-  .help-question {
-    padding: 14px;
-  }
-
-  .help-answer {
-    padding: 0 14px 14px;
-  }
-
-}
-
-
-/* Respect reduced-motion settings */
-@media (prefers-reduced-motion: reduce) {
-
-  .hero-actions .btn-primary,
-  .hero-actions .btn-secondary {
-    animation: none;
-  }
-
-  .review-card {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-}
-    
   </style>
 </head>
 
@@ -1720,25 +1729,49 @@
 
       <div class="nav-links">
 
-        <a href="#services">Services</a>
-        <a href="#digital">Digital Banking</a>
-        <a href="#reviews">Members</a>
-        <a href="#about">About</a>
+        <a href="#services">
+          Services
+        </a>
+
+        <a href="#digital">
+          Digital Banking
+        </a>
+
+        <a href="#reviews">
+          Members
+        </a>
+
+        <a href="#how-to-use">
+          How to Use
+        </a>
+
+        <a href="#about">
+          About
+        </a>
 
       </div>
 
 
       <div class="nav-actions">
 
-        <a href="login.html" class="nav-login">
+        <a
+          href="login.html"
+          class="nav-login"
+        >
           Log In
         </a>
 
-        <a href="signup.html" class="nav-signup">
+        <a
+          href="signup.html"
+          class="nav-signup"
+        >
           Open Account
         </a>
 
-        <button class="mobile-menu" aria-label="Open menu">
+        <button
+          class="mobile-menu"
+          aria-label="Open menu"
+        >
           <i class="fa-solid fa-bars"></i>
         </button>
 
@@ -1751,10 +1784,15 @@
 
 
   <!-- =======================================================
-       HERO
+       MAIN
   ======================================================== -->
 
   <main>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
     <section class="hero">
 
@@ -1773,8 +1811,13 @@
 
 
           <h1>
+
             Banking that
-            <span>moves with you.</span>
+
+            <span>
+              moves with you.
+            </span>
+
           </h1>
 
 
@@ -1992,7 +2035,10 @@
               money organized.
             </p>
 
-            <a href="signup.html" class="service-link">
+            <a
+              href="signup.html"
+              class="service-link"
+            >
               Learn more
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -2016,7 +2062,10 @@
               your progress and balances.
             </p>
 
-            <a href="signup.html" class="service-link">
+            <a
+              href="signup.html"
+              class="service-link"
+            >
               Learn more
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -2040,7 +2089,10 @@
               wherever you are.
             </p>
 
-            <a href="#digital" class="service-link">
+            <a
+              href="#digital"
+              class="service-link"
+            >
               Explore
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -2064,7 +2116,10 @@
               experience.
             </p>
 
-            <a href="login.html" class="service-link">
+            <a
+              href="login.html"
+              class="service-link"
+            >
               Learn more
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -2088,7 +2143,10 @@
               clearly in one place.
             </p>
 
-            <a href="login.html" class="service-link">
+            <a
+              href="login.html"
+              class="service-link"
+            >
               View account
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -2112,7 +2170,10 @@
               assistance.
             </p>
 
-            <a href="#about" class="service-link">
+            <a
+              href="#about"
+              class="service-link"
+            >
               Contact us
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -2255,15 +2316,19 @@
 
 
           <h2>
+
             Your banking,
             wherever you are.
+
           </h2>
 
 
           <p>
+
             Stay connected to your finances with a clean,
             straightforward banking experience designed
             for modern life.
+
           </p>
 
 
@@ -2345,8 +2410,11 @@
               href="signup.html"
               class="btn btn-primary"
             >
+
               Get Started
+
               <i class="fa-solid fa-arrow-right"></i>
+
             </a>
 
           </div>
@@ -2394,6 +2462,8 @@
         <div class="review-grid">
 
 
+          <!-- REVIEW 1 -->
+
           <article class="review-card">
 
             <div class="review-stars">
@@ -2419,12 +2489,15 @@
             <div class="review-person">
 
               <div class="review-avatar">
-  <img
-    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
-    alt="Emily Carter"
-    loading="lazy"
-  >
-</div>
+
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
+                  alt="Emily Carter"
+                  loading="lazy"
+                >
+
+              </div>
+
               <div>
 
                 <div class="review-name">
@@ -2442,6 +2515,8 @@
           </article>
 
 
+
+          <!-- REVIEW 2 -->
 
           <article class="review-card">
 
@@ -2467,14 +2542,14 @@
             <div class="review-person">
 
               <div class="review-avatar">
-  <img
-    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80"
-    alt="Daniel Brooks"
-    loading="lazy"
-  >
-</div>
-                
-              
+
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80"
+                  alt="Daniel Brooks"
+                  loading="lazy"
+                >
+
+              </div>
 
               <div>
 
@@ -2493,6 +2568,8 @@
           </article>
 
 
+
+          <!-- REVIEW 3 -->
 
           <article class="review-card">
 
@@ -2518,18 +2595,20 @@
             <div class="review-person">
 
               <div class="review-avatar">
-                SW
+
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+                  alt="Sophia Williams"
+                  loading="lazy"
+                >
+
               </div>
 
               <div>
 
-                <div class="review-avatar">
-  <img
-    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
-    alt="Sophia Williams"
-    loading="lazy"
-  >
-</div>
+                <div class="review-name">
+                  Sophia Williams
+                </div>
 
                 <div class="review-role">
                   Member
@@ -2541,6 +2620,316 @@
 
           </article>
 
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HOW TO USE
+         STEP 5
+    ====================================================== -->
+
+    <section
+      class="section help-section"
+      id="how-to-use"
+    >
+
+      <div class="container">
+
+        <div class="help-grid">
+
+
+          <!-- HELP INTRO -->
+
+          <div class="help-intro">
+
+            <div class="eyebrow">
+
+              <i class="fa-solid fa-circle-question"></i>
+
+              How to use First Merit
+
+            </div>
+
+
+            <h2>
+              Need help finding your way around?
+            </h2>
+
+
+            <p>
+
+              Find quick answers to common questions about
+              creating an account, checking your balance,
+              viewing activity, transfers and getting help.
+
+            </p>
+
+          </div>
+
+
+
+          <!-- HELP QUESTIONS -->
+
+          <div class="help-list">
+
+
+            <!-- QUESTION 1 -->
+
+            <div class="help-item">
+
+              <button
+                class="help-question"
+                type="button"
+                aria-expanded="false"
+              >
+
+                <span>
+                  How do I create an account?
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </button>
+
+
+              <div class="help-answer">
+
+                <div class="help-category">
+
+                  <i class="fa-solid fa-user-plus"></i>
+
+                  Getting started
+
+                </div>
+
+
+                To create an account, select
+                <strong>Open Account</strong> from the
+                navigation or choose
+                <strong>Open an Account</strong> from the
+                main page. Complete the signup form and
+                follow the instructions shown on the screen.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 2 -->
+
+            <div class="help-item">
+
+              <button
+                class="help-question"
+                type="button"
+                aria-expanded="false"
+              >
+
+                <span>
+                  Where can I see my account balance?
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </button>
+
+
+              <div class="help-answer">
+
+                <div class="help-category">
+
+                  <i class="fa-solid fa-wallet"></i>
+
+                  Account balance
+
+                </div>
+
+
+                After signing in, your account dashboard
+                displays your available balance and your
+                main account information. Use the dashboard
+                to review your current account overview.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 3 -->
+
+            <div class="help-item">
+
+              <button
+                class="help-question"
+                type="button"
+                aria-expanded="false"
+              >
+
+                <span>
+                  How do I view my account activity?
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </button>
+
+
+              <div class="help-answer">
+
+                <div class="help-category">
+
+                  <i class="fa-solid fa-chart-line"></i>
+
+                  Account activity
+
+                </div>
+
+
+                Sign in and go to your dashboard.
+                Look for the account activity or transaction
+                section to review the activity available
+                for your account.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 4 -->
+
+            <div class="help-item">
+
+              <button
+                class="help-question"
+                type="button"
+                aria-expanded="false"
+              >
+
+                <span>
+                  How do I make a transfer?
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </button>
+
+
+              <div class="help-answer">
+
+                <div class="help-category">
+
+                  <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                  Transfers
+
+                </div>
+
+
+                Sign in to your account and open the
+                transfer option from your banking dashboard.
+                Enter the required transfer information,
+                review the details carefully, and continue
+                through the confirmation process.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 5 -->
+
+            <div class="help-item">
+
+              <button
+                class="help-question"
+                type="button"
+                aria-expanded="false"
+              >
+
+                <span>
+                  What should I do if I forgot my password?
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </button>
+
+
+              <div class="help-answer">
+
+                <div class="help-category">
+
+                  <i class="fa-solid fa-lock"></i>
+
+                  Account access
+
+                </div>
+
+
+                Go to the
+                <strong>Log In</strong> page and select
+                <strong>Forgot Password</strong>. Follow
+                the instructions shown to recover access
+                to your account.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 6 -->
+
+            <div class="help-item">
+
+              <button
+                class="help-question"
+                type="button"
+                aria-expanded="false"
+              >
+
+                <span>
+                  Where do I go if I need help?
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </button>
+
+
+              <div class="help-answer">
+
+                <div class="help-category">
+
+                  <i class="fa-solid fa-headset"></i>
+
+                  Support
+
+                </div>
+
+
+                Start with the
+                <strong>How to Use</strong> section for
+                common questions. For additional assistance,
+                use the support or contact option provided
+                by the application.
+
+              </div>
+
+            </div>
+
+
+          </div>
 
         </div>
 
@@ -2568,9 +2957,11 @@
           </h2>
 
           <p>
+
             Get a modern banking experience designed to
             keep your everyday financial information clear,
             accessible and organized.
+
           </p>
 
 
@@ -2687,15 +3078,15 @@
               Support
             </h4>
 
-            <a href="#">
+            <a href="#how-to-use">
               Help Center
             </a>
 
-            <a href="#">
+            <a href="#how-to-use">
               Contact
             </a>
 
-            <a href="#">
+            <a href="#how-to-use">
               Security
             </a>
 
@@ -2724,6 +3115,126 @@
     </div>
 
   </footer>
+
+
+
+  <!-- =======================================================
+       STEP 6 — JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    /* =========================================================
+       REVIEW SCROLL REVEAL
+       Reviews appear when the user scrolls to them.
+    ========================================================= */
+
+    const reviewCards =
+      document.querySelectorAll(".review-card");
+
+
+    const reviewObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "review-visible"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15
+        }
+      );
+
+
+    reviewCards.forEach(card => {
+
+      reviewObserver.observe(card);
+
+    });
+
+
+
+    /* =========================================================
+       HOW TO USE ACCORDION
+       Only opens when the user taps a question.
+    ========================================================= */
+
+    const helpQuestions =
+      document.querySelectorAll(".help-question");
+
+
+    helpQuestions.forEach(question => {
+
+      question.addEventListener("click", () => {
+
+        const currentItem =
+          question.closest(".help-item");
+
+
+        const isAlreadyOpen =
+          currentItem.classList.contains("open");
+
+
+        /*
+          Close all other questions.
+        */
+
+        document
+          .querySelectorAll(".help-item")
+          .forEach(item => {
+
+            item.classList.remove("open");
+
+            const itemButton =
+              item.querySelector(".help-question");
+
+            if (itemButton) {
+
+              itemButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+
+          });
+
+
+        /*
+          Open the selected question
+          if it was previously closed.
+        */
+
+        if (!isAlreadyOpen) {
+
+          currentItem.classList.add("open");
+
+          question.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+        }
+
+      });
+
+    });
+
+  </script>
 
 
 </body>
