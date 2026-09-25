@@ -21,32 +21,49 @@ if (signupForm) {
 
     event.preventDefault();
 
-    const fullName = document.getElementById("fullName").value.trim();
-    const email = document.getElementById("signupEmail").value.trim();
-    const password = document.getElementById("signupPassword").value;
+    const fullName =
+      document.getElementById("fullName")?.value.trim();
+
+    const email =
+      document.getElementById("signupEmail")?.value.trim();
+
+    const password =
+      document.getElementById("signupPassword")?.value;
+
     const confirmPassword =
-      document.getElementById("confirmPassword").value;
+      document.getElementById("confirmPassword")?.value;
+
 
     if (!fullName || !email || !password || !confirmPassword) {
+
       signupMessage.textContent =
         "Please complete all required fields.";
+
       return;
     }
+
 
     if (password !== confirmPassword) {
+
       signupMessage.textContent =
         "Passwords do not match.";
+
       return;
     }
 
+
     if (password.length < 6) {
+
       signupMessage.textContent =
         "Password must be at least 6 characters.";
+
       return;
     }
+
 
     signupMessage.textContent =
       "Creating your account...";
+
 
     try {
 
@@ -57,42 +74,78 @@ if (signupForm) {
           password
         );
 
+
       const user = userCredential.user;
+
 
       await updateProfile(user, {
         displayName: fullName
       });
 
-      await sendEmailVerification(user);
+
+      try {
+        await sendEmailVerification(user);
+      } catch (emailError) {
+        console.warn(
+          "Verification email could not be sent:",
+          emailError
+        );
+      }
+
 
       signupMessage.textContent =
-        "Account created! Check your email to verify your account.";
+        "Account created successfully! Redirecting to login...";
 
-      signupForm.reset();
+
+      /*
+        Give the user a moment to see
+        the success message.
+      */
+
+      setTimeout(() => {
+
+        window.location.href = "login.html";
+
+      }, 1500);
+
 
     } catch (error) {
 
-      console.error(error);
+      console.error("Signup error:", error);
+
 
       if (error.code === "auth/email-already-in-use") {
 
         signupMessage.textContent =
           "An account with this email already exists.";
 
-      } else if (error.code === "auth/invalid-email") {
+      }
+
+      else if (error.code === "auth/invalid-email") {
 
         signupMessage.textContent =
           "Please enter a valid email address.";
 
-      } else if (error.code === "auth/weak-password") {
+      }
+
+      else if (error.code === "auth/weak-password") {
 
         signupMessage.textContent =
-          "Your password is too weak.";
+          "Password must be at least 6 characters.";
 
-      } else {
+      }
+
+      else if (error.code === "auth/operation-not-allowed") {
 
         signupMessage.textContent =
-          "Could not create the account. Please try again.";
+          "Email/Password sign-in is not enabled in Firebase.";
+
+      }
+
+      else {
+
+        signupMessage.textContent =
+          "Account creation failed: " + error.message;
 
       }
 
@@ -116,11 +169,13 @@ if (loginForm) {
 
     event.preventDefault();
 
+
     const email =
-      document.getElementById("loginEmail").value.trim();
+      document.getElementById("loginEmail")?.value.trim();
 
     const password =
-      document.getElementById("loginPassword").value;
+      document.getElementById("loginPassword")?.value;
+
 
     if (!email || !password) {
 
@@ -130,8 +185,10 @@ if (loginForm) {
       return;
     }
 
+
     loginMessage.textContent =
       "Signing you in...";
+
 
     try {
 
@@ -141,31 +198,45 @@ if (loginForm) {
         password
       );
 
+
       loginMessage.textContent =
         "Login successful. Opening your dashboard...";
 
-      window.location.href = "dashboard.html";
+
+      setTimeout(() => {
+
+        window.location.href = "dashboard.html";
+
+      }, 500);
+
 
     } catch (error) {
 
-      console.error(error);
+      console.error("Login error:", error);
 
-      if (error.code === "auth/invalid-credential" ||
-          error.code === "auth/wrong-password" ||
-          error.code === "auth/user-not-found") {
+
+      if (
+        error.code === "auth/invalid-credential" ||
+        error.code === "auth/wrong-password" ||
+        error.code === "auth/user-not-found"
+      ) {
 
         loginMessage.textContent =
           "Incorrect email or password.";
 
-      } else if (error.code === "auth/invalid-email") {
+      }
+
+      else if (error.code === "auth/invalid-email") {
 
         loginMessage.textContent =
           "Please enter a valid email address.";
 
-      } else {
+      }
+
+      else {
 
         loginMessage.textContent =
-          "Unable to sign in. Please try again.";
+          "Unable to sign in: " + error.message;
 
       }
 
@@ -174,3 +245,4 @@ if (loginForm) {
   });
 
 }
+ 
