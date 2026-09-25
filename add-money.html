@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
+
+  <title>Zelle | First Merit Bank</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #f4f7fb;
+      padding-bottom: 40px;
+    }
+
+    .topbar {
+      height: 70px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 20px;
+      border-bottom: 1px solid #e7ebf2;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .back-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #0b57d0;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .brand-text h1 {
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      display: block;
+      color: #7b8494;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .content {
+      padding: 24px 18px;
+    }
+
+    .page-title {
+      margin-bottom: 20px;
+    }
+
+    .page-title h2 {
+      font-size: 25px;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+
+    .page-title p {
+      color: #7b8494;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .balance-card {
+      background: linear-gradient(135deg, #0b57d0, #174ea6);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 25px rgba(11, 87, 208, 0.18);
+    }
+
+    .balance-label {
+      font-size: 12px;
+      opacity: 0.82;
+      margin-bottom: 8px;
+    }
+
+    .balance-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .balance-amount {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .balance-account {
+      margin-top: 12px;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    .form-card {
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 5px 18px rgba(23, 32, 51, 0.05);
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #273248;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8a94a6;
+      font-size: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #dce2eb;
+      background: #ffffff;
+      border-radius: 12px;
+      outline: none;
+      font-size: 15px;
+      color: #172033;
+      transition: 0.2s;
+    }
+
+    input {
+      height: 50px;
+      padding: 0 14px 0 42px;
+    }
+
+    textarea {
+      min-height: 90px;
+      padding: 13px 14px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #0b57d0;
+      box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.09);
+    }
+
+    .amount-wrap {
+      position: relative;
+    }
+
+    .amount-wrap .currency {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 700;
+      color: #536078;
+    }
+
+    .amount-wrap input {
+      padding-left: 38px;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .primary-btn {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 13px;
+      background: #0b57d0;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.2s;
+    }
+
+    .primary-btn:hover {
+      background: #0847ad;
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff1f1;
+      color: #b42318;
+      border: 1px solid #ffd5d5;
+    }
+
+    .message.success {
+      display: block;
+      background: #ecfdf3;
+      color: #067647;
+      border: 1px solid #c6f0d8;
+    }
+
+    .review-section,
+    .success-section {
+      display: none;
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(23, 32, 51, 0.05);
+    }
+
+    .review-header {
+      padding: 20px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .review-header h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .review-header p {
+      color: #7b8494;
+      font-size: 13px;
+    }
+
+    .review-amount {
+      padding: 25px 20px;
+      text-align: center;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .review-amount span {
+      display: block;
+      color: #7b8494;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .review-amount strong {
+      font-size: 31px;
+      color: #172033;
+    }
+
+    .review-details {
+      padding: 8px 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f2f5;
+      font-size: 13px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+    }
+
+    .detail-row span:first-child {
+      color: #7b8494;
+    }
+
+    .detail-row span:last-child {
+      font-weight: 700;
+      text-align: right;
+      max-width: 60%;
+      word-break: break-word;
+    }
+
+    .review-actions {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px 20px;
+    }
+
+    .secondary-btn {
+      flex: 1;
+      height: 50px;
+      border: 1px solid #d9e0ea;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #273248;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .confirm-btn {
+      flex: 1;
+      height: 50px;
+      border: 0;
+      border-radius: 12px;
+      background: #0b57d0;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .success-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #e5eaf1;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 5px 18px rgba(23, 32, 51, 0.05);
+    }
+
+    .success-icon {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #e9f9ef;
+      color: #15803d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .success-card h2 {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .success-card p {
+      color: #7b8494;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .transaction-id {
+      background: #f6f8fb;
+      border-radius: 12px;
+      padding: 13px;
+      margin-bottom: 18px;
+      font-size: 12px;
+      color: #647086;
+    }
+
+    .transaction-id strong {
+      display: block;
+      color: #172033;
+      margin-top: 5px;
+      word-break: break-all;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #8a94a6;
+      font-size: 11px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 480px) {
+      .content {
+        padding: 20px 14px;
+      }
+
+      .topbar {
+        padding: 0 14px;
+      }
+
+      .page-title h2 {
+        font-size: 23px;
+      }
+
+      .review-actions {
+        flex-direction: column;
+      }
+
+      .secondary-btn,
+      .confirm-btn {
+        flex: none;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="topbar">
+
+      <button class="back-btn" id="backBtn" type="button">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div class="brand">
+        <div class="brand-logo">FM</div>
+
+        <div class="brand-text">
+          <h1>First Merit Bank</h1>
+          <span>Online Banking</span>
+        </div>
+      </div>
+
+    </header>
+
+
+    <main class="content">
+
+      <!-- FORM SECTION -->
+      <section id="formSection">
+
+        <div class="page-title">
+          <h2>Zelle</h2>
+          <p>Send money quickly and securely to a recipient.</p>
+        </div>
+
+
+        <div class="balance-card">
+
+          <div class="balance-label">
+            Available Balance
+          </div>
+
+          <div class="balance-row">
+            <div class="balance-amount" id="availableBalance">
+              $0.00
+            </div>
+
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+
+          <div class="balance-account" id="balanceAccount">
+            Checking Account
+          </div>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <div class="field">
+
+            <label for="recipientName">
+              Recipient Name
+            </label>
+
+            <div class="input-wrap">
+
+              <i class="fa-regular fa-user"></i>
+
+              <input
+                type="text"
+                id="recipientName"
+                placeholder="Enter recipient name"
+                autocomplete="off"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="recipientContact">
+              Email or Mobile Number
+            </label>
+
+            <div class="input-wrap">
+
+              <i class="fa-solid fa-at"></i>
+
+              <input
+                type="text"
+                id="recipientContact"
+                placeholder="Enter email or mobile number"
+                autocomplete="off"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="amount">
+              Amount
+            </label>
+
+            <div class="amount-wrap">
+
+              <span class="currency">$</span>
+
+              <input
+                type="number"
+                id="amount"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="note">
+              Note
+            </label>
+
+            <textarea
+              id="note"
+              placeholder="Add a note (optional)"
+              maxlength="150"
+            ></textarea>
+
+          </div>
+
+
+          <div id="formMessage" class="message"></div>
+
+
+          <button
+            class="primary-btn"
+            id="reviewBtn"
+            type="button"
+          >
+            Review Payment
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- REVIEW SECTION -->
+      <section class="review-section" id="reviewSection">
+
+        <div class="page-title">
+          <h2>Review Payment</h2>
+          <p>Review the payment details before confirming.</p>
+        </div>
+
+
+        <div class="review-card">
+
+          <div class="review-header">
+            <h3>Payment Details</h3>
+            <p>Please make sure the information is correct.</p>
+          </div>
+
+
+          <div class="review-amount">
+
+            <span>Amount</span>
+
+            <strong id="reviewAmount">
+              $0.00
+            </strong>
+
+          </div>
+
+
+          <div class="review-details">
+
+            <div class="detail-row">
+              <span>Recipient</span>
+              <span id="reviewRecipient"></span>
+            </div>
+
+            <div class="detail-row">
+              <span>Email / Mobile</span>
+              <span id="reviewContact"></span>
+            </div>
+
+            <div class="detail-row">
+              <span>Payment Method</span>
+              <span>Checking Account</span>
+            </div>
+
+            <div class="detail-row">
+              <span>Note</span>
+              <span id="reviewNote">—</span>
+            </div>
+
+          </div>
+
+
+          <div id="reviewMessage" class="message"></div>
+
+
+          <div class="review-actions">
+
+            <button
+              class="secondary-btn"
+              id="editBtn"
+              type="button"
+            >
+              Edit Payment
+            </button>
+
+            <button
+              class="confirm-btn"
+              id="confirmBtn"
+              type="button"
+            >
+              Confirm & Send
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SUCCESS SECTION -->
+      <section class="success-section" id="successSection">
+
+        <div class="success-card">
+
+          <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+          </div>
+
+          <h2>Payment Successful</h2>
+
+          <p>
+            Your payment has been processed successfully.
+          </p>
+
+          <div class="transaction-id">
+
+            Transaction ID
+
+            <strong id="transactionId">
+              —
+            </strong>
+
+          </div>
+
+          <button
+            class="primary-btn"
+            id="dashboardBtn"
+            type="button"
+          >
+            Return to Dashboard
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <div class="footer-note">
+        First Merit Bank
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      collection,
+      runTransaction,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const reviewBtn =
+      document.getElementById("reviewBtn");
+
+    const editBtn =
+      document.getElementById("editBtn");
+
+    const confirmBtn =
+      document.getElementById("confirmBtn");
+
+    const dashboardBtn =
+      document.getElementById("dashboardBtn");
+
+
+    const formSection =
+      document.getElementById("formSection");
+
+    const reviewSection =
+      document.getElementById("reviewSection");
+
+    const successSection =
+      document.getElementById("successSection");
+
+
+    const recipientName =
+      document.getElementById("recipientName");
+
+    const recipientContact =
+      document.getElementById("recipientContact");
+
+    const amount =
+      document.getElementById("amount");
+
+    const note =
+      document.getElementById("note");
+
+
+    const availableBalance =
+      document.getElementById("availableBalance");
+
+    const balanceAccount =
+      document.getElementById("balanceAccount");
+
+    const formMessage =
+      document.getElementById("formMessage");
+
+    const reviewMessage =
+      document.getElementById("reviewMessage");
+
+
+    const reviewAmount =
+      document.getElementById("reviewAmount");
+
+    const reviewRecipient =
+      document.getElementById("reviewRecipient");
+
+    const reviewContact =
+      document.getElementById("reviewContact");
+
+    const reviewNote =
+      document.getElementById("reviewNote");
+
+    const transactionId =
+      document.getElementById("transactionId");
+
+
+    let currentUser = null;
+    let currentBalance = 0;
+
+    let pendingPayment = {
+      recipient: "",
+      contact: "",
+      amount: 0,
+      note: ""
+    };
+
+
+    function formatCurrency(value) {
+
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency: "USD"
+        }
+      ).format(value);
+
+    }
+
+
+    function showMessage(element, message, type = "error") {
+
+      element.textContent = message;
+
+      element.className =
+        "message " + type;
+
+    }
+
+
+    function clearMessage(element) {
+
+      element.textContent = "";
+
+      element.className = "message";
+
+    }
+
+
+    async function loadAccount() {
+
+      if (!currentUser) return;
+
+      try {
+
+        const userRef =
+          doc(db, "users", currentUser.uid);
+
+        const userSnap =
+          await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+
+          showMessage(
+            formMessage,
+            "Account information could not be found."
+          );
+
+          return;
+
+        }
+
+        const userData =
+          userSnap.data();
+
+        currentBalance =
+          Number(userData.balance || 0);
+
+        availableBalance.textContent =
+          formatCurrency(currentBalance);
+
+        const accountNumber =
+          userData.accountNumber || "Checking Account";
+
+        balanceAccount.textContent =
+          "Checking • " + accountNumber;
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          formMessage,
+          "Unable to load account information."
+        );
+
+      }
+
+    }
+
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href = "login.html";
+
+          return;
+
+        }
+
+        currentUser = user;
+
+        await loadAccount();
+
+      }
+    );
+
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+
+    reviewBtn.addEventListener(
+      "click",
+      () => {
+
+        clearMessage(formMessage);
+
+        const name =
+          recipientName.value.trim();
+
+        const contact =
+          recipientContact.value.trim();
+
+        const paymentAmount =
+          Number(amount.value);
+
+        const paymentNote =
+          note.value.trim();
+
+
+        if (!name) {
+
+          showMessage(
+            formMessage,
+            "Please enter the recipient's name."
+          );
+
+          recipientName.focus();
+
+          return;
+
+        }
+
+
+        if (!contact) {
+
+          showMessage(
+            formMessage,
+            "Please enter an email or mobile number."
+          );
+
+          recipientContact.focus();
+
+          return;
+
+        }
+
+
+        if (
+          !paymentAmount ||
+          paymentAmount <= 0
+        ) {
+
+          showMessage(
+            formMessage,
+            "Please enter a valid payment amount."
+          );
+
+          amount.focus();
+
+          return;
+
+        }
+
+
+        if (paymentAmount > currentBalance) {
+
+          showMessage(
+            formMessage,
+            "Insufficient available balance."
+          );
+
+          return;
+
+        }
+
+
+        pendingPayment = {
+
+          recipient: name,
+
+          contact: contact,
+
+          amount: paymentAmount,
+
+          note: paymentNote
+
+        };
+
+
+        reviewRecipient.textContent =
+          pendingPayment.recipient;
+
+        reviewContact.textContent =
+          pendingPayment.contact;
+
+        reviewAmount.textContent =
+          formatCurrency(
+            pendingPayment.amount
+          );
+
+        reviewNote.textContent =
+          pendingPayment.note || "—";
+
+
+        formSection.style.display =
+          "none";
+
+        reviewSection.style.display =
+          "block";
+
+        successSection.style.display =
+          "none";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+    editBtn.addEventListener(
+      "click",
+      () => {
+
+        clearMessage(reviewMessage);
+
+        reviewSection.style.display =
+          "none";
+
+        formSection.style.display =
+          "block";
+
+        successSection.style.display =
+          "none";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+    confirmBtn.addEventListener(
+      "click",
+      async () => {
+
+        clearMessage(reviewMessage);
+
+        if (!currentUser) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        confirmBtn.disabled = true;
+
+        confirmBtn.textContent =
+          "Processing...";
+
+
+        try {
+
+          const userRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid
+            );
+
+
+          const transactionRef =
+            doc(
+              collection(
+                db,
+                "users",
+                currentUser.uid,
+                "transactions"
+              )
+            );
+
+
+          await runTransaction(
+            db,
+            async (transaction) => {
+
+              const userSnap =
+                await transaction.get(
+                  userRef
+                );
+
+
+              if (!userSnap.exists()) {
+
+                throw new Error(
+                  "Account not found."
+                );
+
+              }
+
+
+              const userData =
+                userSnap.data();
+
+
+              const balance =
+                Number(
+                  userData.balance || 0
+                );
+
+
+              if (
+                pendingPayment.amount >
+                balance
+              ) {
+
+                throw new Error(
+                  "Insufficient available balance."
+                );
+
+              }
+
+
+              const newBalance =
+                balance -
+                pendingPayment.amount;
+
+
+              transaction.update(
+                userRef,
+                {
+                  balance: newBalance
+                }
+              );
+
+
+              transaction.set(
+                transactionRef,
+                {
+                  type: "zelle",
+
+                  title:
+                    "Zelle Payment",
+
+                  amount:
+                    pendingPayment.amount,
+
+                  direction:
+                    "debit",
+
+                  recipient:
+                    pendingPayment.recipient,
+
+                  recipientContact:
+                    pendingPayment.contact,
+
+                  note:
+                    pendingPayment.note || "",
+
+                  status:
+                    "completed",
+
+                  createdAt:
+                    serverTimestamp()
+                }
+              );
+
+            }
+          );
+
+
+          currentBalance =
+            currentBalance -
+            pendingPayment.amount;
+
+
+          transactionId.textContent =
+            transactionRef.id;
+
+
+          reviewSection.style.display =
+            "none";
+
+          formSection.style.display =
+            "none";
+
+          successSection.style.display =
+            "block";
+
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            reviewMessage,
+            error.message ||
+            "Unable to complete the payment."
+          );
+
+          confirmBtn.disabled = false;
+
+          confirmBtn.textContent =
+            "Confirm & Send";
+
+        }
+
+      }
+    );
+
+
+    dashboardBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
