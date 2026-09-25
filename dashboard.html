@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard | First Merit Bank</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+  <!-- TOP BAR -->
+  <header class="dashboard-header">
+
+    <div class="dashboard-brand">
+      <div class="dashboard-logo">FM</div>
+
+      <div>
+        <span class="bank-name">First Merit</span>
+        <span class="bank-small">Bank</span>
+      </div>
+    </div>
+
+    <button class="notification-button" aria-label="Notifications">
+      🔔
+    </button>
+
+  </header>
+
+
+  <main class="dashboard-container">
+
+    <!-- GREETING -->
+    <section class="dashboard-greeting">
+
+      <div>
+        <p class="greeting-small">Welcome back</p>
+
+        <h1 id="userName">
+          Member
+        </h1>
+      </div>
+
+      <div class="profile-circle">
+        👤
+      </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+    <div class="dashboard-search">
+      <span>⌕</span>
+
+      <input
+        type="text"
+        placeholder="How can we help?"
+        id="dashboardSearch"
+      >
+    </div>
+
+
+    <!-- MAIN ACCOUNT -->
+    <section class="account-card main-account-card">
+
+      <div class="account-card-top">
+
+        <div>
+          <span class="account-label">
+            Main Account
+          </span>
+
+          <span class="account-number">
+            Account •••• 4821
+          </span>
+        </div>
+
+        <span class="account-menu">•••</span>
+
+      </div>
+
+      <div class="balance-label">
+        Available balance
+      </div>
+
+      <div class="main-balance" id="mainBalance">
+        $12,450.00
+      </div>
+
+      <div class="account-card-bottom">
+
+        <span>
+          Demo funds
+        </span>
+
+        <span>
+          USD
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- INHERITANCE ACCOUNT -->
+    <section class="account-card inheritance-card">
+
+      <div class="inheritance-top">
+
+        <div class="inheritance-icon">
+          🏦
+        </div>
+
+        <div>
+          <span class="account-label">
+            Inheritance Account
+          </span>
+
+          <span class="account-number">
+            Restricted account
+          </span>
+        </div>
+
+      </div>
+
+      <div class="inheritance-label">
+        Inheritance balance
+      </div>
+
+      <div class="inheritance-balance" id="inheritanceBalance">
+        $250,000.00
+      </div>
+
+      <div class="inheritance-note">
+        Demo inheritance funds • Not real money
+      </div>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+    <section class="dashboard-section">
+
+      <div class="section-heading">
+        <h2>Quick actions</h2>
+      </div>
+
+      <div class="quick-actions">
+
+        <button class="quick-action-card" id="sendMoneyBtn">
+
+          <div class="quick-action-icon">
+            💸
+          </div>
+
+          <strong>Send Money</strong>
+
+          <span>
+            Transfer demo funds
+          </span>
+
+        </button>
+
+
+        <button class="quick-action-card">
+
+          <div class="quick-action-icon">
+            🛒
+          </div>
+
+          <strong>Payments</strong>
+
+          <span>
+            Manage payments
+          </span>
+
+        </button>
+
+
+        <button class="quick-action-card">
+
+          <div class="quick-action-icon">
+            📄
+          </div>
+
+          <strong>Transactions</strong>
+
+          <span>
+            View activity
+          </span>
+
+        </button>
+
+
+        <button class="quick-action-card">
+
+          <div class="quick-action-icon">
+            👤
+          </div>
+
+          <strong>Account Details</strong>
+
+          <span>
+            View account information
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECENT ACTIVITY -->
+    <section class="dashboard-section">
+
+      <div class="section-heading">
+
+        <h2>Recent activity</h2>
+
+        <button class="view-all">
+          View all
+        </button>
+
+      </div>
+
+
+      <div class="transaction-list">
+
+        <div class="transaction-item">
+
+          <div class="transaction-icon">
+            🛒
+          </div>
+
+          <div class="transaction-info">
+
+            <strong>
+              Demo purchase
+            </strong>
+
+            <span>
+              Today
+            </span>
+
+          </div>
+
+          <strong class="transaction-amount">
+            -$45.00
+          </strong>
+
+        </div>
+
+
+        <div class="transaction-item">
+
+          <div class="transaction-icon">
+            💰
+          </div>
+
+          <div class="transaction-info">
+
+            <strong>
+              Demo deposit
+            </strong>
+
+            <span>
+              Yesterday
+            </span>
+
+          </div>
+
+          <strong class="transaction-positive">
+            +$500.00
+          </strong>
+
+        </div>
+
+
+        <div class="transaction-item">
+
+          <div class="transaction-icon">
+            💸
+          </div>
+
+          <div class="transaction-info">
+
+            <strong>
+              Demo transfer
+            </strong>
+
+            <span>
+              Sep 23
+            </span>
+
+          </div>
+
+          <strong class="transaction-amount">
+            -$120.00
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DEMO NOTICE -->
+    <div class="dashboard-demo-notice">
+
+      <strong>Demo banking environment</strong>
+
+      <span>
+        All balances and transactions shown here are simulated.
+        No real money is involved.
+      </span>
+
+    </div>
+
+  </main>
+
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-navigation">
+
+    <button class="bottom-nav-item active">
+
+      <span>⌂</span>
+      <small>Home</small>
+
+    </button>
+
+
+    <button class="bottom-nav-item" id="transferNav">
+
+      <span>⇄</span>
+      <small>Transfer</small>
+
+    </button>
+
+
+    <button class="bottom-nav-item">
+
+      <span>▣</span>
+      <small>Payments</small>
+
+    </button>
+
+
+    <button class="bottom-nav-item" id="logoutBtn">
+
+      <span>☰</span>
+      <small>Menu</small>
+
+    </button>
+
+  </nav>
+
+
+  <script type="module" src="dashboard.js"></script>
+
+</body>
+</html>
