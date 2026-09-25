@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Notifications | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ecf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .back-btn,
+    .header-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 13px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bank-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .page-title-small {
+      color: #7e8999;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* CONTENT */
+
+    .content {
+      width: min(100%, 820px);
+      margin: auto;
+      padding: 28px 18px 50px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .heading-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      letter-spacing: -0.8px;
+    }
+
+    .page-heading p {
+      color: #7d8899;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    .mark-all-btn {
+      border: 0;
+      background: transparent;
+      color: #123b72;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 5px 0;
+    }
+
+    /* SUMMARY */
+
+    .summary-card {
+      background: linear-gradient(135deg, #123b72, #19589e);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 13px 30px rgba(18, 59, 114, 0.15);
+      margin-bottom: 19px;
+    }
+
+    .summary-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .summary-icon {
+      width: 47px;
+      height: 47px;
+      min-width: 47px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+    }
+
+    .summary-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .summary-text {
+      font-size: 11px;
+      opacity: 0.72;
+      margin-top: 4px;
+    }
+
+    .summary-count {
+      margin-left: auto;
+      min-width: 31px;
+      height: 31px;
+      padding: 0 8px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    /* FILTER */
+
+    .filter-card {
+      background: #ffffff;
+      border: 1px solid #e6ebf2;
+      border-radius: 18px;
+      padding: 7px;
+      display: flex;
+      gap: 6px;
+      margin-bottom: 19px;
+      box-shadow: 0 4px 16px rgba(24,39,75,0.035);
+    }
+
+    .filter-btn {
+      flex: 1;
+      height: 39px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: #7a8697;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .filter-btn.active {
+      background: #edf3fa;
+      color: #123b72;
+      font-weight: 750;
+    }
+
+    /* SECTION */
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 3px 10px;
+    }
+
+    .section-heading h2 {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .notification-count {
+      color: #8a95a5;
+      font-size: 11px;
+    }
+
+    /* NOTIFICATIONS */
+
+    .notification-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .notification-card {
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 19px;
+      padding: 15px;
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      box-shadow: 0 4px 15px rgba(24,39,75,0.035);
+      cursor: pointer;
+      transition: 0.2s;
+      position: relative;
+    }
+
+    .notification-card.unread {
+      border-color: #d7e3f2;
+      background: #fbfdff;
+    }
+
+    .notification-card.unread::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 17px;
+      width: 3px;
+      height: 31px;
+      background: #19589e;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .notification-icon {
+      width: 45px;
+      height: 45px;
+      min-width: 45px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .notification-icon.transaction {
+      background: #edf4fb;
+      color: #19589e;
+    }
+
+    .notification-icon.security {
+      background: #f1effb;
+      color: #6855a7;
+    }
+
+    .notification-icon.account {
+      background: #edf8f2;
+      color: #188456;
+    }
+
+    .notification-icon.alert {
+      background: #fff5e8;
+      color: #b87510;
+    }
+
+    .notification-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notification-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .notification-title {
+      font-size: 13px;
+      font-weight: 750;
+      color: #263044;
+    }
+
+    .unread-dot {
+      width: 7px;
+      height: 7px;
+      min-width: 7px;
+      border-radius: 50%;
+      background: #19589e;
+      margin-top: 5px;
+    }
+
+    .notification-message {
+      color: #7e8999;
+      font-size: 11px;
+      line-height: 1.5;
+      margin-top: 5px;
+    }
+
+    .notification-time {
+      color: #a0a9b6;
+      font-size: 10px;
+      margin-top: 8px;
+    }
+
+    /* EMPTY */
+
+    .empty-state {
+      display: none;
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 21px;
+      padding: 45px 20px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 59px;
+      height: 59px;
+      border-radius: 19px;
+      background: #f1f5f9;
+      color: #7d8999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 20px;
+    }
+
+    .empty-state h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .empty-state p {
+      color: #8a95a5;
+      font-size: 13px;
+    }
+
+    /* MODAL */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,22,38,0.52);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 15px;
+      z-index: 100;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(100%, 520px);
+      background: #ffffff;
+      border-radius: 25px 25px 18px 18px;
+      padding: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      animation: slideUp 0.22s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-handle {
+      width: 38px;
+      height: 4px;
+      border-radius: 20px;
+      background: #d9dee6;
+      margin: 0 auto 19px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .modal-header h2 {
+      font-size: 20px;
+    }
+
+    .close-btn {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #596579;
+    }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 17px;
+      background: #edf4fb;
+      color: #19589e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 19px;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 750;
+    }
+
+    .modal-message {
+      color: #707c8e;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 7px;
+    }
+
+    .modal-date {
+      color: #a0a9b6;
+      font-size: 11px;
+      margin-top: 13px;
+    }
+
+    .modal-button {
+      width: 100%;
+      height: 49px;
+      border: 0;
+      border-radius: 14px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%,20px);
+      background: #172033;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 13px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%,0);
+    }
+
+    @media (min-width: 700px) {
+      .modal-overlay {
+        align-items: center;
+      }
+
+      .modal {
+        border-radius: 25px;
+      }
+
+      .notification-card:hover {
+        border-color: #d5dfeb;
+        transform: translateY(-1px);
+      }
+    }
+
+    @media (max-width: 430px) {
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .content {
+        padding: 24px 13px 45px;
+      }
+
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .heading-row {
+        align-items: center;
+      }
+
+      .summary-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button class="back-btn" id="backBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="bank-brand">
+
+          <div class="bank-logo">
+            FM
+          </div>
+
+          <div>
+            <div class="bank-name">
+              First Merit Bank
+            </div>
+
+            <div class="page-title-small">
+              Notifications
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="header-btn" id="refreshBtn">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </header>
+
+
+    <main class="content">
+
+      <!-- HEADING -->
+
+      <div class="page-heading">
+
+        <div class="heading-row">
+
+          <div>
+            <h1>Notifications</h1>
+
+            <p>
+              Stay updated with your account activity.
+            </p>
+          </div>
+
+          <button
+            class="mark-all-btn"
+            id="markAllBtn"
+          >
+            Mark all read
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUMMARY -->
+
+      <section class="summary-card">
+
+        <div class="summary-top">
+
+          <div class="summary-icon">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+
+          <div>
+
+            <div class="summary-title">
+              Notification Center
+            </div>
+
+            <div class="summary-text">
+              Your latest account updates
+            </div>
+
+          </div>
+
+          <div class="summary-count" id="unreadCount">
+            0
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- FILTER -->
+
+      <div class="filter-card">
+
+        <button
+          class="filter-btn active"
+          data-filter="all"
+        >
+          All
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="unread"
+        >
+          Unread
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="transaction"
+        >
+          Transactions
+        </button>
+
+        <button
+          class="filter-btn"
+          data-filter="security"
+        >
+          Security
+        </button>
+
+      </div>
+
+
+      <!-- LIST -->
+
+      <section>
+
+        <div class="section-heading">
+
+          <h2>Recent Notifications</h2>
+
+          <span
+            class="notification-count"
+            id="notificationCount"
+          >
+            0 notifications
+          </span>
+
+        </div>
+
+
+        <div
+          class="notification-list"
+          id="notificationList"
+        ></div>
+
+
+        <div
+          class="empty-state"
+          id="emptyState"
+        >
+
+          <div class="empty-icon">
+            <i class="fa-regular fa-bell-slash"></i>
+          </div>
+
+          <h3>No notifications</h3>
+
+          <p>
+            You are all caught up.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- NOTIFICATION MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="notificationModal"
+  >
+
+    <div class="modal">
+
+      <div class="modal-handle"></div>
+
+      <div class="modal-header">
+
+        <h2>Notification</h2>
+
+        <button
+          class="close-btn"
+          id="closeModal"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-icon"
+        id="modalIcon"
+      >
+        <i class="fa-solid fa-bell"></i>
+      </div>
+
+      <div
+        class="modal-title"
+        id="modalTitle"
+      >
+        Notification
+      </div>
+
+      <div
+        class="modal-message"
+        id="modalMessage"
+      >
+        —
+      </div>
+
+      <div
+        class="modal-date"
+        id="modalDate"
+      >
+        —
+      </div>
+
+      <button
+        class="modal-button"
+        id="doneBtn"
+      >
+        Done
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="toast" id="toast">
+    Notifications updated
+  </div>
+
+
+  <script type="module">
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      collection,
+      getDocs,
+      query,
+      orderBy,
+      limit,
+      updateDoc,
+      writeBatch
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    /* ELEMENTS */
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const markAllBtn =
+      document.getElementById("markAllBtn");
+
+    const notificationList =
+      document.getElementById("notificationList");
+
+    const emptyState =
+      document.getElementById("emptyState");
+
+    const unreadCount =
+      document.getElementById("unreadCount");
+
+    const notificationCount =
+      document.getElementById("notificationCount");
+
+    const filterButtons =
+      document.querySelectorAll(".filter-btn");
+
+    const notificationModal =
+      document.getElementById("notificationModal");
+
+    const closeModal =
+      document.getElementById("closeModal");
+
+    const doneBtn =
+      document.getElementById("doneBtn");
+
+    const modalIcon =
+      document.getElementById("modalIcon");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const modalMessage =
+      document.getElementById("modalMessage");
+
+    const modalDate =
+      document.getElementById("modalDate");
+
+    const toast =
+      document.getElementById("toast");
+
+
+    let currentUser = null;
+    let notifications = [];
+    let activeFilter = "all";
+
+
+    /* BACK */
+
+    backBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+
+    /* AUTH */
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = user;
+
+      await loadNotifications();
+
+    });
+
+
+    /* LOAD */
+
+    async function loadNotifications() {
+
+      try {
+
+        notifications = [];
+
+        const notificationsRef =
+          collection(
+            db,
+            "users",
+            currentUser.uid,
+            "notifications"
+          );
+
+
+        const notificationsQuery =
+          query(
+            notificationsRef,
+            orderBy("createdAt", "desc"),
+            limit(100)
+          );
+
+
+        const snapshot =
+          await getDocs(
+            notificationsQuery
+          );
+
+
+        snapshot.forEach((item) => {
+
+          notifications.push({
+            id: item.id,
+            ...item.data()
+          });
+
+        });
+
+
+        /*
+          If no stored notifications exist,
+          create useful account notifications
+          based on existing account data.
+        */
+
+        if (notifications.length === 0) {
+
+          await createInitialNotifications();
+
+        }
+
+
+        renderNotifications();
+
+      } catch (error) {
+
+        console.error(
+          "Notification loading error:",
+          error
+        );
+
+        notifications = [];
+
+        renderNotifications();
+
+      }
+
+    }
+
+
+    /* INITIAL NOTIFICATIONS */
+
+    async function createInitialNotifications() {
+
+      try {
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          );
+
+
+        const userSnapshot =
+          await getDoc(userRef);
+
+
+        const userData =
+          userSnapshot.exists()
+            ? userSnapshot.data()
+            : {};
+
+
+        const notificationRef =
+          collection(
+            db,
+            "users",
+            currentUser.uid,
+            "notifications"
+          );
+
+
+        const batch =
+          writeBatch(db);
+
+
+        const accountNotification =
+          doc(notificationRef);
+
+
+        batch.set(
+          accountNotification,
+          {
+            type: "account",
+            title: "Account Ready",
+            message:
+              "Your First Merit Bank account is ready to use.",
+            read: false,
+            createdAt: new Date()
+          }
+        );
+
+
+        if (
+          userData.inheritance &&
+          userData.inheritance.detailsSet === true
+        ) {
+
+          const inheritanceNotification =
+            doc(notificationRef);
+
+
+          batch.set(
+            inheritanceNotification,
+            {
+              type: "account",
+              title: "Inheritance Information Updated",
+              message:
+                "Your inheritance information has been updated.",
+              read: false,
+              createdAt: new Date()
+            }
+          );
+
+        }
+
+
+        await batch.commit();
+
+
+        const refreshedSnapshot =
+          await getDocs(
+            query(
+              notificationRef,
+              orderBy("createdAt", "desc"),
+              limit(100)
+            )
+          );
+
+
+        notifications = [];
+
+
+        refreshedSnapshot.forEach((item) => {
+
+          notifications.push({
+            id: item.id,
+            ...item.data()
+          });
+
+        });
+
+      } catch (error) {
+
+        console.error(
+          "Initial notification error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* RENDER */
+
+    function renderNotifications() {
+
+      const filtered =
+        notifications.filter(
+          notification => {
+
+            if (activeFilter === "all") {
+              return true;
+            }
+
+            if (activeFilter === "unread") {
+              return notification.read !== true;
+            }
+
+            return notification.type === activeFilter;
+
+          }
+        );
+
+
+      const unread =
+        notifications.filter(
+          notification =>
+            notification.read !== true
+        ).length;
+
+
+      unreadCount.textContent =
+        unread;
+
+
+      notificationCount.textContent =
+        `${filtered.length} ${
+          filtered.length === 1
+            ? "notification"
+            : "notifications"
+        }`;
+
+
+      if (filtered.length === 0) {
+
+        notificationList.innerHTML = "";
+
+        notificationList.style.display = "none";
+
+        emptyState.style.display = "block";
+
+        return;
+
+      }
+
+
+      emptyState.style.display = "none";
+
+      notificationList.style.display = "flex";
+
+
+      notificationList.innerHTML =
+        filtered.map(
+          createNotificationCard
+        ).join("");
+
+
+      notificationList
+        .querySelectorAll(
+          ".notification-card"
+        )
+        .forEach(card => {
+
+          card.addEventListener(
+            "click",
+            () => {
+
+              const id =
+                card.dataset.id;
+
+
+              const notification =
+                notifications.find(
+                  item =>
+                    item.id === id
+                );
+
+
+              if (notification) {
+
+                openNotification(
+                  notification
+                );
+
+              }
+
+            }
+          );
+
+        });
+
+    }
+
+
+    /* CARD */
+
+    function createNotificationCard(
+      notification
+    ) {
+
+      const type =
+        notification.type || "account";
+
+
+      const icon =
+        getIcon(type);
+
+
+      const unread =
+        notification.read !== true;
+
+
+      return `
+        <article
+          class="notification-card ${unread ? "unread" : ""}"
+          data-id="${escapeHtml(notification.id)}"
+        >
+
+          <div class="notification-icon ${escapeHtml(type)}">
+            <i class="${icon}"></i>
+          </div>
+
+          <div class="notification-content">
+
+            <div class="notification-top">
+
+              <div class="notification-title">
+                ${escapeHtml(
+                  notification.title ||
+                  "Notification"
+                )}
+              </div>
+
+              ${
+                unread
+                  ? `<span class="unread-dot"></span>`
+                  : ""
+              }
+
+            </div>
+
+            <div class="notification-message">
+              ${escapeHtml(
+                notification.message ||
+                ""
+              )}
+            </div>
+
+            <div class="notification-time">
+              ${escapeHtml(
+                formatDate(
+                  notification.createdAt
+                )
+              )}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }
+
+
+    /* OPEN */
+
+    async function openNotification(
+      notification
+    ) {
+
+      modalIcon.innerHTML =
+        `<i class="${getIcon(
+          notification.type
+        )}"></i>`;
+
+
+      modalTitle.textContent =
+        notification.title ||
+        "Notification";
+
+
+      modalMessage.textContent =
+        notification.message ||
+        "No additional information.";
+
+
+      modalDate.textContent =
+        formatDateTime(
+          notification.createdAt
+        );
+
+
+      notificationModal.classList.add(
+        "show"
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
+
+
+      if (
+        notification.read !== true
+      ) {
+
+        await markAsRead(
+          notification.id
+        );
+
+      }
+
+    }
+
+
+    /* MARK READ */
+
+    async function markAsRead(id) {
+
+      try {
+
+        const notificationRef =
+          doc(
+            db,
+            "users",
+            currentUser.uid,
+            "notifications",
+            id
+          );
+
+
+        await updateDoc(
+          notificationRef,
+          {
+            read: true
+          }
+        );
+
+
+        const item =
+          notifications.find(
+            notification =>
+              notification.id === id
+          );
+
+
+        if (item) {
+          item.read = true;
+        }
+
+
+        renderNotifications();
+
+      } catch (error) {
+
+        console.error(
+          "Mark read error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* MARK ALL */
+
+    markAllBtn.addEventListener(
+      "click",
+      async () => {
+
+        const unread =
+          notifications.filter(
+            notification =>
+              notification.read !== true
+          );
+
+
+        if (unread.length === 0) {
+
+          showToast(
+            "All notifications are already read"
+          );
+
+          return;
+
+        }
+
+
+        markAllBtn.disabled = true;
+
+        markAllBtn.textContent =
+          "Updating...";
+
+
+        try {
+
+          const batch =
+            writeBatch(db);
+
+
+          unread.forEach(
+            notification => {
+
+              const notificationRef =
+                doc(
+                  db,
+                  "users",
+                  currentUser.uid,
+                  "notifications",
+                  notification.id
+                );
+
+
+              batch.update(
+                notificationRef,
+                {
+                  read: true
+                }
+              );
+
+            }
+          );
+
+
+          await batch.commit();
+
+
+          notifications.forEach(
+            notification => {
+              notification.read = true;
+            }
+          );
+
+
+          renderNotifications();
+
+          showToast(
+            "All notifications marked as read"
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Mark all read error:",
+            error
+          );
+
+          showToast(
+            "Unable to update notifications"
+          );
+
+        } finally {
+
+          markAllBtn.disabled = false;
+
+          markAllBtn.textContent =
+            "Mark all read";
+
+        }
+
+      }
+    );
+
+
+    /* FILTERS */
+
+    filterButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            filterButtons.forEach(
+              item =>
+                item.classList.remove(
+                  "active"
+                )
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            activeFilter =
+              button.dataset.filter;
+
+
+            renderNotifications();
+
+          }
+        );
+
+      }
+    );
+
+
+    /* CLOSE MODAL */
+
+    closeModal.addEventListener(
+      "click",
+      closeNotificationModal
+    );
+
+
+    doneBtn.addEventListener(
+      "click",
+      closeNotificationModal
+    );
+
+
+    notificationModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          notificationModal
+        ) {
+
+          closeNotificationModal();
+
+        }
+
+      }
+    );
+
+
+    function closeNotificationModal() {
+
+      notificationModal.classList.remove(
+        "show"
+      );
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    /* REFRESH */
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+        await loadNotifications();
+
+        refreshBtn.innerHTML =
+          '<i class="fa-solid fa-rotate-right"></i>';
+
+        showToast(
+          "Notifications refreshed"
+        );
+
+      }
+    );
+
+
+    /* ICONS */
+
+    function getIcon(type) {
+
+      switch (type) {
+
+        case "transaction":
+          return "fa-solid fa-arrow-right-arrow-left";
+
+        case "security":
+          return "fa-solid fa-shield-halved";
+
+        case "alert":
+          return "fa-solid fa-triangle-exclamation";
+
+        case "account":
+        default:
+          return "fa-solid fa-bell";
+
+      }
+
+    }
+
+
+    /* DATES */
+
+    function formatDate(timestamp) {
+
+      if (!timestamp) {
+        return "Recently";
+      }
+
+
+      let date;
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate === "function"
+      ) {
+
+        date =
+          timestamp.toDate();
+
+      } else {
+
+        date =
+          new Date(timestamp);
+
+      }
+
+
+      if (isNaN(date.getTime())) {
+        return "Recently";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(date);
+
+    }
+
+
+    function formatDateTime(timestamp) {
+
+      if (!timestamp) {
+        return "Recently";
+      }
+
+
+      let date;
+
+
+      if (
+        timestamp &&
+        typeof timestamp.toDate === "function"
+      ) {
+
+        date =
+          timestamp.toDate();
+
+      } else {
+
+        date =
+          new Date(timestamp);
+
+      }
+
+
+      if (isNaN(date.getTime())) {
+        return "Recently";
+      }
+
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      ).format(date);
+
+    }
+
+
+    /* TOAST */
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(toastTimer);
+
+
+      toastTimer =
+        setTimeout(
+          () => {
+            toast.classList.remove(
+              "show"
+            );
+          },
+          2300
+        );
+
+    }
+
+
+    /* ESCAPE */
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+  </script>
+
+</body>
+</html>
