@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Zelle | First Merit Bank</title>
+  <title>Add Money | First Merit Bank</title>
 
   <link
     rel="stylesheet"
@@ -33,13 +30,12 @@
       max-width: 620px;
       margin: 0 auto;
       min-height: 100vh;
-      background: #f4f7fb;
       padding-bottom: 40px;
     }
 
     .topbar {
       height: 70px;
-      background: #ffffff;
+      background: #fff;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -75,7 +71,7 @@
       height: 38px;
       border-radius: 11px;
       background: #0b57d0;
-      color: #ffffff;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -105,7 +101,6 @@
 
     .page-title h2 {
       font-size: 25px;
-      font-weight: 750;
       margin-bottom: 6px;
     }
 
@@ -117,7 +112,7 @@
 
     .balance-card {
       background: linear-gradient(135deg, #0b57d0, #174ea6);
-      color: #ffffff;
+      color: #fff;
       border-radius: 18px;
       padding: 20px;
       margin-bottom: 18px;
@@ -126,7 +121,7 @@
 
     .balance-label {
       font-size: 12px;
-      opacity: 0.82;
+      opacity: .82;
       margin-bottom: 8px;
     }
 
@@ -134,35 +129,34 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
     }
 
     .balance-amount {
       font-size: 27px;
       font-weight: 800;
-      letter-spacing: -0.5px;
     }
 
     .balance-account {
       margin-top: 12px;
       font-size: 12px;
-      opacity: 0.85;
+      opacity: .85;
+    }
+
+    .form-card,
+    .review-card,
+    .success-card {
+      background: #fff;
+      border: 1px solid #e5eaf1;
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(23, 32, 51, .05);
     }
 
     .form-card {
-      background: #ffffff;
-      border: 1px solid #e5eaf1;
-      border-radius: 18px;
       padding: 20px;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, 0.05);
     }
 
     .field {
-      margin-bottom: 17px;
-    }
-
-    .field:last-child {
-      margin-bottom: 0;
+      margin-bottom: 18px;
     }
 
     .field label {
@@ -170,69 +164,44 @@
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 8px;
-      color: #273248;
-    }
-
-    .input-wrap {
-      position: relative;
-    }
-
-    .input-wrap i {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #8a94a6;
-      font-size: 14px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      border: 1px solid #dce2eb;
-      background: #ffffff;
-      border-radius: 12px;
-      outline: none;
-      font-size: 15px;
-      color: #172033;
-      transition: 0.2s;
-    }
-
-    input {
-      height: 50px;
-      padding: 0 14px 0 42px;
-    }
-
-    textarea {
-      min-height: 90px;
-      padding: 13px 14px;
-      resize: vertical;
-      font-family: inherit;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: #0b57d0;
-      box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.09);
     }
 
     .amount-wrap {
       position: relative;
     }
 
-    .amount-wrap .currency {
+    .currency {
       position: absolute;
       left: 15px;
       top: 50%;
       transform: translateY(-50%);
-      font-weight: 700;
       color: #536078;
+      font-weight: 700;
     }
 
-    .amount-wrap input {
+    input,
+    select {
+      width: 100%;
+      height: 51px;
+      border: 1px solid #dce2eb;
+      border-radius: 12px;
+      background: #fff;
+      outline: none;
+      padding: 0 14px;
+      font-size: 15px;
+      color: #172033;
+    }
+
+    .amount-input {
       padding-left: 38px;
       font-size: 19px;
       font-weight: 700;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #0b57d0;
+      box-shadow: 0 0 0 3px rgba(11, 87, 208, .09);
     }
 
     .primary-btn {
@@ -241,12 +210,11 @@
       border: 0;
       border-radius: 13px;
       background: #0b57d0;
-      color: #ffffff;
+      color: #fff;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 20px;
-      transition: 0.2s;
+      margin-top: 8px;
     }
 
     .primary-btn:hover {
@@ -254,13 +222,13 @@
     }
 
     .primary-btn:disabled {
-      opacity: 0.55;
+      opacity: .55;
       cursor: not-allowed;
     }
 
     .message {
       display: none;
-      margin-top: 14px;
+      margin: 12px 0;
       padding: 12px 14px;
       border-radius: 11px;
       font-size: 13px;
@@ -274,24 +242,9 @@
       border: 1px solid #ffd5d5;
     }
 
-    .message.success {
-      display: block;
-      background: #ecfdf3;
-      color: #067647;
-      border: 1px solid #c6f0d8;
-    }
-
     .review-section,
     .success-section {
       display: none;
-    }
-
-    .review-card {
-      background: #ffffff;
-      border: 1px solid #e5eaf1;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, 0.05);
     }
 
     .review-header {
@@ -310,8 +263,8 @@
     }
 
     .review-amount {
-      padding: 25px 20px;
       text-align: center;
+      padding: 25px 20px;
       border-bottom: 1px solid #edf0f4;
     }
 
@@ -324,7 +277,6 @@
 
     .review-amount strong {
       font-size: 31px;
-      color: #172033;
     }
 
     .review-details {
@@ -361,37 +313,31 @@
       padding: 0 20px 20px;
     }
 
-    .secondary-btn {
-      flex: 1;
-      height: 50px;
-      border: 1px solid #d9e0ea;
-      border-radius: 12px;
-      background: #ffffff;
-      color: #273248;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
+    .secondary-btn,
     .confirm-btn {
       flex: 1;
       height: 50px;
-      border: 0;
       border-radius: 12px;
-      background: #0b57d0;
-      color: #ffffff;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
     }
 
+    .secondary-btn {
+      border: 1px solid #d9e0ea;
+      background: #fff;
+      color: #273248;
+    }
+
+    .confirm-btn {
+      border: 0;
+      background: #0b57d0;
+      color: #fff;
+    }
+
     .success-card {
-      background: #ffffff;
-      border-radius: 20px;
-      border: 1px solid #e5eaf1;
       padding: 30px 22px;
       text-align: center;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, 0.05);
     }
 
     .success-icon {
@@ -451,18 +397,14 @@
         padding: 0 14px;
       }
 
-      .page-title h2 {
-        font-size: 23px;
-      }
-
       .review-actions {
         flex-direction: column;
       }
 
       .secondary-btn,
       .confirm-btn {
-        flex: none;
         width: 100%;
+        flex: none;
       }
     }
   </style>
@@ -479,12 +421,16 @@
       </button>
 
       <div class="brand">
-        <div class="brand-logo">FM</div>
+
+        <div class="brand-logo">
+          FM
+        </div>
 
         <div class="brand-text">
           <h1>First Merit Bank</h1>
           <span>Online Banking</span>
         </div>
+
       </div>
 
     </header>
@@ -492,30 +438,39 @@
 
     <main class="content">
 
-      <!-- FORM SECTION -->
+      <!-- ADD MONEY FORM -->
+
       <section id="formSection">
 
         <div class="page-title">
-          <h2>Zelle</h2>
-          <p>Send money quickly and securely to a recipient.</p>
+          <h2>Add Money</h2>
+          <p>Add funds to your First Merit Bank account.</p>
         </div>
 
 
         <div class="balance-card">
 
           <div class="balance-label">
-            Available Balance
+            Current Balance
           </div>
 
           <div class="balance-row">
-            <div class="balance-amount" id="availableBalance">
+
+            <div
+              class="balance-amount"
+              id="currentBalance"
+            >
               $0.00
             </div>
 
             <i class="fa-solid fa-wallet"></i>
+
           </div>
 
-          <div class="balance-account" id="balanceAccount">
+          <div
+            class="balance-account"
+            id="balanceAccount"
+          >
             Checking Account
           </div>
 
@@ -523,50 +478,6 @@
 
 
         <div class="form-card">
-
-          <div class="field">
-
-            <label for="recipientName">
-              Recipient Name
-            </label>
-
-            <div class="input-wrap">
-
-              <i class="fa-regular fa-user"></i>
-
-              <input
-                type="text"
-                id="recipientName"
-                placeholder="Enter recipient name"
-                autocomplete="off"
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="recipientContact">
-              Email or Mobile Number
-            </label>
-
-            <div class="input-wrap">
-
-              <i class="fa-solid fa-at"></i>
-
-              <input
-                type="text"
-                id="recipientContact"
-                placeholder="Enter email or mobile number"
-                autocomplete="off"
-              >
-
-            </div>
-
-          </div>
-
 
           <div class="field">
 
@@ -579,11 +490,12 @@
               <span class="currency">$</span>
 
               <input
+                class="amount-input"
                 type="number"
                 id="amount"
-                placeholder="0.00"
                 min="0.01"
                 step="0.01"
+                placeholder="0.00"
               >
 
             </div>
@@ -593,20 +505,33 @@
 
           <div class="field">
 
-            <label for="note">
-              Note
+            <label for="source">
+              Funding Source
             </label>
 
-            <textarea
-              id="note"
-              placeholder="Add a note (optional)"
-              maxlength="150"
-            ></textarea>
+            <select id="source">
+
+              <option value="Bank Account">
+                Bank Account
+              </option>
+
+              <option value="Debit Card">
+                Debit Card
+              </option>
+
+              <option value="External Account">
+                External Account
+              </option>
+
+            </select>
 
           </div>
 
 
-          <div id="formMessage" class="message"></div>
+          <div
+            id="formMessage"
+            class="message"
+          ></div>
 
 
           <button
@@ -614,7 +539,7 @@
             id="reviewBtn"
             type="button"
           >
-            Review Payment
+            Review Deposit
           </button>
 
         </div>
@@ -622,26 +547,37 @@
       </section>
 
 
-      <!-- REVIEW SECTION -->
-      <section class="review-section" id="reviewSection">
+      <!-- REVIEW -->
+
+      <section
+        class="review-section"
+        id="reviewSection"
+      >
 
         <div class="page-title">
-          <h2>Review Payment</h2>
-          <p>Review the payment details before confirming.</p>
+          <h2>Review Deposit</h2>
+          <p>Review the deposit details before confirming.</p>
         </div>
 
 
         <div class="review-card">
 
           <div class="review-header">
-            <h3>Payment Details</h3>
-            <p>Please make sure the information is correct.</p>
+
+            <h3>Deposit Details</h3>
+
+            <p>
+              Confirm the information below.
+            </p>
+
           </div>
 
 
           <div class="review-amount">
 
-            <span>Amount</span>
+            <span>
+              Deposit Amount
+            </span>
 
             <strong id="reviewAmount">
               $0.00
@@ -653,29 +589,50 @@
           <div class="review-details">
 
             <div class="detail-row">
-              <span>Recipient</span>
-              <span id="reviewRecipient"></span>
+
+              <span>
+                Destination
+              </span>
+
+              <span>
+                Checking Account
+              </span>
+
             </div>
 
-            <div class="detail-row">
-              <span>Email / Mobile</span>
-              <span id="reviewContact"></span>
-            </div>
 
             <div class="detail-row">
-              <span>Payment Method</span>
-              <span>Checking Account</span>
+
+              <span>
+                Funding Source
+              </span>
+
+              <span id="reviewSource">
+                Bank Account
+              </span>
+
             </div>
 
+
             <div class="detail-row">
-              <span>Note</span>
-              <span id="reviewNote">—</span>
+
+              <span>
+                New Balance
+              </span>
+
+              <span id="reviewNewBalance">
+                $0.00
+              </span>
+
             </div>
 
           </div>
 
 
-          <div id="reviewMessage" class="message"></div>
+          <div
+            id="reviewMessage"
+            class="message"
+          ></div>
 
 
           <div class="review-actions">
@@ -685,7 +642,7 @@
               id="editBtn"
               type="button"
             >
-              Edit Payment
+              Edit Deposit
             </button>
 
             <button
@@ -693,7 +650,7 @@
               id="confirmBtn"
               type="button"
             >
-              Confirm & Send
+              Confirm Deposit
             </button>
 
           </div>
@@ -703,8 +660,12 @@
       </section>
 
 
-      <!-- SUCCESS SECTION -->
-      <section class="success-section" id="successSection">
+      <!-- SUCCESS -->
+
+      <section
+        class="success-section"
+        id="successSection"
+      >
 
         <div class="success-card">
 
@@ -712,11 +673,14 @@
             <i class="fa-solid fa-check"></i>
           </div>
 
-          <h2>Payment Successful</h2>
+          <h2>
+            Deposit Successful
+          </h2>
 
           <p>
-            Your payment has been processed successfully.
+            The funds have been added to your account successfully.
           </p>
+
 
           <div class="transaction-id">
 
@@ -727,6 +691,7 @@
             </strong>
 
           </div>
+
 
           <button
             class="primary-btn"
@@ -796,24 +761,19 @@
       document.getElementById("successSection");
 
 
-    const recipientName =
-      document.getElementById("recipientName");
-
-    const recipientContact =
-      document.getElementById("recipientContact");
-
     const amount =
       document.getElementById("amount");
 
-    const note =
-      document.getElementById("note");
+    const source =
+      document.getElementById("source");
 
 
-    const availableBalance =
-      document.getElementById("availableBalance");
+    const currentBalance =
+      document.getElementById("currentBalance");
 
     const balanceAccount =
       document.getElementById("balanceAccount");
+
 
     const formMessage =
       document.getElementById("formMessage");
@@ -825,28 +785,23 @@
     const reviewAmount =
       document.getElementById("reviewAmount");
 
-    const reviewRecipient =
-      document.getElementById("reviewRecipient");
+    const reviewSource =
+      document.getElementById("reviewSource");
 
-    const reviewContact =
-      document.getElementById("reviewContact");
-
-    const reviewNote =
-      document.getElementById("reviewNote");
+    const reviewNewBalance =
+      document.getElementById("reviewNewBalance");
 
     const transactionId =
       document.getElementById("transactionId");
 
 
     let currentUser = null;
-    let currentBalance = 0;
 
-    let pendingPayment = {
-      recipient: "",
-      contact: "",
-      amount: 0,
-      note: ""
-    };
+    let userBalance = 0;
+
+    let pendingAmount = 0;
+
+    let pendingSource = "";
 
 
     function formatCurrency(value) {
@@ -862,36 +817,51 @@
     }
 
 
-    function showMessage(element, message, type = "error") {
+    function showMessage(
+      element,
+      message
+    ) {
 
-      element.textContent = message;
+      element.textContent =
+        message;
 
       element.className =
-        "message " + type;
+        "message error";
 
     }
 
 
-    function clearMessage(element) {
+    function clearMessage(
+      element
+    ) {
 
       element.textContent = "";
 
-      element.className = "message";
+      element.className =
+        "message";
 
     }
 
 
     async function loadAccount() {
 
-      if (!currentUser) return;
+      if (!currentUser) {
+        return;
+      }
 
       try {
 
         const userRef =
-          doc(db, "users", currentUser.uid);
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          );
+
 
         const userSnap =
           await getDoc(userRef);
+
 
         if (!userSnap.exists()) {
 
@@ -904,20 +874,31 @@
 
         }
 
+
         const userData =
           userSnap.data();
 
-        currentBalance =
-          Number(userData.balance || 0);
 
-        availableBalance.textContent =
-          formatCurrency(currentBalance);
+        userBalance =
+          Number(
+            userData.balance || 0
+          );
+
+
+        currentBalance.textContent =
+          formatCurrency(
+            userBalance
+          );
+
 
         const accountNumber =
-          userData.accountNumber || "Checking Account";
+          userData.accountNumber ||
+          "Checking Account";
+
 
         balanceAccount.textContent =
-          "Checking • " + accountNumber;
+          "Checking • " +
+          accountNumber;
 
       } catch (error) {
 
@@ -939,7 +920,8 @@
 
         if (!user) {
 
-          window.location.href = "login.html";
+          window.location.href =
+            "login.html";
 
           return;
 
@@ -970,55 +952,18 @@
 
         clearMessage(formMessage);
 
-        const name =
-          recipientName.value.trim();
-
-        const contact =
-          recipientContact.value.trim();
-
-        const paymentAmount =
+        const enteredAmount =
           Number(amount.value);
-
-        const paymentNote =
-          note.value.trim();
-
-
-        if (!name) {
-
-          showMessage(
-            formMessage,
-            "Please enter the recipient's name."
-          );
-
-          recipientName.focus();
-
-          return;
-
-        }
-
-
-        if (!contact) {
-
-          showMessage(
-            formMessage,
-            "Please enter an email or mobile number."
-          );
-
-          recipientContact.focus();
-
-          return;
-
-        }
 
 
         if (
-          !paymentAmount ||
-          paymentAmount <= 0
+          !enteredAmount ||
+          enteredAmount <= 0
         ) {
 
           showMessage(
             formMessage,
-            "Please enter a valid payment amount."
+            "Please enter a valid amount."
           );
 
           amount.focus();
@@ -1028,11 +973,11 @@
         }
 
 
-        if (paymentAmount > currentBalance) {
+        if (enteredAmount > 1000000) {
 
           showMessage(
             formMessage,
-            "Insufficient available balance."
+            "Please enter an amount below $1,000,000."
           );
 
           return;
@@ -1040,32 +985,28 @@
         }
 
 
-        pendingPayment = {
+        pendingAmount =
+          enteredAmount;
 
-          recipient: name,
+        pendingSource =
+          source.value;
 
-          contact: contact,
-
-          amount: paymentAmount,
-
-          note: paymentNote
-
-        };
-
-
-        reviewRecipient.textContent =
-          pendingPayment.recipient;
-
-        reviewContact.textContent =
-          pendingPayment.contact;
 
         reviewAmount.textContent =
           formatCurrency(
-            pendingPayment.amount
+            pendingAmount
           );
 
-        reviewNote.textContent =
-          pendingPayment.note || "—";
+
+        reviewSource.textContent =
+          pendingSource;
+
+
+        reviewNewBalance.textContent =
+          formatCurrency(
+            userBalance +
+            pendingAmount
+          );
 
 
         formSection.style.display =
@@ -1090,7 +1031,9 @@
       "click",
       () => {
 
-        clearMessage(reviewMessage);
+        clearMessage(
+          reviewMessage
+        );
 
         reviewSection.style.display =
           "none";
@@ -1114,7 +1057,10 @@
       "click",
       async () => {
 
-        clearMessage(reviewMessage);
+        clearMessage(
+          reviewMessage
+        );
+
 
         if (!currentUser) {
 
@@ -1126,7 +1072,8 @@
         }
 
 
-        confirmBtn.disabled = true;
+        confirmBtn.disabled =
+          true;
 
         confirmBtn.textContent =
           "Processing...";
@@ -1182,21 +1129,9 @@
                 );
 
 
-              if (
-                pendingPayment.amount >
-                balance
-              ) {
-
-                throw new Error(
-                  "Insufficient available balance."
-                );
-
-              }
-
-
               const newBalance =
-                balance -
-                pendingPayment.amount;
+                balance +
+                pendingAmount;
 
 
               transaction.update(
@@ -1210,31 +1145,28 @@
               transaction.set(
                 transactionRef,
                 {
-                  type: "zelle",
+
+                  type:
+                    "deposit",
 
                   title:
-                    "Zelle Payment",
+                    "Money Added",
 
                   amount:
-                    pendingPayment.amount,
+                    pendingAmount,
 
                   direction:
-                    "debit",
+                    "credit",
 
-                  recipient:
-                    pendingPayment.recipient,
-
-                  recipientContact:
-                    pendingPayment.contact,
-
-                  note:
-                    pendingPayment.note || "",
+                  source:
+                    pendingSource,
 
                   status:
                     "completed",
 
                   createdAt:
                     serverTimestamp()
+
                 }
               );
 
@@ -1242,9 +1174,8 @@
           );
 
 
-          currentBalance =
-            currentBalance -
-            pendingPayment.amount;
+          userBalance +=
+            pendingAmount;
 
 
           transactionId.textContent =
@@ -1274,13 +1205,15 @@
           showMessage(
             reviewMessage,
             error.message ||
-            "Unable to complete the payment."
+            "Unable to complete the deposit."
           );
 
-          confirmBtn.disabled = false;
+
+          confirmBtn.disabled =
+            false;
 
           confirmBtn.textContent =
-            "Confirm & Send";
+            "Confirm Deposit";
 
         }
 
