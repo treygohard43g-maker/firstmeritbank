@@ -1,5 +1,5 @@
 // First Merit Bank
-// Functional Dashboard
+// Dashboard
 
 import {
   onAuthStateChanged,
@@ -10,30 +10,26 @@ import {
   doc,
   getDoc,
   setDoc,
-  updateDoc
+  updateDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import { auth, db } from "./firebase.js";
 
 
-// ========================================
-// ELEMENTS
-// ========================================
+/* -----------------------------
+   ELEMENTS
+----------------------------- */
 
 const userName = document.getElementById("userName");
+const detailName = document.getElementById("detailName");
+
+const mainBalance = document.getElementById("mainBalance");
+const balanceToggle = document.getElementById("balanceToggle");
 
 const accountNumber = document.getElementById("accountNumber");
 const detailAccountNumber =
   document.getElementById("detailAccountNumber");
-
-const detailName =
-  document.getElementById("detailName");
-
-const mainBalance =
-  document.getElementById("mainBalance");
-
-const balanceToggle =
-  document.getElementById("balanceToggle");
 
 const copyAccountBtn =
   document.getElementById("copyAccountBtn");
@@ -66,22 +62,49 @@ const toast =
   document.getElementById("dashboardToast");
 
 
-// ========================================
-// STATE
-// ========================================
+/* -----------------------------
+   INHERITANCE ELEMENTS
+----------------------------- */
+
+const inheritanceBtn =
+  document.getElementById("inheritanceBtn");
+
+const inheritanceModal =
+  document.getElementById("inheritanceModal");
+
+const closeInheritanceBtn =
+  document.getElementById("closeInheritanceBtn");
+
+const inheritanceBalance =
+  document.getElementById("inheritanceBalance");
+
+const inheritanceTransferDate =
+  document.getElementById("inheritanceTransferDate");
+
+const inheritanceTransferStatus =
+  document.getElementById("inheritanceTransferStatus");
+
+const verificationStatus =
+  document.getElementById("verificationStatus");
+
+const submitVerificationBtn =
+  document.getElementById("submitVerificationBtn");
+
+
+/* -----------------------------
+   STATE
+----------------------------- */
 
 let currentUser = null;
-
-let realBalance = 400000;
-
-let balanceVisible = true;
-
 let currentAccountNumber = "";
 
+let realBalance = 400000;
+let balanceVisible = true;
 
-// ========================================
-// TOAST
-// ========================================
+
+/* -----------------------------
+   TOAST
+----------------------------- */
 
 function showToast(message) {
 
@@ -92,13 +115,12 @@ function showToast(message) {
   setTimeout(() => {
     toast.classList.remove("show");
   }, 2500);
-
 }
 
 
-// ========================================
-// DATE
-// ========================================
+/* -----------------------------
+   DATE
+----------------------------- */
 
 function updateDate() {
 
@@ -111,15 +133,14 @@ function updateDate() {
       day: "numeric",
       year: "numeric"
     });
-
 }
 
 updateDate();
 
 
-// ========================================
-// ACCOUNT NUMBER GENERATOR
-// ========================================
+/* -----------------------------
+   ACCOUNT NUMBER
+----------------------------- */
 
 function generateAccountNumber() {
 
@@ -133,48 +154,36 @@ function generateAccountNumber() {
     Math.floor(1000 + Math.random() * 9000);
 
   return `${first}${second}${third}`;
-
 }
 
-
-// ========================================
-// FORMAT ACCOUNT NUMBER
-// ========================================
 
 function formatAccountNumber(number) {
 
   if (!number) {
-    return "Account ••••••••••";
+    return "Account ••••";
   }
 
-  const lastFour =
-    number.slice(-4);
-
-  return `Account •••• ${lastFour}`;
-
+  return `Account •••• ${number.slice(-4)}`;
 }
 
 
-// ========================================
-// FORMAT CURRENCY
-// ========================================
+/* -----------------------------
+   CURRENCY
+----------------------------- */
 
 function formatCurrency(amount) {
 
-  return new Intl.NumberFormat(
-    "en-US",
-    {
-      style: "currency",
-      currency: "USD"
-    }
-  ).format(amount);
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+  }).format(amount);
 
 }
 
 
-// ========================================
-// DISPLAY BALANCE
-// ========================================
+/* -----------------------------
+   BALANCE
+----------------------------- */
 
 function renderBalance() {
 
@@ -209,9 +218,9 @@ function renderBalance() {
 }
 
 
-// ========================================
-// LOAD USER
-// ========================================
+/* -----------------------------
+   LOAD USER
+----------------------------- */
 
 async function loadUserProfile(user) {
 
@@ -222,17 +231,17 @@ async function loadUserProfile(user) {
 
   try {
 
-    const userSnapshot =
+    const snapshot =
       await getDoc(userRef);
 
 
-    if (userSnapshot.exists()) {
+    /* Existing user */
+
+    if (snapshot.exists()) {
 
       const data =
-        userSnapshot.data();
+        snapshot.data();
 
-
-      // NAME
 
       const name =
         data.fullName ||
@@ -240,13 +249,32 @@ async function loadUserProfile(user) {
         "Member";
 
       userName.textContent = name;
-
       detailName.textContent = name;
 
 
-      // BALANCE
+      /*
+        Existing accounts created before
+        the $400,000 starting balance was added
+        may have balance = 0.
 
-      if (
+        We initialize those accounts once.
+      */
+
+      if (data.balanceInitialized !== true) {
+
+        realBalance = 400000;
+
+        await updateDoc(userRef, {
+
+          balance: 400000,
+
+          balanceInitialized: true,
+
+          currency: "USD"
+
+        });
+
+      } else if (
         typeof data.balance === "number"
       ) {
 
@@ -256,18 +284,20 @@ async function loadUserProfile(user) {
 
         realBalance = 400000;
 
-        await updateDoc(
-          userRef,
-          {
-            balance: 400000,
-            currency: "USD"
-          }
-        );
+        await updateDoc(userRef, {
+
+          balance: 400000,
+
+          balanceInitialized: true,
+
+          currency: "USD"
+
+        });
 
       }
 
 
-      // ACCOUNT NUMBER
+      /* Account number */
 
       if (data.accountNumber) {
 
@@ -279,18 +309,63 @@ async function loadUserProfile(user) {
         currentAccountNumber =
           generateAccountNumber();
 
-        await updateDoc(
-          userRef,
-          {
-            accountNumber:
-              currentAccountNumber
-          }
-        );
+        await updateDoc(userRef, {
+
+          accountNumber:
+            currentAccountNumber
+
+        });
 
       }
 
 
-    } else {
+      /* Inheritance */
+
+      if (!data.inheritance) {
+
+        await updateDoc(userRef, {
+
+          inheritance: {
+
+            balance: 250000,
+
+            transferDate:
+              serverTimestamp(),
+
+            transferStatus:
+              "inaccessible",
+
+            verificationStatus:
+              "required"
+
+          }
+
+        });
+
+        loadInheritanceData({
+
+          balance: 250000,
+
+          transferStatus: "inaccessible",
+
+          verificationStatus: "required"
+
+        });
+
+      } else {
+
+        loadInheritanceData(
+          data.inheritance
+        );
+
+      }
+
+    }
+
+
+    /* New user */
+
+    else {
 
       currentAccountNumber =
         generateAccountNumber();
@@ -298,27 +373,53 @@ async function loadUserProfile(user) {
       realBalance = 400000;
 
 
-      await setDoc(
-        userRef,
-        {
-          uid: user.uid,
-          fullName:
-            user.displayName || "Member",
-          email:
-            user.email || "",
-          accountType:
-            "Checking",
-          accountNumber:
-            currentAccountNumber,
-          balance:
-            400000,
-          currency:
-            "USD"
+      await setDoc(userRef, {
+
+        uid: user.uid,
+
+        fullName:
+          user.displayName ||
+          "Member",
+
+        email:
+          user.email || "",
+
+        accountType:
+          "Checking",
+
+        accountNumber:
+          currentAccountNumber,
+
+        balance:
+          400000,
+
+        balanceInitialized:
+          true,
+
+        currency:
+          "USD",
+
+        inheritance: {
+
+          balance: 250000,
+
+          transferDate:
+            serverTimestamp(),
+
+          transferStatus:
+            "inaccessible",
+
+          verificationStatus:
+            "required"
+
         },
-        {
-          merge: true
-        }
-      );
+
+        createdAt:
+          serverTimestamp()
+
+      }, {
+        merge: true
+      });
 
 
       userName.textContent =
@@ -327,10 +428,21 @@ async function loadUserProfile(user) {
       detailName.textContent =
         user.displayName || "Member";
 
+
+      loadInheritanceData({
+
+        balance: 250000,
+
+        transferStatus:
+          "inaccessible",
+
+        verificationStatus:
+          "required"
+
+      });
+
     }
 
-
-    // DISPLAY ACCOUNT NUMBER
 
     accountNumber.textContent =
       formatAccountNumber(
@@ -340,8 +452,6 @@ async function loadUserProfile(user) {
     detailAccountNumber.textContent =
       currentAccountNumber;
 
-
-    // DISPLAY BALANCE
 
     renderBalance();
 
@@ -361,14 +471,104 @@ async function loadUserProfile(user) {
 
     renderBalance();
 
+    showToast(
+      "Unable to load some account information"
+    );
+
   }
 
 }
 
 
-// ========================================
-// AUTHENTICATION
-// ========================================
+/* -----------------------------
+   INHERITANCE
+----------------------------- */
+
+function loadInheritanceData(data) {
+
+  if (!data) {
+    return;
+  }
+
+
+  const balance =
+    typeof data.balance === "number"
+      ? data.balance
+      : 250000;
+
+
+  inheritanceBalance.textContent =
+    formatCurrency(balance);
+
+
+  inheritanceTransferStatus.textContent =
+    capitalize(
+      data.transferStatus ||
+      "inaccessible"
+    );
+
+
+  verificationStatus.textContent =
+    capitalize(
+      data.verificationStatus ||
+      "required"
+    );
+
+
+  if (data.transferDate) {
+
+    let date;
+
+    if (
+      typeof data.transferDate.toDate ===
+      "function"
+    ) {
+
+      date =
+        data.transferDate.toDate();
+
+    } else {
+
+      date =
+        new Date(data.transferDate);
+
+    }
+
+
+    if (!isNaN(date.getTime())) {
+
+      inheritanceTransferDate.textContent =
+        date.toLocaleDateString(
+          "en-US",
+          {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+          }
+        );
+
+    }
+
+  }
+
+}
+
+
+function capitalize(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  return value.charAt(0).toUpperCase()
+    + value.slice(1);
+
+}
+
+
+/* -----------------------------
+   AUTH
+----------------------------- */
 
 onAuthStateChanged(
   auth,
@@ -389,9 +589,9 @@ onAuthStateChanged(
 );
 
 
-// ========================================
-// BALANCE VISIBILITY
-// ========================================
+/* -----------------------------
+   BALANCE TOGGLE
+----------------------------- */
 
 balanceToggle.addEventListener(
   "click",
@@ -406,9 +606,9 @@ balanceToggle.addEventListener(
 );
 
 
-// ========================================
-// COPY ACCOUNT NUMBER
-// ========================================
+/* -----------------------------
+   COPY ACCOUNT
+----------------------------- */
 
 copyAccountBtn.addEventListener(
   "click",
@@ -420,9 +620,10 @@ copyAccountBtn.addEventListener(
 
     try {
 
-      await navigator.clipboard.writeText(
-        currentAccountNumber
-      );
+      await navigator.clipboard
+        .writeText(
+          currentAccountNumber
+        );
 
       showToast(
         "Account number copied"
@@ -445,9 +646,9 @@ copyAccountBtn.addEventListener(
 );
 
 
-// ========================================
-// OPEN MENU
-// ========================================
+/* -----------------------------
+   SIDE MENU
+----------------------------- */
 
 function openMenu() {
 
@@ -457,10 +658,6 @@ function openMenu() {
 
 }
 
-
-// ========================================
-// CLOSE MENU
-// ========================================
 
 function closeMenu() {
 
@@ -487,52 +684,60 @@ menuOverlay.addEventListener(
 );
 
 
-// ========================================
-// PROFILE
-// ========================================
+/* -----------------------------
+   HEADER BUTTONS
+----------------------------- */
 
 profileBtn.addEventListener(
   "click",
   () => {
 
+    closeMenu();
+
     showToast(
-      "Profile section is ready for the next module"
+      "Opening your profile"
     );
 
   }
 );
 
-
-// ========================================
-// NOTIFICATIONS
-// ========================================
 
 notificationBtn.addEventListener(
   "click",
   () => {
 
     showToast(
-      "No new notifications"
+      "You have no new notifications"
     );
 
   }
 );
 
 
-// ========================================
-// QUICK ACTIONS
-// ========================================
+/* -----------------------------
+   MONEY ACTIONS
+----------------------------- */
 
 document
   .getElementById("sendMoneyBtn")
   .addEventListener(
     "click",
     () => {
-
       showToast(
-        "Send Money module coming next"
+        "Send Money selected"
       );
+    }
+  );
 
+
+document
+  .getElementById("zelleBtn")
+  .addEventListener(
+    "click",
+    () => {
+      showToast(
+        "Zelle selected"
+      );
     }
   );
 
@@ -542,11 +747,9 @@ document
   .addEventListener(
     "click",
     () => {
-
       showToast(
-        "Add Money module coming next"
+        "Add Money selected"
       );
-
     }
   );
 
@@ -556,11 +759,9 @@ document
   .addEventListener(
     "click",
     () => {
-
       showToast(
-        "Withdraw module coming next"
+        "Withdraw selected"
       );
-
     }
   );
 
@@ -570,71 +771,160 @@ document
   .addEventListener(
     "click",
     () => {
-
       showToast(
-        "Transfer module coming next"
+        "Transfer selected"
       );
-
     }
   );
 
 
-// ========================================
-// SERVICE BUTTONS
-// ========================================
+/* -----------------------------
+   INHERITANCE MODAL
+----------------------------- */
 
-const serviceButtons = [
+inheritanceBtn.addEventListener(
+  "click",
+  () => {
 
-  ["paymentsBtn", "Payments"],
-  ["cardsBtn", "Cards"],
-  ["statementsBtn", "Statements"],
-  ["supportBtn", "Help & Support"],
-  ["securityBtn", "Security"],
-  ["settingsBtn", "Settings"],
-  ["profileServiceBtn", "Profile"],
-  ["notificationsServiceBtn", "Notifications"]
-
-];
-
-
-serviceButtons.forEach(
-  ([id, name]) => {
-
-    const button =
-      document.getElementById(id);
-
-    if (!button) return;
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        showToast(
-          `${name} module coming next`
-        );
-
-      }
+    inheritanceModal.classList.add(
+      "open"
     );
 
   }
 );
 
 
-// ========================================
-// MENU BUTTONS
-// ========================================
+closeInheritanceBtn.addEventListener(
+  "click",
+  () => {
+
+    inheritanceModal.classList.remove(
+      "open"
+    );
+
+  }
+);
+
+
+inheritanceModal.addEventListener(
+  "click",
+  (event) => {
+
+    if (
+      event.target ===
+      inheritanceModal
+    ) {
+
+      inheritanceModal.classList.remove(
+        "open"
+      );
+
+    }
+
+  }
+);
+
+
+/* -----------------------------
+   VERIFICATION
+----------------------------- */
+
+submitVerificationBtn.addEventListener(
+  "click",
+  async () => {
+
+    if (!currentUser) {
+      return;
+    }
+
+    submitVerificationBtn.disabled =
+      true;
+
+    submitVerificationBtn.textContent =
+      "Submitting...";
+
+
+    try {
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          currentUser.uid
+        );
+
+
+      await updateDoc(
+        userRef,
+        {
+          "inheritance.verificationStatus":
+            "submitted"
+        }
+      );
+
+
+      verificationStatus.textContent =
+        "Submitted";
+
+
+      submitVerificationBtn.textContent =
+        "Verification submitted";
+
+
+      showToast(
+        "Verification request submitted"
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "Verification error:",
+        error
+      );
+
+      submitVerificationBtn.disabled =
+        false;
+
+      submitVerificationBtn.textContent =
+        "Submit verification";
+
+      showToast(
+        "Unable to submit verification"
+      );
+
+    }
+
+  }
+);
+
+
+/* -----------------------------
+   MENU ITEMS
+----------------------------- */
 
 const menuActions = [
 
-  ["menuAccount", "Account"],
+  ["menuDashboard", "Dashboard"],
+
+  ["menuAccount", "My Account"],
+
   ["menuTransfer", "Transfers"],
+
   ["menuPayments", "Payments"],
+
   ["menuCards", "Cards"],
+
   ["menuTransactions", "Transactions"],
+
   ["menuStatements", "Statements"],
+
   ["menuNotifications", "Notifications"],
+
   ["menuSupport", "Help & Support"],
+
   ["menuSecurity", "Security"],
+
   ["menuSettings", "Settings"]
 
 ];
@@ -646,7 +936,10 @@ menuActions.forEach(
     const button =
       document.getElementById(id);
 
-    if (!button) return;
+    if (!button) {
+      return;
+    }
+
 
     button.addEventListener(
       "click",
@@ -654,8 +947,17 @@ menuActions.forEach(
 
         closeMenu();
 
+        if (id === "menuDashboard") {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+          return;
+        }
+
         showToast(
-          `${name} module coming next`
+          `${name} selected`
         );
 
       }
@@ -665,9 +967,9 @@ menuActions.forEach(
 );
 
 
-// ========================================
-// LOGOUT
-// ========================================
+/* -----------------------------
+   LOGOUT
+----------------------------- */
 
 logoutBtn.addEventListener(
   "click",
