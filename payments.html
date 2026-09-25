@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Payments | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #182230;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: auto;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    .topbar {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #e7ebf2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0b5cff;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .brand-text span {
+      display: block;
+      color: #8993a4;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .back-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f4f8;
+      color: #273447;
+    }
+
+    .content {
+      padding: 30px 24px;
+    }
+
+    .page-heading {
+      margin-bottom: 24px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
+      letter-spacing: -.5px;
+      margin-bottom: 7px;
+    }
+
+    .page-heading p {
+      color: #7c8798;
+      font-size: 14px;
+    }
+
+    .balance-card {
+      background:
+        radial-gradient(circle at 90% 0%, rgba(255,255,255,.15), transparent 32%),
+        linear-gradient(135deg, #071d45, #0b5cff);
+      color: #fff;
+      border-radius: 22px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 15px 32px rgba(11,92,255,.15);
+    }
+
+    .balance-card span {
+      font-size: 12px;
+      opacity: .75;
+    }
+
+    .balance-card h2 {
+      font-size: 30px;
+      margin-top: 7px;
+    }
+
+    .section {
+      background: #fff;
+      border: 1px solid #e5eaf1;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 7px 25px rgba(24,34,48,.04);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: 17px;
+    }
+
+    .section-title button {
+      border: 0;
+      background: #eef4ff;
+      color: #0b5cff;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+    }
+
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+    }
+
+    .payment-option {
+      border: 1px solid #e3e8f0;
+      border-radius: 16px;
+      padding: 20px 15px;
+      background: #fff;
+      text-align: left;
+      transition: .2s;
+    }
+
+    .payment-option:hover {
+      border-color: #b9cdfc;
+      transform: translateY(-2px);
+    }
+
+    .option-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #eef4ff;
+      color: #0b5cff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 17px;
+    }
+
+    .payment-option strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .payment-option span {
+      display: block;
+      color: #8791a0;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .payee-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .payee {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      border: 1px solid #edf0f5;
+      border-radius: 14px;
+      background: #f9fbfd;
+    }
+
+    .payee-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #eef4ff;
+      color: #0b5cff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .payee-info {
+      flex: 1;
+    }
+
+    .payee-info strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .payee-info span {
+      font-size: 11px;
+      color: #8993a2;
+    }
+
+    .payee-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .small-btn {
+      width: 35px;
+      height: 35px;
+      border: 1px solid #dfe5ee;
+      background: #fff;
+      color: #536074;
+      border-radius: 9px;
+    }
+
+    .small-btn.delete {
+      color: #d14343;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 30px 15px;
+      color: #8a94a3;
+      font-size: 13px;
+    }
+
+    .empty i {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #bdc6d3;
+    }
+
+    .payment-history {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      background: #f8fafd;
+      border: 1px solid #edf0f5;
+      border-radius: 14px;
+    }
+
+    .history-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef4ff;
+      color: #0b5cff;
+    }
+
+    .history-info {
+      flex: 1;
+    }
+
+    .history-info strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .history-info span {
+      display: block;
+      color: #8993a2;
+      font-size: 11px;
+    }
+
+    .history-amount {
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(8,18,35,.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 450px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,.2);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 10px;
+      background: #f1f4f8;
+      color: #4b5666;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      color: #687486;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      border: 1px solid #dce2eb;
+      border-radius: 11px;
+      padding: 13px;
+      outline: none;
+      background: #fff;
+      color: #172235;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #0b5cff;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: 0;
+      background: #0b5cff;
+      color: #fff;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    .danger-btn {
+      width: 100%;
+      border: 0;
+      background: #d14343;
+      color: #fff;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .review-box {
+      background: #f7f9fc;
+      border: 1px solid #e8edf3;
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 17px;
+    }
+
+    .review-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+
+    .review-row span:first-child {
+      color: #7c8798;
+    }
+
+    .review-row strong {
+      text-align: right;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%,100px);
+      background: #182230;
+      color: #fff;
+      padding: 13px 17px;
+      border-radius: 11px;
+      font-size: 13px;
+      opacity: 0;
+      transition: .25s;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translate(-50%,0);
+      opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        padding: 0 16px;
+      }
+
+      .content {
+        padding: 24px 16px;
+      }
+
+      .page-heading h1 {
+        font-size: 24px;
+      }
+
+      .payment-options {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .balance-card {
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="topbar">
+
+      <div class="brand">
+        <div class="brand-logo">FM</div>
+
+        <div class="brand-text">
+          <strong>First Merit Bank</strong>
+          <span>Payments</span>
+        </div>
+      </div>
+
+      <button class="back-btn" id="backBtn">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+    </header>
+
+    <main class="content">
+
+      <section class="page-heading">
+        <h1>Payments</h1>
+        <p>Manage payments, payees and scheduled transactions.</p>
+      </section>
+
+      <section class="balance-card">
+        <span>Available Balance</span>
+        <h2 id="balance">$400,000.00</h2>
+      </section>
+
+      <!-- PAYMENT OPTIONS -->
+
+      <section class="section">
+
+        <div class="section-title">
+          <h2>Make a Payment</h2>
+        </div>
+
+        <div class="payment-options">
+
+          <button class="payment-option" id="billPaymentBtn">
+
+            <div class="option-icon">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+
+            <strong>Pay a Bill</strong>
+
+            <span>
+              Make a payment to a company or service provider.
+            </span>
+
+          </button>
+
+          <button class="payment-option" id="payeePaymentBtn">
+
+            <div class="option-icon">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <strong>Pay a Payee</strong>
+
+            <span>
+              Send a payment to one of your saved payees.
+            </span>
+
+          </button>
+
+          <button class="payment-option" id="addPayeeBtn">
+
+            <div class="option-icon">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <strong>Add Payee</strong>
+
+            <span>
+              Add a company or recipient for future payments.
+            </span>
+
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- SAVED PAYEES -->
+
+      <section class="section">
+
+        <div class="section-title">
+          <h2>Saved Payees</h2>
+
+          <button id="headerAddPayeeBtn">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+
+        <div class="payee-list" id="payeeList">
+          <div class="empty">
+            <i class="fa-solid fa-users"></i>
+            No saved payees yet.
+          </div>
+        </div>
+
+      </section>
+
+      <!-- PAYMENT HISTORY -->
+
+      <section class="section">
+
+        <div class="section-title">
+
+          <h2>Payment History</h2>
+
+          <button id="refreshPaymentsBtn">
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+
+        </div>
+
+        <div class="payment-history" id="paymentHistory">
+
+          <div class="empty">
+            <i class="fa-solid fa-receipt"></i>
+            No payments found.
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- BILL PAYMENT MODAL -->
+
+  <div class="modal" id="billModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Pay a Bill</h3>
+
+        <button class="close-btn" id="closeBillModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="billForm">
+
+        <div class="field">
+          <label>Company / Service Provider</label>
+
+          <input
+            type="text"
+            id="billCompany"
+            placeholder="Enter company name"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Account or Reference Number</label>
+
+          <input
+            type="text"
+            id="billReference"
+            placeholder="Enter reference number"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Amount</label>
+
+          <input
+            type="number"
+            id="billAmount"
+            min="1"
+            step="0.01"
+            placeholder="0.00"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Payment Date</label>
+
+          <input
+            type="date"
+            id="billDate"
+            required
+          >
+        </div>
+
+        <button class="primary-btn" type="submit">
+          Review Payment
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- PAYEE PAYMENT MODAL -->
+
+  <div class="modal" id="payeeModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Pay a Payee</h3>
+
+        <button class="close-btn" id="closePayeeModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="payeePaymentForm">
+
+        <div class="field">
+          <label>Select Payee</label>
+
+          <select id="paymentPayee" required>
+            <option value="">Select a payee</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Amount</label>
+
+          <input
+            type="number"
+            id="payeeAmount"
+            min="1"
+            step="0.01"
+            placeholder="0.00"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Payment Date</label>
+
+          <input
+            type="date"
+            id="payeeDate"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Note</label>
+
+          <input
+            type="text"
+            id="payeeNote"
+            placeholder="Optional note"
+          >
+        </div>
+
+        <button class="primary-btn" type="submit">
+          Review Payment
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- ADD PAYEE MODAL -->
+
+  <div class="modal" id="addPayeeModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Add Payee</h3>
+
+        <button class="close-btn" id="closeAddPayeeModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="addPayeeForm">
+
+        <div class="field">
+          <label>Payee Name</label>
+
+          <input
+            type="text"
+            id="newPayeeName"
+            placeholder="Company or recipient name"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Account / Reference Number</label>
+
+          <input
+            type="text"
+            id="newPayeeReference"
+            placeholder="Enter account number"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Payee Type</label>
+
+          <select id="newPayeeType">
+            <option value="Company">Company</option>
+            <option value="Person">Person</option>
+            <option value="Service">Service Provider</option>
+          </select>
+        </div>
+
+        <button class="primary-btn" type="submit">
+          Save Payee
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- REVIEW MODAL -->
+
+  <div class="modal" id="reviewModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h3>Review Payment</h3>
+
+        <button class="close-btn" id="closeReviewModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="review-box">
+
+        <div class="review-row">
+          <span>Payment Type</span>
+          <strong id="reviewType"></strong>
+        </div>
+
+        <div class="review-row">
+          <span>Payee</span>
+          <strong id="reviewPayee"></strong>
+        </div>
+
+        <div class="review-row">
+          <span>Reference</span>
+          <strong id="reviewReference"></strong>
+        </div>
+
+        <div class="review-row">
+          <span>Amount</span>
+          <strong id="reviewAmount"></strong>
+        </div>
+
+        <div class="review-row">
+          <span>Payment Date</span>
+          <strong id="reviewDate"></strong>
+        </div>
+
+      </div>
+
+      <button class="primary-btn" id="confirmPaymentBtn">
+        Confirm Payment
+      </button>
+
+      <button class="danger-btn" id="cancelReviewBtn">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- SUCCESS MODAL -->
+
+  <div class="modal" id="successModal">
+
+    <div class="modal-box">
+
+      <div style="text-align:center;padding:15px 0;">
+
+        <div style="
+          width:64px;
+          height:64px;
+          border-radius:50%;
+          background:#eaf8f0;
+          color:#16834b;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin:0 auto 16px;
+          font-size:27px;
+        ">
+          <i class="fa-solid fa-check"></i>
+        </div>
+
+        <h3 style="font-size:21px;margin-bottom:8px;">
+          Payment Completed
+        </h3>
+
+        <p style="
+          color:#7d8796;
+          font-size:13px;
+          line-height:1.5;
+        ">
+          Your payment has been recorded successfully.
+        </p>
+
+        <div class="review-box" style="text-align:left;margin-top:20px;">
+          <div class="review-row">
+            <span>Transaction ID</span>
+            <strong id="successTransactionId"></strong>
+          </div>
+
+          <div class="review-row">
+            <span>Amount</span>
+            <strong id="successAmount"></strong>
+          </div>
+        </div>
+
+        <button class="primary-btn" id="doneSuccessBtn">
+          Done
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      collection,
+      doc,
+      getDoc,
+      getDocs,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      query,
+      orderBy,
+      limit,
+      runTransaction,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    const balanceEl =
+      document.getElementById("balance");
+
+    const payeeList =
+      document.getElementById("payeeList");
+
+    const paymentHistory =
+      document.getElementById("paymentHistory");
+
+    const paymentPayee =
+      document.getElementById("paymentPayee");
+
+    const toast =
+      document.getElementById("toast");
+
+
+    const billModal =
+      document.getElementById("billModal");
+
+    const payeeModal =
+      document.getElementById("payeeModal");
+
+    const addPayeeModal =
+      document.getElementById("addPayeeModal");
+
+    const reviewModal =
+      document.getElementById("reviewModal");
+
+    const successModal =
+      document.getElementById("successModal");
+
+
+    let currentUser = null;
+    let currentBalance = 0;
+    let pendingPayment = null;
+
+
+    function showToast(message) {
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+
+    }
+
+
+    function formatMoney(value) {
+
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(Number(value || 0));
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) return "—";
+
+      let date;
+
+      if (value.toDate) {
+        date = value.toDate();
+      } else {
+        date = new Date(value);
+      }
+
+      if (Number.isNaN(date.getTime())) {
+        return "—";
+      }
+
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
+
+    }
+
+
+    function todayString() {
+
+      const date = new Date();
+
+      const month =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+      const day =
+        String(date.getDate()).padStart(2, "0");
+
+      return `${date.getFullYear()}-${month}-${day}`;
+
+    }
+
+
+    document.getElementById("billDate").value =
+      todayString();
+
+    document.getElementById("payeeDate").value =
+      todayString();
+
+
+    function closeModal(modal) {
+      modal.classList.remove("show");
+    }
+
+
+    function openModal(modal) {
+      modal.classList.add("show");
+    }
+
+
+    async function loadAccount() {
+
+      if (!currentUser) return;
+
+      try {
+
+        const userRef =
+          doc(db, "users", currentUser.uid);
+
+        const snap =
+          await getDoc(userRef);
+
+        if (!snap.exists()) return;
+
+        const data = snap.data();
+
+        currentBalance =
+          Number(data.balance ?? 400000);
+
+        balanceEl.textContent =
+          formatMoney(currentBalance);
+
+      } catch (error) {
+
+        console.error(error);
+        showToast("Unable to load account.");
+
+      }
+
+    }
+
+
+    async function loadPayees() {
+
+      if (!currentUser) return;
+
+      try {
+
+        const payeesRef =
+          collection(
+            db,
+            "users",
+            currentUser.uid,
+            "payees"
+          );
+
+        const snap =
+          await getDocs(payeesRef);
+
+        payeeList.innerHTML = "";
+        paymentPayee.innerHTML =
+          '<option value="">Select a payee</option>';
+
+        if (snap.empty) {
+
+          payeeList.innerHTML = `
+            <div class="empty">
+              <i class="fa-solid fa-users"></i>
+              No saved payees yet.
+            </div>
+          `;
+
+          return;
+        }
+
+        snap.forEach(payeeDoc => {
+
+          const payee =
+            payeeDoc.data();
+
+          const item =
+            document.createElement("div");
+
+          item.className = "payee";
+
+          item.innerHTML = `
+            <div class="payee-icon">
+              <i class="fa-solid fa-building"></i>
+            </div>
+
+            <div class="payee-info">
+              <strong>${escapeHtml(payee.name)}</strong>
+              <span>
+                ${escapeHtml(payee.type || "Payee")}
+                • ${escapeHtml(payee.reference || "")}
+              </span>
+            </div>
+
+            <div class="payee-actions">
+
+              <button
+                class="small-btn pay-btn"
+                data-id="${payeeDoc.id}"
+                title="Pay"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+              <button
+                class="small-btn delete delete-payee"
+                data-id="${payeeDoc.id}"
+                title="Delete"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+
+            </div>
+          `;
+
+          payeeList.appendChild(item);
+
+          const option =
+            document.createElement("option");
+
+          option.value = payeeDoc.id;
+          option.textContent =
+            `${payee.name} — ${payee.reference || ""}`;
+
+          paymentPayee.appendChild(option);
+
+        });
+
+        document
+          .querySelectorAll(".pay-btn")
+          .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+              paymentPayee.value =
+                button.dataset.id;
+
+              openModal(payeeModal);
+
+            });
+
+          });
+
+        document
+          .querySelectorAll(".delete-payee")
+          .forEach(button => {
+
+            button.addEventListener("click", async () => {
+
+              try {
+
+                await deleteDoc(
+                  doc(
+                    db,
+                    "users",
+                    currentUser.uid,
+                    "payees",
+                    button.dataset.id
+                  )
+                );
+
+                showToast("Payee removed.");
+                await loadPayees();
+
+              } catch (error) {
+
+                console.error(error);
+                showToast("Unable to remove payee.");
+
+              }
+
+            });
+
+          });
+
+      } catch (error) {
+
+        console.error(error);
+        showToast("Unable to load payees.");
+
+      }
+
+    }
+
+
+    async function loadPaymentHistory() {
+
+      if (!currentUser) return;
+
+      try {
+
+        const paymentsRef =
+          collection(
+            db,
+            "users",
+            currentUser.uid,
+            "payments"
+          );
+
+        const paymentsQuery =
+          query(
+            paymentsRef,
+            orderBy("createdAt", "desc"),
+            limit(10)
+          );
+
+        const snap =
+          await getDocs(paymentsQuery);
+
+        paymentHistory.innerHTML = "";
+
+        if (snap.empty) {
+
+          paymentHistory.innerHTML = `
+            <div class="empty">
+              <i class="fa-solid fa-receipt"></i>
+              No payments found.
+            </div>
+          `;
+
+          return;
+        }
+
+        snap.forEach(paymentDoc => {
+
+          const payment =
+            paymentDoc.data();
+
+          const item =
+            document.createElement("div");
+
+          item.className = "history-item";
+
+          item.innerHTML = `
+            <div class="history-icon">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+
+            <div class="history-info">
+              <strong>
+                ${escapeHtml(
+                  payment.payee || "Payment"
+                )}
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  payment.type || "Payment"
+                )}
+                •
+                ${formatDate(payment.createdAt)}
+              </span>
+            </div>
+
+            <div class="history-amount">
+              -${formatMoney(payment.amount)}
+            </div>
+          `;
+
+          paymentHistory.appendChild(item);
+
+        });
+
+      } catch (error) {
+
+        console.error(error);
+
+        paymentHistory.innerHTML = `
+          <div class="empty">
+            <i class="fa-solid fa-receipt"></i>
+            No payments found.
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function prepareReview(payment) {
+
+      pendingPayment = payment;
+
+      document.getElementById("reviewType")
+        .textContent = payment.type;
+
+      document.getElementById("reviewPayee")
+        .textContent = payment.payee;
+
+      document.getElementById("reviewReference")
+        .textContent = payment.reference || "—";
+
+      document.getElementById("reviewAmount")
+        .textContent = formatMoney(payment.amount);
+
+      document.getElementById("reviewDate")
+        .textContent = formatDate(payment.date);
+
+      closeModal(billModal);
+      closeModal(payeeModal);
+
+      openModal(reviewModal);
+
+    }
+
+
+    document
+      .getElementById("billPaymentBtn")
+      .addEventListener("click", () => {
+
+        openModal(billModal);
+
+      });
+
+
+    document
+      .getElementById("payeePaymentBtn")
+      .addEventListener("click", () => {
+
+        openModal(payeeModal);
+
+      });
+
+
+    document
+      .getElementById("addPayeeBtn")
+      .addEventListener("click", () => {
+
+        openModal(addPayeeModal);
+
+      });
+
+
+    document
+      .getElementById("headerAddPayeeBtn")
+      .addEventListener("click", () => {
+
+        openModal(addPayeeModal);
+
+      });
+
+
+    document
+      .getElementById("billForm")
+      .addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        const company =
+          document.getElementById("billCompany")
+            .value.trim();
+
+        const reference =
+          document.getElementById("billReference")
+            .value.trim();
+
+        const amount =
+          Number(
+            document.getElementById("billAmount").value
+          );
+
+        const date =
+          document.getElementById("billDate").value;
+
+        if (!company || !reference || amount <= 0) {
+          showToast("Enter valid payment details.");
+          return;
+        }
+
+        if (amount > currentBalance) {
+          showToast("Insufficient available balance.");
+          return;
+        }
+
+        prepareReview({
+          type: "Bill Payment",
+          payee: company,
+          reference,
+          amount,
+          date
+        });
+
+      });
+
+
+    document
+      .getElementById("payeePaymentForm")
+      .addEventListener("submit", async event => {
+
+        event.preventDefault();
+
+        const payeeId =
+          paymentPayee.value;
+
+        const amount =
+          Number(
+            document.getElementById("payeeAmount").value
+          );
+
+        const date =
+          document.getElementById("payeeDate").value;
+
+        const note =
+          document.getElementById("payeeNote")
+            .value.trim();
+
+        if (!payeeId || amount <= 0) {
+          showToast("Enter valid payment details.");
+          return;
+        }
+
+        if (amount > currentBalance) {
+          showToast("Insufficient available balance.");
+          return;
+        }
+
+        try {
+
+          const payeeSnap =
+            await getDoc(
+              doc(
+                db,
+                "users",
+                currentUser.uid,
+                "payees",
+                payeeId
+              )
+            );
+
+          if (!payeeSnap.exists()) {
+            showToast("Payee could not be found.");
+            return;
+          }
+
+          const payee =
+            payeeSnap.data();
+
+          prepareReview({
+            type: "Payee Payment",
+            payee: payee.name,
+            reference: payee.reference,
+            amount,
+            date,
+            note,
+            payeeId
+          });
+
+        } catch (error) {
+
+          console.error(error);
+          showToast("Unable to load payee.");
+
+        }
+
+      });
+
+
+    document
+      .getElementById("addPayeeForm")
+      .addEventListener("submit", async event => {
+
+        event.preventDefault();
+
+        const name =
+          document.getElementById("newPayeeName")
+            .value.trim();
+
+        const reference =
+          document.getElementById("newPayeeReference")
+            .value.trim();
+
+        const type =
+          document.getElementById("newPayeeType")
+            .value;
+
+        if (!name || !reference) {
+          showToast("Enter all required payee details.");
+          return;
+        }
+
+        try {
+
+          await addDoc(
+            collection(
+              db,
+              "users",
+              currentUser.uid,
+              "payees"
+            ),
+            {
+              name,
+              reference,
+              type,
+              createdAt: serverTimestamp()
+            }
+          );
+
+          document
+            .getElementById("addPayeeForm")
+            .reset();
+
+          closeModal(addPayeeModal);
+
+          await loadPayees();
+
+          showToast("Payee saved successfully.");
+
+        } catch (error) {
+
+          console.error(error);
+          showToast("Unable to save payee.");
+
+        }
+
+      });
+
+
+    document
+      .getElementById("confirmPaymentBtn")
+      .addEventListener("click", async () => {
+
+        if (!currentUser || !pendingPayment) {
+          return;
+        }
+
+        const confirmButton =
+          document.getElementById("confirmPaymentBtn");
+
+        confirmButton.disabled = true;
+        confirmButton.textContent =
+          "Processing...";
+
+        try {
+
+          const userRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid
+            );
+
+          const paymentRef =
+            doc(
+              collection(
+                db,
+                "users",
+                currentUser.uid,
+                "payments"
+              )
+            );
+
+          const transactionRef =
+            doc(
+              collection(
+                db,
+                "users",
+                currentUser.uid,
+                "transactions"
+              )
+            );
+
+          await runTransaction(
+            db,
+            async transaction => {
+
+              const userSnap =
+                await transaction.get(userRef);
+
+              if (!userSnap.exists()) {
+                throw new Error(
+                  "Account not found."
+                );
+              }
+
+              const userData =
+                userSnap.data();
+
+              const balance =
+                Number(userData.balance ?? 0);
+
+              const amount =
+                Number(pendingPayment.amount);
+
+              if (amount <= 0) {
+                throw new Error(
+                  "Invalid payment amount."
+                );
+              }
+
+              if (amount > balance) {
+                throw new Error(
+                  "Insufficient balance."
+                );
+              }
+
+              const newBalance =
+                balance - amount;
+
+              transaction.update(
+                userRef,
+                {
+                  balance: newBalance,
+                  updatedAt: serverTimestamp()
+                }
+              );
+
+              transaction.set(
+                paymentRef,
+                {
+                  type: pendingPayment.type,
+                  payee: pendingPayment.payee,
+                  reference:
+                    pendingPayment.reference || "",
+                  amount,
+                  paymentDate:
+                    pendingPayment.date || "",
+                  note:
+                    pendingPayment.note || "",
+                  status: "completed",
+                  createdAt: serverTimestamp()
+                }
+              );
+
+              transaction.set(
+                transactionRef,
+                {
+                  type: "payment",
+                  title: pendingPayment.type,
+                  amount,
+                  direction: "debit",
+                  payee: pendingPayment.payee,
+                  reference:
+                    pendingPayment.reference || "",
+                  status: "completed",
+                  createdAt: serverTimestamp()
+                }
+              );
+
+            }
+          );
+
+          currentBalance -=
+            Number(pendingPayment.amount);
+
+          balanceEl.textContent =
+            formatMoney(currentBalance);
+
+          closeModal(reviewModal);
+
+          document.getElementById(
+            "successTransactionId"
+          ).textContent =
+            transactionRef.id;
+
+          document.getElementById(
+            "successAmount"
+          ).textContent =
+            formatMoney(pendingPayment.amount);
+
+          openModal(successModal);
+
+          pendingPayment = null;
+
+          await loadPaymentHistory();
+
+        } catch (error) {
+
+          console.error(error);
+
+          showToast(
+            error.message ||
+            "Payment could not be completed."
+          );
+
+        } finally {
+
+          confirmButton.disabled = false;
+          confirmButton.textContent =
+            "Confirm Payment";
+
+        }
+
+      });
+
+
+    document
+      .getElementById("doneSuccessBtn")
+      .addEventListener("click", () => {
+
+        closeModal(successModal);
+
+        document
+          .getElementById("billForm")
+          .reset();
+
+        document
+          .getElementById("payeePaymentForm")
+          .reset();
+
+        document.getElementById("billDate").value =
+          todayString();
+
+        document.getElementById("payeeDate").value =
+          todayString();
+
+      });
+
+
+    document
+      .getElementById("closeBillModal")
+      .addEventListener("click", () => {
+        closeModal(billModal);
+      });
+
+
+    document
+      .getElementById("closePayeeModal")
+      .addEventListener("click", () => {
+        closeModal(payeeModal);
+      });
+
+
+    document
+      .getElementById("closeAddPayeeModal")
+      .addEventListener("click", () => {
+        closeModal(addPayeeModal);
+      });
+
+
+    document
+      .getElementById("closeReviewModal")
+      .addEventListener("click", () => {
+        closeModal(reviewModal);
+      });
+
+
+    document
+      .getElementById("cancelReviewBtn")
+      .addEventListener("click", () => {
+        pendingPayment = null;
+        closeModal(reviewModal);
+      });
+
+
+    document
+      .getElementById("refreshPaymentsBtn")
+      .addEventListener("click", async () => {
+
+        await loadAccount();
+        await loadPaymentHistory();
+
+        showToast("Payments refreshed.");
+
+      });
+
+
+    document
+      .getElementById("backBtn")
+      .addEventListener("click", () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      });
+
+
+    document
+      .querySelectorAll(".modal")
+      .forEach(modal => {
+
+        modal.addEventListener("click", event => {
+
+          if (event.target === modal) {
+            closeModal(modal);
+          }
+
+        });
+
+      });
+
+
+    onAuthStateChanged(
+      auth,
+      async user => {
+
+        if (!user) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        currentUser = user;
+
+        await loadAccount();
+        await loadPayees();
+        await loadPaymentHistory();
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
