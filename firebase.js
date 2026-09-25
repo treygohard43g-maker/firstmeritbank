@@ -16,7 +16,7 @@ import {
 // Firebase configuration
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDJovDxELDNrijQJxdSXzO9VTDTjaNRoQ",
+  apiKey: "AIzaSyDJovDxELDNrijQJxdSXz2O9VTDTjaNRoQ",
   authDomain: "first-merit-bank.firebaseapp.com",
   projectId: "first-merit-bank",
   storageBucket: "first-merit-bank.firebasestorage.app",
