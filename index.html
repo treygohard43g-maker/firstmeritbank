@@ -812,34 +812,38 @@
       margin: 0 0 18px;
     }
 
-    .review-user {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+   .review-user {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 22px;
+}
 
-    .avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--blue-soft);
-      color: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 12px;
-    }
+.member-photo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
 
-    .review-user strong {
-      display: block;
-      font-size: 11px;
-    }
+  border: 3px solid #fff;
 
-    .review-user span {
-      color: var(--muted-light);
-      font-size: 10px;
-    }
+  box-shadow:
+    0 4px 12px rgba(11,42,91,.14);
+}
+
+.review-user strong {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.review-user span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+}
 
     /* =========================
        CTA
@@ -1752,104 +1756,123 @@
 
   </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials">
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
+  <div class="container">
 
-    <div class="container">
+    <div class="section-heading reveal">
 
-      <div class="section-heading reveal">
-
-        <div class="eyebrow">
-          Member Experience
-        </div>
-
-        <h2>What our members say.</h2>
-
-        <p>
-          A modern banking experience built around real people
-          and their financial goals.
-        </p>
-
+      <div class="eyebrow">
+        Member Experience
       </div>
 
+      <h2>What our members say.</h2>
 
-      <div class="reviews">
-
-        <article class="review reveal">
-
-          <div class="stars">
-            ★★★★★
-          </div>
-
-          <p>
-            “First Merit makes everyday banking simple.
-            I can manage my account without unnecessary steps.”
-          </p>
-
-          <div class="review-user">
-            <div class="avatar">SJ</div>
-
-            <div>
-              <strong>Sarah Johnson</strong>
-              <span>Member</span>
-            </div>
-          </div>
-
-        </article>
-
-
-        <article class="review reveal">
-
-          <div class="stars">
-            ★★★★★
-          </div>
-
-          <p>
-            “The digital banking experience is convenient,
-            clean and easy to understand.”
-          </p>
-
-          <div class="review-user">
-            <div class="avatar">MO</div>
-
-            <div>
-              <strong>Michael Owen</strong>
-              <span>Member</span>
-            </div>
-          </div>
-
-        </article>
-
-
-        <article class="review reveal">
-
-          <div class="stars">
-            ★★★★★
-          </div>
-
-          <p>
-            “I appreciate having straightforward tools that
-            help me stay organized financially.”
-          </p>
-
-          <div class="review-user">
-            <div class="avatar">ER</div>
-
-            <div>
-              <strong>Elena Rodriguez</strong>
-              <span>Member</span>
-            </div>
-          </div>
-
-        </article>
-
-      </div>
+      <p>
+        A modern banking experience built around real people
+        and their financial goals.
+      </p>
 
     </div>
 
-  </section>
 
+    <div class="reviews">
+
+      <!-- REVIEW 1 -->
+      <article class="review reveal">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “First Merit makes everyday banking simple.
+          I can manage my account without unnecessary steps.”
+        </p>
+
+        <div class="review-user">
+
+          <img
+            src="https://i.pravatar.cc/100?img=47"
+            alt="Sarah Johnson"
+            class="member-photo"
+          >
+
+          <div>
+            <strong>Sarah Johnson</strong>
+            <span>Member</span>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- REVIEW 2 -->
+      <article class="review reveal">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “The digital banking experience is convenient,
+          clean and easy to understand.”
+        </p>
+
+        <div class="review-user">
+
+          <img
+            src="https://i.pravatar.cc/100?img=12"
+            alt="Michael Owen"
+            class="member-photo"
+          >
+
+          <div>
+            <strong>Michael Owen</strong>
+            <span>Member</span>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- REVIEW 3 -->
+      <article class="review reveal">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “I appreciate having straightforward tools that
+          help me stay organized financially.”
+        </p>
+
+        <div class="review-user">
+
+          <img
+            src="https://i.pravatar.cc/100?img=32"
+            alt="Elena Rodriguez"
+            class="member-photo"
+          >
+
+          <div>
+            <strong>Elena Rodriguez</strong>
+            <span>Member</span>
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
 
   <!-- CTA -->
   <section class="cta" id="contact">
