@@ -50,75 +50,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       margin-bottom: 24px;
     }
 
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-
+    .brand-logo a {
       display: flex;
       align-items: center;
       justify-content: center;
-
-      background: linear-gradient(
-        135deg,
-        #123b8f,
-        #2563eb
-      );
-
-      color: #fff;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-
-      box-shadow:
-        0 7px 18px rgba(18, 59, 143, .18);
-
-      position: relative;
     }
 
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-
-      width: 16px;
-      height: 4px;
-
-      bottom: 7px;
-
-      border-radius: 4px;
-
-      background: #22d3ee;
-    }
-
-    .logo-text {
-      line-height: 1.05;
-      text-align: left;
-    }
-
-    .logo-name {
+    .brand-logo img {
       display: block;
-
-      font-size: 17px;
-      font-weight: 750;
-      letter-spacing: -.3px;
-
-      color: #123b8f;
-    }
-
-    .logo-bank {
-      display: block;
-
-      margin-top: 3px;
-
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2px;
-
-      color: #7a8496;
+      width: 190px;
+      height: auto;
+      max-width: 100%;
     }
 
     /* =========================
@@ -516,6 +461,10 @@
         margin-bottom: 20px;
       }
 
+      .brand-logo img {
+        width: 175px;
+      }
+
       .auth-heading h1 {
         font-size: 27px;
       }
@@ -547,21 +496,14 @@
 
       <div class="brand-logo">
 
-        <div class="logo-mark">
-          FM
-        </div>
+        <a href="index.html">
 
-        <div class="logo-text">
+          <img
+            src="first-merit-logo.svg"
+            alt="First Merit Bank"
+          >
 
-          <span class="logo-name">
-            First Merit
-          </span>
-
-          <span class="logo-bank">
-            BANK
-          </span>
-
-        </div>
+        </a>
 
       </div>
 
