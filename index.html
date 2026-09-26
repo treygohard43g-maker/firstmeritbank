@@ -1,1894 +1,2107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>First Merit Bank | Banking That Puts You First</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-:root{
-  --navy:#0b2a5b;
-  --navy-dark:#071d40;
-  --blue:#1769d1;
-  --cyan:#13a9c2;
-  --green:#159447;
-  --gold:#dca52c;
-  --text:#172235;
-  --muted:#667085;
-  --page:#f6f8fb;
-  --white:#fff;
-  --border:#e4e8ef;
-  --shadow:0 18px 45px rgba(16,35,70,.10);
-  --shadow-lg:0 28px 65px rgba(16,35,70,.15);
-  --radius:20px;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:var(--white);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-img{
-  display:block;
-  max-width:100%;
-}
-
-button{
-  font-family:inherit;
-}
-
-/* =========================
-HEADER
-========================= */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-
-.nav{
-  width:min(1180px,calc(100% - 40px));
-  height:72px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:25px;
-}
-
-.logo img{
-  width:155px;
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:25px;
-  font-size:13px;
-  font-weight:600;
-  color:#4f5d72;
-}
-
-.nav-links a:hover{
-  color:var(--blue);
-}
-
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.login{
-  font-size:13px;
-  font-weight:700;
-  padding:10px 13px;
-  color:var(--navy);
-}
-
-.open-account{
-  background:var(--navy);
-  color:white;
-  padding:11px 17px;
-  border-radius:10px;
-  font-size:13px;
-  font-weight:700;
-}
-
-.open-account:hover{
-  background:var(--blue);
-}
-
-.menu-btn{
-  display:none;
-  border:0;
-  background:none;
-  font-size:22px;
-  color:var(--navy);
-}
-
-/* =========================
-HERO
-========================= */
-
-.hero{
-  background:
-  radial-gradient(circle at 10% 15%,rgba(23,105,209,.10),transparent 30%),
-  linear-gradient(180deg,#fff,#f7faff);
-}
-
-.hero-inner{
-  width:min(1180px,calc(100% - 40px));
-  min-height:510px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:50px;
-  padding:55px 0;
-}
-
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:7px 11px;
-  border-radius:999px;
-  background:#edf5ff;
-  color:var(--blue);
-  font-size:11px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-}
-
-.hero h1{
-  margin:18px 0 15px;
-  font-family:Manrope,sans-serif;
-  font-size:clamp(40px,5vw,62px);
-  line-height:1.04;
-  letter-spacing:-.045em;
-  color:var(--navy);
-}
-
-.hero h1 span{
-  color:var(--blue);
-}
-
-.hero p{
-  max-width:550px;
-  margin:0;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.75;
-}
-
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:27px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-height:45px;
-  padding:0 18px;
-  border-radius:11px;
-  font-size:13px;
-  font-weight:800;
-  transition:.25s ease;
-}
-
-.btn-primary{
-  background:var(--navy);
-  color:white;
-}
-
-.btn-secondary{
-  background:white;
-  border:1px solid var(--border);
-  color:var(--navy);
-}
-
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow);
-}
-
-/* HERO IMAGE */
-
-.hero-visual{
-  position:relative;
-  height:390px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.hero-image{
-  position:absolute;
-  width:420px;
-  height:300px;
-  right:-35px;
-  top:18px;
-  object-fit:cover;
-  border-radius:25px;
-  box-shadow:var(--shadow-lg);
-  transform:rotate(3deg);
-  animation:heroImage 1s cubic-bezier(.16,1,.3,1);
-}
-
-.bank-card{
-  position:relative;
-  z-index:2;
-  width:365px;
-  min-height:225px;
-  padding:25px;
-  border-radius:23px;
-  background:
-    radial-gradient(circle at 80% 10%,rgba(19,169,194,.35),transparent 30%),
-    linear-gradient(135deg,#0d3674,#071d40);
-  color:white;
-  box-shadow:0 28px 60px rgba(7,29,64,.28);
-  transform:rotate(-4deg);
-  animation:cardIn 1s cubic-bezier(.16,1,.3,1) .15s both;
-}
-
-.card-top{
-  display:flex;
-  justify-content:space-between;
-}
-
-.bank-name{
-  font-family:Manrope,sans-serif;
-  font-weight:800;
-  font-size:16px;
-}
-
-.member{
-  font-size:8px;
-  letter-spacing:.15em;
-  opacity:.7;
-}
-
-.chip{
-  width:45px;
-  height:34px;
-  margin-top:33px;
-  border-radius:7px;
-  background:linear-gradient(135deg,#d3b66f,#f1dda0,#b69145);
-}
-
-.balance-label{
-  margin-top:22px;
-  font-size:9px;
-  opacity:.65;
-}
-
-.balance{
-  font-family:Manrope,sans-serif;
-  font-size:28px;
-  font-weight:800;
-  margin-top:3px;
-}
-
-.card-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-top:20px;
-  font-size:11px;
-}
-
-.active{
-  background:rgba(21,148,71,.2);
-  color:#72efaa;
-  padding:5px 8px;
-  border-radius:999px;
-  font-size:9px;
-}
-
-@keyframes heroImage{
-  from{
-    opacity:0;
-    transform:translateX(70px) rotate(8deg);
-  }
-  to{
-    opacity:1;
-    transform:translateX(0) rotate(3deg);
-  }
-}
-
-@keyframes cardIn{
-  from{
-    opacity:0;
-    transform:translateY(30px) rotate(-7deg);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) rotate(-4deg);
-  }
-}
-
-/* =========================
-TRUSTED MEMBERS
-========================= */
-
-.trusted{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:white;
-}
-
-.trusted-inner{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
-  min-height:90px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-}
-
-.avatars{
-  display:flex;
-}
-
-.avatars img{
-  width:34px;
-  height:34px;
-  object-fit:cover;
-  border-radius:50%;
-  border:3px solid white;
-  margin-left:-8px;
-}
-
-.avatars img:first-child{
-  margin-left:0;
-}
-
-.trusted strong{
-  color:var(--navy);
-  font-size:14px;
-}
-
-.trusted span{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
-  margin-top:3px;
-}
-
-/* =========================
-GENERAL
-========================= */
-
-section{
-  padding:75px 20px;
-}
-
-.section{
-  width:min(1180px,100%);
-  margin:auto;
-}
-
-.eyebrow{
-  color:var(--blue);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
-
-.heading{
-  max-width:680px;
-  margin-bottom:38px;
-}
-
-.heading h2{
-  margin:0;
-  font-family:Manrope,sans-serif;
-  color:var(--navy);
-  font-size:clamp(29px,4vw,43px);
-  line-height:1.1;
-  letter-spacing:-.035em;
-}
-
-.heading p{
-  margin:12px 0 0;
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
-}
-
-/* =========================
-SERVICES
-========================= */
-
-.services{
-  background:var(--page);
-}
-
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.service{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:23px;
-  box-shadow:0 7px 22px rgba(16,35,70,.045);
-  transition:.25s ease;
-}
-
-.service:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow);
-}
-
-.icon{
-  width:42px;
-  height:42px;
-  display:grid;
-  place-items:center;
-  border-radius:12px;
-  margin-bottom:16px;
-  font-size:16px;
-}
-
-.service:nth-child(1) .icon{
-  background:#edf5ff;
-  color:var(--blue);
-}
-
-.service:nth-child(2) .icon{
-  background:#ecf9f1;
-  color:var(--green);
-}
-
-.service:nth-child(3) .icon{
-  background:#eafafd;
-  color:var(--cyan);
-}
-
-.service:nth-child(4) .icon{
-  background:#fff8e8;
-  color:var(--gold);
-}
-
-.service:nth-child(5) .icon{
-  background:#f0edff;
-  color:#7058c7;
-}
-
-.service:nth-child(6) .icon{
-  background:#fff0f0;
-  color:#d45353;
-}
-
-.service h3{
-  margin:0 0 7px;
-  font-size:15px;
-}
-
-.service p{
-  margin:0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.65;
-}
-
-/* =========================
-FEATURE SECTIONS
-========================= */
-
-.modern{
-  background:white;
-}
-
-.feature{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:65px;
-}
-
-.feature.reverse .feature-image{
-  order:2;
-}
-
-.feature.reverse .feature-content{
-  order:1;
-}
-
-.feature-image{
-  position:relative;
-  min-height:330px;
-}
-
-.feature-image img{
-  width:100%;
-  height:330px;
-  object-fit:cover;
-  border-radius:24px;
-  box-shadow:var(--shadow-lg);
-}
-
-.feature-content h2{
-  margin:0;
-  font-family:Manrope,sans-serif;
-  color:var(--navy);
-  font-size:clamp(30px,4vw,43px);
-  line-height:1.08;
-  letter-spacing:-.04em;
-}
-
-.feature-content p{
-  color:var(--muted);
-  line-height:1.75;
-  font-size:14px;
-  margin:15px 0 22px;
-}
-
-.feature-points{
-  display:grid;
-  gap:13px;
-}
-
-.point{
-  display:flex;
-  gap:11px;
-}
-
-.point-icon{
-  flex-shrink:0;
-  width:29px;
-  height:29px;
-  border-radius:9px;
-  display:grid;
-  place-items:center;
-  background:#edf5ff;
-  color:var(--blue);
-  font-size:10px;
-}
-
-.point strong{
-  display:block;
-  font-size:13px;
-}
-
-.point span{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.5;
-  margin-top:2px;
-}
-
-/* =========================
-MOBILE BANKING
-========================= */
-
-.mobile-banking{
-  background:#f7faff;
-}
-
-.mobile-layout{
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:70px;
-  align-items:center;
-}
-
-.phone-area{
-  min-height:390px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-
-.phone-image{
-  position:absolute;
-  width:260px;
-  height:360px;
-  object-fit:cover;
-  border-radius:28px;
-  transform:rotate(4deg);
-  box-shadow:var(--shadow-lg);
-}
-
-.phone{
-  position:relative;
-  z-index:2;
-  width:205px;
-  height:330px;
-  padding:10px;
-  border-radius:28px;
-  background:#071d40;
-  box-shadow:0 25px 55px rgba(7,29,64,.25);
-  transform:rotate(-4deg);
-}
-
-.screen{
-  width:100%;
-  height:100%;
-  border-radius:20px;
-  overflow:hidden;
-  background:#f6f8fb;
-}
-
-.screen-top{
-  padding:19px 15px 13px;
-  background:var(--navy);
-  color:white;
-}
-
-.screen-top small{
-  opacity:.65;
-  font-size:8px;
-}
-
-.screen-top strong{
-  display:block;
-  font-size:14px;
-  margin-top:3px;
-}
-
-.screen-balance{
-  background:white;
-  margin:12px;
-  padding:14px;
-  border-radius:13px;
-}
-
-.screen-balance span{
-  font-size:8px;
-  color:var(--muted);
-}
-
-.screen-balance strong{
-  display:block;
-  color:var(--navy);
-  font-size:18px;
-  margin-top:3px;
-}
-
-.quick{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  padding:0 12px;
-}
-
-.quick div{
-  padding:12px 5px;
-  text-align:center;
-  border-radius:10px;
-  background:white;
-  font-size:8px;
-  color:var(--muted);
-}
-
-.quick i{
-  display:block;
-  color:var(--blue);
-  margin-bottom:5px;
-}
-
-.mobile-content h2{
-  margin:0;
-  font-family:Manrope,sans-serif;
-  color:var(--navy);
-  font-size:clamp(30px,4vw,43px);
-  line-height:1.08;
-}
-
-.mobile-content>p{
-  color:var(--muted);
-  line-height:1.75;
-  font-size:14px;
-  margin:15px 0 25px;
-}
-
-.mobile-features{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.mobile-feature h3{
-  margin:0 0 5px;
-  font-size:13px;
-}
-
-.mobile-feature p{
-  margin:0;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.55;
-}
-
-/* =========================
-TESTIMONIALS
-========================= */
-
-.testimonials{
-  background:white;
-}
-
-.testimonial-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.testimonial{
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:23px;
-  box-shadow:0 7px 22px rgba(16,35,70,.045);
-}
-
-.stars{
-  color:#dfa82d;
-  font-size:11px;
-  margin-bottom:14px;
-}
-
-.testimonial>p{
-  color:#4d596d;
-  font-size:12px;
-  line-height:1.7;
-  margin:0;
-}
-
-.person{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  margin-top:18px;
-}
-
-.person img{
-  width:36px;
-  height:36px;
-  object-fit:cover;
-  border-radius:50%;
-}
-
-.person strong{
-  display:block;
-  font-size:11px;
-}
-
-.person span{
-  display:block;
-  color:var(--muted);
-  font-size:9px;
-  margin-top:2px;
-}
-
-/* =========================
-CTA
-========================= */
-
-.cta{
-  padding:65px 20px;
-  background:var(--navy);
-  color:white;
-  text-align:center;
-}
-
-.cta h2{
-  margin:0;
-  font-family:Manrope,sans-serif;
-  font-size:clamp(29px,4vw,43px);
-  letter-spacing:-.035em;
-}
-
-.cta p{
-  max-width:550px;
-  margin:13px auto 24px;
-  color:rgba(255,255,255,.7);
-  font-size:13px;
-  line-height:1.7;
-}
-
-.cta .btn{
-  background:white;
-  color:var(--navy);
-}
-
-/* =========================
-FOOTER
-========================= */
-
-footer{
-  background:var(--navy-dark);
-  color:white;
-  padding:50px 20px 22px;
-}
-
-.footer{
-  width:min(1180px,100%);
-  margin:auto;
-}
-
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.5fr repeat(3,1fr);
-  gap:45px;
-}
-
-.footer-logo{
-  width:150px;
-  filter:brightness(0) invert(1);
-}
-
-.footer-brand p{
-  max-width:270px;
-  color:rgba(255,255,255,.55);
-  font-size:11px;
-  line-height:1.7;
-  margin-top:16px;
-}
-
-.footer h4{
-  margin:0 0 14px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-
-.footer a{
-  display:block;
-  color:rgba(255,255,255,.55);
-  font-size:11px;
-  margin-bottom:9px;
-}
-
-.footer a:hover{
-  color:white;
-}
-
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.1);
-  margin-top:38px;
-  padding-top:18px;
-  display:flex;
-  justify-content:space-between;
-  color:rgba(255,255,255,.4);
-  font-size:9px;
-}
-
-/* =========================
-RESPONSIVE
-========================= */
-
-@media(max-width:850px){
-
-  .nav-links,
-  .nav-actions{
-    display:none;
-  }
-
-  .menu-btn{
-    display:block;
-  }
-
-  .hero-inner{
-    grid-template-columns:1fr;
-    text-align:center;
-    padding:50px 0;
-  }
-
-  .hero p{
-    margin:auto;
-  }
-
-  .buttons{
-    justify-content:center;
-  }
-
-  .hero-visual{
-    height:350px;
-  }
-
-  .hero-image{
-    width:350px;
-    height:255px;
-    right:50%;
-    transform:translateX(50%) rotate(3deg);
-  }
-
-  .bank-card{
-    width:340px;
-  }
-
-  .service-grid,
-  .testimonial-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .feature,
-  .mobile-layout{
-    grid-template-columns:1fr;
-    gap:35px;
-  }
-
-  .feature.reverse .feature-image,
-  .feature.reverse .feature-content{
-    order:initial;
-  }
-
-  .feature-image{
-    min-height:290px;
-  }
-
-  .feature-image img{
-    height:290px;
-  }
-
-  .mobile-content{
-    text-align:center;
-  }
-
-  .mobile-features{
-    text-align:left;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:600px){
-
-  section{
-    padding:60px 18px;
-  }
-
-  .nav{
-    width:calc(100% - 30px);
-  }
-
-  .hero-inner{
-    width:calc(100% - 30px);
-  }
-
-  .hero h1{
-    font-size:40px;
-  }
-
-  .hero-visual{
-    height:320px;
-  }
-
-  .hero-image{
-    width:315px;
-    height:230px;
-  }
-
-  .bank-card{
-    width:315px;
-    min-height:205px;
-    padding:21px;
-  }
-
-  .balance{
-    font-size:25px;
-  }
-
-  .service-grid,
-  .testimonial-grid,
-  .mobile-features{
-    grid-template-columns:1fr;
-  }
-
-  .trusted-inner{
-    width:calc(100% - 30px);
-  }
-
-  .feature-image img{
-    height:260px;
-  }
-
-  .phone-image{
-    width:220px;
-    height:310px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:28px;
-  }
-
-  .footer-bottom{
-    flex-direction:column;
-    gap:8px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  html{
-    scroll-behavior:auto;
-  }
-
-  *{
-    animation:none!important;
-    transition:none!important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>First Merit Bank | Banking That Moves With You</title>
+
+  <link rel="icon" href="first-merit-logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+
+    :root {
+      --navy: #0b2a5b;
+      --navy-dark: #071d40;
+      --blue: #1769d1;
+      --blue-soft: #edf5ff;
+      --cyan: #13a9c2;
+      --cyan-soft: #eafafd;
+      --green: #159447;
+      --green-soft: #ecf9f1;
+      --gold: #dca52c;
+      --gold-soft: #fff8e8;
+
+      --text: #172235;
+      --muted: #667085;
+      --white: #ffffff;
+      --page: #f6f8fb;
+      --border: #e4e8ef;
+
+      --shadow-sm: 0 8px 24px rgba(11,42,91,.07);
+      --shadow-md: 0 18px 45px rgba(11,42,91,.11);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 154px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.88);
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .nav-login {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.28);
+      padding: 9px 15px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .nav-login:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .nav-signup {
+      background: #fff;
+      color: var(--navy);
+      padding: 10px 16px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .nav-signup:hover {
+      transform: translateY(-1px);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 9px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      background:
+        radial-gradient(circle at 80% 10%, rgba(19,169,194,.18), transparent 30%),
+        linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: #fff;
+      padding: 68px 0 62px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .insurance {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d8f6fa;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 30px;
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 19px;
+    }
+
+    .insurance i {
+      color: #59d7e7;
+    }
+
+    .hero h1 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(38px, 5vw, 61px);
+      line-height: 1.03;
+      letter-spacing: -2.5px;
+      max-width: 600px;
+      margin: 0 0 19px;
+    }
+
+    .hero-text {
+      color: rgba(255,255,255,.76);
+      max-width: 545px;
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0 0 27px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 45px;
+      padding: 0 19px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--navy);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.27);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    /* Hero bank card */
+
+    .hero-card-wrap {
+      display: flex;
+      justify-content: center;
+      perspective: 900px;
+    }
+
+    .bank-card {
+      width: min(100%, 410px);
+      min-height: 245px;
+      padding: 26px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, #173f7d, #0c2958);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 30px 65px rgba(0,0,0,.25);
+      transform: rotate(2deg);
+      transition: transform .5s ease;
+    }
+
+    .bank-card:hover {
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    .bank-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -70px;
+      bottom: -80px;
+      background: rgba(19,169,194,.2);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-brand {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .card-chip {
+      width: 43px;
+      height: 31px;
+      border-radius: 7px;
+      background: linear-gradient(135deg,#f1d77d,#c49c39);
+      opacity: .95;
+    }
+
+    .card-balance-label {
+      color: rgba(255,255,255,.62);
+      font-size: 11px;
+      margin-top: 40px;
+    }
+
+    .card-balance {
+      font-family: Manrope, sans-serif;
+      font-size: 31px;
+      font-weight: 800;
+      margin-top: 3px;
+    }
+
+    .card-bottom {
+      position: absolute;
+      bottom: 22px;
+      left: 26px;
+      right: 26px;
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255,255,255,.65);
+      font-size: 10px;
+    }
+
+    /* =========================
+       TRUST
+    ========================= */
+
+    .trust {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-inner {
+      min-height: 91px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .trust-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .trust-items {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .trust-item i {
+      color: var(--green);
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .section-heading h2 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(27px, 3.3vw, 40px);
+      line-height: 1.12;
+      letter-spacing: -1.2px;
+      margin: 0 0 11px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      background: #fff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .service-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 17px;
+      font-size: 16px;
+    }
+
+    .icon-blue {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .icon-green {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .icon-cyan {
+      color: var(--cyan);
+      background: var(--cyan-soft);
+    }
+
+    .icon-gold {
+      color: #b17c09;
+      background: var(--gold-soft);
+    }
+
+    .service-card h3 {
+      margin: 0 0 7px;
+      font-size: 15px;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       FEATURE SECTIONS
+    ========================= */
+
+    .feature {
+      background: var(--page);
+    }
+
+    .feature + .feature {
+      padding-top: 15px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 65px;
+    }
+
+    .feature-grid.reverse .feature-visual {
+      order: 2;
+    }
+
+    .feature-grid.reverse .feature-content {
+      order: 1;
+    }
+
+    .feature-content h2 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(29px, 3.5vw, 43px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin: 0 0 13px;
+    }
+
+    .feature-content > p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0 0 23px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .feature-list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+      background: var(--green-soft);
+      font-size: 11px;
+    }
+
+    .feature-list-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .feature-list-item span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* Visual panels instead of random photos */
+
+    .visual-panel {
+      min-height: 330px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, var(--navy), #123c78);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .visual-panel::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      right: -80px;
+      top: -80px;
+      background: rgba(19,169,194,.17);
+    }
+
+    .visual-label {
+      position: relative;
+      color: rgba(255,255,255,.65);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .visual-title {
+      position: relative;
+      color: #fff;
+      font-family: Manrope, sans-serif;
+      font-size: 26px;
+      line-height: 1.15;
+      max-width: 300px;
+      margin-top: 12px;
+    }
+
+    .mini-dashboard {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 23px;
+      background: rgba(255,255,255,.96);
+      border-radius: 15px;
+      padding: 17px;
+      color: var(--text);
+    }
+
+    .mini-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+    }
+
+    .mini-row:last-child {
+      border-bottom: 0;
+    }
+
+    .mini-row strong {
+      font-size: 12px;
+    }
+
+    .positive {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    /* =========================
+       MOBILE BANKING
+    ========================= */
+
+    .mobile-section {
+      background: #fff;
+    }
+
+    .mobile-box {
+      background: linear-gradient(135deg, #071d40, #0b2a5b);
+      color: #fff;
+      border-radius: 24px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+      overflow: hidden;
+    }
+
+    .mobile-box h2 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+
+    .mobile-box p {
+      color: rgba(255,255,255,.7);
+      font-size: 13px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .mobile-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .mobile-feature {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-feature i {
+      color: #65d8e5;
+      margin-bottom: 8px;
+    }
+
+    .mobile-feature strong {
+      display: block;
+      font-size: 11px;
+    }
+
+    .mobile-feature span {
+      display: block;
+      color: rgba(255,255,255,.55);
+      font-size: 9px;
+      margin-top: 3px;
+    }
+
+    .phone {
+      width: 195px;
+      height: 355px;
+      margin: auto;
+      border: 7px solid #111b2d;
+      border-radius: 30px;
+      background: #f8fafc;
+      padding: 19px 13px;
+      box-shadow: 0 25px 50px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 62px;
+      height: 16px;
+      background: #111b2d;
+      border-radius: 0 0 12px 12px;
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .phone-brand {
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 11px;
+      margin-top: 8px;
+    }
+
+    .phone-balance {
+      margin-top: 23px;
+      padding: 16px;
+      border-radius: 13px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .phone-balance span {
+      display: block;
+      color: rgba(255,255,255,.6);
+      font-size: 8px;
+    }
+
+    .phone-balance strong {
+      display: block;
+      font-size: 19px;
+      margin-top: 3px;
+    }
+
+    .phone-lines {
+      margin-top: 15px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .phone-line {
+      height: 32px;
+      border-radius: 8px;
+      background: #e8edf4;
+    }
+
+    /* =========================
+       TESTIMONIALS
+    ========================= */
+
+    .testimonials {
+      background: var(--page);
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .review {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+
+    .review p {
+      color: #4d596b;
+      font-size: 12px;
+      line-height: 1.75;
+      margin: 0 0 18px;
+    }
+
+    .review-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .review-user strong {
+      display: block;
+      font-size: 11px;
+    }
+
+    .review-user span {
+      color: var(--muted-light);
+      font-size: 10px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 58px 0;
+      background: #fff;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      border-radius: 21px;
+      padding: 42px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .cta-box h2 {
+      font-family: Manrope, sans-serif;
+      font-size: 31px;
+      margin: 0 0 7px;
+      letter-spacing: -1px;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: rgba(255,255,255,.7);
+      font-size: 12px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 55px 0 23px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 45px;
+      padding-bottom: 42px;
+    }
+
+    .footer-brand img {
+      width: 165px;
+      height: auto;
+      margin-bottom: 17px;
+      filter: none;
+    }
+
+    .footer-brand p {
+      max-width: 275px;
+      color: rgba(255,255,255,.57);
+      font-size: 11px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      margin: 0 0 15px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,.58);
+      font-size: 11px;
+      margin-bottom: 9px;
+      transition: color .2s ease;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      padding-top: 19px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,.4);
+      font-size: 10px;
+    }
+
+    .footer-badges {
+      display: flex;
+      gap: 13px;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition:
+        opacity .7s ease,
+        transform .7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition:
+        opacity .75s ease,
+        transform .75s ease;
+    }
+
+    .reveal-left.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition:
+        opacity .75s ease,
+        transform .75s ease;
+    }
+
+    .reveal-right.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-grid,
+      .feature-grid,
+      .mobile-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 54px 0;
+      }
+
+      .hero-grid {
+        gap: 42px;
+      }
+
+      .hero-card-wrap {
+        justify-content: flex-start;
+      }
+
+      .feature-grid.reverse .feature-visual,
+      .feature-grid.reverse .feature-content {
+        order: initial;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 620px) {
+
+      .container {
+        width: min(100% - 26px, 1160px);
+      }
+
+      .nav {
+        min-height: 64px;
+      }
+
+      .logo img {
+        width: 135px;
+      }
+
+      .hero {
+        padding: 45px 0;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+        letter-spacing: -1.7px;
+      }
+
+      .hero-text {
+        font-size: 13px;
+      }
+
+      .bank-card {
+        min-height: 220px;
+      }
+
+      .trust-inner {
+        padding: 18px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+      }
+
+      .trust-items {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .service-card {
+        padding: 17px;
+      }
+
+      .service-card p {
+        font-size: 11px;
+      }
+
+      .feature-grid {
+        gap: 30px;
+      }
+
+      .visual-panel {
+        min-height: 285px;
+      }
+
+      .mobile-box {
+        padding: 27px 21px;
+        border-radius: 18px;
+      }
+
+      .mobile-features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .phone {
+        width: 175px;
+        height: 320px;
+      }
+
+      .cta-box {
+        padding: 29px 22px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-box h2 {
+        font-size: 26px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal,
+      .reveal-left,
+      .reveal-right {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
-  <nav class="nav">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
 
-    <a href="index.html" class="logo">
-      <img src="first-merit-logo.svg" alt="First Merit Bank">
-    </a>
+      <a href="index.html" class="logo">
+        <img src="first-merit-logo.svg" alt="First Merit Bank">
+      </a>
 
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#digital">Digital Banking</a>
-      <a href="#rates">Rates</a>
-      <a href="#contact">Contact</a>
-    </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#digital">Digital Banking</a>
+        <a href="#rates">Rates</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-    <div class="nav-actions">
-      <a href="login.html" class="login">Log In</a>
-      <a href="signup.html" class="open-account">Open Account</a>
-    </div>
-
-    <button class="menu-btn">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
-  </nav>
-</header>
-
-
-<!-- HERO -->
-<section class="hero">
-
-  <div class="hero-inner">
-
-    <div class="hero-content">
-
-      <div class="badge">
-        <i class="fa-solid fa-shield-halved"></i>
-        Secure First Merit Banking
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login">Log In</a>
+        <a href="signup.html" class="nav-signup">Sign Up</a>
       </div>
 
-      <h1>
-        Banking that
-        <span>puts you first.</span>
-      </h1>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-      <p>
-        Experience a simpler standard of banking with modern financial
-        tools designed around your goals, your lifestyle and your future.
-      </p>
+    </div>
+  </header>
 
-      <div class="buttons">
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="container hero-grid">
+
+      <div class="reveal-left">
+
+        <div class="insurance">
+          <i class="fa-solid fa-shield-halved"></i>
+          Secure banking built around you
+        </div>
+
+        <h1>Banking that puts you first.</h1>
+
+        <p class="hero-text">
+          Experience a modern banking experience designed around your
+          everyday needs, your goals, and your financial future.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="signup.html" class="btn btn-primary">
+            Open an Account
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a href="login.html" class="btn btn-outline">
+            Sign In
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-card-wrap reveal-right">
+
+        <div class="bank-card">
+
+          <div class="card-top">
+            <span class="card-brand">FIRST MERIT BANK</span>
+            <div class="card-chip"></div>
+          </div>
+
+          <div class="card-balance-label">
+            Available Balance
+          </div>
+
+          <div class="card-balance">
+            $24,850.00
+          </div>
+
+          <div class="card-bottom">
+            <span>**** 4286</span>
+            <span>FIRST MERIT</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="container trust-inner">
+
+      <div class="trust-title">
+        Trusted banking for your financial journey
+      </div>
+
+      <div class="trust-items">
+
+        <div class="trust-item">
+          <i class="fa-solid fa-shield-halved"></i>
+          Secure Banking
+        </div>
+
+        <div class="trust-item">
+          <i class="fa-solid fa-bolt"></i>
+          Fast & Convenient
+        </div>
+
+        <div class="trust-item">
+          <i class="fa-solid fa-headset"></i>
+          Member Support
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+
+    <div class="container">
+
+      <div class="section-heading reveal">
+        <div class="eyebrow">Our Services</div>
+
+        <h2>Banking services tailored to you.</h2>
+
+        <p>
+          Simple, secure financial solutions designed to help you
+          save, spend, manage and plan with confidence.
+        </p>
+      </div>
+
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-icon icon-blue">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+          <h3>Checking Accounts</h3>
+          <p>
+            Convenient everyday banking with easy access to your money.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon icon-green">
+            <i class="fa-solid fa-piggy-bank"></i>
+          </div>
+          <h3>Savings Accounts</h3>
+          <p>
+            Build your savings and work toward your short and long-term goals.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon icon-cyan">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <h3>Home Loans</h3>
+          <p>
+            Flexible financing options designed around your homeownership goals.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon icon-gold">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+          </div>
+          <h3>Personal Loans</h3>
+          <p>
+            Flexible funding for planned purchases and unexpected expenses.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon icon-blue">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h3>Investment Options</h3>
+          <p>
+            Explore financial options designed for your future goals.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon icon-green">
+            <i class="fa-solid fa-percent"></i>
+          </div>
+          <h3>Special Rates</h3>
+          <p>
+            Discover competitive offers across selected banking products.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECURITY -->
+  <section class="feature" id="rates">
+
+    <div class="container feature-grid">
+
+      <div class="feature-visual reveal-left">
+
+        <div class="visual-panel">
+
+          <div class="visual-label">
+            FIRST MERIT SECURITY
+          </div>
+
+          <div class="visual-title">
+            Bank with confidence every day.
+          </div>
+
+          <div class="mini-dashboard">
+
+            <div class="mini-row">
+              <span>Account Security</span>
+              <strong class="positive">
+                Protected
+              </strong>
+            </div>
+
+            <div class="mini-row">
+              <span>Fraud Monitoring</span>
+              <strong class="positive">
+                Active
+              </strong>
+            </div>
+
+            <div class="mini-row">
+              <span>Account Alerts</span>
+              <strong class="positive">
+                Enabled
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature-content reveal-right">
+
+        <div class="eyebrow">
+          Modern Banking
+        </div>
+
+        <h2>Bank with confidence.</h2>
+
+        <p>
+          First Merit combines modern technology with practical
+          banking tools to help keep your financial information
+          protected and your account easier to manage.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div>
+              <strong>Enhanced Security</strong>
+              <span>Secure authentication and account protection.</span>
+            </div>
+          </div>
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div>
+              <strong>Instant Alerts</strong>
+              <span>Stay informed about important account activity.</span>
+            </div>
+          </div>
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div>
+              <strong>Simple Controls</strong>
+              <span>Manage your banking experience with ease.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DIGITAL -->
+  <section class="feature" id="digital">
+
+    <div class="container feature-grid reverse">
+
+      <div class="feature-visual reveal-right">
+
+        <div class="visual-panel">
+
+          <div class="visual-label">
+            DIGITAL BANKING
+          </div>
+
+          <div class="visual-title">
+            Your banking, wherever you are.
+          </div>
+
+          <div class="mini-dashboard">
+
+            <div class="mini-row">
+              <span>Transfer Money</span>
+              <strong>Available</strong>
+            </div>
+
+            <div class="mini-row">
+              <span>Pay Bills</span>
+              <strong>Available</strong>
+            </div>
+
+            <div class="mini-row">
+              <span>View Accounts</span>
+              <strong>Available</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature-content reveal-left">
+
+        <div class="eyebrow">
+          Digital Banking
+        </div>
+
+        <h2>Banking that fits your life.</h2>
+
+        <p>
+          Access your accounts wherever life takes you.
+          Manage your money through a simple and convenient
+          digital banking experience.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+
+            <div>
+              <strong>Mobile Banking</strong>
+              <span>Manage your accounts from your phone.</span>
+            </div>
+          </div>
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+
+            <div>
+              <strong>Quick Transfers</strong>
+              <span>Move money when you need it.</span>
+            </div>
+          </div>
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+
+            <div>
+              <strong>Card Controls</strong>
+              <span>Manage your card activity with ease.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PERSONALIZED -->
+  <section class="feature">
+
+    <div class="container feature-grid">
+
+      <div class="feature-visual reveal-left">
+
+        <div class="visual-panel">
+
+          <div class="visual-label">
+            PERSONAL BANKING
+          </div>
+
+          <div class="visual-title">
+            Banking designed around you.
+          </div>
+
+          <div class="mini-dashboard">
+
+            <div class="mini-row">
+              <span>Spending Insights</span>
+              <strong class="positive">Updated</strong>
+            </div>
+
+            <div class="mini-row">
+              <span>Financial Goals</span>
+              <strong class="positive">On Track</strong>
+            </div>
+
+            <div class="mini-row">
+              <span>Smart Alerts</span>
+              <strong class="positive">Active</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature-content reveal-right">
+
+        <div class="eyebrow">
+          Personalized Banking
+        </div>
+
+        <h2>Banking that understands you.</h2>
+
+        <p>
+          Everyone's financial journey is different.
+          First Merit gives you useful tools and information
+          so you can make decisions that fit your goals.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-chart-pie"></i>
+            </div>
+
+            <div>
+              <strong>Custom Insights</strong>
+              <span>Understand your everyday financial activity.</span>
+            </div>
+          </div>
+
+          <div class="feature-list-item">
+            <div class="check">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+
+            <div>
+              <strong>Smart Notifications</strong>
+              <span>Stay informed about important account updates.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MOBILE BANKING -->
+  <section class="mobile-section">
+
+    <div class="container">
+
+      <div class="mobile-box reveal">
+
+        <div>
+
+          <div class="eyebrow" style="color:#65d8e5;">
+            Mobile Banking
+          </div>
+
+          <h2>Your entire banking experience in your pocket.</h2>
+
+          <p>
+            Take control of your finances wherever you are with
+            convenient tools built around simplicity and security.
+          </p>
+
+          <div class="mobile-features">
+
+            <div class="mobile-feature">
+              <i class="fa-solid fa-bell"></i>
+              <strong>Smart Notifications</strong>
+              <span>Stay updated instantly.</span>
+            </div>
+
+            <div class="mobile-feature">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+              <strong>Quick Transfers</strong>
+              <span>Move money easily.</span>
+            </div>
+
+            <div class="mobile-feature">
+              <i class="fa-solid fa-chart-line"></i>
+              <strong>Budgeting Tools</strong>
+              <span>Track your progress.</span>
+            </div>
+
+            <div class="mobile-feature">
+              <i class="fa-solid fa-credit-card"></i>
+              <strong>Card Controls</strong>
+              <span>Manage your cards.</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="phone">
+
+            <div class="phone-notch"></div>
+
+            <div class="phone-brand">
+              FIRST MERIT
+            </div>
+
+            <div class="phone-balance">
+              <span>Available Balance</span>
+              <strong>$24,850.00</strong>
+            </div>
+
+            <div class="phone-lines">
+              <div class="phone-line"></div>
+              <div class="phone-line"></div>
+              <div class="phone-line"></div>
+              <div class="phone-line"></div>
+              <div class="phone-line"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+
+    <div class="container">
+
+      <div class="section-heading reveal">
+
+        <div class="eyebrow">
+          Member Experience
+        </div>
+
+        <h2>What our members say.</h2>
+
+        <p>
+          A modern banking experience built around real people
+          and their financial goals.
+        </p>
+
+      </div>
+
+
+      <div class="reviews">
+
+        <article class="review reveal">
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <p>
+            “First Merit makes everyday banking simple.
+            I can manage my account without unnecessary steps.”
+          </p>
+
+          <div class="review-user">
+            <div class="avatar">SJ</div>
+
+            <div>
+              <strong>Sarah Johnson</strong>
+              <span>Member</span>
+            </div>
+          </div>
+
+        </article>
+
+
+        <article class="review reveal">
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <p>
+            “The digital banking experience is convenient,
+            clean and easy to understand.”
+          </p>
+
+          <div class="review-user">
+            <div class="avatar">MO</div>
+
+            <div>
+              <strong>Michael Owen</strong>
+              <span>Member</span>
+            </div>
+          </div>
+
+        </article>
+
+
+        <article class="review reveal">
+
+          <div class="stars">
+            ★★★★★
+          </div>
+
+          <p>
+            “I appreciate having straightforward tools that
+            help me stay organized financially.”
+          </p>
+
+          <div class="review-user">
+            <div class="avatar">ER</div>
+
+            <div>
+              <strong>Elena Rodriguez</strong>
+              <span>Member</span>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+
+    <div class="container">
+
+      <div class="cta-box reveal">
+
+        <div>
+          <h2>Ready to bank with First Merit?</h2>
+          <p>
+            Open your account and experience banking built around you.
+          </p>
+        </div>
 
         <a href="signup.html" class="btn btn-primary">
           Open an Account
           <i class="fa-solid fa-arrow-right"></i>
         </a>
 
-        <a href="login.html" class="btn btn-secondary">
-          Sign In
-          <i class="fa-solid fa-right-to-bracket"></i>
-        </a>
-
       </div>
 
     </div>
 
+  </section>
 
-    <div class="hero-visual">
 
-      <img
-        class="hero-image"
-        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=90"
-        alt="Modern banking"
-      >
+  <!-- FOOTER -->
+  <footer>
 
-      <div class="bank-card">
+    <div class="container">
 
-        <div class="card-top">
-          <div class="bank-name">First Merit Bank</div>
-          <div class="member">MEMBER</div>
-        </div>
+      <div class="footer-grid">
 
-        <div class="chip"></div>
+        <div class="footer-brand">
 
-        <div class="balance-label">
-          Available Balance
-        </div>
-
-        <div class="balance">
-          $24,850.00
-        </div>
-
-        <div class="card-bottom">
-          <span>•••• •••• •••• 4820</span>
-          <span class="active">ACTIVE</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- TRUSTED -->
-<div class="trusted">
-
-  <div class="trusted-inner">
-
-    <div class="avatars">
-
-      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80">
-      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80">
-
-    </div>
-
-    <div>
-      <strong>Trusted by thousands of First Merit members</strong>
-      <span>Banking built around your financial journey.</span>
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- SERVICES -->
-<section class="services" id="services">
-
-  <div class="section">
-
-    <div class="heading">
-
-      <div class="eyebrow">Our Services</div>
-
-      <h2>
-        Banking services tailored to you.
-      </h2>
-
-      <p>
-        Financial solutions designed to help you save, spend,
-        borrow and plan for the future.
-      </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-      <div class="service">
-        <div class="icon">
-          <i class="fa-solid fa-wallet"></i>
-        </div>
-        <h3>Checking Accounts</h3>
-        <p>
-          Everyday banking with convenient access to your money
-          and simple digital tools.
-        </p>
-      </div>
-
-
-      <div class="service">
-        <div class="icon">
-          <i class="fa-solid fa-piggy-bank"></i>
-        </div>
-        <h3>Savings Accounts</h3>
-        <p>
-          Build your savings with tools designed around your
-          short and long-term goals.
-        </p>
-      </div>
-
-
-      <div class="service">
-        <div class="icon">
-          <i class="fa-solid fa-house"></i>
-        </div>
-        <h3>Home Loans</h3>
-        <p>
-          Flexible financing options designed to help make
-          home ownership easier.
-        </p>
-      </div>
-
-
-      <div class="service">
-        <div class="icon">
-          <i class="fa-solid fa-hand-holding-dollar"></i>
-        </div>
-        <h3>Personal Loans</h3>
-        <p>
-          Flexible financing for major purchases, projects and
-          unexpected expenses.
-        </p>
-      </div>
-
-
-      <div class="service">
-        <div class="icon">
-          <i class="fa-solid fa-chart-line"></i>
-        </div>
-        <h3>Investment Options</h3>
-        <p>
-          Explore ways to build toward your long-term financial
-          goals.
-        </p>
-      </div>
-
-
-      <div class="service" id="rates">
-        <div class="icon">
-          <i class="fa-solid fa-percent"></i>
-        </div>
-        <h3>Special Rates</h3>
-        <p>
-          Explore competitive rates and offers available through
-          First Merit.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- MODERN BANKING -->
-<section class="modern" id="about">
-
-  <div class="section">
-
-    <div class="feature">
-
-      <div class="feature-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=90"
-          alt="Secure modern banking"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <div class="feature-content">
-
-        <div class="eyebrow">
-          Modern Banking
-        </div>
-
-        <h2>
-          Banking designed for modern life.
-        </h2>
-
-        <p>
-          We've created a banking experience that is intuitive,
-          secure and centered around your needs.
-        </p>
-
-        <div class="feature-points">
-
-          <div class="point">
-
-            <div class="point-icon">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-
-            <div>
-              <strong>Enhanced Security</strong>
-              <span>
-                Modern security features help protect your account.
-              </span>
-            </div>
-
-          </div>
-
-
-          <div class="point">
-
-            <div class="point-icon">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-
-            <div>
-              <strong>Instant Alerts</strong>
-              <span>
-                Stay informed about important account activity.
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- BANKING THAT FITS YOUR LIFE -->
-<section id="digital">
-
-  <div class="section">
-
-    <div class="feature reverse">
-
-      <div class="feature-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=90"
-          alt="Digital banking"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <div class="feature-content">
-
-        <div class="eyebrow">
-          Digital Banking
-        </div>
-
-        <h2>
-          Banking that fits your life.
-        </h2>
-
-        <p>
-          Access your accounts anytime, anywhere. Manage your
-          money with simple digital experiences across your devices.
-        </p>
-
-        <div class="feature-points">
-
-          <div class="point">
-
-            <div class="point-icon">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-            </div>
-
-            <div>
-              <strong>Mobile Banking</strong>
-              <span>
-                Access your banking tools wherever you are.
-              </span>
-            </div>
-
-          </div>
-
-
-          <div class="point">
-
-            <div class="point-icon">
-              <i class="fa-solid fa-paper-plane"></i>
-            </div>
-
-            <div>
-              <strong>Quick Transfers</strong>
-              <span>
-                Move money quickly and conveniently.
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div style="margin-top:24px;">
-          <a href="login.html" class="btn btn-primary">
-            Explore Digital Banking
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PERSONALIZED BANKING -->
-<section class="modern">
-
-  <div class="section">
-
-    <div class="feature">
-
-      <div class="feature-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=90"
-          alt="Personalized financial banking"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <div class="feature-content">
-
-        <div class="eyebrow">
-          Personalized Banking
-        </div>
-
-        <h2>
-          Banking that understands you.
-        </h2>
-
-        <p>
-          Everyone's financial journey is different. First Merit
-          gives you tools that help you stay organized and make
-          informed financial decisions.
-        </p>
-
-        <div class="feature-points">
-
-          <div class="point">
-
-            <div class="point-icon">
-              <i class="fa-solid fa-chart-pie"></i>
-            </div>
-
-            <div>
-              <strong>Custom Insights</strong>
-              <span>
-                Understand your spending and financial activity.
-              </span>
-            </div>
-
-          </div>
-
-
-          <div class="point">
-
-            <div class="point-icon">
-              <i class="fa-solid fa-star"></i>
-            </div>
-
-            <div>
-              <strong>Smart Rewards</strong>
-              <span>
-                Discover benefits designed around your banking.
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- MOBILE BANKING -->
-<section class="mobile-banking">
-
-  <div class="section">
-
-    <div class="mobile-layout">
-
-      <div class="phone-area">
-
-        <img
-          class="phone-image"
-          src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=90"
-          alt="Mobile banking"
-          loading="lazy"
-        >
-
-        <div class="phone">
-
-          <div class="screen">
-
-            <div class="screen-top">
-              <small>Good morning</small>
-              <strong>First Merit</strong>
-            </div>
-
-            <div class="screen-balance">
-
-              <span>Available Balance</span>
-
-              <strong>$8,420.50</strong>
-
-            </div>
-
-            <div class="quick">
-
-              <div>
-                <i class="fa-solid fa-paper-plane"></i>
-                Send
-              </div>
-
-              <div>
-                <i class="fa-solid fa-plus"></i>
-                Deposit
-              </div>
-
-              <div>
-                <i class="fa-solid fa-credit-card"></i>
-                Cards
-              </div>
-
-              <div>
-                <i class="fa-solid fa-receipt"></i>
-                Pay
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="mobile-content">
-
-        <div class="eyebrow">
-          Mobile Banking
-        </div>
-
-        <h2>
-          Your entire banking experience in your pocket.
-        </h2>
-
-        <p>
-          Take control of your finances anytime, anywhere with
-          First Merit digital banking.
-        </p>
-
-
-        <div class="mobile-features">
-
-          <div class="mobile-feature">
-            <h3>
-              <i class="fa-solid fa-bell" style="color:var(--blue);"></i>
-              Smart Notifications
-            </h3>
-            <p>
-              Receive alerts for transactions and account activity.
-            </p>
-          </div>
-
-
-          <div class="mobile-feature">
-            <h3>
-              <i class="fa-solid fa-camera" style="color:var(--blue);"></i>
-              Mobile Deposits
-            </h3>
-            <p>
-              Deposit funds using your mobile device.
-            </p>
-          </div>
-
-
-          <div class="mobile-feature">
-            <h3>
-              <i class="fa-solid fa-chart-simple" style="color:var(--blue);"></i>
-              Budgeting Tools
-            </h3>
-            <p>
-              Track spending and stay organized.
-            </p>
-          </div>
-
-
-          <div class="mobile-feature">
-            <h3>
-              <i class="fa-solid fa-credit-card" style="color:var(--blue);"></i>
-              Card Controls
-            </h3>
-            <p>
-              Manage your cards and payment preferences.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div style="margin-top:26px;">
-
-          <a href="signup.html" class="btn btn-primary">
-            Open an Account
-            <i class="fa-solid fa-arrow-right"></i>
+          <!-- FIRST MERIT LOGO -->
+          <a href="index.html">
+            <img
+              src="first-merit-logo.svg"
+              alt="First Merit Bank"
+            >
           </a>
 
+          <p>
+            Modern banking solutions designed to help you
+            manage your money with confidence.
+          </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>Banking</h4>
+
+          <a href="#services">Checking Accounts</a>
+          <a href="#services">Savings Accounts</a>
+          <a href="#services">Loans</a>
+          <a href="#digital">Digital Banking</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>Company</h4>
+
+          <a href="#about">About First Merit</a>
+          <a href="#services">Services</a>
+          <a href="#rates">Rates</a>
+          <a href="#contact">Contact</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h4>Support</h4>
+
+          <a href="#">FAQs</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security Information</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <div>
+          © 2026 First Merit Bank. All rights reserved.
+        </div>
+
+        <div class="footer-badges">
+          <span>Secure Banking</span>
+          <span>•</span>
+          <span>Accessibility</span>
         </div>
 
       </div>
 
     </div>
 
-  </div>
-
-</section>
+  </footer>
 
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
+  <!-- MOBILE MENU -->
+  <script>
 
-  <div class="section">
+    const menuBtn = document.getElementById("menuBtn");
 
-    <div class="heading">
+    menuBtn.addEventListener("click", () => {
 
-      <div class="eyebrow">
-        Member Stories
-      </div>
+      const existing = document.querySelector(".mobile-menu");
 
-      <h2>
-        What our members say.
-      </h2>
+      if (existing) {
+        existing.remove();
+        return;
+      }
 
-      <p>
-        First Merit is designed to make everyday banking simpler,
-        clearer and more convenient.
-      </p>
+      const menu = document.createElement("div");
 
-    </div>
+      menu.className = "mobile-menu";
 
+      menu.innerHTML = `
+        <div style="
+          position:fixed;
+          top:64px;
+          left:0;
+          right:0;
+          z-index:999;
+          background:#071d40;
+          padding:18px;
+          box-shadow:0 15px 35px rgba(0,0,0,.2);
+        ">
 
-    <div class="testimonial-grid">
+          <a href="#about" style="
+            display:block;
+            padding:12px;
+            color:white;
+            font-size:13px;
+            font-weight:700;
+          ">About</a>
 
-      <div class="testimonial">
+          <a href="#services" style="
+            display:block;
+            padding:12px;
+            color:white;
+            font-size:13px;
+            font-weight:700;
+          ">Services</a>
 
-        <div class="stars">★★★★★</div>
+          <a href="#digital" style="
+            display:block;
+            padding:12px;
+            color:white;
+            font-size:13px;
+            font-weight:700;
+          ">Digital Banking</a>
 
-        <p>
-          “First Merit makes it much easier for me to stay organized
-          and keep track of my everyday finances.”
-        </p>
+          <a href="#rates" style="
+            display:block;
+            padding:12px;
+            color:white;
+            font-size:13px;
+            font-weight:700;
+          ">Rates</a>
 
-        <div class="person">
+          <a href="#contact" style="
+            display:block;
+            padding:12px;
+            color:white;
+            font-size:13px;
+            font-weight:700;
+          ">Contact</a>
 
-          <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
-            alt="Member"
-          >
+          <div style="
+            display:flex;
+            gap:8px;
+            margin-top:8px;
+          ">
 
-          <div>
-            <strong>Sarah Johnson</strong>
-            <span>First Merit Member</span>
+            <a href="login.html" style="
+              flex:1;
+              text-align:center;
+              padding:11px;
+              border:1px solid rgba(255,255,255,.25);
+              border-radius:8px;
+              color:white;
+              font-size:12px;
+              font-weight:800;
+            ">Log In</a>
+
+            <a href="signup.html" style="
+              flex:1;
+              text-align:center;
+              padding:11px;
+              background:white;
+              border-radius:8px;
+              color:#0b2a5b;
+              font-size:12px;
+              font-weight:800;
+            ">Sign Up</a>
+
           </div>
 
         </div>
+      `;
 
-      </div>
+      document.body.appendChild(menu);
 
+      menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          menu.remove();
+        });
+      });
 
-      <div class="testimonial">
-
-        <div class="stars">★★★★★</div>
-
-        <p>
-          “I like being able to access my account and manage my
-          banking without making everything complicated.”
-        </p>
-
-        <div class="person">
-
-          <img
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
-            alt="Member"
-          >
-
-          <div>
-            <strong>Michael Owen</strong>
-            <span>First Merit Member</span>
-          </div>
-
-        </div>
-
-      </div>
+    });
 
 
-      <div class="testimonial">
+    /* Scroll reveal animations */
 
-        <div class="stars">★★★★★</div>
+    const revealElements = document.querySelectorAll(
+      ".reveal, .reveal-left, .reveal-right"
+    );
 
-        <p>
-          “The digital banking experience gives me a convenient
-          way to stay connected with my money.”
-        </p>
+    const observer = new IntersectionObserver(
+      (entries) => {
 
-        <div class="person">
+        entries.forEach(entry => {
 
-          <img
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80"
-            alt="Member"
-          >
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
 
-          <div>
-            <strong>Elena Rodriguez</strong>
-            <span>First Merit Member</span>
-          </div>
+        });
 
-        </div>
+      },
+      {
+        threshold: 0.12
+      }
+    );
 
-      </div>
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
 
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CTA -->
-<section class="cta" id="contact">
-
-  <div class="section">
-
-    <h2>
-      Ready to put your banking first?
-    </h2>
-
-    <p>
-      Start your First Merit journey and experience a modern
-      banking experience designed around you.
-    </p>
-
-    <a href="signup.html" class="btn">
-      Open an Account
-      <i class="fa-solid fa-arrow-right"></i>
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-<footer>
-
-  <div class="footer">
-
-    <div class="footer-grid">
-
-      <div class="footer-brand">
-
-        <img
-          class="footer-logo"
-          src="first-merit-logo.svg"
-          alt="First Merit Bank"
-        >
-
-        <p>
-          Modern banking designed around your everyday financial
-          life and long-term goals.
-        </p>
-
-      </div>
-
-
-      <div>
-
-        <h4>Banking</h4>
-
-        <a href="#services">Services</a>
-        <a href="#digital">Digital Banking</a>
-        <a href="#rates">Rates</a>
-
-      </div>
-
-
-      <div>
-
-        <h4>Support</h4>
-
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#">FAQs</a>
-
-      </div>
-
-
-      <div>
-
-        <h4>Account</h4>
-
-        <a href="login.html">Log In</a>
-        <a href="signup.html">Sign Up</a>
-
-      </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-      <span>
-        © 2026 First Merit Bank. All rights reserved.
-      </span>
-
-      <span>
-        Banking that puts you first.
-      </span>
-
-    </div>
-
-  </div>
-
-</footer>
+  </script>
 
 </body>
 </html>
