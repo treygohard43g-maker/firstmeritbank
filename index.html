@@ -102,15 +102,103 @@
     ========================================================= */
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(14px);
+  background:
+    linear-gradient(
+      115deg,
+      #061a3a 0%,
+      #0b2a5b 22%,
+      #1769d1 45%,
+      #0b2a5b 68%,
+      #071d40 100%
+    );
 
-      border-bottom: 1px solid var(--border);
-    }
+  border-bottom: 1px solid rgba(92, 190, 255, 0.35);
+
+  box-shadow:
+    0 8px 28px rgba(3, 18, 48, 0.28),
+    inset 0 -1px 0 rgba(255,255,255,0.12);
+
+  overflow: hidden;
+}
+
+/* Diamond facets */
+header::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255,255,255,0.08) 18%,
+      transparent 30%,
+      rgba(92,190,255,0.13) 44%,
+      transparent 56%,
+      rgba(255,255,255,0.07) 70%,
+      transparent 82%
+    );
+
+  background-size: 240px 100%;
+  transform: skewX(-18deg);
+
+  opacity: 0.8;
+
+  pointer-events: none;
+}
+
+/* Moving diamond shine */
+header::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -35%;
+
+  width: 28%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent,
+      rgba(255,255,255,0.04),
+      rgba(126,220,255,0.38),
+      rgba(255,255,255,0.08),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  animation: diamondHeaderShine 5s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+@keyframes diamondHeaderShine {
+  0% {
+    left: -35%;
+  }
+
+  45% {
+    left: 115%;
+  }
+
+  100% {
+    left: 115%;
+  }
+}
+
+.nav {
+  position: relative;
+  z-index: 2;
+}
 
     .nav {
       height: 66px;
