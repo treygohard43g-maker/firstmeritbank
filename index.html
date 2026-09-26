@@ -278,78 +278,303 @@
     }
 
     .bank-card {
-      width: min(100%, 410px);
-      min-height: 245px;
-      padding: 26px;
-      border-radius: 22px;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(145deg, #173f7d, #0c2958);
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 30px 65px rgba(0,0,0,.25);
-      transform: rotate(2deg);
-      transition: transform .5s ease;
-    }
+  width: min(100%, 425px);
+  height: 255px;
+  padding: 28px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
 
-    .bank-card:hover {
-      transform: rotate(0deg) translateY(-4px);
-    }
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(38,170,204,.30),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #123c78 0%,
+      #0b2a5b 48%,
+      #061b3d 100%
+    );
 
-    .bank-card::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      right: -70px;
-      bottom: -80px;
-      background: rgba(19,169,194,.2);
-    }
+  border: 1px solid rgba(255,255,255,.18);
 
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  box-shadow:
+    0 28px 55px rgba(0,0,0,.25),
+    inset 0 1px 1px rgba(255,255,255,.16);
 
-    .card-brand {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .5px;
-    }
+  transform: rotate(1.5deg);
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
 
-    .card-chip {
-      width: 43px;
-      height: 31px;
-      border-radius: 7px;
-      background: linear-gradient(135deg,#f1d77d,#c49c39);
-      opacity: .95;
-    }
+.bank-card:hover {
+  transform: rotate(0deg) translateY(-4px);
 
-    .card-balance-label {
-      color: rgba(255,255,255,.62);
-      font-size: 11px;
-      margin-top: 40px;
-    }
+  box-shadow:
+    0 34px 65px rgba(0,0,0,.28),
+    inset 0 1px 1px rgba(255,255,255,.20);
+}
 
-    .card-balance {
-      font-family: Manrope, sans-serif;
-      font-size: 31px;
-      font-weight: 800;
-      margin-top: 3px;
-    }
 
-    .card-bottom {
-      position: absolute;
-      bottom: 22px;
-      left: 26px;
-      right: 26px;
-      display: flex;
-      justify-content: space-between;
-      color: rgba(255,255,255,.65);
-      font-size: 10px;
-    }
+/* SUBTLE GLOSS */
+.bank-card::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 90px;
+  top: -45px;
+  left: -80px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.10),
+    transparent
+  );
+
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+
+
+/* DECORATIVE CIRCLE */
+.bank-card::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+
+  right: -150px;
+  bottom: -150px;
+
+  background: rgba(19,169,194,.12);
+
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+
+/* CARD TOP */
+.real-card-top {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+
+/* FIRST MERIT BRAND */
+.real-card-bank {
+  display: block;
+
+  color: #fff;
+
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+
+  letter-spacing: 1.3px;
+}
+
+.real-card-top small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: rgba(255,255,255,.48);
+
+  font-size: 7px;
+  letter-spacing: 1.6px;
+}
+
+
+/* CONTACTLESS */
+.real-contactless {
+  color: rgba(255,255,255,.72);
+  font-size: 18px;
+
+  transform: rotate(90deg);
+}
+
+
+/* CHIP */
+.real-chip {
+  position: relative;
+  z-index: 2;
+
+  width: 48px;
+  height: 36px;
+
+  margin-top: 31px;
+
+  border-radius: 7px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f6dc87,
+      #c59b3b
+    );
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.5),
+    0 2px 5px rgba(0,0,0,.15);
+}
+
+
+/* CHIP LINES */
+.real-chip::before {
+  content: "";
+
+  position: absolute;
+
+  width: 100%;
+  height: 1px;
+
+  top: 50%;
+  left: 0;
+
+  background: rgba(91,67,18,.35);
+}
+
+.real-chip::after {
+  content: "";
+
+  position: absolute;
+
+  width: 1px;
+  height: 100%;
+
+  top: 0;
+  left: 50%;
+
+  background: rgba(91,67,18,.35);
+}
+
+
+/* CARD NUMBER */
+.real-card-number {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 22px;
+
+  color: rgba(255,255,255,.94);
+
+  font-family: monospace;
+  font-size: 18px;
+
+  letter-spacing: 1.3px;
+}
+
+
+/* BOTTOM INFORMATION */
+.real-card-bottom {
+  position: absolute;
+  z-index: 2;
+
+  left: 28px;
+  right: 28px;
+  bottom: 23px;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 27px;
+}
+
+.real-card-bottom span {
+  display: block;
+
+  color: rgba(255,255,255,.42);
+
+  font-size: 6px;
+  letter-spacing: 1px;
+
+  margin-bottom: 3px;
+}
+
+.real-card-bottom strong {
+  display: block;
+
+  color: rgba(255,255,255,.82);
+
+  font-size: 8px;
+  letter-spacing: .7px;
+
+  white-space: nowrap;
+}
+
+
+/* FIRST MERIT CARD MARK */
+.real-card-logo {
+  margin-left: auto;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(19,169,194,.8),
+      rgba(23,105,209,.9)
+    );
+
+  border: 1px solid rgba(255,255,255,.2);
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.15);
+}
+
+
+/* MOBILE */
+@media (max-width: 620px) {
+
+  .bank-card {
+    width: min(100%, 390px);
+    height: 235px;
+    padding: 24px;
+  }
+
+  .real-card-number {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .real-chip {
+    width: 44px;
+    height: 33px;
+    margin-top: 27px;
+  }
+
+  .real-card-bottom {
+    left: 24px;
+    right: 24px;
+    bottom: 20px;
+    gap: 18px;
+  }
+
+  .real-card-logo {
+    width: 34px;
+    height: 34px;
+  }
+}
 
     /* =========================
        TRUST
