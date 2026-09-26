@@ -870,6 +870,145 @@
   border: 1px solid rgba(255,255,255,.05);
 }
 
+.banking-dashboard {
+  min-height: 355px;
+  padding: 22px;
+  background: linear-gradient(145deg, #0d3470, #081f47);
+}
+
+.dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.dashboard-top small {
+  display: block;
+  color: rgba(255,255,255,.45);
+  font-size: 8px;
+  letter-spacing: 1.3px;
+}
+
+.dashboard-top strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+.dashboard-avatar {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-size: 11px;
+}
+
+.account-balance {
+  margin-top: 21px;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.account-balance span,
+.account-balance small {
+  display: block;
+  color: rgba(255,255,255,.53);
+  font-size: 9px;
+}
+
+.account-balance strong {
+  display: block;
+  color: #fff;
+  font-family: Manrope, sans-serif;
+  font-size: 25px;
+  margin: 4px 0;
+}
+
+.account-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.account-stats > div {
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+}
+
+.account-stats span {
+  display: block;
+  color: rgba(255,255,255,.45);
+  font-size: 8px;
+}
+
+.account-stats strong {
+  display: block;
+  color: #fff;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.recent-activity {
+  margin-top: 12px;
+  background: rgba(255,255,255,.96);
+  border-radius: 12px;
+  padding: 9px 12px;
+}
+
+.recent-activity > div {
+  display: grid;
+  grid-template-columns: 27px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #edf0f4;
+  font-size: 9px;
+}
+
+.recent-activity > div:last-child {
+  border-bottom: 0;
+}
+
+.activity-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.recent-activity span:nth-child(2) {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.recent-activity span small {
+  display: block;
+  color: var(--muted-light);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.recent-activity strong {
+  color: var(--text);
+  font-size: 9px;
+}
+
+.recent-activity .positive {
+  color: var(--green);
+}
 
 /* LABEL */
 .visual-label {
