@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
 
   <title>Withdraw | First Merit Bank</title>
 
@@ -17,7 +20,6 @@
       --navy-dark: #061f40;
       --blue: #0b63ce;
       --blue-light: #eaf3ff;
-      --gold: #c8a44d;
       --green: #18864b;
       --green-light: #eaf8f0;
       --text: #172033;
@@ -60,7 +62,9 @@
       margin: 0 auto;
     }
 
-    /* TOP BAR */
+    /* =========================
+       TOP BAR
+    ========================= */
 
     .topbar {
       height: 68px;
@@ -148,7 +152,9 @@
       color: var(--green);
     }
 
-    /* CONTENT */
+    /* =========================
+       CONTENT
+    ========================= */
 
     .content {
       padding: 25px 22px 35px;
@@ -172,7 +178,9 @@
       color: var(--muted);
     }
 
-    /* LAYOUT */
+    /* =========================
+       LAYOUT
+    ========================= */
 
     .layout {
       display: grid;
@@ -186,8 +194,12 @@
     }
 
     .side-column {
-      min-width: 
-    /* CARDS */
+      min-width: 0;
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
 
     .card {
       background: var(--white);
@@ -217,6 +229,7 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
+      flex-shrink: 0;
     }
 
     .card-heading h3 {
@@ -230,7 +243,9 @@
       color: var(--muted);
     }
 
-    /* FORM */
+    /* =========================
+       FORM
+    ========================= */
 
     .field {
       margin-bottom: 16px;
@@ -281,6 +296,7 @@
       font-weight: 700;
       font-size: 15px;
       pointer-events: none;
+      z-index: 2;
     }
 
     .amount-input {
@@ -289,7 +305,9 @@
       font-weight: 750;
     }
 
-    /* DESTINATION OPTIONS */
+    /* =========================
+       DESTINATION
+    ========================= */
 
     .destination-options {
       display: grid;
@@ -305,6 +323,8 @@
       position: absolute;
       opacity: 0;
       pointer-events: none;
+      width: 1px;
+      height: 1px;
     }
 
     .destination-label {
@@ -346,7 +366,9 @@
       color: var(--blue);
     }
 
-    /* BUTTONS */
+    /* =========================
+       BUTTONS
+    ========================= */
 
     .primary-btn {
       width: 100%;
@@ -375,7 +397,9 @@
       transform: none;
     }
 
-    /* MESSAGE */
+    /* =========================
+       MESSAGE
+    ========================= */
 
     .message {
       display: none;
@@ -393,7 +417,9 @@
       border: 1px solid #ffd6d2;
     }
 
-    /* SIDE INFO */
+    /* =========================
+       SIDE INFO
+    ========================= */
 
     .info-card {
       padding: 17px;
@@ -416,6 +442,7 @@
       align-items: center;
       justify-content: center;
       font-size: 13px;
+      flex-shrink: 0;
     }
 
     .info-title h3 {
@@ -438,6 +465,7 @@
       color: var(--green);
       font-size: 11px;
       margin-top: 3px;
+      flex-shrink: 0;
     }
 
     .info-item p {
@@ -446,7 +474,9 @@
       line-height: 1.45;
     }
 
-    /* REVIEW */
+    /* =========================
+       REVIEW
+    ========================= */
 
     .review-section,
     .success-section {
@@ -474,6 +504,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .review-header h3 {
@@ -571,7 +602,9 @@
       box-shadow: 0 4px 10px rgba(11, 99, 206, .13);
     }
 
-    /* SUCCESS */
+    /* =========================
+       SUCCESS
+    ========================= */
 
     .success-card {
       background: #fff;
@@ -628,7 +661,9 @@
       word-break: break-all;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     .footer-note {
       text-align: center;
@@ -637,7 +672,9 @@
       margin-top: 20px;
     }
 
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 760px) {
 
@@ -656,7 +693,6 @@
       .page-heading h2 {
         font-size: 23px;
       }
-
     }
 
     @media (max-width: 480px) {
@@ -681,14 +717,6 @@
 
       .content {
         padding: 18px 13px 25px;
-      }
-
-      .balance-card {
-        padding: 16px;
-      }
-
-      .balance-amount {
-        font-size: 24px;
       }
 
       .form-card {
@@ -720,7 +748,6 @@
       .success-card {
         padding: 27px 18px;
       }
-
     }
   </style>
 </head>
@@ -729,7 +756,9 @@
 
   <div class="page">
 
-    <!-- TOP BAR -->
+    <!-- =========================
+         TOP BAR
+    ========================= -->
 
     <header class="topbar">
 
@@ -767,29 +796,28 @@
 
     <main class="content">
 
-      <!-- FORM SECTION -->
+      <!-- =========================
+           FORM SECTION
+      ========================= -->
 
       <section id="formSection">
 
         <div class="page-heading">
+
           <h2>Withdraw Money</h2>
+
           <p>
             Move funds from your checking account to your selected destination.
           </p>
+
         </div>
 
 
         <div class="layout">
 
+          <!-- MAIN FORM -->
+
           <div class="main-column">
-
-            
-                <div class="balance-icon">
-                  <i class="fa-solid fa-wallet"></i>
-                </div>
-
-              </div>
-            <!-- WITHDRAW FORM -->
 
             <div class="card form-card">
 
@@ -806,6 +834,8 @@
 
               </div>
 
+
+              <!-- AMOUNT -->
 
               <div class="field">
 
@@ -825,12 +855,15 @@
                     step="0.01"
                     inputmode="decimal"
                     placeholder="0.00"
+                    autocomplete="off"
                   >
 
                 </div>
 
               </div>
 
+
+              <!-- DESTINATION -->
 
               <div class="field">
 
@@ -902,27 +935,23 @@
 
                 </div>
 
-                <!-- Hidden select retained for existing JS -->
-
-                <select
-                  id="destination"
-                  style="display:none;"
-                >
-                  <option value="Bank Account">Bank Account</option>
-                  <option value="External Account">External Account</option>
-                  <option value="Cash Withdrawal">Cash Withdrawal</option>
-                </select>
-
               </div>
 
+
+              <!-- REFERENCE -->
 
               <div class="field">
 
                 <label for="reference">
+
                   Reference
-                  <span style="font-weight:400;color:#8b95a5;">
+
+                  <span
+                    style="font-weight:400;color:#8b95a5;"
+                  >
                     (optional)
                   </span>
+
                 </label>
 
                 <input
@@ -930,16 +959,22 @@
                   id="reference"
                   maxlength="100"
                   placeholder="Add a reference"
+                  autocomplete="off"
                 >
 
               </div>
 
 
+              <!-- MESSAGE -->
+
               <div
                 id="formMessage"
                 class="message"
+                role="alert"
               ></div>
 
+
+              <!-- REVIEW BUTTON -->
 
               <button
                 class="primary-btn"
@@ -947,10 +982,12 @@
                 type="button"
               >
                 Review Withdrawal
+
                 <i
                   class="fa-solid fa-arrow-right"
                   style="margin-left:7px;"
                 ></i>
+
               </button>
 
             </div>
@@ -1016,7 +1053,9 @@
       </section>
 
 
-      <!-- REVIEW SECTION -->
+      <!-- =========================
+           REVIEW SECTION
+      ========================= -->
 
       <section
         class="review-section"
@@ -1024,10 +1063,13 @@
       >
 
         <div class="page-heading">
+
           <h2>Review Withdrawal</h2>
+
           <p>
             Check your withdrawal details before confirming.
           </p>
+
         </div>
 
 
@@ -1126,6 +1168,7 @@
               <div
                 id="reviewMessage"
                 class="message"
+                role="alert"
               ></div>
 
 
@@ -1136,12 +1179,16 @@
                   id="editBtn"
                   type="button"
                 >
+
                   <i
                     class="fa-solid fa-pen"
                     style="margin-right:6px;"
                   ></i>
+
                   Edit
+
                 </button>
+
 
                 <button
                   class="confirm-btn"
@@ -1203,7 +1250,9 @@
       </section>
 
 
-      <!-- SUCCESS SECTION -->
+      <!-- =========================
+           SUCCESS SECTION
+      ========================= -->
 
       <section
         class="success-section"
@@ -1241,11 +1290,14 @@
             id="dashboardBtn"
             type="button"
           >
+
             <i
               class="fa-solid fa-house"
               style="margin-right:7px;"
             ></i>
+
             Return to Dashboard
+
           </button>
 
         </div>
@@ -1262,7 +1314,15 @@
   </div>
 
 
+  <!-- =========================
+       FIREBASE / JAVASCRIPT
+  ========================= -->
+
   <script type="module">
+
+    /* =========================
+       FIREBASE
+    ========================= */
 
     import {
       auth,
@@ -1272,7 +1332,7 @@
 
     import {
       onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
     import {
@@ -1281,10 +1341,12 @@
       collection,
       runTransaction,
       serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    /* ELEMENTS */
+    /* =========================
+       ELEMENTS
+    ========================= */
 
     const backBtn =
       document.getElementById("backBtn");
@@ -1315,9 +1377,6 @@
     const amount =
       document.getElementById("amount");
 
-    const destination =
-      document.getElementById("destination");
-
     const reference =
       document.getElementById("reference");
 
@@ -1326,13 +1385,6 @@
       document.querySelectorAll(
         'input[name="destination"]'
       );
-
-
-    const currentBalance =
-      document.getElementById("currentBalance");
-
-    const balanceAccount =
-      document.getElementById("balanceAccount");
 
 
     const formMessage =
@@ -1361,7 +1413,9 @@
       document.getElementById("transactionId");
 
 
-    /* STATE */
+    /* =========================
+       STATE
+    ========================= */
 
     let currentUser = null;
 
@@ -1374,7 +1428,9 @@
     };
 
 
-    /* FORMAT CURRENCY */
+    /* =========================
+       FORMAT CURRENCY
+    ========================= */
 
     function formatCurrency(value) {
 
@@ -1389,14 +1445,17 @@
     }
 
 
-    /* MESSAGES */
+    /* =========================
+       MESSAGES
+    ========================= */
 
     function showMessage(
       element,
       message
     ) {
 
-      element.textContent = message;
+      element.textContent =
+        message;
 
       element.className =
         "message error";
@@ -1408,7 +1467,8 @@
       element
     ) {
 
-      element.textContent = "";
+      element.textContent =
+        "";
 
       element.className =
         "message";
@@ -1416,26 +1476,9 @@
     }
 
 
-    /* DESTINATION SYNC */
-
-    destinationRadios.forEach(
-      (radio) => {
-
-        radio.addEventListener(
-          "change",
-          () => {
-
-            destination.value =
-              radio.value;
-
-          }
-        );
-
-      }
-    );
-
-
-    /* ACCOUNT */
+    /* =========================
+       ACCOUNT
+    ========================= */
 
     async function loadAccount() {
 
@@ -1443,6 +1486,7 @@
         return;
       }
 
+      clearMessage(formMessage);
 
       try {
 
@@ -1465,6 +1509,9 @@
             "Account information could not be found."
           );
 
+          reviewBtn.disabled =
+            true;
+
           return;
 
         }
@@ -1480,36 +1527,31 @@
           );
 
 
-        currentBalance.textContent =
-          formatCurrency(
-            userBalance
-          );
-
-
-        const accountNumber =
-          userData.accountNumber ||
-          "Checking Account";
-
-
-        balanceAccount.innerHTML =
-          '<i class="fa-solid fa-credit-card"></i> Checking • ' +
-          accountNumber;
-
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          "Account loading error:",
+          error
+        );
+
 
         showMessage(
           formMessage,
           "Unable to load account information."
         );
 
+
+        reviewBtn.disabled =
+          true;
+
       }
 
     }
 
 
-    /* AUTH */
+    /* =========================
+       AUTH
+    ========================= */
 
     onAuthStateChanged(
       auth,
@@ -1525,7 +1567,13 @@
         }
 
 
-        currentUser = user;
+        currentUser =
+          user;
+
+
+        reviewBtn.disabled =
+          false;
+
 
         await loadAccount();
 
@@ -1533,7 +1581,9 @@
     );
 
 
-    /* BACK */
+    /* =========================
+       BACK
+    ========================= */
 
     backBtn.addEventListener(
       "click",
@@ -1546,7 +1596,9 @@
     );
 
 
-    /* REVIEW */
+    /* =========================
+       REVIEW WITHDRAWAL
+    ========================= */
 
     reviewBtn.addEventListener(
       "click",
@@ -1554,12 +1606,17 @@
 
         clearMessage(formMessage);
 
+
         const withdrawalAmount =
-          Number(amount.value);
+          Number(
+            amount.value
+          );
 
 
         if (
-          !withdrawalAmount ||
+          !Number.isFinite(
+            withdrawalAmount
+          ) ||
           withdrawalAmount <= 0
         ) {
 
@@ -1596,24 +1653,30 @@
           );
 
 
+        if (!selectedDestination) {
+
+          showMessage(
+            formMessage,
+            "Please select a withdrawal destination."
+          );
+
+          return;
+
+        }
+
+
         pendingWithdrawal = {
 
           amount:
             withdrawalAmount,
 
           destination:
-            selectedDestination
-              ? selectedDestination.value
-              : destination.value,
+            selectedDestination.value,
 
           reference:
             reference.value.trim()
 
         };
-
-
-        destination.value =
-          pendingWithdrawal.destination;
 
 
         reviewAmount.textContent =
@@ -1644,6 +1707,11 @@
           "—";
 
 
+        clearMessage(
+          reviewMessage
+        );
+
+
         formSection.style.display =
           "none";
 
@@ -1663,13 +1731,18 @@
     );
 
 
-    /* EDIT */
+    /* =========================
+       EDIT
+    ========================= */
 
     editBtn.addEventListener(
       "click",
       () => {
 
-        clearMessage(reviewMessage);
+        clearMessage(
+          reviewMessage
+        );
+
 
         reviewSection.style.display =
           "none";
@@ -1690,13 +1763,17 @@
     );
 
 
-    /* CONFIRM */
+    /* =========================
+       CONFIRM WITHDRAWAL
+    ========================= */
 
     confirmBtn.addEventListener(
       "click",
       async () => {
 
-        clearMessage(reviewMessage);
+        clearMessage(
+          reviewMessage
+        );
 
 
         if (!currentUser) {
@@ -1709,11 +1786,39 @@
         }
 
 
+        if (
+          !pendingWithdrawal.amount ||
+          pendingWithdrawal.amount <= 0
+        ) {
+
+          showMessage(
+            reviewMessage,
+            "Invalid withdrawal amount."
+          );
+
+          return;
+
+        }
+
+
         confirmBtn.disabled =
+          true;
+
+        editBtn.disabled =
           true;
 
         confirmBtn.textContent =
           "Processing...";
+
+
+        /*
+          IMPORTANT:
+          Declared outside the try block so the
+          transaction ID can be used after the
+          Firestore transaction completes.
+        */
+
+        let transactionRef;
 
 
         try {
@@ -1726,7 +1831,7 @@
             );
 
 
-          const transactionRef =
+          transactionRef =
             doc(
               collection(
                 db,
@@ -1740,6 +1845,11 @@
           await runTransaction(
             db,
             async (transaction) => {
+
+              /*
+                Read the latest account balance
+                directly from Firestore.
+              */
 
               const userSnap =
                 await transaction.get(
@@ -1766,6 +1876,12 @@
                 );
 
 
+              /*
+                Check the CURRENT Firestore
+                balance, not just the old balance
+                shown on the review screen.
+              */
+
               if (
                 pendingWithdrawal.amount >
                 balance
@@ -1783,13 +1899,22 @@
                 pendingWithdrawal.amount;
 
 
+              /*
+                Update account balance.
+              */
+
               transaction.update(
                 userRef,
                 {
-                  balance: newBalance
+                  balance:
+                    newBalance
                 }
               );
 
+
+              /*
+                Create transaction record.
+              */
 
               transaction.set(
                 transactionRef,
@@ -1826,20 +1951,27 @@
           );
 
 
+          /*
+            Update local balance after the
+            Firestore transaction succeeds.
+          */
+
           userBalance =
             userBalance -
             pendingWithdrawal.amount;
 
 
+          /*
+            Show transaction ID.
+          */
+
           transactionId.textContent =
             transactionRef.id;
 
 
-          currentBalance.textContent =
-            formatCurrency(
-              userBalance
-            );
-
+          /*
+            Show success screen.
+          */
 
           reviewSection.style.display =
             "none";
@@ -1859,7 +1991,11 @@
 
         } catch (error) {
 
-          console.error(error);
+          console.error(
+            "Withdrawal error:",
+            error
+          );
+
 
           showMessage(
             reviewMessage,
@@ -1871,6 +2007,9 @@
           confirmBtn.disabled =
             false;
 
+          editBtn.disabled =
+            false;
+
           confirmBtn.textContent =
             "Confirm Withdrawal";
 
@@ -1880,7 +2019,9 @@
     );
 
 
-    /* DASHBOARD */
+    /* =========================
+       DASHBOARD
+    ========================= */
 
     dashboardBtn.addEventListener(
       "click",
