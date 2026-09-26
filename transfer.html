@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Transfer | First Merit Bank</title>
+  <title>Bill Pay | First Merit Bank</title>
 
   <link
     rel="stylesheet"
@@ -18,46 +18,78 @@
       padding: 0;
     }
 
+    :root {
+      --navy: #082b57;
+      --navy-dark: #061f40;
+      --blue: #0b63ce;
+      --blue-light: #eaf3ff;
+      --gold: #c8a44d;
+      --green: #18864b;
+      --green-light: #eaf8f0;
+      --text: #172033;
+      --muted: #697386;
+      --border: #e3e8ef;
+      --background: #f5f7fa;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fb;
-      color: #172033;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
       min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
     .page {
       width: 100%;
-      max-width: 620px;
-      margin: 0 auto;
       min-height: 100vh;
-      padding-bottom: 40px;
     }
 
+    /* TOP BAR */
+
     .topbar {
-      height: 70px;
+      height: 68px;
       background: #fff;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 0 20px;
-      border-bottom: 1px solid #e7ebf2;
+      padding: 0 22px;
       position: sticky;
       top: 0;
       z-index: 20;
     }
 
+    .topbar-inner {
+      width: 100%;
+      max-width: 980px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
     .back-btn {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border: 0;
-      border-radius: 12px;
-      background: #f1f5f9;
-      color: #172033;
+      border-radius: 11px;
+      background: #f1f4f8;
+      color: var(--text);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .back-btn:hover {
+      background: #e7edf5;
     }
 
     .brand {
@@ -69,101 +101,177 @@
     .brand-logo {
       width: 38px;
       height: 38px;
-      border-radius: 11px;
-      background: #0b57d0;
+      border-radius: 10px;
+      background: var(--navy);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
+      letter-spacing: -.5px;
+      border-bottom: 3px solid var(--gold);
     }
 
     .brand-text h1 {
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.1;
+      color: var(--navy);
+      font-weight: 800;
     }
 
     .brand-text span {
       display: block;
-      color: #7b8494;
-      font-size: 11px;
       margin-top: 3px;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .2px;
     }
 
+    /* MAIN */
+
     .content {
-      padding: 24px 18px;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 45px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 285px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .main-column {
+      min-width: 0;
+    }
+
+    .side-column {
+      min-width: 0;
     }
 
     .page-title {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .page-title h2 {
       font-size: 25px;
+      line-height: 1.15;
       margin-bottom: 6px;
+      color: var(--navy);
+      letter-spacing: -.4px;
     }
 
     .page-title p {
-      color: #7b8494;
-      font-size: 14px;
+      color: var(--muted);
+      font-size: 13px;
       line-height: 1.5;
     }
 
+    /* BALANCE */
+
     .balance-card {
-      background: linear-gradient(135deg, #0b57d0, #174ea6);
+      background: linear-gradient(
+        135deg,
+        var(--navy),
+        #0b63ce
+      );
       color: #fff;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 10px 25px rgba(11, 87, 208, .18);
+      border-radius: 16px;
+      padding: 18px 19px;
+      margin-bottom: 15px;
+      box-shadow: 0 9px 22px rgba(8, 43, 87, .15);
     }
 
     .balance-label {
-      font-size: 12px;
-      opacity: .82;
-      margin-bottom: 8px;
+      font-size: 11px;
+      opacity: .76;
+      margin-bottom: 7px;
     }
 
     .balance-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .balance-amount {
-      font-size: 27px;
+      font-size: 26px;
       font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .balance-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
     }
 
     .balance-account {
-      margin-top: 12px;
-      font-size: 12px;
-      opacity: .85;
+      margin-top: 9px;
+      font-size: 11px;
+      opacity: .78;
     }
+
+    /* CARDS */
 
     .form-card,
     .review-card,
-    .success-card {
+    .success-card,
+    .side-card {
       background: #fff;
-      border: 1px solid #e5eaf1;
-      border-radius: 18px;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, .05);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 5px 18px rgba(23, 32, 51, .045);
     }
 
     .form-card {
       padding: 20px;
     }
 
+    /* FIELDS */
+
     .field {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+    }
+
+    .field:last-of-type {
+      margin-bottom: 0;
     }
 
     .field label {
       display: block;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 750;
+      margin-bottom: 7px;
+      color: #273248;
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 49px;
+      border: 1px solid #dce2eb;
+      border-radius: 11px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      padding: 0 13px;
+      font-size: 14px;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(11, 99, 206, .08);
     }
 
     .input-wrap {
@@ -176,43 +284,12 @@
       top: 50%;
       transform: translateY(-50%);
       color: #8a94a6;
-      font-size: 14px;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      border: 1px solid #dce2eb;
-      border-radius: 12px;
-      background: #fff;
-      outline: none;
-      color: #172033;
-      font-size: 15px;
-      font-family: inherit;
-    }
-
-    input,
-    select {
-      height: 51px;
-      padding: 0 14px;
+      font-size: 13px;
+      pointer-events: none;
     }
 
     .input-wrap input {
-      padding-left: 42px;
-    }
-
-    textarea {
-      min-height: 90px;
-      padding: 13px 14px;
-      resize: vertical;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #0b57d0;
-      box-shadow: 0 0 0 3px rgba(11, 87, 208, .09);
+      padding-left: 40px;
     }
 
     .amount-wrap {
@@ -221,34 +298,96 @@
 
     .currency {
       position: absolute;
-      left: 15px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: #536078;
+      color: #526078;
       font-weight: 700;
+      font-size: 15px;
     }
 
     .amount-input {
-      padding-left: 38px;
+      padding-left: 34px;
       font-size: 19px;
-      font-weight: 700;
+      font-weight: 750;
     }
+
+    /* PAYEE QUICK PICKS */
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 750;
+      color: #273248;
+      margin-bottom: 9px;
+    }
+
+    .payee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    .payee-option {
+      min-height: 67px;
+      border: 1px solid var(--border);
+      background: #fafbfd;
+      border-radius: 11px;
+      padding: 9px 7px;
+      cursor: pointer;
+      text-align: center;
+      color: var(--text);
+      transition: .18s ease;
+    }
+
+    .payee-option:hover {
+      border-color: #b8cde8;
+      background: var(--blue-light);
+    }
+
+    .payee-option.selected {
+      border-color: var(--blue);
+      background: var(--blue-light);
+      box-shadow: 0 0 0 1px var(--blue);
+    }
+
+    .payee-icon {
+      width: 27px;
+      height: 27px;
+      border-radius: 8px;
+      margin: 0 auto 5px;
+      background: #e9f0fa;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .payee-option span {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* BUTTONS */
 
     .primary-btn {
       width: 100%;
-      height: 52px;
+      height: 50px;
       border: 0;
-      border-radius: 13px;
-      background: #0b57d0;
+      border-radius: 11px;
+      background: var(--blue);
       color: #fff;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 750;
       cursor: pointer;
-      margin-top: 8px;
+      margin-top: 18px;
     }
 
     .primary-btn:hover {
-      background: #0847ad;
+      background: #0958b7;
     }
 
     .primary-btn:disabled,
@@ -259,10 +398,10 @@
 
     .message {
       display: none;
-      margin: 12px 0;
-      padding: 12px 14px;
-      border-radius: 11px;
-      font-size: 13px;
+      margin-top: 13px;
+      padding: 11px 13px;
+      border-radius: 10px;
+      font-size: 12px;
       line-height: 1.4;
     }
 
@@ -273,54 +412,124 @@
       border: 1px solid #ffd5d5;
     }
 
+    /* SIDE CARD */
+
+    .side-card {
+      padding: 18px;
+    }
+
+    .side-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 15px;
+    }
+
+    .side-heading-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--blue-light);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .side-heading h3 {
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .side-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .side-item {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .side-item i {
+      color: var(--green);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .side-item strong {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+
+    .side-item span {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* REVIEW */
+
     .review-section,
     .success-section {
       display: none;
     }
 
+    .review-card {
+      overflow: hidden;
+    }
+
     .review-header {
-      padding: 20px;
+      padding: 18px 20px;
       border-bottom: 1px solid #edf0f4;
     }
 
     .review-header h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
+      font-size: 17px;
+      color: var(--navy);
+      margin-bottom: 4px;
     }
 
     .review-header p {
-      color: #7b8494;
-      font-size: 13px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .review-amount {
       text-align: center;
-      padding: 25px 20px;
+      padding: 22px 18px;
+      background: #fbfcfe;
       border-bottom: 1px solid #edf0f4;
     }
 
     .review-amount span {
       display: block;
-      color: #7b8494;
-      font-size: 12px;
-      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 6px;
     }
 
     .review-amount strong {
-      font-size: 31px;
+      color: var(--navy);
+      font-size: 30px;
+      letter-spacing: -.5px;
     }
 
     .review-details {
-      padding: 8px 20px;
+      padding: 5px 20px;
     }
 
     .detail-row {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      padding: 14px 0;
+      gap: 18px;
+      padding: 13px 0;
       border-bottom: 1px solid #f0f2f5;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .detail-row:last-child {
@@ -328,29 +537,29 @@
     }
 
     .detail-row span:first-child {
-      color: #7b8494;
+      color: var(--muted);
     }
 
     .detail-row span:last-child {
       font-weight: 700;
       text-align: right;
-      max-width: 60%;
+      max-width: 62%;
       word-break: break-word;
     }
 
     .review-actions {
       display: flex;
-      gap: 10px;
+      gap: 9px;
       padding: 0 20px 20px;
     }
 
     .secondary-btn,
     .confirm-btn {
       flex: 1;
-      height: 50px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
+      height: 49px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 750;
       cursor: pointer;
     }
 
@@ -362,9 +571,11 @@
 
     .confirm-btn {
       border: 0;
-      background: #0b57d0;
+      background: var(--blue);
       color: #fff;
     }
+
+    /* SUCCESS */
 
     .success-card {
       padding: 30px 22px;
@@ -372,60 +583,115 @@
     }
 
     .success-icon {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 18px;
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 16px;
       border-radius: 50%;
-      background: #e9f9ef;
-      color: #15803d;
+      background: var(--green-light);
+      color: var(--green);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 27px;
     }
 
     .success-card h2 {
-      font-size: 23px;
-      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 22px;
+      margin-bottom: 7px;
     }
 
     .success-card p {
-      color: #7b8494;
-      font-size: 14px;
+      color: var(--muted);
+      font-size: 13px;
       line-height: 1.5;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+    }
+
+    .payment-summary {
+      background: #f7f9fc;
+      border: 1px solid #edf0f4;
+      border-radius: 12px;
+      padding: 13px;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .payment-summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 6px 0;
+      font-size: 11px;
+    }
+
+    .payment-summary-row span:first-child {
+      color: var(--muted);
+    }
+
+    .payment-summary-row span:last-child {
+      font-weight: 700;
+      text-align: right;
     }
 
     .transaction-id {
-      background: #f6f8fb;
-      border-radius: 12px;
-      padding: 13px;
-      margin-bottom: 18px;
-      font-size: 12px;
-      color: #647086;
+      background: #f7f9fc;
+      border-radius: 11px;
+      padding: 12px;
+      margin-bottom: 17px;
+      font-size: 11px;
+      color: var(--muted);
     }
 
     .transaction-id strong {
       display: block;
-      color: #172033;
-      margin-top: 5px;
+      color: var(--text);
+      margin-top: 4px;
       word-break: break-all;
     }
 
     .footer-note {
       text-align: center;
       color: #8a94a6;
-      font-size: 11px;
-      margin-top: 22px;
+      font-size: 10px;
+      margin-top: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+      .topbar {
+        padding: 0 14px;
+      }
+
+      .content {
+        padding: 21px 14px 35px;
+      }
+
+      .page-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-column {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
-      .content {
-        padding: 20px 14px;
+      .page-title h2 {
+        font-size: 23px;
       }
 
-      .topbar {
-        padding: 0 14px;
+      .form-card {
+        padding: 17px;
+      }
+
+      .payee-grid {
+        gap: 6px;
+      }
+
+      .payee-option {
+        min-height: 63px;
       }
 
       .review-actions {
@@ -445,25 +711,32 @@
 
   <div class="page">
 
+    <!-- TOP BAR -->
+
     <header class="topbar">
 
-      <button
-        class="back-btn"
-        id="backBtn"
-        type="button"
-      >
-        <i class="fa-solid fa-arrow-left"></i>
-      </button>
+      <div class="topbar-inner">
 
-      <div class="brand">
+        <button
+          class="back-btn"
+          id="backBtn"
+          type="button"
+          aria-label="Back"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
 
-        <div class="brand-logo">
-          FM
-        </div>
+        <div class="brand">
 
-        <div class="brand-text">
-          <h1>First Merit Bank</h1>
-          <span>Online Banking</span>
+          <div class="brand-logo">
+            FM
+          </div>
+
+          <div class="brand-text">
+            <h1>First Merit Bank</h1>
+            <span>Online Banking</span>
+          </div>
+
         </div>
 
       </div>
@@ -473,363 +746,619 @@
 
     <main class="content">
 
-      <!-- TRANSFER FORM -->
+      <div class="page-grid">
 
-      <section id="formSection">
+        <div class="main-column">
 
-        <div class="page-title">
+          <!-- BILL PAY FORM -->
 
-          <h2>Transfer Money</h2>
+          <section id="formSection">
 
-          <p>
-            Transfer funds to another account.
-          </p>
+            <div class="page-title">
 
-        </div>
+              <h2>Bill Pay</h2>
 
+              <p>
+                Pay bills and recurring expenses from your checking account.
+              </p>
 
-        <div class="balance-card">
-
-          <div class="balance-label">
-            Available Balance
-          </div>
-
-          <div class="balance-row">
-
-            <div
-              class="balance-amount"
-              id="currentBalance"
-            >
-              $0.00
             </div>
 
-            <i class="fa-solid fa-arrow-right-arrow-left"></i>
 
-          </div>
+            <!-- BALANCE -->
 
-          <div
-            class="balance-account"
-            id="balanceAccount"
-          >
-            Checking Account
-          </div>
+            <div class="balance-card">
 
-        </div>
+              <div class="balance-label">
+                Available Balance
+              </div>
 
+              <div class="balance-row">
 
-        <div class="form-card">
+                <div
+                  class="balance-amount"
+                  id="currentBalance"
+                >
+                  $0.00
+                </div>
 
-          <div class="field">
+                <div class="balance-icon">
+                  <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
 
-            <label for="fromAccount">
-              From Account
-            </label>
+              </div>
 
-            <select id="fromAccount">
-
-              <option value="Checking Account">
+              <div
+                class="balance-account"
+                id="balanceAccount"
+              >
                 Checking Account
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="recipientName">
-              Recipient Name
-            </label>
-
-            <div class="input-wrap">
-
-              <i class="fa-regular fa-user"></i>
-
-              <input
-                type="text"
-                id="recipientName"
-                placeholder="Enter recipient name"
-                autocomplete="off"
-              >
+              </div>
 
             </div>
 
-          </div>
+
+            <!-- FORM -->
+
+            <div class="form-card">
+
+              <div class="field">
+
+                <label>
+                  Select Payee
+                </label>
+
+                <div class="payee-grid">
+
+                  <button
+                    class="payee-option"
+                    type="button"
+                    data-payee="Electric Company"
+                  >
+                    <div class="payee-icon">
+                      <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span>Electric</span>
+                  </button>
 
 
-          <div class="field">
+                  <button
+                    class="payee-option"
+                    type="button"
+                    data-payee="Internet Provider"
+                  >
+                    <div class="payee-icon">
+                      <i class="fa-solid fa-wifi"></i>
+                    </div>
+                    <span>Internet</span>
+                  </button>
 
-            <label for="recipientAccount">
-              Recipient Account Number
-            </label>
 
-            <div class="input-wrap">
+                  <button
+                    class="payee-option"
+                    type="button"
+                    data-payee="Mobile Phone"
+                  >
+                    <div class="payee-icon">
+                      <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <span>Phone</span>
+                  </button>
 
-              <i class="fa-solid fa-building-columns"></i>
 
-              <input
-                type="text"
-                id="recipientAccount"
-                placeholder="Enter account number"
-                autocomplete="off"
+                  <button
+                    class="payee-option"
+                    type="button"
+                    data-payee="Water Utility"
+                  >
+                    <div class="payee-icon">
+                      <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <span>Water</span>
+                  </button>
+
+
+                  <button
+                    class="payee-option"
+                    type="button"
+                    data-payee="Insurance"
+                  >
+                    <div class="payee-icon">
+                      <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span>Insurance</span>
+                  </button>
+
+
+                  <button
+                    class="payee-option"
+                    type="button"
+                    data-payee="Other Bill"
+                  >
+                    <div class="payee-icon">
+                      <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <span>Other</span>
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="payeeName">
+                  Payee Name
+                </label>
+
+                <div class="input-wrap">
+
+                  <i class="fa-regular fa-building"></i>
+
+                  <input
+                    type="text"
+                    id="payeeName"
+                    placeholder="Enter company or payee name"
+                    autocomplete="off"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="accountNumber">
+                  Account / Customer Number
+                </label>
+
+                <div class="input-wrap">
+
+                  <i class="fa-solid fa-hashtag"></i>
+
+                  <input
+                    type="text"
+                    id="accountNumber"
+                    placeholder="Enter customer or account number"
+                    autocomplete="off"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="amount">
+                  Payment Amount
+                </label>
+
+                <div class="amount-wrap">
+
+                  <span class="currency">
+                    $
+                  </span>
+
+                  <input
+                    class="amount-input"
+                    type="number"
+                    id="amount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="0.00"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="paymentDate">
+                  Payment Date
+                </label>
+
+                <input
+                  type="date"
+                  id="paymentDate"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="memo">
+                  Memo
+                </label>
+
+                <input
+                  type="text"
+                  id="memo"
+                  maxlength="150"
+                  placeholder="Optional payment note"
+                  autocomplete="off"
+                >
+
+              </div>
+
+
+              <div
+                id="formMessage"
+                class="message"
+              ></div>
+
+
+              <button
+                class="primary-btn"
+                id="reviewBtn"
+                type="button"
               >
+                Review Payment
+              </button>
 
             </div>
 
-          </div>
+          </section>
 
 
-          <div class="field">
+          <!-- REVIEW -->
 
-            <label for="amount">
-              Amount
-            </label>
-
-            <div class="amount-wrap">
-
-              <span class="currency">
-                $
-              </span>
-
-              <input
-                class="amount-input"
-                type="number"
-                id="amount"
-                min="0.01"
-                step="0.01"
-                placeholder="0.00"
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="note">
-              Transfer Note
-            </label>
-
-            <textarea
-              id="note"
-              maxlength="150"
-              placeholder="Add a note (optional)"
-            ></textarea>
-
-          </div>
-
-
-          <div
-            id="formMessage"
-            class="message"
-          ></div>
-
-
-          <button
-            class="primary-btn"
-            id="reviewBtn"
-            type="button"
+          <section
+            class="review-section"
+            id="reviewSection"
           >
-            Review Transfer
-          </button>
 
-        </div>
+            <div class="page-title">
 
-      </section>
+              <h2>Review Bill Payment</h2>
 
-
-      <!-- REVIEW -->
-
-      <section
-        class="review-section"
-        id="reviewSection"
-      >
-
-        <div class="page-title">
-
-          <h2>Review Transfer</h2>
-
-          <p>
-            Review the transfer details before confirming.
-          </p>
-
-        </div>
-
-
-        <div class="review-card">
-
-          <div class="review-header">
-
-            <h3>
-              Transfer Details
-            </h3>
-
-            <p>
-              Confirm the information below.
-            </p>
-
-          </div>
-
-
-          <div class="review-amount">
-
-            <span>
-              Transfer Amount
-            </span>
-
-            <strong id="reviewAmount">
-              $0.00
-            </strong>
-
-          </div>
-
-
-          <div class="review-details">
-
-            <div class="detail-row">
-
-              <span>
-                From
-              </span>
-
-              <span id="reviewFrom">
-                Checking Account
-              </span>
+              <p>
+                Review your payment details before confirming.
+              </p>
 
             </div>
 
 
-            <div class="detail-row">
+            <div class="review-card">
 
-              <span>
-                Recipient
-              </span>
+              <div class="review-header">
 
-              <span id="reviewRecipient">
-                —
-              </span>
+                <h3>
+                  Payment Details
+                </h3>
+
+                <p>
+                  Make sure everything is correct.
+                </p>
+
+              </div>
+
+
+              <div class="review-amount">
+
+                <span>
+                  Payment Amount
+                </span>
+
+                <strong id="reviewAmount">
+                  $0.00
+                </strong>
+
+              </div>
+
+
+              <div class="review-details">
+
+                <div class="detail-row">
+
+                  <span>
+                    From
+                  </span>
+
+                  <span>
+                    Checking Account
+                  </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Payee
+                  </span>
+
+                  <span id="reviewPayee">
+                    —
+                  </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Account Number
+                  </span>
+
+                  <span id="reviewAccount">
+                    —
+                  </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Payment Date
+                  </span>
+
+                  <span id="reviewDate">
+                    —
+                  </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Remaining Balance
+                  </span>
+
+                  <span id="reviewRemainingBalance">
+                    $0.00
+                  </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Memo
+                  </span>
+
+                  <span id="reviewMemo">
+                    —
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div
+                id="reviewMessage"
+                class="message"
+              ></div>
+
+
+              <div class="review-actions">
+
+                <button
+                  class="secondary-btn"
+                  id="editBtn"
+                  type="button"
+                >
+                  Edit Payment
+                </button>
+
+                <button
+                  class="confirm-btn"
+                  id="confirmBtn"
+                  type="button"
+                >
+                  Confirm Payment
+                </button>
+
+              </div>
 
             </div>
 
-
-            <div class="detail-row">
-
-              <span>
-                Account Number
-              </span>
-
-              <span id="reviewAccount">
-                —
-              </span>
-
-            </div>
+          </section>
 
 
-            <div class="detail-row">
+          <!-- SUCCESS -->
 
-              <span>
-                Remaining Balance
-              </span>
-
-              <span id="reviewRemainingBalance">
-                $0.00
-              </span>
-
-            </div>
-
-
-            <div class="detail-row">
-
-              <span>
-                Note
-              </span>
-
-              <span id="reviewNote">
-                —
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div
-            id="reviewMessage"
-            class="message"
-          ></div>
-
-
-          <div class="review-actions">
-
-            <button
-              class="secondary-btn"
-              id="editBtn"
-              type="button"
-            >
-              Edit Transfer
-            </button>
-
-            <button
-              class="confirm-btn"
-              id="confirmBtn"
-              type="button"
-            >
-              Confirm Transfer
-            </button>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- SUCCESS -->
-
-      <section
-        class="success-section"
-        id="successSection"
-      >
-
-        <div class="success-card">
-
-          <div class="success-icon">
-            <i class="fa-solid fa-check"></i>
-          </div>
-
-          <h2>
-            Transfer Successful
-          </h2>
-
-          <p>
-            Your transfer has been processed successfully.
-          </p>
-
-
-          <div class="transaction-id">
-
-            Transaction ID
-
-            <strong id="transactionId">
-              —
-            </strong>
-
-          </div>
-
-
-          <button
-            class="primary-btn"
-            id="dashboardBtn"
-            type="button"
+          <section
+            class="success-section"
+            id="successSection"
           >
-            Return to Dashboard
-          </button>
+
+            <div class="success-card">
+
+              <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+              </div>
+
+              <h2>
+                Payment Confirmed
+              </h2>
+
+              <p>
+                Your bill payment has been recorded successfully.
+              </p>
+
+
+              <div class="payment-summary">
+
+                <div class="payment-summary-row">
+
+                  <span>
+                    Payee
+                  </span>
+
+                  <span id="successPayee">
+                    —
+                  </span>
+
+                </div>
+
+
+                <div class="payment-summary-row">
+
+                  <span>
+                    Amount
+                  </span>
+
+                  <span id="successAmount">
+                    $0.00
+                  </span>
+
+                </div>
+
+
+                <div class="payment-summary-row">
+
+                  <span>
+                    Payment Date
+                  </span>
+
+                  <span id="successDate">
+                    —
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="transaction-id">
+
+                Transaction ID
+
+                <strong id="transactionId">
+                  —
+                </strong>
+
+              </div>
+
+
+              <button
+                class="primary-btn"
+                id="dashboardBtn"
+                type="button"
+              >
+                Return to Dashboard
+              </button>
+
+            </div>
+
+          </section>
 
         </div>
 
-      </section>
+
+        <!-- SIDE INFORMATION -->
+
+        <aside class="side-column">
+
+          <div class="side-card">
+
+            <div class="side-heading">
+
+              <div class="side-heading-icon">
+                <i class="fa-solid fa-receipt"></i>
+              </div>
+
+              <h3>
+                Bill Pay
+              </h3>
+
+            </div>
+
+
+            <div class="side-list">
+
+              <div class="side-item">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+
+                  <strong>
+                    Choose a payee
+                  </strong>
+
+                  <span>
+                    Select a common bill category or enter your own payee.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="side-item">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+
+                  <strong>
+                    Select payment date
+                  </strong>
+
+                  <span>
+                    Choose the date you want the payment recorded for.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="side-item">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+
+                  <strong>
+                    Review before confirming
+                  </strong>
+
+                  <span>
+                    Check the payee, amount and payment details.
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="side-item">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+
+                  <strong>
+                    Confirmation
+                  </strong>
+
+                  <span>
+                    Your payment receives a transaction ID after confirmation.
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
 
 
       <div class="footer-note">
@@ -861,6 +1390,10 @@
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
+    /* =========================
+       ELEMENTS
+    ========================= */
+
     const backBtn =
       document.getElementById("backBtn");
 
@@ -887,20 +1420,20 @@
       document.getElementById("successSection");
 
 
-    const fromAccount =
-      document.getElementById("fromAccount");
+    const payeeName =
+      document.getElementById("payeeName");
 
-    const recipientName =
-      document.getElementById("recipientName");
-
-    const recipientAccount =
-      document.getElementById("recipientAccount");
+    const accountNumber =
+      document.getElementById("accountNumber");
 
     const amount =
       document.getElementById("amount");
 
-    const note =
-      document.getElementById("note");
+    const paymentDate =
+      document.getElementById("paymentDate");
+
+    const memo =
+      document.getElementById("memo");
 
 
     const currentBalance =
@@ -920,37 +1453,59 @@
     const reviewAmount =
       document.getElementById("reviewAmount");
 
-    const reviewFrom =
-      document.getElementById("reviewFrom");
-
-    const reviewRecipient =
-      document.getElementById("reviewRecipient");
+    const reviewPayee =
+      document.getElementById("reviewPayee");
 
     const reviewAccount =
       document.getElementById("reviewAccount");
 
+    const reviewDate =
+      document.getElementById("reviewDate");
+
     const reviewRemainingBalance =
       document.getElementById("reviewRemainingBalance");
 
-    const reviewNote =
-      document.getElementById("reviewNote");
+    const reviewMemo =
+      document.getElementById("reviewMemo");
+
+
+    const successPayee =
+      document.getElementById("successPayee");
+
+    const successAmount =
+      document.getElementById("successAmount");
+
+    const successDate =
+      document.getElementById("successDate");
 
     const transactionId =
       document.getElementById("transactionId");
 
 
+    const payeeOptions =
+      document.querySelectorAll(".payee-option");
+
+
+    /* =========================
+       STATE
+    ========================= */
+
     let currentUser = null;
 
     let userBalance = 0;
 
-    let pendingTransfer = {
-      fromAccount: "",
-      recipient: "",
-      recipientAccount: "",
+    let pendingPayment = {
+      payee: "",
+      accountNumber: "",
       amount: 0,
-      note: ""
+      paymentDate: "",
+      memo: ""
     };
 
+
+    /* =========================
+       HELPERS
+    ========================= */
 
     function formatCurrency(value) {
 
@@ -961,6 +1516,29 @@
           currency: "USD"
         }
       ).format(value);
+
+    }
+
+
+    function formatDate(dateValue) {
+
+      if (!dateValue) {
+        return "—";
+      }
+
+      const date =
+        new Date(
+          dateValue + "T00:00:00"
+        );
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(date);
 
     }
 
@@ -991,11 +1569,71 @@
     }
 
 
+    /* =========================
+       DEFAULT PAYMENT DATE
+    ========================= */
+
+    const today =
+      new Date();
+
+    const todayString =
+      today.toISOString()
+        .split("T")[0];
+
+    paymentDate.value =
+      todayString;
+
+    paymentDate.min =
+      todayString;
+
+
+    /* =========================
+       PAYEE QUICK SELECT
+    ========================= */
+
+    payeeOptions.forEach(
+      option => {
+
+        option.addEventListener(
+          "click",
+          () => {
+
+            payeeOptions.forEach(
+              item => {
+                item.classList.remove(
+                  "selected"
+                );
+              }
+            );
+
+
+            option.classList.add(
+              "selected"
+            );
+
+
+            payeeName.value =
+              option.dataset.payee;
+
+            payeeName.focus();
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================
+       LOAD USER ACCOUNT
+    ========================= */
+
     async function loadAccount() {
 
       if (!currentUser) {
         return;
       }
+
 
       try {
 
@@ -1039,14 +1677,14 @@
           );
 
 
-        const accountNumber =
+        const accountNumberValue =
           userData.accountNumber ||
           "Checking Account";
 
 
         balanceAccount.textContent =
           "Checking • " +
-          accountNumber;
+          accountNumberValue;
 
       } catch (error) {
 
@@ -1062,6 +1700,10 @@
     }
 
 
+    /* =========================
+       AUTH
+    ========================= */
+
     onAuthStateChanged(
       auth,
       async (user) => {
@@ -1075,13 +1717,19 @@
 
         }
 
-        currentUser = user;
+
+        currentUser =
+          user;
 
         await loadAccount();
 
       }
     );
 
+
+    /* =========================
+       BACK
+    ========================= */
 
     backBtn.addEventListener(
       "click",
@@ -1094,59 +1742,73 @@
     );
 
 
+    /* =========================
+       REVIEW PAYMENT
+    ========================= */
+
     reviewBtn.addEventListener(
       "click",
       () => {
 
-        clearMessage(formMessage);
+        clearMessage(
+          formMessage
+        );
 
 
-        const name =
-          recipientName.value.trim();
+        const payee =
+          payeeName.value.trim();
 
-        const account =
-          recipientAccount.value.trim();
+        const customerAccount =
+          accountNumber.value.trim();
 
-        const transferAmount =
-          Number(amount.value);
+        const paymentAmount =
+          Number(
+            amount.value
+          );
 
-        const transferNote =
-          note.value.trim();
+        const selectedDate =
+          paymentDate.value;
+
+        const paymentMemo =
+          memo.value.trim();
 
 
-        if (!name) {
+        if (!payee) {
 
           showMessage(
             formMessage,
-            "Please enter the recipient's name."
+            "Please enter a payee name."
           );
 
-          recipientName.focus();
+          payeeName.focus();
 
           return;
 
         }
 
 
-        if (!account) {
+        if (!customerAccount) {
 
           showMessage(
             formMessage,
-            "Please enter the recipient account number."
+            "Please enter the account or customer number."
           );
 
-          recipientAccount.focus();
+          accountNumber.focus();
 
           return;
 
         }
 
 
-        if (!transferAmount || transferAmount <= 0) {
+        if (
+          !paymentAmount ||
+          paymentAmount <= 0
+        ) {
 
           showMessage(
             formMessage,
-            "Please enter a valid transfer amount."
+            "Please enter a valid payment amount."
           );
 
           amount.focus();
@@ -1156,7 +1818,10 @@
         }
 
 
-        if (transferAmount > userBalance) {
+        if (
+          paymentAmount >
+          userBalance
+        ) {
 
           showMessage(
             formMessage,
@@ -1168,53 +1833,69 @@
         }
 
 
-        pendingTransfer = {
+        if (!selectedDate) {
 
-          fromAccount:
-            fromAccount.value,
+          showMessage(
+            formMessage,
+            "Please select a payment date."
+          );
 
-          recipient:
-            name,
+          paymentDate.focus();
 
-          recipientAccount:
-            account,
+          return;
+
+        }
+
+
+        pendingPayment = {
+
+          payee:
+            payee,
+
+          accountNumber:
+            customerAccount,
 
           amount:
-            transferAmount,
+            paymentAmount,
 
-          note:
-            transferNote
+          paymentDate:
+            selectedDate,
+
+          memo:
+            paymentMemo
 
         };
 
 
         reviewAmount.textContent =
           formatCurrency(
-            pendingTransfer.amount
+            pendingPayment.amount
           );
 
 
-        reviewFrom.textContent =
-          pendingTransfer.fromAccount;
-
-
-        reviewRecipient.textContent =
-          pendingTransfer.recipient;
+        reviewPayee.textContent =
+          pendingPayment.payee;
 
 
         reviewAccount.textContent =
-          pendingTransfer.recipientAccount;
+          pendingPayment.accountNumber;
+
+
+        reviewDate.textContent =
+          formatDate(
+            pendingPayment.paymentDate
+          );
 
 
         reviewRemainingBalance.textContent =
           formatCurrency(
             userBalance -
-            pendingTransfer.amount
+            pendingPayment.amount
           );
 
 
-        reviewNote.textContent =
-          pendingTransfer.note ||
+        reviewMemo.textContent =
+          pendingPayment.memo ||
           "—";
 
 
@@ -1227,6 +1908,7 @@
         successSection.style.display =
           "none";
 
+
         window.scrollTo({
           top: 0,
           behavior: "smooth"
@@ -1236,6 +1918,10 @@
     );
 
 
+    /* =========================
+       EDIT
+    ========================= */
+
     editBtn.addEventListener(
       "click",
       () => {
@@ -1243,6 +1929,7 @@
         clearMessage(
           reviewMessage
         );
+
 
         reviewSection.style.display =
           "none";
@@ -1253,6 +1940,7 @@
         successSection.style.display =
           "none";
 
+
         window.scrollTo({
           top: 0,
           behavior: "smooth"
@@ -1261,6 +1949,10 @@
       }
     );
 
+
+    /* =========================
+       CONFIRM PAYMENT
+    ========================= */
 
     confirmBtn.addEventListener(
       "click",
@@ -1339,7 +2031,7 @@
 
 
               if (
-                pendingTransfer.amount >
+                pendingPayment.amount >
                 balance
               ) {
 
@@ -1352,13 +2044,14 @@
 
               const newBalance =
                 balance -
-                pendingTransfer.amount;
+                pendingPayment.amount;
 
 
               transaction.update(
                 userRef,
                 {
-                  balance: newBalance
+                  balance:
+                    newBalance
                 }
               );
 
@@ -1368,28 +2061,28 @@
                 {
 
                   type:
-                    "transfer",
+                    "bill_pay",
 
                   title:
-                    "Bank Transfer",
+                    "Bill Payment",
 
                   amount:
-                    pendingTransfer.amount,
+                    pendingPayment.amount,
 
                   direction:
                     "debit",
 
-                  fromAccount:
-                    pendingTransfer.fromAccount,
+                  payee:
+                    pendingPayment.payee,
 
-                  recipient:
-                    pendingTransfer.recipient,
+                  accountNumber:
+                    pendingPayment.accountNumber,
 
-                  recipientAccount:
-                    pendingTransfer.recipientAccount,
+                  paymentDate:
+                    pendingPayment.paymentDate,
 
-                  note:
-                    pendingTransfer.note,
+                  memo:
+                    pendingPayment.memo,
 
                   status:
                     "completed",
@@ -1406,11 +2099,33 @@
 
           userBalance =
             userBalance -
-            pendingTransfer.amount;
+            pendingPayment.amount;
+
+
+          currentBalance.textContent =
+            formatCurrency(
+              userBalance
+            );
 
 
           transactionId.textContent =
             transactionRef.id;
+
+
+          successPayee.textContent =
+            pendingPayment.payee;
+
+
+          successAmount.textContent =
+            formatCurrency(
+              pendingPayment.amount
+            );
+
+
+          successDate.textContent =
+            formatDate(
+              pendingPayment.paymentDate
+            );
 
 
           reviewSection.style.display =
@@ -1436,7 +2151,7 @@
           showMessage(
             reviewMessage,
             error.message ||
-            "Unable to complete the transfer."
+            "Unable to complete the payment."
           );
 
 
@@ -1444,13 +2159,17 @@
             false;
 
           confirmBtn.textContent =
-            "Confirm Transfer";
+            "Confirm Payment";
 
         }
 
       }
     );
 
+
+    /* =========================
+       DASHBOARD
+    ========================= */
 
     dashboardBtn.addEventListener(
       "click",
