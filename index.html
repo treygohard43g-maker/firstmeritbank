@@ -97,30 +97,35 @@
       margin: auto;
     }
 
-    /* =========================================================
-       HEADER
-    ========================================================= */
-
     header {
   position: sticky;
   top: 0;
+  left: 0;
   z-index: 1000;
+
+  width: 100%;
+  min-height: 66px;
+  margin: 0;
+  padding: 0;
 
   background:
     linear-gradient(
       115deg,
       #061a3a 0%,
-      #0b2a5b 22%,
-      #1769d1 45%,
-      #0b2a5b 68%,
+      #0b2a5b 18%,
+      #1769d1 42%,
+      #4dbfff 50%,
+      #1769d1 58%,
+      #0b2a5b 82%,
       #071d40 100%
     );
 
-  border-bottom: 1px solid rgba(92, 190, 255, 0.35);
+  border-bottom: 1px solid rgba(126, 220, 255, 0.45);
 
   box-shadow:
-    0 8px 28px rgba(3, 18, 48, 0.28),
-    inset 0 -1px 0 rgba(255,255,255,0.12);
+    0 8px 28px rgba(3, 18, 48, 0.30),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(126,220,255,0.25);
 
   overflow: hidden;
 }
