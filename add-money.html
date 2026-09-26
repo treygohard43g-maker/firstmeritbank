@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Add Money | First Merit Bank</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link
     rel="stylesheet"
@@ -14,397 +22,1090 @@
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #082b57;
+      --navy-dark: #061f40;
+      --blue: #0b63ce;
+      --blue-light: #eaf3ff;
+      --gold: #c8a44d;
+      --green: #18864b;
+      --green-light: #eaf8f0;
+      --text: #172033;
+      --muted: #697386;
+      --border: #e3e8ef;
+      --background: #f5f7fa;
+      --white: #ffffff;
+      --danger: #c62828;
+    }
+
+    html,
+    body {
       margin: 0;
       padding: 0;
+      min-height: 100%;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fb;
-      color: #172033;
-      min-height: 100vh;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     .page {
-      width: 100%;
-      max-width: 620px;
-      margin: 0 auto;
       min-height: 100vh;
-      padding-bottom: 40px;
     }
 
+    /* =========================
+       HEADER
+    ========================= */
+
     .topbar {
-      height: 70px;
+      height: 68px;
       background: #fff;
+      border-bottom: 1px solid var(--border);
+
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 0 20px;
-      border-bottom: 1px solid #e7ebf2;
+      justify-content: space-between;
+
+      padding: 0 24px;
+
       position: sticky;
       top: 0;
       z-index: 20;
     }
 
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
     .back-btn {
-      width: 42px;
-      height: 42px;
-      border: 0;
-      border-radius: 12px;
-      background: #f1f5f9;
-      color: #172033;
+      width: 38px;
+      height: 38px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #fff;
+      color: var(--navy);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      font-size: 17px;
+
+      font-size: 14px;
+
+      transition: .2s ease;
     }
+
+    .back-btn:hover {
+      background: #f5f8fc;
+      transform: translateX(-1px);
+    }
+
+    /* BRAND */
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
+
+      text-decoration: none;
+      color: var(--navy);
     }
 
-    .brand-logo {
+    .brand-mark {
       width: 38px;
       height: 38px;
-      border-radius: 11px;
-      background: #0b57d0;
+
+      border-radius: 9px;
+
+      background: var(--navy);
+      border: 2px solid var(--gold);
+
       color: #fff;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
+
       font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -1px;
     }
 
-    .brand-text h1 {
-      font-size: 16px;
-      line-height: 1.1;
+    .brand-text {
+      line-height: 1;
     }
 
-    .brand-text span {
+    .brand-main {
       display: block;
-      color: #7b8494;
-      font-size: 11px;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+    }
+
+    .brand-sub {
+      display: block;
+
       margin-top: 3px;
+
+      color: #9a7930;
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: 3px;
     }
 
-    .content {
-      padding: 24px 18px;
+    .home-btn {
+      width: 38px;
+      height: 38px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #fff;
+      color: var(--navy);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .page-title {
+    /* =========================
+       MAIN
+    ========================= */
+
+    .main {
+      width: min(100%, 980px);
+
+      margin: 0 auto;
+
+      padding: 26px 20px 45px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-bottom: 13px;
+    }
+
+    .breadcrumb a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .heading {
       margin-bottom: 20px;
     }
 
-    .page-title h2 {
-      font-size: 25px;
-      margin-bottom: 6px;
+    .heading h1 {
+      margin: 0;
+
+      color: var(--navy-dark);
+
+      font-size: 27px;
+      font-weight: 800;
+
+      letter-spacing: -.7px;
     }
 
-    .page-title p {
-      color: #7b8494;
-      font-size: 14px;
-      line-height: 1.5;
+    .heading p {
+      margin: 6px 0 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
     }
+
+    /* =========================
+       LAYOUT
+    ========================= */
+
+    .content-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        300px;
+
+      gap: 18px;
+
+      align-items: start;
+    }
+
+    .card {
+      background: #fff;
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 4px 18px rgba(16, 35, 62, .045);
+    }
+
+    .main-card {
+      padding: 22px;
+    }
+
+    /* =========================
+       SECTION TITLE
+    ========================= */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 38px;
+      height: 38px;
+
+      border-radius: 11px;
+
+      background: var(--blue-light);
+      color: var(--blue);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 16px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+
+      color: var(--navy-dark);
+
+      font-size: 17px;
+    }
+
+    .section-title p {
+      margin: 3px 0 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    /* =========================
+       BALANCE
+    ========================= */
 
     .balance-card {
-      background: linear-gradient(135deg, #0b57d0, #174ea6);
+      background:
+        linear-gradient(
+          135deg,
+          #082b57,
+          #0b4d91
+        );
+
       color: #fff;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 10px 25px rgba(11, 87, 208, 0.18);
+
+      border-radius: 14px;
+
+      padding: 17px;
+
+      margin-bottom: 20px;
+
+      box-shadow:
+        0 9px 22px rgba(8, 43, 87, .14);
     }
 
     .balance-label {
-      font-size: 12px;
-      opacity: .82;
-      margin-bottom: 8px;
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .7px;
+
+      opacity: .72;
+
+      margin-bottom: 7px;
     }
 
     .balance-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      gap: 12px;
     }
 
     .balance-amount {
-      font-size: 27px;
+      font-size: 25px;
+
       font-weight: 800;
+
+      letter-spacing: -.6px;
+    }
+
+    .balance-icon {
+      width: 36px;
+      height: 36px;
+
+      border-radius: 10px;
+
+      background: rgba(255,255,255,.12);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 14px;
     }
 
     .balance-account {
-      margin-top: 12px;
-      font-size: 12px;
-      opacity: .85;
+      margin-top: 9px;
+
+      font-size: 10px;
+
+      opacity: .72;
     }
 
-    .form-card,
-    .review-card,
-    .success-card {
-      background: #fff;
-      border: 1px solid #e5eaf1;
-      border-radius: 18px;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, .05);
-    }
-
-    .form-card {
-      padding: 20px;
-    }
+    /* =========================
+       FORM
+    ========================= */
 
     .field {
-      margin-bottom: 18px;
+      margin-bottom: 17px;
     }
 
     .field label {
       display: block;
-      font-size: 13px;
+
+      margin-bottom: 7px;
+
+      color: #273348;
+
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 8px;
     }
 
-    .amount-wrap {
+    .field-label-sub {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .input-wrap {
       position: relative;
     }
 
-    .currency {
+    .input-icon {
       position: absolute;
-      left: 15px;
+
+      left: 14px;
       top: 50%;
+
       transform: translateY(-50%);
-      color: #536078;
-      font-weight: 700;
+
+      color: #7d8797;
+
+      font-size: 13px;
+
+      pointer-events: none;
     }
 
     input,
     select {
       width: 100%;
-      height: 51px;
-      border: 1px solid #dce2eb;
-      border-radius: 12px;
+
+      height: 46px;
+
+      border: 1px solid #d9e0e9;
+      border-radius: 10px;
+
       background: #fff;
+
+      color: var(--text);
+
       outline: none;
-      padding: 0 14px;
-      font-size: 15px;
-      color: #172033;
+
+      font-size: 13px;
+
+      transition: .2s ease;
     }
 
-    .amount-input {
-      padding-left: 38px;
-      font-size: 19px;
-      font-weight: 700;
+    input {
+      padding: 0 13px 0 40px;
+    }
+
+    select {
+      padding: 0 38px 0 40px;
+
+      appearance: none;
+
+      cursor: pointer;
     }
 
     input:focus,
     select:focus {
-      border-color: #0b57d0;
-      box-shadow: 0 0 0 3px rgba(11, 87, 208, .09);
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(11,99,206,.09);
     }
 
-    .primary-btn {
-      width: 100%;
-      height: 52px;
-      border: 0;
-      border-radius: 13px;
-      background: #0b57d0;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
+    .select-wrap::after {
+      content: "\f078";
+
+      font-family: "Font Awesome 6 Free";
+
+      font-weight: 900;
+
+      position: absolute;
+
+      right: 14px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #7d8797;
+
+      pointer-events: none;
+
+      font-size: 10px;
+    }
+
+    /* AMOUNT */
+
+    .amount-wrap input {
+      height: 58px;
+
+      padding-left: 43px;
+
+      font-size: 23px;
+
+      font-weight: 800;
+
+      letter-spacing: -.5px;
+    }
+
+    .currency {
+      position: absolute;
+
+      left: 15px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: var(--navy);
+
+      font-size: 18px;
+
+      font-weight: 800;
+    }
+
+    .amount-help {
+      margin-top: 6px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+    /* FUNDING OPTIONS */
+
+    .funding-options {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 8px;
+    }
+
+    .funding-option {
+      position: relative;
+    }
+
+    .funding-option input {
+      position: absolute;
+
+      opacity: 0;
+
+      pointer-events: none;
+    }
+
+    .funding-label {
+      min-height: 76px;
+
+      padding: 10px;
+
+      border: 1px solid #dce3ec;
+
+      border-radius: 11px;
+
+      background: #fff;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-align: center;
+
+      gap: 7px;
+
       cursor: pointer;
-      margin-top: 8px;
+
+      transition: .2s ease;
     }
 
-    .primary-btn:hover {
-      background: #0847ad;
+    .funding-label i {
+      color: #667287;
+
+      font-size: 16px;
     }
 
-    .primary-btn:disabled {
-      opacity: .55;
-      cursor: not-allowed;
+    .funding-label span {
+      color: #47536a;
+
+      font-size: 10px;
+
+      font-weight: 700;
     }
+
+    .funding-option input:checked + .funding-label {
+      border-color: var(--blue);
+
+      background: var(--blue-light);
+
+      box-shadow:
+        0 0 0 2px rgba(11,99,206,.06);
+    }
+
+    .funding-option input:checked + .funding-label i,
+    .funding-option input:checked + .funding-label span {
+      color: var(--blue);
+    }
+
+    /* ERROR */
 
     .message {
       display: none;
-      margin: 12px 0;
-      padding: 12px 14px;
-      border-radius: 11px;
-      font-size: 13px;
-      line-height: 1.4;
+
+      padding: 11px 12px;
+
+      border-radius: 9px;
+
+      margin-bottom: 14px;
+
+      font-size: 11px;
+
+      line-height: 1.45;
+    }
+
+    .message.show {
+      display: block;
     }
 
     .message.error {
-      display: block;
       background: #fff1f1;
-      color: #b42318;
-      border: 1px solid #ffd5d5;
+
+      border: 1px solid #ffd1d1;
+
+      color: var(--danger);
     }
 
-    .review-section,
-    .success-section {
+    /* BUTTON */
+
+    .primary-btn {
+      width: 100%;
+
+      height: 47px;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      background: var(--navy);
+
+      color: #fff;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      transition: .2s ease;
+    }
+
+    .primary-btn:hover {
+      background: #0b3b73;
+
+      transform: translateY(-1px);
+    }
+
+    .primary-btn:disabled {
+      opacity: .6;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+    /* =========================
+       SIDE CARD
+    ========================= */
+
+    .side-card {
+      padding: 18px;
+    }
+
+    .side-card h3 {
+      margin: 0 0 13px;
+
+      color: var(--navy-dark);
+
+      font-size: 14px;
+    }
+
+    .info-row {
+      display: flex;
+
+      gap: 10px;
+
+      padding: 11px 0;
+
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .info-row:last-child {
+      border-bottom: 0;
+    }
+
+    .info-icon {
+      width: 31px;
+      height: 31px;
+
+      flex: 0 0 31px;
+
+      border-radius: 9px;
+
+      background: var(--green-light);
+
+      color: var(--green);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 12px;
+    }
+
+    .info-text strong {
+      display: block;
+
+      color: #273348;
+
+      font-size: 11px;
+
+      margin-bottom: 2px;
+    }
+
+    .info-text span {
+      display: block;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      line-height: 1.4;
+    }
+
+    /* =========================
+       REVIEW
+    ========================= */
+
+    #reviewView,
+    #successView {
       display: none;
     }
 
     .review-header {
-      padding: 20px;
-      border-bottom: 1px solid #edf0f4;
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 18px;
     }
 
-    .review-header h3 {
+    .review-back {
+      width: 36px;
+      height: 36px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 9px;
+
+      background: #fff;
+
+      color: var(--navy);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-header h2 {
+      margin: 0;
+
+      color: var(--navy-dark);
+
       font-size: 18px;
-      margin-bottom: 5px;
     }
 
     .review-header p {
-      color: #7b8494;
-      font-size: 13px;
+      margin: 3px 0 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
     }
 
     .review-amount {
       text-align: center;
-      padding: 25px 20px;
+
+      padding: 13px 0 20px;
+
       border-bottom: 1px solid #edf0f4;
     }
 
     .review-amount span {
       display: block;
-      color: #7b8494;
-      font-size: 12px;
-      margin-bottom: 7px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      margin-bottom: 5px;
     }
 
     .review-amount strong {
+      color: var(--navy);
+
       font-size: 31px;
+
+      letter-spacing: -1px;
     }
 
-    .review-details {
-      padding: 8px 20px;
+    .review-list {
+      padding: 6px 0;
     }
 
-    .detail-row {
+    .review-row {
       display: flex;
+
       justify-content: space-between;
-      gap: 20px;
-      padding: 14px 0;
-      border-bottom: 1px solid #f0f2f5;
-      font-size: 13px;
+
+      gap: 18px;
+
+      padding: 13px 0;
+
+      border-bottom: 1px solid #edf0f4;
+
+      font-size: 12px;
     }
 
-    .detail-row:last-child {
+    .review-row:last-child {
       border-bottom: 0;
     }
 
-    .detail-row span:first-child {
-      color: #7b8494;
+    .review-row span:first-child {
+      color: var(--muted);
     }
 
-    .detail-row span:last-child {
+    .review-row span:last-child {
+      color: #263247;
+
       font-weight: 700;
+
       text-align: right;
-      max-width: 60%;
-      word-break: break-word;
     }
 
     .review-actions {
-      display: flex;
-      gap: 10px;
-      padding: 0 20px 20px;
-    }
+      display: grid;
 
-    .secondary-btn,
-    .confirm-btn {
-      flex: 1;
-      height: 50px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
+      grid-template-columns:
+        1fr 1.5fr;
+
+      gap: 10px;
+
+      margin-top: 15px;
     }
 
     .secondary-btn {
-      border: 1px solid #d9e0ea;
+      height: 47px;
+
+      border: 1px solid #d6dee8;
+
+      border-radius: 10px;
+
       background: #fff;
-      color: #273248;
+
+      color: var(--navy);
+
+      font-size: 12px;
+
+      font-weight: 700;
     }
 
-    .confirm-btn {
-      border: 0;
-      background: #0b57d0;
-      color: #fff;
-    }
+    /* =========================
+       SUCCESS
+    ========================= */
 
-    .success-card {
-      padding: 30px 22px;
+    .success {
       text-align: center;
+
+      padding: 18px 6px 3px;
     }
 
     .success-icon {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 18px;
+      width: 64px;
+      height: 64px;
+
+      margin: 5px auto 14px;
+
       border-radius: 50%;
-      background: #e9f9ef;
-      color: #15803d;
+
+      background: var(--green-light);
+
+      color: var(--green);
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+
+      font-size: 27px;
     }
 
-    .success-card h2 {
-      font-size: 23px;
-      margin-bottom: 8px;
+    .success h2 {
+      margin: 0;
+
+      color: var(--navy-dark);
+
+      font-size: 22px;
     }
 
-    .success-card p {
-      color: #7b8494;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 22px;
+    .success > p {
+      margin: 7px 0 19px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .receipt {
+      text-align: left;
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      margin-bottom: 17px;
+    }
+
+    .receipt-row {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 12px 13px;
+
+      border-bottom: 1px solid #edf0f4;
+
+      font-size: 11px;
+    }
+
+    .receipt-row:last-child {
+      border-bottom: 0;
+    }
+
+    .receipt-row span:first-child {
+      color: var(--muted);
+    }
+
+    .receipt-row span:last-child {
+      color: #263247;
+
+      font-weight: 700;
+
+      text-align: right;
     }
 
     .transaction-id {
-      background: #f6f8fb;
-      border-radius: 12px;
-      padding: 13px;
-      margin-bottom: 18px;
-      font-size: 12px;
-      color: #647086;
-    }
+      max-width: 180px;
 
-    .transaction-id strong {
-      display: block;
-      color: #172033;
-      margin-top: 5px;
       word-break: break-all;
     }
 
-    .footer-note {
-      text-align: center;
-      color: #8a94a6;
-      font-size: 11px;
-      margin-top: 22px;
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(255,255,255,.94);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      z-index: 100;
     }
 
-    @media (max-width: 480px) {
-      .content {
-        padding: 20px 14px;
+    .loading.hidden {
+      display: none;
+    }
+
+    .loader-box {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+
+      margin: auto;
+
+      border: 3px solid #e2e8f0;
+
+      border-top-color: var(--blue);
+
+      border-radius: 50%;
+
+      animation: spin .8s linear infinite;
+    }
+
+    .loader-box p {
+      margin: 10px 0 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
       }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 760px) {
 
       .topbar {
+        height: 62px;
+
         padding: 0 14px;
       }
 
-      .review-actions {
-        flex-direction: column;
+      .main {
+        padding: 18px 13px 30px;
       }
 
-      .secondary-btn,
-      .confirm-btn {
-        width: 100%;
-        flex: none;
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-card {
+        display: none;
+      }
+
+      .main-card {
+        padding: 17px;
+
+        border-radius: 14px;
+      }
+
+      .heading h1 {
+        font-size: 23px;
+      }
+    }
+
+    @media (max-width: 460px) {
+
+      .brand-main {
+        font-size: 12px;
+      }
+
+      .brand-sub {
+        font-size: 7px;
+      }
+
+      .brand-mark {
+        width: 35px;
+        height: 35px;
+      }
+
+      .funding-options {
+        grid-template-columns: 1fr;
+      }
+
+      .funding-label {
+        min-height: 52px;
+
+        flex-direction: row;
+
+        justify-content: flex-start;
+
+        text-align: left;
+
+        padding: 10px 13px;
+      }
+
+      .review-actions {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -412,72 +1113,168 @@
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <header class="topbar">
+  <!-- HEADER -->
 
-      <button class="back-btn" id="backBtn" type="button">
+  <header class="topbar">
+
+    <div class="header-left">
+
+      <button
+        class="back-btn"
+        id="backBtn"
+        type="button"
+        aria-label="Go back"
+      >
         <i class="fa-solid fa-arrow-left"></i>
       </button>
 
-      <div class="brand">
+      <a
+        href="dashboard.html"
+        class="brand"
+      >
 
-        <div class="brand-logo">
+        <div class="brand-mark">
           FM
         </div>
 
         <div class="brand-text">
-          <h1>First Merit Bank</h1>
-          <span>Online Banking</span>
+
+          <span class="brand-main">
+            FIRST MERIT
+          </span>
+
+          <span class="brand-sub">
+            BANK
+          </span>
+
         </div>
 
-      </div>
+      </a>
 
-    </header>
+    </div>
+
+    <button
+      class="home-btn"
+      type="button"
+      onclick="window.location.href='dashboard.html'"
+      aria-label="Dashboard"
+    >
+      <i class="fa-solid fa-house"></i>
+    </button>
+
+  </header>
 
 
-    <main class="content">
+  <!-- MAIN -->
 
-      <!-- ADD MONEY FORM -->
+  <main class="main">
 
-      <section id="formSection">
+    <div class="breadcrumb">
 
-        <div class="page-title">
-          <h2>Add Money</h2>
-          <p>Add funds to your First Merit Bank account.</p>
-        </div>
+      <a href="dashboard.html">
+        Dashboard
+      </a>
+
+      <i
+        class="fa-solid fa-chevron-right"
+        style="font-size:8px;"
+      ></i>
+
+      <span>
+        Add Money
+      </span>
+
+    </div>
 
 
-        <div class="balance-card">
+    <div class="heading">
 
-          <div class="balance-label">
-            Current Balance
-          </div>
+      <h1>
+        Add Money
+      </h1>
 
-          <div class="balance-row">
+      <p>
+        Add funds to your First Merit checking account.
+      </p>
 
-            <div
-              class="balance-amount"
-              id="currentBalance"
-            >
-              $0.00
+    </div>
+
+
+    <div class="content-grid">
+
+      <!-- MAIN CARD -->
+
+      <section class="card main-card">
+
+        <!-- FORM VIEW -->
+
+        <div id="formView">
+
+          <div class="section-title">
+
+            <div class="section-icon">
+              <i class="fa-solid fa-wallet"></i>
             </div>
 
-            <i class="fa-solid fa-wallet"></i>
+            <div>
+
+              <h2>
+                Add funds
+              </h2>
+
+              <p>
+                Choose how much you'd like to add.
+              </p>
+
+            </div>
 
           </div>
+
+
+          <!-- BALANCE -->
+
+          <div class="balance-card">
+
+            <div class="balance-label">
+              Current balance
+            </div>
+
+            <div class="balance-row">
+
+              <div
+                class="balance-amount"
+                id="currentBalance"
+              >
+                $0.00
+              </div>
+
+              <div class="balance-icon">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+
+            </div>
+
+            <div
+              class="balance-account"
+              id="balanceAccount"
+            >
+              Checking Account •••• 4821
+            </div>
+
+          </div>
+
+
+          <!-- ERROR -->
 
           <div
-            class="balance-account"
-            id="balanceAccount"
-          >
-            Checking Account
-          </div>
-
-        </div>
+            id="formMessage"
+            class="message error"
+          ></div>
 
 
-        <div class="form-card">
+          <!-- AMOUNT -->
 
           <div class="field">
 
@@ -485,14 +1282,16 @@
               Amount
             </label>
 
-            <div class="amount-wrap">
+            <div class="input-wrap amount-wrap">
 
-              <span class="currency">$</span>
+              <span class="currency">
+                $
+              </span>
 
               <input
-                class="amount-input"
-                type="number"
                 id="amount"
+                type="number"
+                inputmode="decimal"
                 min="0.01"
                 step="0.01"
                 placeholder="0.00"
@@ -500,38 +1299,101 @@
 
             </div>
 
+            <div class="amount-help">
+              Enter the amount you want to add to your account.
+            </div>
+
           </div>
 
+
+          <!-- FUNDING SOURCE -->
 
           <div class="field">
 
-            <label for="source">
-              Funding Source
+            <label>
+              Funding source
             </label>
 
-            <select id="source">
+            <div class="funding-options">
 
-              <option value="Bank Account">
-                Bank Account
-              </option>
+              <div class="funding-option">
 
-              <option value="Debit Card">
-                Debit Card
-              </option>
+                <input
+                  type="radio"
+                  name="fundingSource"
+                  id="bankAccount"
+                  value="Bank Account"
+                  checked
+                >
 
-              <option value="External Account">
-                External Account
-              </option>
+                <label
+                  class="funding-label"
+                  for="bankAccount"
+                >
 
-            </select>
+                  <i class="fa-solid fa-building-columns"></i>
+
+                  <span>
+                    Bank Account
+                  </span>
+
+                </label>
+
+              </div>
+
+
+              <div class="funding-option">
+
+                <input
+                  type="radio"
+                  name="fundingSource"
+                  id="debitCard"
+                  value="Debit Card"
+                >
+
+                <label
+                  class="funding-label"
+                  for="debitCard"
+                >
+
+                  <i class="fa-solid fa-credit-card"></i>
+
+                  <span>
+                    Debit Card
+                  </span>
+
+                </label>
+
+              </div>
+
+
+              <div class="funding-option">
+
+                <input
+                  type="radio"
+                  name="fundingSource"
+                  id="externalAccount"
+                  value="External Account"
+                >
+
+                <label
+                  class="funding-label"
+                  for="externalAccount"
+                >
+
+                  <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                  <span>
+                    External Account
+                  </span>
+
+                </label>
+
+              </div>
+
+            </div>
 
           </div>
-
-
-          <div
-            id="formMessage"
-            class="message"
-          ></div>
 
 
           <button
@@ -539,36 +1401,38 @@
             id="reviewBtn"
             type="button"
           >
-            Review Deposit
+            Review deposit
           </button>
 
         </div>
 
-      </section>
 
+        <!-- REVIEW VIEW -->
 
-      <!-- REVIEW -->
-
-      <section
-        class="review-section"
-        id="reviewSection"
-      >
-
-        <div class="page-title">
-          <h2>Review Deposit</h2>
-          <p>Review the deposit details before confirming.</p>
-        </div>
-
-
-        <div class="review-card">
+        <div id="reviewView">
 
           <div class="review-header">
 
-            <h3>Deposit Details</h3>
+            <button
+              class="review-back"
+              id="reviewBackBtn"
+              type="button"
+              aria-label="Back"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
 
-            <p>
-              Confirm the information below.
-            </p>
+            <div>
+
+              <h2>
+                Review deposit
+              </h2>
+
+              <p>
+                Confirm your deposit details.
+              </p>
+
+            </div>
 
           </div>
 
@@ -576,7 +1440,7 @@
           <div class="review-amount">
 
             <span>
-              Deposit Amount
+              Amount to add
             </span>
 
             <strong id="reviewAmount">
@@ -586,9 +1450,9 @@
           </div>
 
 
-          <div class="review-details">
+          <div class="review-list">
 
-            <div class="detail-row">
+            <div class="review-row">
 
               <span>
                 Destination
@@ -601,10 +1465,10 @@
             </div>
 
 
-            <div class="detail-row">
+            <div class="review-row">
 
               <span>
-                Funding Source
+                Funding source
               </span>
 
               <span id="reviewSource">
@@ -614,10 +1478,23 @@
             </div>
 
 
-            <div class="detail-row">
+            <div class="review-row">
 
               <span>
-                New Balance
+                Current balance
+              </span>
+
+              <span id="reviewCurrentBalance">
+                $0.00
+              </span>
+
+            </div>
+
+
+            <div class="review-row">
+
+              <span>
+                New balance
               </span>
 
               <span id="reviewNewBalance">
@@ -631,7 +1508,7 @@
 
           <div
             id="reviewMessage"
-            class="message"
+            class="message error"
           ></div>
 
 
@@ -642,15 +1519,123 @@
               id="editBtn"
               type="button"
             >
-              Edit Deposit
+              Edit
             </button>
 
             <button
-              class="confirm-btn"
+              class="primary-btn"
               id="confirmBtn"
               type="button"
             >
-              Confirm Deposit
+              Confirm deposit
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- SUCCESS VIEW -->
+
+        <div id="successView">
+
+          <div class="success">
+
+            <div class="success-icon">
+
+              <i class="fa-solid fa-check"></i>
+
+            </div>
+
+
+            <h2>
+              Deposit complete
+            </h2>
+
+
+            <p>
+              Your account balance has been updated.
+            </p>
+
+
+            <div class="receipt">
+
+              <div class="receipt-row">
+
+                <span>
+                  Amount
+                </span>
+
+                <span id="successAmount">
+                  $0.00
+                </span>
+
+              </div>
+
+
+              <div class="receipt-row">
+
+                <span>
+                  Funding source
+                </span>
+
+                <span id="successSource">
+                  Bank Account
+                </span>
+
+              </div>
+
+
+              <div class="receipt-row">
+
+                <span>
+                  New balance
+                </span>
+
+                <span id="successBalance">
+                  $0.00
+                </span>
+
+              </div>
+
+
+              <div class="receipt-row">
+
+                <span>
+                  Status
+                </span>
+
+                <span style="color:#18864b;">
+                  Completed
+                </span>
+
+              </div>
+
+
+              <div class="receipt-row">
+
+                <span>
+                  Transaction ID
+                </span>
+
+                <span
+                  class="transaction-id"
+                  id="transactionId"
+                >
+                  —
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <button
+              class="primary-btn"
+              type="button"
+              onclick="window.location.href='dashboard.html'"
+            >
+              Return to dashboard
             </button>
 
           </div>
@@ -660,194 +1645,601 @@
       </section>
 
 
-      <!-- SUCCESS -->
+      <!-- INFORMATION CARD -->
 
-      <section
-        class="success-section"
-        id="successSection"
-      >
+      <aside class="card side-card">
 
-        <div class="success-card">
+        <h3>
+          About adding money
+        </h3>
 
-          <div class="success-icon">
-            <i class="fa-solid fa-check"></i>
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-shield-halved"></i>
           </div>
 
-          <h2>
-            Deposit Successful
-          </h2>
+          <div class="info-text">
 
-          <p>
-            The funds have been added to your account successfully.
-          </p>
-
-
-          <div class="transaction-id">
-
-            Transaction ID
-
-            <strong id="transactionId">
-              —
+            <strong>
+              Secure account access
             </strong>
 
+            <span>
+              Your account is protected by your authenticated First Merit session.
+            </span>
+
           </div>
-
-
-          <button
-            class="primary-btn"
-            id="dashboardBtn"
-            type="button"
-          >
-            Return to Dashboard
-          </button>
 
         </div>
 
-      </section>
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Fast account updates
+            </strong>
+
+            <span>
+              Your updated balance is reflected in your account after the transaction completes.
+            </span>
+
+          </div>
+
+        </div>
 
 
-      <div class="footer-note">
-        First Merit Bank
-      </div>
+        <div class="info-row">
 
-    </main>
+          <div class="info-icon">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Transaction history
+            </strong>
+
+            <span>
+              Completed deposits are recorded in your account activity.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Review before confirming
+            </strong>
+
+            <span>
+              Check the amount and funding source before completing the transaction.
+            </span>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- LOADING -->
+
+<div
+  class="loading"
+  id="loading"
+>
+
+  <div class="loader-box">
+
+    <div class="spinner"></div>
+
+    <p>
+      Loading your account...
+    </p>
 
   </div>
 
-
-  <script type="module">
-
-    import {
-      auth,
-      db
-    } from "./firebase.js";
-
-    import {
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-    import {
-      doc,
-      getDoc,
-      collection,
-      runTransaction,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+</div>
 
 
-    const backBtn =
-      document.getElementById("backBtn");
+<script type="module">
 
-    const reviewBtn =
-      document.getElementById("reviewBtn");
-
-    const editBtn =
-      document.getElementById("editBtn");
-
-    const confirmBtn =
-      document.getElementById("confirmBtn");
-
-    const dashboardBtn =
-      document.getElementById("dashboardBtn");
+  import {
+    auth,
+    db
+  } from "./firebase.js";
 
 
-    const formSection =
-      document.getElementById("formSection");
-
-    const reviewSection =
-      document.getElementById("reviewSection");
-
-    const successSection =
-      document.getElementById("successSection");
+  import {
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-    const amount =
-      document.getElementById("amount");
-
-    const source =
-      document.getElementById("source");
-
-
-    const currentBalance =
-      document.getElementById("currentBalance");
-
-    const balanceAccount =
-      document.getElementById("balanceAccount");
+  import {
+    doc,
+    getDoc,
+    collection,
+    runTransaction,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    const formMessage =
-      document.getElementById("formMessage");
+  /* =========================
+     ELEMENTS
+  ========================= */
 
-    const reviewMessage =
-      document.getElementById("reviewMessage");
-
-
-    const reviewAmount =
-      document.getElementById("reviewAmount");
-
-    const reviewSource =
-      document.getElementById("reviewSource");
-
-    const reviewNewBalance =
-      document.getElementById("reviewNewBalance");
-
-    const transactionId =
-      document.getElementById("transactionId");
+  const loading =
+    document.getElementById("loading");
 
 
-    let currentUser = null;
+  const formView =
+    document.getElementById("formView");
 
-    let userBalance = 0;
+  const reviewView =
+    document.getElementById("reviewView");
 
-    let pendingAmount = 0;
+  const successView =
+    document.getElementById("successView");
 
-    let pendingSource = "";
+
+  const amount =
+    document.getElementById("amount");
 
 
-    function formatCurrency(value) {
+  const currentBalance =
+    document.getElementById("currentBalance");
 
-      return new Intl.NumberFormat(
-        "en-US",
-        {
-          style: "currency",
-          currency: "USD"
-        }
-      ).format(value);
+  const balanceAccount =
+    document.getElementById("balanceAccount");
+
+
+  const formMessage =
+    document.getElementById("formMessage");
+
+  const reviewMessage =
+    document.getElementById("reviewMessage");
+
+
+  const reviewAmount =
+    document.getElementById("reviewAmount");
+
+  const reviewSource =
+    document.getElementById("reviewSource");
+
+  const reviewCurrentBalance =
+    document.getElementById("reviewCurrentBalance");
+
+  const reviewNewBalance =
+    document.getElementById("reviewNewBalance");
+
+
+  const successAmount =
+    document.getElementById("successAmount");
+
+  const successSource =
+    document.getElementById("successSource");
+
+  const successBalance =
+    document.getElementById("successBalance");
+
+  const transactionId =
+    document.getElementById("transactionId");
+
+
+  const reviewBtn =
+    document.getElementById("reviewBtn");
+
+  const confirmBtn =
+    document.getElementById("confirmBtn");
+
+  const editBtn =
+    document.getElementById("editBtn");
+
+  const backBtn =
+    document.getElementById("backBtn");
+
+  const reviewBackBtn =
+    document.getElementById("reviewBackBtn");
+
+
+  let currentUser = null;
+
+  let userBalance = 0;
+
+  let pendingAmount = 0;
+
+  let pendingSource = "";
+
+
+  /* =========================
+     FORMAT MONEY
+  ========================= */
+
+  function formatMoney(value) {
+
+    return new Intl.NumberFormat(
+      "en-US",
+      {
+        style: "currency",
+        currency: "USD"
+      }
+    ).format(
+      Number(value) || 0
+    );
+
+  }
+
+
+  /* =========================
+     MESSAGE
+  ========================= */
+
+  function showMessage(
+    element,
+    message
+  ) {
+
+    element.textContent =
+      message;
+
+    element.classList.add("show");
+
+  }
+
+
+  function clearMessage(
+    element
+  ) {
+
+    element.textContent = "";
+
+    element.classList.remove("show");
+
+  }
+
+
+  /* =========================
+     GET FUNDING SOURCE
+  ========================= */
+
+  function getFundingSource() {
+
+    const selected =
+      document.querySelector(
+        'input[name="fundingSource"]:checked'
+      );
+
+    return selected
+      ? selected.value
+      : "Bank Account";
+
+  }
+
+
+  /* =========================
+     LOAD USER ACCOUNT
+  ========================= */
+
+  async function loadAccount() {
+
+    try {
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          currentUser.uid
+        );
+
+
+      const snapshot =
+        await getDoc(userRef);
+
+
+      if (!snapshot.exists()) {
+
+        showMessage(
+          formMessage,
+          "We couldn't find your account information."
+        );
+
+        return;
+
+      }
+
+
+      const data =
+        snapshot.data();
+
+
+      userBalance =
+        Number(
+          data.balance || 0
+        );
+
+
+      currentBalance.textContent =
+        formatMoney(
+          userBalance
+        );
+
+
+      const accountNumber =
+        data.accountNumber ||
+        "•••• 4821";
+
+
+      balanceAccount.textContent =
+        "Checking Account " +
+        accountNumber;
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        formMessage,
+        "We couldn't load your account information."
+      );
+
+    } finally {
+
+      loading.classList.add("hidden");
 
     }
 
+  }
 
-    function showMessage(
-      element,
-      message
-    ) {
 
-      element.textContent =
-        message;
+  /* =========================
+     AUTH
+  ========================= */
 
-      element.className =
-        "message error";
+  onAuthStateChanged(
+    auth,
+    async (user) => {
+
+      if (!user) {
+
+        window.location.href =
+          "login.html";
+
+        return;
+
+      }
+
+
+      currentUser = user;
+
+      await loadAccount();
 
     }
+  );
 
 
-    function clearMessage(
-      element
-    ) {
+  /* =========================
+     DASHBOARD
+  ========================= */
 
-      element.textContent = "";
+  backBtn.addEventListener(
+    "click",
+    () => {
 
-      element.className =
-        "message";
+      window.location.href =
+        "dashboard.html";
 
     }
+  );
 
 
-    async function loadAccount() {
+  /* =========================
+     REVIEW
+  ========================= */
+
+  reviewBtn.addEventListener(
+    "click",
+    () => {
+
+      clearMessage(
+        formMessage
+      );
+
+
+      const enteredAmount =
+        Number(
+          amount.value
+        );
+
+
+      if (
+        !enteredAmount ||
+        enteredAmount <= 0
+      ) {
+
+        showMessage(
+          formMessage,
+          "Please enter a valid amount."
+        );
+
+        amount.focus();
+
+        return;
+
+      }
+
+
+      if (
+        !Number.isFinite(
+          enteredAmount
+        )
+      ) {
+
+        showMessage(
+          formMessage,
+          "Please enter a valid amount."
+        );
+
+        return;
+
+      }
+
+
+      pendingAmount =
+        Number(
+          enteredAmount.toFixed(2)
+        );
+
+
+      pendingSource =
+        getFundingSource();
+
+
+      reviewAmount.textContent =
+        formatMoney(
+          pendingAmount
+        );
+
+
+      reviewSource.textContent =
+        pendingSource;
+
+
+      reviewCurrentBalance.textContent =
+        formatMoney(
+          userBalance
+        );
+
+
+      reviewNewBalance.textContent =
+        formatMoney(
+          userBalance +
+          pendingAmount
+        );
+
+
+      formView.style.display =
+        "none";
+
+      reviewView.style.display =
+        "block";
+
+      successView.style.display =
+        "none";
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+
+  /* =========================
+     EDIT
+  ========================= */
+
+  function editDeposit() {
+
+    clearMessage(
+      reviewMessage
+    );
+
+
+    reviewView.style.display =
+      "none";
+
+    formView.style.display =
+      "block";
+
+    successView.style.display =
+      "none";
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  editBtn.addEventListener(
+    "click",
+    editDeposit
+  );
+
+
+  reviewBackBtn.addEventListener(
+    "click",
+    editDeposit
+  );
+
+
+  /* =========================
+     CONFIRM
+  ========================= */
+
+  confirmBtn.addEventListener(
+    "click",
+    async () => {
+
+      clearMessage(
+        reviewMessage
+      );
+
 
       if (!currentUser) {
+
+        window.location.href =
+          "login.html";
+
         return;
+
       }
+
+
+      if (
+        !pendingAmount ||
+        pendingAmount <= 0
+      ) {
+
+        return;
+
+      }
+
+
+      confirmBtn.disabled =
+        true;
+
+      confirmBtn.innerHTML =
+        '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+
 
       try {
 
@@ -859,379 +2251,167 @@
           );
 
 
-        const userSnap =
-          await getDoc(userRef);
-
-
-        if (!userSnap.exists()) {
-
-          showMessage(
-            formMessage,
-            "Account information could not be found."
+        const transactionRef =
+          doc(
+            collection(
+              db,
+              "users",
+              currentUser.uid,
+              "transactions"
+            )
           );
 
-          return;
 
-        }
+        let updatedBalance = 0;
 
 
-        const userData =
-          userSnap.data();
+        await runTransaction(
+          db,
+          async (transaction) => {
+
+            const userSnapshot =
+              await transaction.get(
+                userRef
+              );
+
+
+            if (!userSnapshot.exists()) {
+
+              throw new Error(
+                "Account not found."
+              );
+
+            }
+
+
+            const userData =
+              userSnapshot.data();
+
+
+            const balance =
+              Number(
+                userData.balance || 0
+              );
+
+
+            updatedBalance =
+              Number(
+                (
+                  balance +
+                  pendingAmount
+                ).toFixed(2)
+              );
+
+
+            transaction.update(
+              userRef,
+              {
+                balance:
+                  updatedBalance
+              }
+            );
+
+
+            transaction.set(
+              transactionRef,
+              {
+
+                type:
+                  "deposit",
+
+                title:
+                  "Money Added",
+
+                amount:
+                  pendingAmount,
+
+                direction:
+                  "credit",
+
+                source:
+                  pendingSource,
+
+                status:
+                  "completed",
+
+                createdAt:
+                  serverTimestamp()
+
+              }
+            );
+
+          }
+        );
 
 
         userBalance =
-          Number(
-            userData.balance || 0
-          );
+          updatedBalance;
 
 
         currentBalance.textContent =
-          formatCurrency(
+          formatMoney(
             userBalance
           );
 
 
-        const accountNumber =
-          userData.accountNumber ||
-          "Checking Account";
+        successAmount.textContent =
+          formatMoney(
+            pendingAmount
+          );
 
 
-        balanceAccount.textContent =
-          "Checking • " +
-          accountNumber;
+        successSource.textContent =
+          pendingSource;
+
+
+        successBalance.textContent =
+          formatMoney(
+            userBalance
+          );
+
+
+        transactionId.textContent =
+          transactionRef.id;
+
+
+        reviewView.style.display =
+          "none";
+
+        formView.style.display =
+          "none";
+
+        successView.style.display =
+          "block";
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
 
       } catch (error) {
 
         console.error(error);
 
         showMessage(
-          formMessage,
-          "Unable to load account information."
+          reviewMessage,
+          "We couldn't complete the deposit. Please try again."
         );
+
+
+        confirmBtn.disabled =
+          false;
+
+        confirmBtn.innerHTML =
+          "Confirm deposit";
 
       }
 
     }
+  );
 
-
-    onAuthStateChanged(
-      auth,
-      async (user) => {
-
-        if (!user) {
-
-          window.location.href =
-            "login.html";
-
-          return;
-
-        }
-
-        currentUser = user;
-
-        await loadAccount();
-
-      }
-    );
-
-
-    backBtn.addEventListener(
-      "click",
-      () => {
-
-        window.location.href =
-          "dashboard.html";
-
-      }
-    );
-
-
-    reviewBtn.addEventListener(
-      "click",
-      () => {
-
-        clearMessage(formMessage);
-
-        const enteredAmount =
-          Number(amount.value);
-
-
-        if (
-          !enteredAmount ||
-          enteredAmount <= 0
-        ) {
-
-          showMessage(
-            formMessage,
-            "Please enter a valid amount."
-          );
-
-          amount.focus();
-
-          return;
-
-        }
-
-
-        if (enteredAmount > 1000000) {
-
-          showMessage(
-            formMessage,
-            "Please enter an amount below $1,000,000."
-          );
-
-          return;
-
-        }
-
-
-        pendingAmount =
-          enteredAmount;
-
-        pendingSource =
-          source.value;
-
-
-        reviewAmount.textContent =
-          formatCurrency(
-            pendingAmount
-          );
-
-
-        reviewSource.textContent =
-          pendingSource;
-
-
-        reviewNewBalance.textContent =
-          formatCurrency(
-            userBalance +
-            pendingAmount
-          );
-
-
-        formSection.style.display =
-          "none";
-
-        reviewSection.style.display =
-          "block";
-
-        successSection.style.display =
-          "none";
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-
-      }
-    );
-
-
-    editBtn.addEventListener(
-      "click",
-      () => {
-
-        clearMessage(
-          reviewMessage
-        );
-
-        reviewSection.style.display =
-          "none";
-
-        formSection.style.display =
-          "block";
-
-        successSection.style.display =
-          "none";
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-
-      }
-    );
-
-
-    confirmBtn.addEventListener(
-      "click",
-      async () => {
-
-        clearMessage(
-          reviewMessage
-        );
-
-
-        if (!currentUser) {
-
-          window.location.href =
-            "login.html";
-
-          return;
-
-        }
-
-
-        confirmBtn.disabled =
-          true;
-
-        confirmBtn.textContent =
-          "Processing...";
-
-
-        try {
-
-          const userRef =
-            doc(
-              db,
-              "users",
-              currentUser.uid
-            );
-
-
-          const transactionRef =
-            doc(
-              collection(
-                db,
-                "users",
-                currentUser.uid,
-                "transactions"
-              )
-            );
-
-
-          await runTransaction(
-            db,
-            async (transaction) => {
-
-              const userSnap =
-                await transaction.get(
-                  userRef
-                );
-
-
-              if (!userSnap.exists()) {
-
-                throw new Error(
-                  "Account not found."
-                );
-
-              }
-
-
-              const userData =
-                userSnap.data();
-
-
-              const balance =
-                Number(
-                  userData.balance || 0
-                );
-
-
-              const newBalance =
-                balance +
-                pendingAmount;
-
-
-              transaction.update(
-                userRef,
-                {
-                  balance: newBalance
-                }
-              );
-
-
-              transaction.set(
-                transactionRef,
-                {
-
-                  type:
-                    "deposit",
-
-                  title:
-                    "Money Added",
-
-                  amount:
-                    pendingAmount,
-
-                  direction:
-                    "credit",
-
-                  source:
-                    pendingSource,
-
-                  status:
-                    "completed",
-
-                  createdAt:
-                    serverTimestamp()
-
-                }
-              );
-
-            }
-          );
-
-
-          userBalance +=
-            pendingAmount;
-
-
-          transactionId.textContent =
-            transactionRef.id;
-
-
-          reviewSection.style.display =
-            "none";
-
-          formSection.style.display =
-            "none";
-
-          successSection.style.display =
-            "block";
-
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-
-        } catch (error) {
-
-          console.error(error);
-
-          showMessage(
-            reviewMessage,
-            error.message ||
-            "Unable to complete the deposit."
-          );
-
-
-          confirmBtn.disabled =
-            false;
-
-          confirmBtn.textContent =
-            "Confirm Deposit";
-
-        }
-
-      }
-    );
-
-
-    dashboardBtn.addEventListener(
-      "click",
-      () => {
-
-        window.location.href =
-          "dashboard.html";
-
-      }
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
