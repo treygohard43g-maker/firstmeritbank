@@ -1662,11 +1662,9 @@
     db
   } from "./firebase.js";
 
-
   import {
     onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
 
   import {
     doc,
@@ -1684,7 +1682,6 @@
   const loading =
     document.getElementById("loading");
 
-
   const formView =
     document.getElementById("formView");
 
@@ -1694,17 +1691,14 @@
   const successView =
     document.getElementById("successView");
 
-
   const amount =
     document.getElementById("amount");
-
 
   const formMessage =
     document.getElementById("formMessage");
 
   const reviewMessage =
     document.getElementById("reviewMessage");
-
 
   const reviewAmount =
     document.getElementById("reviewAmount");
@@ -1718,7 +1712,6 @@
   const reviewNewBalance =
     document.getElementById("reviewNewBalance");
 
-
   const successAmount =
     document.getElementById("successAmount");
 
@@ -1730,7 +1723,6 @@
 
   const transactionId =
     document.getElementById("transactionId");
-
 
   const reviewBtn =
     document.getElementById("reviewBtn");
@@ -1747,6 +1739,10 @@
   const reviewBackBtn =
     document.getElementById("reviewBackBtn");
 
+
+  /* =========================
+     STATE
+  ========================= */
 
   let currentUser = null;
 
@@ -1805,7 +1801,7 @@
 
 
   /* =========================
-     GET FUNDING SOURCE
+     FUNDING SOURCE
   ========================= */
 
   function getFundingSource() {
@@ -1823,12 +1819,23 @@
 
 
   /* =========================
-     LOAD USER ACCOUNT
+     LOAD ACCOUNT
   ========================= */
 
   async function loadAccount() {
 
+    clearMessage(formMessage);
+
     try {
+
+      if (!currentUser) {
+
+        throw new Error(
+          "No authenticated user."
+        );
+
+      }
+
 
       const userRef =
         doc(
@@ -1846,7 +1853,7 @@
 
         showMessage(
           formMessage,
-          "We couldn't find your account information."
+          "Your First Merit account record could not be found."
         );
 
         return;
@@ -1859,33 +1866,63 @@
 
 
       /*
-        Load the balance from the user's
-        Firestore account document.
+       * Read the balance from Firestore.
+       */
 
-        The previous code tried to update
-        currentBalance and balanceAccount,
-        but those elements do not exist
-        on this page. That caused the
-        account-loading error.
-      */
+      let balance =
+        Number(
+          data.balance ?? 0
+        );
+
+
+      if (!Number.isFinite(balance)) {
+
+        balance = 0;
+
+      }
+
 
       userBalance =
         Number(
-          data.balance || 0
+          balance.toFixed(2)
         );
+
+
+      console.log(
+        "ADD MONEY ACCOUNT:",
+        {
+          uid: currentUser.uid,
+          balance: userBalance,
+          accountData: data
+        }
+      );
 
 
     } catch (error) {
 
       console.error(
-        "Add Money account loading error:",
+        "ADD MONEY LOAD ERROR:",
         error
       );
 
-      showMessage(
-        formMessage,
-        "We couldn't load your account information."
-      );
+
+      if (
+        error.code === "permission-denied"
+      ) {
+
+        showMessage(
+          formMessage,
+          "Firestore permission denied. Please make sure the published rules allow your signed-in account to read its own account."
+        );
+
+      } else {
+
+        showMessage(
+          formMessage,
+          "We couldn't load your account information."
+        );
+
+      }
 
     } finally {
 
@@ -1917,6 +1954,13 @@
       currentUser =
         user;
 
+
+      console.log(
+        "ADD MONEY USER:",
+        currentUser.uid
+      );
+
+
       await loadAccount();
 
     }
@@ -1924,7 +1968,7 @@
 
 
   /* =========================
-     DASHBOARD
+     BACK
   ========================= */
 
   backBtn.addEventListener(
@@ -1958,7 +2002,9 @@
 
 
       if (
-        !enteredAmount ||
+        !Number.isFinite(
+          enteredAmount
+        ) ||
         enteredAmount <= 0
       ) {
 
@@ -1968,22 +2014,6 @@
         );
 
         amount.focus();
-
-        return;
-
-      }
-
-
-      if (
-        !Number.isFinite(
-          enteredAmount
-        )
-      ) {
-
-        showMessage(
-          formMessage,
-          "Please enter a valid amount."
-        );
 
         return;
 
@@ -2084,7 +2114,7 @@
 
 
   /* =========================
-     CONFIRM
+     CONFIRM DEPOSIT
   ========================= */
 
   confirmBtn.addEventListener(
@@ -2110,6 +2140,11 @@
         !pendingAmount ||
         pendingAmount <= 0
       ) {
+
+        showMessage(
+          reviewMessage,
+          "Please enter a valid deposit amount."
+        );
 
         return;
 
@@ -2151,6 +2186,10 @@
           db,
           async (transaction) => {
 
+            /*
+             * Get the latest account balance.
+             */
+
             const userSnapshot =
               await transaction.get(
                 userRef
@@ -2170,20 +2209,39 @@
               userSnapshot.data();
 
 
-            const balance =
+            let currentFirestoreBalance =
               Number(
-                userData.balance || 0
+                userData.balance ?? 0
               );
 
+
+            if (
+              !Number.isFinite(
+                currentFirestoreBalance
+              )
+            ) {
+
+              currentFirestoreBalance = 0;
+
+            }
+
+
+            /*
+             * Calculate new balance.
+             */
 
             updatedBalance =
               Number(
                 (
-                  balance +
+                  currentFirestoreBalance +
                   pendingAmount
                 ).toFixed(2)
               );
 
+
+            /*
+             * Update account balance.
+             */
 
             transaction.update(
               userRef,
@@ -2193,6 +2251,10 @@
               }
             );
 
+
+            /*
+             * Create transaction record.
+             */
 
             transaction.set(
               transactionRef,
@@ -2226,9 +2288,17 @@
         );
 
 
+        /*
+         * Update local balance.
+         */
+
         userBalance =
           updatedBalance;
 
+
+        /*
+         * Populate receipt.
+         */
 
         successAmount.textContent =
           formatMoney(
@@ -2250,6 +2320,10 @@
           transactionRef.id;
 
 
+        /*
+         * Show success screen.
+         */
+
         reviewView.style.display =
           "none";
 
@@ -2266,16 +2340,60 @@
         });
 
 
+        console.log(
+          "ADD MONEY SUCCESS:",
+          {
+            amount:
+              pendingAmount,
+
+            source:
+              pendingSource,
+
+            newBalance:
+              updatedBalance,
+
+            transactionId:
+              transactionRef.id
+          }
+        );
+
+
       } catch (error) {
 
         console.error(
-          "Deposit error:",
+          "ADD MONEY TRANSACTION ERROR:",
           error
         );
 
+
+        let message =
+          "We couldn't complete the deposit. Please try again.";
+
+
+        if (
+          error.code === "permission-denied"
+        ) {
+
+          message =
+            "Firestore permission denied. Please check your Firestore rules.";
+
+        }
+
+
+        if (
+          error.message ===
+          "Account not found."
+        ) {
+
+          message =
+            "Your First Merit account record could not be found.";
+
+        }
+
+
         showMessage(
           reviewMessage,
-          "We couldn't complete the deposit. Please try again."
+          message
         );
 
 
@@ -2293,4 +2411,3 @@
 </script>
 </body>
 </html>
-
