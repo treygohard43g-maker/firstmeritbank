@@ -434,7 +434,9 @@ button{
   line-height:1.5;
 }
 
-/* CAPTURE */
+/* =========================================
+   CAPTURE
+   ========================================= */
 
 .capture-box{
   border:1.5px dashed #bdc8d5;
@@ -483,9 +485,13 @@ button{
   font-size:10px;
 }
 
+/*
+  LIVE CAMERA BUTTON
+*/
+
 .capture-buttons{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr;
   gap:9px;
 }
 
@@ -522,6 +528,283 @@ input[type=file]{
   border-radius:9px;
   font-size:11px;
   line-height:1.5;
+}
+
+/* =========================================
+   CAMERA MODAL
+   ========================================= */
+
+.camera-modal{
+  position:fixed;
+  inset:0;
+  background:#02070d;
+  z-index:1000;
+  display:none;
+  flex-direction:column;
+  color:#fff;
+}
+
+.camera-modal.show{
+  display:flex;
+}
+
+.camera-top{
+  height:68px;
+  flex-shrink:0;
+  background:rgba(3,13,25,.94);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 17px;
+  position:relative;
+  z-index:10;
+}
+
+.camera-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.camera-title-icon{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  background:rgba(255,255,255,.1);
+  display:grid;
+  place-items:center;
+  color:#65d6e7;
+}
+
+.camera-title-text strong{
+  display:block;
+  font-size:14px;
+}
+
+.camera-title-text span{
+  display:block;
+  margin-top:2px;
+  color:#9daebe;
+  font-size:10px;
+}
+
+.camera-close{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  font-size:17px;
+}
+
+.camera-view{
+  position:relative;
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+  background:#080f17;
+}
+
+#liveCamera{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.camera-shade{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:rgba(0,0,0,.22);
+}
+
+/*
+  Check alignment frame
+*/
+
+.check-frame{
+  position:absolute;
+  width:88%;
+  max-width:620px;
+  aspect-ratio:1.586/1;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  pointer-events:none;
+}
+
+.check-frame-border{
+  position:absolute;
+  inset:0;
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:9px;
+  box-shadow:
+    0 0 0 9999px rgba(0,0,0,.42),
+    0 0 22px rgba(255,255,255,.12);
+}
+
+.check-corner{
+  position:absolute;
+  width:31px;
+  height:31px;
+  border-color:#5bd8e9;
+  border-style:solid;
+  filter:drop-shadow(0 0 4px rgba(91,216,233,.3));
+  transition:.2s ease;
+}
+
+.check-corner.tl{
+  top:-2px;
+  left:-2px;
+  border-width:4px 0 0 4px;
+  border-radius:8px 0 0 0;
+}
+
+.check-corner.tr{
+  top:-2px;
+  right:-2px;
+  border-width:4px 4px 0 0;
+  border-radius:0 8px 0 0;
+}
+
+.check-corner.bl{
+  bottom:-2px;
+  left:-2px;
+  border-width:0 0 4px 4px;
+  border-radius:0 0 0 8px;
+}
+
+.check-corner.br{
+  bottom:-2px;
+  right:-2px;
+  border-width:0 4px 4px 0;
+  border-radius:0 0 8px 0;
+}
+
+.check-frame.ready .check-frame-border{
+  border-color:#35df79;
+  box-shadow:
+    0 0 0 9999px rgba(0,0,0,.36),
+    0 0 28px rgba(53,223,121,.35);
+}
+
+.check-frame.ready .check-corner{
+  border-color:#35df79;
+  filter:drop-shadow(0 0 6px rgba(53,223,121,.9));
+}
+
+/* scanning line */
+
+.scan-line{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:50%;
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(84,215,231,.9),
+    transparent
+  );
+  opacity:.7;
+  animation:scan 2.4s ease-in-out infinite;
+}
+
+@keyframes scan{
+  0%,100%{
+    transform:translateY(-45px);
+    opacity:.25;
+  }
+
+  50%{
+    transform:translateY(45px);
+    opacity:.85;
+  }
+}
+
+.camera-instruction{
+  position:absolute;
+  top:25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:8;
+  background:rgba(3,13,25,.84);
+  border:1px solid rgba(255,255,255,.12);
+  padding:9px 14px;
+  border-radius:22px;
+  white-space:nowrap;
+  font-size:11px;
+  font-weight:700;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.camera-instruction i{
+  color:#5bd8e9;
+  margin-right:6px;
+}
+
+.camera-bottom{
+  min-height:126px;
+  flex-shrink:0;
+  background:rgba(3,13,25,.96);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:15px;
+  position:relative;
+  z-index:10;
+}
+
+.camera-cancel{
+  width:48px;
+  height:48px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:16px;
+}
+
+.capture-live-btn{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  border:5px solid rgba(255,255,255,.9);
+  background:#fff;
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.12);
+  position:relative;
+}
+
+.capture-live-btn::after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border-radius:50%;
+  background:#1769d1;
+}
+
+.capture-live-btn:active{
+  transform:scale(.94);
+}
+
+.camera-help{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  text-align:center;
+  color:#aebdcd;
+  font-size:10px;
+  pointer-events:none;
 }
 
 /* REVIEW */
@@ -735,10 +1018,6 @@ input[type=file]{
     padding:17px 15px;
   }
 
-  .capture-buttons{
-    grid-template-columns:1fr;
-  }
-
   .photos{
     grid-template-columns:1fr 1fr;
   }
@@ -761,6 +1040,20 @@ input[type=file]{
   .green{
     margin-left:0;
   }
+
+  .camera-instruction{
+    top:18px;
+    font-size:10px;
+  }
+
+  .check-frame{
+    width:91%;
+  }
+
+  .camera-bottom{
+    min-height:115px;
+  }
+
 }
 </style>
 </head>
@@ -1091,34 +1384,16 @@ input[type=file]{
 
           <button class="capture-btn primary" id="frontCameraBtn">
             <i class="fa-solid fa-camera"></i>
-            Take Photo
-          </button>
-
-          <button class="capture-btn" id="frontUploadBtn">
-            <i class="fa-solid fa-upload"></i>
-            Choose Photo
+            Open Camera
           </button>
 
         </div>
-
-        <input
-          type="file"
-          id="frontCamera"
-          accept="image/*"
-          capture="environment"
-        >
-
-        <input
-          type="file"
-          id="frontUpload"
-          accept="image/*"
-        >
 
       </div>
 
       <div class="tip">
         <i class="fa-solid fa-lightbulb"></i>
-        Use good lighting and keep the check flat.
+        Place the check on a flat surface, hold your phone above it, and align all four corners inside the guide.
       </div>
 
       <div class="actions">
@@ -1177,28 +1452,10 @@ input[type=file]{
 
           <button class="capture-btn primary" id="backCameraBtn">
             <i class="fa-solid fa-camera"></i>
-            Take Photo
-          </button>
-
-          <button class="capture-btn" id="backUploadBtn">
-            <i class="fa-solid fa-upload"></i>
-            Choose Photo
+            Open Camera
           </button>
 
         </div>
-
-        <input
-          type="file"
-          id="backCamera"
-          accept="image/*"
-          capture="environment"
-        >
-
-        <input
-          type="file"
-          id="backUpload"
-          accept="image/*"
-        >
 
       </div>
 
@@ -1356,6 +1613,95 @@ input[type=file]{
 
 </main>
 
+
+<!-- =========================================
+     LIVE CHECK CAMERA
+     ========================================= -->
+
+<div class="camera-modal" id="cameraModal">
+
+  <div class="camera-top">
+
+    <div class="camera-title">
+
+      <div class="camera-title-icon">
+        <i class="fa-solid fa-camera"></i>
+      </div>
+
+      <div class="camera-title-text">
+        <strong id="cameraSideTitle">Front of check</strong>
+        <span>Position the check inside the frame</span>
+      </div>
+
+    </div>
+
+    <button class="camera-close" id="cameraClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+  </div>
+
+
+  <div class="camera-view">
+
+    <video
+      id="liveCamera"
+      autoplay
+      playsinline
+      muted
+    ></video>
+
+    <div class="camera-shade"></div>
+
+
+    <div class="camera-instruction">
+      <i class="fa-solid fa-expand"></i>
+      Align all four corners inside the frame
+    </div>
+
+
+    <div class="check-frame" id="checkFrame">
+
+      <div class="check-frame-border"></div>
+
+      <div class="check-corner tl"></div>
+      <div class="check-corner tr"></div>
+      <div class="check-corner bl"></div>
+      <div class="check-corner br"></div>
+
+      <div class="scan-line"></div>
+
+    </div>
+
+
+    <div class="camera-help">
+      Keep the check flat and make sure there is enough light.
+    </div>
+
+  </div>
+
+
+  <div class="camera-bottom">
+
+    <button class="camera-cancel" id="cameraCancel">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <button
+      class="capture-live-btn"
+      id="captureLiveBtn"
+      aria-label="Capture check"
+    ></button>
+
+  </div>
+
+</div>
+
+
+<!-- Hidden canvas used to capture the camera frame -->
+<canvas id="captureCanvas" style="display:none;"></canvas>
+
+
 <script type="module">
 
 import { auth, db } from "./firebase.js";
@@ -1381,6 +1727,15 @@ let account = "checking";
 
 let frontImage = "";
 let backImage = "";
+
+
+/* =========================================
+   CAMERA STATE
+   ========================================= */
+
+let cameraStream = null;
+
+let cameraSide = null;
 
 
 /* AUTH */
@@ -1494,96 +1849,287 @@ document.getElementById("continueDetails").onclick=()=>{
 };
 
 
-/* IMAGE READER */
+/* =========================================
+   LIVE CAMERA
+   ========================================= */
 
-function loadImage(file,type){
+const cameraModal=
+  document.getElementById("cameraModal");
 
-  if(!file) return;
+const liveCamera=
+  document.getElementById("liveCamera");
 
-  if(!file.type.startsWith("image/")){
+const captureCanvas=
+  document.getElementById("captureCanvas");
 
-    alert("Please select an image file.");
-    return;
+const checkFrame=
+  document.getElementById("checkFrame");
+
+const cameraSideTitle=
+  document.getElementById("cameraSideTitle");
+
+
+/*
+  Open the actual device camera.
+*/
+
+async function openCamera(side){
+
+  cameraSide=side;
+
+  cameraSideTitle.textContent=
+    side==="front"
+      ? "Front of check"
+      : "Back of check";
+
+  cameraModal.classList.add("show");
+
+  checkFrame.classList.remove("ready");
+
+  try{
+
+    if(cameraStream){
+
+      stopCamera();
+
+    }
+
+    cameraStream=
+      await navigator.mediaDevices.getUserMedia({
+
+        video:{
+          facingMode:{
+            ideal:"environment"
+          },
+          width:{
+            ideal:1920
+          },
+          height:{
+            ideal:1080
+          }
+        },
+
+        audio:false
+
+      });
+
+    liveCamera.srcObject=cameraStream;
+
+    await liveCamera.play();
+
+  }catch(error){
+
+    console.error("Camera error:",error);
+
+    cameraModal.classList.remove("show");
+
+    if(error.name==="NotAllowedError"){
+
+      alert(
+        "Camera access was denied. Please allow camera access for First Merit Bank in your browser settings and try again."
+      );
+
+    }else if(error.name==="NotFoundError"){
+
+      alert(
+        "No camera was found on this device."
+      );
+
+    }else{
+
+      alert(
+        "The camera could not be opened. Please make sure this page is using HTTPS and try again."
+      );
+
+    }
 
   }
-
-  const reader=new FileReader();
-
-  reader.onload=(event)=>{
-
-    if(type==="front"){
-
-      frontImage=event.target.result;
-
-      const image=document.getElementById("frontPreview");
-
-      image.src=frontImage;
-      image.style.display="block";
-
-      document.getElementById(
-        "frontPlaceholder"
-      ).style.display="none";
-
-      document.getElementById(
-        "frontContinue"
-      ).disabled=false;
-
-    }
-
-    if(type==="back"){
-
-      backImage=event.target.result;
-
-      const image=document.getElementById("backPreview");
-
-      image.src=backImage;
-      image.style.display="block";
-
-      document.getElementById(
-        "backPlaceholder"
-      ).style.display="none";
-
-      document.getElementById(
-        "backContinue"
-      ).disabled=false;
-
-    }
-
-  };
-
-  reader.readAsDataURL(file);
 
 }
 
 
-/* FRONT CAMERA */
+/*
+  Stop the live camera.
+*/
+
+function stopCamera(){
+
+  if(cameraStream){
+
+    cameraStream.getTracks().forEach(track=>{
+      track.stop();
+    });
+
+    cameraStream=null;
+
+  }
+
+  liveCamera.srcObject=null;
+
+}
+
+
+/*
+  Close camera.
+*/
+
+function closeCamera(){
+
+  stopCamera();
+
+  cameraModal.classList.remove("show");
+
+  cameraSide=null;
+
+}
+
+
+/*
+  Capture the current live camera frame.
+*/
+
+function captureCheck(){
+
+  if(!liveCamera.videoWidth){
+
+    alert("The camera is not ready yet. Please wait a moment.");
+
+    return;
+
+  }
+
+  const videoWidth=liveCamera.videoWidth;
+  const videoHeight=liveCamera.videoHeight;
+
+  /*
+    Capture the full camera frame.
+
+    The check guide remains visible to the user while
+    taking the photograph.
+  */
+
+  captureCanvas.width=videoWidth;
+  captureCanvas.height=videoHeight;
+
+  const context=
+    captureCanvas.getContext("2d");
+
+  context.drawImage(
+    liveCamera,
+    0,
+    0,
+    videoWidth,
+    videoHeight
+  );
+
+  const imageData=
+    captureCanvas.toDataURL(
+      "image/jpeg",
+      0.92
+    );
+
+
+  if(cameraSide==="front"){
+
+    frontImage=imageData;
+
+    const image=
+      document.getElementById("frontPreview");
+
+    image.src=frontImage;
+    image.style.display="block";
+
+    document.getElementById(
+      "frontPlaceholder"
+    ).style.display="none";
+
+    document.getElementById(
+      "frontContinue"
+    ).disabled=false;
+
+  }
+
+
+  if(cameraSide==="back"){
+
+    backImage=imageData;
+
+    const image=
+      document.getElementById("backPreview");
+
+    image.src=backImage;
+    image.style.display="block";
+
+    document.getElementById(
+      "backPlaceholder"
+    ).style.display="none";
+
+    document.getElementById(
+      "backContinue"
+    ).disabled=false;
+
+  }
+
+  closeCamera();
+
+}
+
+
+/* CAMERA BUTTONS */
 
 document.getElementById("frontCameraBtn").onclick=()=>{
 
-  document.getElementById("frontCamera").click();
-
-};
-
-document.getElementById("frontCamera").onchange=(e)=>{
-
-  loadImage(e.target.files[0],"front");
+  openCamera("front");
 
 };
 
 
-/* FRONT UPLOAD */
+document.getElementById("backCameraBtn").onclick=()=>{
 
-document.getElementById("frontUploadBtn").onclick=()=>{
-
-  document.getElementById("frontUpload").click();
+  openCamera("back");
 
 };
 
-document.getElementById("frontUpload").onchange=(e)=>{
 
-  loadImage(e.target.files[0],"front");
+/* CAMERA CAPTURE */
+
+document.getElementById("captureLiveBtn").onclick=()=>{
+
+  captureCheck();
 
 };
+
+
+/* CAMERA CLOSE */
+
+document.getElementById("cameraClose").onclick=()=>{
+
+  closeCamera();
+
+};
+
+
+document.getElementById("cameraCancel").onclick=()=>{
+
+  closeCamera();
+
+};
+
+
+/*
+  Make the frame subtly indicate that the camera
+  is ready once the video begins playing.
+*/
+
+liveCamera.addEventListener("playing",()=>{
+
+  setTimeout(()=>{
+
+    checkFrame.classList.add("ready");
+
+  },500);
+
+});
 
 
 /* FRONT NAVIGATION */
@@ -1604,36 +2150,6 @@ document.getElementById("frontContinue").onclick=()=>{
   }
 
   showStep(3);
-
-};
-
-
-/* BACK CAMERA */
-
-document.getElementById("backCameraBtn").onclick=()=>{
-
-  document.getElementById("backCamera").click();
-
-};
-
-document.getElementById("backCamera").onchange=(e)=>{
-
-  loadImage(e.target.files[0],"back");
-
-};
-
-
-/* BACK UPLOAD */
-
-document.getElementById("backUploadBtn").onclick=()=>{
-
-  document.getElementById("backUpload").click();
-
-};
-
-document.getElementById("backUpload").onchange=(e)=>{
-
-  loadImage(e.target.files[0],"back");
 
 };
 
@@ -1789,6 +2305,18 @@ document.getElementById("logoutBtn").onclick=async()=>{
   window.location.href="login.html";
 
 };
+
+
+/*
+  Safety cleanup if the page is left while
+  the camera is still active.
+*/
+
+window.addEventListener("pagehide",()=>{
+
+  stopCamera();
+
+});
 
 </script>
 
