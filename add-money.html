@@ -1655,8 +1655,6 @@
   </div>
 
 </div>
-
-
 <script type="module">
 
   import {
@@ -1699,13 +1697,6 @@
 
   const amount =
     document.getElementById("amount");
-
-
-  const currentBalance =
-    document.getElementById("currentBalance");
-
-  const balanceAccount =
-    document.getElementById("balanceAccount");
 
 
   const formMessage =
@@ -1867,30 +1858,29 @@
         snapshot.data();
 
 
+      /*
+        Load the balance from the user's
+        Firestore account document.
+
+        The previous code tried to update
+        currentBalance and balanceAccount,
+        but those elements do not exist
+        on this page. That caused the
+        account-loading error.
+      */
+
       userBalance =
         Number(
           data.balance || 0
         );
 
 
-      currentBalance.textContent =
-        formatMoney(
-          userBalance
-        );
-
-
-      const accountNumber =
-        data.accountNumber ||
-        "•••• 4821";
-
-
-      balanceAccount.textContent =
-        "Checking Account " +
-        accountNumber;
-
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "Add Money account loading error:",
+        error
+      );
 
       showMessage(
         formMessage,
@@ -1924,7 +1914,8 @@
       }
 
 
-      currentUser = user;
+      currentUser =
+        user;
 
       await loadAccount();
 
@@ -2239,12 +2230,6 @@
           updatedBalance;
 
 
-        currentBalance.textContent =
-          formatMoney(
-            userBalance
-          );
-
-
         successAmount.textContent =
           formatMoney(
             pendingAmount
@@ -2283,7 +2268,10 @@
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          "Deposit error:",
+          error
+        );
 
         showMessage(
           reviewMessage,
@@ -2303,6 +2291,6 @@
   );
 
 </script>
-
 </body>
 </html>
+
