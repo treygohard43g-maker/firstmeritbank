@@ -219,10 +219,11 @@
       height: 37px;
       border-radius: 8px;
       background: linear-gradient(135deg, #e9d49a, #b89b55);
-      margin-top: 38px;
+      margin-top: 25px;
       position: relative;
       z-index: 2;
     }
+      
 
     .chip::before,
     .chip::after {
@@ -245,40 +246,43 @@
     .card-number {
       position: relative;
       z-index: 2;
-      margin-top: 25px;
-      font-size: 23px;
-      letter-spacing: 3px;
-      font-weight: 600;
-    }
-
-    .card-bottom {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 29px;
-      gap: 20px;
-    }
-
-    .card-label {
-      font-size: 9px;
-      opacity: .65;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      margin-bottom: 5px;
-    }
-
-    .card-value {
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .card-network {
+      margin-top: 20px;
       font-size: 20px;
-      font-weight: 800;
-      font-style: italic;
-      letter-spacing: -1px;
+      letter-spacing: 2.5px;
+      font-weight: 600;
     }
+
+.card-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 21px;
+  gap: 18px;
+}
+
+.card-bottom > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-value {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.visa-logo {
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -2px;
+  color: #ffffff;
+}
 
     .card-actions {
       display: flex;
@@ -583,9 +587,11 @@
       }
 
       .bank-card {
-        min-height: 245px;
-        padding: 21px;
-        border-radius: 20px;
+       width: 100%;
+       aspect-ratio: 1.586 / 1;
+       min-height: 0;
+       padding: 20px;
+       border-radius: 18px;
       }
 
       .card-number {
@@ -607,10 +613,6 @@
     @media (max-width: 400px) {
       .brand-text span {
         display: none;
-      }
-
-      .bank-card {
-        min-height: 225px;
       }
 
       .chip {
@@ -702,10 +704,9 @@
               </div>
             </div>
 
-            <div>
-              <div class="card-label">Network</div>
-              <div class="card-network">VISA</div>
-            </div>
+            <div class="visa-brand" aria-label="Visa">
+              <span class="visa-word">VISA</span>
+           </div>
 
           </div>
 
@@ -1217,7 +1218,7 @@
           const data = snap.data();
 
           availableBalance.textContent =
-            formatMoney(data.balance ?? 400000);
+            formatMoney(data.checkingBalance ?? 0);
 
           cardHolder.textContent =
             data.fullName ||
