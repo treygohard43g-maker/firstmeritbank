@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
@@ -32,15 +33,18 @@
       --navy-dark: #061f40;
       --blue: #0b63ce;
       --blue-light: #eaf3ff;
-      --gold: #c8a44d;
+      --cyan: #159db7;
       --green: #18864b;
       --green-light: #eaf8f0;
+      --amber: #c99524;
+      --amber-light: #fff8e7;
       --text: #172033;
       --muted: #697386;
       --border: #e1e7ef;
       --background: #f5f7fa;
       --white: #ffffff;
       --danger: #c62828;
+      --danger-light: #fff1f1;
     }
 
     html,
@@ -60,13 +64,15 @@
 
       background: var(--background);
       color: var(--text);
+
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
     button,
     input,
-    textarea {
+    textarea,
+    select {
       font: inherit;
     }
 
@@ -85,7 +91,9 @@
 
     .topbar {
       height: 68px;
+
       background: var(--white);
+
       border-bottom: 1px solid var(--border);
 
       display: flex;
@@ -106,6 +114,7 @@
 
       text-decoration: none;
       color: var(--navy);
+
       min-width: 0;
     }
 
@@ -118,7 +127,8 @@
       border-radius: 9px;
 
       background: var(--navy);
-      border: 2px solid var(--gold);
+
+      border: 2px solid #c8a44d;
 
       color: white;
 
@@ -128,6 +138,7 @@
 
       font-size: 15px;
       font-weight: 800;
+
       letter-spacing: -1px;
     }
 
@@ -140,6 +151,7 @@
 
       font-size: 14px;
       font-weight: 800;
+
       letter-spacing: 1.1px;
     }
 
@@ -148,6 +160,7 @@
 
       font-size: 8px;
       font-weight: 700;
+
       letter-spacing: 3px;
 
       margin-top: 3px;
@@ -166,7 +179,9 @@
       height: 38px;
 
       border: 1px solid var(--border);
+
       background: white;
+
       border-radius: 10px;
 
       color: var(--navy);
@@ -200,6 +215,7 @@
       gap: 7px;
 
       font-size: 12px;
+
       color: var(--muted);
 
       margin-bottom: 13px;
@@ -207,7 +223,9 @@
 
     .breadcrumb a {
       color: var(--blue);
+
       text-decoration: none;
+
       font-weight: 600;
     }
 
@@ -219,7 +237,9 @@
       margin: 0;
 
       font-size: 27px;
+
       line-height: 1.15;
+
       letter-spacing: -.7px;
 
       color: var(--navy-dark);
@@ -229,12 +249,14 @@
       margin: 6px 0 0;
 
       color: var(--muted);
+
       font-size: 13px;
+
       line-height: 1.5;
     }
 
     /* =========================================
-       CONTENT
+       CONTENT GRID
     ========================================= */
 
     .content-grid {
@@ -253,6 +275,7 @@
       background: var(--white);
 
       border: 1px solid var(--border);
+
       border-radius: 16px;
 
       box-shadow:
@@ -263,12 +286,19 @@
 
     .form-card {
       padding: 22px;
+
       min-width: 0;
     }
 
+    /* =========================================
+       CARD TITLE
+    ========================================= */
+
     .card-title {
       display: flex;
+
       align-items: center;
+
       gap: 10px;
 
       margin-bottom: 20px;
@@ -283,6 +313,7 @@
       border-radius: 11px;
 
       background: var(--blue-light);
+
       color: var(--blue);
 
       display: flex;
@@ -296,6 +327,7 @@
       margin: 0;
 
       font-size: 17px;
+
       line-height: 1.2;
 
       color: var(--navy-dark);
@@ -305,54 +337,100 @@
       margin: 3px 0 0;
 
       font-size: 11px;
+
       line-height: 1.4;
 
       color: var(--muted);
     }
 
     /* =========================================
-       ACCOUNT BOX
+       SOURCE ACCOUNT
     ========================================= */
 
-    .account-box {
+    .source-card {
       border: 1px solid #dfe7f1;
 
       border-radius: 13px;
 
-      padding: 14px;
+      padding: 13px;
 
       background: #fbfcfe;
 
       margin-bottom: 20px;
-
-      width: 100%;
     }
 
     .account-label {
       color: var(--muted);
 
       font-size: 10px;
+
       font-weight: 700;
 
       text-transform: uppercase;
+
       letter-spacing: .7px;
 
       margin-bottom: 9px;
     }
 
-    .account-row {
+    .account-select {
+      width: 100%;
+
+      height: 44px;
+
+      padding: 0 42px 0 12px;
+
+      border: 1px solid #d9e0e9;
+
+      border-radius: 10px;
+
+      background: white;
+
+      color: var(--text);
+
+      outline: none;
+
+      cursor: pointer;
+
+      appearance: none;
+
+      background-image:
+        linear-gradient(45deg, transparent 50%, #657084 50%),
+        linear-gradient(135deg, #657084 50%, transparent 50%);
+
+      background-position:
+        calc(100% - 17px) 18px,
+        calc(100% - 12px) 18px;
+
+      background-size:
+        5px 5px,
+        5px 5px;
+
+      background-repeat: no-repeat;
+    }
+
+    .account-select:focus {
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(11, 99, 206, .08);
+    }
+
+    .account-preview {
       display: flex;
 
-      justify-content: space-between;
       align-items: center;
+
+      justify-content: space-between;
 
       gap: 12px;
 
-      width: 100%;
+      margin-top: 12px;
     }
 
     .account-info {
       display: flex;
+
       align-items: center;
 
       gap: 11px;
@@ -369,10 +447,13 @@
       border-radius: 10px;
 
       background: var(--navy);
+
       color: white;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
     }
 
@@ -382,12 +463,15 @@
 
     .account-name {
       font-weight: 700;
+
       font-size: 13px;
 
       color: var(--text);
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
     }
 
@@ -401,19 +485,22 @@
 
     .account-balance {
       font-size: 14px;
+
       font-weight: 800;
 
       color: var(--navy);
 
       white-space: nowrap;
+
       flex: 0 0 auto;
     }
 
     /* =========================================
-       ERROR
+       MESSAGES
     ========================================= */
 
-    .error {
+    .error,
+    .info {
       display: none;
 
       width: 100%;
@@ -424,16 +511,29 @@
 
       border-radius: 9px;
 
-      background: #fff1f1;
-      border: 1px solid #ffd1d1;
-
-      color: var(--danger);
-
       font-size: 11px;
+
       line-height: 1.45;
     }
 
-    .error.show {
+    .error {
+      background: var(--danger-light);
+
+      border: 1px solid #ffd1d1;
+
+      color: var(--danger);
+    }
+
+    .info {
+      background: var(--blue-light);
+
+      border: 1px solid #cfe2ff;
+
+      color: #174f93;
+    }
+
+    .error.show,
+    .info.show {
       display: block;
     }
 
@@ -443,6 +543,7 @@
 
     .field {
       margin-bottom: 17px;
+
       width: 100%;
     }
 
@@ -452,6 +553,7 @@
       margin-bottom: 7px;
 
       font-size: 12px;
+
       font-weight: 700;
 
       color: #273348;
@@ -459,6 +561,7 @@
 
     .input-wrap {
       position: relative;
+
       width: 100%;
     }
 
@@ -466,6 +569,7 @@
       position: absolute;
 
       left: 14px;
+
       top: 50%;
 
       transform: translateY(-50%);
@@ -486,6 +590,7 @@
       border-radius: 10px;
 
       background: white;
+
       color: var(--text);
 
       outline: none;
@@ -503,6 +608,14 @@
       font-size: 13px;
     }
 
+    input[readonly] {
+      background: #f8fafc;
+
+      color: #344054;
+
+      cursor: default;
+    }
+
     textarea {
       min-height: 80px;
 
@@ -511,6 +624,7 @@
       resize: vertical;
 
       font-size: 13px;
+
       line-height: 1.45;
     }
 
@@ -520,7 +634,8 @@
     }
 
     input:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       border-color: var(--blue);
 
       box-shadow:
@@ -531,6 +646,7 @@
       padding-left: 43px;
 
       font-size: 22px;
+
       font-weight: 700;
 
       letter-spacing: -.3px;
@@ -540,11 +656,13 @@
       position: absolute;
 
       left: 14px;
+
       top: 50%;
 
       transform: translateY(-50%);
 
       font-size: 17px;
+
       font-weight: 800;
 
       color: var(--navy);
@@ -562,7 +680,56 @@
 
     .field-help strong {
       color: var(--navy);
+
       font-weight: 800;
+    }
+
+    /* =========================================
+       RECIPIENT STATUS
+    ========================================= */
+
+    .recipient-status {
+      display: none;
+
+      align-items: center;
+
+      gap: 8px;
+
+      margin-top: 8px;
+
+      padding: 9px 10px;
+
+      border-radius: 9px;
+
+      background: var(--green-light);
+
+      border: 1px solid #cbead9;
+
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+    .recipient-status.show {
+      display: flex;
+    }
+
+    .recipient-status.pending {
+      background: var(--amber-light);
+
+      border-color: #f1dfae;
+
+      color: #8a6817;
+    }
+
+    .recipient-status.invalid {
+      background: var(--danger-light);
+
+      border-color: #ffd1d1;
+
+      color: var(--danger);
     }
 
     /* =========================================
@@ -571,15 +738,19 @@
 
     .primary-btn {
       width: 100%;
+
       min-height: 47px;
 
       border: 0;
+
       border-radius: 10px;
 
       background: var(--navy);
+
       color: white;
 
       font-size: 13px;
+
       font-weight: 700;
 
       transition:
@@ -590,12 +761,15 @@
 
     .primary-btn:hover {
       background: #0b3b73;
+
       transform: translateY(-1px);
     }
 
     .primary-btn:disabled {
       opacity: .65;
+
       cursor: not-allowed;
+
       transform: none;
     }
 
@@ -609,76 +783,46 @@
       border-radius: 10px;
 
       background: white;
+
       color: var(--navy);
 
       font-size: 12px;
+
       font-weight: 700;
     }
 
     /* =========================================
-       SIDE PANEL
+       BACKEND NOTICE
     ========================================= */
 
-    .side-card {
-      padding: 18px;
-    }
-
-    .side-card h3 {
-      margin: 0 0 13px;
-
-      font-size: 14px;
-
-      color: var(--navy-dark);
-    }
-
-    .security-row {
+    .backend-notice {
       display: flex;
+
+      align-items: flex-start;
 
       gap: 10px;
 
-      padding: 11px 0;
+      margin-top: 14px;
 
-      border-bottom: 1px solid #edf0f4;
-    }
+      padding: 11px;
 
-    .security-row:last-child {
-      border-bottom: 0;
-    }
+      border-radius: 10px;
 
-    .security-icon {
-      width: 31px;
-      height: 31px;
+      background: #f8fafc;
 
-      flex: 0 0 31px;
-
-      border-radius: 9px;
-
-      background: var(--green-light);
-      color: var(--green);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 12px;
-    }
-
-    .security-text strong {
-      display: block;
-
-      font-size: 11px;
-
-      color: #273348;
-
-      margin-bottom: 2px;
-    }
-
-    .security-text span {
-      font-size: 10px;
-
-      line-height: 1.4;
+      border: 1px solid #e3e8ef;
 
       color: var(--muted);
+
+      font-size: 10px;
+
+      line-height: 1.45;
+    }
+
+    .backend-notice i {
+      color: var(--blue);
+
+      margin-top: 1px;
     }
 
     /* =========================================
@@ -699,6 +843,7 @@
 
     .review-header {
       display: flex;
+
       align-items: center;
 
       gap: 10px;
@@ -808,105 +953,72 @@
     }
 
     /* =========================================
-       SUCCESS
+       SIDE PANEL
     ========================================= */
 
-    .success {
-      display: none;
-
-      text-align: center;
-
-      padding: 20px 8px 5px;
+    .side-card {
+      padding: 18px;
     }
 
-    .success.show {
-      display: block;
-    }
+    .side-card h3 {
+      margin: 0 0 13px;
 
-    .success-icon {
-      width: 64px;
-      height: 64px;
-
-      margin: 5px auto 14px;
-
-      border-radius: 50%;
-
-      background: var(--green-light);
-      color: var(--green);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 28px;
-    }
-
-    .success h2 {
-      margin: 0;
+      font-size: 14px;
 
       color: var(--navy-dark);
-
-      font-size: 22px;
     }
 
-    .success > p {
-      color: var(--muted);
-
-      font-size: 12px;
-
-      margin: 7px 0 20px;
-    }
-
-    .receipt {
-      text-align: left;
-
-      border: 1px solid var(--border);
-
-      border-radius: 12px;
-
-      overflow: hidden;
-
-      margin-bottom: 18px;
-    }
-
-    .receipt-row {
+    .security-row {
       display: flex;
 
-      justify-content: space-between;
+      gap: 10px;
 
-      gap: 15px;
-
-      padding: 12px 13px;
+      padding: 11px 0;
 
       border-bottom: 1px solid #edf0f4;
-
-      font-size: 11px;
     }
 
-    .receipt-row:last-child {
+    .security-row:last-child {
       border-bottom: 0;
     }
 
-    .receipt-row span:first-child {
+    .security-icon {
+      width: 31px;
+      height: 31px;
+
+      flex: 0 0 31px;
+
+      border-radius: 9px;
+
+      background: var(--green-light);
+
+      color: var(--green);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 12px;
+    }
+
+    .security-text strong {
+      display: block;
+
+      font-size: 11px;
+
+      color: #273348;
+
+      margin-bottom: 2px;
+    }
+
+    .security-text span {
+      font-size: 10px;
+
+      line-height: 1.4;
+
       color: var(--muted);
-    }
-
-    .receipt-row span:last-child {
-      font-weight: 700;
-
-      text-align: right;
-    }
-
-    .transaction-id {
-      word-break: break-all;
-    }
-
-    .success-actions {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 10px;
     }
 
     /* =========================================
@@ -921,7 +1033,9 @@
       background: rgba(255, 255, 255, .92);
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       z-index: 100;
@@ -965,13 +1079,14 @@
     }
 
     /* =========================================
-       TABLET
+       RESPONSIVE
     ========================================= */
 
     @media (max-width: 760px) {
 
       .topbar {
         height: 62px;
+
         padding: 0 15px;
       }
 
@@ -989,6 +1104,7 @@
 
       .form-card {
         padding: 17px;
+
         border-radius: 14px;
       }
 
@@ -997,17 +1113,12 @@
       }
     }
 
-    /* =========================================
-       PHONE
-    ========================================= */
-
     @media (max-width: 520px) {
 
       .topbar {
         height: 68px;
 
-        padding:
-          0 14px;
+        padding: 0 14px;
       }
 
       .brand {
@@ -1027,11 +1138,13 @@
 
       .brand-main {
         font-size: 12px;
+
         letter-spacing: .9px;
       }
 
       .brand-sub {
         font-size: 7px;
+
         letter-spacing: 2.7px;
       }
 
@@ -1081,13 +1194,6 @@
         margin-bottom: 17px;
       }
 
-      .title-icon {
-        width: 38px;
-        height: 38px;
-
-        flex-basis: 38px;
-      }
-
       .card-title h2 {
         font-size: 17px;
       }
@@ -1096,30 +1202,14 @@
         font-size: 10.5px;
       }
 
-      /*
-        IMPORTANT:
-        Every transfer field is now a separate
-        full-width block on mobile.
-      */
-
-      .account-box {
-        width: 100%;
-
+      .source-card {
         padding: 12px;
 
         margin-bottom: 17px;
       }
 
-      .account-row {
-        width: 100%;
-
-        flex-direction: row;
-
+      .account-preview {
         align-items: center;
-      }
-
-      .account-info {
-        min-width: 0;
       }
 
       .account-name {
@@ -1131,26 +1221,16 @@
       }
 
       .field {
-        width: 100%;
-
         margin-bottom: 16px;
       }
 
-      .field label {
-        font-size: 12px;
-      }
-
       input {
-        width: 100%;
-
         height: 48px;
 
         font-size: 13px;
       }
 
       textarea {
-        width: 100%;
-
         min-height: 82px;
       }
 
@@ -1167,20 +1247,13 @@
       .review-actions {
         grid-template-columns: 1fr;
       }
-
-      .success-actions {
-        grid-template-columns: 1fr;
-      }
     }
-
-    /* =========================================
-       SMALL PHONE
-    ========================================= */
 
     @media (max-width: 380px) {
 
       .main {
         padding-left: 11px;
+
         padding-right: 11px;
       }
 
@@ -1207,7 +1280,10 @@
 
   <div class="page">
 
-    <!-- HEADER -->
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
     <header class="topbar">
 
       <a
@@ -1220,6 +1296,7 @@
         </div>
 
         <div class="brand-text">
+
           <span class="brand-main">
             FIRST MERIT
           </span>
@@ -1227,6 +1304,7 @@
           <span class="brand-sub">
             BANK
           </span>
+
         </div>
 
       </a>
@@ -1247,9 +1325,12 @@
     </header>
 
 
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
     <main class="main">
 
-      <!-- BREADCRUMB -->
       <div class="breadcrumb">
 
         <a href="dashboard.html">
@@ -1268,7 +1349,6 @@
       </div>
 
 
-      <!-- HEADING -->
       <div class="page-heading">
 
         <h1>
@@ -1290,7 +1370,10 @@
 
         <section class="card form-card">
 
-          <!-- FORM VIEW -->
+          <!-- =================================
+               FORM VIEW
+          ================================== -->
+
           <div
             id="formView"
             class="form-view"
@@ -1317,18 +1400,44 @@
             </div>
 
 
-            <!-- FROM ACCOUNT -->
-            <div class="account-box">
+            <!-- =================================
+                 SOURCE ACCOUNT
+            ================================== -->
+
+            <div class="source-card">
 
               <div class="account-label">
-                From
+                From account
               </div>
 
-              <div class="account-row">
+              <select
+                id="sourceAccount"
+                class="account-select"
+              >
+
+                <option value="checking">
+                  Checking Account
+                </option>
+
+                <option value="savings">
+                  Savings Account
+                </option>
+
+                <option value="ira">
+                  IRA Account
+                </option>
+
+              </select>
+
+
+              <div class="account-preview">
 
                 <div class="account-info">
 
-                  <div class="account-icon">
+                  <div
+                    id="sourceIcon"
+                    class="account-icon"
+                  >
                     <i class="fa-solid fa-building-columns"></i>
                   </div>
 
@@ -1345,12 +1454,13 @@
                       id="accountNumber"
                       class="account-number"
                     >
-                      •••• 4821
+                      Loading account...
                     </div>
 
                   </div>
 
                 </div>
+
 
                 <div
                   id="accountBalance"
@@ -1365,38 +1475,25 @@
 
 
             <!-- ERROR -->
+
             <div
               id="errorMessage"
               class="error"
             ></div>
 
 
-            <!-- RECIPIENT -->
-            <div class="field">
+            <!-- INFO -->
 
-              <label for="recipientName">
-                Recipient name
-              </label>
-
-              <div class="input-wrap">
-
-                <i
-                  class="fa-regular fa-user input-icon"
-                ></i>
-
-                <input
-                  id="recipientName"
-                  type="text"
-                  placeholder="Enter recipient name"
-                  autocomplete="off"
-                >
-
-              </div>
-
-            </div>
+            <div
+              id="infoMessage"
+              class="info"
+            ></div>
 
 
-            <!-- ACCOUNT NUMBER -->
+            <!-- =================================
+                 RECIPIENT ACCOUNT
+            ================================== -->
+
             <div class="field">
 
               <label for="recipientAccount">
@@ -1413,8 +1510,59 @@
                   id="recipientAccount"
                   type="text"
                   inputmode="numeric"
-                  placeholder="Enter account number"
                   autocomplete="off"
+                  maxlength="30"
+                  placeholder="Enter First Merit account number"
+                >
+
+              </div>
+
+
+              <div
+                id="recipientStatus"
+                class="recipient-status"
+              >
+
+                <i
+                  id="recipientStatusIcon"
+                  class="fa-solid fa-circle-check"
+                ></i>
+
+                <span id="recipientStatusText">
+                  Recipient verified
+                </span>
+
+              </div>
+
+
+              <div class="field-help">
+                Enter the account number of a registered First Merit user.
+              </div>
+
+            </div>
+
+
+            <!-- =================================
+                 VERIFIED NAME
+            ================================== -->
+
+            <div class="field">
+
+              <label for="recipientName">
+                Verified recipient
+              </label>
+
+              <div class="input-wrap">
+
+                <i
+                  class="fa-regular fa-user input-icon"
+                ></i>
+
+                <input
+                  id="recipientName"
+                  type="text"
+                  readonly
+                  placeholder="Recipient name will appear here"
                 >
 
               </div>
@@ -1422,7 +1570,10 @@
             </div>
 
 
-            <!-- AMOUNT -->
+            <!-- =================================
+                 AMOUNT
+            ================================== -->
+
             <div class="field">
 
               <label for="amount">
@@ -1446,6 +1597,7 @@
 
               </div>
 
+
               <div class="field-help">
 
                 Available balance:
@@ -1459,7 +1611,10 @@
             </div>
 
 
-            <!-- MEMO -->
+            <!-- =================================
+                 MEMO
+            ================================== -->
+
             <div class="field">
 
               <label for="note">
@@ -1486,7 +1641,10 @@
             </div>
 
 
-            <!-- REVIEW BUTTON -->
+            <!-- =================================
+                 REVIEW
+            ================================== -->
+
             <button
               id="reviewButton"
               class="primary-btn"
@@ -1494,6 +1652,19 @@
             >
               Review transfer
             </button>
+
+
+            <div class="backend-notice">
+
+              <i class="fa-solid fa-shield-halved"></i>
+
+              <span>
+                Your transfer is prepared using your authenticated First Merit
+                account. Final balance changes are handled by the secure
+                transfer service.
+              </span>
+
+            </div>
 
           </div>
 
@@ -1515,7 +1686,9 @@
                 type="button"
                 aria-label="Back"
               >
+
                 <i class="fa-solid fa-arrow-left"></i>
+
               </button>
 
               <div>
@@ -1555,7 +1728,7 @@
                 </span>
 
                 <span id="reviewFrom">
-                  Checking
+                  —
                 </span>
 
               </div>
@@ -1635,111 +1808,16 @@
 
             </div>
 
-          </div>
 
+            <div class="backend-notice">
 
-          <!-- =====================================
-               SUCCESS VIEW
-          ====================================== -->
+              <i class="fa-solid fa-lock"></i>
 
-          <div
-            id="successView"
-            class="success"
-          >
-
-            <div class="success-icon">
-
-              <i class="fa-solid fa-check"></i>
-
-            </div>
-
-
-            <h2>
-              Transfer complete
-            </h2>
-
-
-            <p>
-              Your money transfer has been submitted successfully.
-            </p>
-
-
-            <div class="receipt">
-
-              <div class="receipt-row">
-
-                <span>
-                  Recipient
-                </span>
-
-                <span id="successRecipient">
-                  —
-                </span>
-
-              </div>
-
-
-              <div class="receipt-row">
-
-                <span>
-                  Amount
-                </span>
-
-                <span id="successAmount">
-                  $0.00
-                </span>
-
-              </div>
-
-
-              <div class="receipt-row">
-
-                <span>
-                  Status
-                </span>
-
-                <span style="color:#18864b;">
-                  Completed
-                </span>
-
-              </div>
-
-
-              <div class="receipt-row">
-
-                <span>
-                  Transaction ID
-                </span>
-
-                <span
-                  id="transactionId"
-                  class="transaction-id"
-                >
-                  —
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div class="success-actions">
-
-              <button
-                class="secondary-btn"
-                type="button"
-                onclick="window.location.href='dashboard.html'"
-              >
-                Dashboard
-              </button>
-
-              <button
-                class="primary-btn"
-                type="button"
-                onclick="window.location.reload()"
-              >
-                Send another transfer
-              </button>
+              <span>
+                Confirming will send the request to the secure transfer
+                service. Your browser does not directly modify the recipient's
+                balance.
+              </span>
 
             </div>
 
@@ -1749,7 +1827,7 @@
 
 
         <!-- =====================================
-             SECURITY PANEL
+             SIDE PANEL
         ====================================== -->
 
         <aside class="card side-card">
@@ -1762,9 +1840,7 @@
           <div class="security-row">
 
             <div class="security-icon">
-
               <i class="fa-solid fa-shield-halved"></i>
-
             </div>
 
             <div class="security-text">
@@ -1774,7 +1850,7 @@
               </strong>
 
               <span>
-                Your transfer is processed through your authenticated account.
+                Transfers are tied to your authenticated First Merit account.
               </span>
 
             </div>
@@ -1785,19 +1861,17 @@
           <div class="security-row">
 
             <div class="security-icon">
-
-              <i class="fa-solid fa-lock"></i>
-
+              <i class="fa-solid fa-user-check"></i>
             </div>
 
             <div class="security-text">
 
               <strong>
-                Protected information
+                Recipient verification
               </strong>
 
               <span>
-                Sensitive payment information is not stored with the transfer.
+                The recipient must have a registered First Merit account.
               </span>
 
             </div>
@@ -1808,9 +1882,28 @@
           <div class="security-row">
 
             <div class="security-icon">
+              <i class="fa-solid fa-lock"></i>
+            </div>
 
+            <div class="security-text">
+
+              <strong>
+                Protected balance
+              </strong>
+
+              <span>
+                The browser does not authorize completed balance changes.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="security-row">
+
+            <div class="security-icon">
               <i class="fa-solid fa-receipt"></i>
-
             </div>
 
             <div class="security-text">
@@ -1820,7 +1913,8 @@
               </strong>
 
               <span>
-                A transaction record will be added to your account activity.
+                Completed transfers will create transaction records for both
+                accounts.
               </span>
 
             </div>
@@ -1859,7 +1953,7 @@
 
 
   <!-- =====================================
-       FIREBASE / JAVASCRIPT
+       FIREBASE JAVASCRIPT
   ====================================== -->
 
   <script type="module">
@@ -1878,9 +1972,11 @@
     import {
       doc,
       getDoc,
-      runTransaction,
       collection,
-      serverTimestamp
+      query,
+      where,
+      limit,
+      getDocs
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -1897,8 +1993,17 @@
     const reviewView =
       document.getElementById("reviewView");
 
-    const successView =
-      document.getElementById("successView");
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+    const infoMessage =
+      document.getElementById("infoMessage");
+
+    const sourceAccount =
+      document.getElementById("sourceAccount");
+
+    const sourceIcon =
+      document.getElementById("sourceIcon");
 
     const accountName =
       document.getElementById("accountName");
@@ -1912,14 +2017,20 @@
     const availableBalance =
       document.getElementById("availableBalance");
 
-    const errorMessage =
-      document.getElementById("errorMessage");
+    const recipientAccount =
+      document.getElementById("recipientAccount");
 
     const recipientName =
       document.getElementById("recipientName");
 
-    const recipientAccount =
-      document.getElementById("recipientAccount");
+    const recipientStatus =
+      document.getElementById("recipientStatus");
+
+    const recipientStatusIcon =
+      document.getElementById("recipientStatusIcon");
+
+    const recipientStatusText =
+      document.getElementById("recipientStatusText");
 
     const amount =
       document.getElementById("amount");
@@ -1946,18 +2057,40 @@
 
     let currentUser = null;
 
-    let currentBalance = 0;
+    let userData = null;
 
-    let balanceField = "checkingBalance";
+    let accounts = {
 
-    let transactionId = null;
+      checking: {
+        balance: 0,
+        number: ""
+      },
+
+      savings: {
+        balance: 0,
+        number: ""
+      },
+
+      ira: {
+        balance: 0,
+        number: ""
+      }
+
+    };
+
+    let verifiedRecipient = null;
+
+    let isRecipientVerified = false;
 
 
     /* =====================================
-       FORMAT MONEY
+       MONEY FORMAT
     ===================================== */
 
     function formatMoney(value) {
+
+      const number =
+        Number(value);
 
       return new Intl.NumberFormat(
         "en-US",
@@ -1968,14 +2101,16 @@
           maximumFractionDigits: 2
         }
       ).format(
-        Number(value) || 0
+        Number.isFinite(number)
+          ? number
+          : 0
       );
 
     }
 
 
     /* =====================================
-       MASK ACCOUNT NUMBER
+       ACCOUNT MASK
     ===================================== */
 
     function maskAccountNumber(value) {
@@ -1985,10 +2120,19 @@
       }
 
       const clean =
-        String(value).replace(/\D/g, "");
+        String(value).replace(
+          /\D/g,
+          ""
+        );
+
+      if (!clean) {
+        return "Account number unavailable";
+      }
 
       if (clean.length <= 4) {
+
         return "•••• " + clean;
+
       }
 
       return "•••• " +
@@ -2003,10 +2147,18 @@
 
     function showError(message) {
 
+      infoMessage.classList.remove(
+        "show"
+      );
+
+      infoMessage.textContent = "";
+
       errorMessage.textContent =
         message;
 
-      errorMessage.classList.add("show");
+      errorMessage.classList.add(
+        "show"
+      );
 
     }
 
@@ -2015,13 +2167,248 @@
 
       errorMessage.textContent = "";
 
-      errorMessage.classList.remove("show");
+      errorMessage.classList.remove(
+        "show"
+      );
 
     }
 
 
     /* =====================================
-       LOAD ACCOUNT
+       INFO
+    ===================================== */
+
+    function showInfo(message) {
+
+      clearError();
+
+      infoMessage.textContent =
+        message;
+
+      infoMessage.classList.add(
+        "show"
+      );
+
+    }
+
+
+    function clearInfo() {
+
+      infoMessage.textContent = "";
+
+      infoMessage.classList.remove(
+        "show"
+      );
+
+    }
+
+
+    /* =====================================
+       RESET RECIPIENT
+    ===================================== */
+
+    function resetRecipient() {
+
+      verifiedRecipient =
+        null;
+
+      isRecipientVerified =
+        false;
+
+      recipientName.value =
+        "";
+
+      recipientStatus.classList.remove(
+        "show",
+        "pending",
+        "invalid"
+      );
+
+      recipientStatusText.textContent =
+        "Recipient verified";
+
+      recipientStatusIcon.className =
+        "fa-solid fa-circle-check";
+
+    }
+
+
+    /* =====================================
+       ACCOUNT CONFIGURATION
+    ===================================== */
+
+    function getAccountConfig(type) {
+
+      if (type === "savings") {
+
+        return {
+          label: "Savings Account",
+          balance: accounts.savings.balance,
+          number: accounts.savings.number,
+          icon: "fa-solid fa-piggy-bank"
+        };
+
+      }
+
+
+      if (type === "ira") {
+
+        return {
+          label: "IRA Account",
+          balance: accounts.ira.balance,
+          number: accounts.ira.number,
+          icon: "fa-solid fa-chart-line"
+        };
+
+      }
+
+
+      return {
+        label: "Checking Account",
+        balance: accounts.checking.balance,
+        number: accounts.checking.number,
+        icon: "fa-solid fa-building-columns"
+      };
+
+    }
+
+
+    /* =====================================
+       UPDATE SOURCE ACCOUNT
+    ===================================== */
+
+    function updateSourceAccount() {
+
+      const type =
+        sourceAccount.value;
+
+      const config =
+        getAccountConfig(type);
+
+
+      accountName.textContent =
+        config.label;
+
+
+      accountNumber.textContent =
+        config.number
+          ? maskAccountNumber(
+              config.number
+            )
+          : "Account number unavailable";
+
+
+      accountBalance.textContent =
+        formatMoney(
+          config.balance
+        );
+
+
+      availableBalance.textContent =
+        formatMoney(
+          config.balance
+        );
+
+
+      sourceIcon.innerHTML =
+        `<i class="${config.icon}"></i>`;
+
+
+      clearError();
+
+      clearInfo();
+
+      amount.value = "";
+
+
+      resetRecipient();
+
+    }
+
+
+    /* =====================================
+       LOAD USER ACCOUNT
+    ===================================== */
+
+    async function loadUserAccount(user) {
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          user.uid
+        );
+
+
+      const userSnap =
+        await getDoc(userRef);
+
+
+      if (!userSnap.exists()) {
+
+        throw new Error(
+          "ACCOUNT_NOT_FOUND"
+        );
+
+      }
+
+
+      userData =
+        userSnap.data();
+
+
+      /*
+        IMPORTANT:
+
+        We do NOT create default balances here.
+
+        Firestore is the source of truth.
+      */
+
+
+      accounts.checking.balance =
+        Number(
+          userData.checkingBalance
+        ) || 0;
+
+
+      accounts.savings.balance =
+        Number(
+          userData.savingsBalance
+        ) || 0;
+
+
+      accounts.ira.balance =
+        Number(
+          userData.iraBalance
+        ) || 0;
+
+
+      accounts.checking.number =
+        String(
+          userData.accountNumber || ""
+        );
+
+
+      accounts.savings.number =
+        String(
+          userData.savingsAccountNumber || ""
+        );
+
+
+      accounts.ira.number =
+        String(
+          userData.iraAccountNumber || ""
+        );
+
+
+      updateSourceAccount();
+
+    }
+
+
+    /* =====================================
+       AUTH STATE
     ===================================== */
 
     onAuthStateChanged(
@@ -2038,123 +2425,15 @@
         }
 
 
-        currentUser = user;
+        currentUser =
+          user;
 
 
         try {
 
-          const userRef =
-            doc(
-              db,
-              "users",
-              user.uid
-            );
-
-
-          const userSnap =
-            await getDoc(userRef);
-
-
-          if (!userSnap.exists()) {
-
-            throw new Error(
-              "ACCOUNT_NOT_FOUND"
-            );
-
-          }
-
-
-          const data =
-            userSnap.data();
-
-
-          /*
-             Current First Merit dashboard:
-             checkingBalance is the primary
-             checking account balance.
-
-             balance is kept as a compatibility
-             fallback for older account documents.
-          */
-
-          if (
-            typeof data.checkingBalance === "number"
-          ) {
-
-            currentBalance =
-              data.checkingBalance;
-
-            balanceField =
-              "checkingBalance";
-
-          } else if (
-            typeof data.balance === "number"
-          ) {
-
-            currentBalance =
-              data.balance;
-
-            balanceField =
-              "balance";
-
-          } else {
-
-            /*
-              This matches the current
-              First Merit checking balance
-              used by the dashboard.
-            */
-
-            currentBalance =
-              1345000;
-
-            balanceField =
-              "checkingBalance";
-
-          }
-
-
-          /* Account name */
-
-          const displayName =
-            data.fullName ||
-            data.name ||
-            user.displayName ||
-            "Checking Account";
-
-
-          accountName.textContent =
-            displayName;
-
-
-          /* Account number */
-
-          const userAccountNumber =
-            data.accountNumber ||
-            "";
-
-
-          accountNumber.textContent =
-            userAccountNumber
-              ? maskAccountNumber(
-                  userAccountNumber
-                )
-              : "Checking account";
-
-
-          /* Balance */
-
-          accountBalance.textContent =
-            formatMoney(
-              currentBalance
-            );
-
-
-          availableBalance.textContent =
-            formatMoney(
-              currentBalance
-            );
-
+          await loadUserAccount(
+            user
+          );
 
         } catch (error) {
 
@@ -2194,50 +2473,390 @@
 
 
     /* =====================================
-       REVIEW TRANSFER
+       SOURCE ACCOUNT CHANGE
     ===================================== */
 
-    reviewButton.addEventListener(
-      "click",
-      () => {
-
-        clearError();
-
-
-        const name =
-          recipientName.value.trim();
+    sourceAccount.addEventListener(
+      "change",
+      updateSourceAccount
+    );
 
 
-        const account =
-          recipientAccount.value.trim();
+    /* =====================================
+       FIND RECIPIENT
+    ===================================== */
+
+    async function verifyRecipient() {
+
+      clearError();
+
+      clearInfo();
+
+      resetRecipient();
 
 
-        const transferAmount =
-          Number(amount.value);
+      const account =
+        recipientAccount.value.trim();
 
 
-        const memo =
-          note.value.trim();
+      if (!account) {
+
+        return;
+
+      }
 
 
-        /* Recipient */
+      if (!/^\d+$/.test(account)) {
 
-        if (!name) {
+        showError(
+          "The recipient account number must contain numbers only."
+        );
 
-          showError(
-            "Please enter the recipient's name."
+        return;
+
+      }
+
+
+      if (
+        accounts.checking.number &&
+        account === accounts.checking.number
+      ) {
+
+        showError(
+          "You cannot send money to your own account."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        accounts.savings.number &&
+        account === accounts.savings.number
+      ) {
+
+        showError(
+          "You cannot send money to your own account."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        accounts.ira.number &&
+        account === accounts.ira.number
+      ) {
+
+        showError(
+          "You cannot send money to your own account."
+        );
+
+        return;
+
+      }
+
+
+      recipientStatus.classList.add(
+        "show",
+        "pending"
+      );
+
+      recipientStatusText.textContent =
+        "Verifying recipient...";
+
+      recipientStatusIcon.className =
+        "fa-solid fa-circle-notch fa-spin";
+
+
+      try {
+
+        /*
+          The current security rules only allow
+          users to read their own user document.
+
+          Therefore this lookup is prepared here,
+          but it cannot be completed from the
+          browser until we create the secure
+          recipient lookup/backend path.
+
+          We intentionally do NOT attempt to bypass
+          Firestore rules.
+        */
+
+        const usersRef =
+          collection(
+            db,
+            "users"
           );
 
-          recipientName.focus();
+
+        const recipientQuery =
+          query(
+            usersRef,
+            where(
+              "accountNumber",
+              "==",
+              account
+            ),
+            limit(1)
+          );
+
+
+        const snapshot =
+          await getDocs(
+            recipientQuery
+          );
+
+
+        if (
+          snapshot.empty
+        ) {
+
+          recipientStatus.classList.remove(
+            "pending"
+          );
+
+          recipientStatus.classList.add(
+            "invalid"
+          );
+
+          recipientStatusText.textContent =
+            "Recipient account not found";
+
+          recipientStatusIcon.className =
+            "fa-solid fa-circle-xmark";
+
+          throw new Error(
+            "RECIPIENT_NOT_FOUND"
+          );
+
+        }
+
+
+        const recipientDoc =
+          snapshot.docs[0];
+
+
+        if (
+          recipientDoc.id ===
+          currentUser.uid
+        ) {
+
+          throw new Error(
+            "SELF_TRANSFER"
+          );
+
+        }
+
+
+        const data =
+          recipientDoc.data();
+
+
+        verifiedRecipient = {
+
+          uid:
+            recipientDoc.id,
+
+          name:
+            data.fullName ||
+            data.name ||
+            "First Merit customer",
+
+          accountNumber:
+            String(
+              data.accountNumber ||
+              account
+            )
+
+        };
+
+
+        isRecipientVerified =
+          true;
+
+
+        recipientName.value =
+          verifiedRecipient.name;
+
+
+        recipientStatus.classList.remove(
+          "pending",
+          "invalid"
+        );
+
+        recipientStatus.classList.add(
+          "show"
+        );
+
+        recipientStatusText.textContent =
+          "Recipient verified";
+
+        recipientStatusIcon.className =
+          "fa-solid fa-circle-check";
+
+
+        showInfo(
+          "Recipient account verified successfully."
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Recipient verification:",
+          error
+        );
+
+
+        if (
+          error.message ===
+          "RECIPIENT_NOT_FOUND"
+        ) {
+
+          clearError();
 
           return;
 
         }
 
 
-        /* Account */
+        if (
+          error.message ===
+          "SELF_TRANSFER"
+        ) {
 
-        if (!account) {
+          resetRecipient();
+
+          showError(
+            "You cannot send money to your own account."
+          );
+
+          return;
+
+        }
+
+
+        /*
+          With the rules currently deployed,
+          the query may be rejected because
+          users can only read their own document.
+
+          We surface that clearly instead of
+          pretending verification succeeded.
+        */
+
+        recipientStatus.classList.remove(
+          "pending"
+        );
+
+        recipientStatus.classList.add(
+          "invalid"
+        );
+
+        recipientStatusText.textContent =
+          "Recipient verification unavailable";
+
+        recipientStatusIcon.className =
+          "fa-solid fa-triangle-exclamation";
+
+
+        showError(
+          "Recipient verification is not available with the current Firestore permissions. We will connect this to the secure transfer service next."
+        );
+
+      }
+
+    }
+
+
+    /* =====================================
+       RECIPIENT ACCOUNT INPUT
+    ===================================== */
+
+    recipientAccount.addEventListener(
+      "input",
+      () => {
+
+        recipientAccount.value =
+          recipientAccount.value.replace(
+            /\D/g,
+            ""
+          );
+
+
+        resetRecipient();
+
+        clearError();
+
+        clearInfo();
+
+      }
+    );
+
+
+    recipientAccount.addEventListener(
+      "blur",
+      verifyRecipient
+    );
+
+
+    /* =====================================
+       REVIEW TRANSFER
+    ===================================== */
+
+    reviewButton.addEventListener(
+      "click",
+      async () => {
+
+        clearError();
+
+        clearInfo();
+
+
+        const selectedType =
+          sourceAccount.value;
+
+
+        const config =
+          getAccountConfig(
+            selectedType
+          );
+
+
+        const recipient =
+          recipientAccount.value.trim();
+
+
+        const transferAmount =
+          Number(
+            amount.value
+          );
+
+
+        const memo =
+          note.value.trim();
+
+
+        /* SOURCE ACCOUNT */
+
+        if (!config.number) {
+
+          showError(
+            "The selected account number is not available."
+          );
+
+          return;
+
+        }
+
+
+        /* RECIPIENT ACCOUNT */
+
+        if (!recipient) {
 
           showError(
             "Please enter the recipient account number."
@@ -2250,7 +2869,7 @@
         }
 
 
-        if (!/^\d+$/.test(account)) {
+        if (!/^\d+$/.test(recipient)) {
 
           showError(
             "The recipient account number must contain numbers only."
@@ -2263,7 +2882,23 @@
         }
 
 
-        /* Amount */
+        /* RECIPIENT */
+
+        if (!isRecipientVerified) {
+
+          await verifyRecipient();
+
+
+          if (!isRecipientVerified) {
+
+            return;
+
+          }
+
+        }
+
+
+        /* AMOUNT */
 
         if (
           !Number.isFinite(
@@ -2283,11 +2918,11 @@
         }
 
 
-        /* Balance */
+        /* BALANCE */
 
         if (
           transferAmount >
-          currentBalance
+          config.balance
         ) {
 
           showError(
@@ -2301,7 +2936,7 @@
         }
 
 
-        /* Populate review */
+        /* REVIEW AMOUNT */
 
         document.getElementById(
           "reviewAmount"
@@ -2311,34 +2946,43 @@
           );
 
 
+        /* REVIEW SOURCE */
+
         document.getElementById(
           "reviewFrom"
         ).textContent =
-          "Checking •••• " +
-          (
-            accountNumber.textContent
-              .replace("•••• ", "")
-              || "4821"
+          config.label +
+          " " +
+          maskAccountNumber(
+            config.number
           );
 
+
+        /* REVIEW RECIPIENT */
 
         document.getElementById(
           "reviewRecipient"
         ).textContent =
-          name;
+          verifiedRecipient.name;
 
+
+        /* REVIEW ACCOUNT */
 
         document.getElementById(
           "reviewAccount"
         ).textContent =
-          account;
+          verifiedRecipient.accountNumber;
 
+
+        /* REVIEW NOTE */
 
         document.getElementById(
           "reviewNote"
         ).textContent =
           memo || "None";
 
+
+        /* REVIEW TOTAL */
 
         document.getElementById(
           "reviewTotal"
@@ -2351,7 +2995,6 @@
         formView.classList.add(
           "hide"
         );
-
 
         reviewView.classList.add(
           "show"
@@ -2385,6 +3028,8 @@
 
       clearError();
 
+      clearInfo();
+
 
       window.scrollTo({
         top: 0,
@@ -2416,6 +3061,8 @@
 
         clearError();
 
+        clearInfo();
+
 
         if (!currentUser) {
 
@@ -2428,40 +3075,37 @@
         }
 
 
-        const name =
-          recipientName.value.trim();
-
-
-        const account =
-          recipientAccount.value.trim();
-
-
-        const transferAmount =
-          Number(amount.value);
-
-
-        const memo =
-          note.value.trim();
-
-
-        if (
-          !name ||
-          !account ||
-          !transferAmount ||
-          transferAmount <= 0
-        ) {
-
-          returnToForm();
-
+        if (!isRecipientVerified) {
 
           showError(
-            "Please check your transfer information."
+            "Please verify the recipient before confirming the transfer."
           );
-
 
           return;
 
         }
+
+
+        /*
+          IMPORTANT:
+
+          We intentionally do NOT use runTransaction()
+          here.
+
+          The browser must not directly:
+
+          - subtract the sender balance
+          - credit another user
+          - create a completed transaction
+
+          Those operations belong in the secure
+          backend transfer function.
+        */
+
+
+        showInfo(
+          "The secure transfer service is not connected yet. Your account has not been charged."
+        );
 
 
         confirmButton.disabled =
@@ -2469,274 +3113,21 @@
 
 
         confirmButton.innerHTML =
-          '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+          '<i class="fa-solid fa-lock"></i> Secure transfer unavailable';
 
 
-        try {
+        setTimeout(
+          () => {
 
-          const userRef =
-            doc(
-              db,
-              "users",
-              currentUser.uid
-            );
+            confirmButton.disabled =
+              false;
 
+            confirmButton.innerHTML =
+              "Confirm transfer";
 
-          const newTransactionRef =
-            doc(
-              collection(
-                db,
-                "users",
-                currentUser.uid,
-                "transactions"
-              )
-            );
-
-
-          await runTransaction(
-            db,
-            async (transaction) => {
-
-              const userSnap =
-                await transaction.get(
-                  userRef
-                );
-
-
-              if (
-                !userSnap.exists()
-              ) {
-
-                throw new Error(
-                  "ACCOUNT_NOT_FOUND"
-                );
-
-              }
-
-
-              const userData =
-                userSnap.data();
-
-
-              /*
-                Use the same balance field
-                that was detected when the
-                account loaded.
-              */
-
-              let balance;
-
-
-              if (
-                typeof userData.checkingBalance === "number"
-              ) {
-
-                balance =
-                  userData.checkingBalance;
-
-                balanceField =
-                  "checkingBalance";
-
-              } else if (
-                typeof userData.balance === "number"
-              ) {
-
-                balance =
-                  userData.balance;
-
-                balanceField =
-                  "balance";
-
-              } else {
-
-                balance =
-                  1345000;
-
-                balanceField =
-                  "checkingBalance";
-
-              }
-
-
-              if (
-                transferAmount >
-                balance
-              ) {
-
-                throw new Error(
-                  "INSUFFICIENT_FUNDS"
-                );
-
-              }
-
-
-              const newBalance =
-                balance -
-                transferAmount;
-
-
-              /*
-                Update the correct
-                First Merit balance field.
-              */
-
-              transaction.update(
-                userRef,
-                {
-                  [balanceField]:
-                    newBalance
-                }
-              );
-
-
-              /*
-                Store transaction.
-              */
-
-              transaction.set(
-                newTransactionRef,
-                {
-
-                  type: "send",
-
-                  title: "Money Sent",
-
-                  amount:
-                    transferAmount,
-
-                  direction: "debit",
-
-                  recipient:
-                    name,
-
-                  recipientAccount:
-                    account,
-
-                  note:
-                    memo,
-
-                  status:
-                    "completed",
-
-                  createdAt:
-                    serverTimestamp()
-
-                }
-              );
-
-            }
-          );
-
-
-          /*
-            Save transaction ID
-            for the receipt.
-          */
-
-          transactionId =
-            newTransactionRef.id;
-
-
-          /*
-            Update local balance.
-          */
-
-          currentBalance =
-            currentBalance -
-            transferAmount;
-
-
-          accountBalance.textContent =
-            formatMoney(
-              currentBalance
-            );
-
-
-          availableBalance.textContent =
-            formatMoney(
-              currentBalance
-            );
-
-
-          document.getElementById(
-            "successRecipient"
-          ).textContent =
-            name;
-
-
-          document.getElementById(
-            "successAmount"
-          ).textContent =
-            formatMoney(
-              transferAmount
-            );
-
-
-          document.getElementById(
-            "transactionId"
-          ).textContent =
-            transactionId;
-
-
-          reviewView.classList.remove(
-            "show"
-          );
-
-
-          successView.classList.add(
-            "show"
-          );
-
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-
-        } catch (error) {
-
-          console.error(
-            "Transfer error:",
-            error
-          );
-
-
-          if (
-            error.message ===
-            "INSUFFICIENT_FUNDS"
-          ) {
-
-            showError(
-              "The transfer could not be completed because your available balance is insufficient."
-            );
-
-          } else if (
-            error.message ===
-            "ACCOUNT_NOT_FOUND"
-          ) {
-
-            showError(
-              "Your account could not be found. Please sign in again."
-            );
-
-          } else {
-
-            showError(
-              "We couldn't complete the transfer. Please try again."
-            );
-
-          }
-
-
-          confirmButton.disabled =
-            false;
-
-
-          confirmButton.innerHTML =
-            "Confirm transfer";
-
-        }
+          },
+          1800
+        );
 
       }
     );
@@ -2746,37 +3137,27 @@
        INPUT CLEANUP
     ===================================== */
 
-    recipientAccount.addEventListener(
+    amount.addEventListener(
       "input",
       () => {
 
-        recipientAccount.value =
-          recipientAccount.value.replace(
-            /\D/g,
-            ""
-          );
-
         clearError();
+
+        clearInfo();
 
       }
     );
 
 
-    recipientName.addEventListener(
-      "input",
-      clearError
-    );
-
-
-    amount.addEventListener(
-      "input",
-      clearError
-    );
-
-
     note.addEventListener(
       "input",
-      clearError
+      () => {
+
+        clearError();
+
+        clearInfo();
+
+      }
     );
 
   </script>
