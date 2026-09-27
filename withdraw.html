@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
@@ -10,39 +11,57 @@
   <title>Withdraw | First Merit Bank</title>
 
   <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
   <style>
-    :root {
-      --navy: #082b57;
-      --navy-dark: #061f40;
-      --blue: #0b63ce;
-      --blue-light: #eaf3ff;
-      --green: #18864b;
-      --green-light: #eaf8f0;
-      --text: #172033;
-      --muted: #697386;
-      --border: #e3e8ef;
-      --background: #f5f7fa;
-      --white: #ffffff;
-      --danger: #b42318;
-      --danger-bg: #fff1f1;
-    }
-
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --navy: #082b57;
+      --navy-dark: #061d3d;
+      --blue: #1769d1;
+      --cyan: #12a7c4;
+      --green: #159447;
+      --amber: #d99f25;
+
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #718096;
+      --border: #e5eaf0;
+      --danger: #c83c3c;
+
+      --shadow:
+        0 8px 24px rgba(18, 38, 63, 0.07);
     }
 
     body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Arial, sans-serif;
-      background: var(--background);
+      margin: 0;
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
     }
 
     button,
@@ -52,14 +71,7 @@
     }
 
     button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .page {
-      width: 100%;
-      max-width: 980px;
-      min-height: 100vh;
-      margin: 0 auto;
+      cursor: pointer;
     }
 
     /* =========================
@@ -68,179 +80,286 @@
 
     .topbar {
       height: 68px;
-      background: rgba(255, 255, 255, .96);
+      background: #fff;
       border-bottom: 1px solid var(--border);
+
       display: flex;
       align-items: center;
+      justify-content: space-between;
+
       padding: 0 22px;
-      gap: 13px;
+
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
+      z-index: 20;
+    }
+
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
     }
 
     .back-btn {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
+
       border: 1px solid var(--border);
-      border-radius: 11px;
-      background: #f8fafc;
-      color: var(--text);
+      background: #fff;
+      color: var(--navy);
+
+      border-radius: 10px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: .2s ease;
+
+      transition: 0.2s;
     }
 
-    .back-btn:hover {
-      background: var(--blue-light);
-      color: var(--blue);
-      border-color: #cfe0f7;
+    .back-btn:active {
+      transform: scale(0.96);
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
+
+      min-width: 0;
     }
 
     .brand-logo {
-      width: 39px;
-      height: 39px;
+      width: 35px;
+      height: 35px;
+
       border-radius: 10px;
-      background: linear-gradient(145deg, var(--navy), var(--blue));
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--blue)
+        );
+
       color: #fff;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: -.3px;
-      box-shadow: 0 4px 10px rgba(8, 43, 87, .16);
+
+      font-size: 13px;
+      font-weight: 800;
+
+      box-shadow:
+        0 5px 14px rgba(23, 105, 209, 0.2);
     }
 
-    .brand-text h1 {
-      font-size: 15px;
-      line-height: 1.1;
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 14px;
       font-weight: 800;
       color: var(--navy);
+
+      white-space: nowrap;
     }
 
-    .brand-text span {
-      display: block;
-      color: var(--muted);
+    .brand-sub {
       font-size: 10px;
-      margin-top: 3px;
-      letter-spacing: .2px;
-    }
+      color: var(--muted);
 
-    .header-spacer {
-      flex: 1;
+      margin-top: 2px;
+
+      white-space: nowrap;
     }
 
     .secure-label {
       display: flex;
       align-items: center;
       gap: 6px;
-      color: var(--muted);
-      font-size: 11px;
-    }
 
-    .secure-label i {
+      font-size: 11px;
+      font-weight: 600;
+
       color: var(--green);
+      white-space: nowrap;
     }
 
     /* =========================
-       CONTENT
+       PAGE
     ========================= */
 
-    .content {
-      padding: 25px 22px 35px;
+    .page {
+      width: min(1080px, calc(100% - 28px));
+      margin: 22px auto 40px;
     }
 
-    .page-heading {
+    .page-header {
       margin-bottom: 18px;
     }
 
-    .page-heading h2 {
-      font-size: 25px;
+    .page-title {
+      margin: 0;
+
+      font-size: clamp(23px, 4vw, 30px);
       line-height: 1.15;
-      color: var(--navy-dark);
-      letter-spacing: -.5px;
-      margin-bottom: 6px;
+
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.7px;
     }
 
-    .page-heading p {
+    .page-description {
+      margin: 7px 0 0;
+
+      color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
-      color: var(--muted);
     }
 
     /* =========================
-       LAYOUT
+       MAIN GRID
     ========================= */
 
-    .layout {
+    .withdraw-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 290px;
+      grid-template-columns: minmax(0, 1.55fr) minmax(250px, 0.8fr);
       gap: 18px;
       align-items: start;
     }
 
-    .main-column {
-      min-width: 0;
-    }
-
-    .side-column {
-      min-width: 0;
-    }
-
-    /* =========================
-       CARDS
-    ========================= */
-
     .card {
-      background: var(--white);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 15px;
-      box-shadow: 0 4px 16px rgba(23, 32, 51, .045);
+      box-shadow: var(--shadow);
     }
 
     .form-card {
-      padding: 19px;
+      padding: 20px;
     }
 
-    .card-heading {
+    .side-card {
+      padding: 18px;
+    }
+
+    .card-title {
       display: flex;
       align-items: center;
-      gap: 11px;
-      margin-bottom: 19px;
+      gap: 9px;
+
+      margin: 0 0 17px;
+
+      color: var(--navy);
+      font-size: 15px;
+      font-weight: 800;
     }
 
-    .card-heading-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--blue-light);
+    .card-title i {
       color: var(--blue);
+    }
+
+    /* =========================
+       ACCOUNT SELECTOR
+    ========================= */
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+
+      margin-bottom: 18px;
+    }
+
+    .account-option {
+      position: relative;
+    }
+
+    .account-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .account-option label {
+      display: block;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      padding: 12px 11px;
+
+      background: #fff;
+
+      cursor: pointer;
+
+      transition:
+        border-color 0.2s,
+        background 0.2s,
+        transform 0.2s;
+    }
+
+    .account-option label:active {
+      transform: scale(0.985);
+    }
+
+    .account-option input:checked + label {
+      border-color: var(--blue);
+      background: #f0f6ff;
+      box-shadow:
+        0 0 0 2px rgba(23, 105, 209, 0.08);
+    }
+
+    .account-icon {
+      width: 31px;
+      height: 31px;
+
+      border-radius: 9px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
+
+      background: #edf4ff;
+      color: var(--blue);
+
+      margin-bottom: 8px;
+
+      font-size: 12px;
     }
 
-    .card-heading h3 {
-      font-size: 15px;
-      color: var(--navy-dark);
-      margin-bottom: 2px;
+    .account-option:nth-child(2) .account-icon {
+      background: #eaf8f0;
+      color: var(--green);
     }
 
-    .card-heading p {
+    .account-option:nth-child(3) .account-icon {
+      background: #fff6e4;
+      color: var(--amber);
+    }
+
+    .account-name {
       font-size: 11px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .account-number {
+      font-size: 10px;
       color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .account-balance {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+
+      margin-top: 6px;
     }
 
     /* =========================
@@ -251,65 +370,99 @@
       margin-bottom: 16px;
     }
 
-    .field label {
+    .field-label {
       display: block;
+
+      margin-bottom: 7px;
+
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 7px;
-      color: #263249;
+
+      color: #344054;
     }
 
-    input,
-    select {
-      width: 100%;
-      height: 48px;
-      border: 1px solid #dbe2eb;
-      border-radius: 11px;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      padding: 0 13px;
-      font-size: 14px;
-      transition: .18s ease;
-    }
-
-    input::placeholder {
-      color: #9aa3b2;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(11, 99, 206, .08);
-    }
-
-    .amount-wrap {
+    .input-wrap {
       position: relative;
     }
 
-    .currency {
+    .input-icon {
       position: absolute;
-      left: 14px;
+
+      left: 13px;
       top: 50%;
+
       transform: translateY(-50%);
-      color: #566276;
-      font-weight: 700;
-      font-size: 15px;
+
+      color: #8b98aa;
+      font-size: 13px;
+
       pointer-events: none;
-      z-index: 2;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+
+      height: 47px;
+
+      border: 1px solid #dce2e9;
+      border-radius: 10px;
+
+      background: #fff;
+      color: var(--text);
+
+      padding: 0 13px;
+
+      outline: none;
+
+      font-size: 13px;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .input.has-icon {
+      padding-left: 38px;
+    }
+
+    .input:focus,
+    .select:focus {
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(23, 105, 209, 0.08);
     }
 
     .amount-input {
-      padding-left: 35px;
-      font-size: 18px;
-      font-weight: 750;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .amount-input::placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9aa5b4;
+    }
+
+    .reference-input {
+      height: 44px;
+    }
+
+    .helper {
+      margin-top: 6px;
+
+      color: var(--muted);
+      font-size: 10.5px;
+      line-height: 1.4;
     }
 
     /* =========================
        DESTINATION
     ========================= */
 
-    .destination-options {
+    .destination-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
@@ -323,353 +476,457 @@
       position: absolute;
       opacity: 0;
       pointer-events: none;
-      width: 1px;
-      height: 1px;
     }
 
-    .destination-label {
-      min-height: 72px;
-      padding: 10px 7px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: #fff;
+    .destination-option label {
+      min-height: 69px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       text-align: center;
+
       gap: 6px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #fff;
+
       cursor: pointer;
-      transition: .18s ease;
+
+      padding: 8px;
+
+      color: #536174;
+
+      font-size: 10.5px;
+      font-weight: 700;
+
+      transition: 0.2s;
     }
 
-    .destination-label i {
-      color: #68758a;
+    .destination-option label i {
       font-size: 15px;
     }
 
-    .destination-label span {
-      font-size: 10px;
-      font-weight: 700;
-      color: #465268;
-      line-height: 1.2;
-    }
-
-    .destination-option input:checked + .destination-label {
-      border-color: var(--blue);
-      background: var(--blue-light);
-      box-shadow: 0 0 0 2px rgba(11, 99, 206, .06);
-    }
-
-    .destination-option input:checked + .destination-label i,
-    .destination-option input:checked + .destination-label span {
-      color: var(--blue);
+    .destination-option input:checked + label {
+      border-color: var(--cyan);
+      background: #eefbfc;
+      color: #087b8f;
     }
 
     /* =========================
-       BUTTONS
+       BUTTON
     ========================= */
 
     .primary-btn {
       width: 100%;
-      height: 49px;
+      height: 47px;
+
       border: 0;
-      border-radius: 11px;
-      background: linear-gradient(135deg, #0b63ce, #0956b5);
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          #0d58b9
+        );
+
       color: #fff;
-      font-size: 14px;
-      font-weight: 750;
-      cursor: pointer;
-      margin-top: 3px;
-      transition: .18s ease;
-      box-shadow: 0 5px 12px rgba(11, 99, 206, .15);
-    }
 
-    .primary-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 7px 15px rgba(11, 99, 206, .2);
-    }
+      font-size: 13px;
+      font-weight: 800;
 
-    .primary-btn:disabled,
-    .confirm-btn:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* =========================
-       MESSAGE
-    ========================= */
-
-    .message {
-      display: none;
-      margin: 11px 0;
-      padding: 11px 12px;
-      border-radius: 10px;
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
-    .message.error {
-      display: block;
-      background: var(--danger-bg);
-      color: var(--danger);
-      border: 1px solid #ffd6d2;
-    }
-
-    /* =========================
-       SIDE INFO
-    ========================= */
-
-    .info-card {
-      padding: 17px;
-    }
-
-    .info-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 14px;
-    }
-
-    .info-title-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: #f0f7ff;
-      color: var(--blue);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
+      gap: 8px;
+
+      box-shadow:
+        0 8px 18px rgba(23, 105, 209, 0.18);
+
+      transition:
+        transform 0.2s,
+        opacity 0.2s;
     }
 
-    .info-title h3 {
-      font-size: 14px;
+    .primary-btn:active {
+      transform: scale(0.985);
     }
 
-    .info-item {
+    .primary-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      height: 43px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      background: #fff;
+      color: var(--navy);
+
+      font-size: 12px;
+      font-weight: 700;
+
       display: flex;
-      gap: 9px;
-      padding: 10px 0;
-      border-bottom: 1px solid #eef1f5;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
     }
 
-    .info-item:last-child {
+    /* =========================
+       SIDE INFORMATION
+    ========================= */
+
+    .side-title {
+      margin: 0 0 13px;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      color: var(--navy);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+
+      padding: 11px 0;
+
+      border-bottom: 1px solid #eef1f4;
+    }
+
+    .info-row:last-child {
       border-bottom: 0;
-      padding-bottom: 0;
     }
 
-    .info-item i {
-      color: var(--green);
-      font-size: 11px;
-      margin-top: 3px;
+    .info-icon {
+      width: 30px;
+      height: 30px;
+
+      border-radius: 8px;
+
+      background: #f0f5fb;
+      color: var(--blue);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       flex-shrink: 0;
+
+      font-size: 11px;
     }
 
-    .info-item p {
-      color: var(--muted);
+    .info-text strong {
+      display: block;
+
       font-size: 11px;
-      line-height: 1.45;
+      font-weight: 700;
+
+      color: #334155;
+
+      margin-bottom: 3px;
+    }
+
+    .info-text span {
+      display: block;
+
+      font-size: 10px;
+      line-height: 1.4;
+
+      color: var(--muted);
+    }
+
+    .security-box {
+      margin-top: 15px;
+
+      border-radius: 10px;
+
+      background: #eef8f2;
+      border: 1px solid #d6eddf;
+
+      padding: 11px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .security-box i {
+      color: var(--green);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .security-box strong {
+      display: block;
+
+      color: #19713d;
+
+      font-size: 10.5px;
+      margin-bottom: 3px;
+    }
+
+    .security-box span {
+      display: block;
+
+      color: #4d8061;
+
+      font-size: 9.5px;
+      line-height: 1.4;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading {
+      text-align: center;
+
+      padding: 18px 10px;
+
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .loading i {
+      margin-right: 6px;
     }
 
     /* =========================
        REVIEW
     ========================= */
 
-    .review-section,
-    .success-section {
-      display: none;
+    .hidden {
+      display: none !important;
     }
 
     .review-card {
-      overflow: hidden;
+      padding: 20px;
     }
 
     .review-header {
-      padding: 17px 19px;
-      border-bottom: 1px solid #edf0f4;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .review-header-icon {
-      width: 37px;
-      height: 37px;
-      border-radius: 10px;
-      background: #fff7e6;
-      color: #a97812;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .review-header h3 {
-      font-size: 15px;
-      margin-bottom: 2px;
-    }
-
-    .review-header p {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .review-amount {
-      text-align: center;
-      padding: 22px 18px;
-      border-bottom: 1px solid #edf0f4;
-    }
-
-    .review-amount span {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      margin-bottom: 6px;
-    }
-
-    .review-amount strong {
-      font-size: 30px;
-      color: var(--navy-dark);
-      letter-spacing: -.6px;
-    }
-
-    .review-details {
-      padding: 5px 19px;
-    }
-
-    .detail-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 13px 0;
-      border-bottom: 1px solid #f0f2f5;
-      font-size: 12px;
+
+      margin-bottom: 18px;
     }
 
-    .detail-row:last-child {
+    .review-title {
+      margin: 0;
+
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+
+      background: #fff6e5;
+      color: #996b12;
+
+      border-radius: 999px;
+
+      padding: 6px 9px;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .review-list {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      margin-bottom: 16px;
+    }
+
+    .review-row {
+      min-height: 49px;
+
+      padding: 10px 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      border-bottom: 1px solid #edf0f3;
+    }
+
+    .review-row:last-child {
       border-bottom: 0;
     }
 
-    .detail-row span:first-child {
+    .review-label {
       color: var(--muted);
+      font-size: 11px;
     }
 
-    .detail-row span:last-child {
+    .review-value {
+      color: var(--text);
+      font-size: 11px;
       font-weight: 700;
       text-align: right;
-      max-width: 62%;
-      word-break: break-word;
     }
 
-    .remaining-positive {
+    .review-amount {
+      color: var(--blue);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .remaining {
       color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
     }
 
     .review-actions {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
+      grid-template-columns: 0.8fr 1.2fr;
       gap: 9px;
-      padding: 0 19px 19px;
-    }
-
-    .secondary-btn,
-    .confirm-btn {
-      height: 47px;
-      border-radius: 11px;
-      font-size: 13px;
-      font-weight: 750;
-      cursor: pointer;
-    }
-
-    .secondary-btn {
-      border: 1px solid #d9e0ea;
-      background: #fff;
-      color: #273248;
-    }
-
-    .secondary-btn:hover {
-      background: #f7f9fc;
-    }
-
-    .confirm-btn {
-      border: 0;
-      background: linear-gradient(135deg, #0b63ce, #0956b5);
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(11, 99, 206, .13);
     }
 
     /* =========================
-       SUCCESS
+       SUCCESS / NOTICE
     ========================= */
 
     .success-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 30px 22px;
+      padding: 28px 20px;
       text-align: center;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, .05);
-      max-width: 620px;
-      margin: 0 auto;
     }
 
     .success-icon {
-      width: 65px;
-      height: 65px;
-      margin: 0 auto 16px;
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 14px;
+
       border-radius: 50%;
-      background: var(--green-light);
+
+      background: #eaf8f0;
       color: var(--green);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+
+      font-size: 23px;
     }
 
-    .success-card h2 {
-      color: var(--navy-dark);
-      font-size: 22px;
-      margin-bottom: 7px;
+    .success-title {
+      margin: 0;
+
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 800;
     }
 
-    .success-card p {
+    .success-text {
+      margin: 8px auto 18px;
+
+      max-width: 460px;
+
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.5;
-      margin-bottom: 19px;
+    }
+
+    .transaction-box {
+      max-width: 450px;
+
+      margin: 0 auto 18px;
+
+      background: #f6f8fb;
+      border: 1px solid var(--border);
+
+      border-radius: 10px;
+
+      padding: 12px;
+    }
+
+    .transaction-label {
+      display: block;
+
+      color: var(--muted);
+      font-size: 9px;
+
+      margin-bottom: 4px;
     }
 
     .transaction-id {
-      background: #f6f8fb;
-      border: 1px solid #edf0f4;
-      border-radius: 11px;
-      padding: 12px;
-      margin-bottom: 17px;
-      color: var(--muted);
-      font-size: 10px;
-    }
+      color: var(--navy);
 
-    .transaction-id strong {
-      display: block;
-      color: var(--text);
-      font-size: 12px;
-      margin-top: 5px;
+      font-size: 11px;
+      font-weight: 800;
+
       word-break: break-all;
     }
 
     /* =========================
-       FOOTER
+       SERVICE NOTICE
     ========================= */
 
-    .footer-note {
-      text-align: center;
-      color: #98a1af;
-      font-size: 10px;
-      margin-top: 20px;
+    .service-notice {
+      margin-top: 14px;
+
+      padding: 11px 12px;
+
+      background: #fff8e8;
+      border: 1px solid #f1dfae;
+
+      border-radius: 9px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .service-notice i {
+      color: var(--amber);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .service-notice span {
+      color: #7b632b;
+      font-size: 9.5px;
+      line-height: 1.45;
+    }
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-box {
+      margin-bottom: 15px;
+
+      padding: 10px 12px;
+
+      background: #fff1f1;
+      border: 1px solid #f1cccc;
+
+      color: var(--danger);
+
+      border-radius: 9px;
+
+      font-size: 10.5px;
+      line-height: 1.4;
     }
 
     /* =========================
@@ -678,75 +935,110 @@
 
     @media (max-width: 760px) {
 
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .side-column {
-        display: none;
-      }
-
-      .content {
-        padding: 22px 16px 30px;
-      }
-
-      .page-heading h2 {
-        font-size: 23px;
-      }
-    }
-
-    @media (max-width: 480px) {
-
       .topbar {
         height: 62px;
         padding: 0 14px;
       }
 
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .brand-sub {
+        font-size: 9px;
+      }
+
+      .secure-label {
+        font-size: 9px;
+      }
+
+      .page {
+        width: min(100% - 20px, 680px);
+        margin-top: 17px;
+      }
+
+      .withdraw-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-card {
+        order: 2;
+      }
+
+      .account-grid {
+        gap: 7px;
+      }
+
+      .account-option label {
+        padding: 10px 8px;
+      }
+
+      .account-name {
+        font-size: 10px;
+      }
+
+      .account-balance {
+        font-size: 11px;
+      }
+
+      .destination-grid {
+        gap: 6px;
+      }
+
+      .destination-option label {
+        font-size: 9.5px;
+      }
+    }
+
+    @media (max-width: 430px) {
+
       .secure-label {
         display: none;
       }
 
-      .brand-text h1 {
-        font-size: 14px;
+      .page-title {
+        font-size: 22px;
       }
 
-      .brand-logo {
-        width: 36px;
-        height: 36px;
+      .page-description {
+        font-size: 12px;
       }
 
-      .content {
-        padding: 18px 13px 25px;
-      }
-
-      .form-card {
+      .form-card,
+      .review-card {
         padding: 16px;
       }
 
-      .destination-options {
-        gap: 6px;
+      .account-grid {
+        grid-template-columns: 1fr;
       }
 
-      .destination-label {
-        min-height: 68px;
-        padding: 8px 4px;
+      .account-option label {
+        display: grid;
+        grid-template-columns: 33px 1fr auto;
+        align-items: center;
+        gap: 9px;
       }
 
-      .destination-label span {
-        font-size: 9px;
+      .account-icon {
+        margin: 0;
+      }
+
+      .account-number {
+        margin-top: 2px;
+      }
+
+      .account-balance {
+        margin-top: 0;
+        text-align: right;
+      }
+
+      .destination-option label {
+        min-height: 65px;
       }
 
       .review-actions {
         grid-template-columns: 1fr;
-      }
-
-      .secondary-btn,
-      .confirm-btn {
-        width: 100%;
-      }
-
-      .success-card {
-        padding: 27px 18px;
       }
     }
   </style>
@@ -754,19 +1046,19 @@
 
 <body>
 
-  <div class="page">
+  <!-- =========================
+       TOP BAR
+  ========================= -->
 
-    <!-- =========================
-         TOP BAR
-    ========================= -->
+  <header class="topbar">
 
-    <header class="topbar">
+    <div class="top-left">
 
       <button
         class="back-btn"
         id="backBtn"
         type="button"
-        aria-label="Back to dashboard"
+        aria-label="Go back"
       >
         <i class="fa-solid fa-arrow-left"></i>
       </button>
@@ -778,540 +1070,730 @@
         </div>
 
         <div class="brand-text">
-          <h1>First Merit Bank</h1>
-          <span>Online Banking</span>
+          <div class="brand-name">
+            First Merit Bank
+          </div>
+
+          <div class="brand-sub">
+            Online Banking
+          </div>
         </div>
 
       </div>
 
-      <div class="header-spacer"></div>
+    </div>
 
-      <div class="secure-label">
-        <i class="fa-solid fa-shield-halved"></i>
-        Secure
-      </div>
+    <div class="secure-label">
+      <i class="fa-solid fa-shield-halved"></i>
+      Secure
+    </div>
 
-    </header>
+  </header>
 
 
-    <main class="content">
+  <main class="page">
 
-      <!-- =========================
-           FORM SECTION
-      ========================= -->
+    <!-- =========================
+         PAGE HEADER
+    ========================= -->
 
-      <section id="formSection">
+    <section class="page-header">
 
-        <div class="page-heading">
+      <h1 class="page-title">
+        Withdraw Money
+      </h1>
 
-          <h2>Withdraw Money</h2>
+      <p class="page-description">
+        Select an account, enter your withdrawal amount,
+        and review the details before continuing.
+      </p>
 
-          <p>
-            Move funds from your checking account to your selected destination.
-          </p>
+    </section>
 
-        </div>
 
+    <!-- =========================
+         ERROR
+    ========================= -->
 
-        <div class="layout">
+    <div
+      id="errorBox"
+      class="error-box hidden"
+      role="alert"
+    ></div>
 
-          <!-- MAIN FORM -->
 
-          <div class="main-column">
+    <!-- =========================
+         LOADING
+    ========================= -->
 
-            <div class="card form-card">
+    <div
+      id="loadingBox"
+      class="card loading"
+    >
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
+      Loading your account information...
+    </div>
 
-              <div class="card-heading">
 
-                <div class="card-heading-icon">
-                  <i class="fa-solid fa-money-bill-transfer"></i>
-                </div>
+    <!-- =========================
+         WITHDRAW FORM
+    ========================= -->
 
-                <div>
-                  <h3>Withdrawal details</h3>
-                  <p>Enter the amount and destination.</p>
-                </div>
+    <section
+      id="withdrawSection"
+      class="withdraw-grid hidden"
+    >
 
-              </div>
+      <div class="card form-card">
 
+        <h2 class="card-title">
+          <i class="fa-solid fa-wallet"></i>
+          Withdrawal Details
+        </h2>
 
-              <!-- AMOUNT -->
 
-              <div class="field">
+        <!-- ACCOUNT SELECTOR -->
 
-                <label for="amount">
-                  Withdrawal amount
-                </label>
+        <div class="field">
 
-                <div class="amount-wrap">
+          <label class="field-label">
+            Withdraw from
+          </label>
 
-                  <span class="currency">$</span>
+          <div class="account-grid">
 
-                  <input
-                    class="amount-input"
-                    type="number"
-                    id="amount"
-                    min="0.01"
-                    step="0.01"
-                    inputmode="decimal"
-                    placeholder="0.00"
-                    autocomplete="off"
-                  >
+            <!-- CHECKING -->
 
-                </div>
+            <div class="account-option">
 
-              </div>
-
-
-              <!-- DESTINATION -->
-
-              <div class="field">
-
-                <label>
-                  Withdrawal destination
-                </label>
-
-                <div class="destination-options">
-
-                  <div class="destination-option">
-
-                    <input
-                      type="radio"
-                      name="destination"
-                      id="bankAccount"
-                      value="Bank Account"
-                      checked
-                    >
-
-                    <label
-                      class="destination-label"
-                      for="bankAccount"
-                    >
-                      <i class="fa-solid fa-building-columns"></i>
-                      <span>Bank Account</span>
-                    </label>
-
-                  </div>
-
-
-                  <div class="destination-option">
-
-                    <input
-                      type="radio"
-                      name="destination"
-                      id="externalAccount"
-                      value="External Account"
-                    >
-
-                    <label
-                      class="destination-label"
-                      for="externalAccount"
-                    >
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                      <span>External Account</span>
-                    </label>
-
-                  </div>
-
-
-                  <div class="destination-option">
-
-                    <input
-                      type="radio"
-                      name="destination"
-                      id="cashWithdrawal"
-                      value="Cash Withdrawal"
-                    >
-
-                    <label
-                      class="destination-label"
-                      for="cashWithdrawal"
-                    >
-                      <i class="fa-solid fa-money-bill-wave"></i>
-                      <span>Cash</span>
-                    </label>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              <!-- REFERENCE -->
-
-              <div class="field">
-
-                <label for="reference">
-
-                  Reference
-
-                  <span
-                    style="font-weight:400;color:#8b95a5;"
-                  >
-                    (optional)
-                  </span>
-
-                </label>
-
-                <input
-                  type="text"
-                  id="reference"
-                  maxlength="100"
-                  placeholder="Add a reference"
-                  autocomplete="off"
-                >
-
-              </div>
-
-
-              <!-- MESSAGE -->
-
-              <div
-                id="formMessage"
-                class="message"
-                role="alert"
-              ></div>
-
-
-              <!-- REVIEW BUTTON -->
-
-              <button
-                class="primary-btn"
-                id="reviewBtn"
-                type="button"
+              <input
+                type="radio"
+                name="sourceAccount"
+                id="checkingAccount"
+                value="checking"
+                checked
               >
-                Review Withdrawal
 
-                <i
-                  class="fa-solid fa-arrow-right"
-                  style="margin-left:7px;"
-                ></i>
+              <label for="checkingAccount">
 
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <!-- SIDE INFORMATION -->
-
-          <aside class="side-column">
-
-            <div class="card info-card">
-
-              <div class="info-title">
-
-                <div class="info-title-icon">
-                  <i class="fa-solid fa-circle-info"></i>
-                </div>
-
-                <h3>Before you withdraw</h3>
-
-              </div>
-
-
-              <div class="info-item">
-
-                <i class="fa-solid fa-check"></i>
-
-                <p>
-                  Make sure the withdrawal amount does not exceed your available balance.
-                </p>
-
-              </div>
-
-
-              <div class="info-item">
-
-                <i class="fa-solid fa-check"></i>
-
-                <p>
-                  Review the destination and amount carefully before confirming.
-                </p>
-
-              </div>
-
-
-              <div class="info-item">
-
-                <i class="fa-solid fa-check"></i>
-
-                <p>
-                  Your transaction record will be available in your account activity.
-                </p>
-
-              </div>
-
-            </div>
-
-          </aside>
-
-        </div>
-
-      </section>
-
-
-      <!-- =========================
-           REVIEW SECTION
-      ========================= -->
-
-      <section
-        class="review-section"
-        id="reviewSection"
-      >
-
-        <div class="page-heading">
-
-          <h2>Review Withdrawal</h2>
-
-          <p>
-            Check your withdrawal details before confirming.
-          </p>
-
-        </div>
-
-
-        <div class="layout">
-
-          <div class="main-column">
-
-            <div class="card review-card">
-
-              <div class="review-header">
-
-                <div class="review-header-icon">
-                  <i class="fa-solid fa-file-invoice-dollar"></i>
+                <div class="account-icon">
+                  <i class="fa-solid fa-building-columns"></i>
                 </div>
 
                 <div>
-                  <h3>Withdrawal details</h3>
-                  <p>Confirm the information below.</p>
-                </div>
+                  <div class="account-name">
+                    Checking
+                  </div>
 
-              </div>
-
-
-              <div class="review-amount">
-
-                <span>
-                  Withdrawal amount
-                </span>
-
-                <strong id="reviewAmount">
-                  $0.00
-                </strong>
-
-              </div>
-
-
-              <div class="review-details">
-
-                <div class="detail-row">
-
-                  <span>
-                    Destination
-                  </span>
-
-                  <span id="reviewDestination">
-                    Bank Account
-                  </span>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Current balance
-                  </span>
-
-                  <span id="reviewCurrentBalance">
-                    $0.00
-                  </span>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Remaining balance
-                  </span>
-
-                  <span
-                    id="reviewRemainingBalance"
-                    class="remaining-positive"
+                  <div
+                    class="account-number"
+                    id="checkingNumber"
                   >
-                    $0.00
-                  </span>
-
+                    Account ••••
+                  </div>
                 </div>
 
-
-                <div class="detail-row">
-
-                  <span>
-                    Reference
-                  </span>
-
-                  <span id="reviewReference">
-                    —
-                  </span>
-
+                <div
+                  class="account-balance"
+                  id="checkingBalance"
+                >
+                  $0.00
                 </div>
 
-              </div>
+              </label>
+
+            </div>
 
 
-              <div
-                id="reviewMessage"
-                class="message"
-                role="alert"
-              ></div>
+            <!-- SAVINGS -->
 
+            <div class="account-option">
 
-              <div class="review-actions">
+              <input
+                type="radio"
+                name="sourceAccount"
+                id="savingsAccount"
+                value="savings"
+              >
 
-                <button
-                  class="secondary-btn"
-                  id="editBtn"
-                  type="button"
+              <label for="savingsAccount">
+
+                <div class="account-icon">
+                  <i class="fa-solid fa-piggy-bank"></i>
+                </div>
+
+                <div>
+                  <div class="account-name">
+                    Savings
+                  </div>
+
+                  <div
+                    class="account-number"
+                    id="savingsNumber"
+                  >
+                    Account ••••
+                  </div>
+                </div>
+
+                <div
+                  class="account-balance"
+                  id="savingsBalance"
                 >
+                  $0.00
+                </div>
 
-                  <i
-                    class="fa-solid fa-pen"
-                    style="margin-right:6px;"
-                  ></i>
+              </label>
 
-                  Edit
-
-                </button>
+            </div>
 
 
-                <button
-                  class="confirm-btn"
-                  id="confirmBtn"
-                  type="button"
+            <!-- IRA -->
+
+            <div class="account-option">
+
+              <input
+                type="radio"
+                name="sourceAccount"
+                id="iraAccount"
+                value="ira"
+              >
+
+              <label for="iraAccount">
+
+                <div class="account-icon">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+                  <div class="account-name">
+                    IRA
+                  </div>
+
+                  <div
+                    class="account-number"
+                    id="iraNumber"
+                  >
+                    Account ••••
+                  </div>
+                </div>
+
+                <div
+                  class="account-balance"
+                  id="iraBalance"
                 >
-                  Confirm Withdrawal
-                </button>
+                  $0.00
+                </div>
 
-              </div>
+              </label>
 
             </div>
 
           </div>
-
-
-          <aside class="side-column">
-
-            <div class="card info-card">
-
-              <div class="info-title">
-
-                <div class="info-title-icon">
-                  <i class="fa-solid fa-shield-halved"></i>
-                </div>
-
-                <h3>Review carefully</h3>
-
-              </div>
-
-
-              <div class="info-item">
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                <p>
-                  The amount shown here will be deducted from your available balance.
-                </p>
-
-              </div>
-
-
-              <div class="info-item">
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                <p>
-                  Confirm only after checking the destination and reference.
-                </p>
-
-              </div>
-
-            </div>
-
-          </aside>
 
         </div>
 
-      </section>
 
+        <!-- AMOUNT -->
 
-      <!-- =========================
-           SUCCESS SECTION
-      ========================= -->
+        <div class="field">
 
-      <section
-        class="success-section"
-        id="successSection"
-      >
+          <label
+            class="field-label"
+            for="withdrawAmount"
+          >
+            Withdrawal amount
+          </label>
 
-        <div class="success-card">
+          <div class="input-wrap">
 
-          <div class="success-icon">
-            <i class="fa-solid fa-check"></i>
-          </div>
+            <i class="fa-solid fa-dollar-sign input-icon"></i>
 
-          <h2>
-            Withdrawal Successful
-          </h2>
-
-          <p>
-            Your withdrawal has been recorded successfully.
-          </p>
-
-
-          <div class="transaction-id">
-
-            Transaction ID
-
-            <strong id="transactionId">
-              —
-            </strong>
+            <input
+              id="withdrawAmount"
+              class="input amount-input has-icon"
+              type="number"
+              inputmode="decimal"
+              min="0.01"
+              step="0.01"
+              placeholder="0.00"
+              autocomplete="off"
+            >
 
           </div>
 
+          <div class="helper">
+            Available balance will be checked before the withdrawal is reviewed.
+          </div>
 
-          <button
-            class="primary-btn"
-            id="dashboardBtn"
-            type="button"
+        </div>
+
+
+        <!-- DESTINATION -->
+
+        <div class="field">
+
+          <label class="field-label">
+            Withdrawal destination
+          </label>
+
+          <div class="destination-grid">
+
+            <div class="destination-option">
+
+              <input
+                type="radio"
+                name="destination"
+                id="bankDestination"
+                value="Bank Account"
+                checked
+              >
+
+              <label for="bankDestination">
+
+                <i class="fa-solid fa-building-columns"></i>
+
+                Bank Account
+
+              </label>
+
+            </div>
+
+
+            <div class="destination-option">
+
+              <input
+                type="radio"
+                name="destination"
+                id="externalDestination"
+                value="External Account"
+              >
+
+              <label for="externalDestination">
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                External Account
+
+              </label>
+
+            </div>
+
+
+            <div class="destination-option">
+
+              <input
+                type="radio"
+                name="destination"
+                id="cashDestination"
+                value="Cash Withdrawal"
+              >
+
+              <label for="cashDestination">
+
+                <i class="fa-solid fa-money-bill-wave"></i>
+
+                Cash Withdrawal
+
+              </label>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- REFERENCE -->
+
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="reference"
+          >
+            Reference
+            <span style="font-weight:500;color:#8a95a5;">
+              (optional)
+            </span>
+          </label>
+
+          <input
+            id="reference"
+            class="input reference-input"
+            type="text"
+            maxlength="80"
+            placeholder="Add a note for this withdrawal"
+            autocomplete="off"
           >
 
-            <i
-              class="fa-solid fa-house"
-              style="margin-right:7px;"
-            ></i>
+        </div>
 
-            Return to Dashboard
 
-          </button>
+        <!-- REVIEW BUTTON -->
+
+        <button
+          id="reviewBtn"
+          class="primary-btn"
+          type="button"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+          Review Withdrawal
+        </button>
+
+
+        <!-- SERVICE NOTICE -->
+
+        <div class="service-notice">
+
+          <i class="fa-solid fa-circle-info"></i>
+
+          <span>
+            Your account balances are read directly from your
+            First Merit account record. The secure withdrawal
+            processing service is not connected yet, so confirming
+            this screen will not charge or change your account.
+          </span>
 
         </div>
 
-      </section>
-
-
-      <div class="footer-note">
-        First Merit Bank
       </div>
 
-    </main>
 
-  </div>
+      <!-- =========================
+           SIDE INFORMATION
+      ========================= -->
+
+      <aside class="card side-card">
+
+        <h3 class="side-title">
+          Withdrawal information
+        </h3>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Choose an account
+            </strong>
+
+            <span>
+              Select Checking, Savings, or IRA before entering
+              the amount.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Balance check
+            </strong>
+
+            <span>
+              The requested amount cannot exceed the available
+              account balance.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Review first
+            </strong>
+
+            <span>
+              You will see the complete withdrawal details
+              before continuing.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="security-box">
+
+          <i class="fa-solid fa-shield-halved"></i>
+
+          <div>
+
+            <strong>
+              Account protection
+            </strong>
+
+            <span>
+              Never share your password, verification codes,
+              or account credentials with anyone.
+            </span>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEW SECTION
+    ========================= -->
+
+    <section
+      id="reviewSection"
+      class="card review-card hidden"
+    >
+
+      <div class="review-header">
+
+        <h2 class="review-title">
+          Review Withdrawal
+        </h2>
+
+        <div class="status-pill">
+          <i class="fa-solid fa-clock"></i>
+          Review
+        </div>
+
+      </div>
+
+
+      <div class="review-list">
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Source account
+          </span>
+
+          <span
+            class="review-value"
+            id="reviewAccount"
+          >
+            Checking
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Account number
+          </span>
+
+          <span
+            class="review-value"
+            id="reviewAccountNumber"
+          >
+            ••••
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Withdrawal amount
+          </span>
+
+          <span
+            class="review-value review-amount"
+            id="reviewAmount"
+          >
+            $0.00
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Destination
+          </span>
+
+          <span
+            class="review-value"
+            id="reviewDestination"
+          >
+            Bank Account
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Current balance
+          </span>
+
+          <span
+            class="review-value"
+            id="reviewCurrentBalance"
+          >
+            $0.00
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Balance after withdrawal
+          </span>
+
+          <span
+            class="review-value remaining"
+            id="reviewRemainingBalance"
+          >
+            $0.00
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Reference
+          </span>
+
+          <span
+            class="review-value"
+            id="reviewReference"
+          >
+            None
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="service-notice">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <span>
+          This is a review only. The secure withdrawal processing
+          service is not connected yet. Your balance will not be
+          changed by confirming this screen.
+        </span>
+
+      </div>
+
+
+      <div
+        class="review-actions"
+        style="margin-top:15px;"
+      >
+
+        <button
+          id="editBtn"
+          class="secondary-btn"
+          type="button"
+        >
+          <i class="fa-solid fa-pen"></i>
+          Edit
+        </button>
+
+        <button
+          id="confirmBtn"
+          class="primary-btn"
+          type="button"
+        >
+          <i class="fa-solid fa-lock"></i>
+          Confirm Withdrawal
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUCCESS SECTION
+    ========================= -->
+
+    <section
+      id="successSection"
+      class="card success-card hidden"
+    >
+
+      <div class="success-icon">
+
+        <i class="fa-solid fa-check"></i>
+
+      </div>
+
+      <h2 class="success-title">
+        Withdrawal Request Reviewed
+      </h2>
+
+      <p class="success-text">
+        Your withdrawal details were successfully reviewed.
+        No funds were deducted because the secure withdrawal
+        processing service is not connected yet.
+      </p>
+
+
+      <div class="transaction-box">
+
+        <span class="transaction-label">
+          REVIEW REFERENCE
+        </span>
+
+        <div
+          class="transaction-id"
+          id="transactionId"
+        >
+          FM-REVIEW
+        </div>
+
+      </div>
+
+
+      <button
+        id="dashboardBtn"
+        class="primary-btn"
+        type="button"
+      >
+        <i class="fa-solid fa-house"></i>
+        Return to Dashboard
+      </button>
+
+    </section>
+
+  </main>
 
 
   <!-- =========================
@@ -1319,10 +1801,6 @@
   ========================= -->
 
   <script type="module">
-
-    /* =========================
-       FIREBASE
-    ========================= */
 
     import {
       auth,
@@ -1332,24 +1810,41 @@
 
     import {
       onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
     import {
       doc,
-      getDoc,
-      collection,
-      runTransaction,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
     /* =========================
-       ELEMENTS
+       DOM
     ========================= */
 
-    const backBtn =
-      document.getElementById("backBtn");
+    const loadingBox =
+      document.getElementById("loadingBox");
+
+    const withdrawSection =
+      document.getElementById("withdrawSection");
+
+    const reviewSection =
+      document.getElementById("reviewSection");
+
+    const successSection =
+      document.getElementById("successSection");
+
+    const errorBox =
+      document.getElementById("errorBox");
+
+
+    const withdrawAmount =
+      document.getElementById("withdrawAmount");
+
+    const reference =
+      document.getElementById("reference");
+
 
     const reviewBtn =
       document.getElementById("reviewBtn");
@@ -1363,54 +1858,8 @@
     const dashboardBtn =
       document.getElementById("dashboardBtn");
 
-
-    const formSection =
-      document.getElementById("formSection");
-
-    const reviewSection =
-      document.getElementById("reviewSection");
-
-    const successSection =
-      document.getElementById("successSection");
-
-
-    const amount =
-      document.getElementById("amount");
-
-    const reference =
-      document.getElementById("reference");
-
-
-    const destinationRadios =
-      document.querySelectorAll(
-        'input[name="destination"]'
-      );
-
-
-    const formMessage =
-      document.getElementById("formMessage");
-
-    const reviewMessage =
-      document.getElementById("reviewMessage");
-
-
-    const reviewAmount =
-      document.getElementById("reviewAmount");
-
-    const reviewDestination =
-      document.getElementById("reviewDestination");
-
-    const reviewCurrentBalance =
-      document.getElementById("reviewCurrentBalance");
-
-    const reviewRemainingBalance =
-      document.getElementById("reviewRemainingBalance");
-
-    const reviewReference =
-      document.getElementById("reviewReference");
-
-    const transactionId =
-      document.getElementById("transactionId");
+    const backBtn =
+      document.getElementById("backBtn");
 
 
     /* =========================
@@ -1419,74 +1868,142 @@
 
     let currentUser = null;
 
-    let userBalance = 0;
+    let accounts = {
+      checking: {
+        balance: 0,
+        number: ""
+      },
 
-    let pendingWithdrawal = {
-      amount: 0,
-      destination: "",
-      reference: ""
+      savings: {
+        balance: 0,
+        number: ""
+      },
+
+      ira: {
+        balance: 0,
+        number: ""
+      }
     };
 
 
+    let pendingWithdrawal = null;
+
+
     /* =========================
-       FORMAT CURRENCY
+       HELPERS
     ========================= */
 
-    function formatCurrency(value) {
+    function formatMoney(value) {
 
-      return new Intl.NumberFormat(
+      const amount = Number(value) || 0;
+
+      return amount.toLocaleString(
         "en-US",
         {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
         }
-      ).format(value);
-
+      );
     }
 
 
-    /* =========================
-       MESSAGES
-    ========================= */
+    function cleanNumber(value) {
 
-    function showMessage(
-      element,
-      message
-    ) {
-
-      element.textContent =
-        message;
-
-      element.className =
-        "message error";
-
-    }
-
-
-    function clearMessage(
-      element
-    ) {
-
-      element.textContent =
-        "";
-
-      element.className =
-        "message";
-
-    }
-
-
-    /* =========================
-       ACCOUNT
-    ========================= */
-
-    async function loadAccount() {
-
-      if (!currentUser) {
-        return;
+      if (!value) {
+        return "";
       }
 
-      clearMessage(formMessage);
+      const stringValue = String(value);
+
+      const digits = stringValue.replace(
+        /\D/g,
+        ""
+      );
+
+      if (!digits) {
+        return "";
+      }
+
+      if (digits.length <= 4) {
+        return digits;
+      }
+
+      return digits.slice(-4);
+    }
+
+
+    function accountLabel(account) {
+
+      if (account === "checking") {
+        return "Checking";
+      }
+
+      if (account === "savings") {
+        return "Savings";
+      }
+
+      if (account === "ira") {
+        return "IRA";
+      }
+
+      return "Account";
+    }
+
+
+    function showError(message) {
+
+      errorBox.textContent = message;
+
+      errorBox.classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+
+    function hideError() {
+
+      errorBox.textContent = "";
+
+      errorBox.classList.add("hidden");
+    }
+
+
+    function getSelectedAccount() {
+
+      const selected =
+        document.querySelector(
+          'input[name="sourceAccount"]:checked'
+        );
+
+      return selected
+        ? selected.value
+        : "checking";
+    }
+
+
+    function getSelectedDestination() {
+
+      const selected =
+        document.querySelector(
+          'input[name="destination"]:checked'
+        );
+
+      return selected
+        ? selected.value
+        : "Bank Account";
+    }
+
+
+    /* =========================
+       LOAD ACCOUNT
+    ========================= */
+
+    async function loadAccount(user) {
 
       try {
 
@@ -1494,38 +2011,111 @@
           doc(
             db,
             "users",
-            currentUser.uid
+            user.uid
           );
 
-
-        const userSnap =
+        const snapshot =
           await getDoc(userRef);
 
 
-        if (!userSnap.exists()) {
+        if (!snapshot.exists()) {
 
-          showMessage(
-            formMessage,
-            "Account information could not be found."
+          throw new Error(
+            "Your First Merit account record could not be found."
           );
-
-          reviewBtn.disabled =
-            true;
-
-          return;
 
         }
 
 
-        const userData =
-          userSnap.data();
+        const data =
+          snapshot.data();
 
 
-        userBalance =
-          Number(
-            userData.balance || 0
+        /*
+          IMPORTANT:
+
+          These values come directly from Firestore.
+
+          No default balances are created here.
+          This prevents the withdrawal page from
+          accidentally recreating missing balances.
+        */
+
+        accounts.checking.balance =
+          Number(data.checkingBalance || 0);
+
+        accounts.savings.balance =
+          Number(data.savingsBalance || 0);
+
+        accounts.ira.balance =
+          Number(data.iraBalance || 0);
+
+
+        accounts.checking.number =
+          data.accountNumber || "";
+
+        accounts.savings.number =
+          data.savingsAccountNumber || "";
+
+        accounts.ira.number =
+          data.iraAccountNumber || "";
+
+
+        /* =========================
+           UPDATE ACCOUNT CARDS
+        ========================= */
+
+        document.getElementById(
+          "checkingBalance"
+        ).textContent =
+          formatMoney(
+            accounts.checking.balance
           );
 
+
+        document.getElementById(
+          "savingsBalance"
+        ).textContent =
+          formatMoney(
+            accounts.savings.balance
+          );
+
+
+        document.getElementById(
+          "iraBalance"
+        ).textContent =
+          formatMoney(
+            accounts.ira.balance
+          );
+
+
+        document.getElementById(
+          "checkingNumber"
+        ).textContent =
+          accounts.checking.number
+            ? "•••• " + cleanNumber(accounts.checking.number)
+            : "Account number unavailable";
+
+
+        document.getElementById(
+          "savingsNumber"
+        ).textContent =
+          accounts.savings.number
+            ? "•••• " + cleanNumber(accounts.savings.number)
+            : "Account number unavailable";
+
+
+        document.getElementById(
+          "iraNumber"
+        ).textContent =
+          accounts.ira.number
+            ? "•••• " + cleanNumber(accounts.ira.number)
+            : "Account number unavailable";
+
+
+        loadingBox.classList.add("hidden");
+
+        withdrawSection.classList.remove("hidden");
 
       } catch (error) {
 
@@ -1534,15 +2124,12 @@
           error
         );
 
+        loadingBox.classList.add("hidden");
 
-        showMessage(
-          formMessage,
-          "Unable to load account information."
+        showError(
+          error.message ||
+          "Unable to load your account information."
         );
-
-
-        reviewBtn.disabled =
-          true;
 
       }
 
@@ -1563,34 +2150,12 @@
             "login.html";
 
           return;
-
         }
 
 
-        currentUser =
-          user;
+        currentUser = user;
 
-
-        reviewBtn.disabled =
-          false;
-
-
-        await loadAccount();
-
-      }
-    );
-
-
-    /* =========================
-       BACK
-    ========================= */
-
-    backBtn.addEventListener(
-      "click",
-      () => {
-
-        window.location.href =
-          "dashboard.html";
+        await loadAccount(user);
 
       }
     );
@@ -1604,122 +2169,176 @@
       "click",
       () => {
 
-        clearMessage(formMessage);
+        hideError();
 
 
-        const withdrawalAmount =
+        const amount =
           Number(
-            amount.value
+            withdrawAmount.value
           );
 
 
-        if (
-          !Number.isFinite(
-            withdrawalAmount
-          ) ||
-          withdrawalAmount <= 0
-        ) {
-
-          showMessage(
-            formMessage,
-            "Please enter a valid withdrawal amount."
-          );
-
-          amount.focus();
-
-          return;
-
-        }
-
-
-        if (
-          withdrawalAmount >
-          userBalance
-        ) {
-
-          showMessage(
-            formMessage,
-            "Insufficient available balance."
-          );
-
-          return;
-
-        }
+        const selectedAccount =
+          getSelectedAccount();
 
 
         const selectedDestination =
-          document.querySelector(
-            'input[name="destination"]:checked'
+          getSelectedDestination();
+
+
+        const account =
+          accounts[selectedAccount];
+
+
+        /* =========================
+           VALIDATE AMOUNT
+        ========================= */
+
+        if (
+          !Number.isFinite(amount) ||
+          amount <= 0
+        ) {
+
+          showError(
+            "Enter a valid withdrawal amount."
           );
 
-
-        if (!selectedDestination) {
-
-          showMessage(
-            formMessage,
-            "Please select a withdrawal destination."
-          );
+          withdrawAmount.focus();
 
           return;
-
         }
 
 
+        if (
+          amount > account.balance
+        ) {
+
+          showError(
+            `Insufficient funds. Your ${accountLabel(selectedAccount)} balance is ${formatMoney(account.balance)}.`
+          );
+
+          withdrawAmount.focus();
+
+          return;
+        }
+
+
+        /* =========================
+           MAX DECIMAL CHECK
+        ========================= */
+
+        const decimalPlaces =
+          String(amount)
+            .split(".")[1]?.length || 0;
+
+
+        if (decimalPlaces > 2) {
+
+          showError(
+            "Withdrawal amounts can contain a maximum of two decimal places."
+          );
+
+          withdrawAmount.focus();
+
+          return;
+        }
+
+
+        /* =========================
+           SAVE REVIEW STATE
+        ========================= */
+
         pendingWithdrawal = {
 
-          amount:
-            withdrawalAmount,
+          amount,
+
+          account:
+            selectedAccount,
 
           destination:
-            selectedDestination.value,
+            selectedDestination,
 
           reference:
-            reference.value.trim()
+            reference.value.trim(),
+
+          currentBalance:
+            account.balance,
+
+          remainingBalance:
+            account.balance - amount,
+
+          accountNumber:
+            account.number
 
         };
 
 
-        reviewAmount.textContent =
-          formatCurrency(
-            pendingWithdrawal.amount
+        /* =========================
+           REVIEW DATA
+        ========================= */
+
+        document.getElementById(
+          "reviewAccount"
+        ).textContent =
+          accountLabel(
+            selectedAccount
           );
 
 
-        reviewDestination.textContent =
-          pendingWithdrawal.destination;
+        document.getElementById(
+          "reviewAccountNumber"
+        ).textContent =
+          account.number
+            ? "•••• " + cleanNumber(account.number)
+            : "Account number unavailable";
 
 
-        reviewCurrentBalance.textContent =
-          formatCurrency(
-            userBalance
+        document.getElementById(
+          "reviewAmount"
+        ).textContent =
+          formatMoney(amount);
+
+
+        document.getElementById(
+          "reviewDestination"
+        ).textContent =
+          selectedDestination;
+
+
+        document.getElementById(
+          "reviewCurrentBalance"
+        ).textContent =
+          formatMoney(
+            account.balance
           );
 
 
-        reviewRemainingBalance.textContent =
-          formatCurrency(
-            userBalance -
-            pendingWithdrawal.amount
+        document.getElementById(
+          "reviewRemainingBalance"
+        ).textContent =
+          formatMoney(
+            account.balance - amount
           );
 
 
-        reviewReference.textContent =
+        document.getElementById(
+          "reviewReference"
+        ).textContent =
           pendingWithdrawal.reference ||
-          "—";
+          "None";
 
 
-        clearMessage(
-          reviewMessage
+        withdrawSection.classList.add(
+          "hidden"
         );
 
+        reviewSection.classList.remove(
+          "hidden"
+        );
 
-        formSection.style.display =
-          "none";
-
-        reviewSection.style.display =
-          "block";
-
-        successSection.style.display =
-          "none";
+        successSection.classList.add(
+          "hidden"
+        );
 
 
         window.scrollTo({
@@ -1739,19 +2358,76 @@
       "click",
       () => {
 
-        clearMessage(
-          reviewMessage
+        reviewSection.classList.add(
+          "hidden"
         );
 
+        withdrawSection.classList.remove(
+          "hidden"
+        );
 
-        reviewSection.style.display =
-          "none";
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
-        formSection.style.display =
-          "block";
+      }
+    );
 
-        successSection.style.display =
-          "none";
+
+    /* =========================
+       CONFIRM
+    ========================= */
+
+    confirmBtn.addEventListener(
+      "click",
+      () => {
+
+        if (!pendingWithdrawal) {
+
+          showError(
+            "There is no withdrawal ready for confirmation."
+          );
+
+          return;
+        }
+
+
+        /*
+          IMPORTANT SECURITY NOTE:
+
+          The actual withdrawal backend is not connected yet.
+
+          Therefore this button intentionally DOES NOT
+          modify Firestore balances.
+
+          This prevents a client-side page from pretending
+          to perform a secure financial transaction.
+        */
+
+
+        const reviewId =
+          "FM-REVIEW-" +
+          Date.now().toString(36).toUpperCase();
+
+
+        document.getElementById(
+          "transactionId"
+        ).textContent =
+          reviewId;
+
+
+        reviewSection.classList.add(
+          "hidden"
+        );
+
+        withdrawSection.classList.add(
+          "hidden"
+        );
+
+        successSection.classList.remove(
+          "hidden"
+        );
 
 
         window.scrollTo({
@@ -1764,268 +2440,45 @@
 
 
     /* =========================
-       CONFIRM WITHDRAWAL
-    ========================= */
-
-    confirmBtn.addEventListener(
-      "click",
-      async () => {
-
-        clearMessage(
-          reviewMessage
-        );
-
-
-        if (!currentUser) {
-
-          window.location.href =
-            "login.html";
-
-          return;
-
-        }
-
-
-        if (
-          !pendingWithdrawal.amount ||
-          pendingWithdrawal.amount <= 0
-        ) {
-
-          showMessage(
-            reviewMessage,
-            "Invalid withdrawal amount."
-          );
-
-          return;
-
-        }
-
-
-        confirmBtn.disabled =
-          true;
-
-        editBtn.disabled =
-          true;
-
-        confirmBtn.textContent =
-          "Processing...";
-
-
-        /*
-          IMPORTANT:
-          Declared outside the try block so the
-          transaction ID can be used after the
-          Firestore transaction completes.
-        */
-
-        let transactionRef;
-
-
-        try {
-
-          const userRef =
-            doc(
-              db,
-              "users",
-              currentUser.uid
-            );
-
-
-          transactionRef =
-            doc(
-              collection(
-                db,
-                "users",
-                currentUser.uid,
-                "transactions"
-              )
-            );
-
-
-          await runTransaction(
-            db,
-            async (transaction) => {
-
-              /*
-                Read the latest account balance
-                directly from Firestore.
-              */
-
-              const userSnap =
-                await transaction.get(
-                  userRef
-                );
-
-
-              if (!userSnap.exists()) {
-
-                throw new Error(
-                  "Account not found."
-                );
-
-              }
-
-
-              const userData =
-                userSnap.data();
-
-
-              const balance =
-                Number(
-                  userData.balance || 0
-                );
-
-
-              /*
-                Check the CURRENT Firestore
-                balance, not just the old balance
-                shown on the review screen.
-              */
-
-              if (
-                pendingWithdrawal.amount >
-                balance
-              ) {
-
-                throw new Error(
-                  "Insufficient available balance."
-                );
-
-              }
-
-
-              const newBalance =
-                balance -
-                pendingWithdrawal.amount;
-
-
-              /*
-                Update account balance.
-              */
-
-              transaction.update(
-                userRef,
-                {
-                  balance:
-                    newBalance
-                }
-              );
-
-
-              /*
-                Create transaction record.
-              */
-
-              transaction.set(
-                transactionRef,
-                {
-
-                  type:
-                    "withdrawal",
-
-                  title:
-                    "Withdrawal",
-
-                  amount:
-                    pendingWithdrawal.amount,
-
-                  direction:
-                    "debit",
-
-                  destination:
-                    pendingWithdrawal.destination,
-
-                  reference:
-                    pendingWithdrawal.reference,
-
-                  status:
-                    "completed",
-
-                  createdAt:
-                    serverTimestamp()
-
-                }
-              );
-
-            }
-          );
-
-
-          /*
-            Update local balance after the
-            Firestore transaction succeeds.
-          */
-
-          userBalance =
-            userBalance -
-            pendingWithdrawal.amount;
-
-
-          /*
-            Show transaction ID.
-          */
-
-          transactionId.textContent =
-            transactionRef.id;
-
-
-          /*
-            Show success screen.
-          */
-
-          reviewSection.style.display =
-            "none";
-
-          formSection.style.display =
-            "none";
-
-          successSection.style.display =
-            "block";
-
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-
-        } catch (error) {
-
-          console.error(
-            "Withdrawal error:",
-            error
-          );
-
-
-          showMessage(
-            reviewMessage,
-            error.message ||
-            "Unable to complete the withdrawal."
-          );
-
-
-          confirmBtn.disabled =
-            false;
-
-          editBtn.disabled =
-            false;
-
-          confirmBtn.textContent =
-            "Confirm Withdrawal";
-
-        }
-
-      }
-    );
-
-
-    /* =========================
        DASHBOARD
     ========================= */
 
     dashboardBtn.addEventListener(
       "click",
       () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+
+    /* =========================
+       BACK
+    ========================= */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          !reviewSection.classList.contains(
+            "hidden"
+          )
+        ) {
+
+          reviewSection.classList.add(
+            "hidden"
+          );
+
+          withdrawSection.classList.remove(
+            "hidden"
+          );
+
+          return;
+        }
+
 
         window.location.href =
           "dashboard.html";
