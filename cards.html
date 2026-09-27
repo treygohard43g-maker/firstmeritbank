@@ -256,7 +256,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  
   align-items: flex-end;
   margin-top: 21px;
   gap: 18px;
@@ -275,14 +275,20 @@
   text-overflow: ellipsis;
 }
 
-.visa-logo {
-  font-size: 25px;
-  line-height: 1;
-  font-weight: 900;
-  font-style: italic;
-  letter-spacing: -2px;
-  color: #ffffff;
+.visa-brand {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-width: 58px;
 }
+
+   .visa-brand img {
+     display: block;
+     width: 58px;
+     height: auto;
+     max-height: 30px;
+     object-fit: contain;
+    }
 
     .card-actions {
       display: flex;
