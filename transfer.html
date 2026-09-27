@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
 
   <title>Bill Pay | First Merit Bank</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link
     rel="stylesheet"
@@ -14,82 +34,100 @@
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     :root {
       --navy: #082b57;
-      --navy-dark: #061f40;
-      --blue: #0b63ce;
-      --blue-light: #eaf3ff;
-      --gold: #c8a44d;
-      --green: #18864b;
-      --green-light: #eaf8f0;
+      --navy-dark: #061d3d;
+      --blue: #1769d1;
+      --cyan: #12a7c4;
+      --green: #159447;
+      --amber: #d99f25;
+
+      --bg: #f5f7fa;
+      --card: #ffffff;
       --text: #172033;
-      --muted: #697386;
+      --muted: #718096;
       --border: #e3e8ef;
-      --background: #f5f7fa;
+      --danger: #c83c3c;
+
+      --shadow:
+        0 8px 24px rgba(18, 38, 63, 0.07);
     }
 
     body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Arial, sans-serif;
-      background: var(--background);
+      margin: 0;
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
     }
 
     button,
-    input,
-    select {
+    input {
       font: inherit;
     }
 
-    .page {
-      width: 100%;
-      min-height: 100vh;
+    button {
+      cursor: pointer;
     }
 
-    /* TOP BAR */
+    /* =========================
+       TOP BAR
+    ========================= */
 
     .topbar {
       height: 68px;
       background: #fff;
       border-bottom: 1px solid var(--border);
+
       display: flex;
       align-items: center;
+
       padding: 0 22px;
+
       position: sticky;
       top: 0;
       z-index: 20;
     }
 
     .topbar-inner {
-      width: 100%;
-      max-width: 980px;
-      margin: auto;
+      width: min(1080px, 100%);
+      margin: 0 auto;
+
       display: flex;
       align-items: center;
-      gap: 13px;
+      justify-content: space-between;
+    }
+
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .back-btn {
-      width: 40px;
-      height: 40px;
-      border: 0;
-      border-radius: 11px;
-      background: #f1f4f8;
-      color: var(--text);
+      width: 38px;
+      height: 38px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #fff;
+      color: var(--navy);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      flex-shrink: 0;
     }
 
-    .back-btn:hover {
-      background: #e7edf5;
+    .back-btn:active {
+      transform: scale(.96);
     }
 
     .brand {
@@ -99,146 +137,367 @@
     }
 
     .brand-logo {
-      width: 38px;
-      height: 38px;
+      width: 35px;
+      height: 35px;
+
       border-radius: 10px;
-      background: var(--navy);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--blue)
+        );
+
       color: #fff;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
+
       font-size: 13px;
-      letter-spacing: -.5px;
-      border-bottom: 3px solid var(--gold);
-    }
-
-    .brand-text h1 {
-      font-size: 15px;
-      line-height: 1.1;
-      color: var(--navy);
       font-weight: 800;
     }
 
-    .brand-text span {
-      display: block;
-      margin-top: 3px;
-      font-size: 10px;
+    .brand-name {
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .brand-sub {
       color: var(--muted);
-      letter-spacing: .2px;
+      font-size: 10px;
+      margin-top: 2px;
     }
 
-    /* MAIN */
+    .secure-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
 
-    .content {
-      width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 18px 45px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
     }
 
-    .page-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 285px;
-      gap: 18px;
-      align-items: start;
+    /* =========================
+       PAGE
+    ========================= */
+
+    .page {
+      width: min(1080px, calc(100% - 28px));
+      margin: 22px auto 40px;
     }
 
-    .main-column {
-      min-width: 0;
-    }
-
-    .side-column {
-      min-width: 0;
-    }
-
-    .page-title {
+    .page-header {
       margin-bottom: 18px;
     }
 
-    .page-title h2 {
-      font-size: 25px;
-      line-height: 1.15;
-      margin-bottom: 6px;
+    .page-title {
+      margin: 0;
+
       color: var(--navy);
-      letter-spacing: -.4px;
+
+      font-size: clamp(23px, 4vw, 30px);
+      line-height: 1.15;
+
+      font-weight: 800;
+      letter-spacing: -.7px;
     }
 
-    .page-title p {
+    .page-description {
+      margin: 7px 0 0;
+
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
     }
 
-    /* CARDS */
+    /* =========================
+       GRID
+    ========================= */
 
-    .form-card,
-    .review-card,
-    .success-card,
-    .side-card {
-      background: #fff;
+    .content-grid {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(250px, .8fr);
+
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+
       border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 5px 18px rgba(23, 32, 51, .045);
+      border-radius: 15px;
+
+      box-shadow: var(--shadow);
     }
 
     .form-card {
       padding: 20px;
     }
 
-    /* FIELDS */
+    .side-card {
+      padding: 18px;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      margin: 0 0 17px;
+
+      color: var(--navy);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .card-title i {
+      color: var(--blue);
+    }
+
+    /* =========================
+       ACCOUNT SELECTOR
+    ========================= */
+
+    .section-label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #344054;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+
+      margin-bottom: 18px;
+    }
+
+    .account-option {
+      position: relative;
+    }
+
+    .account-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .account-option label {
+      display: block;
+
+      min-height: 98px;
+
+      padding: 11px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      background: #fff;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .account-option input:checked + label {
+      border-color: var(--blue);
+      background: #f0f6ff;
+
+      box-shadow:
+        0 0 0 2px rgba(23, 105, 209, .07);
+    }
+
+    .account-icon {
+      width: 30px;
+      height: 30px;
+
+      margin-bottom: 7px;
+
+      border-radius: 8px;
+
+      background: #edf4ff;
+      color: var(--blue);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 12px;
+    }
+
+    .account-option:nth-child(2) .account-icon {
+      background: #eaf8f0;
+      color: var(--green);
+    }
+
+    .account-option:nth-child(3) .account-icon {
+      background: #fff6e4;
+      color: var(--amber);
+    }
+
+    .account-name {
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .account-number {
+      margin-top: 3px;
+
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .account-balance {
+      margin-top: 6px;
+
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       PAYEE
+    ========================= */
+
+    .payee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+
+      margin-bottom: 16px;
+    }
+
+    .payee-btn {
+      min-height: 66px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #fafbfd;
+      color: var(--text);
+
+      padding: 8px;
+
+      text-align: center;
+
+      transition: .18s;
+    }
+
+    .payee-btn:active {
+      transform: scale(.98);
+    }
+
+    .payee-btn.selected {
+      border-color: var(--blue);
+      background: #eef5ff;
+
+      box-shadow:
+        0 0 0 1px var(--blue);
+    }
+
+    .payee-icon {
+      width: 27px;
+      height: 27px;
+
+      margin: 0 auto 5px;
+
+      border-radius: 8px;
+
+      background: #eaf1fa;
+      color: var(--navy);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 11px;
+    }
+
+    .payee-btn span {
+      display: block;
+
+      font-size: 9.5px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       FIELDS
+    ========================= */
 
     .field {
       margin-bottom: 16px;
     }
 
-    .field:last-of-type {
-      margin-bottom: 0;
-    }
-
-    .field label {
+    .field-label {
       display: block;
-      font-size: 12px;
-      font-weight: 750;
+
       margin-bottom: 7px;
-      color: #273248;
-    }
 
-    input,
-    select {
-      width: 100%;
-      height: 49px;
-      border: 1px solid #dce2eb;
-      border-radius: 11px;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      padding: 0 13px;
-      font-size: 14px;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(11, 99, 206, .08);
+      color: #344054;
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .input-wrap {
       position: relative;
     }
 
-    .input-wrap i {
+    .input-icon {
       position: absolute;
-      left: 14px;
+
+      left: 13px;
       top: 50%;
+
       transform: translateY(-50%);
-      color: #8a94a6;
+
+      color: #8b98aa;
       font-size: 13px;
+
       pointer-events: none;
     }
 
-    .input-wrap input {
-      padding-left: 40px;
+    .input,
+    .date-input {
+      width: 100%;
+      height: 46px;
+
+      border: 1px solid #dce2e9;
+      border-radius: 10px;
+
+      background: #fff;
+      color: var(--text);
+
+      padding: 0 13px;
+
+      outline: none;
+
+      font-size: 13px;
+
+      transition: .2s;
+    }
+
+    .input.has-icon {
+      padding-left: 38px;
+    }
+
+    .input:focus,
+    .date-input:focus {
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(23, 105, 209, .08);
     }
 
     .amount-wrap {
@@ -247,430 +506,499 @@
 
     .currency {
       position: absolute;
-      left: 14px;
+
+      left: 13px;
       top: 50%;
+
       transform: translateY(-50%);
-      color: #526078;
-      font-weight: 700;
-      font-size: 15px;
+
+      color: #536174;
+
+      font-size: 16px;
+      font-weight: 800;
+
+      pointer-events: none;
     }
 
     .amount-input {
-      padding-left: 34px;
+      padding-left: 32px;
+
       font-size: 19px;
-      font-weight: 750;
-    }
+      font-weight: 800;
 
-    /* PAYEE QUICK PICKS */
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 750;
-      color: #273248;
-      margin-bottom: 9px;
-    }
-
-    .payee-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 17px;
-    }
-
-    .payee-option {
-      min-height: 67px;
-      border: 1px solid var(--border);
-      background: #fafbfd;
-      border-radius: 11px;
-      padding: 9px 7px;
-      cursor: pointer;
-      text-align: center;
-      color: var(--text);
-      transition: .18s ease;
-    }
-
-    .payee-option:hover {
-      border-color: #b8cde8;
-      background: var(--blue-light);
-    }
-
-    .payee-option.selected {
-      border-color: var(--blue);
-      background: var(--blue-light);
-      box-shadow: 0 0 0 1px var(--blue);
-    }
-
-    .payee-icon {
-      width: 27px;
-      height: 27px;
-      border-radius: 8px;
-      margin: 0 auto 5px;
-      background: #e9f0fa;
       color: var(--navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
     }
 
-    .payee-option span {
-      display: block;
+    .helper {
+      margin-top: 6px;
+
+      color: var(--muted);
       font-size: 10px;
-      font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.4;
     }
 
-    /* BUTTONS */
+    /* =========================
+       BUTTONS
+    ========================= */
 
     .primary-btn {
       width: 100%;
-      height: 50px;
+      height: 47px;
+
       border: 0;
-      border-radius: 11px;
-      background: var(--blue);
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          #0d58b9
+        );
+
       color: #fff;
-      font-size: 14px;
-      font-weight: 750;
-      cursor: pointer;
-      margin-top: 18px;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      box-shadow:
+        0 8px 18px rgba(23, 105, 209, .17);
     }
 
-    .primary-btn:hover {
-      background: #0958b7;
+    .primary-btn:active {
+      transform: scale(.985);
     }
 
-    .primary-btn:disabled,
-    .confirm-btn:disabled {
+    .secondary-btn {
+      width: 100%;
+      height: 44px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #fff;
+      color: var(--navy);
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .primary-btn:disabled {
       opacity: .55;
       cursor: not-allowed;
     }
 
-    .message {
-      display: none;
-      margin-top: 13px;
-      padding: 11px 13px;
-      border-radius: 10px;
-      font-size: 12px;
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-box {
+      margin-bottom: 14px;
+
+      padding: 10px 12px;
+
+      border: 1px solid #f0cccc;
+      border-radius: 9px;
+
+      background: #fff1f1;
+      color: var(--danger);
+
+      font-size: 10.5px;
       line-height: 1.4;
     }
 
-    .message.error {
-      display: block;
-      background: #fff1f1;
-      color: #b42318;
-      border: 1px solid #ffd5d5;
+    .hidden {
+      display: none !important;
     }
 
-    /* SIDE CARD */
+    /* =========================
+       SIDE CARD
+    ========================= */
 
-    .side-card {
-      padding: 18px;
-    }
+    .side-title {
+      margin: 0 0 14px;
 
-    .side-heading {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 15px;
-    }
-
-    .side-heading-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: var(--blue-light);
-      color: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-    }
-
-    .side-heading h3 {
-      font-size: 14px;
       color: var(--navy);
-    }
-
-    .side-list {
-      display: grid;
-      gap: 13px;
+      font-size: 13px;
+      font-weight: 800;
     }
 
     .side-item {
       display: flex;
       gap: 9px;
-      align-items: flex-start;
+
+      padding: 11px 0;
+
+      border-bottom: 1px solid #eef1f4;
     }
 
-    .side-item i {
-      color: var(--green);
-      font-size: 12px;
-      margin-top: 3px;
-    }
-
-    .side-item strong {
-      display: block;
-      font-size: 11px;
-      margin-bottom: 2px;
-    }
-
-    .side-item span {
-      display: block;
-      font-size: 10px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* REVIEW */
-
-    .review-section,
-    .success-section {
-      display: none;
-    }
-
-    .review-card {
-      overflow: hidden;
-    }
-
-    .review-header {
-      padding: 18px 20px;
-      border-bottom: 1px solid #edf0f4;
-    }
-
-    .review-header h3 {
-      font-size: 17px;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-
-    .review-header p {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .review-amount {
-      text-align: center;
-      padding: 22px 18px;
-      background: #fbfcfe;
-      border-bottom: 1px solid #edf0f4;
-    }
-
-    .review-amount span {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      margin-bottom: 6px;
-    }
-
-    .review-amount strong {
-      color: var(--navy);
-      font-size: 30px;
-      letter-spacing: -.5px;
-    }
-
-    .review-details {
-      padding: 5px 20px;
-    }
-
-    .detail-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 13px 0;
-      border-bottom: 1px solid #f0f2f5;
-      font-size: 12px;
-    }
-
-    .detail-row:last-child {
+    .side-item:last-child {
       border-bottom: 0;
     }
 
-    .detail-row span:first-child {
-      color: var(--muted);
+    .side-icon {
+      width: 30px;
+      height: 30px;
+
+      flex-shrink: 0;
+
+      border-radius: 8px;
+
+      background: #eef5ff;
+      color: var(--blue);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 11px;
     }
 
-    .detail-row span:last-child {
+    .side-text strong {
+      display: block;
+
+      margin-bottom: 3px;
+
+      color: #334155;
+      font-size: 10.5px;
+    }
+
+    .side-text span {
+      display: block;
+
+      color: var(--muted);
+      font-size: 9.5px;
+      line-height: 1.4;
+    }
+
+    .security-box {
+      display: flex;
+      gap: 8px;
+
+      margin-top: 14px;
+      padding: 11px;
+
+      border: 1px solid #d6eddf;
+      border-radius: 9px;
+
+      background: #eef8f2;
+    }
+
+    .security-box i {
+      color: var(--green);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .security-box strong {
+      display: block;
+
+      color: #19713d;
+      font-size: 10px;
+      margin-bottom: 3px;
+    }
+
+    .security-box span {
+      display: block;
+
+      color: #4d8061;
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    /* =========================
+       REVIEW
+    ========================= */
+
+    .review-card {
+      padding: 20px;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 17px;
+    }
+
+    .review-title {
+      margin: 0;
+
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .review-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      padding: 6px 9px;
+
+      border-radius: 999px;
+
+      background: #fff6e5;
+      color: #956b16;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .review-list {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      margin-bottom: 15px;
+    }
+
+    .review-row {
+      min-height: 48px;
+
+      padding: 10px 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      border-bottom: 1px solid #edf0f3;
+    }
+
+    .review-row:last-child {
+      border-bottom: 0;
+    }
+
+    .review-label {
+      color: var(--muted);
+      font-size: 10.5px;
+    }
+
+    .review-value {
+      color: var(--text);
+      font-size: 11px;
       font-weight: 700;
       text-align: right;
-      max-width: 62%;
       word-break: break-word;
     }
 
+    .review-amount {
+      color: var(--blue);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .remaining {
+      color: var(--green);
+      font-size: 12px;
+    }
+
     .review-actions {
-      display: flex;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
       gap: 9px;
-      padding: 0 20px 20px;
+
+      margin-top: 15px;
     }
 
-    .secondary-btn,
-    .confirm-btn {
-      flex: 1;
-      height: 49px;
-      border-radius: 11px;
-      font-size: 13px;
-      font-weight: 750;
-      cursor: pointer;
+    .service-notice {
+      display: flex;
+      gap: 8px;
+
+      padding: 11px 12px;
+
+      border: 1px solid #f1dfae;
+      border-radius: 9px;
+
+      background: #fff8e8;
     }
 
-    .secondary-btn {
-      border: 1px solid #d9e0ea;
-      background: #fff;
-      color: #273248;
+    .service-notice i {
+      color: var(--amber);
+      font-size: 12px;
+      margin-top: 2px;
     }
 
-    .confirm-btn {
-      border: 0;
-      background: var(--blue);
-      color: #fff;
+    .service-notice span {
+      color: #7b632b;
+      font-size: 9.5px;
+      line-height: 1.45;
     }
 
-    /* SUCCESS */
+    /* =========================
+       SUCCESS
+    ========================= */
 
     .success-card {
-      padding: 30px 22px;
+      padding: 28px 20px;
+
       text-align: center;
     }
 
     .success-icon {
-      width: 66px;
-      height: 66px;
-      margin: 0 auto 16px;
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 14px;
+
       border-radius: 50%;
-      background: var(--green-light);
+
+      background: #eaf8f0;
       color: var(--green);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 27px;
-    }
 
-    .success-card h2 {
-      color: var(--navy);
       font-size: 22px;
-      margin-bottom: 7px;
     }
 
-    .success-card p {
+    .success-title {
+      margin: 0;
+
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .success-text {
+      max-width: 470px;
+
+      margin: 8px auto 18px;
+
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.5;
-      margin-bottom: 20px;
     }
 
-    .payment-summary {
-      background: #f7f9fc;
-      border: 1px solid #edf0f4;
-      border-radius: 12px;
-      padding: 13px;
-      margin-bottom: 14px;
-      text-align: left;
+    .transaction-box {
+      max-width: 450px;
+
+      margin: 0 auto 18px;
+
+      padding: 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #f6f8fb;
     }
 
-    .payment-summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 6px 0;
-      font-size: 11px;
-    }
+    .transaction-label {
+      display: block;
 
-    .payment-summary-row span:first-child {
+      margin-bottom: 4px;
+
       color: var(--muted);
-    }
-
-    .payment-summary-row span:last-child {
-      font-weight: 700;
-      text-align: right;
+      font-size: 9px;
     }
 
     .transaction-id {
-      background: #f7f9fc;
-      border-radius: 11px;
-      padding: 12px;
-      margin-bottom: 17px;
-      font-size: 11px;
-      color: var(--muted);
-    }
+      color: var(--navy);
 
-    .transaction-id strong {
-      display: block;
-      color: var(--text);
-      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 800;
+
       word-break: break-all;
     }
 
-    .footer-note {
-      text-align: center;
-      color: #8a94a6;
-      font-size: 10px;
-      margin-top: 20px;
-    }
-
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 760px) {
+
       .topbar {
+        height: 62px;
         padding: 0 14px;
       }
 
-      .content {
-        padding: 21px 14px 35px;
+      .secure-label {
+        display: none;
       }
 
-      .page-grid {
+      .page {
+        width: min(100% - 20px, 680px);
+        margin-top: 17px;
+      }
+
+      .content-grid {
         grid-template-columns: 1fr;
       }
 
-      .side-column {
+      .side-card {
         display: none;
       }
-    }
 
-    @media (max-width: 480px) {
-      .page-title h2 {
-        font-size: 23px;
+      .form-card,
+      .review-card {
+        padding: 16px;
       }
 
-      .form-card {
-        padding: 17px;
+    }
+
+    @media (max-width: 430px) {
+
+      .account-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .account-option label {
+        min-height: 72px;
+
+        display: grid;
+        grid-template-columns: 32px 1fr auto;
+        align-items: center;
+
+        gap: 9px;
+      }
+
+      .account-icon {
+        margin: 0;
+      }
+
+      .account-balance {
+        margin-top: 0;
+        text-align: right;
       }
 
       .payee-grid {
         gap: 6px;
       }
 
-      .payee-option {
-        min-height: 63px;
-      }
-
       .review-actions {
-        flex-direction: column;
+        grid-template-columns: 1fr;
       }
 
-      .secondary-btn,
-      .confirm-btn {
-        width: 100%;
-        flex: none;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="page">
+  <!-- =========================
+       TOP BAR
+  ========================= -->
 
-    <!-- TOP BAR -->
+  <header class="topbar">
 
-    <header class="topbar">
+    <div class="topbar-inner">
 
-      <div class="topbar-inner">
+      <div class="top-left">
 
         <button
-          class="back-btn"
           id="backBtn"
+          class="back-btn"
           type="button"
-          aria-label="Back"
+          aria-label="Go back"
         >
           <i class="fa-solid fa-arrow-left"></i>
         </button>
@@ -681,609 +1009,882 @@
             FM
           </div>
 
-          <div class="brand-text">
-            <h1>First Merit Bank</h1>
-            <span>Online Banking</span>
+          <div>
+            <div class="brand-name">
+              First Merit Bank
+            </div>
+
+            <div class="brand-sub">
+              Online Banking
+            </div>
           </div>
 
         </div>
 
       </div>
 
-    </header>
+      <div class="secure-label">
+        <i class="fa-solid fa-shield-halved"></i>
+        Secure
+      </div>
 
+    </div>
 
-    <main class="content">
+  </header>
 
-      <div class="page-grid">
 
-        <div class="main-column">
+  <main class="page">
 
-          <!-- BILL PAY FORM -->
+    <!-- =========================
+         PAGE HEADER
+    ========================= -->
 
-          <section id="formSection">
+    <section class="page-header">
 
-            <div class="page-title">
+      <h1 class="page-title">
+        Bill Pay
+      </h1>
 
-              <h2>Bill Pay</h2>
+      <p class="page-description">
+        Pay bills and recurring expenses from one of your First Merit accounts.
+      </p>
 
-              <p>
-                Pay bills and recurring expenses from your checking account.
-              </p>
+    </section>
 
-            </div>
 
-            <!-- FORM -->
+    <!-- ERROR -->
 
-            <div class="form-card">
+    <div
+      id="errorBox"
+      class="error-box hidden"
+      role="alert"
+    ></div>
 
-              <div class="field">
 
-                <label>
-                  Select Payee
-                </label>
+    <!-- =========================
+         FORM GRID
+    ========================= -->
 
-                <div class="payee-grid">
+    <section
+      id="formSection"
+      class="content-grid"
+    >
 
-                  <button
-                    class="payee-option"
-                    type="button"
-                    data-payee="Electric Company"
-                  >
-                    <div class="payee-icon">
-                      <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <span>Electric</span>
-                  </button>
+      <!-- FORM -->
 
+      <div class="card form-card">
 
-                  <button
-                    class="payee-option"
-                    type="button"
-                    data-payee="Internet Provider"
-                  >
-                    <div class="payee-icon">
-                      <i class="fa-solid fa-wifi"></i>
-                    </div>
-                    <span>Internet</span>
-                  </button>
+        <h2 class="card-title">
+          <i class="fa-solid fa-receipt"></i>
+          Payment Details
+        </h2>
 
 
-                  <button
-                    class="payee-option"
-                    type="button"
-                    data-payee="Mobile Phone"
-                  >
-                    <div class="payee-icon">
-                      <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <span>Phone</span>
-                  </button>
+        <!-- ACCOUNT -->
 
+        <div class="field">
 
-                  <button
-                    class="payee-option"
-                    type="button"
-                    data-payee="Water Utility"
-                  >
-                    <div class="payee-icon">
-                      <i class="fa-solid fa-droplet"></i>
-                    </div>
-                    <span>Water</span>
-                  </button>
+          <label class="section-label">
+            Pay from
+          </label>
 
+          <div class="account-grid">
 
-                  <button
-                    class="payee-option"
-                    type="button"
-                    data-payee="Insurance"
-                  >
-                    <div class="payee-icon">
-                      <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <span>Insurance</span>
-                  </button>
+            <!-- CHECKING -->
 
+            <div class="account-option">
 
-                  <button
-                    class="payee-option"
-                    type="button"
-                    data-payee="Other Bill"
-                  >
-                    <div class="payee-icon">
-                      <i class="fa-solid fa-ellipsis"></i>
-                    </div>
-                    <span>Other</span>
-                  </button>
-
-                </div>
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="payeeName">
-                  Payee Name
-                </label>
-
-                <div class="input-wrap">
-
-                  <i class="fa-regular fa-building"></i>
-
-                  <input
-                    type="text"
-                    id="payeeName"
-                    placeholder="Enter company or payee name"
-                    autocomplete="off"
-                  >
-
-                </div>
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="accountNumber">
-                  Account / Customer Number
-                </label>
-
-                <div class="input-wrap">
-
-                  <i class="fa-solid fa-hashtag"></i>
-
-                  <input
-                    type="text"
-                    id="accountNumber"
-                    placeholder="Enter customer or account number"
-                    autocomplete="off"
-                  >
-
-                </div>
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="amount">
-                  Payment Amount
-                </label>
-
-                <div class="amount-wrap">
-
-                  <span class="currency">
-                    $
-                  </span>
-
-                  <input
-                    class="amount-input"
-                    type="number"
-                    id="amount"
-                    min="0.01"
-                    step="0.01"
-                    placeholder="0.00"
-                  >
-
-                </div>
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="paymentDate">
-                  Payment Date
-                </label>
-
-                <input
-                  type="date"
-                  id="paymentDate"
-                >
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="memo">
-                  Memo
-                </label>
-
-                <input
-                  type="text"
-                  id="memo"
-                  maxlength="150"
-                  placeholder="Optional payment note"
-                  autocomplete="off"
-                >
-
-              </div>
-
-
-              <div
-                id="formMessage"
-                class="message"
-              ></div>
-
-
-              <button
-                class="primary-btn"
-                id="reviewBtn"
-                type="button"
+              <input
+                type="radio"
+                name="sourceAccount"
+                id="checkingAccount"
+                value="checking"
+                checked
               >
-                Review Payment
-              </button>
 
-            </div>
+              <label for="checkingAccount">
 
-          </section>
+                <div class="account-icon">
+                  <i class="fa-solid fa-building-columns"></i>
+                </div>
 
+                <div>
 
-          <!-- REVIEW -->
+                  <div class="account-name">
+                    Checking
+                  </div>
 
-          <section
-            class="review-section"
-            id="reviewSection"
-          >
+                  <div
+                    class="account-number"
+                    id="checkingNumber"
+                  >
+                    Account ••••
+                  </div>
 
-            <div class="page-title">
+                </div>
 
-              <h2>Review Bill Payment</h2>
-
-              <p>
-                Review your payment details before confirming.
-              </p>
-
-            </div>
-
-
-            <div class="review-card">
-
-              <div class="review-header">
-
-                <h3>
-                  Payment Details
-                </h3>
-
-                <p>
-                  Make sure everything is correct.
-                </p>
-
-              </div>
-
-
-              <div class="review-amount">
-
-                <span>
-                  Payment Amount
-                </span>
-
-                <strong id="reviewAmount">
+                <div
+                  class="account-balance"
+                  id="checkingBalance"
+                >
                   $0.00
-                </strong>
-
-              </div>
-
-
-              <div class="review-details">
-
-                <div class="detail-row">
-
-                  <span>
-                    From
-                  </span>
-
-                  <span>
-                    Checking Account
-                  </span>
-
                 </div>
 
-
-                <div class="detail-row">
-
-                  <span>
-                    Payee
-                  </span>
-
-                  <span id="reviewPayee">
-                    —
-                  </span>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Account Number
-                  </span>
-
-                  <span id="reviewAccount">
-                    —
-                  </span>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Payment Date
-                  </span>
-
-                  <span id="reviewDate">
-                    —
-                  </span>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Remaining Balance
-                  </span>
-
-                  <span id="reviewRemainingBalance">
-                    $0.00
-                  </span>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Memo
-                  </span>
-
-                  <span id="reviewMemo">
-                    —
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div
-                id="reviewMessage"
-                class="message"
-              ></div>
-
-
-              <div class="review-actions">
-
-                <button
-                  class="secondary-btn"
-                  id="editBtn"
-                  type="button"
-                >
-                  Edit Payment
-                </button>
-
-                <button
-                  class="confirm-btn"
-                  id="confirmBtn"
-                  type="button"
-                >
-                  Confirm Payment
-                </button>
-
-              </div>
+              </label>
 
             </div>
 
-          </section>
 
+            <!-- SAVINGS -->
 
-          <!-- SUCCESS -->
+            <div class="account-option">
 
-          <section
-            class="success-section"
-            id="successSection"
-          >
-
-            <div class="success-card">
-
-              <div class="success-icon">
-                <i class="fa-solid fa-check"></i>
-              </div>
-
-              <h2>
-                Payment Confirmed
-              </h2>
-
-              <p>
-                Your bill payment has been recorded successfully.
-              </p>
-
-
-              <div class="payment-summary">
-
-                <div class="payment-summary-row">
-
-                  <span>
-                    Payee
-                  </span>
-
-                  <span id="successPayee">
-                    —
-                  </span>
-
-                </div>
-
-
-                <div class="payment-summary-row">
-
-                  <span>
-                    Amount
-                  </span>
-
-                  <span id="successAmount">
-                    $0.00
-                  </span>
-
-                </div>
-
-
-                <div class="payment-summary-row">
-
-                  <span>
-                    Payment Date
-                  </span>
-
-                  <span id="successDate">
-                    —
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div class="transaction-id">
-
-                Transaction ID
-
-                <strong id="transactionId">
-                  —
-                </strong>
-
-              </div>
-
-
-              <button
-                class="primary-btn"
-                id="dashboardBtn"
-                type="button"
+              <input
+                type="radio"
+                name="sourceAccount"
+                id="savingsAccount"
+                value="savings"
               >
-                Return to Dashboard
-              </button>
+
+              <label for="savingsAccount">
+
+                <div class="account-icon">
+                  <i class="fa-solid fa-piggy-bank"></i>
+                </div>
+
+                <div>
+
+                  <div class="account-name">
+                    Savings
+                  </div>
+
+                  <div
+                    class="account-number"
+                    id="savingsNumber"
+                  >
+                    Account ••••
+                  </div>
+
+                </div>
+
+                <div
+                  class="account-balance"
+                  id="savingsBalance"
+                >
+                  $0.00
+                </div>
+
+              </label>
 
             </div>
 
-          </section>
 
-        </div>
+            <!-- IRA -->
 
+            <div class="account-option">
 
-        <!-- SIDE INFORMATION -->
+              <input
+                type="radio"
+                name="sourceAccount"
+                id="iraAccount"
+                value="ira"
+              >
 
-        <aside class="side-column">
+              <label for="iraAccount">
 
-          <div class="side-card">
-
-            <div class="side-heading">
-
-              <div class="side-heading-icon">
-                <i class="fa-solid fa-receipt"></i>
-              </div>
-
-              <h3>
-                Bill Pay
-              </h3>
-
-            </div>
-
-
-            <div class="side-list">
-
-              <div class="side-item">
-
-                <i class="fa-solid fa-circle-check"></i>
+                <div class="account-icon">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
 
                 <div>
 
-                  <strong>
-                    Choose a payee
-                  </strong>
+                  <div class="account-name">
+                    IRA
+                  </div>
 
-                  <span>
-                    Select a common bill category or enter your own payee.
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <div class="side-item">
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                <div>
-
-                  <strong>
-                    Select payment date
-                  </strong>
-
-                  <span>
-                    Choose the date you want the payment recorded for.
-                  </span>
+                  <div
+                    class="account-number"
+                    id="iraNumber"
+                  >
+                    Account ••••
+                  </div>
 
                 </div>
 
-              </div>
-
-
-              <div class="side-item">
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                <div>
-
-                  <strong>
-                    Review before confirming
-                  </strong>
-
-                  <span>
-                    Check the payee, amount and payment details.
-                  </span>
-
+                <div
+                  class="account-balance"
+                  id="iraBalance"
+                >
+                  $0.00
                 </div>
 
-              </div>
-
-
-              <div class="side-item">
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                <div>
-
-                  <strong>
-                    Confirmation
-                  </strong>
-
-                  <span>
-                    Your payment receives a transaction ID after confirmation.
-                  </span>
-
-                </div>
-
-              </div>
+              </label>
 
             </div>
 
           </div>
 
-        </aside>
+        </div>
+
+
+        <!-- PAYEE -->
+
+        <div class="field">
+
+          <label class="section-label">
+            Select payee
+          </label>
+
+          <div class="payee-grid">
+
+            <button
+              class="payee-btn"
+              type="button"
+              data-payee="Electric Company"
+            >
+              <div class="payee-icon">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+
+              <span>
+                Electric
+              </span>
+            </button>
+
+
+            <button
+              class="payee-btn"
+              type="button"
+              data-payee="Internet Provider"
+            >
+              <div class="payee-icon">
+                <i class="fa-solid fa-wifi"></i>
+              </div>
+
+              <span>
+                Internet
+              </span>
+            </button>
+
+
+            <button
+              class="payee-btn"
+              type="button"
+              data-payee="Mobile Phone"
+            >
+              <div class="payee-icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+              </div>
+
+              <span>
+                Phone
+              </span>
+            </button>
+
+
+            <button
+              class="payee-btn"
+              type="button"
+              data-payee="Water Utility"
+            >
+              <div class="payee-icon">
+                <i class="fa-solid fa-droplet"></i>
+              </div>
+
+              <span>
+                Water
+              </span>
+            </button>
+
+
+            <button
+              class="payee-btn"
+              type="button"
+              data-payee="Insurance"
+            >
+              <div class="payee-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+
+              <span>
+                Insurance
+              </span>
+            </button>
+
+
+            <button
+              class="payee-btn"
+              type="button"
+              data-payee="Other Bill"
+            >
+              <div class="payee-icon">
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+
+              <span>
+                Other
+              </span>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYEE NAME -->
+
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="payeeName"
+          >
+            Payee Name
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-regular fa-building input-icon"></i>
+
+            <input
+              id="payeeName"
+              class="input has-icon"
+              type="text"
+              maxlength="100"
+              placeholder="Enter company or payee name"
+              autocomplete="off"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- ACCOUNT NUMBER -->
+
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="customerNumber"
+          >
+            Account / Customer Number
+          </label>
+
+          <div class="input-wrap">
+
+            <i class="fa-solid fa-hashtag input-icon"></i>
+
+            <input
+              id="customerNumber"
+              class="input has-icon"
+              type="text"
+              maxlength="50"
+              placeholder="Enter customer or account number"
+              autocomplete="off"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- AMOUNT -->
+
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="paymentAmount"
+          >
+            Payment Amount
+          </label>
+
+          <div class="amount-wrap">
+
+            <span class="currency">
+              $
+            </span>
+
+            <input
+              id="paymentAmount"
+              class="input amount-input"
+              type="number"
+              inputmode="decimal"
+              min="0.01"
+              step="0.01"
+              placeholder="0.00"
+              autocomplete="off"
+            >
+
+          </div>
+
+          <div class="helper">
+            The payment cannot exceed the available balance of the selected account.
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT DATE -->
+
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="paymentDate"
+          >
+            Payment Date
+          </label>
+
+          <input
+            id="paymentDate"
+            class="date-input"
+            type="date"
+          >
+
+        </div>
+
+
+        <!-- MEMO -->
+
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="memo"
+          >
+            Memo
+            <span style="font-weight:500;color:#8a95a5;">
+              (optional)
+            </span>
+          </label>
+
+          <input
+            id="memo"
+            class="input"
+            type="text"
+            maxlength="150"
+            placeholder="Optional payment note"
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <!-- REVIEW -->
+
+        <button
+          id="reviewBtn"
+          class="primary-btn"
+          type="button"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+          Review Payment
+        </button>
+
+
+        <div
+          id="formServiceNotice"
+          class="service-notice"
+          style="margin-top:14px;"
+        >
+
+          <i class="fa-solid fa-circle-info"></i>
+
+          <span>
+            Your account balances are read directly from your First Merit
+            account record. Secure bill-payment processing is not connected
+            yet, so confirming the review will not deduct funds.
+          </span>
+
+        </div>
 
       </div>
 
 
-      <div class="footer-note">
-        First Merit Bank
+      <!-- SIDE CARD -->
+
+      <aside class="card side-card">
+
+        <h3 class="side-title">
+          Bill Pay Information
+        </h3>
+
+
+        <div class="side-item">
+
+          <div class="side-icon">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+
+          <div class="side-text">
+
+            <strong>
+              Choose an account
+            </strong>
+
+            <span>
+              Select the First Merit account you want to use for the payment.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="side-item">
+
+          <div class="side-icon">
+            <i class="fa-solid fa-building"></i>
+          </div>
+
+          <div class="side-text">
+
+            <strong>
+              Add the payee
+            </strong>
+
+            <span>
+              Select a common bill category or enter a custom payee.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="side-item">
+
+          <div class="side-icon">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+
+          <div class="side-text">
+
+            <strong>
+              Select a date
+            </strong>
+
+            <span>
+              Choose the date associated with your bill payment.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="side-item">
+
+          <div class="side-icon">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+
+          <div class="side-text">
+
+            <strong>
+              Review before confirming
+            </strong>
+
+            <span>
+              Check every payment detail before continuing.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="security-box">
+
+          <i class="fa-solid fa-shield-halved"></i>
+
+          <div>
+
+            <strong>
+              Account protection
+            </strong>
+
+            <span>
+              Never share your password or verification codes with anyone.
+            </span>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEW
+    ========================= -->
+
+    <section
+      id="reviewSection"
+      class="card review-card hidden"
+    >
+
+      <div class="review-header">
+
+        <h2 class="review-title">
+          Review Bill Payment
+        </h2>
+
+        <div class="review-pill">
+          <i class="fa-solid fa-clock"></i>
+          Review
+        </div>
+
       </div>
 
-    </main>
 
-  </div>
+      <div class="review-list">
 
+        <div class="review-row">
+
+          <span class="review-label">
+            Pay from
+          </span>
+
+          <span
+            id="reviewSourceAccount"
+            class="review-value"
+          >
+            Checking
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Account number
+          </span>
+
+          <span
+            id="reviewSourceNumber"
+            class="review-value"
+          >
+            ••••
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Payee
+          </span>
+
+          <span
+            id="reviewPayee"
+            class="review-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Customer number
+          </span>
+
+          <span
+            id="reviewCustomerNumber"
+            class="review-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Payment amount
+          </span>
+
+          <span
+            id="reviewAmount"
+            class="review-value review-amount"
+          >
+            $0.00
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Current balance
+          </span>
+
+          <span
+            id="reviewCurrentBalance"
+            class="review-value"
+          >
+            $0.00
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Balance after payment
+          </span>
+
+          <span
+            id="reviewRemainingBalance"
+            class="review-value remaining"
+          >
+            $0.00
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Payment date
+          </span>
+
+          <span
+            id="reviewDate"
+            class="review-value"
+          >
+            —
+          </span>
+
+        </div>
+
+
+        <div class="review-row">
+
+          <span class="review-label">
+            Memo
+          </span>
+
+          <span
+            id="reviewMemo"
+            class="review-value"
+          >
+            None
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="service-notice">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <span>
+          This is a review only. The secure bill-payment processing
+          service is not connected yet. Your account balance will not
+          be changed by confirming this screen.
+        </span>
+
+      </div>
+
+
+      <div class="review-actions">
+
+        <button
+          id="editBtn"
+          class="secondary-btn"
+          type="button"
+        >
+          <i class="fa-solid fa-pen"></i>
+          Edit Payment
+        </button>
+
+        <button
+          id="confirmBtn"
+          class="primary-btn"
+          type="button"
+        >
+          <i class="fa-solid fa-lock"></i>
+          Confirm Payment
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUCCESS
+    ========================= -->
+
+    <section
+      id="successSection"
+      class="card success-card hidden"
+    >
+
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <h2 class="success-title">
+        Payment Review Complete
+      </h2>
+
+      <p class="success-text">
+        Your bill payment details were successfully reviewed.
+        No funds were deducted because secure bill-payment
+        processing is not connected yet.
+      </p>
+
+
+      <div class="transaction-box">
+
+        <span class="transaction-label">
+          REVIEW REFERENCE
+        </span>
+
+        <div
+          id="transactionId"
+          class="transaction-id"
+        >
+          FM-REVIEW
+        </div>
+
+      </div>
+
+
+      <button
+        id="dashboardBtn"
+        class="primary-btn"
+        type="button"
+      >
+        <i class="fa-solid fa-house"></i>
+        Return to Dashboard
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FIREBASE
+  ========================= -->
 
   <script type="module">
 
@@ -1292,16 +1893,15 @@
       db
     } from "./firebase.js";
 
+
     import {
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+
     import {
       doc,
-      getDoc,
-      collection,
-      runTransaction,
-      serverTimestamp
+      getDoc
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -1309,96 +1909,78 @@
        ELEMENTS
     ========================= */
 
-    const backBtn =
-      document.getElementById("backBtn");
-
-    const reviewBtn =
-      document.getElementById("reviewBtn");
-
-    const editBtn =
-      document.getElementById("editBtn");
-
-    const confirmBtn =
-      document.getElementById("confirmBtn");
-
-    const dashboardBtn =
-      document.getElementById("dashboardBtn");
-
-
     const formSection =
-      document.getElementById("formSection");
+      document.getElementById(
+        "formSection"
+      );
 
     const reviewSection =
-      document.getElementById("reviewSection");
+      document.getElementById(
+        "reviewSection"
+      );
 
     const successSection =
-      document.getElementById("successSection");
+      document.getElementById(
+        "successSection"
+      );
+
+
+    const errorBox =
+      document.getElementById(
+        "errorBox"
+      );
 
 
     const payeeName =
-      document.getElementById("payeeName");
+      document.getElementById(
+        "payeeName"
+      );
 
-    const accountNumber =
-      document.getElementById("accountNumber");
+    const customerNumber =
+      document.getElementById(
+        "customerNumber"
+      );
 
-    const amount =
-      document.getElementById("amount");
+    const paymentAmount =
+      document.getElementById(
+        "paymentAmount"
+      );
 
     const paymentDate =
-      document.getElementById("paymentDate");
+      document.getElementById(
+        "paymentDate"
+      );
 
     const memo =
-      document.getElementById("memo");
+      document.getElementById(
+        "memo"
+      );
 
 
-    const currentBalance =
-      document.getElementById("currentBalance");
+    const reviewBtn =
+      document.getElementById(
+        "reviewBtn"
+      );
 
-    const balanceAccount =
-      document.getElementById("balanceAccount");
+    const editBtn =
+      document.getElementById(
+        "editBtn"
+      );
 
+    const confirmBtn =
+      document.getElementById(
+        "confirmBtn"
+      );
 
-    const formMessage =
-      document.getElementById("formMessage");
+    const dashboardBtn =
+      document.getElementById(
+        "dashboardBtn"
+      );
 
-    const reviewMessage =
-      document.getElementById("reviewMessage");
-
-
-    const reviewAmount =
-      document.getElementById("reviewAmount");
-
-    const reviewPayee =
-      document.getElementById("reviewPayee");
-
-    const reviewAccount =
-      document.getElementById("reviewAccount");
-
-    const reviewDate =
-      document.getElementById("reviewDate");
-
-    const reviewRemainingBalance =
-      document.getElementById("reviewRemainingBalance");
-
-    const reviewMemo =
-      document.getElementById("reviewMemo");
-
-
-    const successPayee =
-      document.getElementById("successPayee");
-
-    const successAmount =
-      document.getElementById("successAmount");
-
-    const successDate =
-      document.getElementById("successDate");
-
-    const transactionId =
-      document.getElementById("transactionId");
-
-
-    const payeeOptions =
-      document.querySelectorAll(".payee-option");
+    const backBtn =
+      document.getElementById(
+        "backBtn"
+      );
 
 
     /* =========================
@@ -1407,93 +1989,177 @@
 
     let currentUser = null;
 
-    let userBalance = 0;
 
-    let pendingPayment = {
-      payee: "",
-      accountNumber: "",
-      amount: 0,
-      paymentDate: "",
-      memo: ""
+    let accounts = {
+
+      checking: {
+        balance: 0,
+        number: ""
+      },
+
+      savings: {
+        balance: 0,
+        number: ""
+      },
+
+      ira: {
+        balance: 0,
+        number: ""
+      }
+
     };
+
+
+    let pendingPayment = null;
 
 
     /* =========================
        HELPERS
     ========================= */
 
-    function formatCurrency(value) {
+    function formatMoney(value) {
 
-      return new Intl.NumberFormat(
+      return Number(
+        value || 0
+      ).toLocaleString(
         "en-US",
         {
           style: "currency",
-          currency: "USD"
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
         }
-      ).format(value);
+      );
 
     }
 
 
-    function formatDate(dateValue) {
+    function cleanNumber(value) {
 
-      if (!dateValue) {
+      if (!value) {
+        return "";
+      }
+
+
+      const digits =
+        String(value).replace(
+          /\D/g,
+          ""
+        );
+
+
+      if (!digits) {
+        return "";
+      }
+
+
+      return digits.length <= 4
+        ? digits
+        : digits.slice(-4);
+
+    }
+
+
+    function accountLabel(account) {
+
+      if (account === "checking") {
+        return "Checking";
+      }
+
+      if (account === "savings") {
+        return "Savings";
+      }
+
+      if (account === "ira") {
+        return "IRA";
+      }
+
+      return "Account";
+
+    }
+
+
+    function selectedAccount() {
+
+      const input =
+        document.querySelector(
+          'input[name="sourceAccount"]:checked'
+        );
+
+
+      return input
+        ? input.value
+        : "checking";
+
+    }
+
+
+    function showError(message) {
+
+      errorBox.textContent =
+        message;
+
+      errorBox.classList.remove(
+        "hidden"
+      );
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function hideError() {
+
+      errorBox.textContent =
+        "";
+
+      errorBox.classList.add(
+        "hidden"
+      );
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
         return "—";
       }
 
+
       const date =
         new Date(
-          dateValue + "T00:00:00"
+          value + "T00:00:00"
         );
 
-      return new Intl.DateTimeFormat(
+
+      return date.toLocaleDateString(
         "en-US",
         {
           month: "short",
           day: "numeric",
           year: "numeric"
         }
-      ).format(date);
-
-    }
-
-
-    function showMessage(
-      element,
-      message
-    ) {
-
-      element.textContent =
-        message;
-
-      element.className =
-        "message error";
-
-    }
-
-
-    function clearMessage(
-      element
-    ) {
-
-      element.textContent = "";
-
-      element.className =
-        "message";
+      );
 
     }
 
 
     /* =========================
-       DEFAULT PAYMENT DATE
+       DEFAULT DATE
     ========================= */
 
     const today =
       new Date();
 
+
     const todayString =
       today.toISOString()
         .split("T")[0];
+
 
     paymentDate.value =
       todayString;
@@ -1503,52 +2169,49 @@
 
 
     /* =========================
-       PAYEE QUICK SELECT
+       PAYEE BUTTONS
     ========================= */
 
-    payeeOptions.forEach(
-      option => {
+    document
+      .querySelectorAll(".payee-btn")
+      .forEach(button => {
 
-        option.addEventListener(
+        button.addEventListener(
           "click",
           () => {
 
-            payeeOptions.forEach(
-              item => {
+            document
+              .querySelectorAll(
+                ".payee-btn"
+              )
+              .forEach(item => {
+
                 item.classList.remove(
                   "selected"
                 );
-              }
-            );
+
+              });
 
 
-            option.classList.add(
+            button.classList.add(
               "selected"
             );
 
 
             payeeName.value =
-              option.dataset.payee;
-
-            payeeName.focus();
+              button.dataset.payee;
 
           }
         );
 
-      }
-    );
+      });
 
 
     /* =========================
-       LOAD USER ACCOUNT
+       LOAD ACCOUNT
     ========================= */
 
-    async function loadAccount() {
-
-      if (!currentUser) {
-        return;
-      }
-
+    async function loadAccount(user) {
 
       try {
 
@@ -1556,58 +2219,136 @@
           doc(
             db,
             "users",
-            currentUser.uid
+            user.uid
           );
 
 
-        const userSnap =
-          await getDoc(userRef);
-
-
-        if (!userSnap.exists()) {
-
-          showMessage(
-            formMessage,
-            "Account information could not be found."
+        const snapshot =
+          await getDoc(
+            userRef
           );
 
-          return;
+
+        if (!snapshot.exists()) {
+
+          throw new Error(
+            "Your First Merit account record could not be found."
+          );
 
         }
 
 
-        const userData =
-          userSnap.data();
+        const data =
+          snapshot.data();
 
 
-        userBalance =
+        /*
+          These are the current First Merit
+          account fields.
+
+          No fallback balances are created.
+        */
+
+        accounts.checking.balance =
           Number(
-            userData.balance || 0
+            data.checkingBalance || 0
           );
 
 
-        currentBalance.textContent =
-          formatCurrency(
-            userBalance
+        accounts.savings.balance =
+          Number(
+            data.savingsBalance || 0
           );
 
 
-        const accountNumberValue =
-          userData.accountNumber ||
-          "Checking Account";
+        accounts.ira.balance =
+          Number(
+            data.iraBalance || 0
+          );
 
 
-        balanceAccount.textContent =
-          "Checking • " +
-          accountNumberValue;
+        accounts.checking.number =
+          data.accountNumber || "";
+
+
+        accounts.savings.number =
+          data.savingsAccountNumber || "";
+
+
+        accounts.ira.number =
+          data.iraAccountNumber || "";
+
+
+        /* =========================
+           DISPLAY BALANCES
+        ========================= */
+
+        document.getElementById(
+          "checkingBalance"
+        ).textContent =
+          formatMoney(
+            accounts.checking.balance
+          );
+
+
+        document.getElementById(
+          "savingsBalance"
+        ).textContent =
+          formatMoney(
+            accounts.savings.balance
+          );
+
+
+        document.getElementById(
+          "iraBalance"
+        ).textContent =
+          formatMoney(
+            accounts.ira.balance
+          );
+
+
+        document.getElementById(
+          "checkingNumber"
+        ).textContent =
+          accounts.checking.number
+            ? "•••• " +
+              cleanNumber(
+                accounts.checking.number
+              )
+            : "Account unavailable";
+
+
+        document.getElementById(
+          "savingsNumber"
+        ).textContent =
+          accounts.savings.number
+            ? "•••• " +
+              cleanNumber(
+                accounts.savings.number
+              )
+            : "Account unavailable";
+
+
+        document.getElementById(
+          "iraNumber"
+        ).textContent =
+          accounts.ira.number
+            ? "•••• " +
+              cleanNumber(
+                accounts.ira.number
+              )
+            : "Account unavailable";
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          "Account loading error:",
+          error
+        );
 
-        showMessage(
-          formMessage,
-          "Unable to load account information."
+        showError(
+          error.message ||
+          "Unable to load your account information."
         );
 
       }
@@ -1621,7 +2362,7 @@
 
     onAuthStateChanged(
       auth,
-      async (user) => {
+      async user => {
 
         if (!user) {
 
@@ -1636,62 +2377,65 @@
         currentUser =
           user;
 
-        await loadAccount();
+
+        await loadAccount(
+          user
+        );
 
       }
     );
 
 
     /* =========================
-       BACK
-    ========================= */
-
-    backBtn.addEventListener(
-      "click",
-      () => {
-
-        window.location.href =
-          "dashboard.html";
-
-      }
-    );
-
-
-    /* =========================
-       REVIEW PAYMENT
+       REVIEW
     ========================= */
 
     reviewBtn.addEventListener(
       "click",
       () => {
 
-        clearMessage(
-          formMessage
-        );
+        hideError();
+
+
+        const accountType =
+          selectedAccount();
+
+
+        const account =
+          accounts[
+            accountType
+          ];
 
 
         const payee =
           payeeName.value.trim();
 
-        const customerAccount =
-          accountNumber.value.trim();
 
-        const paymentAmount =
+        const customer =
+          customerNumber.value.trim();
+
+
+        const amount =
           Number(
-            amount.value
+            paymentAmount.value
           );
 
-        const selectedDate =
+
+        const date =
           paymentDate.value;
 
-        const paymentMemo =
+
+        const note =
           memo.value.trim();
 
 
+        /* =========================
+           VALIDATION
+        ========================= */
+
         if (!payee) {
 
-          showMessage(
-            formMessage,
+          showError(
             "Please enter a payee name."
           );
 
@@ -1702,14 +2446,13 @@
         }
 
 
-        if (!customerAccount) {
+        if (!customer) {
 
-          showMessage(
-            formMessage,
+          showError(
             "Please enter the account or customer number."
           );
 
-          accountNumber.focus();
+          customerNumber.focus();
 
           return;
 
@@ -1717,16 +2460,33 @@
 
 
         if (
-          !paymentAmount ||
-          paymentAmount <= 0
+          !Number.isFinite(amount) ||
+          amount <= 0
         ) {
 
-          showMessage(
-            formMessage,
-            "Please enter a valid payment amount."
+          showError(
+            "Enter a valid payment amount."
           );
 
-          amount.focus();
+          paymentAmount.focus();
+
+          return;
+
+        }
+
+
+        const decimals =
+          String(amount)
+            .split(".")[1]?.length || 0;
+
+
+        if (decimals > 2) {
+
+          showError(
+            "Payment amounts can contain a maximum of two decimal places."
+          );
+
+          paymentAmount.focus();
 
           return;
 
@@ -1734,24 +2494,24 @@
 
 
         if (
-          paymentAmount >
-          userBalance
+          amount >
+          account.balance
         ) {
 
-          showMessage(
-            formMessage,
-            "Insufficient available balance."
+          showError(
+            `Insufficient funds. Your ${accountLabel(accountType)} balance is ${formatMoney(account.balance)}.`
           );
+
+          paymentAmount.focus();
 
           return;
 
         }
 
 
-        if (!selectedDate) {
+        if (!date) {
 
-          showMessage(
-            formMessage,
+          showError(
             "Please select a payment date."
           );
 
@@ -1762,66 +2522,126 @@
         }
 
 
+        /* =========================
+           SAVE STATE
+        ========================= */
+
         pendingPayment = {
 
-          payee:
-            payee,
+          account:
+            accountType,
 
           accountNumber:
-            customerAccount,
+            account.number,
 
-          amount:
-            paymentAmount,
+          payee,
+
+          customerNumber:
+            customer,
+
+          amount,
 
           paymentDate:
-            selectedDate,
+            date,
 
           memo:
-            paymentMemo
+            note,
+
+          currentBalance:
+            account.balance,
+
+          remainingBalance:
+            account.balance - amount
 
         };
 
 
-        reviewAmount.textContent =
-          formatCurrency(
-            pendingPayment.amount
+        /* =========================
+           REVIEW DISPLAY
+        ========================= */
+
+        document.getElementById(
+          "reviewSourceAccount"
+        ).textContent =
+          accountLabel(
+            accountType
           );
 
 
-        reviewPayee.textContent =
-          pendingPayment.payee;
+        document.getElementById(
+          "reviewSourceNumber"
+        ).textContent =
+          account.number
+            ? "•••• " +
+              cleanNumber(
+                account.number
+              )
+            : "Account unavailable";
 
 
-        reviewAccount.textContent =
-          pendingPayment.accountNumber;
+        document.getElementById(
+          "reviewPayee"
+        ).textContent =
+          payee;
 
 
-        reviewDate.textContent =
+        document.getElementById(
+          "reviewCustomerNumber"
+        ).textContent =
+          customer;
+
+
+        document.getElementById(
+          "reviewAmount"
+        ).textContent =
+          formatMoney(
+            amount
+          );
+
+
+        document.getElementById(
+          "reviewCurrentBalance"
+        ).textContent =
+          formatMoney(
+            account.balance
+          );
+
+
+        document.getElementById(
+          "reviewRemainingBalance"
+        ).textContent =
+          formatMoney(
+            account.balance - amount
+          );
+
+
+        document.getElementById(
+          "reviewDate"
+        ).textContent =
           formatDate(
-            pendingPayment.paymentDate
+            date
           );
 
 
-        reviewRemainingBalance.textContent =
-          formatCurrency(
-            userBalance -
-            pendingPayment.amount
-          );
+        document.getElementById(
+          "reviewMemo"
+        ).textContent =
+          note || "None";
 
 
-        reviewMemo.textContent =
-          pendingPayment.memo ||
-          "—";
+        formSection.classList.add(
+          "hidden"
+        );
 
 
-        formSection.style.display =
-          "none";
+        reviewSection.classList.remove(
+          "hidden"
+        );
 
-        reviewSection.style.display =
-          "block";
 
-        successSection.style.display =
-          "none";
+        successSection.classList.add(
+          "hidden"
+        );
 
 
         window.scrollTo({
@@ -1841,19 +2661,14 @@
       "click",
       () => {
 
-        clearMessage(
-          reviewMessage
+        reviewSection.classList.add(
+          "hidden"
         );
 
 
-        reviewSection.style.display =
-          "none";
-
-        formSection.style.display =
-          "block";
-
-        successSection.style.display =
-          "none";
+        formSection.classList.remove(
+          "hidden"
+        );
 
 
         window.scrollTo({
@@ -1866,217 +2681,67 @@
 
 
     /* =========================
-       CONFIRM PAYMENT
+       CONFIRM
     ========================= */
 
     confirmBtn.addEventListener(
       "click",
-      async () => {
+      () => {
 
-        clearMessage(
-          reviewMessage
-        );
+        if (!pendingPayment) {
 
-
-        if (!currentUser) {
-
-          window.location.href =
-            "login.html";
+          showError(
+            "There is no payment ready for confirmation."
+          );
 
           return;
 
         }
 
 
-        confirmBtn.disabled =
-          true;
+        /*
+          SECURITY:
 
-        confirmBtn.textContent =
-          "Processing...";
+          The secure bill-payment backend is not
+          connected yet.
 
+          Therefore this action intentionally DOES NOT
+          modify Firestore or deduct the user's balance.
+        */
 
-        try {
 
-          const userRef =
-            doc(
-              db,
-              "users",
-              currentUser.uid
-            );
+        const reviewId =
+          "FM-BILL-REVIEW-" +
+          Date.now()
+            .toString(36)
+            .toUpperCase();
 
 
-          const transactionRef =
-            doc(
-              collection(
-                db,
-                "users",
-                currentUser.uid,
-                "transactions"
-              )
-            );
+        document.getElementById(
+          "transactionId"
+        ).textContent =
+          reviewId;
 
 
-          await runTransaction(
-            db,
-            async (transaction) => {
+        successSection.classList.remove(
+          "hidden"
+        );
 
-              const userSnap =
-                await transaction.get(
-                  userRef
-                );
 
+        reviewSection.classList.add(
+          "hidden"
+        );
 
-              if (!userSnap.exists()) {
 
-                throw new Error(
-                  "Account not found."
-                );
+        formSection.classList.add(
+          "hidden"
+        );
 
-              }
 
-
-              const userData =
-                userSnap.data();
-
-
-              const balance =
-                Number(
-                  userData.balance || 0
-                );
-
-
-              if (
-                pendingPayment.amount >
-                balance
-              ) {
-
-                throw new Error(
-                  "Insufficient available balance."
-                );
-
-              }
-
-
-              const newBalance =
-                balance -
-                pendingPayment.amount;
-
-
-              transaction.update(
-                userRef,
-                {
-                  balance:
-                    newBalance
-                }
-              );
-
-
-              transaction.set(
-                transactionRef,
-                {
-
-                  type:
-                    "bill_pay",
-
-                  title:
-                    "Bill Payment",
-
-                  amount:
-                    pendingPayment.amount,
-
-                  direction:
-                    "debit",
-
-                  payee:
-                    pendingPayment.payee,
-
-                  accountNumber:
-                    pendingPayment.accountNumber,
-
-                  paymentDate:
-                    pendingPayment.paymentDate,
-
-                  memo:
-                    pendingPayment.memo,
-
-                  status:
-                    "completed",
-
-                  createdAt:
-                    serverTimestamp()
-
-                }
-              );
-
-            }
-          );
-
-
-          userBalance =
-            userBalance -
-            pendingPayment.amount;
-
-
-          currentBalance.textContent =
-            formatCurrency(
-              userBalance
-            );
-
-
-          transactionId.textContent =
-            transactionRef.id;
-
-
-          successPayee.textContent =
-            pendingPayment.payee;
-
-
-          successAmount.textContent =
-            formatCurrency(
-              pendingPayment.amount
-            );
-
-
-          successDate.textContent =
-            formatDate(
-              pendingPayment.paymentDate
-            );
-
-
-          reviewSection.style.display =
-            "none";
-
-          formSection.style.display =
-            "none";
-
-          successSection.style.display =
-            "block";
-
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-
-        } catch (error) {
-
-          console.error(error);
-
-          showMessage(
-            reviewMessage,
-            error.message ||
-            "Unable to complete the payment."
-          );
-
-
-          confirmBtn.disabled =
-            false;
-
-          confirmBtn.textContent =
-            "Confirm Payment";
-
-        }
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
       }
     );
@@ -2089,6 +2754,42 @@
     dashboardBtn.addEventListener(
       "click",
       () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
+
+
+    /* =========================
+       BACK
+    ========================= */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          !reviewSection.classList.contains(
+            "hidden"
+          )
+        ) {
+
+          reviewSection.classList.add(
+            "hidden"
+          );
+
+
+          formSection.classList.remove(
+            "hidden"
+          );
+
+
+          return;
+
+        }
+
 
         window.location.href =
           "dashboard.html";
