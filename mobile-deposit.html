@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>Mobile Deposit | First Merit Bank</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --navy:#082b57;
+  --blue:#1769d1;
+  --green:#159447;
+  --bg:#f5f7fa;
+  --white:#fff;
+  --text:#172235;
+  --muted:#718096;
+  --border:#e1e6ed;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* HEADER */
+
+.topbar{
+  height:66px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.menu-btn,
+.top-icon{
+  width:40px;
+  height:40px;
+  border:0;
+  background:transparent;
+  color:var(--navy);
+  border-radius:9px;
+  display:grid;
+  place-items:center;
+  font-size:17px;
+}
+
+.menu-btn:hover,
+.top-icon:hover{
+  background:#f1f4f7;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-left:7px;
+}
+
+.brand-mark{
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#082b57,#1769d1);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  font-weight:800;
+}
+
+.brand-name{
+  font-size:15px;
+  font-weight:750;
+  color:var(--navy);
+}
+
+.top-actions{
+  margin-left:auto;
+  display:flex;
+  gap:4px;
+}
+
+/* SIDE MENU */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(5,20,40,.42);
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+  z-index:90;
+}
+
+.overlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.side-menu{
+  position:fixed;
+  left:0;
+  top:0;
+  width:290px;
+  max-width:88vw;
+  height:100vh;
+  background:#fff;
+  transform:translateX(-105%);
+  transition:.28s;
+  z-index:100;
+  box-shadow:12px 0 35px rgba(0,0,0,.12);
+  overflow-y:auto;
+}
+
+.side-menu.open{
+  transform:translateX(0);
+}
+
+.menu-head{
+  height:72px;
+  padding:0 17px;
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+}
+
+.menu-close{
+  margin-left:auto;
+  width:37px;
+  height:37px;
+  border:0;
+  border-radius:9px;
+  background:#f3f5f8;
+}
+
+.menu-list{
+  padding:11px;
+}
+
+.menu-item{
+  width:100%;
+  border:0;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:12px;
+  border-radius:9px;
+  color:#425064;
+  font-size:14px;
+  text-align:left;
+  margin-bottom:2px;
+}
+
+.menu-item i{
+  width:20px;
+  text-align:center;
+  color:#647286;
+}
+
+.menu-item:hover,
+.menu-item.active{
+  background:#eaf2fc;
+  color:var(--blue);
+}
+
+.menu-item.active{
+  font-weight:700;
+}
+
+.menu-item.active i{
+  color:var(--blue);
+}
+
+.menu-divider{
+  height:1px;
+  background:var(--border);
+  margin:9px 4px;
+}
+
+/* PAGE */
+
+.page{
+  width:min(720px,calc(100% - 28px));
+  margin:auto;
+  padding:27px 0 60px;
+}
+
+.back-link{
+  border:0;
+  background:transparent;
+  padding:3px 0;
+  color:#637185;
+  font-size:13px;
+}
+
+.back-link i{
+  margin-right:6px;
+}
+
+.page-heading{
+  margin-bottom:19px;
+}
+
+.page-heading h1{
+  margin:13px 0 6px;
+  font-size:27px;
+  color:var(--navy);
+  letter-spacing:-.6px;
+}
+
+.page-heading p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* PROGRESS */
+
+.progress-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:14px;
+  margin-bottom:15px;
+  box-shadow:0 7px 22px rgba(8,43,87,.06);
+}
+
+.progress{
+  display:flex;
+  align-items:center;
+}
+
+.progress-step{
+  flex:1;
+  display:flex;
+  align-items:center;
+}
+
+.progress-step:last-child{
+  flex:0;
+}
+
+.step-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.step-circle{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#edf1f5;
+  border:1px solid #dfe4ea;
+  color:#788595;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:700;
+}
+
+.progress-step.active .step-circle{
+  background:var(--blue);
+  color:#fff;
+  border-color:var(--blue);
+}
+
+.progress-step.complete .step-circle{
+  background:var(--green);
+  color:#fff;
+  border-color:var(--green);
+}
+
+.step-line{
+  flex:1;
+  height:2px;
+  background:#e1e6ec;
+  margin:0 7px;
+}
+
+.progress-step.complete .step-line{
+  background:var(--green);
+}
+
+.progress-label{
+  font-size:9px;
+  color:#818c9a;
+  margin-top:5px;
+  white-space:nowrap;
+}
+
+.progress-step.active .progress-label{
+  color:var(--blue);
+  font-weight:700;
+}
+
+/* CARD */
+
+.deposit-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
+  box-shadow:0 8px 25px rgba(8,43,87,.07);
+  overflow:hidden;
+}
+
+.step{
+  display:none;
+  padding:23px;
+}
+
+.step.active{
+  display:block;
+}
+
+.title-row{
+  display:flex;
+  gap:12px;
+  margin-bottom:21px;
+}
+
+.title-icon{
+  width:42px;
+  height:42px;
+  border-radius:11px;
+  background:#eaf3ff;
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+
+.title-row h2{
+  margin:2px 0 4px;
+  font-size:18px;
+  color:var(--navy);
+}
+
+.title-row p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* FORM */
+
+.field{
+  margin-bottom:17px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#455266;
+  font-size:12px;
+  font-weight:700;
+}
+
+.field select,
+.field input{
+  width:100%;
+  height:48px;
+  border:1px solid #d7dee7;
+  border-radius:9px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+  padding:0 13px;
+}
+
+.field input{
+  padding-left:38px;
+}
+
+.field select:focus,
+.field input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(23,105,209,.08);
+}
+
+.input-wrap{
+  position:relative;
+}
+
+.input-wrap i{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#8793a1;
+}
+
+.amount{
+  font-size:20px!important;
+  font-weight:700;
+}
+
+.info-box{
+  display:flex;
+  gap:9px;
+  padding:12px;
+  border:1px solid #dce7f2;
+  background:#f4f8fc;
+  border-radius:9px;
+  color:#56657a;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* CAPTURE */
+
+.capture-box{
+  border:1.5px dashed #bdc8d5;
+  background:#fafbfd;
+  border-radius:13px;
+  padding:16px;
+}
+
+.preview{
+  width:100%;
+  aspect-ratio:1.65/1;
+  border-radius:9px;
+  background:#edf1f5;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  margin-bottom:13px;
+}
+
+.preview img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:none;
+}
+
+.placeholder{
+  text-align:center;
+  color:#8b97a5;
+}
+
+.placeholder i{
+  font-size:34px;
+  margin-bottom:8px;
+  color:#a5afba;
+}
+
+.placeholder div{
+  font-size:13px;
+  font-weight:700;
+}
+
+.placeholder small{
+  display:block;
+  margin-top:4px;
+  font-size:10px;
+}
+
+.capture-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.capture-btn{
+  height:44px;
+  border-radius:9px;
+  border:1px solid #d5dce5;
+  background:#fff;
+  color:var(--navy);
+  font-size:12px;
+  font-weight:700;
+}
+
+.capture-btn.primary{
+  background:var(--blue);
+  color:#fff;
+  border-color:var(--blue);
+}
+
+.capture-btn i{
+  margin-right:6px;
+}
+
+input[type=file]{
+  display:none;
+}
+
+.tip{
+  margin-top:13px;
+  padding:11px;
+  background:#fff9eb;
+  border:1px solid #efdfb9;
+  color:#725d2b;
+  border-radius:9px;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* REVIEW */
+
+.review-box{
+  border:1px solid var(--border);
+  border-radius:11px;
+  overflow:hidden;
+}
+
+.review-row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:13px;
+  border-bottom:1px solid var(--border);
+}
+
+.review-row:last-child{
+  border-bottom:0;
+}
+
+.review-label{
+  color:#788596;
+  font-size:12px;
+}
+
+.review-value{
+  color:var(--text);
+  font-size:12px;
+  font-weight:700;
+  text-align:right;
+}
+
+.photos{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+
+.photo{
+  border:1px solid var(--border);
+  border-radius:9px;
+  overflow:hidden;
+}
+
+.photo img{
+  width:100%;
+  aspect-ratio:1.65/1;
+  object-fit:contain;
+  background:#f1f3f5;
+  display:block;
+}
+
+.photo-label{
+  padding:7px;
+  font-size:9px;
+  color:#6f7c8d;
+  font-weight:700;
+}
+
+.notice{
+  margin-top:14px;
+  padding:12px;
+  border-radius:9px;
+  background:#edf7f1;
+  border:1px solid #cfe8d8;
+  color:#28623e;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* BUTTONS */
+
+.actions{
+  display:flex;
+  gap:9px;
+  margin-top:21px;
+}
+
+.btn{
+  min-height:45px;
+  padding:0 17px;
+  border-radius:9px;
+  border:1px solid #d5dce5;
+  background:#fff;
+  color:#465367;
+  font-size:13px;
+  font-weight:700;
+}
+
+.primary{
+  background:var(--blue);
+  border-color:var(--blue);
+  color:#fff;
+}
+
+.green{
+  background:var(--green);
+  border-color:var(--green);
+  color:#fff;
+  margin-left:auto;
+}
+
+.btn:disabled{
+  opacity:.45;
+}
+
+/* SUCCESS */
+
+.success{
+  text-align:center;
+  padding:32px 22px;
+}
+
+.success-icon{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:#e7f6ed;
+  color:var(--green);
+  display:grid;
+  place-items:center;
+  margin:0 auto 17px;
+  font-size:27px;
+}
+
+.success h2{
+  margin:0 0 8px;
+  color:var(--navy);
+  font-size:22px;
+}
+
+.success p{
+  max-width:450px;
+  margin:0 auto 20px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+
+.reference{
+  max-width:350px;
+  margin:0 auto 17px;
+  padding:13px;
+  background:#f5f8fb;
+  border:1px solid var(--border);
+  border-radius:9px;
+}
+
+.reference small{
+  display:block;
+  color:#84909e;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.reference strong{
+  display:block;
+  margin-top:5px;
+  color:var(--navy);
+  letter-spacing:.8px;
+}
+
+.processing{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 12px;
+  border-radius:20px;
+  background:#fff5dc;
+  border:1px solid #eed9a7;
+  color:#765b1d;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:19px;
+}
+
+.security{
+  text-align:center;
+  color:#8a95a2;
+  font-size:10px;
+  margin-top:16px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .topbar{
+    height:62px;
+    padding:0 12px;
+  }
+
+  .brand-name{
+    font-size:14px;
+  }
+
+  .page{
+    width:calc(100% - 20px);
+    padding-top:18px;
+  }
+
+  .page-heading h1{
+    font-size:24px;
+  }
+
+  .step{
+    padding:17px 15px;
+  }
+
+  .capture-buttons{
+    grid-template-columns:1fr;
+  }
+
+  .photos{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .actions{
+    position:sticky;
+    bottom:0;
+    margin-left:-15px;
+    margin-right:-15px;
+    margin-bottom:-17px;
+    padding:10px 15px;
+    background:#fff;
+    border-top:1px solid var(--border);
+  }
+
+  .actions .btn{
+    flex:1;
+  }
+
+  .green{
+    margin-left:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay"></div>
+
+<!-- SIDE MENU -->
+<aside class="side-menu" id="sideMenu">
+
+  <div class="menu-head">
+
+    <div class="brand">
+      <div class="brand-mark">FM</div>
+      <div class="brand-name">First Merit Bank</div>
+    </div>
+
+    <button class="menu-close" id="menuClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+  </div>
+
+  <div class="menu-list">
+
+    <button class="menu-item" onclick="go('dashboard.html')">
+      <i class="fa-solid fa-house"></i>
+      Dashboard
+    </button>
+
+    <button class="menu-item" onclick="go('account.html')">
+      <i class="fa-regular fa-user"></i>
+      Account
+    </button>
+
+    <button class="menu-item" onclick="go('send-money.html')">
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+      Send Money
+    </button>
+
+    <button class="menu-item" onclick="go('zelle.html')">
+      <i class="fa-solid fa-bolt"></i>
+      Zelle
+    </button>
+
+    <button class="menu-item" onclick="go('add-money.html')">
+      <i class="fa-solid fa-plus"></i>
+      Add Money
+    </button>
+
+    <button class="menu-item" onclick="go('withdraw.html')">
+      <i class="fa-solid fa-money-bill-transfer"></i>
+      Withdraw
+    </button>
+
+    <button class="menu-item" onclick="go('transfer.html')">
+      <i class="fa-solid fa-right-left"></i>
+      Transfer
+    </button>
+
+    <button class="menu-item active">
+      <i class="fa-solid fa-camera"></i>
+      Mobile Deposit
+    </button>
+
+    <button class="menu-item" onclick="go('payments.html')">
+      <i class="fa-solid fa-credit-card"></i>
+      Payments
+    </button>
+
+    <button class="menu-item" onclick="go('cards.html')">
+      <i class="fa-regular fa-credit-card"></i>
+      Cards
+    </button>
+
+    <button class="menu-item" onclick="go('transactions.html')">
+      <i class="fa-solid fa-list"></i>
+      Transactions
+    </button>
+
+    <button class="menu-item" onclick="go('statements.html')">
+      <i class="fa-solid fa-file-lines"></i>
+      Statements
+    </button>
+
+    <button class="menu-item" onclick="go('notifications.html')">
+      <i class="fa-regular fa-bell"></i>
+      Notifications
+    </button>
+
+    <button class="menu-item" onclick="go('support.html')">
+      <i class="fa-regular fa-circle-question"></i>
+      Support
+    </button>
+
+    <button class="menu-item" onclick="go('security.html')">
+      <i class="fa-solid fa-shield-halved"></i>
+      Security
+    </button>
+
+    <button class="menu-item" onclick="go('settings.html')">
+      <i class="fa-solid fa-gear"></i>
+      Settings
+    </button>
+
+    <div class="menu-divider"></div>
+
+    <button class="menu-item" id="logoutBtn">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      Logout
+    </button>
+
+  </div>
+</aside>
+
+<!-- HEADER -->
+<header class="topbar">
+
+  <button class="menu-btn" id="menuBtn">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark">FM</div>
+    <div class="brand-name">First Merit Bank</div>
+  </div>
+
+  <div class="top-actions">
+
+    <button class="top-icon" onclick="go('notifications.html')">
+      <i class="fa-regular fa-bell"></i>
+    </button>
+
+    <button class="top-icon" onclick="go('account.html')">
+      <i class="fa-regular fa-user"></i>
+    </button>
+
+  </div>
+
+</header>
+
+<main class="page">
+
+  <div class="page-heading">
+
+    <button class="back-link" onclick="go('dashboard.html')">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to Dashboard
+    </button>
+
+    <h1>Mobile Deposit</h1>
+
+    <p>
+      Deposit a check securely by taking clear photos of both sides.
+    </p>
+
+  </div>
+
+  <!-- PROGRESS -->
+
+  <div class="progress-card">
+
+    <div class="progress">
+
+      <div class="progress-step active" id="p1">
+        <div class="step-wrap">
+          <div class="step-circle">1</div>
+          <div class="progress-label">Details</div>
+        </div>
+        <div class="step-line"></div>
+      </div>
+
+      <div class="progress-step" id="p2">
+        <div class="step-wrap">
+          <div class="step-circle">2</div>
+          <div class="progress-label">Front</div>
+        </div>
+        <div class="step-line"></div>
+      </div>
+
+      <div class="progress-step" id="p3">
+        <div class="step-wrap">
+          <div class="step-circle">3</div>
+          <div class="progress-label">Back</div>
+        </div>
+        <div class="step-line"></div>
+      </div>
+
+      <div class="progress-step" id="p4">
+        <div class="step-wrap">
+          <div class="step-circle">4</div>
+          <div class="progress-label">Review</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DEPOSIT CARD -->
+
+  <section class="deposit-card">
+
+    <!-- STEP 1 -->
+
+    <div class="step active" id="step1">
+
+      <div class="title-row">
+
+        <div class="title-icon">
+          <i class="fa-solid fa-receipt"></i>
+        </div>
+
+        <div>
+          <h2>Deposit details</h2>
+          <p>
+            Choose your account and enter the exact check amount.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="field">
+
+        <label>Deposit to</label>
+
+        <select id="depositAccount">
+
+          <option value="checking">
+            Checking •••• 4821
+          </option>
+
+          <option value="savings">
+            Savings •••• 7194
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>Check amount</label>
+
+        <div class="input-wrap">
+
+          <i class="fa-solid fa-dollar-sign"></i>
+
+          <input
+            id="depositAmount"
+            class="amount"
+            type="number"
+            min="0.01"
+            step="0.01"
+            inputmode="decimal"
+            placeholder="0.00"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="info-box">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+          Make sure the check is payable to the name on your First Merit account.
+        </span>
+
+      </div>
+
+      <div class="actions">
+
+        <button class="btn" onclick="go('dashboard.html')">
+          Cancel
+        </button>
+
+        <button class="btn primary" id="continueDetails">
+          Continue
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- STEP 2 -->
+
+    <div class="step" id="step2">
+
+      <div class="title-row">
+
+        <div class="title-icon">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+
+        <div>
+          <h2>Capture the front</h2>
+          <p>
+            Make sure the entire check is visible and easy to read.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="capture-box">
+
+        <div class="preview">
+
+          <img id="frontPreview">
+
+          <div class="placeholder" id="frontPlaceholder">
+
+            <i class="fa-regular fa-image"></i>
+
+            <div>Front of check</div>
+
+            <small>Keep all four corners visible</small>
+
+          </div>
+
+        </div>
+
+        <div class="capture-buttons">
+
+          <button class="capture-btn primary" id="frontCameraBtn">
+            <i class="fa-solid fa-camera"></i>
+            Take Photo
+          </button>
+
+          <button class="capture-btn" id="frontUploadBtn">
+            <i class="fa-solid fa-upload"></i>
+            Choose Photo
+          </button>
+
+        </div>
+
+        <input
+          type="file"
+          id="frontCamera"
+          accept="image/*"
+          capture="environment"
+        >
+
+        <input
+          type="file"
+          id="frontUpload"
+          accept="image/*"
+        >
+
+      </div>
+
+      <div class="tip">
+        <i class="fa-solid fa-lightbulb"></i>
+        Use good lighting and keep the check flat.
+      </div>
+
+      <div class="actions">
+
+        <button class="btn" id="frontBack">
+          Back
+        </button>
+
+        <button class="btn primary" id="frontContinue" disabled>
+          Continue
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- STEP 3 -->
+
+    <div class="step" id="step3">
+
+      <div class="title-row">
+
+        <div class="title-icon">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+
+        <div>
+          <h2>Capture the back</h2>
+          <p>
+            Turn the check over and capture the entire back.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="capture-box">
+
+        <div class="preview">
+
+          <img id="backPreview">
+
+          <div class="placeholder" id="backPlaceholder">
+
+            <i class="fa-regular fa-image"></i>
+
+            <div>Back of check</div>
+
+            <small>Keep all four corners visible</small>
+
+          </div>
+
+        </div>
+
+        <div class="capture-buttons">
+
+          <button class="capture-btn primary" id="backCameraBtn">
+            <i class="fa-solid fa-camera"></i>
+            Take Photo
+          </button>
+
+          <button class="capture-btn" id="backUploadBtn">
+            <i class="fa-solid fa-upload"></i>
+            Choose Photo
+          </button>
+
+        </div>
+
+        <input
+          type="file"
+          id="backCamera"
+          accept="image/*"
+          capture="environment"
+        >
+
+        <input
+          type="file"
+          id="backUpload"
+          accept="image/*"
+        >
+
+      </div>
+
+      <div class="tip">
+        <i class="fa-solid fa-pen"></i>
+        Endorse the check according to your bank's instructions before photographing the back.
+      </div>
+
+      <div class="actions">
+
+        <button class="btn" id="backStep">
+          Back
+        </button>
+
+        <button class="btn primary" id="backContinue" disabled>
+          Review Deposit
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- STEP 4 -->
+
+    <div class="step" id="step4">
+
+      <div class="title-row">
+
+        <div class="title-icon">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+
+        <div>
+          <h2>Review your deposit</h2>
+          <p>
+            Check everything carefully before submitting.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="review-box">
+
+        <div class="review-row">
+          <span class="review-label">Deposit account</span>
+          <span class="review-value" id="reviewAccount"></span>
+        </div>
+
+        <div class="review-row">
+          <span class="review-label">Check amount</span>
+          <span class="review-value" id="reviewAmount"></span>
+        </div>
+
+        <div class="review-row">
+          <span class="review-label">Front image</span>
+          <span class="review-value">
+            <i class="fa-solid fa-circle-check" style="color:#159447"></i>
+            Captured
+          </span>
+        </div>
+
+        <div class="review-row">
+          <span class="review-label">Back image</span>
+          <span class="review-value">
+            <i class="fa-solid fa-circle-check" style="color:#159447"></i>
+            Captured
+          </span>
+        </div>
+
+      </div>
+
+      <div class="photos">
+
+        <div class="photo">
+          <img id="reviewFront">
+          <div class="photo-label">FRONT OF CHECK</div>
+        </div>
+
+        <div class="photo">
+          <img id="reviewBack">
+          <div class="photo-label">BACK OF CHECK</div>
+        </div>
+
+      </div>
+
+      <div class="notice">
+        <i class="fa-solid fa-shield-halved"></i>
+        Review the images carefully before submitting.
+      </div>
+
+      <div class="actions">
+
+        <button class="btn" id="reviewBackBtn">
+          Back
+        </button>
+
+        <button class="btn green" id="submitDeposit">
+          <i class="fa-solid fa-lock"></i>
+          Submit Deposit
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- SUCCESS -->
+
+    <div class="step" id="success">
+
+      <div class="success">
+
+        <div class="success-icon">
+          <i class="fa-solid fa-check"></i>
+        </div>
+
+        <h2>Deposit submitted</h2>
+
+        <p>
+          Your mobile deposit has been received and is being processed.
+          Keep the original check in a safe place until processing is complete.
+        </p>
+
+        <div class="reference">
+
+          <small>Deposit reference</small>
+
+          <strong id="referenceNumber">
+            FM-00000000
+          </strong>
+
+        </div>
+
+        <div class="processing">
+          <i class="fa-solid fa-clock"></i>
+          Processing
+        </div>
+
+        <br>
+
+        <button class="btn primary" onclick="go('dashboard.html')">
+          Return to Dashboard
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="security">
+    <i class="fa-solid fa-lock"></i>
+    Your deposit information is handled securely.
+  </div>
+
+</main>
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+let currentUser = null;
+
+let amount = 0;
+let account = "checking";
+
+let frontImage = "";
+let backImage = "";
+
+
+/* AUTH */
+
+onAuthStateChanged(auth,(user)=>{
+
+  if(!user){
+
+    window.location.href="login.html";
+    return;
+
+  }
+
+  currentUser=user;
+
+});
+
+
+/* NAVIGATION */
+
+window.go=function(page){
+  window.location.href=page;
+};
+
+
+/* MENU */
+
+const menuBtn=document.getElementById("menuBtn");
+const menuClose=document.getElementById("menuClose");
+const sideMenu=document.getElementById("sideMenu");
+const overlay=document.getElementById("overlay");
+
+menuBtn.onclick=()=>{
+
+  sideMenu.classList.add("open");
+  overlay.classList.add("show");
+
+};
+
+menuClose.onclick=closeMenu;
+overlay.onclick=closeMenu;
+
+function closeMenu(){
+
+  sideMenu.classList.remove("open");
+  overlay.classList.remove("show");
+
+}
+
+
+/* STEPS */
+
+function showStep(number){
+
+  document.querySelectorAll(".step").forEach(step=>{
+    step.classList.remove("active");
+  });
+
+  const target=document.getElementById(
+    number===5 ? "success" : `step${number}`
+  );
+
+  target.classList.add("active");
+
+  for(let i=1;i<=4;i++){
+
+    const p=document.getElementById(`p${i}`);
+
+    p.classList.remove("active","complete");
+
+    if(number>i){
+      p.classList.add("complete");
+    }
+
+    if(number===i){
+      p.classList.add("active");
+    }
+
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* STEP 1 */
+
+document.getElementById("continueDetails").onclick=()=>{
+
+  const value=parseFloat(
+    document.getElementById("depositAmount").value
+  );
+
+  if(!value || value<=0){
+
+    alert("Please enter the check amount.");
+    return;
+
+  }
+
+  amount=Number(value.toFixed(2));
+
+  account=
+    document.getElementById("depositAccount").value;
+
+  showStep(2);
+
+};
+
+
+/* IMAGE READER */
+
+function loadImage(file,type){
+
+  if(!file) return;
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please select an image file.");
+    return;
+
+  }
+
+  const reader=new FileReader();
+
+  reader.onload=(event)=>{
+
+    if(type==="front"){
+
+      frontImage=event.target.result;
+
+      const image=document.getElementById("frontPreview");
+
+      image.src=frontImage;
+      image.style.display="block";
+
+      document.getElementById(
+        "frontPlaceholder"
+      ).style.display="none";
+
+      document.getElementById(
+        "frontContinue"
+      ).disabled=false;
+
+    }
+
+    if(type==="back"){
+
+      backImage=event.target.result;
+
+      const image=document.getElementById("backPreview");
+
+      image.src=backImage;
+      image.style.display="block";
+
+      document.getElementById(
+        "backPlaceholder"
+      ).style.display="none";
+
+      document.getElementById(
+        "backContinue"
+      ).disabled=false;
+
+    }
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* FRONT CAMERA */
+
+document.getElementById("frontCameraBtn").onclick=()=>{
+
+  document.getElementById("frontCamera").click();
+
+};
+
+document.getElementById("frontCamera").onchange=(e)=>{
+
+  loadImage(e.target.files[0],"front");
+
+};
+
+
+/* FRONT UPLOAD */
+
+document.getElementById("frontUploadBtn").onclick=()=>{
+
+  document.getElementById("frontUpload").click();
+
+};
+
+document.getElementById("frontUpload").onchange=(e)=>{
+
+  loadImage(e.target.files[0],"front");
+
+};
+
+
+/* FRONT NAVIGATION */
+
+document.getElementById("frontBack").onclick=()=>{
+
+  showStep(1);
+
+};
+
+document.getElementById("frontContinue").onclick=()=>{
+
+  if(!frontImage){
+
+    alert("Please capture the front of the check.");
+    return;
+
+  }
+
+  showStep(3);
+
+};
+
+
+/* BACK CAMERA */
+
+document.getElementById("backCameraBtn").onclick=()=>{
+
+  document.getElementById("backCamera").click();
+
+};
+
+document.getElementById("backCamera").onchange=(e)=>{
+
+  loadImage(e.target.files[0],"back");
+
+};
+
+
+/* BACK UPLOAD */
+
+document.getElementById("backUploadBtn").onclick=()=>{
+
+  document.getElementById("backUpload").click();
+
+};
+
+document.getElementById("backUpload").onchange=(e)=>{
+
+  loadImage(e.target.files[0],"back");
+
+};
+
+
+/* BACK NAVIGATION */
+
+document.getElementById("backStep").onclick=()=>{
+
+  showStep(2);
+
+};
+
+document.getElementById("backContinue").onclick=()=>{
+
+  if(!backImage){
+
+    alert("Please capture the back of the check.");
+    return;
+
+  }
+
+  prepareReview();
+
+  showStep(4);
+
+};
+
+
+/* REVIEW */
+
+function prepareReview(){
+
+  const select=document.getElementById("depositAccount");
+
+  document.getElementById("reviewAccount")
+    .textContent=
+    select.options[select.selectedIndex].text;
+
+  document.getElementById("reviewAmount")
+    .textContent=
+    new Intl.NumberFormat("en-US",{
+      style:"currency",
+      currency:"USD"
+    }).format(amount);
+
+  document.getElementById("reviewFront")
+    .src=frontImage;
+
+  document.getElementById("reviewBack")
+    .src=backImage;
+
+}
+
+
+document.getElementById("reviewBackBtn").onclick=()=>{
+
+  showStep(3);
+
+};
+
+
+/* SUBMIT */
+
+document.getElementById("submitDeposit").onclick=async()=>{
+
+  if(!currentUser){
+
+    alert("Please sign in again.");
+    window.location.href="login.html";
+    return;
+
+  }
+
+  const button=document.getElementById("submitDeposit");
+
+  button.disabled=true;
+
+  button.innerHTML=
+    '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+
+
+  try{
+
+    const reference=
+      "FM-"+Math.floor(
+        10000000+
+        Math.random()*90000000
+      );
+
+
+    await addDoc(
+      collection(
+        db,
+        "users",
+        currentUser.uid,
+        "mobileDeposits"
+      ),
+      {
+        reference:reference,
+        amount:amount,
+        account:account,
+        status:"processing",
+        submittedAt:serverTimestamp()
+      }
+    );
+
+
+    await setDoc(
+      doc(db,"users",currentUser.uid),
+      {
+        lastMobileDeposit:{
+          reference:reference,
+          amount:amount,
+          account:account,
+          status:"processing"
+        }
+      },
+      {merge:true}
+    );
+
+
+    document.getElementById(
+      "referenceNumber"
+    ).textContent=reference;
+
+    showStep(5);
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "We couldn't submit the deposit right now. Please try again."
+    );
+
+    button.disabled=false;
+
+    button.innerHTML=
+      '<i class="fa-solid fa-lock"></i> Submit Deposit';
+
+  }
+
+};
+
+
+/* LOGOUT */
+
+document.getElementById("logoutBtn").onclick=async()=>{
+
+  await signOut(auth);
+
+  window.location.href="login.html";
+
+};
+
+</script>
+
+</body>
+</html>
