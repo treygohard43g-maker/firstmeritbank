@@ -476,6 +476,7 @@
     }
 
     @media (max-width: 430px) {
+
       .topbar {
         padding: 0 14px;
       }
@@ -496,6 +497,7 @@
       .setting-description {
         max-width: 250px;
       }
+
     }
   </style>
 </head>
@@ -539,7 +541,6 @@
         </div>
 
       </div>
-
 
       <button
         class="refresh-btn"
@@ -1064,7 +1065,7 @@
           <div class="setting-content">
 
             <div class="setting-title">
-              Currency
+              Display Currency
             </div>
 
             <div
@@ -1133,10 +1134,6 @@
 
           <option value="USD">
             USD — US Dollar
-          </option>
-
-          <option value="NGN">
-            NGN — Nigerian Naira
           </option>
 
           <option value="GBP">
@@ -1387,6 +1384,15 @@
     let userData = {};
 
 
+    /* SUPPORTED CURRENCIES */
+
+    const SUPPORTED_CURRENCIES = [
+      "USD",
+      "GBP",
+      "EUR"
+    ];
+
+
     /* AUTH */
 
     onAuthStateChanged(
@@ -1466,8 +1472,10 @@
 
 
         const currency =
-          userData.currency ||
-          "USD";
+          supportedCurrency(
+            userData.currency ||
+            "USD"
+          );
 
 
         currencyValue.textContent =
@@ -1475,9 +1483,7 @@
 
 
         currencySelect.value =
-          supportedCurrency(
-            currency
-          );
+          currency;
 
 
         accountNumber.textContent =
@@ -1492,6 +1498,18 @@
 
         accountCurrency.textContent =
           currency;
+
+
+        /*
+          Keep the selected currency locally too.
+          Other pages can read this value when
+          displaying balances.
+        */
+
+        localStorage.setItem(
+          "fm_currency",
+          currency
+        );
 
 
         const settings =
@@ -1882,6 +1900,26 @@
         currencyMessage.className =
           "message";
 
+
+        /*
+          Always open the selector
+          on the currently saved currency.
+        */
+
+        const currentCurrency =
+          supportedCurrency(
+            userData.currency ||
+            localStorage.getItem(
+              "fm_currency"
+            ) ||
+            "USD"
+          );
+
+
+        currencySelect.value =
+          currentCurrency;
+
+
         currencyModal.classList.add(
           "show"
         );
@@ -1928,6 +1966,8 @@
     }
 
 
+    /* SAVE CURRENCY */
+
     saveCurrencyBtn.addEventListener(
       "click",
       async () => {
@@ -1938,7 +1978,9 @@
 
 
         const selected =
-          currencySelect.value;
+          supportedCurrency(
+            currencySelect.value
+          );
 
 
         saveCurrencyBtn.disabled =
@@ -1958,6 +2000,11 @@
             );
 
 
+          /*
+            Save the selected display
+            currency to Firebase.
+          */
+
           await setDoc(
             userRef,
             {
@@ -1968,6 +2015,18 @@
             {
               merge: true
             }
+          );
+
+
+          /*
+            Save locally as well so
+            other pages can immediately
+            know the preferred currency.
+          */
+
+          localStorage.setItem(
+            "fm_currency",
+            selected
           );
 
 
@@ -1983,6 +2042,18 @@
             selected;
 
 
+          /*
+            Tell any page currently open
+            in another browser tab that
+            the currency changed.
+          */
+
+          localStorage.setItem(
+            "fm_currency_updated",
+            Date.now().toString()
+          );
+
+
           currencyMessage.textContent =
             "Currency preference saved.";
 
@@ -1991,7 +2062,8 @@
 
 
           showToast(
-            "Currency preference updated."
+            selected +
+            " currency selected."
           );
 
 
@@ -2000,9 +2072,14 @@
             900
           );
 
+
         } catch (error) {
 
-          console.error(error);
+          console.error(
+            "Currency save error:",
+            error
+          );
+
 
           currencyMessage.textContent =
             "Unable to save currency preference.";
@@ -2226,15 +2303,7 @@
       currency
     ) {
 
-      const supported = [
-        "USD",
-        "NGN",
-        "GBP",
-        "EUR"
-      ];
-
-
-      return supported.includes(
+      return SUPPORTED_CURRENCIES.includes(
         currency
       )
         ? currency
