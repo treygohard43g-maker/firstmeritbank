@@ -3741,23 +3741,16 @@
             2200
           );
 
-        } catch (error) {
+        catch (error) {
+  console.error("TRANSFER ERROR:", error);
 
-          console.error(
-            "TRANSFER ERROR:",
-            error
-          );
-
-          let message =
-            "The transfer could not be completed.";
-
-          if (
-            error.code ===
-            "permission-denied"
-          ) {
-
-            message =
-              "The transfer was rejected by your account security rules. Please verify the recipient and try again.";
+  showError(
+    "Transfer failed: " +
+    (error.code || "unknown") +
+    " — " +
+    (error.message || "Unknown error")
+  );
+}
 
           } else if (
             error.code ===
