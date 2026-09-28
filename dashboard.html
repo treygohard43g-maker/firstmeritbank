@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta
@@ -1224,8 +1225,6 @@
         font-size: 29px;
       }
 
-      /* Account cards become a vertical banking account list */
-
       .accounts-grid {
         grid-template-columns: 1fr;
 
@@ -1245,10 +1244,6 @@
       .account-balance {
         font-size: 19px;
       }
-
-      /* Keep quick actions available on desktop,
-         but use the hamburger + bottom navigation
-         for mobile. */
 
       .quick-heading,
       .quick-actions {
@@ -1272,11 +1267,6 @@
       .inheritance-card .secondary-btn {
         align-self: center;
       }
-
-      /* -----------------------------------------
-         MOBILE NAV
-         NO MENU BUTTON
-      ----------------------------------------- */
 
       .mobile-bottom-nav {
         position: fixed;
@@ -1333,8 +1323,6 @@
       .bottom-item.active {
         color: var(--blue);
       }
-
-      /* CENTER DEPOSIT */
 
       .bottom-deposit {
         margin-top: -20px;
@@ -1408,15 +1396,10 @@
 
 <body>
 
-  <!-- =========================================
-       TOP HEADER
-  ========================================= -->
-
   <header class="topbar">
 
     <div class="topbar-left">
 
-      <!-- EXISTING HAMBURGER -->
       <button
         class="menu-btn"
         id="menuBtn"
@@ -1440,7 +1423,6 @@
 
     </div>
 
-
     <div class="topbar-right">
 
       <button
@@ -1453,7 +1435,6 @@
 
         <span class="notification-dot"></span>
       </button>
-
 
       <button
         class="icon-btn"
@@ -1468,20 +1449,10 @@
 
   </header>
 
-
-  <!-- =========================================
-       MENU OVERLAY
-  ========================================= -->
-
   <div
     class="menu-overlay"
     id="menuOverlay"
   ></div>
-
-
-  <!-- =========================================
-       EXISTING MAIN HAMBURGER MENU
-  ========================================= -->
 
   <aside
     class="side-menu"
@@ -1510,7 +1481,6 @@
 
       </div>
 
-
       <button
         class="close-menu"
         id="closeMenu"
@@ -1522,13 +1492,11 @@
 
     </div>
 
-
     <div class="menu-scroll">
 
       <div class="menu-section">
         Overview
       </div>
-
 
       <a
         href="dashboard.html"
@@ -1538,7 +1506,6 @@
         <span>Dashboard</span>
       </a>
 
-
       <a
         href="account.html"
         class="menu-link"
@@ -1547,11 +1514,9 @@
         <span>Account</span>
       </a>
 
-
       <div class="menu-section">
         Move Money
       </div>
-
 
       <a
         href="send-money.html"
@@ -1561,7 +1526,6 @@
         <span>Send Money</span>
       </a>
 
-
       <a
         href="zelle.html"
         class="menu-link"
@@ -1569,7 +1533,6 @@
         <i class="fa-solid fa-bolt"></i>
         <span>Zelle</span>
       </a>
-
 
       <a
         href="add-money.html"
@@ -1579,7 +1542,6 @@
         <span>Add Money</span>
       </a>
 
-
       <a
         href="withdraw.html"
         class="menu-link"
@@ -1587,7 +1549,6 @@
         <i class="fa-solid fa-arrow-up-from-bracket"></i>
         <span>Withdraw</span>
       </a>
-
 
       <a
         href="transfer.html"
@@ -1597,7 +1558,6 @@
         <span>Transfer</span>
       </a>
 
-
       <a
         href="mobile-deposit.html"
         class="menu-link"
@@ -1606,11 +1566,9 @@
         <span>Mobile Deposit</span>
       </a>
 
-
       <div class="menu-section">
         Payments
       </div>
-
 
       <a
         href="payments.html"
@@ -1620,7 +1578,6 @@
         <span>Payments</span>
       </a>
 
-
       <a
         href="cards.html"
         class="menu-link"
@@ -1629,11 +1586,9 @@
         <span>Cards</span>
       </a>
 
-
       <div class="menu-section">
         Activity
       </div>
-
 
       <a
         href="transactions.html"
@@ -1643,7 +1598,6 @@
         <span>Transactions</span>
       </a>
 
-
       <a
         href="statements.html"
         class="menu-link"
@@ -1651,7 +1605,6 @@
         <i class="fa-regular fa-file-lines"></i>
         <span>Statements</span>
       </a>
-
 
       <a
         href="notifications.html"
@@ -1661,11 +1614,9 @@
         <span>Notifications</span>
       </a>
 
-
       <div class="menu-section">
         Support & Security
       </div>
-
 
       <a
         href="support.html"
@@ -1675,7 +1626,6 @@
         <span>Support</span>
       </a>
 
-
       <a
         href="security.html"
         class="menu-link"
@@ -1684,7 +1634,6 @@
         <span>Security</span>
       </a>
 
-
       <a
         href="settings.html"
         class="menu-link"
@@ -1692,7 +1641,6 @@
         <i class="fa-solid fa-gear"></i>
         <span>Settings</span>
       </a>
-
 
       <a
         href="#"
@@ -1707,17 +1655,7 @@
 
   </aside>
 
-
-  <!-- =========================================
-       MAIN DASHBOARD
-  ========================================= -->
-
   <main class="page">
-
-
-    <!-- =======================================
-         ONE GREETING ONLY
-    ======================================== -->
 
     <section class="welcome-row">
 
@@ -1728,18 +1666,12 @@
         Welcome back
       </h1>
 
-
       <div
         class="current-date"
         id="currentDate"
       ></div>
 
     </section>
-
-
-    <!-- =======================================
-         TOTAL BALANCE
-    ======================================== -->
 
     <section class="balance-card">
 
@@ -1748,7 +1680,6 @@
         <span class="balance-label">
           Total balance
         </span>
-
 
         <button
           class="visibility-btn"
@@ -1761,7 +1692,6 @@
 
       </div>
 
-
       <div
         class="total-balance balance-value"
         id="totalBalance"
@@ -1769,17 +1699,11 @@
         $1,651,000.00
       </div>
 
-
       <div class="balance-sub">
         Across your First Merit accounts
       </div>
 
     </section>
-
-
-    <!-- =======================================
-         ACCOUNTS
-    ======================================== -->
 
     <div class="section-heading">
 
@@ -1793,11 +1717,7 @@
 
     </div>
 
-
     <section class="accounts-grid">
-
-
-      <!-- CHECKING -->
 
       <article class="account-card checking">
 
@@ -1818,7 +1738,6 @@
 
           </div>
 
-
           <div class="account-type-icon">
 
             <i class="fa-solid fa-building-columns"></i>
@@ -1827,11 +1746,9 @@
 
         </div>
 
-
         <div class="account-balance-label">
           Available balance
         </div>
-
 
         <div
           class="account-balance balance-value"
@@ -1839,7 +1756,6 @@
         >
           $1,345,000.00
         </div>
-
 
         <div class="account-bottom">
 
@@ -1850,7 +1766,6 @@
             Active
 
           </span>
-
 
           <a
             href="account.html"
@@ -1863,9 +1778,6 @@
         </div>
 
       </article>
-
-
-      <!-- SAVINGS -->
 
       <article class="account-card savings">
 
@@ -1886,7 +1798,6 @@
 
           </div>
 
-
           <div class="account-type-icon">
 
             <i class="fa-solid fa-piggy-bank"></i>
@@ -1895,11 +1806,9 @@
 
         </div>
 
-
         <div class="account-balance-label">
           Available balance
         </div>
-
 
         <div
           class="account-balance balance-value"
@@ -1907,7 +1816,6 @@
         >
           $56,000.00
         </div>
-
 
         <div class="account-bottom">
 
@@ -1918,7 +1826,6 @@
             Active
 
           </span>
-
 
           <a
             href="account.html"
@@ -1931,9 +1838,6 @@
         </div>
 
       </article>
-
-
-      <!-- IRA -->
 
       <article class="account-card ira">
 
@@ -1954,7 +1858,6 @@
 
           </div>
 
-
           <div class="account-type-icon">
 
             <i class="fa-solid fa-chart-line"></i>
@@ -1963,11 +1866,9 @@
 
         </div>
 
-
         <div class="account-balance-label">
           Current balance
         </div>
-
 
         <div
           class="account-balance balance-value"
@@ -1975,7 +1876,6 @@
         >
           $250,000.00
         </div>
-
 
         <div class="account-bottom">
 
@@ -1986,7 +1886,6 @@
             Active
 
           </span>
-
 
           <a
             href="account.html"
@@ -2002,12 +1901,6 @@
 
     </section>
 
-
-    <!-- =======================================
-         QUICK ACTIONS
-         DESKTOP
-    ======================================== -->
-
     <div class="section-heading quick-heading">
 
       <h2>
@@ -2016,9 +1909,7 @@
 
     </div>
 
-
     <section class="quick-actions">
-
 
       <a
         href="send-money.html"
@@ -2028,7 +1919,6 @@
         <span>Send</span>
       </a>
 
-
       <a
         href="zelle.html"
         class="quick-action"
@@ -2036,7 +1926,6 @@
         <i class="fa-solid fa-bolt"></i>
         <span>Zelle</span>
       </a>
-
 
       <a
         href="add-money.html"
@@ -2046,7 +1935,6 @@
         <span>Add Money</span>
       </a>
 
-
       <a
         href="withdraw.html"
         class="quick-action"
@@ -2054,7 +1942,6 @@
         <i class="fa-solid fa-arrow-up-from-bracket"></i>
         <span>Withdraw</span>
       </a>
-
 
       <a
         href="transfer.html"
@@ -2066,11 +1953,6 @@
 
     </section>
 
-
-    <!-- =======================================
-         TRANSFER
-    ======================================== -->
-
     <div class="section-heading">
 
       <h2>
@@ -2078,7 +1960,6 @@
       </h2>
 
     </div>
-
 
     <section class="transfer-card">
 
@@ -2089,7 +1970,6 @@
           <i class="fa-solid fa-arrow-right-arrow-left"></i>
 
         </div>
-
 
         <div>
 
@@ -2105,7 +1985,6 @@
 
       </div>
 
-
       <a
         href="transfer.html"
         class="primary-btn"
@@ -2115,15 +1994,7 @@
 
     </section>
 
-
-    <!-- =======================================
-         ACTIVITY + ACCOUNT DETAILS
-    ======================================== -->
-
     <section class="dashboard-grid">
-
-
-      <!-- RECENT TRANSACTIONS -->
 
       <div class="panel">
 
@@ -2142,7 +2013,6 @@
 
         </div>
 
-
         <div id="transactionsList">
 
           <div class="empty-state">
@@ -2156,9 +2026,6 @@
         </div>
 
       </div>
-
-
-      <!-- ACCOUNT DETAILS -->
 
       <div class="panel">
 
@@ -2177,9 +2044,7 @@
 
         </div>
 
-
         <div class="account-details">
-
 
           <div class="detail-row">
 
@@ -2192,7 +2057,6 @@
             </span>
 
           </div>
-
 
           <div class="detail-row">
 
@@ -2209,7 +2073,6 @@
 
           </div>
 
-
           <div class="detail-row">
 
             <span class="detail-label">
@@ -2224,7 +2087,6 @@
             </span>
 
           </div>
-
 
           <div class="detail-row">
 
@@ -2244,11 +2106,6 @@
 
     </section>
 
-
-    <!-- =======================================
-         INHERITANCE
-    ======================================== -->
-
     <section class="inheritance-card">
 
       <div class="inheritance-left">
@@ -2258,7 +2115,6 @@
           <i class="fa-solid fa-people-arrows"></i>
 
         </div>
-
 
         <div>
 
@@ -2274,7 +2130,6 @@
 
       </div>
 
-
       <a
         href="inheritance.html"
         class="secondary-btn"
@@ -2286,14 +2141,7 @@
 
   </main>
 
-
-  <!-- =========================================
-       MOBILE BOTTOM NAVIGATION
-       NO MENU BUTTON
-  ========================================= -->
-
   <nav class="mobile-bottom-nav">
-
 
     <a
       href="dashboard.html"
@@ -2308,7 +2156,6 @@
 
     </a>
 
-
     <a
       href="transfer.html"
       class="bottom-item"
@@ -2321,7 +2168,6 @@
       </span>
 
     </a>
-
 
     <a
       href="mobile-deposit.html"
@@ -2340,7 +2186,6 @@
 
     </a>
 
-
     <a
       href="payments.html"
       class="bottom-item"
@@ -2356,16 +2201,11 @@
 
   </nav>
 
-
   <div
     class="toast"
     id="toast"
   ></div>
 
-
-  <!-- =========================================
-       FIREBASE
-  ========================================= -->
 
   <script type="module">
 
@@ -2374,7 +2214,7 @@
     import {
       onAuthStateChanged,
       signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
     import {
       doc,
@@ -2385,7 +2225,7 @@
       orderBy,
       limit,
       getDocs
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
     /* =========================================
@@ -2395,6 +2235,35 @@
     const DEFAULT_CHECKING = 1345000;
     const DEFAULT_SAVINGS = 56000;
     const DEFAULT_IRA = 250000;
+
+
+    /* =========================================
+       CURRENCY
+       Stored account balances remain USD-based.
+       Only the displayed value is converted.
+    ========================================= */
+
+    const CURRENCY_RATES = {
+
+      USD: {
+        symbol: "$",
+        rate: 1
+      },
+
+      GBP: {
+        symbol: "£",
+        rate: 0.75
+      },
+
+      EUR: {
+        symbol: "€",
+        rate: 0.85
+      }
+
+    };
+
+
+    let selectedCurrency = "USD";
 
 
     /* =========================================
@@ -2526,18 +2395,37 @@
        CURRENCY
     ========================================= */
 
+    function getCurrencyConfig() {
+
+      return (
+        CURRENCY_RATES[selectedCurrency] ||
+        CURRENCY_RATES.USD
+      );
+
+    }
+
+
     function formatCurrency(value) {
+
+      const config =
+        getCurrencyConfig();
+
+
+      const convertedValue =
+        (Number(value) || 0) *
+        config.rate;
+
 
       return new Intl.NumberFormat(
         "en-US",
         {
           style: "currency",
-          currency: "USD",
+          currency: selectedCurrency,
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }
       ).format(
-        Number(value) || 0
+        convertedValue
       );
 
     }
@@ -2935,12 +2823,6 @@
          USER NAME
       --------------------------------------- */
 
-      /*
-        The dashboard checks the Firestore
-        fullName first because that is the field
-        used by the signup process.
-      */
-
       const displayName =
         userData.fullName ||
         userData.name ||
@@ -2952,6 +2834,32 @@
 
       welcomeName.textContent =
         `Welcome back, ${displayName}`;
+
+
+      /* ---------------------------------------
+         CURRENCY
+      --------------------------------------- */
+
+      const savedCurrency =
+        String(
+          userData.currency ||
+          "USD"
+        ).toUpperCase();
+
+
+      if (
+        CURRENCY_RATES[savedCurrency]
+      ) {
+
+        selectedCurrency =
+          savedCurrency;
+
+      } else {
+
+        selectedCurrency =
+          "USD";
+
+      }
 
 
       /* ---------------------------------------
@@ -3350,4 +3258,5 @@
   </script>
 
 </body>
+
 </html>
