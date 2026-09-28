@@ -1827,115 +1827,116 @@
 
   async function loadAccount() {
 
-    clearMessage(formMessage);
+  clearMessage(formMessage);
 
-    try {
+  try {
 
-      if (!currentUser) {
+    if (!currentUser) {
 
-        throw new Error(
-          "No authenticated user."
-        );
-
-      }
-
-
-      const userRef =
-        doc(
-          db,
-          "users",
-          currentUser.uid
-        );
-
-
-      const snapshot =
-        await getDoc(userRef);
-
-
-      if (!snapshot.exists()) {
-
-        showMessage(
-          formMessage,
-          "Your First Merit account record could not be found."
-        );
-
-        return;
-
-      }
-
-
-      const data =
-        snapshot.data();
-
-
-      /*
-       * First Merit checking balance
-       * is stored in checkingBalance.
-       */
-
-      let balance =
-        Number(
-          data.checkingBalance ?? 0
-        );
-
-
-      if (!Number.isFinite(balance)) {
-
-        balance = 0;
-
-      }
-
-
-      userBalance =
-        Number(
-          balance.toFixed(2)
-        );
-
-
-      console.log(
-        "ADD MONEY ACCOUNT:",
-        {
-          uid: currentUser.uid,
-          checkingBalance: userBalance,
-          accountData: data
-        }
+      throw new Error(
+        "No authenticated user."
       );
-
-
-    } catch (error) {
-
-      console.error(
-        "ADD MONEY LOAD ERROR:",
-        error
-      );
-
-
-      if (
-        error.code === "permission-denied"
-      ) {
-
-        showMessage(
-          formMessage,
-          "Firestore permission denied. Please make sure the published rules allow your signed-in account to read its own account."
-        );
-
-      } else {
-
-        showMessage(
-          formMessage,
-          "We couldn't load your account information."
-        );
-
-      }
-
-    } finally {
-
-      loading.classList.add("hidden");
 
     }
 
+    const userRef =
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      );
+
+    const snapshot =
+      await getDoc(userRef);
+
+    if (!snapshot.exists()) {
+
+      showMessage(
+        formMessage,
+        "Your First Merit account record could not be found."
+      );
+
+      return;
+
+    }
+
+    const data =
+      snapshot.data();
+
+    /*
+     * First Merit checking balance
+     * is stored in checkingBalance.
+     */
+
+    let balance =
+      Number(
+        data.checkingBalance ?? 0
+      );
+
+    if (!Number.isFinite(balance)) {
+
+      balance = 0;
+
+    }
+
+    userBalance =
+      Number(
+        balance.toFixed(2)
+      );
+
+    console.log(
+      "ADD MONEY ACCOUNT:",
+      {
+        uid: currentUser.uid,
+        checkingBalance: userBalance,
+        accountData: data
+      }
+    );
+
+  } catch (error) {
+
+    console.error(
+      "ADD MONEY LOAD ERROR:",
+      error
+    );
+
+    if (error.code === "permission-denied") {
+
+      showMessage(
+        formMessage,
+        "Your account could not be accessed. Please check your Firestore account permissions."
+      );
+
+    } else if (error.code === "failed-precondition") {
+
+      showMessage(
+        formMessage,
+        "Your account database is not available right now. Please try again."
+      );
+
+    } else if (error.code === "unavailable") {
+
+      showMessage(
+        formMessage,
+        "Your account information is temporarily unavailable. Please try again."
+      );
+
+    } else {
+
+      showMessage(
+        formMessage,
+        "We couldn't load your account information."
+      );
+
+    }
+
+  } finally {
+
+    loading.classList.add("hidden");
+
   }
 
+}
 
   /* =========================
      AUTH
