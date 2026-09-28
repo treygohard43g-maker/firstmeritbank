@@ -389,7 +389,7 @@ if (signupForm) {
 
 
         // ====================================
-        // CREATE RECIPIENT DIRECTORY ENTRY
+        // CREATE CHECKING DIRECTORY ENTRY
         // ====================================
 
         await setDoc(
@@ -409,7 +409,10 @@ if (signupForm) {
               accountNumber,
 
             fullName:
-              fullName
+              fullName,
+
+            accountType:
+              "Checking"
 
           }
 
@@ -417,8 +420,82 @@ if (signupForm) {
 
 
         console.log(
-          "Recipient directory entry created:",
+          "Checking recipient directory entry created:",
           accountNumber
+        );
+
+
+        // ====================================
+        // CREATE SAVINGS DIRECTORY ENTRY
+        // ====================================
+
+        await setDoc(
+
+          doc(
+            db,
+            "recipientDirectory",
+            savingsAccountNumber
+          ),
+
+          {
+
+            userId:
+              user.uid,
+
+            accountNumber:
+              savingsAccountNumber,
+
+            fullName:
+              fullName,
+
+            accountType:
+              "Savings"
+
+          }
+
+        );
+
+
+        console.log(
+          "Savings recipient directory entry created:",
+          savingsAccountNumber
+        );
+
+
+        // ====================================
+        // CREATE IRA DIRECTORY ENTRY
+        // ====================================
+
+        await setDoc(
+
+          doc(
+            db,
+            "recipientDirectory",
+            iraAccountNumber
+          ),
+
+          {
+
+            userId:
+              user.uid,
+
+            accountNumber:
+              iraAccountNumber,
+
+            fullName:
+              fullName,
+
+            accountType:
+              "IRA"
+
+          }
+
+        );
+
+
+        console.log(
+          "IRA recipient directory entry created:",
+          iraAccountNumber
         );
 
 
