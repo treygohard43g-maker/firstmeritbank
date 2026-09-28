@@ -389,6 +389,40 @@ if (signupForm) {
 
 
         // ====================================
+        // CREATE RECIPIENT DIRECTORY ENTRY
+        // ====================================
+
+        await setDoc(
+
+          doc(
+            db,
+            "recipientDirectory",
+            accountNumber
+          ),
+
+          {
+
+            userId:
+              user.uid,
+
+            accountNumber:
+              accountNumber,
+
+            fullName:
+              fullName
+
+          }
+
+        );
+
+
+        console.log(
+          "Recipient directory entry created:",
+          accountNumber
+        );
+
+
+        // ====================================
         // SUCCESS
         // ====================================
 
