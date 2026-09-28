@@ -413,6 +413,7 @@
     /* RESPONSIVE */
 
     @media (max-width: 430px) {
+
       .topbar {
         padding: 0 15px;
       }
@@ -440,6 +441,7 @@
       .account-number {
         font-size: 18px;
       }
+
     }
   </style>
 </head>
@@ -449,6 +451,7 @@
   <div class="page">
 
     <!-- HEADER -->
+
     <header class="topbar">
 
       <div class="topbar-left">
@@ -459,19 +462,31 @@
 
         <div class="bank-brand">
 
-          <div class="bank-logo">FM</div>
+          <div class="bank-logo">
+            FM
+          </div>
 
           <div>
-            <div class="bank-name">First Merit Bank</div>
-            <div class="page-title-small">My Account</div>
+
+            <div class="bank-name">
+              First Merit Bank
+            </div>
+
+            <div class="page-title-small">
+              My Account
+            </div>
+
           </div>
 
         </div>
 
       </div>
 
+
       <button class="header-btn" id="settingsBtn">
+
         <i class="fa-solid fa-gear"></i>
+
       </button>
 
     </header>
@@ -480,33 +495,56 @@
     <main class="content">
 
       <div class="page-heading">
-        <h1>My Account</h1>
-        <p>Manage your account information and details.</p>
+
+        <h1>
+          My Account
+        </h1>
+
+        <p>
+          Manage your account information and details.
+        </p>
+
       </div>
 
 
       <!-- PROFILE -->
+
       <section class="profile-card">
 
         <div class="profile-top">
 
           <div class="profile-avatar">
+
             <i class="fa-solid fa-user"></i>
+
           </div>
 
+
           <div>
-            <div class="profile-name" id="profileName">
+
+            <div
+              class="profile-name"
+              id="profileName"
+            >
               Account Holder
             </div>
 
-            <div class="profile-email" id="profileEmail">
+            <div
+              class="profile-email"
+              id="profileEmail"
+            >
               —
             </div>
+
           </div>
 
+
           <div class="profile-status">
+
             <span class="profile-status-dot"></span>
+
             Active
+
           </div>
 
         </div>
@@ -518,23 +556,34 @@
         <div class="profile-meta">
 
           <div>
+
             <div class="meta-label">
               ACCOUNT TYPE
             </div>
 
-            <div class="meta-value" id="accountType">
+            <div
+              class="meta-value"
+              id="accountType"
+            >
               Checking
             </div>
+
           </div>
 
+
           <div>
+
             <div class="meta-label">
               CURRENCY
             </div>
 
-            <div class="meta-value">
+            <div
+              class="meta-value"
+              id="currency"
+            >
               USD
             </div>
+
           </div>
 
         </div>
@@ -543,29 +592,43 @@
 
 
       <!-- ACCOUNT NUMBER -->
+
       <section class="section">
 
         <div class="section-title">
           Account Information
         </div>
 
+
         <div class="card account-number-card">
 
           <div class="account-number-top">
 
             <div>
+
               <div class="account-number-label">
                 ACCOUNT NUMBER
               </div>
 
-              <div class="account-number" id="accountNumber">
+              <div
+                class="account-number"
+                id="accountNumber"
+              >
                 —
               </div>
+
             </div>
 
-            <button class="copy-btn" id="copyAccountBtn">
+
+            <button
+              class="copy-btn"
+              id="copyAccountBtn"
+            >
+
               <i class="fa-regular fa-copy"></i>
+
               Copy
+
             </button>
 
           </div>
@@ -573,19 +636,36 @@
 
           <div class="account-number-footer">
 
-            <span class="account-tag">
+            <span
+              class="account-tag"
+              id="accountTypeTag"
+            >
+
               <i class="fa-solid fa-building-columns"></i>
+
               Checking Account
+
             </span>
 
+
             <span class="account-tag">
+
               <i class="fa-solid fa-circle-check"></i>
+
               Active
+
             </span>
 
-            <span class="account-tag">
+
+            <span
+              class="account-tag"
+              id="currencyTag"
+            >
+
               <i class="fa-solid fa-dollar-sign"></i>
+
               USD
+
             </span>
 
           </div>
@@ -596,19 +676,24 @@
 
 
       <!-- PERSONAL DETAILS -->
+
       <section class="section">
 
         <div class="section-title">
           Personal Information
         </div>
 
+
         <div class="card">
 
           <div class="detail-row">
 
             <div class="detail-icon">
+
               <i class="fa-solid fa-user"></i>
+
             </div>
+
 
             <div class="detail-content">
 
@@ -616,7 +701,10 @@
                 Full Name
               </div>
 
-              <div class="detail-value" id="fullName">
+              <div
+                class="detail-value"
+                id="fullName"
+              >
                 —
               </div>
 
@@ -628,8 +716,11 @@
           <div class="detail-row">
 
             <div class="detail-icon">
+
               <i class="fa-solid fa-envelope"></i>
+
             </div>
+
 
             <div class="detail-content">
 
@@ -637,7 +728,10 @@
                 Email Address
               </div>
 
-              <div class="detail-value" id="emailAddress">
+              <div
+                class="detail-value"
+                id="emailAddress"
+              >
                 —
               </div>
 
@@ -649,8 +743,11 @@
           <div class="detail-row">
 
             <div class="detail-icon">
+
               <i class="fa-solid fa-id-card"></i>
+
             </div>
+
 
             <div class="detail-content">
 
@@ -658,14 +755,23 @@
                 Customer ID
               </div>
 
-              <div class="detail-value" id="customerId">
+              <div
+                class="detail-value"
+                id="customerId"
+              >
                 —
               </div>
 
             </div>
 
-            <button class="detail-action" id="copyCustomerId">
+
+            <button
+              class="detail-action"
+              id="copyCustomerId"
+            >
+
               <i class="fa-regular fa-copy"></i>
+
             </button>
 
           </div>
@@ -676,19 +782,24 @@
 
 
       <!-- ACCOUNT DETAILS -->
+
       <section class="section">
 
         <div class="section-title">
           Account Details
         </div>
 
+
         <div class="card">
 
           <div class="detail-row">
 
             <div class="detail-icon">
+
               <i class="fa-solid fa-wallet"></i>
+
             </div>
+
 
             <div class="detail-content">
 
@@ -696,7 +807,10 @@
                 Available Balance
               </div>
 
-              <div class="detail-value" id="balance">
+              <div
+                class="detail-value"
+                id="balance"
+              >
                 $0.00
               </div>
 
@@ -708,8 +822,11 @@
           <div class="detail-row">
 
             <div class="detail-icon">
+
               <i class="fa-solid fa-calendar-days"></i>
+
             </div>
+
 
             <div class="detail-content">
 
@@ -717,7 +834,10 @@
                 Account Opened
               </div>
 
-              <div class="detail-value" id="createdDate">
+              <div
+                class="detail-value"
+                id="createdDate"
+              >
                 —
               </div>
 
@@ -729,8 +849,11 @@
           <div class="detail-row">
 
             <div class="detail-icon">
+
               <i class="fa-solid fa-shield-halved"></i>
+
             </div>
+
 
             <div class="detail-content">
 
@@ -752,17 +875,25 @@
 
 
       <!-- SECURITY -->
+
       <section class="section">
 
         <div class="section-title">
           Account Security
         </div>
 
-        <div class="card security-card" id="securityBtn">
+
+        <div
+          class="card security-card"
+          id="securityBtn"
+        >
 
           <div class="security-icon">
+
             <i class="fa-solid fa-shield-halved"></i>
+
           </div>
+
 
           <div class="security-content">
 
@@ -776,8 +907,11 @@
 
           </div>
 
+
           <div class="security-arrow">
+
             <i class="fa-solid fa-chevron-right"></i>
+
           </div>
 
         </div>
@@ -789,7 +923,10 @@
   </div>
 
 
-  <div class="toast" id="toast">
+  <div
+    class="toast"
+    id="toast"
+  >
     Copied to clipboard
   </div>
 
@@ -800,10 +937,12 @@
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+
     import {
       doc,
       getDoc
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
     import {
       auth,
@@ -814,59 +953,190 @@
     const backBtn =
       document.getElementById("backBtn");
 
+
     const settingsBtn =
       document.getElementById("settingsBtn");
+
 
     const securityBtn =
       document.getElementById("securityBtn");
 
+
     const copyAccountBtn =
       document.getElementById("copyAccountBtn");
 
+
     const copyCustomerId =
       document.getElementById("copyCustomerId");
+
 
     const toast =
       document.getElementById("toast");
 
 
     let currentAccountNumber = "";
+
     let currentCustomerId = "";
+
+
+    /*
+      ==========================================
+      DETERMINE WHICH ACCOUNT WAS SELECTED
+      ==========================================
+
+      Examples:
+
+      ?account=checking
+      ?account=savings
+      ?account=ira
+    */
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    let selectedAccount =
+      (
+        urlParams.get("account") ||
+        ""
+      ).toLowerCase();
+
+
+    /*
+      Also support alternate parameter names
+      in case the dashboard uses them.
+    */
+
+    if (!selectedAccount) {
+
+      selectedAccount =
+        (
+          urlParams.get("type") ||
+          ""
+        ).toLowerCase();
+
+    }
+
+
+    if (!selectedAccount) {
+
+      selectedAccount =
+        (
+          urlParams.get("accountType") ||
+          ""
+        ).toLowerCase();
+
+    }
+
+
+    /*
+      Normalize account names.
+    */
+
+    if (
+      selectedAccount === "checkingaccount"
+    ) {
+
+      selectedAccount = "checking";
+
+    }
+
+
+    if (
+      selectedAccount === "savingsaccount"
+    ) {
+
+      selectedAccount = "savings";
+
+    }
+
+
+    if (
+      selectedAccount === "iraaccount"
+    ) {
+
+      selectedAccount = "ira";
+
+    }
+
+
+    /*
+      Default to checking when no account
+      parameter exists.
+    */
+
+    if (
+      selectedAccount !== "checking" &&
+      selectedAccount !== "savings" &&
+      selectedAccount !== "ira"
+    ) {
+
+      selectedAccount = "checking";
+
+    }
 
 
     /* BACK */
 
-    backBtn.addEventListener("click", () => {
-      window.location.href = "dashboard.html";
-    });
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }
+    );
 
 
     /* SETTINGS */
 
-    settingsBtn.addEventListener("click", () => {
-      window.location.href = "settings.html";
-    });
+    settingsBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "settings.html";
+
+      }
+    );
 
 
     /* SECURITY */
 
-    securityBtn.addEventListener("click", () => {
-      window.location.href = "security.html";
-    });
+    securityBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "security.html";
+
+      }
+    );
 
 
     /* AUTH */
 
-    onAuthStateChanged(auth, async (user) => {
+    onAuthStateChanged(
+      auth,
+      async (user) => {
 
-      if (!user) {
-        window.location.href = "login.html";
-        return;
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        await loadAccount(user);
+
       }
-
-      await loadAccount(user);
-
-    });
+    );
 
 
     /* LOAD ACCOUNT */
@@ -876,7 +1146,12 @@
       try {
 
         const userRef =
-          doc(db, "users", user.uid);
+          doc(
+            db,
+            "users",
+            user.uid
+          );
+
 
         const snapshot =
           await getDoc(userRef);
@@ -884,27 +1159,43 @@
 
         if (!snapshot.exists()) {
 
-          document.getElementById("profileName")
-            .textContent =
-            user.displayName || "Account Holder";
+          document.getElementById(
+            "profileName"
+          ).textContent =
+            user.displayName ||
+            "Account Holder";
 
-          document.getElementById("profileEmail")
-            .textContent =
-            user.email || "—";
 
-          document.getElementById("fullName")
-            .textContent =
-            user.displayName || "—";
+          document.getElementById(
+            "profileEmail"
+          ).textContent =
+            user.email ||
+            "—";
 
-          document.getElementById("emailAddress")
-            .textContent =
-            user.email || "—";
 
-          currentCustomerId = user.uid;
+          document.getElementById(
+            "fullName"
+          ).textContent =
+            user.displayName ||
+            "—";
 
-          document.getElementById("customerId")
-            .textContent =
+
+          document.getElementById(
+            "emailAddress"
+          ).textContent =
+            user.email ||
+            "—";
+
+
+          currentCustomerId =
+            user.uid;
+
+
+          document.getElementById(
+            "customerId"
+          ).textContent =
             shortenId(user.uid);
+
 
           return;
 
@@ -914,6 +1205,12 @@
         const data =
           snapshot.data();
 
+
+        /*
+          ======================================
+          PERSONAL INFORMATION
+          ======================================
+        */
 
         const fullName =
           data.fullName ||
@@ -927,68 +1224,253 @@
           "—";
 
 
-        const accountType =
-          data.accountType ||
-          "Checking";
+        /*
+          ======================================
+          CURRENCY
+          ======================================
+
+          The saved currency belongs to the user
+          profile and is used for display.
+        */
+
+        const currency =
+          (
+            data.currency ||
+            "USD"
+          ).toUpperCase();
 
 
-        const balance =
-          typeof data.balance === "number"
-            ? data.balance
-            : 0;
+        /*
+          ======================================
+          SELECT ACCOUNT DATA
+          ======================================
+        */
+
+        let accountType = "Checking";
+
+        let accountNumber = "";
+
+        let baseBalance = 0;
+
+
+        if (
+          selectedAccount === "savings"
+        ) {
+
+          accountType =
+            "Savings";
+
+
+          accountNumber =
+            data.savingsAccountNumber ||
+            "";
+
+
+          baseBalance =
+            getNumericValue(
+              data.savingsBalance
+            );
+
+        }
+
+
+        else if (
+          selectedAccount === "ira"
+        ) {
+
+          accountType =
+            "IRA";
+
+
+          accountNumber =
+            data.iraAccountNumber ||
+            "";
+
+
+          baseBalance =
+            getNumericValue(
+              data.iraBalance
+            );
+
+        }
+
+
+        else {
+
+          accountType =
+            "Checking";
+
+
+          accountNumber =
+            data.accountNumber ||
+            "";
+
+
+          baseBalance =
+            getNumericValue(
+              data.checkingBalance
+            );
+
+        }
 
 
         currentAccountNumber =
-          data.accountNumber || "";
+          accountNumber;
 
 
         currentCustomerId =
-          data.uid || user.uid;
+          data.uid ||
+          user.uid;
 
 
-        document.getElementById("profileName")
-          .textContent =
+        /*
+          ======================================
+          DISPLAY PROFILE
+          ======================================
+        */
+
+        document.getElementById(
+          "profileName"
+        ).textContent =
           fullName;
 
 
-        document.getElementById("profileEmail")
-          .textContent =
+        document.getElementById(
+          "profileEmail"
+        ).textContent =
           email;
 
 
-        document.getElementById("accountType")
-          .textContent =
+        document.getElementById(
+          "accountType"
+        ).textContent =
           accountType;
 
 
-        document.getElementById("accountNumber")
-          .textContent =
-          currentAccountNumber || "Not assigned";
+        document.getElementById(
+          "currency"
+        ).textContent =
+          currency;
 
 
-        document.getElementById("fullName")
-          .textContent =
+        /*
+          ======================================
+          ACCOUNT NUMBER
+          ======================================
+        */
+
+        document.getElementById(
+          "accountNumber"
+        ).textContent =
+          accountNumber ||
+          "Not assigned";
+
+
+        /*
+          ======================================
+          ACCOUNT TAG
+          ======================================
+        */
+
+        document.getElementById(
+          "accountTypeTag"
+        ).innerHTML =
+          getAccountIcon(
+            accountType
+          ) +
+          " " +
+          accountType +
+          " Account";
+
+
+        /*
+          ======================================
+          CURRENCY TAG
+          ======================================
+        */
+
+        document.getElementById(
+          "currencyTag"
+        ).innerHTML =
+          getCurrencyIcon(
+            currency
+          ) +
+          " " +
+          currency;
+
+
+        /*
+          ======================================
+          PERSONAL INFORMATION
+          ======================================
+        */
+
+        document.getElementById(
+          "fullName"
+        ).textContent =
           fullName;
 
 
-        document.getElementById("emailAddress")
-          .textContent =
+        document.getElementById(
+          "emailAddress"
+        ).textContent =
           email;
 
 
-        document.getElementById("customerId")
-          .textContent =
-          shortenId(currentCustomerId);
+        document.getElementById(
+          "customerId"
+        ).textContent =
+          shortenId(
+            currentCustomerId
+          );
 
 
-        document.getElementById("balance")
-          .textContent =
-          formatCurrency(balance);
+        /*
+          ======================================
+          BALANCE
+          ======================================
+        */
+
+        const convertedBalance =
+          convertFromUSD(
+            baseBalance,
+            currency
+          );
 
 
-        document.getElementById("createdDate")
-          .textContent =
-          formatDate(data.createdAt);
+        document.getElementById(
+          "balance"
+        ).textContent =
+          formatCurrency(
+            convertedBalance,
+            currency
+          );
+
+
+        /*
+          ======================================
+          CREATED DATE
+          ======================================
+        */
+
+        document.getElementById(
+          "createdDate"
+        ).textContent =
+          formatDate(
+            data.createdAt
+          );
+
+
+        /*
+          ======================================
+          PAGE TITLE
+          ======================================
+        */
+
+        document.title =
+          accountType +
+          " | First Merit Bank";
+
 
       } catch (error) {
 
@@ -1002,20 +1484,204 @@
     }
 
 
+    /*
+      ==========================================
+      GET NUMERIC VALUE
+      ==========================================
+    */
+
+    function getNumericValue(value) {
+
+      const number =
+        Number(value);
+
+
+      if (
+        Number.isFinite(number)
+      ) {
+
+        return number;
+
+      }
+
+
+      return 0;
+
+    }
+
+
+    /*
+      ==========================================
+      CURRENCY CONVERSION
+      ==========================================
+
+      Firestore balances remain stored in USD.
+
+      Display currency is converted only for
+      presentation.
+    */
+
+    function convertFromUSD(
+      amount,
+      currency
+    ) {
+
+      const rates = {
+
+        USD: 1,
+
+        GBP: 0.75,
+
+        EUR: 0.85632
+
+      };
+
+
+      const rate =
+        rates[currency] ||
+        rates.USD;
+
+
+      return amount * rate;
+
+    }
+
+
+    /*
+      ==========================================
+      CURRENCY FORMAT
+      ==========================================
+    */
+
+    function formatCurrency(
+      amount,
+      currency
+    ) {
+
+      const safeAmount =
+        Number(amount) || 0;
+
+
+      return new Intl.NumberFormat(
+        "en-US",
+        {
+          style: "currency",
+          currency: currency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        safeAmount
+      );
+
+    }
+
+
+    /*
+      ==========================================
+      ACCOUNT ICON
+      ==========================================
+    */
+
+    function getAccountIcon(
+      accountType
+    ) {
+
+      if (
+        accountType === "Savings"
+      ) {
+
+        return `
+          <i class="fa-solid fa-piggy-bank"></i>
+        `;
+
+      }
+
+
+      if (
+        accountType === "IRA"
+      ) {
+
+        return `
+          <i class="fa-solid fa-chart-line"></i>
+        `;
+
+      }
+
+
+      return `
+        <i class="fa-solid fa-building-columns"></i>
+      `;
+
+    }
+
+
+    /*
+      ==========================================
+      CURRENCY ICON
+      ==========================================
+    */
+
+    function getCurrencyIcon(
+      currency
+    ) {
+
+      if (
+        currency === "EUR"
+      ) {
+
+        return `
+          <i class="fa-solid fa-euro-sign"></i>
+        `;
+
+      }
+
+
+      if (
+        currency === "GBP"
+      ) {
+
+        return `
+          <i class="fa-solid fa-sterling-sign"></i>
+        `;
+
+      }
+
+
+      return `
+        <i class="fa-solid fa-dollar-sign"></i>
+      `;
+
+    }
+
+
     /* COPY ACCOUNT */
 
     copyAccountBtn.addEventListener(
       "click",
       async () => {
 
-        if (!currentAccountNumber) {
-          showToast("Account number unavailable");
+        if (
+          !currentAccountNumber
+        ) {
+
+          showToast(
+            "Account number unavailable"
+          );
+
           return;
+
         }
 
-        await copyText(currentAccountNumber);
 
-        showToast("Account number copied");
+        await copyText(
+          currentAccountNumber
+        );
+
+
+        showToast(
+          "Account number copied"
+        );
 
       }
     );
@@ -1027,14 +1693,27 @@
       "click",
       async () => {
 
-        if (!currentCustomerId) {
-          showToast("Customer ID unavailable");
+        if (
+          !currentCustomerId
+        ) {
+
+          showToast(
+            "Customer ID unavailable"
+          );
+
           return;
+
         }
 
-        await copyText(currentCustomerId);
 
-        showToast("Customer ID copied");
+        await copyText(
+          currentCustomerId
+        );
+
+
+        showToast(
+          "Customer ID copied"
+        );
 
       }
     );
@@ -1042,27 +1721,48 @@
 
     /* COPY */
 
-    async function copyText(text) {
+    async function copyText(
+      text
+    ) {
 
       try {
 
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(
+          text
+        );
 
       } catch {
 
         const textarea =
-          document.createElement("textarea");
+          document.createElement(
+            "textarea"
+          );
 
-        textarea.value = text;
 
-        textarea.style.position = "fixed";
-        textarea.style.opacity = "0";
+        textarea.value =
+          text;
 
-        document.body.appendChild(textarea);
+
+        textarea.style.position =
+          "fixed";
+
+
+        textarea.style.opacity =
+          "0";
+
+
+        document.body.appendChild(
+          textarea
+        );
+
 
         textarea.select();
 
-        document.execCommand("copy");
+
+        document.execCommand(
+          "copy"
+        );
+
 
         textarea.remove();
 
@@ -1071,27 +1771,16 @@
     }
 
 
-    /* FORMAT */
+    /* FORMAT DATE */
 
-    function formatCurrency(amount) {
-
-      return new Intl.NumberFormat(
-        "en-US",
-        {
-          style: "currency",
-          currency: "USD",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      ).format(Number(amount) || 0);
-
-    }
-
-
-    function formatDate(timestamp) {
+    function formatDate(
+      timestamp
+    ) {
 
       if (!timestamp) {
+
         return "—";
+
       }
 
 
@@ -1100,20 +1789,29 @@
 
       if (
         timestamp &&
-        typeof timestamp.toDate === "function"
+        typeof timestamp.toDate ===
+          "function"
       ) {
 
-        date = timestamp.toDate();
+        date =
+          timestamp.toDate();
 
       } else {
 
-        date = new Date(timestamp);
+        date =
+          new Date(timestamp);
 
       }
 
 
-      if (isNaN(date.getTime())) {
+      if (
+        isNaN(
+          date.getTime()
+        )
+      ) {
+
         return "—";
+
       }
 
 
@@ -1124,25 +1822,41 @@
           day: "numeric",
           year: "numeric"
         }
-      ).format(date);
+      ).format(
+        date
+      );
 
     }
 
 
-    function shortenId(id) {
+    /* SHORTEN CUSTOMER ID */
+
+    function shortenId(
+      id
+    ) {
 
       if (!id) {
+
         return "—";
+
       }
 
-      if (id.length <= 18) {
+
+      if (
+        id.length <= 18
+      ) {
+
         return id;
+
       }
+
 
       return (
         id.substring(0, 8) +
         "..." +
-        id.substring(id.length - 6)
+        id.substring(
+          id.length - 6
+        )
       );
 
     }
@@ -1152,18 +1866,36 @@
 
     let toastTimer;
 
-    function showToast(message) {
 
-      toast.textContent = message;
+    function showToast(
+      message
+    ) {
 
-      toast.classList.add("show");
+      toast.textContent =
+        message;
 
-      clearTimeout(toastTimer);
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        toastTimer
+      );
+
 
       toastTimer =
-        setTimeout(() => {
-          toast.classList.remove("show");
-        }, 2200);
+        setTimeout(
+          () => {
+
+            toast.classList.remove(
+              "show"
+            );
+
+          },
+          2200
+        );
 
     }
 
