@@ -1657,7 +1657,6 @@
 
 </div>
 
-
 <script type="module">
 
   import {
@@ -1673,7 +1672,7 @@
     doc,
     getDoc,
     collection,
-    runTransaction,
+    writeBatch,
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -1827,116 +1826,111 @@
 
   async function loadAccount() {
 
-  clearMessage(formMessage);
+    clearMessage(
+      formMessage
+    );
 
-  try {
+    try {
 
-    if (!currentUser) {
+      if (!currentUser) {
 
-      throw new Error(
-        "No authenticated user."
-      );
+        throw new Error(
+          "No authenticated user."
+        );
 
-    }
-
-    const userRef =
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      );
-
-    const snapshot =
-      await getDoc(userRef);
-
-    if (!snapshot.exists()) {
-
-      showMessage(
-        formMessage,
-        "Your First Merit account record could not be found."
-      );
-
-      return;
-
-    }
-
-    const data =
-      snapshot.data();
-
-    /*
-     * First Merit checking balance
-     * is stored in checkingBalance.
-     */
-
-    let balance =
-      Number(
-        data.checkingBalance ?? 0
-      );
-
-    if (!Number.isFinite(balance)) {
-
-      balance = 0;
-
-    }
-
-    userBalance =
-      Number(
-        balance.toFixed(2)
-      );
-
-    console.log(
-      "ADD MONEY ACCOUNT:",
-      {
-        uid: currentUser.uid,
-        checkingBalance: userBalance,
-        accountData: data
       }
-    );
 
-  } catch (error) {
+      const userRef =
+        doc(
+          db,
+          "users",
+          currentUser.uid
+        );
 
-    console.error(
-      "ADD MONEY LOAD ERROR:",
-      error
-    );
+      const snapshot =
+        await getDoc(
+          userRef
+        );
 
-    if (error.code === "permission-denied") {
+      if (!snapshot.exists()) {
 
-      showMessage(
-        formMessage,
-        "Your account could not be accessed. Please check your Firestore account permissions."
+        showMessage(
+          formMessage,
+          "Your First Merit account record could not be found."
+        );
+
+        return;
+
+      }
+
+      const data =
+        snapshot.data();
+
+      let balance =
+        Number(
+          data.checkingBalance ?? 0
+        );
+
+      if (
+        !Number.isFinite(balance)
+      ) {
+
+        balance = 0;
+
+      }
+
+      userBalance =
+        Number(
+          balance.toFixed(2)
+        );
+
+      console.log(
+        "ADD MONEY ACCOUNT:",
+        {
+          uid:
+            currentUser.uid,
+
+          checkingBalance:
+            userBalance
+        }
       );
 
-    } else if (error.code === "failed-precondition") {
+    } catch (error) {
 
-      showMessage(
-        formMessage,
-        "Your account database is not available right now. Please try again."
+      console.error(
+        "ADD MONEY LOAD ERROR:",
+        error
       );
 
-    } else if (error.code === "unavailable") {
+      if (
+        error.code ===
+        "permission-denied"
+      ) {
 
-      showMessage(
-        formMessage,
-        "Your account information is temporarily unavailable. Please try again."
-      );
+        showMessage(
+          formMessage,
+          "Your account could not be accessed. Please check your account permissions."
+        );
 
-    } else {
+      } else {
 
-      showMessage(
-        formMessage,
-         "We couldn't load your account information. Please try again."
+        showMessage(
+          formMessage,
+          "We couldn't load your account information. Please try again."
+        );
+
+      }
+
+    } finally {
+
+      loading.classList.add(
+        "hidden"
       );
 
     }
-
-  } finally {
-
-    loading.classList.add("hidden");
 
   }
 
-}
 
   /* =========================
      AUTH
@@ -1955,16 +1949,8 @@
 
       }
 
-
       currentUser =
         user;
-
-
-      console.log(
-        "ADD MONEY USER:",
-        currentUser.uid
-      );
-
 
       await loadAccount();
 
@@ -1999,12 +1985,10 @@
         formMessage
       );
 
-
       const enteredAmount =
         Number(
           amount.value
         );
-
 
       if (
         !Number.isFinite(
@@ -2024,39 +2008,47 @@
 
       }
 
+      if (
+        enteredAmount > 1000000
+      ) {
+
+        showMessage(
+          formMessage,
+          "The maximum deposit amount is $1,000,000."
+        );
+
+        amount.focus();
+
+        return;
+
+      }
 
       pendingAmount =
         Number(
           enteredAmount.toFixed(2)
         );
 
-
       pendingSource =
         getFundingSource();
-
 
       reviewAmount.textContent =
         formatMoney(
           pendingAmount
         );
 
-
       reviewSource.textContent =
         pendingSource;
-
 
       reviewCurrentBalance.textContent =
         formatMoney(
           userBalance
         );
 
-
       reviewNewBalance.textContent =
         formatMoney(
           userBalance +
           pendingAmount
         );
-
 
       formView.style.display =
         "none";
@@ -2066,7 +2058,6 @@
 
       successView.style.display =
         "none";
-
 
       window.scrollTo({
         top: 0,
@@ -2087,7 +2078,6 @@
       reviewMessage
     );
 
-
     reviewView.style.display =
       "none";
 
@@ -2096,7 +2086,6 @@
 
     successView.style.display =
       "none";
-
 
     window.scrollTo({
       top: 0,
@@ -2130,7 +2119,6 @@
         reviewMessage
       );
 
-
       if (!currentUser) {
 
         window.location.href =
@@ -2139,7 +2127,6 @@
         return;
 
       }
-
 
       if (
         !pendingAmount ||
@@ -2155,7 +2142,6 @@
 
       }
 
-
       confirmBtn.disabled =
         true;
 
@@ -2165,6 +2151,11 @@
 
       try {
 
+        /*
+         * Re-read the latest account balance
+         * before creating the deposit.
+         */
+
         const userRef =
           doc(
             db,
@@ -2172,6 +2163,61 @@
             currentUser.uid
           );
 
+        const latestSnapshot =
+          await getDoc(
+            userRef
+          );
+
+        if (
+          !latestSnapshot.exists()
+        ) {
+
+          throw new Error(
+            "Account not found."
+          );
+
+        }
+
+        const latestData =
+          latestSnapshot.data();
+
+        let latestBalance =
+          Number(
+            latestData.checkingBalance ?? 0
+          );
+
+        if (
+          !Number.isFinite(
+            latestBalance
+          )
+        ) {
+
+          latestBalance = 0;
+
+        }
+
+        const updatedBalance =
+          Number(
+            (
+              latestBalance +
+              pendingAmount
+            ).toFixed(2)
+          );
+
+
+        /*
+         * Generate IDs.
+         */
+
+        const depositRef =
+          doc(
+            collection(
+              db,
+              "users",
+              currentUser.uid,
+              "mobileDeposits"
+            )
+          );
 
         const transactionRef =
           doc(
@@ -2184,117 +2230,107 @@
           );
 
 
-        let updatedBalance = 0;
+        /*
+         * Atomic batch.
+         *
+         * 1. Create deposit
+         * 2. Update checking balance
+         * 3. Create transaction history
+         */
+
+        const batch =
+          writeBatch(db);
 
 
-        await runTransaction(
-          db,
-          async (transaction) => {
+        batch.set(
+          depositRef,
+          {
 
-            /*
-             * Get the latest checking balance.
-             */
+            depositId:
+              depositRef.id,
 
-            const userSnapshot =
-              await transaction.get(
-                userRef
-              );
+            userId:
+              currentUser.uid,
 
+            amount:
+              pendingAmount,
 
-            if (!userSnapshot.exists()) {
+            currency:
+              "USD",
 
-              throw new Error(
-                "Account not found."
-              );
+            accountType:
+              "Checking",
 
-            }
+            source:
+              pendingSource,
 
+            status:
+              "completed",
 
-            const userData =
-              userSnapshot.data();
+            transactionId:
+              transactionRef.id,
 
-
-            let currentFirestoreBalance =
-              Number(
-                userData.checkingBalance ?? 0
-              );
-
-
-            if (
-              !Number.isFinite(
-                currentFirestoreBalance
-              )
-            ) {
-
-              currentFirestoreBalance = 0;
-
-            }
-
-
-            /*
-             * Calculate new checking balance.
-             */
-
-            updatedBalance =
-              Number(
-                (
-                  currentFirestoreBalance +
-                  pendingAmount
-                ).toFixed(2)
-              );
-
-
-            /*
-             * Update checking balance.
-             */
-
-            transaction.update(
-              userRef,
-              {
-                checkingBalance:
-                  updatedBalance
-              }
-            );
-
-
-            /*
-             * Create transaction record.
-             */
-
-            transaction.set(
-              transactionRef,
-              {
-
-                type:
-                  "deposit",
-
-                title:
-                  "Money Added",
-
-                amount:
-                  pendingAmount,
-
-                direction:
-                  "credit",
-
-                source:
-                  pendingSource,
-
-                status:
-                  "completed",
-
-                createdAt:
-                  serverTimestamp()
-
-              }
-            );
+            createdAt:
+              serverTimestamp()
 
           }
         );
 
 
+        batch.update(
+          userRef,
+          {
+
+            checkingBalance:
+              updatedBalance,
+
+            lastDepositId:
+              depositRef.id
+
+          }
+        );
+
+
+        batch.set(
+          transactionRef,
+          {
+
+            depositId:
+              depositRef.id,
+
+            userId:
+              currentUser.uid,
+
+            type:
+              "deposit",
+
+            title:
+              "Money Added",
+
+            amount:
+              pendingAmount,
+
+            direction:
+              "credit",
+
+            source:
+              pendingSource,
+
+            status:
+              "completed",
+
+            createdAt:
+              serverTimestamp()
+
+          }
+        );
+
+
+        await batch.commit();
+
+
         /*
-         * Update local balance.
+         * Update local state.
          */
 
         userBalance =
@@ -2302,7 +2338,7 @@
 
 
         /*
-         * Populate receipt.
+         * Receipt.
          */
 
         successAmount.textContent =
@@ -2310,23 +2346,20 @@
             pendingAmount
           );
 
-
         successSource.textContent =
           pendingSource;
 
-
         successBalance.textContent =
           formatMoney(
-            userBalance
+            updatedBalance
           );
-
 
         transactionId.textContent =
           transactionRef.id;
 
 
         /*
-         * Show success screen.
+         * Show success.
          */
 
         reviewView.style.display =
@@ -2357,6 +2390,9 @@
             newCheckingBalance:
               updatedBalance,
 
+            depositId:
+              depositRef.id,
+
             transactionId:
               transactionRef.id
           }
@@ -2376,16 +2412,22 @@
 
 
         if (
-          error.code === "permission-denied"
+          error.code ===
+          "permission-denied"
         ) {
 
           message =
-            "Firestore permission denied. Please check your Firestore rules.";
+            "The deposit was rejected by your account security rules. Please try again.";
 
-        }
+        } else if (
+          error.code ===
+          "failed-precondition"
+        ) {
 
+          message =
+            "The deposit could not be completed because your account information has changed.";
 
-        if (
+        } else if (
           error.message ===
           "Account not found."
         ) {
