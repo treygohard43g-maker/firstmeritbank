@@ -552,7 +552,6 @@
 
     /* =========================================
        ACCOUNT CARDS
-       EDGED / BANKING STYLE
     ========================================= */
 
     .accounts-grid {
@@ -1696,7 +1695,7 @@
         class="total-balance balance-value"
         id="totalBalance"
       >
-        $1,651,000.00
+        ••••••••
       </div>
 
       <div class="balance-sub">
@@ -1754,7 +1753,7 @@
           class="account-balance balance-value"
           id="checkingBalance"
         >
-          $1,345,000.00
+          ••••••••
         </div>
 
         <div class="account-bottom">
@@ -1814,7 +1813,7 @@
           class="account-balance balance-value"
           id="savingsBalance"
         >
-          $56,000.00
+          ••••••••
         </div>
 
         <div class="account-bottom">
@@ -1874,7 +1873,7 @@
           class="account-balance balance-value"
           id="iraBalance"
         >
-          $250,000.00
+          ••••••••
         </div>
 
         <div class="account-bottom">
@@ -2206,7 +2205,6 @@
     id="toast"
   ></div>
 
-
   <script type="module">
 
     import { auth, db } from "./firebase.js";
@@ -2227,7 +2225,6 @@
       getDocs
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-
     /* =========================================
        DEFAULT BALANCES
     ========================================= */
@@ -2235,7 +2232,6 @@
     const DEFAULT_CHECKING = 1345000;
     const DEFAULT_SAVINGS = 56000;
     const DEFAULT_IRA = 250000;
-
 
     /* =========================================
        CURRENCY
@@ -2262,9 +2258,14 @@
 
     };
 
-
     let selectedCurrency = "USD";
 
+    /* =========================================
+       BALANCE LOADING STATE
+    ========================================= */
+
+    let balancesVisible = true;
+    let balancesReady = false;
 
     /* =========================================
        ELEMENTS
@@ -2324,7 +2325,6 @@
     const logoutBtn =
       document.getElementById("logoutBtn");
 
-
     /* =========================================
        MENU
     ========================================= */
@@ -2339,7 +2339,6 @@
 
     }
 
-
     function closeSideMenu() {
 
       sideMenu.classList.remove("open");
@@ -2350,24 +2349,20 @@
 
     }
 
-
     menuBtn.addEventListener(
       "click",
       openMenu
     );
-
 
     closeMenu.addEventListener(
       "click",
       closeSideMenu
     );
 
-
     menuOverlay.addEventListener(
       "click",
       closeSideMenu
     );
-
 
     /* =========================================
        DATE
@@ -2390,7 +2385,6 @@
 
     }
 
-
     /* =========================================
        CURRENCY
     ========================================= */
@@ -2404,17 +2398,14 @@
 
     }
 
-
     function formatCurrency(value) {
 
       const config =
         getCurrencyConfig();
 
-
       const convertedValue =
         (Number(value) || 0) *
         config.rate;
-
 
       return new Intl.NumberFormat(
         "en-US",
@@ -2429,7 +2420,6 @@
       );
 
     }
-
 
     /* =========================================
        ACCOUNT NUMBER
@@ -2460,7 +2450,6 @@
 
     }
 
-
     function maskAccount(number) {
 
       const clean =
@@ -2474,7 +2463,6 @@
       return "•••• " + clean.slice(-4);
 
     }
-
 
     /* =========================================
        HTML ESCAPE
@@ -2491,7 +2479,6 @@
 
     }
 
-
     /* =========================================
        TRANSACTION DATE
     ========================================= */
@@ -2503,7 +2490,6 @@
         if (!value) {
           return "Recent";
         }
-
 
         if (
           typeof value.toDate === "function"
@@ -2522,10 +2508,8 @@
 
         }
 
-
         const date =
           new Date(value);
-
 
         if (
           !Number.isNaN(
@@ -2547,11 +2531,9 @@
 
       } catch (error) {}
 
-
       return "Recent";
 
     }
-
 
     /* =========================================
        TRANSACTION ICON
@@ -2563,7 +2545,6 @@
         String(type || "")
           .toLowerCase();
 
-
       if (
         value.includes("deposit") ||
         value.includes("credit") ||
@@ -2573,7 +2554,6 @@
         return "fa-arrow-down";
 
       }
-
 
       if (
         value.includes("withdraw") ||
@@ -2585,7 +2565,6 @@
 
       }
 
-
       if (
         value.includes("transfer")
       ) {
@@ -2594,11 +2573,9 @@
 
       }
 
-
       return "fa-receipt";
 
     }
-
 
     /* =========================================
        TRANSACTIONS
@@ -2616,7 +2593,6 @@
             "transactions"
           );
 
-
         const transactionsQuery =
           query(
             transactionsRef,
@@ -2627,12 +2603,10 @@
             limit(3)
           );
 
-
         const snapshot =
           await getDocs(
             transactionsQuery
           );
-
 
         if (snapshot.empty) {
 
@@ -2652,16 +2626,13 @@
 
         }
 
-
         let html = "";
-
 
         snapshot.forEach(
           (transactionDoc) => {
 
             const data =
               transactionDoc.data();
-
 
             const amount =
               Number(
@@ -2670,14 +2641,12 @@
                 0
               );
 
-
             const transactionType =
               String(
                 data.type ||
                 data.direction ||
                 ""
               ).toLowerCase();
-
 
             const isCredit =
               transactionType.includes(
@@ -2687,14 +2656,12 @@
                 "deposit"
               );
 
-
             const name =
               data.description ||
               data.name ||
               data.merchant ||
               data.title ||
               "Transaction";
-
 
             html += `
 
@@ -2708,7 +2675,6 @@
 
                 </div>
 
-
                 <div class="transaction-main">
 
                   <div class="transaction-name">
@@ -2716,7 +2682,6 @@
                     ${escapeHtml(name)}
 
                   </div>
-
 
                   <div class="transaction-date">
 
@@ -2727,7 +2692,6 @@
                   </div>
 
                 </div>
-
 
                 <div class="transaction-amount ${
                   isCredit
@@ -2750,7 +2714,6 @@
           }
         );
 
-
         transactionsList.innerHTML =
           html;
 
@@ -2760,7 +2723,6 @@
           "Transaction loading error:",
           error
         );
-
 
         transactionsList.innerHTML = `
 
@@ -2778,7 +2740,6 @@
 
     }
 
-
     /* =========================================
        LOAD DASHBOARD
     ========================================= */
@@ -2792,15 +2753,12 @@
           user.uid
         );
 
-
       let userData = {};
-
 
       try {
 
         const snapshot =
           await getDoc(userRef);
-
 
         if (snapshot.exists()) {
 
@@ -2818,7 +2776,6 @@
 
       }
 
-
       /* ---------------------------------------
          USER NAME
       --------------------------------------- */
@@ -2831,10 +2788,8 @@
         user.email?.split("@")[0] ||
         "Customer";
 
-
       welcomeName.textContent =
         `Welcome back, ${displayName}`;
-
 
       /* ---------------------------------------
          CURRENCY
@@ -2845,7 +2800,6 @@
           userData.currency ||
           "USD"
         ).toUpperCase();
-
 
       if (
         CURRENCY_RATES[savedCurrency]
@@ -2861,7 +2815,6 @@
 
       }
 
-
       /* ---------------------------------------
          BALANCES
       --------------------------------------- */
@@ -2873,14 +2826,12 @@
           DEFAULT_CHECKING
         );
 
-
       const savings =
         Number(
           userData.savingsBalance ??
           userData.savings ??
           DEFAULT_SAVINGS
         );
-
 
       const ira =
         Number(
@@ -2889,28 +2840,78 @@
           DEFAULT_IRA
         );
 
-
       const total =
         checking +
         savings +
         ira;
 
+      /* ---------------------------------------
+         FORMAT BALANCES AFTER CURRENCY LOAD
+      --------------------------------------- */
 
-      checkingBalance.textContent =
+      const formattedChecking =
         formatCurrency(checking);
 
-
-      savingsBalance.textContent =
+      const formattedSavings =
         formatCurrency(savings);
 
-
-      iraBalance.textContent =
+      const formattedIra =
         formatCurrency(ira);
 
-
-      totalBalance.textContent =
+      const formattedTotal =
         formatCurrency(total);
 
+      /* ---------------------------------------
+         SAVE REAL VALUES FOR VISIBILITY
+      --------------------------------------- */
+
+      checkingBalance.dataset.realValue =
+        formattedChecking;
+
+      savingsBalance.dataset.realValue =
+        formattedSavings;
+
+      iraBalance.dataset.realValue =
+        formattedIra;
+
+      totalBalance.dataset.realValue =
+        formattedTotal;
+
+      /* ---------------------------------------
+         DISPLAY BALANCES
+      --------------------------------------- */
+
+      if (balancesVisible) {
+
+        checkingBalance.textContent =
+          formattedChecking;
+
+        savingsBalance.textContent =
+          formattedSavings;
+
+        iraBalance.textContent =
+          formattedIra;
+
+        totalBalance.textContent =
+          formattedTotal;
+
+      } else {
+
+        checkingBalance.textContent =
+          "••••••••";
+
+        savingsBalance.textContent =
+          "••••••••";
+
+        iraBalance.textContent =
+          "••••••••";
+
+        totalBalance.textContent =
+          "••••••••";
+
+      }
+
+      balancesReady = true;
 
       /* ---------------------------------------
          ACCOUNT NUMBERS
@@ -2923,14 +2924,12 @@
           0
         );
 
-
       const generatedSavings =
         userData.savingsAccountNumber ||
         generateAccountNumber(
           user.uid,
           17
         );
-
 
       const generatedIra =
         userData.iraAccountNumber ||
@@ -2939,30 +2938,25 @@
           39
         );
 
-
       checkingNumber.textContent =
         maskAccount(
           generatedChecking
         );
-
 
       savingsNumber.textContent =
         maskAccount(
           generatedSavings
         );
 
-
       iraNumber.textContent =
         maskAccount(
           generatedIra
         );
 
-
       detailAccountNumber.textContent =
         maskAccount(
           generatedChecking
         );
-
 
       /* ---------------------------------------
          ROUTING NUMBER
@@ -2972,13 +2966,11 @@
         userData.routingNumber ||
         "•••••••••";
 
-
       /* ---------------------------------------
          SAVE MISSING DEFAULTS
       --------------------------------------- */
 
       const updates = {};
-
 
       if (
         userData.checkingBalance === undefined &&
@@ -2990,7 +2982,6 @@
 
       }
 
-
       if (
         userData.savingsBalance === undefined &&
         userData.savings === undefined
@@ -3000,7 +2991,6 @@
           DEFAULT_SAVINGS;
 
       }
-
 
       if (
         userData.iraBalance === undefined &&
@@ -3012,7 +3002,6 @@
 
       }
 
-
       if (
         !userData.checkingAccountNumber
       ) {
@@ -3021,7 +3010,6 @@
           generatedChecking;
 
       }
-
 
       if (
         !userData.savingsAccountNumber
@@ -3032,7 +3020,6 @@
 
       }
 
-
       if (
         !userData.iraAccountNumber
       ) {
@@ -3041,7 +3028,6 @@
           generatedIra;
 
       }
-
 
       if (
         Object.keys(updates).length
@@ -3068,45 +3054,39 @@
 
       }
 
-
       await loadTransactions(
         user.uid
       );
 
     }
 
-
     /* =========================================
        BALANCE VISIBILITY
     ========================================= */
-
-    let balancesVisible = true;
-
 
     balanceVisibility.addEventListener(
       "click",
       () => {
 
+        /* Do nothing while Firebase is loading */
+        if (!balancesReady) {
+          return;
+        }
+
         balancesVisible =
           !balancesVisible;
-
 
         const elements =
           document.querySelectorAll(
             ".balance-value"
           );
 
-
         elements.forEach(
           (element) => {
 
             if (!element.dataset.realValue) {
-
-              element.dataset.realValue =
-                element.textContent;
-
+              return;
             }
-
 
             if (balancesVisible) {
 
@@ -3123,12 +3103,10 @@
           }
         );
 
-
         const icon =
           balanceVisibility.querySelector(
             "i"
           );
-
 
         if (balancesVisible) {
 
@@ -3155,7 +3133,6 @@
       }
     );
 
-
     /* =========================================
        LOGOUT
     ========================================= */
@@ -3165,7 +3142,6 @@
       async (event) => {
 
         event.preventDefault();
-
 
         try {
 
@@ -3181,7 +3157,6 @@
             error
           );
 
-
           showToast(
             "Unable to log out right now."
           );
@@ -3190,7 +3165,6 @@
 
       }
     );
-
 
     /* =========================================
        TOAST
@@ -3203,15 +3177,12 @@
           "toast"
         );
 
-
       toast.textContent =
         message;
-
 
       toast.classList.add(
         "show"
       );
-
 
       setTimeout(
         () => {
@@ -3225,7 +3196,6 @@
       );
 
     }
-
 
     /* =========================================
        AUTHENTICATION
@@ -3244,9 +3214,7 @@
 
         }
 
-
         showCurrentDate();
-
 
         await loadDashboard(
           user
