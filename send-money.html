@@ -3741,16 +3741,23 @@
             2200
           );
 
-        catch (error) {
-  console.error("TRANSFER ERROR:", error);
+                } catch (error) {
 
-  showError(
-    "Transfer failed: " +
-    (error.code || "unknown") +
-    " — " +
-    (error.message || "Unknown error")
-  );
-}
+          console.error(
+            "TRANSFER ERROR:",
+            error
+          );
+
+          let message =
+            "Transfer failed.";
+
+          if (
+            error.code ===
+            "permission-denied"
+          ) {
+
+            message =
+              "The transfer was rejected by Firestore security rules. Please try again.";
 
           } else if (
             error.code ===
@@ -3813,3 +3820,4 @@
   </script>
 </body>
 </html>
+            
