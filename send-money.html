@@ -91,9 +91,7 @@
 
     .topbar {
       height: 68px;
-
       background: var(--white);
-
       border-bottom: 1px solid var(--border);
 
       display: flex;
@@ -1280,10 +1278,6 @@
 
   <div class="page">
 
-    <!-- =====================================
-         HEADER
-    ====================================== -->
-
     <header class="topbar">
 
       <a
@@ -1325,10 +1319,6 @@
     </header>
 
 
-    <!-- =====================================
-         MAIN
-    ====================================== -->
-
     <main class="main">
 
       <div class="breadcrumb">
@@ -1364,15 +1354,7 @@
 
       <div class="content-grid">
 
-        <!-- =====================================
-             MAIN CARD
-        ====================================== -->
-
         <section class="card form-card">
-
-          <!-- =================================
-               FORM VIEW
-          ================================== -->
 
           <div
             id="formView"
@@ -1399,10 +1381,6 @@
 
             </div>
 
-
-            <!-- =================================
-                 SOURCE ACCOUNT
-            ================================== -->
 
             <div class="source-card">
 
@@ -1474,25 +1452,17 @@
             </div>
 
 
-            <!-- ERROR -->
-
             <div
               id="errorMessage"
               class="error"
             ></div>
 
 
-            <!-- INFO -->
-
             <div
               id="infoMessage"
               class="info"
             ></div>
 
-
-            <!-- =================================
-                 RECIPIENT ACCOUNT
-            ================================== -->
 
             <div class="field">
 
@@ -1542,10 +1512,6 @@
             </div>
 
 
-            <!-- =================================
-                 VERIFIED NAME
-            ================================== -->
-
             <div class="field">
 
               <label for="recipientName">
@@ -1570,10 +1536,6 @@
             </div>
 
 
-            <!-- =================================
-                 AMOUNT
-            ================================== -->
-
             <div class="field">
 
               <label for="amount">
@@ -1582,7 +1544,10 @@
 
               <div class="input-wrap amount-wrap">
 
-                <span class="currency">
+                <span
+                  id="currencySymbol"
+                  class="currency"
+                >
                   $
                 </span>
 
@@ -1611,10 +1576,6 @@
             </div>
 
 
-            <!-- =================================
-                 MEMO
-            ================================== -->
-
             <div class="field">
 
               <label for="note">
@@ -1641,10 +1602,6 @@
             </div>
 
 
-            <!-- =================================
-                 REVIEW
-            ================================== -->
-
             <button
               id="reviewButton"
               class="primary-btn"
@@ -1668,10 +1625,6 @@
 
           </div>
 
-
-          <!-- =====================================
-               REVIEW VIEW
-          ====================================== -->
 
           <div
             id="reviewView"
@@ -1826,10 +1779,6 @@
         </section>
 
 
-        <!-- =====================================
-             SIDE PANEL
-        ====================================== -->
-
         <aside class="card side-card">
 
           <h3>
@@ -1930,10 +1879,6 @@
   </div>
 
 
-  <!-- =====================================
-       LOADING
-  ====================================== -->
-
   <div
     id="loading"
     class="loading"
@@ -1952,10 +1897,6 @@
   </div>
 
 
-  <!-- =====================================
-       FIREBASE JAVASCRIPT
-  ====================================== -->
-
   <script type="module">
 
     import {
@@ -1972,11 +1913,7 @@
     import {
       doc,
       getDoc,
-      collection,
-      query,
-      where,
-      limit,
-      getDocs
+      setDoc
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -2038,6 +1975,9 @@
     const note =
       document.getElementById("note");
 
+    const currencySymbol =
+      document.getElementById("currencySymbol");
+
     const reviewButton =
       document.getElementById("reviewButton");
 
@@ -2084,27 +2024,158 @@
 
 
     /* =====================================
-       MONEY FORMAT
+       CURRENCY
     ===================================== */
+
+    const CURRENCY_RATES = {
+
+      USD: {
+        symbol: "$",
+        rate: 1,
+        locale: "en-US"
+      },
+
+      GBP: {
+        symbol: "£",
+        rate: 0.75,
+        locale: "en-GB"
+      },
+
+      EUR: {
+        symbol: "€",
+        rate: 0.85,
+        locale: "en-US"
+      }
+
+    };
+
+
+    let selectedCurrency = "USD";
+
+
+    function getCurrencyConfig() {
+
+      return (
+        CURRENCY_RATES[selectedCurrency] ||
+        CURRENCY_RATES.USD
+      );
+
+    }
+
 
     function formatMoney(value) {
 
-      const number =
-        Number(value);
+      const config =
+        getCurrencyConfig();
+
+      const usdValue =
+        Number(value) || 0;
+
+      const converted =
+        usdValue * config.rate;
+
 
       return new Intl.NumberFormat(
-        "en-US",
+        config.locale,
         {
           style: "currency",
-          currency: "USD",
+          currency: selectedCurrency,
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }
       ).format(
-        Number.isFinite(number)
-          ? number
-          : 0
+        converted
       );
+
+    }
+
+
+    function formatEnteredAmount(value) {
+
+      const config =
+        getCurrencyConfig();
+
+
+      return new Intl.NumberFormat(
+        config.locale,
+        {
+          style: "currency",
+          currency: selectedCurrency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        Number(value) || 0
+      );
+
+    }
+
+
+    /* =====================================
+       ACCOUNT TERMINOLOGY
+    ===================================== */
+
+    function getAccountLabel(type) {
+
+      if (type === "checking") {
+
+        return selectedCurrency === "GBP"
+          ? "Current Account"
+          : "Checking Account";
+
+      }
+
+
+      if (type === "savings") {
+
+        return "Savings Account";
+
+      }
+
+
+      if (type === "ira") {
+
+        return selectedCurrency === "GBP"
+          ? "ISA Account"
+          : "IRA Account";
+
+      }
+
+
+      return "Checking Account";
+
+    }
+
+
+    function applyCurrencyPresentation() {
+
+      const config =
+        getCurrencyConfig();
+
+
+      currencySymbol.textContent =
+        config.symbol;
+
+
+      document.documentElement.lang =
+        selectedCurrency === "GBP"
+          ? "en-GB"
+          : "en";
+
+
+      sourceAccount.options[0].textContent =
+        getAccountLabel("checking");
+
+
+      sourceAccount.options[1].textContent =
+        getAccountLabel("savings");
+
+
+      sourceAccount.options[2].textContent =
+        getAccountLabel("ira");
+
+
+      updateSourceAccount();
 
     }
 
@@ -2116,8 +2187,11 @@
     function maskAccountNumber(value) {
 
       if (!value) {
+
         return "Account number unavailable";
+
       }
+
 
       const clean =
         String(value).replace(
@@ -2125,15 +2199,20 @@
           ""
         );
 
+
       if (!clean) {
+
         return "Account number unavailable";
+
       }
+
 
       if (clean.length <= 4) {
 
         return "•••• " + clean;
 
       }
+
 
       return "•••• " +
         clean.slice(-4);
@@ -2151,7 +2230,8 @@
         "show"
       );
 
-      infoMessage.textContent = "";
+      infoMessage.textContent =
+        "";
 
       errorMessage.textContent =
         message;
@@ -2165,7 +2245,8 @@
 
     function clearError() {
 
-      errorMessage.textContent = "";
+      errorMessage.textContent =
+        "";
 
       errorMessage.classList.remove(
         "show"
@@ -2194,7 +2275,8 @@
 
     function clearInfo() {
 
-      infoMessage.textContent = "";
+      infoMessage.textContent =
+        "";
 
       infoMessage.classList.remove(
         "show"
@@ -2242,10 +2324,19 @@
       if (type === "savings") {
 
         return {
-          label: "Savings Account",
-          balance: accounts.savings.balance,
-          number: accounts.savings.number,
-          icon: "fa-solid fa-piggy-bank"
+
+          label:
+            getAccountLabel("savings"),
+
+          balance:
+            accounts.savings.balance,
+
+          number:
+            accounts.savings.number,
+
+          icon:
+            "fa-solid fa-piggy-bank"
+
         };
 
       }
@@ -2254,20 +2345,38 @@
       if (type === "ira") {
 
         return {
-          label: "IRA Account",
-          balance: accounts.ira.balance,
-          number: accounts.ira.number,
-          icon: "fa-solid fa-chart-line"
+
+          label:
+            getAccountLabel("ira"),
+
+          balance:
+            accounts.ira.balance,
+
+          number:
+            accounts.ira.number,
+
+          icon:
+            "fa-solid fa-chart-line"
+
         };
 
       }
 
 
       return {
-        label: "Checking Account",
-        balance: accounts.checking.balance,
-        number: accounts.checking.number,
-        icon: "fa-solid fa-building-columns"
+
+        label:
+          getAccountLabel("checking"),
+
+        balance:
+          accounts.checking.balance,
+
+        number:
+          accounts.checking.number,
+
+        icon:
+          "fa-solid fa-building-columns"
+
       };
 
     }
@@ -2281,6 +2390,7 @@
 
       const type =
         sourceAccount.value;
+
 
       const config =
         getAccountConfig(type);
@@ -2314,14 +2424,73 @@
         `<i class="${config.icon}"></i>`;
 
 
-      clearError();
-
-      clearInfo();
-
       amount.value = "";
 
 
       resetRecipient();
+
+      clearError();
+
+      clearInfo();
+
+    }
+
+
+    /* =====================================
+       CREATE RECIPIENT DIRECTORY ENTRY
+       FOR THE CURRENT USER
+    ===================================== */
+
+    async function syncRecipientDirectory() {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      const accountNumberValue =
+        String(
+          userData.accountNumber || ""
+        ).trim();
+
+
+      if (!accountNumberValue) {
+
+        console.warn(
+          "No primary account number found. Recipient directory was not created."
+        );
+
+        return;
+
+      }
+
+
+      const directoryRef =
+        doc(
+          db,
+          "recipientDirectory",
+          accountNumberValue
+        );
+
+
+      await setDoc(
+        directoryRef,
+        {
+          userId:
+            currentUser.uid,
+
+          fullName:
+            userData.fullName ||
+            currentUser.displayName ||
+            "First Merit customer",
+
+          accountNumber:
+            accountNumberValue
+        },
+        {
+          merge: true
+        }
+      );
 
     }
 
@@ -2357,13 +2526,22 @@
         userSnap.data();
 
 
-      /*
-        IMPORTANT:
+      selectedCurrency =
+        String(
+          userData.currency || "USD"
+        ).toUpperCase();
 
-        We do NOT create default balances here.
 
-        Firestore is the source of truth.
-      */
+      if (
+        !CURRENCY_RATES[
+          selectedCurrency
+        ]
+      ) {
+
+        selectedCurrency =
+          "USD";
+
+      }
 
 
       accounts.checking.balance =
@@ -2402,7 +2580,45 @@
         );
 
 
-      updateSourceAccount();
+      applyCurrencyPresentation();
+
+
+      /*
+        Create/update this user's public
+        recipient verification record.
+
+        This record contains ONLY:
+
+        - userId
+        - fullName
+        - accountNumber
+
+        It does not contain balances,
+        email addresses, passwords, or
+        private account information.
+      */
+
+      try {
+
+        await syncRecipientDirectory();
+
+      } catch (directoryError) {
+
+        /*
+          Account loading should not fail just
+          because the directory entry could not
+          be created.
+
+          Recipient verification will simply
+          report that the recipient cannot be found.
+        */
+
+        console.error(
+          "Recipient directory sync error:",
+          directoryError
+        );
+
+      }
 
     }
 
@@ -2574,46 +2790,31 @@
       try {
 
         /*
-          The current security rules only allow
-          users to read their own user document.
+          IMPORTANT:
 
-          Therefore this lookup is prepared here,
-          but it cannot be completed from the
-          browser until we create the secure
-          recipient lookup/backend path.
+          We now retrieve ONE recipient
+          directory document by account number.
 
-          We intentionally do NOT attempt to bypass
-          Firestore rules.
+          We are NOT querying /users.
+
+          This is the key fix.
         */
 
-        const usersRef =
-          collection(
+        const recipientRef =
+          doc(
             db,
-            "users"
+            "recipientDirectory",
+            account
           );
 
 
-        const recipientQuery =
-          query(
-            usersRef,
-            where(
-              "accountNumber",
-              "==",
-              account
-            ),
-            limit(1)
+        const recipientSnap =
+          await getDoc(
+            recipientRef
           );
 
 
-        const snapshot =
-          await getDocs(
-            recipientQuery
-          );
-
-
-        if (
-          snapshot.empty
-        ) {
+        if (!recipientSnap.exists()) {
 
           recipientStatus.classList.remove(
             "pending"
@@ -2629,41 +2830,42 @@
           recipientStatusIcon.className =
             "fa-solid fa-circle-xmark";
 
-          throw new Error(
-            "RECIPIENT_NOT_FOUND"
+          showError(
+            "No registered First Merit account was found with that account number."
           );
 
-        }
-
-
-        const recipientDoc =
-          snapshot.docs[0];
-
-
-        if (
-          recipientDoc.id ===
-          currentUser.uid
-        ) {
-
-          throw new Error(
-            "SELF_TRANSFER"
-          );
+          return;
 
         }
 
 
         const data =
-          recipientDoc.data();
+          recipientSnap.data();
+
+
+        if (
+          data.userId ===
+          currentUser.uid
+        ) {
+
+          resetRecipient();
+
+          showError(
+            "You cannot send money to your own account."
+          );
+
+          return;
+
+        }
 
 
         verifiedRecipient = {
 
           uid:
-            recipientDoc.id,
+            data.userId,
 
           name:
             data.fullName ||
-            data.name ||
             "First Merit customer",
 
           accountNumber:
@@ -2712,48 +2914,12 @@
         );
 
 
-        if (
-          error.message ===
-          "RECIPIENT_NOT_FOUND"
-        ) {
-
-          clearError();
-
-          return;
-
-        }
-
-
-        if (
-          error.message ===
-          "SELF_TRANSFER"
-        ) {
-
-          resetRecipient();
-
-          showError(
-            "You cannot send money to your own account."
-          );
-
-          return;
-
-        }
-
-
-        /*
-          With the rules currently deployed,
-          the query may be rejected because
-          users can only read their own document.
-
-          We surface that clearly instead of
-          pretending verification succeeded.
-        */
-
         recipientStatus.classList.remove(
           "pending"
         );
 
         recipientStatus.classList.add(
+          "show",
           "invalid"
         );
 
@@ -2765,7 +2931,7 @@
 
 
         showError(
-          "Recipient verification is not available with the current Firestore permissions. We will connect this to the secure transfer service next."
+          "We couldn't verify this recipient right now. Please check the account number and try again."
         );
 
       }
@@ -2831,9 +2997,13 @@
           recipientAccount.value.trim();
 
 
+        const rawAmount =
+          amount.value.trim();
+
+
         const transferAmount =
           Number(
-            amount.value
+            rawAmount
           );
 
 
@@ -2901,6 +3071,9 @@
         /* AMOUNT */
 
         if (
+          !/^\d+(\.\d{1,2})?$/.test(
+            rawAmount
+          ) ||
           !Number.isFinite(
             transferAmount
           ) ||
@@ -2918,10 +3091,29 @@
         }
 
 
+        /*
+          The balances stored in Firestore are
+          USD-based.
+
+          If the user is viewing GBP, convert
+          the entered GBP amount back to USD
+          before comparing it with the stored
+          balance.
+        */
+
+        const currencyConfig =
+          getCurrencyConfig();
+
+
+        const amountInUsd =
+          transferAmount /
+          currencyConfig.rate;
+
+
         /* BALANCE */
 
         if (
-          transferAmount >
+          amountInUsd >
           config.balance
         ) {
 
@@ -2941,7 +3133,7 @@
         document.getElementById(
           "reviewAmount"
         ).textContent =
-          formatMoney(
+          formatEnteredAmount(
             transferAmount
           );
 
@@ -2987,7 +3179,7 @@
         document.getElementById(
           "reviewTotal"
         ).textContent =
-          formatMoney(
+          formatEnteredAmount(
             transferAmount
           );
 
@@ -3087,21 +3279,13 @@
 
 
         /*
-          IMPORTANT:
+          We intentionally do not modify balances
+          from the browser.
 
-          We intentionally do NOT use runTransaction()
-          here.
-
-          The browser must not directly:
-
-          - subtract the sender balance
-          - credit another user
-          - create a completed transaction
-
-          Those operations belong in the secure
-          backend transfer function.
+          A secure backend transfer service
+          should perform the actual debit,
+          credit and transaction creation.
         */
-
 
         showInfo(
           "The secure transfer service is not connected yet. Your account has not been charged."
