@@ -1724,7 +1724,10 @@
 
           <div class="account-heading">
 
-            <div class="account-name">
+            <div
+              class="account-name"
+              id="checkingAccountName"
+            >
               Checking
             </div>
 
@@ -1844,7 +1847,10 @@
 
           <div class="account-heading">
 
-            <div class="account-name">
+            <div
+              class="account-name"
+              id="retirementAccountName"
+            >
               IRA
             </div>
 
@@ -2047,11 +2053,17 @@
 
           <div class="detail-row">
 
-            <span class="detail-label">
+            <span
+              class="detail-label"
+              id="primaryAccountLabel"
+            >
               Primary account
             </span>
 
-            <span class="detail-value">
+            <span
+              class="detail-value"
+              id="primaryAccountValue"
+            >
               Checking
             </span>
 
@@ -2074,7 +2086,10 @@
 
           <div class="detail-row">
 
-            <span class="detail-label">
+            <span
+              class="detail-label"
+              id="routingNumberLabel"
+            >
               Routing number
             </span>
 
@@ -2316,6 +2331,18 @@
     const routingNumber =
       document.getElementById("routingNumber");
 
+    const routingNumberLabel =
+      document.getElementById("routingNumberLabel");
+
+    const checkingAccountName =
+      document.getElementById("checkingAccountName");
+
+    const primaryAccountValue =
+      document.getElementById("primaryAccountValue");
+
+    const retirementAccountName =
+      document.getElementById("retirementAccountName");
+
     const transactionsList =
       document.getElementById("transactionsList");
 
@@ -2382,6 +2409,65 @@
             year: "numeric"
           }
         );
+
+    }
+
+    /* =========================================
+       ACCOUNT / COUNTRY TERMINOLOGY
+    ========================================= */
+
+    function updateCountryTerminology() {
+
+      const isGBP =
+        selectedCurrency === "GBP";
+
+      /*
+       * USD:
+       * Checking
+       * IRA
+       * Routing number
+       *
+       * GBP:
+       * Current Account
+       * ISA
+       * Sort code
+       */
+
+      if (checkingAccountName) {
+
+        checkingAccountName.textContent =
+          isGBP
+            ? "Current Account"
+            : "Checking";
+
+      }
+
+      if (retirementAccountName) {
+
+        retirementAccountName.textContent =
+          isGBP
+            ? "ISA"
+            : "IRA";
+
+      }
+
+      if (primaryAccountValue) {
+
+        primaryAccountValue.textContent =
+          isGBP
+            ? "Current Account"
+            : "Checking";
+
+      }
+
+      if (routingNumberLabel) {
+
+        routingNumberLabel.textContent =
+          isGBP
+            ? "Sort code"
+            : "Routing number";
+
+      }
 
     }
 
@@ -2814,6 +2900,12 @@
           "USD";
 
       }
+
+      /* ---------------------------------------
+         UPDATE COUNTRY-SPECIFIC WORDING
+      --------------------------------------- */
+
+      updateCountryTerminology();
 
       /* ---------------------------------------
          BALANCES
