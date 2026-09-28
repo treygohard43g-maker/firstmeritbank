@@ -1,10 +1,3822 @@
-catch (error) {
-  console.error("TRANSFER ERROR:", error);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
-  showError(
-    "Transfer failed: " +
-    (error.code || "unknown") +
-    " — " +
-    (error.message || "Unknown error")
-  );
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
+
+  <title>Send Money | First Merit Bank</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #082b57;
+      --navy-dark: #061f40;
+      --blue: #0b63ce;
+      --blue-light: #eaf3ff;
+      --cyan: #159db7;
+      --green: #18864b;
+      --green-light: #eaf8f0;
+      --amber: #c99524;
+      --amber-light: #fff8e7;
+      --text: #172033;
+      --muted: #697386;
+      --border: #e1e7ef;
+      --background: #f5f7fa;
+      --white: #ffffff;
+      --danger: #c62828;
+      --danger-light: #fff1f1;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: var(--background);
+      color: var(--text);
+
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .topbar {
+      height: 68px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 24px;
+
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      text-decoration: none;
+      color: var(--navy);
+
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+
+      flex: 0 0 38px;
+
+      border-radius: 9px;
+
+      background: var(--navy);
+
+      border: 2px solid #c8a44d;
+
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 15px;
+      font-weight: 800;
+
+      letter-spacing: -1px;
+    }
+
+    .brand-text {
+      line-height: 1;
+    }
+
+    .brand-main {
+      display: block;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      letter-spacing: 1.1px;
+    }
+
+    .brand-sub {
+      display: block;
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: 3px;
+
+      margin-top: 3px;
+
+      color: #9a7930;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-icon {
+      width: 38px;
+      height: 38px;
+
+      border: 1px solid var(--border);
+
+      background: white;
+
+      border-radius: 10px;
+
+      color: var(--navy);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow: 0 1px 2px rgba(10, 35, 65, .03);
+    }
+
+    .header-icon:active {
+      transform: scale(.97);
+    }
+
+    /* =========================================
+       MAIN
+    ========================================= */
+
+    .main {
+      width: min(100%, 980px);
+
+      margin: 0 auto;
+
+      padding: 26px 20px 45px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      font-size: 12px;
+
+      color: var(--muted);
+
+      margin-bottom: 13px;
+    }
+
+    .breadcrumb a {
+      color: var(--blue);
+
+      text-decoration: none;
+
+      font-weight: 600;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      margin: 0;
+
+      font-size: 27px;
+
+      line-height: 1.15;
+
+      letter-spacing: -.7px;
+
+      color: var(--navy-dark);
+    }
+
+    .page-heading p {
+      margin: 6px 0 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       CONTENT GRID
+    ========================================= */
+
+    .content-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        300px;
+
+      gap: 18px;
+
+      align-items: start;
+    }
+
+    .card {
+      background: var(--white);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 4px 18px rgba(16, 35, 62, .045);
+
+      min-width: 0;
+    }
+
+    .form-card {
+      padding: 22px;
+
+      min-width: 0;
+    }
+
+    /* =========================================
+       CARD TITLE
+    ========================================= */
+
+    .card-title {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 20px;
+    }
+
+    .title-icon {
+      width: 38px;
+      height: 38px;
+
+      flex: 0 0 38px;
+
+      border-radius: 11px;
+
+      background: var(--blue-light);
+
+      color: var(--blue);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 16px;
+    }
+
+    .card-title h2 {
+      margin: 0;
+
+      font-size: 17px;
+
+      line-height: 1.2;
+
+      color: var(--navy-dark);
+    }
+
+    .card-title p {
+      margin: 3px 0 0;
+
+      font-size: 11px;
+
+      line-height: 1.4;
+
+      color: var(--muted);
+    }
+
+    /* =========================================
+       SOURCE ACCOUNT
+    ========================================= */
+
+    .source-card {
+      border: 1px solid #dfe7f1;
+
+      border-radius: 13px;
+
+      padding: 13px;
+
+      background: #fbfcfe;
+
+      margin-bottom: 20px;
+    }
+
+    .account-label {
+      color: var(--muted);
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      letter-spacing: .7px;
+
+      margin-bottom: 9px;
+    }
+
+    .account-select {
+      width: 100%;
+
+      height: 44px;
+
+      padding: 0 42px 0 12px;
+
+      border: 1px solid #d9e0e9;
+
+      border-radius: 10px;
+
+      background: white;
+
+      color: var(--text);
+
+      outline: none;
+
+      cursor: pointer;
+
+      appearance: none;
+
+      background-image:
+        linear-gradient(45deg, transparent 50%, #657084 50%),
+        linear-gradient(135deg, #657084 50%, transparent 50%);
+
+      background-position:
+        calc(100% - 17px) 18px,
+        calc(100% - 12px) 18px;
+
+      background-size:
+        5px 5px,
+        5px 5px;
+
+      background-repeat: no-repeat;
+    }
+
+    .account-select:focus {
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(11, 99, 206, .08);
+    }
+
+    .account-preview {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      margin-top: 12px;
+    }
+
+    .account-info {
+      display: flex;
+
+      align-items: center;
+
+      gap: 11px;
+
+      min-width: 0;
+    }
+
+    .account-icon {
+      width: 40px;
+      height: 40px;
+
+      flex: 0 0 40px;
+
+      border-radius: 10px;
+
+      background: var(--navy);
+
+      color: white;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .account-details {
+      min-width: 0;
+    }
+
+    .account-name {
+      font-weight: 700;
+
+      font-size: 13px;
+
+      color: var(--text);
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+    .account-number {
+      font-size: 11px;
+
+      color: var(--muted);
+
+      margin-top: 2px;
+    }
+
+    .account-balance {
+      font-size: 14px;
+
+      font-weight: 800;
+
+      color: var(--navy);
+
+      white-space: nowrap;
+
+      flex: 0 0 auto;
+    }
+
+    /* =========================================
+       MESSAGES
+    ========================================= */
+
+    .error,
+    .info {
+      display: none;
+
+      width: 100%;
+
+      margin: 0 0 16px;
+
+      padding: 11px 12px;
+
+      border-radius: 9px;
+
+      font-size: 11px;
+
+      line-height: 1.45;
+    }
+
+    .error {
+      background: var(--danger-light);
+
+      border: 1px solid #ffd1d1;
+
+      color: var(--danger);
+    }
+
+    .info {
+      background: var(--blue-light);
+
+      border: 1px solid #cfe2ff;
+
+      color: #174f93;
+    }
+
+    .error.show,
+    .info.show {
+      display: block;
+    }
+
+    /* =========================================
+       FORM
+    ========================================= */
+
+    .field {
+      margin-bottom: 17px;
+
+      width: 100%;
+    }
+
+    .field label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #273348;
+    }
+
+    .input-wrap {
+      position: relative;
+
+      width: 100%;
+    }
+
+    .input-icon {
+      position: absolute;
+
+      left: 14px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #7d8797;
+
+      font-size: 13px;
+
+      pointer-events: none;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+
+      border: 1px solid #d9e0e9;
+
+      border-radius: 10px;
+
+      background: white;
+
+      color: var(--text);
+
+      outline: none;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    input {
+      height: 46px;
+
+      padding: 0 13px 0 40px;
+
+      font-size: 13px;
+    }
+
+    input[readonly] {
+      background: #f8fafc;
+
+      color: #344054;
+
+      cursor: default;
+    }
+
+    textarea {
+      min-height: 80px;
+
+      padding: 12px 13px;
+
+      resize: vertical;
+
+      font-size: 13px;
+
+      line-height: 1.45;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #9aa4b4;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(11, 99, 206, .09);
+    }
+
+    .amount-wrap input {
+      padding-left: 43px;
+
+      font-size: 22px;
+
+      font-weight: 700;
+
+      letter-spacing: -.3px;
+    }
+
+    .currency {
+      position: absolute;
+
+      left: 14px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      font-size: 17px;
+
+      font-weight: 800;
+
+      color: var(--navy);
+
+      pointer-events: none;
+    }
+
+    .field-help {
+      margin-top: 6px;
+
+      font-size: 10px;
+
+      color: var(--muted);
+    }
+
+    .field-help strong {
+      color: var(--navy);
+
+      font-weight: 800;
+    }
+
+    /* =========================================
+       RECIPIENT STATUS
+    ========================================= */
+
+    .recipient-status {
+      display: none;
+
+      align-items: center;
+
+      gap: 8px;
+
+      margin-top: 8px;
+
+      padding: 9px 10px;
+
+      border-radius: 9px;
+
+      background: var(--green-light);
+
+      border: 1px solid #cbead9;
+
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+    .recipient-status.show {
+      display: flex;
+    }
+
+    .recipient-status.pending {
+      background: var(--amber-light);
+
+      border-color: #f1dfae;
+
+      color: #8a6817;
+    }
+
+    .recipient-status.invalid {
+      background: var(--danger-light);
+
+      border-color: #ffd1d1;
+
+      color: var(--danger);
+    }
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
+
+    .primary-btn {
+      width: 100%;
+
+      min-height: 47px;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      background: var(--navy);
+
+      color: white;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      transition:
+        background .2s ease,
+        transform .2s ease,
+        opacity .2s ease;
+    }
+
+    .primary-btn:hover {
+      background: #0b3b73;
+
+      transform: translateY(-1px);
+    }
+
+    .primary-btn:disabled {
+      opacity: .65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+    .secondary-btn {
+      min-height: 44px;
+
+      padding: 0 17px;
+
+      border: 1px solid #d6dee8;
+
+      border-radius: 10px;
+
+      background: white;
+
+      color: var(--navy);
+
+      font-size: 12px;
+
+      font-weight: 700;
+    }
+
+    /* =========================================
+       BACKEND NOTICE
+    ========================================= */
+
+    .backend-notice {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 10px;
+
+      margin-top: 14px;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      background: #f8fafc;
+
+      border: 1px solid #e3e8ef;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      line-height: 1.45;
+    }
+
+    .backend-notice i {
+      color: var(--blue);
+
+      margin-top: 1px;
+    }
+
+    /* =========================================
+       REVIEW
+    ========================================= */
+
+    .review {
+      display: none;
+    }
+
+    .review.show {
+      display: block;
+    }
+
+    .form-view.hide {
+      display: none;
+    }
+
+    .review-header {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      width: 36px;
+      height: 36px;
+
+      flex: 0 0 36px;
+
+      border: 1px solid var(--border);
+
+      background: white;
+
+      border-radius: 9px;
+
+      color: var(--navy);
+    }
+
+    .review-header h2 {
+      margin: 0;
+
+      font-size: 18px;
+    }
+
+    .review-header p {
+      margin: 3px 0 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    .review-amount {
+      text-align: center;
+
+      padding: 12px 0 20px;
+
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .review-amount span {
+      display: block;
+
+      font-size: 11px;
+
+      color: var(--muted);
+
+      margin-bottom: 5px;
+    }
+
+    .review-amount strong {
+      font-size: 31px;
+
+      color: var(--navy);
+
+      letter-spacing: -1px;
+    }
+
+    .review-list {
+      padding: 7px 0;
+    }
+
+    .review-row {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 13px 0;
+
+      border-bottom: 1px solid #edf0f4;
+
+      font-size: 12px;
+    }
+
+    .review-row:last-child {
+      border-bottom: 0;
+    }
+
+    .review-row span:first-child {
+      color: var(--muted);
+    }
+
+    .review-row span:last-child {
+      text-align: right;
+
+      font-weight: 700;
+
+      color: #263247;
+
+      overflow-wrap: anywhere;
+    }
+
+    .review-actions {
+      display: grid;
+
+      grid-template-columns: 1fr 1.5fr;
+
+      gap: 10px;
+
+      margin-top: 16px;
+    }
+
+    /* =========================================
+       SIDE PANEL
+    ========================================= */
+
+    .side-card {
+      padding: 18px;
+    }
+
+    .side-card h3 {
+      margin: 0 0 13px;
+
+      font-size: 14px;
+
+      color: var(--navy-dark);
+    }
+
+    .security-row {
+      display: flex;
+
+      gap: 10px;
+
+      padding: 11px 0;
+
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .security-row:last-child {
+      border-bottom: 0;
+    }
+
+    .security-icon {
+      width: 31px;
+      height: 31px;
+
+      flex: 0 0 31px;
+
+      border-radius: 9px;
+
+      background: var(--green-light);
+
+      color: var(--green);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 12px;
+    }
+
+    .security-text strong {
+      display: block;
+
+      font-size: 11px;
+
+      color: #273348;
+
+      margin-bottom: 2px;
+    }
+
+    .security-text span {
+      font-size: 10px;
+
+      line-height: 1.4;
+
+      color: var(--muted);
+    }
+
+    /* =========================================
+       LOADING
+    ========================================= */
+
+    .loading {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(255, 255, 255, .92);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 100;
+    }
+
+    .loading.hidden {
+      display: none;
+    }
+
+    .loader-box {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+
+      margin: auto;
+
+      border: 3px solid #e2e8f0;
+
+      border-top-color: var(--blue);
+
+      border-radius: 50%;
+
+      animation: spin .8s linear infinite;
+    }
+
+    .loader-box p {
+      margin: 10px 0 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 760px) {
+
+      .topbar {
+        height: 62px;
+
+        padding: 0 15px;
+      }
+
+      .main {
+        padding: 18px 13px 30px;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-card {
+        display: none;
+      }
+
+      .form-card {
+        padding: 17px;
+
+        border-radius: 14px;
+      }
+
+      .page-heading h1 {
+        font-size: 23px;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      .topbar {
+        height: 68px;
+
+        padding: 0 14px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+
+        flex-basis: 36px;
+
+        border-radius: 9px;
+
+        font-size: 14px;
+      }
+
+      .brand-main {
+        font-size: 12px;
+
+        letter-spacing: .9px;
+      }
+
+      .brand-sub {
+        font-size: 7px;
+
+        letter-spacing: 2.7px;
+      }
+
+      .header-icon {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+      }
+
+      .main {
+        width: 100%;
+
+        padding:
+          18px 13px 32px;
+      }
+
+      .breadcrumb {
+        font-size: 12px;
+
+        margin-bottom: 12px;
+      }
+
+      .page-heading {
+        margin-bottom: 16px;
+      }
+
+      .page-heading h1 {
+        font-size: 24px;
+      }
+
+      .page-heading p {
+        font-size: 12px;
+
+        line-height: 1.5;
+      }
+
+      .form-card {
+        padding: 16px;
+
+        border-radius: 14px;
+      }
+
+      .card-title {
+        align-items: flex-start;
+
+        margin-bottom: 17px;
+      }
+
+      .card-title h2 {
+        font-size: 17px;
+      }
+
+      .card-title p {
+        font-size: 10.5px;
+      }
+
+      .source-card {
+        padding: 12px;
+
+        margin-bottom: 17px;
+      }
+
+      .account-preview {
+        align-items: center;
+      }
+
+      .account-name {
+        max-width: 145px;
+      }
+
+      .account-balance {
+        font-size: 13px;
+      }
+
+      .field {
+        margin-bottom: 16px;
+      }
+
+      input {
+        height: 48px;
+
+        font-size: 13px;
+      }
+
+      textarea {
+        min-height: 82px;
+      }
+
+      .amount-wrap input {
+        font-size: 21px;
+      }
+
+      .primary-btn {
+        min-height: 48px;
+
+        font-size: 13px;
+      }
+
+      .review-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .main {
+        padding-left: 11px;
+
+        padding-right: 11px;
+      }
+
+      .form-card {
+        padding: 14px;
+      }
+
+      .page-heading h1 {
+        font-size: 22px;
+      }
+
+      .account-name {
+        max-width: 120px;
+      }
+
+      .account-balance {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="topbar">
+
+      <a
+        href="dashboard.html"
+        class="brand"
+      >
+
+        <div class="brand-mark">
+          FM
+        </div>
+
+        <div class="brand-text">
+
+          <span class="brand-main">
+            FIRST MERIT
+          </span>
+
+          <span class="brand-sub">
+            BANK
+          </span>
+
+        </div>
+
+      </a>
+
+      <div class="header-actions">
+
+        <button
+          class="header-icon"
+          type="button"
+          onclick="window.location.href='dashboard.html'"
+          aria-label="Dashboard"
+        >
+          <i class="fa-solid fa-house"></i>
+        </button>
+
+      </div>
+
+    </header>
+
+    <main class="main">
+
+      <div class="breadcrumb">
+
+        <a href="dashboard.html">
+          Dashboard
+        </a>
+
+        <i
+          class="fa-solid fa-chevron-right"
+          style="font-size:8px;"
+        ></i>
+
+        <span>
+          Send Money
+        </span>
+
+      </div>
+
+      <div class="page-heading">
+
+        <h1>
+          Send Money
+        </h1>
+
+        <p>
+          Send money securely from your First Merit account.
+        </p>
+
+      </div>
+
+      <div class="content-grid">
+
+        <section class="card form-card">
+
+          <!-- FIX: Messages are outside formView so they remain
+               visible when the review screen is displayed. -->
+
+          <div
+            id="errorMessage"
+            class="error"
+          ></div>
+
+          <div
+            id="infoMessage"
+            class="info"
+          ></div>
+
+          <div
+            id="formView"
+            class="form-view"
+          >
+
+            <div class="card-title">
+
+              <div class="title-icon">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+
+              <div>
+
+                <h2>
+                  Transfer money
+                </h2>
+
+                <p>
+                  Enter the recipient and transfer details.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="source-card">
+
+              <div class="account-label">
+                From account
+              </div>
+
+              <select
+                id="sourceAccount"
+                class="account-select"
+              >
+
+                <option value="checking">
+                  Checking Account
+                </option>
+
+                <option value="savings">
+                  Savings Account
+                </option>
+
+                <option value="ira">
+                  IRA Account
+                </option>
+
+              </select>
+
+              <div class="account-preview">
+
+                <div class="account-info">
+
+                  <div
+                    id="sourceIcon"
+                    class="account-icon"
+                  >
+                    <i class="fa-solid fa-building-columns"></i>
+                  </div>
+
+                  <div class="account-details">
+
+                    <div
+                      id="accountName"
+                      class="account-name"
+                    >
+                      Checking Account
+                    </div>
+
+                    <div
+                      id="accountNumber"
+                      class="account-number"
+                    >
+                      Loading account...
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div
+                  id="accountBalance"
+                  class="account-balance"
+                >
+                  $0.00
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="field">
+
+              <label for="recipientAccount">
+                Recipient account number
+              </label>
+
+              <div class="input-wrap">
+
+                <i
+                  class="fa-solid fa-hashtag input-icon"
+                ></i>
+
+                <input
+                  id="recipientAccount"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  maxlength="30"
+                  placeholder="Enter First Merit account number"
+                >
+
+              </div>
+
+              <div
+                id="recipientStatus"
+                class="recipient-status"
+              >
+
+                <i
+                  id="recipientStatusIcon"
+                  class="fa-solid fa-circle-check"
+                ></i>
+
+                <span id="recipientStatusText">
+                  Recipient verified
+                </span>
+
+              </div>
+
+              <div class="field-help">
+                Enter the account number of a registered First Merit user.
+              </div>
+
+            </div>
+
+            <div class="field">
+
+              <label for="recipientName">
+                Verified recipient
+              </label>
+
+              <div class="input-wrap">
+
+                <i
+                  class="fa-regular fa-user input-icon"
+                ></i>
+
+                <input
+                  id="recipientName"
+                  type="text"
+                  readonly
+                  placeholder="Recipient name will appear here"
+                >
+
+              </div>
+
+            </div>
+
+            <div class="field">
+
+              <label for="amount">
+                Amount
+              </label>
+
+              <div class="input-wrap amount-wrap">
+
+                <span
+                  id="currencySymbol"
+                  class="currency"
+                >
+                  $
+                </span>
+
+                <input
+                  id="amount"
+                  type="number"
+                  inputmode="decimal"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                >
+
+              </div>
+
+              <div class="field-help">
+
+                Available balance:
+
+                <strong id="availableBalance">
+                  $0.00
+                </strong>
+
+              </div>
+
+            </div>
+
+            <div class="field">
+
+              <label for="note">
+
+                Memo
+
+                <span
+                  style="
+                    font-weight:500;
+                    color:#8993a2;
+                  "
+                >
+                  (optional)
+                </span>
+
+              </label>
+
+              <textarea
+                id="note"
+                maxlength="120"
+                placeholder="Add a note for this transfer"
+              ></textarea>
+
+            </div>
+
+            <button
+              id="reviewButton"
+              class="primary-btn"
+              type="button"
+            >
+              Review transfer
+            </button>
+
+            <div class="backend-notice">
+
+              <i class="fa-solid fa-shield-halved"></i>
+
+              <span>
+                Your transfer is prepared using your authenticated First Merit
+                account. Final balance changes are handled by the secure
+                transfer service.
+              </span>
+
+            </div>
+
+          </div>
+
+          <div
+            id="reviewView"
+            class="review"
+          >
+
+            <div class="review-header">
+
+              <button
+                id="backButton"
+                class="back-btn"
+                type="button"
+                aria-label="Back"
+              >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+              </button>
+
+              <div>
+
+                <h2>
+                  Review transfer
+                </h2>
+
+                <p>
+                  Make sure the details are correct.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="review-amount">
+
+              <span>
+                You're sending
+              </span>
+
+              <strong id="reviewAmount">
+                $0.00
+              </strong>
+
+            </div>
+
+            <div class="review-list">
+
+              <div class="review-row">
+
+                <span>
+                  From
+                </span>
+
+                <span id="reviewFrom">
+                  —
+                </span>
+
+              </div>
+
+              <div class="review-row">
+
+                <span>
+                  Recipient
+                </span>
+
+                <span id="reviewRecipient">
+                  —
+                </span>
+
+              </div>
+
+              <div class="review-row">
+
+                <span>
+                  Account number
+                </span>
+
+                <span id="reviewAccount">
+                  —
+                </span>
+
+              </div>
+
+              <div class="review-row">
+
+                <span>
+                  Memo
+                </span>
+
+                <span id="reviewNote">
+                  None
+                </span>
+
+              </div>
+
+              <div class="review-row">
+
+                <span>
+                  Transfer amount
+                </span>
+
+                <span id="reviewTotal">
+                  $0.00
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="review-actions">
+
+              <button
+                id="editButton"
+                class="secondary-btn"
+                type="button"
+              >
+                Edit
+              </button>
+
+              <button
+                id="confirmButton"
+                class="primary-btn"
+                type="button"
+              >
+                Confirm transfer
+              </button>
+
+            </div>
+
+            <div class="backend-notice">
+
+              <i class="fa-solid fa-lock"></i>
+
+              <span>
+                Confirming will send the request to the secure transfer
+                service. Your browser does not directly modify the recipient's
+                balance.
+              </span>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <aside class="card side-card">
+
+          <h3>
+            Transfer information
+          </h3>
+
+          <div class="security-row">
+
+            <div class="security-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div class="security-text">
+
+              <strong>
+                Secure transfer
+              </strong>
+
+              <span>
+                Transfers are tied to your authenticated First Merit account.
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="security-row">
+
+            <div class="security-icon">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <div class="security-text">
+
+              <strong>
+                Recipient verification
+              </strong>
+
+              <span>
+                The recipient must have a registered First Merit account.
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="security-row">
+
+            <div class="security-icon">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="security-text">
+
+              <strong>
+                Protected balance
+              </strong>
+
+              <span>
+                The browser does not authorize completed balance changes.
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="security-row">
+
+            <div class="security-icon">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+
+            <div class="security-text">
+
+              <strong>
+                Transaction record
+              </strong>
+
+              <span>
+                Completed transfers will create transaction records for both
+                accounts.
+              </span>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <div
+    id="loading"
+    class="loading"
+  >
+
+    <div class="loader-box">
+
+      <div class="spinner"></div>
+
+      <p>
+        Loading your account...
+      </p>
+
+    </div>
+
+  </div>
+
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      writeBatch
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    /* =====================================
+       ELEMENTS
+    ===================================== */
+
+    const loading =
+      document.getElementById("loading");
+
+    const formView =
+      document.getElementById("formView");
+
+    const reviewView =
+      document.getElementById("reviewView");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+    const infoMessage =
+      document.getElementById("infoMessage");
+
+    const sourceAccount =
+      document.getElementById("sourceAccount");
+
+    const sourceIcon =
+      document.getElementById("sourceIcon");
+
+    const accountName =
+      document.getElementById("accountName");
+
+    const accountNumber =
+      document.getElementById("accountNumber");
+
+    const accountBalance =
+      document.getElementById("accountBalance");
+
+    const availableBalance =
+      document.getElementById("availableBalance");
+
+    const recipientAccount =
+      document.getElementById("recipientAccount");
+
+    const recipientName =
+      document.getElementById("recipientName");
+
+    const recipientStatus =
+      document.getElementById("recipientStatus");
+
+    const recipientStatusIcon =
+      document.getElementById("recipientStatusIcon");
+
+    const recipientStatusText =
+      document.getElementById("recipientStatusText");
+
+    const amount =
+      document.getElementById("amount");
+
+    const note =
+      document.getElementById("note");
+
+    const currencySymbol =
+      document.getElementById("currencySymbol");
+
+    const reviewButton =
+      document.getElementById("reviewButton");
+
+    const backButton =
+      document.getElementById("backButton");
+
+    const editButton =
+      document.getElementById("editButton");
+
+    const confirmButton =
+      document.getElementById("confirmButton");
+
+    /* =====================================
+       STATE
+    ===================================== */
+
+    let currentUser = null;
+
+    let userData = null;
+
+    let accounts = {
+
+      checking: {
+        balance: 0,
+        number: ""
+      },
+
+      savings: {
+        balance: 0,
+        number: ""
+      },
+
+      ira: {
+        balance: 0,
+        number: ""
+      }
+
+    };
+
+    let verifiedRecipient = null;
+
+    let isRecipientVerified = false;
+
+    /* =====================================
+       CURRENCY
+    ===================================== */
+
+    const CURRENCY_RATES = {
+
+      USD: {
+        symbol: "$",
+        rate: 1,
+        locale: "en-US"
+      },
+
+      GBP: {
+        symbol: "£",
+        rate: 0.75,
+        locale: "en-GB"
+      },
+
+      EUR: {
+        symbol: "€",
+        rate: 0.85,
+        locale: "en-US"
+      }
+
+    };
+
+    let selectedCurrency = "USD";
+
+    function getCurrencyConfig() {
+
+      return (
+        CURRENCY_RATES[selectedCurrency] ||
+        CURRENCY_RATES.USD
+      );
+
+    }
+
+    function formatMoney(value) {
+
+      const config =
+        getCurrencyConfig();
+
+      const usdValue =
+        Number(value) || 0;
+
+      const converted =
+        usdValue * config.rate;
+
+      return new Intl.NumberFormat(
+        config.locale,
+        {
+          style: "currency",
+          currency: selectedCurrency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        converted
+      );
+
+    }
+
+    function formatEnteredAmount(value) {
+
+      const config =
+        getCurrencyConfig();
+
+      return new Intl.NumberFormat(
+        config.locale,
+        {
+          style: "currency",
+          currency: selectedCurrency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        Number(value) || 0
+      );
+
+    }
+
+    /* =====================================
+       ACCOUNT TERMINOLOGY
+    ===================================== */
+
+    function getAccountLabel(type) {
+
+      if (type === "checking") {
+
+        return selectedCurrency === "GBP"
+          ? "Current Account"
+          : "Checking Account";
+
+      }
+
+      if (type === "savings") {
+
+        return "Savings Account";
+
+      }
+
+      if (type === "ira") {
+
+        return selectedCurrency === "GBP"
+          ? "ISA Account"
+          : "IRA Account";
+
+      }
+
+      return "Checking Account";
+
+    }
+
+    function applyCurrencyPresentation() {
+
+      const config =
+        getCurrencyConfig();
+
+      currencySymbol.textContent =
+        config.symbol;
+
+      document.documentElement.lang =
+        selectedCurrency === "GBP"
+          ? "en-GB"
+          : "en";
+
+      sourceAccount.options[0].textContent =
+        getAccountLabel("checking");
+
+      sourceAccount.options[1].textContent =
+        getAccountLabel("savings");
+
+      sourceAccount.options[2].textContent =
+        getAccountLabel("ira");
+
+      updateSourceAccount();
+
+    }
+
+    /* =====================================
+       ACCOUNT MASK
+    ===================================== */
+
+    function maskAccountNumber(value) {
+
+      if (!value) {
+
+        return "Account number unavailable";
+
+      }
+
+      const clean =
+        String(value).replace(
+          /\D/g,
+          ""
+        );
+
+      if (!clean) {
+
+        return "Account number unavailable";
+
+      }
+
+      if (clean.length <= 4) {
+
+        return "•••• " + clean;
+
+      }
+
+      return "•••• " +
+        clean.slice(-4);
+
+    }
+
+    /* =====================================
+       ERROR
+    ===================================== */
+
+    function showError(message) {
+
+      infoMessage.classList.remove(
+        "show"
+      );
+
+      infoMessage.textContent =
+        "";
+
+      errorMessage.textContent =
+        message;
+
+      errorMessage.classList.add(
+        "show"
+      );
+
+    }
+
+    function clearError() {
+
+      errorMessage.textContent =
+        "";
+
+      errorMessage.classList.remove(
+        "show"
+      );
+
+    }
+
+    /* =====================================
+       INFO
+    ===================================== */
+
+    function showInfo(message) {
+
+      clearError();
+
+      infoMessage.textContent =
+        message;
+
+      infoMessage.classList.add(
+        "show"
+      );
+
+    }
+
+    function clearInfo() {
+
+      infoMessage.textContent =
+        "";
+
+      infoMessage.classList.remove(
+        "show"
+      );
+
+    }
+
+    /* =====================================
+       RESET RECIPIENT
+    ===================================== */
+
+    function resetRecipient() {
+
+      verifiedRecipient =
+        null;
+
+      isRecipientVerified =
+        false;
+
+      recipientName.value =
+        "";
+
+      recipientStatus.classList.remove(
+        "show",
+        "pending",
+        "invalid"
+      );
+
+      recipientStatusText.textContent =
+        "Recipient verified";
+
+      recipientStatusIcon.className =
+        "fa-solid fa-circle-check";
+
+    }
+
+    /* =====================================
+       ACCOUNT CONFIGURATION
+    ===================================== */
+
+    function getAccountConfig(type) {
+
+      if (type === "savings") {
+
+        return {
+
+          label:
+            getAccountLabel("savings"),
+
+          balance:
+            accounts.savings.balance,
+
+          number:
+            accounts.savings.number,
+
+          icon:
+            "fa-solid fa-piggy-bank"
+
+        };
+
+      }
+
+      if (type === "ira") {
+
+        return {
+
+          label:
+            getAccountLabel("ira"),
+
+          balance:
+            accounts.ira.balance,
+
+          number:
+            accounts.ira.number,
+
+          icon:
+            "fa-solid fa-chart-line"
+
+        };
+
+      }
+
+      return {
+
+        label:
+          getAccountLabel("checking"),
+
+        balance:
+          accounts.checking.balance,
+
+        number:
+          accounts.checking.number,
+
+        icon:
+          "fa-solid fa-building-columns"
+
+      };
+
+    }
+
+    /* =====================================
+       UPDATE SOURCE ACCOUNT
+    ===================================== */
+
+    function updateSourceAccount() {
+
+      const type =
+        sourceAccount.value;
+
+      const config =
+        getAccountConfig(type);
+
+      accountName.textContent =
+        config.label;
+
+      accountNumber.textContent =
+        config.number
+          ? maskAccountNumber(
+              config.number
+            )
+          : "Account number unavailable";
+
+      accountBalance.textContent =
+        formatMoney(
+          config.balance
+        );
+
+      availableBalance.textContent =
+        formatMoney(
+          config.balance
+        );
+
+      sourceIcon.innerHTML =
+        `<i class="${config.icon}"></i>`;
+
+      amount.value = "";
+
+      resetRecipient();
+
+      clearError();
+
+      clearInfo();
+
+    }
+
+    /* =====================================
+       CREATE RECIPIENT DIRECTORY ENTRIES
+       FOR THE CURRENT USER
+    ===================================== */
+
+    async function syncRecipientDirectory() {
+
+      if (!currentUser || !userData) {
+        return;
+      }
+
+      const entries = [
+
+        {
+          accountNumber:
+            accounts.checking.number,
+
+          accountType:
+            "Checking"
+        },
+
+        {
+          accountNumber:
+            accounts.savings.number,
+
+          accountType:
+            "Savings"
+        },
+
+        {
+          accountNumber:
+            accounts.ira.number,
+
+          accountType:
+            "IRA"
+        }
+
+      ];
+
+      for (const entry of entries) {
+
+        if (!entry.accountNumber) {
+          continue;
+        }
+
+        const accountNumberValue =
+          String(
+            entry.accountNumber
+          ).trim();
+
+        const directoryRef =
+          doc(
+            db,
+            "recipientDirectory",
+            accountNumberValue
+          );
+
+        await setDoc(
+          directoryRef,
+          {
+
+            userId:
+              currentUser.uid,
+
+            fullName:
+              userData.fullName ||
+              currentUser.displayName ||
+              "First Merit customer",
+
+            accountNumber:
+              accountNumberValue,
+
+            accountType:
+              entry.accountType
+
+          },
+          {
+            merge: true
+          }
+        );
+
+      }
+
+    }
+
+    /* =====================================
+       LOAD USER ACCOUNT
+    ===================================== */
+
+    async function loadUserAccount(user) {
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          user.uid
+        );
+
+      const userSnap =
+        await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+
+        throw new Error(
+          "ACCOUNT_NOT_FOUND"
+        );
+
+      }
+
+      userData =
+        userSnap.data();
+
+      selectedCurrency =
+        String(
+          userData.currency || "USD"
+        ).toUpperCase();
+
+      if (
+        !CURRENCY_RATES[
+          selectedCurrency
+        ]
+      ) {
+
+        selectedCurrency =
+          "USD";
+
+      }
+
+      accounts.checking.balance =
+        Number(
+          userData.checkingBalance
+        ) || 0;
+
+      accounts.savings.balance =
+        Number(
+          userData.savingsBalance
+        ) || 0;
+
+      accounts.ira.balance =
+        Number(
+          userData.iraBalance
+        ) || 0;
+
+      accounts.checking.number =
+        String(
+          userData.accountNumber || ""
+        );
+
+      accounts.savings.number =
+        String(
+          userData.savingsAccountNumber || ""
+        );
+
+      accounts.ira.number =
+        String(
+          userData.iraAccountNumber || ""
+        );
+
+      applyCurrencyPresentation();
+
+      try {
+
+        await syncRecipientDirectory();
+
+      } catch (directoryError) {
+
+        console.error(
+          "Recipient directory sync error:",
+          directoryError
+        );
+
+      }
+
+    }
+
+    /* =====================================
+       AUTH STATE
+    ===================================== */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+        currentUser =
+          user;
+
+        try {
+
+          await loadUserAccount(
+            user
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Send Money account loading error:",
+            error
+          );
+
+          if (
+            error.message ===
+            "ACCOUNT_NOT_FOUND"
+          ) {
+
+            showError(
+              "Your First Merit account could not be found. Please sign in again."
+            );
+
+          } else {
+
+            showError(
+              "We couldn't load your account information. Please try again."
+            );
+
+          }
+
+        } finally {
+
+          loading.classList.add(
+            "hidden"
+          );
+
+        }
+
+      }
+    );
+
+    /* =====================================
+       SOURCE ACCOUNT CHANGE
+    ===================================== */
+
+    sourceAccount.addEventListener(
+      "change",
+      updateSourceAccount
+    );
+
+    /* =====================================
+       FIND RECIPIENT
+    ===================================== */
+
+    async function verifyRecipient() {
+
+      clearError();
+
+      clearInfo();
+
+      resetRecipient();
+
+      const account =
+        recipientAccount.value.trim();
+
+      if (!account) {
+
+        return;
+
+      }
+
+      if (!/^\d+$/.test(account)) {
+
+        showError(
+          "The recipient account number must contain numbers only."
+        );
+
+        return;
+
+      }
+
+      if (
+        accounts.checking.number &&
+        account === accounts.checking.number
+      ) {
+
+        showError(
+          "You cannot send money to your own account."
+        );
+
+        return;
+
+      }
+
+      if (
+        accounts.savings.number &&
+        account === accounts.savings.number
+      ) {
+
+        showError(
+          "You cannot send money to your own account."
+        );
+
+        return;
+
+      }
+
+      if (
+        accounts.ira.number &&
+        account === accounts.ira.number
+      ) {
+
+        showError(
+          "You cannot send money to your own account."
+        );
+
+        return;
+
+      }
+
+      recipientStatus.classList.add(
+        "show",
+        "pending"
+      );
+
+      recipientStatusText.textContent =
+        "Verifying recipient...";
+
+      recipientStatusIcon.className =
+        "fa-solid fa-circle-notch fa-spin";
+
+      try {
+
+        const recipientRef =
+          doc(
+            db,
+            "recipientDirectory",
+            account
+          );
+
+        const recipientSnap =
+          await getDoc(
+            recipientRef
+          );
+
+        if (!recipientSnap.exists()) {
+
+          recipientStatus.classList.remove(
+            "pending"
+          );
+
+          recipientStatus.classList.add(
+            "invalid"
+          );
+
+          recipientStatusText.textContent =
+            "Recipient account not found";
+
+          recipientStatusIcon.className =
+            "fa-solid fa-circle-xmark";
+
+          showError(
+            "No registered First Merit account was found with that account number."
+          );
+
+          return;
+
+        }
+
+        const data =
+          recipientSnap.data();
+
+        if (
+          data.userId ===
+          currentUser.uid
+        ) {
+
+          resetRecipient();
+
+          showError(
+            "You cannot send money to your own account."
+          );
+
+          return;
+
+        }
+
+        const recipientAccountType =
+          String(
+            data.accountType || ""
+          );
+
+        if (
+          recipientAccountType !==
+            "Checking" &&
+          recipientAccountType !==
+            "Savings" &&
+          recipientAccountType !==
+            "IRA"
+        ) {
+
+          recipientStatus.classList.remove(
+            "pending"
+          );
+
+          recipientStatus.classList.add(
+            "show",
+            "invalid"
+          );
+
+          recipientStatusText.textContent =
+            "Recipient account information incomplete";
+
+          recipientStatusIcon.className =
+            "fa-solid fa-triangle-exclamation";
+
+          showError(
+            "The recipient account information is incomplete."
+          );
+
+          return;
+
+        }
+
+        verifiedRecipient = {
+
+          uid:
+            data.userId,
+
+          name:
+            data.fullName ||
+            "First Merit customer",
+
+          accountNumber:
+            String(
+              data.accountNumber ||
+              account
+            ),
+
+          accountType:
+            recipientAccountType
+
+        };
+
+        isRecipientVerified =
+          true;
+
+        recipientName.value =
+          verifiedRecipient.name;
+
+        recipientStatus.classList.remove(
+          "pending",
+          "invalid"
+        );
+
+        recipientStatus.classList.add(
+          "show"
+        );
+
+        recipientStatusText.textContent =
+          "Recipient verified";
+
+        recipientStatusIcon.className =
+          "fa-solid fa-circle-check";
+
+        showInfo(
+          "Recipient account verified successfully."
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Recipient verification:",
+          error
+        );
+
+        recipientStatus.classList.remove(
+          "pending"
+        );
+
+        recipientStatus.classList.add(
+          "show",
+          "invalid"
+        );
+
+        recipientStatusText.textContent =
+          "Recipient verification unavailable";
+
+        recipientStatusIcon.className =
+          "fa-solid fa-triangle-exclamation";
+
+        showError(
+          "We couldn't verify this recipient right now. Please check the account number and try again."
+        );
+
+      }
+
+    }
+
+    /* =====================================
+       RECIPIENT ACCOUNT INPUT
+    ===================================== */
+
+    recipientAccount.addEventListener(
+      "input",
+      () => {
+
+        recipientAccount.value =
+          recipientAccount.value.replace(
+            /\D/g,
+            ""
+          );
+
+        resetRecipient();
+
+        clearError();
+
+        clearInfo();
+
+      }
+    );
+
+    recipientAccount.addEventListener(
+      "blur",
+      verifyRecipient
+    );
+
+    /* =====================================
+       REVIEW TRANSFER
+    ===================================== */
+
+    reviewButton.addEventListener(
+      "click",
+      async () => {
+
+        clearError();
+
+        clearInfo();
+
+        const selectedType =
+          sourceAccount.value;
+
+        const config =
+          getAccountConfig(
+            selectedType
+          );
+
+        const recipient =
+          recipientAccount.value.trim();
+
+        const rawAmount =
+          amount.value.trim();
+
+        const transferAmount =
+          Number(
+            rawAmount
+          );
+
+        const memo =
+          note.value.trim();
+
+        if (!config.number) {
+
+          showError(
+            "The selected account number is not available."
+          );
+
+          return;
+
+        }
+
+        if (!recipient) {
+
+          showError(
+            "Please enter the recipient account number."
+          );
+
+          recipientAccount.focus();
+
+          return;
+
+        }
+
+        if (!/^\d+$/.test(recipient)) {
+
+          showError(
+            "The recipient account number must contain numbers only."
+          );
+
+          recipientAccount.focus();
+
+          return;
+
+        }
+
+        if (!isRecipientVerified) {
+
+          await verifyRecipient();
+
+          if (!isRecipientVerified) {
+
+            return;
+
+          }
+
+        }
+
+        if (
+          !/^\d+(\.\d{1,2})?$/.test(
+            rawAmount
+          ) ||
+          !Number.isFinite(
+            transferAmount
+          ) ||
+          transferAmount <= 0
+        ) {
+
+          showError(
+            "Please enter a valid transfer amount."
+          );
+
+          amount.focus();
+
+          return;
+
+        }
+
+        const currencyConfig =
+          getCurrencyConfig();
+
+        const amountInUsd =
+          transferAmount /
+          currencyConfig.rate;
+
+        if (
+          amountInUsd >
+          config.balance
+        ) {
+
+          showError(
+            "The transfer amount is greater than your available balance."
+          );
+
+          amount.focus();
+
+          return;
+
+        }
+
+        document.getElementById(
+          "reviewAmount"
+        ).textContent =
+          formatEnteredAmount(
+            transferAmount
+          );
+
+        document.getElementById(
+          "reviewFrom"
+        ).textContent =
+          config.label +
+          " " +
+          maskAccountNumber(
+            config.number
+          );
+
+        document.getElementById(
+          "reviewRecipient"
+        ).textContent =
+          verifiedRecipient.name;
+
+        document.getElementById(
+          "reviewAccount"
+        ).textContent =
+          verifiedRecipient.accountNumber;
+
+        document.getElementById(
+          "reviewNote"
+        ).textContent =
+          memo || "None";
+
+        document.getElementById(
+          "reviewTotal"
+        ).textContent =
+          formatEnteredAmount(
+            transferAmount
+          );
+
+        formView.classList.add(
+          "hide"
+        );
+
+        reviewView.classList.add(
+          "show"
+        );
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+    /* =====================================
+       RETURN TO FORM
+    ===================================== */
+
+    function returnToForm() {
+
+      reviewView.classList.remove(
+        "show"
+      );
+
+      formView.classList.remove(
+        "hide"
+      );
+
+      clearError();
+
+      clearInfo();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+    backButton.addEventListener(
+      "click",
+      returnToForm
+    );
+
+    editButton.addEventListener(
+      "click",
+      returnToForm
+    );
+
+    /* =====================================
+       GENERATE IDS
+    ===================================== */
+
+    function generateTransferId() {
+
+      return (
+        "TRF-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 10)
+          .toUpperCase()
+      );
+
+    }
+
+    function generateTransactionId(
+      prefix
+    ) {
+
+      return (
+        prefix +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 10)
+          .toUpperCase()
+      );
+
+    }
+
+    /* =====================================
+       BALANCE FIELD
+    ===================================== */
+
+    function getBalanceField(
+      accountType
+    ) {
+
+      if (
+        accountType ===
+        "Checking"
+      ) {
+
+        return "checkingBalance";
+
+      }
+
+      if (
+        accountType ===
+        "Savings"
+      ) {
+
+        return "savingsBalance";
+
+      }
+
+      if (
+        accountType ===
+        "IRA"
+      ) {
+
+        return "iraBalance";
+
+      }
+
+      return "";
+
+    }
+
+    /* =====================================
+       CONFIRM TRANSFER
+    ===================================== */
+
+    confirmButton.addEventListener(
+      "click",
+      async () => {
+
+        clearError();
+
+        clearInfo();
+
+        if (!currentUser) {
+
+          showError(
+            "Your session has expired. Please sign in again."
+          );
+
+          return;
+
+        }
+
+        if (
+          !isRecipientVerified ||
+          !verifiedRecipient
+        ) {
+
+          showError(
+            "Please verify the recipient before confirming the transfer."
+          );
+
+          return;
+
+        }
+
+        const selectedType =
+          sourceAccount.value;
+
+        const config =
+          getAccountConfig(
+            selectedType
+          );
+
+        const rawAmount =
+          amount.value.trim();
+
+        const transferAmount =
+          Number(
+            rawAmount
+          );
+
+        if (
+          !/^\d+(\.\d{1,2})?$/.test(
+            rawAmount
+          ) ||
+          !Number.isFinite(
+            transferAmount
+          ) ||
+          transferAmount <= 0
+        ) {
+
+          showError(
+            "Please enter a valid transfer amount."
+          );
+
+          return;
+
+        }
+
+        const currencyConfig =
+          getCurrencyConfig();
+
+        const amountInUsd =
+          transferAmount /
+          currencyConfig.rate;
+
+        if (
+          amountInUsd <= 0
+        ) {
+
+          showError(
+            "The transfer amount is invalid."
+          );
+
+          return;
+
+        }
+
+        try {
+
+          confirmButton.disabled =
+            true;
+
+          confirmButton.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+
+          const senderRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid
+            );
+
+          const recipientRef =
+            doc(
+              db,
+              "users",
+              verifiedRecipient.uid
+            );
+
+          const recipientDirectoryRef =
+            doc(
+              db,
+              "recipientDirectory",
+              verifiedRecipient.accountNumber
+            );
+
+          const senderSnap =
+            await getDoc(
+              senderRef
+            );
+
+          if (!senderSnap.exists()) {
+
+            throw new Error(
+              "Your account could not be found."
+            );
+
+          }
+
+          const recipientSnap =
+            await getDoc(
+              recipientRef
+            );
+
+          if (!recipientSnap.exists()) {
+
+            throw new Error(
+              "The recipient account could not be found."
+            );
+
+          }
+
+          const directorySnap =
+            await getDoc(
+              recipientDirectoryRef
+            );
+
+          if (!directorySnap.exists()) {
+
+            throw new Error(
+              "The recipient account could not be verified."
+            );
+
+          }
+
+          const latestSender =
+            senderSnap.data();
+
+          const latestRecipient =
+            recipientSnap.data();
+
+          const directoryData =
+            directorySnap.data();
+
+          if (
+            directoryData.userId !==
+            verifiedRecipient.uid
+          ) {
+
+            throw new Error(
+              "Recipient verification has changed. Please verify the account again."
+            );
+
+          }
+
+          if (
+            directoryData.accountType !==
+            verifiedRecipient.accountType
+          ) {
+
+            throw new Error(
+              "Recipient account information has changed. Please verify again."
+            );
+
+          }
+
+          const senderBalanceField =
+            getBalanceField(
+              selectedType === "checking"
+                ? "Checking"
+                : selectedType === "savings"
+                  ? "Savings"
+                  : "IRA"
+            );
+
+          const recipientBalanceField =
+            getBalanceField(
+              verifiedRecipient.accountType
+            );
+
+          if (
+            !senderBalanceField ||
+            !recipientBalanceField
+          ) {
+
+            throw new Error(
+              "The selected account type is invalid."
+            );
+
+          }
+
+          const senderBalance =
+            Number(
+              latestSender[
+                senderBalanceField
+              ]
+            ) || 0;
+
+          const recipientBalance =
+            Number(
+              latestRecipient[
+                recipientBalanceField
+              ]
+            ) || 0;
+
+          if (
+            amountInUsd >
+            senderBalance
+          ) {
+
+            throw new Error(
+              "The transfer amount is greater than your available balance."
+            );
+
+          }
+
+          const transferId =
+            generateTransferId();
+
+          const senderTransactionId =
+            generateTransactionId(
+              "DEBIT"
+            );
+
+          const recipientTransactionId =
+            generateTransactionId(
+              "CREDIT"
+            );
+
+          const batch =
+            writeBatch(db);
+
+          const transferRef =
+            doc(
+              db,
+              "transfers",
+              transferId
+            );
+
+          const senderTransactionRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid,
+              "transactions",
+              senderTransactionId
+            );
+
+          const recipientTransactionRef =
+            doc(
+              db,
+              "users",
+              verifiedRecipient.uid,
+              "transactions",
+              recipientTransactionId
+            );
+
+          const newSenderBalance =
+            senderBalance -
+            amountInUsd;
+
+          const newRecipientBalance =
+            recipientBalance +
+            amountInUsd;
+
+          batch.set(
+            transferRef,
+            {
+
+              transferId:
+                transferId,
+
+              status:
+                "completed",
+
+              senderUid:
+                currentUser.uid,
+
+              recipientUid:
+                verifiedRecipient.uid,
+
+              senderName:
+                userData.fullName ||
+                currentUser.displayName ||
+                "First Merit customer",
+
+              recipientName:
+                verifiedRecipient.name,
+
+              sourceAccount:
+                config.number,
+
+              sourceAccountType:
+                selectedType === "checking"
+                  ? "Checking"
+                  : selectedType === "savings"
+                    ? "Savings"
+                    : "IRA",
+
+              recipientAccount:
+                verifiedRecipient.accountNumber,
+
+              recipientAccountType:
+                verifiedRecipient.accountType,
+
+              amount:
+                transferAmount,
+
+              amountInUsd:
+                amountInUsd,
+
+              currency:
+                selectedCurrency,
+
+              note:
+                note.value.trim() ||
+                "",
+
+              senderTransactionId:
+                senderTransactionId,
+
+              recipientTransactionId:
+                recipientTransactionId,
+
+              createdAt:
+                new Date()
+
+            }
+          );
+
+          batch.update(
+            senderRef,
+            {
+
+              [senderBalanceField]:
+                newSenderBalance,
+
+              lastTransferId:
+                transferId
+
+            }
+          );
+
+          batch.update(
+            recipientRef,
+            {
+
+              [recipientBalanceField]:
+                newRecipientBalance,
+
+              lastTransferId:
+                transferId
+
+            }
+          );
+
+          batch.set(
+            senderTransactionRef,
+            {
+
+              type:
+                "transfer",
+
+              title:
+                `Transfer to ${verifiedRecipient.name}`,
+
+              amount:
+                transferAmount,
+
+              amountInUsd:
+                amountInUsd,
+
+              currency:
+                selectedCurrency,
+
+              direction:
+                "debit",
+
+              fromAccount:
+                config.number,
+
+              fromAccountType:
+                selectedType === "checking"
+                  ? "Checking"
+                  : selectedType === "savings"
+                    ? "Savings"
+                    : "IRA",
+
+              recipient:
+                verifiedRecipient.name,
+
+              recipientAccount:
+                verifiedRecipient.accountNumber,
+
+              recipientAccountType:
+                verifiedRecipient.accountType,
+
+              recipientUid:
+                verifiedRecipient.uid,
+
+              senderUid:
+                currentUser.uid,
+
+              note:
+                note.value.trim() ||
+                "",
+
+              status:
+                "completed",
+
+              transferId:
+                transferId,
+
+              createdAt:
+                new Date()
+
+            }
+          );
+
+          batch.set(
+            recipientTransactionRef,
+            {
+
+              type:
+                "transfer",
+
+              title:
+                `Transfer from ${
+                  userData.fullName ||
+                  currentUser.displayName ||
+                  "First Merit customer"
+                }`,
+
+              amount:
+                transferAmount,
+
+              amountInUsd:
+                amountInUsd,
+
+              currency:
+                selectedCurrency,
+
+              direction:
+                "credit",
+
+              recipient:
+                verifiedRecipient.name,
+
+              recipientAccount:
+                verifiedRecipient.accountNumber,
+
+              recipientAccountType:
+                verifiedRecipient.accountType,
+
+              recipientUid:
+                verifiedRecipient.uid,
+
+              sender:
+                userData.fullName ||
+                currentUser.displayName ||
+                "First Merit customer",
+
+              senderUid:
+                currentUser.uid,
+
+              senderAccount:
+                config.number,
+
+              senderAccountType:
+                selectedType === "checking"
+                  ? "Checking"
+                  : selectedType === "savings"
+                    ? "Savings"
+                    : "IRA",
+
+              note:
+                note.value.trim() ||
+                "",
+
+              status:
+                "completed",
+
+              transferId:
+                transferId,
+
+              createdAt:
+                new Date()
+
+            }
+          );
+
+          await batch.commit();
+
+          if (
+            selectedType ===
+            "checking"
+          ) {
+
+            accounts.checking.balance =
+              newSenderBalance;
+
+          } else if (
+            selectedType ===
+            "savings"
+          ) {
+
+            accounts.savings.balance =
+              newSenderBalance;
+
+          } else if (
+            selectedType ===
+            "ira"
+          ) {
+
+            accounts.ira.balance =
+              newSenderBalance;
+
+          }
+
+          updateSourceAccount();
+
+          showInfo(
+            `${formatEnteredAmount(transferAmount)} was sent successfully to ${verifiedRecipient.name}.`
+          );
+
+          confirmButton.innerHTML =
+            '<i class="fa-solid fa-circle-check"></i> Transfer complete';
+
+          setTimeout(
+            () => {
+
+              reviewView.classList.remove(
+                "show"
+              );
+
+              formView.classList.remove(
+                "hide"
+              );
+
+              confirmButton.disabled =
+                false;
+
+              confirmButton.innerHTML =
+                "Confirm transfer";
+
+              clearError();
+
+            },
+            2200
+          );
+
+        } catch (error) {
+
+          console.error(
+            "TRANSFER ERROR:",
+            error
+          );
+
+          let message =
+            "The transfer could not be completed.";
+
+          if (
+            error.code ===
+            "permission-denied"
+          ) {
+
+            message =
+              "The transfer was rejected by your account security rules. Please verify the recipient and try again.";
+
+          } else if (
+            error.code ===
+            "failed-precondition"
+          ) {
+
+            message =
+              "The transfer could not be completed because the account information has changed.";
+
+          } else if (
+            error.message
+          ) {
+
+            message =
+              error.message;
+
+          }
+
+          showError(
+            message
+          );
+
+          confirmButton.disabled =
+            false;
+
+          confirmButton.innerHTML =
+            "Confirm transfer";
+
+        }
+
+      }
+    );
+
+    /* =====================================
+       INPUT CLEANUP
+    ===================================== */
+
+    amount.addEventListener(
+      "input",
+      () => {
+
+        clearError();
+
+        clearInfo();
+
+      }
+    );
+
+    note.addEventListener(
+      "input",
+      () => {
+
+        clearError();
+
+        clearInfo();
+
+      }
+    );
+
+  </script>
+</body>
+</html>
