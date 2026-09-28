@@ -17,7 +17,7 @@
 
   <link
     rel="preconnect"
-    href="https://fonts.gstatic.com"
+    href="https://fonts.googleapis.com"
     crossorigin
   >
 
@@ -1032,7 +1032,6 @@
 
   </header>
 
-
   <main class="page">
 
     <!-- =========================
@@ -1051,7 +1050,6 @@
 
     </section>
 
-
     <!-- ERROR -->
 
     <div
@@ -1059,7 +1057,6 @@
       class="error-box hidden"
       role="alert"
     ></div>
-
 
     <!-- =========================
          FORM GRID
@@ -1079,7 +1076,6 @@
           Payment Details
         </h2>
 
-
         <!-- ACCOUNT -->
 
         <div class="field">
@@ -1090,7 +1086,7 @@
 
           <div class="account-grid">
 
-            <!-- CHECKING -->
+            <!-- CHECKING / CURRENT ACCOUNT -->
 
             <div class="account-option">
 
@@ -1110,7 +1106,10 @@
 
                 <div>
 
-                  <div class="account-name">
+                  <div
+                    class="account-name"
+                    id="checkingAccountLabel"
+                  >
                     Checking
                   </div>
 
@@ -1133,7 +1132,6 @@
               </label>
 
             </div>
-
 
             <!-- SAVINGS -->
 
@@ -1178,8 +1176,7 @@
 
             </div>
 
-
-            <!-- IRA -->
+            <!-- IRA / ISA -->
 
             <div class="account-option">
 
@@ -1198,7 +1195,10 @@
 
                 <div>
 
-                  <div class="account-name">
+                  <div
+                    class="account-name"
+                    id="iraAccountLabel"
+                  >
                     IRA
                   </div>
 
@@ -1226,7 +1226,6 @@
 
         </div>
 
-
         <!-- PAYEE -->
 
         <div class="field">
@@ -1251,7 +1250,6 @@
               </span>
             </button>
 
-
             <button
               class="payee-btn"
               type="button"
@@ -1265,7 +1263,6 @@
                 Internet
               </span>
             </button>
-
 
             <button
               class="payee-btn"
@@ -1281,7 +1278,6 @@
               </span>
             </button>
 
-
             <button
               class="payee-btn"
               type="button"
@@ -1296,7 +1292,6 @@
               </span>
             </button>
 
-
             <button
               class="payee-btn"
               type="button"
@@ -1310,7 +1305,6 @@
                 Insurance
               </span>
             </button>
-
 
             <button
               class="payee-btn"
@@ -1329,7 +1323,6 @@
           </div>
 
         </div>
-
 
         <!-- PAYEE NAME -->
 
@@ -1359,7 +1352,6 @@
 
         </div>
 
-
         <!-- ACCOUNT NUMBER -->
 
         <div class="field">
@@ -1388,7 +1380,6 @@
 
         </div>
 
-
         <!-- AMOUNT -->
 
         <div class="field">
@@ -1402,7 +1393,10 @@
 
           <div class="amount-wrap">
 
-            <span class="currency">
+            <span
+              id="currencySymbol"
+              class="currency"
+            >
               $
             </span>
 
@@ -1425,7 +1419,6 @@
 
         </div>
 
-
         <!-- PAYMENT DATE -->
 
         <div class="field">
@@ -1444,7 +1437,6 @@
           >
 
         </div>
-
 
         <!-- MEMO -->
 
@@ -1471,7 +1463,6 @@
 
         </div>
 
-
         <!-- REVIEW -->
 
         <button
@@ -1482,7 +1473,6 @@
           <i class="fa-solid fa-arrow-right"></i>
           Review Payment
         </button>
-
 
         <div
           id="formServiceNotice"
@@ -1502,7 +1492,6 @@
 
       </div>
 
-
       <!-- SIDE CARD -->
 
       <aside class="card side-card">
@@ -1510,7 +1499,6 @@
         <h3 class="side-title">
           Bill Pay Information
         </h3>
-
 
         <div class="side-item">
 
@@ -1532,7 +1520,6 @@
 
         </div>
 
-
         <div class="side-item">
 
           <div class="side-icon">
@@ -1552,7 +1539,6 @@
           </div>
 
         </div>
-
 
         <div class="side-item">
 
@@ -1574,7 +1560,6 @@
 
         </div>
 
-
         <div class="side-item">
 
           <div class="side-icon">
@@ -1594,7 +1579,6 @@
           </div>
 
         </div>
-
 
         <div class="security-box">
 
@@ -1618,7 +1602,6 @@
 
     </section>
 
-
     <!-- =========================
          REVIEW
     ========================= -->
@@ -1641,7 +1624,6 @@
 
       </div>
 
-
       <div class="review-list">
 
         <div class="review-row">
@@ -1659,7 +1641,6 @@
 
         </div>
 
-
         <div class="review-row">
 
           <span class="review-label">
@@ -1674,7 +1655,6 @@
           </span>
 
         </div>
-
 
         <div class="review-row">
 
@@ -1691,7 +1671,6 @@
 
         </div>
 
-
         <div class="review-row">
 
           <span class="review-label">
@@ -1706,7 +1685,6 @@
           </span>
 
         </div>
-
 
         <div class="review-row">
 
@@ -1723,7 +1701,6 @@
 
         </div>
 
-
         <div class="review-row">
 
           <span class="review-label">
@@ -1738,7 +1715,6 @@
           </span>
 
         </div>
-
 
         <div class="review-row">
 
@@ -1755,7 +1731,6 @@
 
         </div>
 
-
         <div class="review-row">
 
           <span class="review-label">
@@ -1770,7 +1745,6 @@
           </span>
 
         </div>
-
 
         <div class="review-row">
 
@@ -1789,7 +1763,6 @@
 
       </div>
 
-
       <div class="service-notice">
 
         <i class="fa-solid fa-lock"></i>
@@ -1801,7 +1774,6 @@
         </span>
 
       </div>
-
 
       <div class="review-actions">
 
@@ -1827,7 +1799,6 @@
 
     </section>
 
-
     <!-- =========================
          SUCCESS
     ========================= -->
@@ -1851,7 +1822,6 @@
         processing is not connected yet.
       </p>
 
-
       <div class="transaction-box">
 
         <span class="transaction-label">
@@ -1867,7 +1837,6 @@
 
       </div>
 
-
       <button
         id="dashboardBtn"
         class="primary-btn"
@@ -1881,7 +1850,6 @@
 
   </main>
 
-
   <!-- =========================
        FIREBASE
   ========================= -->
@@ -1893,11 +1861,9 @@
       db
     } from "./firebase.js";
 
-
     import {
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
 
     import {
       doc,
@@ -1905,9 +1871,43 @@
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-    /* =========================
+    /* =========================================================
+       CURRENCY SETTINGS
+       Matches the dashboard's currency flow.
+    ========================================================= */
+
+    const CURRENCY_RATES = {
+
+      USD: {
+        symbol: "$",
+        rate: 1,
+        locale: "en-US",
+        currency: "USD"
+      },
+
+      GBP: {
+        symbol: "£",
+        rate: 0.75,
+        locale: "en-GB",
+        currency: "GBP"
+      },
+
+      EUR: {
+        symbol: "€",
+        rate: 0.85,
+        locale: "en-IE",
+        currency: "EUR"
+      }
+
+    };
+
+
+    let selectedCurrency = "USD";
+
+
+    /* =========================================================
        ELEMENTS
-    ========================= */
+    ========================================================= */
 
     const formSection =
       document.getElementById(
@@ -1924,12 +1924,10 @@
         "successSection"
       );
 
-
     const errorBox =
       document.getElementById(
         "errorBox"
       );
-
 
     const payeeName =
       document.getElementById(
@@ -1956,7 +1954,6 @@
         "memo"
       );
 
-
     const reviewBtn =
       document.getElementById(
         "reviewBtn"
@@ -1982,13 +1979,27 @@
         "backBtn"
       );
 
+    const currencySymbol =
+      document.getElementById(
+        "currencySymbol"
+      );
 
-    /* =========================
+    const checkingAccountLabel =
+      document.getElementById(
+        "checkingAccountLabel"
+      );
+
+    const iraAccountLabel =
+      document.getElementById(
+        "iraAccountLabel"
+      );
+
+
+    /* =========================================================
        STATE
-    ========================= */
+    ========================================================= */
 
     let currentUser = null;
-
 
     let accounts = {
 
@@ -2009,23 +2020,52 @@
 
     };
 
-
     let pendingPayment = null;
 
 
-    /* =========================
-       HELPERS
-    ========================= */
+    /* =========================================================
+       CURRENCY HELPERS
+    ========================================================= */
+
+    function getCurrencySettings() {
+
+      return (
+        CURRENCY_RATES[selectedCurrency]
+        || CURRENCY_RATES.USD
+      );
+
+    }
+
+
+    function getCurrencyRate() {
+
+      return getCurrencySettings().rate;
+
+    }
+
+
+    /*
+      Firestore account balances remain in the
+      same base balance used by the dashboard.
+
+      The displayed amount is converted to the
+      selected currency.
+    */
 
     function formatMoney(value) {
 
-      return Number(
-        value || 0
-      ).toLocaleString(
-        "en-US",
+      const settings =
+        getCurrencySettings();
+
+      const convertedValue =
+        Number(value || 0) *
+        settings.rate;
+
+      return convertedValue.toLocaleString(
+        settings.locale,
         {
           style: "currency",
-          currency: "USD",
+          currency: settings.currency,
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }
@@ -2034,12 +2074,130 @@
     }
 
 
+    /* =========================================================
+       REGIONAL ACCOUNT TERMINOLOGY
+    ========================================================= */
+
+    function accountLabel(account) {
+
+      if (account === "checking") {
+
+        return selectedCurrency === "GBP"
+          ? "Current Account"
+          : "Checking";
+
+      }
+
+      if (account === "savings") {
+
+        return "Savings";
+
+      }
+
+      if (account === "ira") {
+
+        return selectedCurrency === "GBP"
+          ? "ISA"
+          : "IRA";
+
+      }
+
+      return "Account";
+
+    }
+
+
+    /* =========================================================
+       UPDATE CURRENCY PRESENTATION
+    ========================================================= */
+
+    function updateCurrencyPresentation() {
+
+      const settings =
+        getCurrencySettings();
+
+
+      /*
+        Update payment input symbol.
+      */
+
+      if (currencySymbol) {
+
+        currencySymbol.textContent =
+          settings.symbol;
+
+      }
+
+
+      /*
+        Update account terminology.
+      */
+
+      if (checkingAccountLabel) {
+
+        checkingAccountLabel.textContent =
+          accountLabel("checking");
+
+      }
+
+
+      if (iraAccountLabel) {
+
+        iraAccountLabel.textContent =
+          accountLabel("ira");
+
+      }
+
+
+      /*
+        Update initial review values too.
+      */
+
+      const reviewSourceAccount =
+        document.getElementById(
+          "reviewSourceAccount"
+        );
+
+      if (
+        reviewSourceAccount &&
+        pendingPayment
+      ) {
+
+        reviewSourceAccount.textContent =
+          accountLabel(
+            pendingPayment.account
+          );
+
+      }
+
+
+      /*
+        Currency body class.
+      */
+
+      document.body.classList.remove(
+        "currency-usd",
+        "currency-gbp",
+        "currency-eur"
+      );
+
+      document.body.classList.add(
+        "currency-" +
+        selectedCurrency.toLowerCase()
+      );
+
+    }
+
+
+    /* =========================================================
+       ACCOUNT HELPERS
+    ========================================================= */
+
     function cleanNumber(value) {
 
       if (!value) {
         return "";
       }
-
 
       const digits =
         String(value).replace(
@@ -2047,34 +2205,13 @@
           ""
         );
 
-
       if (!digits) {
         return "";
       }
 
-
       return digits.length <= 4
         ? digits
         : digits.slice(-4);
-
-    }
-
-
-    function accountLabel(account) {
-
-      if (account === "checking") {
-        return "Checking";
-      }
-
-      if (account === "savings") {
-        return "Savings";
-      }
-
-      if (account === "ira") {
-        return "IRA";
-      }
-
-      return "Account";
 
     }
 
@@ -2086,13 +2223,16 @@
           'input[name="sourceAccount"]:checked'
         );
 
-
       return input
         ? input.value
         : "checking";
 
     }
 
+
+    /* =========================================================
+       ERROR
+    ========================================================= */
 
     function showError(message) {
 
@@ -2123,17 +2263,81 @@
     }
 
 
+    /* =========================================================
+       DATE FORMATTING
+    ========================================================= */
+
+    function getLocalDateString() {
+
+      const now =
+        new Date();
+
+      const year =
+        now.getFullYear();
+
+      const month =
+        String(
+          now.getMonth() + 1
+        ).padStart(2, "0");
+
+      const day =
+        String(
+          now.getDate()
+        ).padStart(2, "0");
+
+      return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+      );
+
+    }
+
+
     function formatDate(value) {
 
       if (!value) {
         return "—";
       }
 
-
       const date =
         new Date(
           value + "T00:00:00"
         );
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return value;
+
+      }
+
+
+      /*
+        UK:
+        28 Sept 2026
+
+        US:
+        Sep 28, 2026
+      */
+
+      if (selectedCurrency === "GBP") {
+
+        return date.toLocaleDateString(
+          "en-GB",
+          {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          }
+        );
+
+      }
 
 
       return date.toLocaleDateString(
@@ -2148,18 +2352,12 @@
     }
 
 
-    /* =========================
-       DEFAULT DATE
-    ========================= */
-
-    const today =
-      new Date();
-
+    /* =========================================================
+       DEFAULT PAYMENT DATE
+    ========================================================= */
 
     const todayString =
-      today.toISOString()
-        .split("T")[0];
-
+      getLocalDateString();
 
     paymentDate.value =
       todayString;
@@ -2168,9 +2366,9 @@
       todayString;
 
 
-    /* =========================
+    /* =========================================================
        PAYEE BUTTONS
-    ========================= */
+    ========================================================= */
 
     document
       .querySelectorAll(".payee-btn")
@@ -2192,11 +2390,9 @@
 
               });
 
-
             button.classList.add(
               "selected"
             );
-
 
             payeeName.value =
               button.dataset.payee;
@@ -2207,9 +2403,9 @@
       });
 
 
-    /* =========================
+    /* =========================================================
        LOAD ACCOUNT
-    ========================= */
+    ========================================================= */
 
     async function loadAccount(user) {
 
@@ -2221,7 +2417,6 @@
             "users",
             user.uid
           );
-
 
         const snapshot =
           await getDoc(
@@ -2242,11 +2437,36 @@
           snapshot.data();
 
 
-        /*
-          These are the current First Merit
-          account fields.
+        /* =====================================================
+           USE THE SAME CURRENCY FIELD AS DASHBOARD
+        ===================================================== */
 
-          No fallback balances are created.
+        selectedCurrency =
+          String(
+            data.currency || "USD"
+          ).toUpperCase();
+
+
+        /*
+          Safety fallback if the field
+          contains an unsupported value.
+        */
+
+        if (
+          !CURRENCY_RATES[
+            selectedCurrency
+          ]
+        ) {
+
+          selectedCurrency =
+            "USD";
+
+        }
+
+
+        /*
+          Account balances remain the
+          stored base balances.
         */
 
         accounts.checking.balance =
@@ -2254,12 +2474,10 @@
             data.checkingBalance || 0
           );
 
-
         accounts.savings.balance =
           Number(
             data.savingsBalance || 0
           );
-
 
         accounts.ira.balance =
           Number(
@@ -2270,18 +2488,24 @@
         accounts.checking.number =
           data.accountNumber || "";
 
-
         accounts.savings.number =
           data.savingsAccountNumber || "";
-
 
         accounts.ira.number =
           data.iraAccountNumber || "";
 
 
-        /* =========================
+        /*
+          Update all currency and
+          regional terminology first.
+        */
+
+        updateCurrencyPresentation();
+
+
+        /* =====================================================
            DISPLAY BALANCES
-        ========================= */
+        ===================================================== */
 
         document.getElementById(
           "checkingBalance"
@@ -2306,6 +2530,10 @@
             accounts.ira.balance
           );
 
+
+        /* =====================================================
+           ACCOUNT NUMBERS
+        ===================================================== */
 
         document.getElementById(
           "checkingNumber"
@@ -2356,9 +2584,9 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        AUTH
-    ========================= */
+    ========================================================= */
 
     onAuthStateChanged(
       auth,
@@ -2373,10 +2601,8 @@
 
         }
 
-
         currentUser =
           user;
-
 
         await loadAccount(
           user
@@ -2386,9 +2612,9 @@
     );
 
 
-    /* =========================
-       REVIEW
-    ========================= */
+    /* =========================================================
+       REVIEW PAYMENT
+    ========================================================= */
 
     reviewBtn.addEventListener(
       "click",
@@ -2429,9 +2655,9 @@
           memo.value.trim();
 
 
-        /* =========================
+        /* =====================================================
            VALIDATION
-        ========================= */
+        ===================================================== */
 
         if (!payee) {
 
@@ -2475,31 +2701,22 @@
         }
 
 
-        const decimals =
-          String(amount)
-            .split(".")[1]?.length || 0;
+        const amountText =
+          paymentAmount.value.trim();
 
 
-        if (decimals > 2) {
-
-          showError(
-            "Payment amounts can contain a maximum of two decimal places."
-          );
-
-          paymentAmount.focus();
-
-          return;
-
-        }
+        const decimalPart =
+          amountText.includes(".")
+            ? amountText.split(".")[1]
+            : "";
 
 
         if (
-          amount >
-          account.balance
+          decimalPart.length > 2
         ) {
 
           showError(
-            `Insufficient funds. Your ${accountLabel(accountType)} balance is ${formatMoney(account.balance)}.`
+            "Payment amounts can contain a maximum of two decimal places."
           );
 
           paymentAmount.focus();
@@ -2522,9 +2739,51 @@
         }
 
 
-        /* =========================
-           SAVE STATE
-        ========================= */
+        /*
+          The Firestore balance is stored
+          using the same base balance as
+          the dashboard.
+
+          The amount entered by the user
+          is in the selected currency.
+
+          Convert the entered amount back
+          to the base balance before checking
+          available funds.
+        */
+
+        const rate =
+          getCurrencyRate();
+
+
+        const amountInBaseCurrency =
+          amount / rate;
+
+
+        if (
+          amountInBaseCurrency >
+          account.balance
+        ) {
+
+          showError(
+            `Insufficient funds. Your ${accountLabel(accountType)} balance is ${formatMoney(account.balance)}.`
+          );
+
+          paymentAmount.focus();
+
+          return;
+
+        }
+
+
+        const remainingBalance =
+          account.balance -
+          amountInBaseCurrency;
+
+
+        /* =====================================================
+           SAVE PAYMENT REVIEW
+        ===================================================== */
 
         pendingPayment = {
 
@@ -2541,6 +2800,8 @@
 
           amount,
 
+          amountInBaseCurrency,
+
           paymentDate:
             date,
 
@@ -2550,15 +2811,14 @@
           currentBalance:
             account.balance,
 
-          remainingBalance:
-            account.balance - amount
+          remainingBalance
 
         };
 
 
-        /* =========================
+        /* =====================================================
            REVIEW DISPLAY
-        ========================= */
+        ===================================================== */
 
         document.getElementById(
           "reviewSourceAccount"
@@ -2591,11 +2851,22 @@
           customer;
 
 
+        /*
+          IMPORTANT:
+
+          Display the payment in the
+          currency the user selected.
+
+          We pass the base amount to
+          formatMoney because formatMoney
+          performs the conversion.
+        */
+
         document.getElementById(
           "reviewAmount"
         ).textContent =
           formatMoney(
-            amount
+            amountInBaseCurrency
           );
 
 
@@ -2611,7 +2882,7 @@
           "reviewRemainingBalance"
         ).textContent =
           formatMoney(
-            account.balance - amount
+            remainingBalance
           );
 
 
@@ -2629,15 +2900,17 @@
           note || "None";
 
 
+        /* =====================================================
+           SWITCH TO REVIEW
+        ===================================================== */
+
         formSection.classList.add(
           "hidden"
         );
 
-
         reviewSection.classList.remove(
           "hidden"
         );
-
 
         successSection.classList.add(
           "hidden"
@@ -2653,9 +2926,9 @@
     );
 
 
-    /* =========================
-       EDIT
-    ========================= */
+    /* =========================================================
+       EDIT PAYMENT
+    ========================================================= */
 
     editBtn.addEventListener(
       "click",
@@ -2664,7 +2937,6 @@
         reviewSection.classList.add(
           "hidden"
         );
-
 
         formSection.classList.remove(
           "hidden"
@@ -2680,9 +2952,9 @@
     );
 
 
-    /* =========================
-       CONFIRM
-    ========================= */
+    /* =========================================================
+       CONFIRM PAYMENT
+    ========================================================= */
 
     confirmBtn.addEventListener(
       "click",
@@ -2700,15 +2972,10 @@
 
 
         /*
-          SECURITY:
+          This remains a review-only flow.
 
-          The secure bill-payment backend is not
-          connected yet.
-
-          Therefore this action intentionally DOES NOT
-          modify Firestore or deduct the user's balance.
+          No Firestore balance is changed.
         */
-
 
         const reviewId =
           "FM-BILL-REVIEW-" +
@@ -2727,11 +2994,9 @@
           "hidden"
         );
 
-
         reviewSection.classList.add(
           "hidden"
         );
-
 
         formSection.classList.add(
           "hidden"
@@ -2747,9 +3012,9 @@
     );
 
 
-    /* =========================
+    /* =========================================================
        DASHBOARD
-    ========================= */
+    ========================================================= */
 
     dashboardBtn.addEventListener(
       "click",
@@ -2762,9 +3027,9 @@
     );
 
 
-    /* =========================
-       BACK
-    ========================= */
+    /* =========================================================
+       BACK BUTTON
+    ========================================================= */
 
     backBtn.addEventListener(
       "click",
@@ -2780,11 +3045,9 @@
             "hidden"
           );
 
-
           formSection.classList.remove(
             "hidden"
           );
-
 
           return;
 
