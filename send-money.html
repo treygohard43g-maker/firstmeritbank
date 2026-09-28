@@ -1913,7 +1913,8 @@
     import {
       doc,
       getDoc,
-      setDoc
+      setDoc,
+      writeBatch
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -2437,60 +2438,92 @@
 
 
     /* =====================================
-       CREATE RECIPIENT DIRECTORY ENTRY
+       CREATE RECIPIENT DIRECTORY ENTRIES
        FOR THE CURRENT USER
     ===================================== */
 
     async function syncRecipientDirectory() {
 
-      if (!currentUser) {
+      if (!currentUser || !userData) {
         return;
       }
 
 
-      const accountNumberValue =
-        String(
-          userData.accountNumber || ""
-        ).trim();
+      const entries = [
 
-
-      if (!accountNumberValue) {
-
-        console.warn(
-          "No primary account number found. Recipient directory was not created."
-        );
-
-        return;
-
-      }
-
-
-      const directoryRef =
-        doc(
-          db,
-          "recipientDirectory",
-          accountNumberValue
-        );
-
-
-      await setDoc(
-        directoryRef,
         {
-          userId:
-            currentUser.uid,
-
-          fullName:
-            userData.fullName ||
-            currentUser.displayName ||
-            "First Merit customer",
-
           accountNumber:
-            accountNumberValue
+            accounts.checking.number,
+
+          accountType:
+            "Checking"
         },
+
         {
-          merge: true
+          accountNumber:
+            accounts.savings.number,
+
+          accountType:
+            "Savings"
+        },
+
+        {
+          accountNumber:
+            accounts.ira.number,
+
+          accountType:
+            "IRA"
         }
-      );
+
+      ];
+
+
+      for (const entry of entries) {
+
+        if (!entry.accountNumber) {
+          continue;
+        }
+
+
+        const accountNumberValue =
+          String(
+            entry.accountNumber
+          ).trim();
+
+
+        const directoryRef =
+          doc(
+            db,
+            "recipientDirectory",
+            accountNumberValue
+          );
+
+
+        await setDoc(
+          directoryRef,
+          {
+
+            userId:
+              currentUser.uid,
+
+            fullName:
+              userData.fullName ||
+              currentUser.displayName ||
+              "First Merit customer",
+
+            accountNumber:
+              accountNumberValue,
+
+            accountType:
+              entry.accountType
+
+          },
+          {
+            merge: true
+          }
+        );
+
+      }
 
     }
 
@@ -2584,18 +2617,8 @@
 
 
       /*
-        Create/update this user's public
-        recipient verification record.
-
-        This record contains ONLY:
-
-        - userId
-        - fullName
-        - accountNumber
-
-        It does not contain balances,
-        email addresses, passwords, or
-        private account information.
+        Create/update recipient directory
+        entries for Checking, Savings and IRA.
       */
 
       try {
@@ -2603,15 +2626,6 @@
         await syncRecipientDirectory();
 
       } catch (directoryError) {
-
-        /*
-          Account loading should not fail just
-          because the directory entry could not
-          be created.
-
-          Recipient verification will simply
-          report that the recipient cannot be found.
-        */
 
         console.error(
           "Recipient directory sync error:",
@@ -2789,17 +2803,6 @@
 
       try {
 
-        /*
-          IMPORTANT:
-
-          We now retrieve ONE recipient
-          directory document by account number.
-
-          We are NOT querying /users.
-
-          This is the key fix.
-        */
-
         const recipientRef =
           doc(
             db,
@@ -2859,6 +2862,45 @@
         }
 
 
+        const recipientAccountType =
+          String(
+            data.accountType || ""
+          );
+
+
+        if (
+          recipientAccountType !==
+            "Checking" &&
+          recipientAccountType !==
+            "Savings" &&
+          recipientAccountType !==
+            "IRA"
+        ) {
+
+          recipientStatus.classList.remove(
+            "pending"
+          );
+
+          recipientStatus.classList.add(
+            "show",
+            "invalid"
+          );
+
+          recipientStatusText.textContent =
+            "Recipient account information incomplete";
+
+          recipientStatusIcon.className =
+            "fa-solid fa-triangle-exclamation";
+
+          showError(
+            "The recipient account information is incomplete."
+          );
+
+          return;
+
+        }
+
+
         verifiedRecipient = {
 
           uid:
@@ -2872,7 +2914,10 @@
             String(
               data.accountNumber ||
               account
-            )
+            ),
+
+          accountType:
+            recipientAccountType
 
         };
 
@@ -3092,13 +3137,11 @@
 
 
         /*
-          The balances stored in Firestore are
-          USD-based.
+          Firestore balances are stored
+          in USD.
 
-          If the user is viewing GBP, convert
-          the entered GBP amount back to USD
-          before comparing it with the stored
-          balance.
+          Convert displayed GBP/EUR back
+          into USD before checking balance.
         */
 
         const currencyConfig =
@@ -3244,6 +3287,86 @@
 
 
     /* =====================================
+       GENERATE IDS
+    ===================================== */
+
+    function generateTransferId() {
+
+      return (
+        "TRF-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 10)
+          .toUpperCase()
+      );
+
+    }
+
+
+    function generateTransactionId(
+      prefix
+    ) {
+
+      return (
+        prefix +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 10)
+          .toUpperCase()
+      );
+
+    }
+
+
+    /* =====================================
+       BALANCE FIELD
+    ===================================== */
+
+    function getBalanceField(
+      accountType
+    ) {
+
+      if (
+        accountType ===
+        "Checking"
+      ) {
+
+        return "checkingBalance";
+
+      }
+
+
+      if (
+        accountType ===
+        "Savings"
+      ) {
+
+        return "savingsBalance";
+
+      }
+
+
+      if (
+        accountType ===
+        "IRA"
+      ) {
+
+        return "iraBalance";
+
+      }
+
+
+      return "";
+
+    }
+
+
+    /* =====================================
        CONFIRM TRANSFER
     ===================================== */
 
@@ -3267,7 +3390,10 @@
         }
 
 
-        if (!isRecipientVerified) {
+        if (
+          !isRecipientVerified ||
+          !verifiedRecipient
+        ) {
 
           showError(
             "Please verify the recipient before confirming the transfer."
@@ -3278,40 +3404,719 @@
         }
 
 
-        /*
-          We intentionally do not modify balances
-          from the browser.
+        const selectedType =
+          sourceAccount.value;
 
-          A secure backend transfer service
-          should perform the actual debit,
-          credit and transaction creation.
+
+        const config =
+          getAccountConfig(
+            selectedType
+          );
+
+
+        const rawAmount =
+          amount.value.trim();
+
+
+        const transferAmount =
+          Number(
+            rawAmount
+          );
+
+
+        if (
+          !/^\d+(\.\d{1,2})?$/.test(
+            rawAmount
+          ) ||
+          !Number.isFinite(
+            transferAmount
+          ) ||
+          transferAmount <= 0
+        ) {
+
+          showError(
+            "Please enter a valid transfer amount."
+          );
+
+          return;
+
+        }
+
+
+        const currencyConfig =
+          getCurrencyConfig();
+
+
+        const amountInUsd =
+          transferAmount /
+          currencyConfig.rate;
+
+
+        if (
+          amountInUsd <= 0
+        ) {
+
+          showError(
+            "The transfer amount is invalid."
+          );
+
+          return;
+
+        }
+
+
+        /*
+          Re-read the sender account immediately
+          before the transfer so we don't rely
+          on an old balance displayed on the page.
         */
 
-        showInfo(
-          "The secure transfer service is not connected yet. Your account has not been charged."
-        );
+        try {
+
+          confirmButton.disabled =
+            true;
 
 
-        confirmButton.disabled =
-          true;
+          confirmButton.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
 
 
-        confirmButton.innerHTML =
-          '<i class="fa-solid fa-lock"></i> Secure transfer unavailable';
+          const senderRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid
+            );
 
 
-        setTimeout(
-          () => {
+          const recipientRef =
+            doc(
+              db,
+              "users",
+              verifiedRecipient.uid
+            );
 
-            confirmButton.disabled =
-              false;
 
-            confirmButton.innerHTML =
-              "Confirm transfer";
+          const recipientDirectoryRef =
+            doc(
+              db,
+              "recipientDirectory",
+              verifiedRecipient.accountNumber
+            );
 
-          },
-          1800
-        );
+
+          const senderSnap =
+            await getDoc(
+              senderRef
+            );
+
+
+          if (!senderSnap.exists()) {
+
+            throw new Error(
+              "Your account could not be found."
+            );
+
+          }
+
+
+          const recipientSnap =
+            await getDoc(
+              recipientRef
+            );
+
+
+          if (!recipientSnap.exists()) {
+
+            throw new Error(
+              "The recipient account could not be found."
+            );
+
+          }
+
+
+          const directorySnap =
+            await getDoc(
+              recipientDirectoryRef
+            );
+
+
+          if (!directorySnap.exists()) {
+
+            throw new Error(
+              "The recipient account could not be verified."
+            );
+
+          }
+
+
+          const latestSender =
+            senderSnap.data();
+
+
+          const latestRecipient =
+            recipientSnap.data();
+
+
+          const directoryData =
+            directorySnap.data();
+
+
+          /*
+            Confirm the directory still belongs
+            to the verified recipient.
+          */
+
+          if (
+            directoryData.userId !==
+            verifiedRecipient.uid
+          ) {
+
+            throw new Error(
+              "Recipient verification has changed. Please verify the account again."
+            );
+
+          }
+
+
+          if (
+            directoryData.accountType !==
+            verifiedRecipient.accountType
+          ) {
+
+            throw new Error(
+              "Recipient account information has changed. Please verify again."
+            );
+
+          }
+
+
+          const senderBalanceField =
+            getBalanceField(
+              selectedType === "checking"
+                ? "Checking"
+                : selectedType === "savings"
+                  ? "Savings"
+                  : "IRA"
+            );
+
+
+          const recipientBalanceField =
+            getBalanceField(
+              verifiedRecipient.accountType
+            );
+
+
+          if (
+            !senderBalanceField ||
+            !recipientBalanceField
+          ) {
+
+            throw new Error(
+              "The selected account type is invalid."
+            );
+
+          }
+
+
+          const senderBalance =
+            Number(
+              latestSender[
+                senderBalanceField
+              ]
+            ) || 0;
+
+
+          const recipientBalance =
+            Number(
+              latestRecipient[
+                recipientBalanceField
+              ]
+            ) || 0;
+
+
+          if (
+            amountInUsd >
+            senderBalance
+          ) {
+
+            throw new Error(
+              "The transfer amount is greater than your available balance."
+            );
+
+          }
+
+
+          /*
+            Generate unique IDs.
+          */
+
+          const transferId =
+            generateTransferId();
+
+
+          const senderTransactionId =
+            generateTransactionId(
+              "DEBIT"
+            );
+
+
+          const recipientTransactionId =
+            generateTransactionId(
+              "CREDIT"
+            );
+
+
+          /*
+            Firestore atomic batch.
+
+            All five operations succeed together,
+            or none of them are applied.
+          */
+
+          const batch =
+            writeBatch(db);
+
+
+          const transferRef =
+            doc(
+              db,
+              "transfers",
+              transferId
+            );
+
+
+          const senderTransactionRef =
+            doc(
+              db,
+              "users",
+              currentUser.uid,
+              "transactions",
+              senderTransactionId
+            );
+
+
+          const recipientTransactionRef =
+            doc(
+              db,
+              "users",
+              verifiedRecipient.uid,
+              "transactions",
+              recipientTransactionId
+            );
+
+
+          /*
+            NEW SENDER BALANCE
+          */
+
+          const newSenderBalance =
+            senderBalance -
+            amountInUsd;
+
+
+          /*
+            NEW RECIPIENT BALANCE
+          */
+
+          const newRecipientBalance =
+            recipientBalance +
+            amountInUsd;
+
+
+          /*
+            TRANSFER RECORD
+          */
+
+          batch.set(
+            transferRef,
+            {
+
+              transferId:
+                transferId,
+
+              status:
+                "completed",
+
+              senderUid:
+                currentUser.uid,
+
+              recipientUid:
+                verifiedRecipient.uid,
+
+              senderName:
+                userData.fullName ||
+                currentUser.displayName ||
+                "First Merit customer",
+
+              recipientName:
+                verifiedRecipient.name,
+
+              sourceAccount:
+                config.number,
+
+              sourceAccountType:
+                selectedType === "checking"
+                  ? "Checking"
+                  : selectedType === "savings"
+                    ? "Savings"
+                    : "IRA",
+
+              recipientAccount:
+                verifiedRecipient.accountNumber,
+
+              recipientAccountType:
+                verifiedRecipient.accountType,
+
+              amount:
+                transferAmount,
+
+              amountInUsd:
+                amountInUsd,
+
+              currency:
+                selectedCurrency,
+
+              note:
+                note.value.trim() ||
+                "",
+
+              senderTransactionId:
+                senderTransactionId,
+
+              recipientTransactionId:
+                recipientTransactionId,
+
+              createdAt:
+                new Date()
+
+            }
+          );
+
+
+          /*
+            UPDATE SENDER
+          */
+
+          batch.update(
+            senderRef,
+            {
+
+              [senderBalanceField]:
+                newSenderBalance,
+
+              lastTransferId:
+                transferId
+
+            }
+          );
+
+
+          /*
+            UPDATE RECIPIENT
+          */
+
+          batch.update(
+            recipientRef,
+            {
+
+              [recipientBalanceField]:
+                newRecipientBalance,
+
+              lastTransferId:
+                transferId
+
+            }
+          );
+
+
+          /*
+            SENDER TRANSACTION
+          */
+
+          batch.set(
+            senderTransactionRef,
+            {
+
+              type:
+                "transfer",
+
+              title:
+                `Transfer to ${verifiedRecipient.name}`,
+
+              amount:
+                transferAmount,
+
+              amountInUsd:
+                amountInUsd,
+
+              currency:
+                selectedCurrency,
+
+              direction:
+                "debit",
+
+              fromAccount:
+                config.number,
+
+              fromAccountType:
+                selectedType === "checking"
+                  ? "Checking"
+                  : selectedType === "savings"
+                    ? "Savings"
+                    : "IRA",
+
+              recipient:
+                verifiedRecipient.name,
+
+              recipientAccount:
+                verifiedRecipient.accountNumber,
+
+              recipientAccountType:
+                verifiedRecipient.accountType,
+
+              recipientUid:
+                verifiedRecipient.uid,
+
+              senderUid:
+                currentUser.uid,
+
+              note:
+                note.value.trim() ||
+                "",
+
+              status:
+                "completed",
+
+              transferId:
+                transferId,
+
+              createdAt:
+                new Date()
+
+            }
+          );
+
+
+          /*
+            RECIPIENT TRANSACTION
+          */
+
+          batch.set(
+            recipientTransactionRef,
+            {
+
+              type:
+                "transfer",
+
+              title:
+                `Transfer from ${
+                  userData.fullName ||
+                  currentUser.displayName ||
+                  "First Merit customer"
+                }`,
+
+              amount:
+                transferAmount,
+
+              amountInUsd:
+                amountInUsd,
+
+              currency:
+                selectedCurrency,
+
+              direction:
+                "credit",
+
+              recipient:
+                verifiedRecipient.name,
+
+              recipientAccount:
+                verifiedRecipient.accountNumber,
+
+              recipientAccountType:
+                verifiedRecipient.accountType,
+
+              recipientUid:
+                verifiedRecipient.uid,
+
+              sender:
+                userData.fullName ||
+                currentUser.displayName ||
+                "First Merit customer",
+
+              senderUid:
+                currentUser.uid,
+
+              senderAccount:
+                config.number,
+
+              senderAccountType:
+                selectedType === "checking"
+                  ? "Checking"
+                  : selectedType === "savings"
+                    ? "Savings"
+                    : "IRA",
+
+              note:
+                note.value.trim() ||
+                "",
+
+              status:
+                "completed",
+
+              transferId:
+                transferId,
+
+              createdAt:
+                new Date()
+
+            }
+          );
+
+
+          /*
+            COMMIT
+          */
+
+          await batch.commit();
+
+
+          /*
+            Update the local balance shown
+            on this page.
+          */
+
+          if (
+            selectedType ===
+            "checking"
+          ) {
+
+            accounts.checking.balance =
+              newSenderBalance;
+
+          } else if (
+            selectedType ===
+            "savings"
+          ) {
+
+            accounts.savings.balance =
+              newSenderBalance;
+
+          } else if (
+            selectedType ===
+            "ira"
+          ) {
+
+            accounts.ira.balance =
+              newSenderBalance;
+
+          }
+
+
+          /*
+            Refresh account display.
+          */
+
+          updateSourceAccount();
+
+
+          /*
+            SUCCESS
+          */
+
+          showInfo(
+            `${formatEnteredAmount(transferAmount)} was sent successfully to ${verifiedRecipient.name}.`
+          );
+
+
+          confirmButton.innerHTML =
+            '<i class="fa-solid fa-circle-check"></i> Transfer complete';
+
+
+          /*
+            Return to form after success.
+          */
+
+          setTimeout(
+            () => {
+
+              reviewView.classList.remove(
+                "show"
+              );
+
+
+              formView.classList.remove(
+                "hide"
+              );
+
+
+              confirmButton.disabled =
+                false;
+
+
+              confirmButton.innerHTML =
+                "Confirm transfer";
+
+
+              clearError();
+
+            },
+            2200
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "TRANSFER ERROR:",
+            error
+          );
+
+
+          let message =
+            "The transfer could not be completed.";
+
+
+          if (
+            error.code ===
+            "permission-denied"
+          ) {
+
+            message =
+              "The transfer was rejected by your account security rules. Please verify the recipient and try again.";
+
+          } else if (
+            error.code ===
+            "failed-precondition"
+          ) {
+
+            message =
+              "The transfer could not be completed because the account information has changed.";
+
+          } else if (
+            error.message
+          ) {
+
+            message =
+              error.message;
+
+          }
+
+
+          showError(
+            message
+          );
+
+
+          confirmButton.disabled =
+            false;
+
+
+          confirmButton.innerHTML =
+            "Confirm transfer";
+
+        }
 
       }
     );
@@ -3344,7 +4149,6 @@
       }
     );
 
-  </script>
-
+</script>
 </body>
 </html>
