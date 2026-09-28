@@ -1197,6 +1197,30 @@
             shortenId(user.uid);
 
 
+          /*
+            Use the exact same account-number
+            generation logic as the dashboard.
+          */
+
+          const generatedAccountNumber =
+            generateAccountNumber(
+              user.uid,
+              getAccountOffset(
+                selectedAccount
+              )
+            );
+
+
+          currentAccountNumber =
+            generatedAccountNumber;
+
+
+          document.getElementById(
+            "accountNumber"
+          ).textContent =
+            generatedAccountNumber;
+
+
           return;
 
         }
@@ -1253,6 +1277,28 @@
         let baseBalance = 0;
 
 
+        /*
+          Generate the same base account number
+          used by the dashboard.
+
+          Checking = +0
+          Savings  = +17
+          IRA      = +39
+        */
+
+        const accountOffset =
+          getAccountOffset(
+            selectedAccount
+          );
+
+
+        const generatedAccountNumber =
+          generateAccountNumber(
+            user.uid,
+            accountOffset
+          );
+
+
         if (
           selectedAccount === "savings"
         ) {
@@ -1263,7 +1309,7 @@
 
           accountNumber =
             data.savingsAccountNumber ||
-            "";
+            generatedAccountNumber;
 
 
           baseBalance =
@@ -1284,7 +1330,7 @@
 
           accountNumber =
             data.iraAccountNumber ||
-            "";
+            generatedAccountNumber;
 
 
           baseBalance =
@@ -1302,8 +1348,8 @@
 
 
           accountNumber =
-            data.accountNumber ||
-            "";
+            data.checkingAccountNumber ||
+            generatedAccountNumber;
 
 
           baseBalance =
@@ -1480,6 +1526,97 @@
         );
 
       }
+
+    }
+
+
+    /*
+      ==========================================
+      ACCOUNT NUMBER OFFSET
+      ==========================================
+    */
+
+    function getAccountOffset(
+      accountType
+    ) {
+
+      if (
+        accountType === "savings"
+      ) {
+
+        return 17;
+
+      }
+
+
+      if (
+        accountType === "ira"
+      ) {
+
+        return 39;
+
+      }
+
+
+      return 0;
+
+    }
+
+
+    /*
+      ==========================================
+      GENERATE ACCOUNT NUMBER
+      ==========================================
+
+      This matches the dashboard logic:
+
+      1. Remove non-digits from UID
+      2. Take the last 8 digits
+      3. Pad with zeros if necessary
+      4. Add the account-specific offset
+      5. Return exactly 8 digits
+    */
+
+    function generateAccountNumber(
+      uid,
+      offset = 0
+    ) {
+
+      const digits =
+        String(uid || "")
+          .replace(/\D/g, "");
+
+
+      let baseNumber =
+        digits.slice(-8);
+
+
+      baseNumber =
+        baseNumber.padStart(
+          8,
+          "0"
+        );
+
+
+      let number =
+        Number(baseNumber) +
+        Number(offset || 0);
+
+
+      /*
+        Keep the result at exactly
+        eight digits.
+      */
+
+      number =
+        number % 100000000;
+
+
+      return String(number)
+        .padStart(
+          8,
+          "0"
+        );
 
     }
 
