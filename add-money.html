@@ -318,6 +318,7 @@
 
       font-size: 11px;
     }
+
     /* =========================
        FORM
     ========================= */
@@ -1655,6 +1656,8 @@
   </div>
 
 </div>
+
+
 <script type="module">
 
   import {
@@ -1866,12 +1869,13 @@
 
 
       /*
-       * Read the balance from Firestore.
+       * First Merit checking balance
+       * is stored in checkingBalance.
        */
 
       let balance =
         Number(
-          data.balance ?? 0
+          data.checkingBalance ?? 0
         );
 
 
@@ -1892,7 +1896,7 @@
         "ADD MONEY ACCOUNT:",
         {
           uid: currentUser.uid,
-          balance: userBalance,
+          checkingBalance: userBalance,
           accountData: data
         }
       );
@@ -2187,7 +2191,7 @@
           async (transaction) => {
 
             /*
-             * Get the latest account balance.
+             * Get the latest checking balance.
              */
 
             const userSnapshot =
@@ -2211,7 +2215,7 @@
 
             let currentFirestoreBalance =
               Number(
-                userData.balance ?? 0
+                userData.checkingBalance ?? 0
               );
 
 
@@ -2227,7 +2231,7 @@
 
 
             /*
-             * Calculate new balance.
+             * Calculate new checking balance.
              */
 
             updatedBalance =
@@ -2240,13 +2244,13 @@
 
 
             /*
-             * Update account balance.
+             * Update checking balance.
              */
 
             transaction.update(
               userRef,
               {
-                balance:
+                checkingBalance:
                   updatedBalance
               }
             );
@@ -2349,7 +2353,7 @@
             source:
               pendingSource,
 
-            newBalance:
+            newCheckingBalance:
               updatedBalance,
 
             transactionId:
@@ -2409,5 +2413,6 @@
   );
 
 </script>
+
 </body>
 </html>
