@@ -292,6 +292,8 @@
 
     .account-number-card {
       padding: 18px;
+      overflow: visible;
+      position: relative;
     }
 
     .account-number-top {
@@ -341,6 +343,205 @@
       padding: 7px 10px;
       color: #687589;
       font-size: 10px;
+    }
+
+    /* =========================================
+       ACCOUNT SWITCHER
+    ========================================= */
+
+    .account-switcher {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .account-switcher-btn {
+      width: 100%;
+      min-height: 58px;
+      padding: 10px 13px;
+
+      border: 1px solid #e1e7ee;
+      border-radius: 14px;
+
+      background: #f8fafc;
+      color: #182337;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      text-align: left;
+
+      transition: 0.2s ease;
+    }
+
+    .account-switcher-btn:hover {
+      background: #f3f7fb;
+      border-color: #cbd7e4;
+    }
+
+    .account-switcher-btn:active {
+      transform: scale(0.995);
+    }
+
+    .account-switcher-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+
+      border-radius: 11px;
+
+      background: #edf3fa;
+      color: #123b72;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 14px;
+    }
+
+    .account-switcher-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .account-switcher-label {
+      display: block;
+      color: #8a95a5;
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+
+    .account-switcher-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 750;
+      color: #182337;
+    }
+
+    .account-switcher-arrow {
+      color: #7c8999;
+      font-size: 11px;
+      transition: transform 0.2s ease;
+    }
+
+    .account-switcher-btn.open .account-switcher-arrow {
+      transform: rotate(180deg);
+    }
+
+    .account-switcher-menu {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      top: calc(100% + 7px);
+
+      background: #ffffff;
+
+      border: 1px solid #e1e7ee;
+      border-radius: 14px;
+
+      padding: 6px;
+
+      box-shadow:
+        0 12px 30px rgba(20, 38, 65, 0.12);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transform: translateY(-5px);
+
+      transition: 0.18s ease;
+
+      z-index: 50;
+    }
+
+    .account-switcher-menu.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .account-option {
+      width: 100%;
+
+      min-height: 48px;
+
+      padding: 8px 10px;
+
+      border: 0;
+      border-radius: 10px;
+
+      background: transparent;
+
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      color: #344257;
+
+      text-align: left;
+
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .account-option:hover {
+      background: #f3f7fb;
+    }
+
+    .account-option.active {
+      background: #eef5fb;
+      color: #1769aa;
+    }
+
+    .account-option-icon {
+      width: 31px;
+      height: 31px;
+
+      border-radius: 9px;
+
+      background: #f1f5f9;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 12px;
+    }
+
+    .account-option.active .account-option-icon {
+      background: #dfeefa;
+      color: #1769aa;
+    }
+
+    .account-option-info {
+      flex: 1;
+    }
+
+    .account-option-name {
+      display: block;
+    }
+
+    .account-option-number {
+      display: block;
+
+      margin-top: 2px;
+
+      color: #8a95a5;
+
+      font-size: 9px;
+      font-weight: 500;
+    }
+
+    .account-option-check {
+      color: #16845b;
+      font-size: 12px;
+      opacity: 0;
+    }
+
+    .account-option.active .account-option-check {
+      opacity: 1;
     }
 
     /* SECURITY CARD */
@@ -482,7 +683,6 @@
 
       </div>
 
-
       <button class="header-btn" id="settingsBtn">
 
         <i class="fa-solid fa-gear"></i>
@@ -490,7 +690,6 @@
       </button>
 
     </header>
-
 
     <main class="content">
 
@@ -506,7 +705,6 @@
 
       </div>
 
-
       <!-- PROFILE -->
 
       <section class="profile-card">
@@ -518,7 +716,6 @@
             <i class="fa-solid fa-user"></i>
 
           </div>
-
 
           <div>
 
@@ -538,7 +735,6 @@
 
           </div>
 
-
           <div class="profile-status">
 
             <span class="profile-status-dot"></span>
@@ -549,9 +745,7 @@
 
         </div>
 
-
         <div class="profile-divider"></div>
-
 
         <div class="profile-meta">
 
@@ -569,7 +763,6 @@
             </div>
 
           </div>
-
 
           <div>
 
@@ -590,7 +783,6 @@
 
       </section>
 
-
       <!-- ACCOUNT NUMBER -->
 
       <section class="section">
@@ -599,8 +791,175 @@
           Account Information
         </div>
 
-
         <div class="card account-number-card">
+
+          <!-- ACCOUNT SWITCHER -->
+
+          <div class="account-switcher">
+
+            <button
+              class="account-switcher-btn"
+              id="accountSwitcherBtn"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+            >
+
+              <span
+                class="account-switcher-icon"
+                id="accountSwitcherIcon"
+              >
+                <i class="fa-solid fa-building-columns"></i>
+              </span>
+
+              <span class="account-switcher-content">
+
+                <span class="account-switcher-label">
+                  SELECT ACCOUNT
+                </span>
+
+                <span
+                  class="account-switcher-name"
+                  id="accountSwitcherName"
+                >
+                  Checking Account
+                </span>
+
+              </span>
+
+              <span class="account-switcher-arrow">
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+              </span>
+
+            </button>
+
+            <div
+              class="account-switcher-menu"
+              id="accountSwitcherMenu"
+              role="listbox"
+            >
+
+              <!-- CHECKING -->
+
+              <button
+                class="account-option"
+                type="button"
+                data-account="checking"
+                role="option"
+              >
+
+                <span class="account-option-icon">
+
+                  <i class="fa-solid fa-building-columns"></i>
+
+                </span>
+
+                <span class="account-option-info">
+
+                  <span class="account-option-name">
+                    Checking Account
+                  </span>
+
+                  <span
+                    class="account-option-number"
+                    id="checkingOptionNumber"
+                  >
+                    •••• ••••
+                  </span>
+
+                </span>
+
+                <span class="account-option-check">
+
+                  <i class="fa-solid fa-check"></i>
+
+                </span>
+
+              </button>
+
+              <!-- SAVINGS -->
+
+              <button
+                class="account-option"
+                type="button"
+                data-account="savings"
+                role="option"
+              >
+
+                <span class="account-option-icon">
+
+                  <i class="fa-solid fa-piggy-bank"></i>
+
+                </span>
+
+                <span class="account-option-info">
+
+                  <span class="account-option-name">
+                    Savings Account
+                  </span>
+
+                  <span
+                    class="account-option-number"
+                    id="savingsOptionNumber"
+                  >
+                    •••• ••••
+                  </span>
+
+                </span>
+
+                <span class="account-option-check">
+
+                  <i class="fa-solid fa-check"></i>
+
+                </span>
+
+              </button>
+
+              <!-- IRA -->
+
+              <button
+                class="account-option"
+                type="button"
+                data-account="ira"
+                role="option"
+              >
+
+                <span class="account-option-icon">
+
+                  <i class="fa-solid fa-chart-line"></i>
+
+                </span>
+
+                <span class="account-option-info">
+
+                  <span class="account-option-name">
+                    IRA Account
+                  </span>
+
+                  <span
+                    class="account-option-number"
+                    id="iraOptionNumber"
+                  >
+                    •••• ••••
+                  </span>
+
+                </span>
+
+                <span class="account-option-check">
+
+                  <i class="fa-solid fa-check"></i>
+
+                </span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- ACCOUNT NUMBER -->
 
           <div class="account-number-top">
 
@@ -619,10 +978,10 @@
 
             </div>
 
-
             <button
               class="copy-btn"
               id="copyAccountBtn"
+              type="button"
             >
 
               <i class="fa-regular fa-copy"></i>
@@ -632,7 +991,6 @@
             </button>
 
           </div>
-
 
           <div class="account-number-footer">
 
@@ -647,7 +1005,6 @@
 
             </span>
 
-
             <span class="account-tag">
 
               <i class="fa-solid fa-circle-check"></i>
@@ -655,7 +1012,6 @@
               Active
 
             </span>
-
 
             <span
               class="account-tag"
@@ -674,7 +1030,6 @@
 
       </section>
 
-
       <!-- PERSONAL DETAILS -->
 
       <section class="section">
@@ -682,7 +1037,6 @@
         <div class="section-title">
           Personal Information
         </div>
-
 
         <div class="card">
 
@@ -693,7 +1047,6 @@
               <i class="fa-solid fa-user"></i>
 
             </div>
-
 
             <div class="detail-content">
 
@@ -712,7 +1065,6 @@
 
           </div>
 
-
           <div class="detail-row">
 
             <div class="detail-icon">
@@ -720,7 +1072,6 @@
               <i class="fa-solid fa-envelope"></i>
 
             </div>
-
 
             <div class="detail-content">
 
@@ -739,7 +1090,6 @@
 
           </div>
 
-
           <div class="detail-row">
 
             <div class="detail-icon">
@@ -747,7 +1097,6 @@
               <i class="fa-solid fa-id-card"></i>
 
             </div>
-
 
             <div class="detail-content">
 
@@ -764,10 +1113,10 @@
 
             </div>
 
-
             <button
               class="detail-action"
               id="copyCustomerId"
+              type="button"
             >
 
               <i class="fa-regular fa-copy"></i>
@@ -780,7 +1129,6 @@
 
       </section>
 
-
       <!-- ACCOUNT DETAILS -->
 
       <section class="section">
@@ -788,7 +1136,6 @@
         <div class="section-title">
           Account Details
         </div>
-
 
         <div class="card">
 
@@ -799,7 +1146,6 @@
               <i class="fa-solid fa-wallet"></i>
 
             </div>
-
 
             <div class="detail-content">
 
@@ -818,7 +1164,6 @@
 
           </div>
 
-
           <div class="detail-row">
 
             <div class="detail-icon">
@@ -826,7 +1171,6 @@
               <i class="fa-solid fa-calendar-days"></i>
 
             </div>
-
 
             <div class="detail-content">
 
@@ -845,7 +1189,6 @@
 
           </div>
 
-
           <div class="detail-row">
 
             <div class="detail-icon">
@@ -853,7 +1196,6 @@
               <i class="fa-solid fa-shield-halved"></i>
 
             </div>
-
 
             <div class="detail-content">
 
@@ -873,7 +1215,6 @@
 
       </section>
 
-
       <!-- SECURITY -->
 
       <section class="section">
@@ -881,7 +1222,6 @@
         <div class="section-title">
           Account Security
         </div>
-
 
         <div
           class="card security-card"
@@ -894,7 +1234,6 @@
 
           </div>
 
-
           <div class="security-content">
 
             <div class="security-title">
@@ -906,7 +1245,6 @@
             </div>
 
           </div>
-
 
           <div class="security-arrow">
 
@@ -922,7 +1260,6 @@
 
   </div>
 
-
   <div
     class="toast"
     id="toast"
@@ -930,19 +1267,16 @@
     Copied to clipboard
   </div>
 
-
   <script type="module">
 
     import {
       onAuthStateChanged
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
     import {
       doc,
       getDoc
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 
     import {
       auth,
@@ -950,45 +1284,80 @@
     } from "./firebase.js";
 
 
+    /* ==========================================
+       ELEMENTS
+    ========================================== */
+
     const backBtn =
       document.getElementById("backBtn");
-
 
     const settingsBtn =
       document.getElementById("settingsBtn");
 
-
     const securityBtn =
       document.getElementById("securityBtn");
-
 
     const copyAccountBtn =
       document.getElementById("copyAccountBtn");
 
-
     const copyCustomerId =
       document.getElementById("copyCustomerId");
-
 
     const toast =
       document.getElementById("toast");
 
 
+    /* ==========================================
+       ACCOUNT SWITCHER ELEMENTS
+    ========================================== */
+
+    const accountSwitcherBtn =
+      document.getElementById(
+        "accountSwitcherBtn"
+      );
+
+    const accountSwitcherMenu =
+      document.getElementById(
+        "accountSwitcherMenu"
+      );
+
+    const accountSwitcherName =
+      document.getElementById(
+        "accountSwitcherName"
+      );
+
+    const accountSwitcherIcon =
+      document.getElementById(
+        "accountSwitcherIcon"
+      );
+
+    const accountOptions =
+      document.querySelectorAll(
+        ".account-option"
+      );
+
+
+    /* ==========================================
+       STATE
+    ========================================== */
+
     let currentAccountNumber = "";
 
     let currentCustomerId = "";
 
+    let currentUser = null;
+
 
     /*
       ==========================================
-      DETERMINE WHICH ACCOUNT WAS SELECTED
+      DETERMINE INITIAL ACCOUNT
       ==========================================
 
-      Examples:
+      Priority:
 
-      ?account=checking
-      ?account=savings
-      ?account=ira
+      1. URL parameter
+      2. Saved account selection
+      3. Checking
     */
 
     const urlParams =
@@ -998,100 +1367,65 @@
 
 
     let selectedAccount =
-      (
+      normalizeAccountType(
         urlParams.get("account") ||
-        ""
-      ).toLowerCase();
-
-
-    /*
-      Also support alternate parameter names
-      in case the dashboard uses them.
-    */
-
-    if (!selectedAccount) {
-
-      selectedAccount =
-        (
-          urlParams.get("type") ||
-          ""
-        ).toLowerCase();
-
-    }
+        urlParams.get("type") ||
+        urlParams.get("accountType")
+      );
 
 
     if (!selectedAccount) {
 
       selectedAccount =
-        (
-          urlParams.get("accountType") ||
-          ""
-        ).toLowerCase();
+        normalizeAccountType(
+          localStorage.getItem(
+            "fmSelectedAccount"
+          )
+        );
+
+    }
+
+
+    if (!selectedAccount) {
+
+      selectedAccount =
+        "checking";
 
     }
 
 
     /*
-      Normalize account names.
+      Save the initial selection so the
+      dashboard can use the same account.
     */
 
-    if (
-      selectedAccount === "checkingaccount"
-    ) {
-
-      selectedAccount = "checking";
-
-    }
+    localStorage.setItem(
+      "fmSelectedAccount",
+      selectedAccount
+    );
 
 
-    if (
-      selectedAccount === "savingsaccount"
-    ) {
-
-      selectedAccount = "savings";
-
-    }
-
-
-    if (
-      selectedAccount === "iraaccount"
-    ) {
-
-      selectedAccount = "ira";
-
-    }
-
-
-    /*
-      Default to checking when no account
-      parameter exists.
-    */
-
-    if (
-      selectedAccount !== "checking" &&
-      selectedAccount !== "savings" &&
-      selectedAccount !== "ira"
-    ) {
-
-      selectedAccount = "checking";
-
-    }
-
-
-    /* BACK */
+    /* ==========================================
+       BACK
+    ========================================== */
 
     backBtn.addEventListener(
       "click",
       () => {
 
         window.location.href =
-          "dashboard.html";
+          "dashboard.html?account=" +
+          encodeURIComponent(
+            selectedAccount
+          );
 
       }
     );
 
 
-    /* SETTINGS */
+    /* ==========================================
+       SETTINGS
+    ========================================== */
 
     settingsBtn.addEventListener(
       "click",
@@ -1104,7 +1438,9 @@
     );
 
 
-    /* SECURITY */
+    /* ==========================================
+       SECURITY
+    ========================================== */
 
     securityBtn.addEventListener(
       "click",
@@ -1117,7 +1453,189 @@
     );
 
 
-    /* AUTH */
+    /* ==========================================
+       ACCOUNT SWITCHER OPEN/CLOSE
+    ========================================== */
+
+    accountSwitcherBtn.addEventListener(
+      "click",
+      (event) => {
+
+        event.stopPropagation();
+
+        const isOpen =
+          accountSwitcherMenu.classList.contains(
+            "open"
+          );
+
+        accountSwitcherMenu.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        accountSwitcherBtn.classList.toggle(
+          "open",
+          !isOpen
+        );
+
+        accountSwitcherBtn.setAttribute(
+          "aria-expanded",
+          String(!isOpen)
+        );
+
+      }
+    );
+
+
+    accountSwitcherMenu.addEventListener(
+      "click",
+      (event) => {
+
+        event.stopPropagation();
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      () => {
+
+        closeAccountSwitcher();
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeAccountSwitcher();
+
+        }
+
+      }
+    );
+
+
+    function closeAccountSwitcher() {
+
+      accountSwitcherMenu.classList.remove(
+        "open"
+      );
+
+      accountSwitcherBtn.classList.remove(
+        "open"
+      );
+
+      accountSwitcherBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+
+    /* ==========================================
+       ACCOUNT OPTIONS
+    ========================================== */
+
+    accountOptions.forEach(
+      (option) => {
+
+        option.addEventListener(
+          "click",
+          async () => {
+
+            const account =
+              normalizeAccountType(
+                option.dataset.account
+              );
+
+            if (!account) {
+
+              return;
+
+            }
+
+
+            selectedAccount =
+              account;
+
+
+            /*
+              Save selection.
+
+              The dashboard reads this same
+              value.
+            */
+
+            localStorage.setItem(
+              "fmSelectedAccount",
+              selectedAccount
+            );
+
+
+            /*
+              Update URL without reloading.
+            */
+
+            const newUrl =
+              new URL(
+                window.location.href
+              );
+
+            newUrl.searchParams.set(
+              "account",
+              selectedAccount
+            );
+
+            window.history.replaceState(
+              {},
+              "",
+              newUrl
+            );
+
+
+            closeAccountSwitcher();
+
+
+            /*
+              Update the visible selector
+              immediately.
+            */
+
+            updateAccountSwitcher();
+
+
+            /*
+              Reload the selected account's
+              actual Firebase information.
+            */
+
+            if (currentUser) {
+
+              await loadAccount(
+                currentUser
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    /* ==========================================
+       AUTH
+    ========================================== */
 
     onAuthStateChanged(
       auth,
@@ -1133,15 +1651,29 @@
         }
 
 
-        await loadAccount(user);
+        currentUser =
+          user;
+
+
+        /*
+          Load the account.
+        */
+
+        await loadAccount(
+          user
+        );
 
       }
     );
 
 
-    /* LOAD ACCOUNT */
+    /* ==========================================
+       LOAD ACCOUNT
+    ========================================== */
 
-    async function loadAccount(user) {
+    async function loadAccount(
+      user
+    ) {
 
       try {
 
@@ -1154,8 +1686,16 @@
 
 
         const snapshot =
-          await getDoc(userRef);
+          await getDoc(
+            userRef
+          );
 
+
+        /*
+          ======================================
+          NO FIRESTORE DOCUMENT
+          ======================================
+        */
 
         if (!snapshot.exists()) {
 
@@ -1194,13 +1734,38 @@
           document.getElementById(
             "customerId"
           ).textContent =
-            shortenId(user.uid);
+            shortenId(
+              user.uid
+            );
 
 
-          /*
-            Use the exact same account-number
-            generation logic as the dashboard.
-          */
+          const generatedChecking =
+            generateAccountNumber(
+              user.uid,
+              0
+            );
+
+
+          const generatedSavings =
+            generateAccountNumber(
+              user.uid,
+              17
+            );
+
+
+          const generatedIRA =
+            generateAccountNumber(
+              user.uid,
+              39
+            );
+
+
+          updateAccountOptionNumbers(
+            generatedChecking,
+            generatedSavings,
+            generatedIRA
+          );
+
 
           const generatedAccountNumber =
             generateAccountNumber(
@@ -1221,6 +1786,9 @@
             generatedAccountNumber;
 
 
+          updateAccountSwitcher();
+
+
           return;
 
         }
@@ -1238,6 +1806,8 @@
 
         const fullName =
           data.fullName ||
+          data.name ||
+          data.displayName ||
           user.displayName ||
           "Account Holder";
 
@@ -1252,9 +1822,6 @@
           ======================================
           CURRENCY
           ======================================
-
-          The saved currency belongs to the user
-          profile and is used for display.
         */
 
         const currency =
@@ -1266,41 +1833,65 @@
 
         /*
           ======================================
+          ACCOUNT NUMBERS
+          ======================================
+        */
+
+        const generatedChecking =
+          data.checkingAccountNumber ||
+          generateAccountNumber(
+            user.uid,
+            0
+          );
+
+
+        const generatedSavings =
+          data.savingsAccountNumber ||
+          generateAccountNumber(
+            user.uid,
+            17
+          );
+
+
+        const generatedIRA =
+          data.iraAccountNumber ||
+          generateAccountNumber(
+            user.uid,
+            39
+          );
+
+
+        updateAccountOptionNumbers(
+          generatedChecking,
+          generatedSavings,
+          generatedIRA
+        );
+
+
+        /*
+          ======================================
           SELECT ACCOUNT DATA
           ======================================
         */
 
-        let accountType = "Checking";
-
-        let accountNumber = "";
-
-        let baseBalance = 0;
+        let accountType =
+          "Checking";
 
 
-        /*
-          Generate the same base account number
-          used by the dashboard.
-
-          Checking = +0
-          Savings  = +17
-          IRA      = +39
-        */
-
-        const accountOffset =
-          getAccountOffset(
-            selectedAccount
-          );
+        let accountNumber =
+          generatedChecking;
 
 
-        const generatedAccountNumber =
-          generateAccountNumber(
-            user.uid,
-            accountOffset
+        let baseBalance =
+          getNumericValue(
+            data.checkingBalance ??
+            data.checking
           );
 
 
         if (
-          selectedAccount === "savings"
+          selectedAccount ===
+          "savings"
         ) {
 
           accountType =
@@ -1308,20 +1899,21 @@
 
 
           accountNumber =
-            data.savingsAccountNumber ||
-            generatedAccountNumber;
+            generatedSavings;
 
 
           baseBalance =
             getNumericValue(
-              data.savingsBalance
+              data.savingsBalance ??
+              data.savings
             );
 
         }
 
 
         else if (
-          selectedAccount === "ira"
+          selectedAccount ===
+          "ira"
         ) {
 
           accountType =
@@ -1329,13 +1921,13 @@
 
 
           accountNumber =
-            data.iraAccountNumber ||
-            generatedAccountNumber;
+            generatedIRA;
 
 
           baseBalance =
             getNumericValue(
-              data.iraBalance
+              data.iraBalance ??
+              data.ira
             );
 
         }
@@ -1348,13 +1940,13 @@
 
 
           accountNumber =
-            data.checkingAccountNumber ||
-            generatedAccountNumber;
+            generatedChecking;
 
 
           baseBalance =
             getNumericValue(
-              data.checkingBalance
+              data.checkingBalance ??
+              data.checking
             );
 
         }
@@ -1371,7 +1963,7 @@
 
         /*
           ======================================
-          DISPLAY PROFILE
+          PROFILE
           ======================================
         */
 
@@ -1509,6 +2101,15 @@
 
         /*
           ======================================
+          UPDATE SWITCHER
+          ======================================
+        */
+
+        updateAccountSwitcher();
+
+
+        /*
+          ======================================
           PAGE TITLE
           ======================================
         */
@@ -1525,23 +2126,204 @@
           error
         );
 
+        showToast(
+          "Unable to load account information"
+        );
+
       }
 
     }
 
 
-    /*
-      ==========================================
-      ACCOUNT NUMBER OFFSET
-      ==========================================
-    */
+    /* ==========================================
+       UPDATE ACCOUNT OPTION NUMBERS
+    ========================================== */
+
+    function updateAccountOptionNumbers(
+      checking,
+      savings,
+      ira
+    ) {
+
+      document.getElementById(
+        "checkingOptionNumber"
+      ).textContent =
+        "•••• " +
+        String(
+          checking
+        ).slice(-4);
+
+
+      document.getElementById(
+        "savingsOptionNumber"
+      ).textContent =
+        "•••• " +
+        String(
+          savings
+        ).slice(-4);
+
+
+      document.getElementById(
+        "iraOptionNumber"
+      ).textContent =
+        "•••• " +
+        String(
+          ira
+        ).slice(-4);
+
+    }
+
+
+    /* ==========================================
+       UPDATE ACCOUNT SWITCHER
+    ========================================== */
+
+    function updateAccountSwitcher() {
+
+      let accountName =
+        "Checking Account";
+
+
+      let icon =
+        "fa-solid fa-building-columns";
+
+
+      if (
+        selectedAccount ===
+        "savings"
+      ) {
+
+        accountName =
+          "Savings Account";
+
+
+        icon =
+          "fa-solid fa-piggy-bank";
+
+      }
+
+
+      else if (
+        selectedAccount ===
+        "ira"
+      ) {
+
+        accountName =
+          "IRA Account";
+
+
+        icon =
+          "fa-solid fa-chart-line";
+
+      }
+
+
+      accountSwitcherName.textContent =
+        accountName;
+
+
+      accountSwitcherIcon.innerHTML =
+        `<i class="${icon}"></i>`;
+
+
+      accountOptions.forEach(
+        (option) => {
+
+          const isActive =
+            option.dataset.account ===
+            selectedAccount;
+
+
+          option.classList.toggle(
+            "active",
+            isActive
+          );
+
+
+          option.setAttribute(
+            "aria-selected",
+            String(isActive)
+          );
+
+        }
+      );
+
+    }
+
+
+    /* ==========================================
+       NORMALIZE ACCOUNT TYPE
+    ========================================== */
+
+    function normalizeAccountType(
+      value
+    ) {
+
+      if (!value) {
+
+        return "";
+
+      }
+
+
+      const normalized =
+        String(value)
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        normalized ===
+        "checking" ||
+        normalized ===
+        "checkingaccount"
+      ) {
+
+        return "checking";
+
+      }
+
+
+      if (
+        normalized ===
+        "savings" ||
+        normalized ===
+        "savingsaccount"
+      ) {
+
+        return "savings";
+
+      }
+
+
+      if (
+        normalized ===
+        "ira" ||
+        normalized ===
+        "iraaccount"
+      ) {
+
+        return "ira";
+
+      }
+
+
+      return "";
+
+    }
+
+
+    /* ==========================================
+       ACCOUNT NUMBER OFFSET
+    ========================================== */
 
     function getAccountOffset(
       accountType
     ) {
 
       if (
-        accountType === "savings"
+        accountType ===
+        "savings"
       ) {
 
         return 17;
@@ -1550,7 +2332,8 @@
 
 
       if (
-        accountType === "ira"
+        accountType ===
+        "ira"
       ) {
 
         return 39;
@@ -1563,19 +2346,9 @@
     }
 
 
-    /*
-      ==========================================
-      GENERATE ACCOUNT NUMBER
-      ==========================================
-
-      This matches the dashboard logic:
-
-      1. Remove non-digits from UID
-      2. Take the last 8 digits
-      3. Pad with zeros if necessary
-      4. Add the account-specific offset
-      5. Return exactly 8 digits
-    */
+    /* ==========================================
+       GENERATE ACCOUNT NUMBER
+    ========================================== */
 
     function generateAccountNumber(
       uid,
@@ -1584,7 +2357,10 @@
 
       const digits =
         String(uid || "")
-          .replace(/\D/g, "");
+          .replace(
+            /\D/g,
+            ""
+          );
 
 
       let baseNumber =
@@ -1603,13 +2379,9 @@
         Number(offset || 0);
 
 
-      /*
-        Keep the result at exactly
-        eight digits.
-      */
-
       number =
-        number % 100000000;
+        number %
+        100000000;
 
 
       return String(number)
@@ -1621,20 +2393,22 @@
     }
 
 
-    /*
-      ==========================================
-      GET NUMERIC VALUE
-      ==========================================
-    */
+    /* ==========================================
+       GET NUMERIC VALUE
+    ========================================== */
 
-    function getNumericValue(value) {
+    function getNumericValue(
+      value
+    ) {
 
       const number =
         Number(value);
 
 
       if (
-        Number.isFinite(number)
+        Number.isFinite(
+          number
+        )
       ) {
 
         return number;
@@ -1647,16 +2421,9 @@
     }
 
 
-    /*
-      ==========================================
-      CURRENCY CONVERSION
-      ==========================================
-
-      Firestore balances remain stored in USD.
-
-      Display currency is converted only for
-      presentation.
-    */
+    /* ==========================================
+       CURRENCY CONVERSION
+    ========================================== */
 
     function convertFromUSD(
       amount,
@@ -1684,11 +2451,9 @@
     }
 
 
-    /*
-      ==========================================
-      CURRENCY FORMAT
-      ==========================================
-    */
+    /* ==========================================
+       CURRENCY FORMAT
+    ========================================== */
 
     function formatCurrency(
       amount,
@@ -1696,7 +2461,8 @@
     ) {
 
       const safeAmount =
-        Number(amount) || 0;
+        Number(amount) ||
+        0;
 
 
       return new Intl.NumberFormat(
@@ -1714,18 +2480,17 @@
     }
 
 
-    /*
-      ==========================================
-      ACCOUNT ICON
-      ==========================================
-    */
+    /* ==========================================
+       ACCOUNT ICON
+    ========================================== */
 
     function getAccountIcon(
       accountType
     ) {
 
       if (
-        accountType === "Savings"
+        accountType ===
+        "Savings"
       ) {
 
         return `
@@ -1736,7 +2501,8 @@
 
 
       if (
-        accountType === "IRA"
+        accountType ===
+        "IRA"
       ) {
 
         return `
@@ -1753,18 +2519,17 @@
     }
 
 
-    /*
-      ==========================================
-      CURRENCY ICON
-      ==========================================
-    */
+    /* ==========================================
+       CURRENCY ICON
+    ========================================== */
 
     function getCurrencyIcon(
       currency
     ) {
 
       if (
-        currency === "EUR"
+        currency ===
+        "EUR"
       ) {
 
         return `
@@ -1775,7 +2540,8 @@
 
 
       if (
-        currency === "GBP"
+        currency ===
+        "GBP"
       ) {
 
         return `
@@ -1792,7 +2558,9 @@
     }
 
 
-    /* COPY ACCOUNT */
+    /* ==========================================
+       COPY ACCOUNT
+    ========================================== */
 
     copyAccountBtn.addEventListener(
       "click",
@@ -1824,7 +2592,9 @@
     );
 
 
-    /* COPY CUSTOMER ID */
+    /* ==========================================
+       COPY CUSTOMER ID
+    ========================================== */
 
     copyCustomerId.addEventListener(
       "click",
@@ -1856,7 +2626,9 @@
     );
 
 
-    /* COPY */
+    /* ==========================================
+       COPY TEXT
+    ========================================== */
 
     async function copyText(
       text
@@ -1908,7 +2680,9 @@
     }
 
 
-    /* FORMAT DATE */
+    /* ==========================================
+       FORMAT DATE
+    ========================================== */
 
     function formatDate(
       timestamp
@@ -1933,7 +2707,9 @@
         date =
           timestamp.toDate();
 
-      } else {
+      }
+
+      else {
 
         date =
           new Date(timestamp);
@@ -1966,7 +2742,9 @@
     }
 
 
-    /* SHORTEN CUSTOMER ID */
+    /* ==========================================
+       SHORTEN CUSTOMER ID
+    ========================================== */
 
     function shortenId(
       id
@@ -1989,7 +2767,10 @@
 
 
       return (
-        id.substring(0, 8) +
+        id.substring(
+          0,
+          8
+        ) +
         "..." +
         id.substring(
           id.length - 6
@@ -1999,7 +2780,9 @@
     }
 
 
-    /* TOAST */
+    /* ==========================================
+       TOAST
+    ========================================== */
 
     let toastTimer;
 
