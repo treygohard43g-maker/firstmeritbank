@@ -3,13 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
   >
 
-  <title>Payments | First Merit Bank</title>
+  <title>Dashboard | First Merit Bank</title>
 
   <link
     rel="stylesheet"
@@ -25,7 +24,6 @@
   >
 
   <style>
-
     :root {
       --navy: #0b2342;
       --navy-2: #12385f;
@@ -39,13 +37,11 @@
 
       --text: #182233;
       --muted: #687589;
-
       --border: #dfe5ec;
       --border-dark: #cfd7e1;
 
       --bg: #f5f7fa;
       --white: #ffffff;
-
       --danger: #c0392b;
 
       --shadow: 0 4px 14px rgba(17, 38, 64, .055);
@@ -62,20 +58,11 @@
 
     body {
       margin: 0;
-
       background: var(--bg);
       color: var(--text);
-
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
       line-height: 1.45;
-
       padding-bottom: 0;
     }
 
@@ -84,13 +71,8 @@
       text-decoration: none;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
     button {
+      font: inherit;
       border: 0;
       cursor: pointer;
     }
@@ -101,9 +83,7 @@
 
     .topbar {
       height: 64px;
-
       background: #fff;
-
       border-bottom: 1px solid var(--border);
 
       display: flex;
@@ -111,7 +91,6 @@
 
       position: sticky;
       top: 0;
-
       z-index: 1000;
 
       padding: 0 22px;
@@ -120,9 +99,7 @@
     .topbar-left {
       display: flex;
       align-items: center;
-
       gap: 13px;
-
       min-width: 0;
     }
 
@@ -131,7 +108,6 @@
       height: 38px;
 
       border-radius: 9px;
-
       background: transparent;
 
       color: var(--navy);
@@ -150,7 +126,6 @@
     .brand {
       display: flex;
       align-items: center;
-
       gap: 9px;
     }
 
@@ -160,12 +135,11 @@
 
       border-radius: 8px;
 
-      background:
-        linear-gradient(
-          135deg,
-          #0b2342,
-          #1769aa
-        );
+      background: linear-gradient(
+        135deg,
+        #0b2342,
+        #1769aa
+      );
 
       color: #fff;
 
@@ -175,16 +149,13 @@
 
       font-size: 11px;
       font-weight: 800;
-
       letter-spacing: -.5px;
     }
 
     .brand-name {
       color: var(--navy);
-
       font-size: 15px;
       font-weight: 800;
-
       white-space: nowrap;
     }
 
@@ -193,7 +164,6 @@
 
       display: flex;
       align-items: center;
-
       gap: 6px;
     }
 
@@ -202,7 +172,6 @@
       height: 38px;
 
       border-radius: 9px;
-
       background: transparent;
 
       color: #506077;
@@ -220,7 +189,6 @@
 
     .notification-dot {
       position: absolute;
-
       top: 8px;
       right: 8px;
 
@@ -228,7 +196,6 @@
       height: 6px;
 
       border-radius: 50%;
-
       background: var(--danger);
 
       border: 1px solid #fff;
@@ -271,12 +238,9 @@
       z-index: 1200;
 
       transform: translateX(-100%);
+      transition: transform .25s ease;
 
-      transition:
-        transform .25s ease;
-
-      box-shadow:
-        12px 0 35px rgba(0,0,0,.13);
+      box-shadow: 12px 0 35px rgba(0,0,0,.13);
 
       display: flex;
       flex-direction: column;
@@ -300,7 +264,6 @@
     .side-brand {
       display: flex;
       align-items: center;
-
       gap: 10px;
     }
 
@@ -311,19 +274,15 @@
 
     .side-brand-text strong {
       display: block;
-
       color: var(--navy);
-
       font-size: 14px;
     }
 
     .side-brand-text span {
       display: block;
-
       margin-top: 1px;
 
       color: var(--muted);
-
       font-size: 10px;
     }
 
@@ -336,13 +295,11 @@
       border-radius: 9px;
 
       background: var(--bg);
-
       color: #46536a;
     }
 
     .menu-scroll {
       flex: 1;
-
       overflow-y: auto;
 
       padding: 10px 10px 20px;
@@ -357,7 +314,6 @@
       font-weight: 800;
 
       text-transform: uppercase;
-
       letter-spacing: .08em;
     }
 
@@ -394,7 +350,6 @@
     .menu-link:hover,
     .menu-link.active {
       background: var(--blue-soft);
-
       color: var(--blue);
     }
 
@@ -423,7 +378,7 @@
     }
 
     /* =========================================
-       WELCOME
+       GREETING
     ========================================= */
 
     .welcome-row {
@@ -442,7 +397,6 @@
       color: var(--navy);
 
       font-size: clamp(21px, 3vw, 27px);
-
       line-height: 1.15;
 
       font-weight: 800;
@@ -462,7 +416,7 @@
     }
 
     /* =========================================
-       BALANCE CARD
+       TOTAL BALANCE
     ========================================= */
 
     .balance-card {
@@ -473,7 +427,6 @@
       padding: 20px 21px;
 
       position: relative;
-
       overflow: hidden;
 
       color: #fff;
@@ -507,19 +460,16 @@
       right: -110px;
       bottom: -150px;
 
-      border:
-        1px solid rgba(255,255,255,.11);
+      border: 1px solid rgba(255,255,255,.11);
 
       border-radius: 50%;
     }
 
     .balance-top {
       position: relative;
-
       z-index: 1;
 
       display: flex;
-
       align-items: center;
       justify-content: space-between;
     }
@@ -531,31 +481,31 @@
       font-weight: 700;
 
       text-transform: uppercase;
-
       letter-spacing: .07em;
     }
 
-    .balance-account-label {
-      position: relative;
+    .visibility-btn {
+      width: 31px;
+      height: 31px;
 
-      z-index: 1;
+      border-radius: 8px;
 
-      margin-top: 8px;
+      background: rgba(255,255,255,.12);
 
-      color: rgba(255,255,255,.58);
+      color: #fff;
 
-      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .total-balance {
       position: relative;
-
       z-index: 1;
 
       margin: 8px 0 5px;
 
       font-size: clamp(28px, 4vw, 36px);
-
       line-height: 1;
 
       font-weight: 800;
@@ -565,7 +515,6 @@
 
     .balance-sub {
       position: relative;
-
       z-index: 1;
 
       color: rgba(255,255,255,.66);
@@ -574,7 +523,7 @@
     }
 
     /* =========================================
-       SECTION
+       SECTION HEADER
     ========================================= */
 
     .section-heading {
@@ -594,111 +543,345 @@
       font-weight: 800;
     }
 
-    .section-heading button {
-      width: 31px;
-      height: 31px;
-
-      border-radius: 8px;
-
-      background: var(--blue-soft);
-
+    .section-heading a {
       color: var(--blue);
+
+      font-size: 10px;
+      font-weight: 700;
     }
 
     /* =========================================
-       PAYMENT OPTIONS
+       ACCOUNT CARDS
     ========================================= */
 
-    .payment-options {
+    .accounts-grid {
       display: grid;
 
       grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-      gap: 10px;
+      gap: 12px;
     }
 
-    .payment-option {
-      min-height: 105px;
-
-      padding: 14px;
+    .account-card {
+      position: relative;
 
       background: #fff;
 
-      border:
-        1px solid var(--border);
+      border: 1px solid var(--border-dark);
 
-      border-radius: 10px;
+      border-radius: 11px;
 
-      text-align: left;
+      min-height: 146px;
 
-      color: var(--text);
+      padding: 16px 17px;
+
+      box-shadow:
+        0 2px 5px rgba(14,35,60,.025);
 
       transition:
-        transform .18s ease,
         box-shadow .18s ease,
-        border-color .18s ease;
+        transform .18s ease;
     }
 
-    .payment-option:hover {
-      transform: translateY(-1px);
+    .account-card::before {
+      content: "";
 
-      border-color: #cbd9e6;
+      position: absolute;
+
+      top: 0;
+      left: 0;
+      bottom: 0;
+
+      width: 3px;
+
+      border-radius: 11px 0 0 11px;
+
+      background: var(--blue);
+    }
+
+    .account-card.savings::before {
+      background: var(--green);
+    }
+
+    .account-card.ira::before {
+      background: var(--amber);
+    }
+
+    .account-card:hover {
+      transform: translateY(-1px);
 
       box-shadow:
         0 7px 17px rgba(14,35,60,.07);
     }
 
-    .option-icon {
-      width: 31px;
-      height: 31px;
+    .account-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
 
-      border-radius: 8px;
+      gap: 12px;
+    }
 
-      background: var(--blue-soft);
+    .account-heading {
+      min-width: 0;
+    }
 
-      color: var(--blue);
+    .account-name {
+      color: var(--navy);
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .account-number {
+      margin-top: 2px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+      letter-spacing: .02em;
+    }
+
+    .account-type-icon {
+      width: 28px;
+      height: 28px;
+
+      flex-shrink: 0;
+
+      border-radius: 7px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      margin-bottom: 10px;
-
       font-size: 12px;
     }
 
-    .payment-option strong {
-      display: block;
-
-      color: var(--navy);
-
-      font-size: 11px;
-
-      margin-bottom: 4px;
+    .checking .account-type-icon {
+      background: var(--blue-soft);
+      color: var(--blue);
     }
 
-    .payment-option span {
-      display: block;
+    .savings .account-type-icon {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .ira .account-type-icon {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .account-balance-label {
+      margin-top: 16px;
 
       color: var(--muted);
 
       font-size: 9px;
+      font-weight: 600;
+    }
 
-      line-height: 1.45;
+    .account-balance {
+      margin-top: 2px;
+
+      color: var(--text);
+
+      font-size: 20px;
+      line-height: 1.1;
+
+      font-weight: 800;
+
+      letter-spacing: -.45px;
+    }
+
+    .account-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-top: 12px;
+
+      padding-top: 9px;
+
+      border-top: 1px solid #edf0f3;
+    }
+
+    .account-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      color: var(--green);
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+    }
+
+    .account-details-link {
+      color: var(--blue);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     /* =========================================
-       PANELS
+       QUICK ACTIONS
     ========================================= */
+
+    .quick-actions {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+      gap: 9px;
+    }
+
+    .quick-action {
+      min-height: 70px;
+
+      background: #fff;
+
+      border: 1px solid var(--border);
+
+      border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 6px;
+
+      color: #405067;
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .quick-action i {
+      color: var(--blue);
+
+      font-size: 15px;
+    }
+
+    .quick-action:hover {
+      background: #fbfdff;
+
+      border-color: #cbd9e6;
+    }
+
+    /* =========================================
+       TRANSFER
+    ========================================= */
+
+    .transfer-card {
+      background: #fff;
+
+      border: 1px solid var(--border);
+
+      border-radius: 11px;
+
+      padding: 14px 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+    .transfer-left {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+
+      min-width: 0;
+    }
+
+    .transfer-icon {
+      width: 36px;
+      height: 36px;
+
+      flex-shrink: 0;
+
+      border-radius: 9px;
+
+      background: var(--blue-soft);
+      color: var(--blue);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .transfer-title {
+      color: var(--text);
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .transfer-text {
+      margin-top: 2px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+    }
+
+    .primary-btn {
+      padding: 9px 14px;
+
+      border-radius: 8px;
+
+      background: var(--blue);
+      color: #fff;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      white-space: nowrap;
+    }
+
+    /* =========================================
+       MAIN PANELS
+    ========================================= */
+
+    .dashboard-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(260px, .85fr);
+
+      gap: 12px;
+
+      margin-top: 14px;
+    }
 
     .panel {
       overflow: hidden;
 
       background: #fff;
 
-      border:
-        1px solid var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 11px;
     }
@@ -706,8 +889,7 @@
     .panel-header {
       padding: 13px 15px 11px;
 
-      border-bottom:
-        1px solid #edf0f3;
+      border-bottom: 1px solid #edf0f3;
 
       display: flex;
       align-items: center;
@@ -721,134 +903,14 @@
       font-weight: 800;
     }
 
-    .panel-action {
-      width: 30px;
-      height: 30px;
-
-      border-radius: 8px;
-
-      background: var(--blue-soft);
-
+    .panel-link {
       color: var(--blue);
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* =========================================
-       PAYEES
-    ========================================= */
-
-    .payee-list {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .payee {
-      display: flex;
-      align-items: center;
-
-      gap: 10px;
-
-      padding: 10px 15px;
-
-      border-bottom:
-        1px solid #f0f2f5;
-    }
-
-    .payee:last-child {
-      border-bottom: 0;
-    }
-
-    .payee-icon {
-      width: 32px;
-      height: 32px;
-
-      flex-shrink: 0;
-
-      border-radius: 8px;
-
-      background: var(--blue-soft);
-
-      color: var(--blue);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 11px;
-    }
-
-    .payee-info {
-      flex: 1;
-
-      min-width: 0;
-    }
-
-    .payee-info strong {
-      display: block;
-
-      color: var(--text);
-
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-
-      white-space: nowrap;
-
-      overflow: hidden;
-
-      text-overflow: ellipsis;
     }
 
-    .payee-info span {
-      display: block;
-
-      margin-top: 1px;
-
-      color: var(--muted);
-
-      font-size: 8px;
-    }
-
-    .payee-actions {
-      display: flex;
-
-      gap: 5px;
-    }
-
-    .small-btn {
-      width: 30px;
-      height: 30px;
-
-      border-radius: 8px;
-
-      background: #fff;
-
-      border:
-        1px solid var(--border);
-
-      color: #536074;
-    }
-
-    .small-btn:hover {
-      background: var(--bg);
-    }
-
-    .small-btn.delete {
-      color: var(--danger);
-    }
-
-    /* =========================================
-       PAYMENT HISTORY
-    ========================================= */
-
-    .payment-history {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .history-item {
+    .transaction {
       display: flex;
       align-items: center;
 
@@ -856,15 +918,14 @@
 
       padding: 10px 15px;
 
-      border-bottom:
-        1px solid #f0f2f5;
+      border-bottom: 1px solid #f0f2f5;
     }
 
-    .history-item:last-child {
+    .transaction:last-child {
       border-bottom: 0;
     }
 
-    .history-icon {
+    .transaction-icon {
       width: 31px;
       height: 31px;
 
@@ -883,30 +944,23 @@
       font-size: 11px;
     }
 
-    .history-info {
+    .transaction-main {
       flex: 1;
-
       min-width: 0;
     }
 
-    .history-info strong {
-      display: block;
-
+    .transaction-name {
       color: var(--text);
 
       font-size: 10px;
       font-weight: 700;
 
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
     }
 
-    .history-info span {
-      display: block;
-
+    .transaction-date {
       margin-top: 1px;
 
       color: var(--muted);
@@ -914,19 +968,20 @@
       font-size: 8px;
     }
 
-    .history-amount {
-      color: var(--danger);
-
+    .transaction-amount {
       font-size: 10px;
-
       font-weight: 800;
 
       white-space: nowrap;
     }
 
-    /* =========================================
-       EMPTY
-    ========================================= */
+    .credit {
+      color: var(--green);
+    }
+
+    .debit {
+      color: var(--danger);
+    }
 
     .empty-state {
       padding: 28px 15px;
@@ -949,57 +1004,74 @@
     }
 
     /* =========================================
-       GRID
+       ACCOUNT DETAILS
     ========================================= */
 
-    .payments-grid {
-      display: grid;
+    .account-details {
+      padding: 4px 15px 9px;
+    }
 
-      grid-template-columns:
-        minmax(0, 1.25fr)
-        minmax(260px, .85fr);
+    .detail-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       gap: 12px;
 
-      margin-top: 14px;
+      padding: 9px 0;
+
+      border-bottom: 1px solid #f0f2f5;
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+    }
+
+    .detail-label {
+      color: var(--muted);
+
+      font-size: 9px;
+    }
+
+    .detail-value {
+      color: var(--text);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      text-align: right;
     }
 
     /* =========================================
-       CHECKING SOURCE CARD
+       INHERITANCE
     ========================================= */
 
-    .source-card {
+    .inheritance-card {
       margin-top: 14px;
 
-      padding: 13px 15px;
+      padding: 14px 15px;
 
       background: #fff;
 
-      border:
-        1px solid var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 11px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
-      gap: 12px;
+      gap: 15px;
     }
 
-    .source-left {
+    .inheritance-left {
       display: flex;
-
       align-items: center;
 
       gap: 10px;
-
-      min-width: 0;
     }
 
-    .source-icon {
+    .inheritance-icon {
       width: 36px;
       height: 36px;
 
@@ -1007,232 +1079,51 @@
 
       border-radius: 9px;
 
-      background: var(--blue-soft);
+      background: #eef7f8;
 
-      color: var(--blue);
+      color: var(--cyan);
 
       display: flex;
-
       align-items: center;
       justify-content: center;
     }
 
-    .source-title {
+    .inheritance-title {
       color: var(--text);
 
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
     }
 
-    .source-text {
+    .inheritance-text {
       margin-top: 2px;
 
       color: var(--muted);
 
-      font-size: 8px;
+      font-size: 9px;
     }
 
-    .source-balance {
-      color: var(--navy);
+    .secondary-btn {
+      padding: 8px 11px;
 
-      font-size: 11px;
-      font-weight: 800;
+      border-radius: 8px;
+
+      background: var(--blue-soft);
+
+      color: var(--blue);
+
+      font-size: 9px;
+      font-weight: 700;
 
       white-space: nowrap;
     }
 
     /* =========================================
-       MODAL
+       MOBILE BOTTOM NAV
     ========================================= */
 
-    .modal {
-      position: fixed;
-
-      inset: 0;
-
-      background: rgba(8,18,35,.55);
-
+    .mobile-bottom-nav {
       display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 18px;
-
-      z-index: 2000;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-
-      max-width: 450px;
-
-      background: #fff;
-
-      border-radius: 16px;
-
-      padding: 20px;
-
-      box-shadow:
-        0 25px 60px rgba(0,0,0,.2);
-
-      max-height: 90vh;
-
-      overflow-y: auto;
-    }
-
-    .modal-header {
-      display: flex;
-
-      align-items: center;
-      justify-content: space-between;
-
-      margin-bottom: 17px;
-    }
-
-    .modal-header h3 {
-      margin: 0;
-
-      color: var(--navy);
-
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .close-btn {
-      width: 32px;
-      height: 32px;
-
-      border-radius: 8px;
-
-      background: var(--bg);
-
-      color: #4b5666;
-    }
-
-    .field {
-      margin-bottom: 14px;
-    }
-
-    .field label {
-      display: block;
-
-      color: #687486;
-
-      font-size: 9px;
-
-      font-weight: 700;
-
-      margin-bottom: 6px;
-    }
-
-    .field input,
-    .field select {
-      width: 100%;
-
-      border:
-        1px solid var(--border-dark);
-
-      border-radius: 9px;
-
-      padding: 11px;
-
-      outline: none;
-
-      background: #fff;
-
-      color: #172235;
-
-      font-size: 11px;
-    }
-
-    .field input:focus,
-    .field select:focus {
-      border-color: var(--blue);
-    }
-
-    .primary-btn {
-      width: 100%;
-
-      border: 0;
-
-      background: var(--blue);
-
-      color: #fff;
-
-      padding: 11px;
-
-      border-radius: 9px;
-
-      font-size: 10px;
-
-      font-weight: 700;
-
-      margin-top: 4px;
-    }
-
-    .primary-btn:hover {
-      background: #155f99;
-    }
-
-    .danger-btn {
-      width: 100%;
-
-      border: 0;
-
-      background: #fff;
-
-      color: var(--danger);
-
-      padding: 10px;
-
-      border-radius: 9px;
-
-      border:
-        1px solid #efd6d3;
-
-      font-size: 10px;
-
-      font-weight: 700;
-
-      margin-top: 7px;
-    }
-
-    .review-box {
-      background: #f7f9fc;
-
-      border:
-        1px solid #e8edf3;
-
-      border-radius: 11px;
-
-      padding: 12px;
-
-      margin-bottom: 15px;
-    }
-
-    .review-row {
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      padding: 7px 0;
-
-      font-size: 10px;
-    }
-
-    .review-row span:first-child {
-      color: var(--muted);
-    }
-
-    .review-row strong {
-      text-align: right;
     }
 
     /* =========================================
@@ -1245,45 +1136,31 @@
       left: 50%;
       bottom: 25px;
 
-      transform:
-        translate(-50%, 20px);
+      transform: translate(-50%, 20px);
 
       padding: 9px 13px;
 
       border-radius: 8px;
 
       background: #15263d;
-
       color: #fff;
 
       font-size: 10px;
-
       font-weight: 600;
 
       opacity: 0;
-
       visibility: hidden;
 
       transition: .2s ease;
 
-      z-index: 3000;
+      z-index: 2000;
     }
 
     .toast.show {
       opacity: 1;
-
       visibility: visible;
 
-      transform:
-        translate(-50%, 0);
-    }
-
-    /* =========================================
-       MOBILE NAV
-    ========================================= */
-
-    .mobile-bottom-nav {
-      display: none;
+      transform: translate(-50%, 0);
     }
 
     /* =========================================
@@ -1298,7 +1175,6 @@
 
       .topbar {
         height: 58px;
-
         padding: 0 12px;
       }
 
@@ -1315,7 +1191,6 @@
         width: calc(100% - 18px);
 
         padding-top: 18px;
-
         padding-bottom: 20px;
       }
 
@@ -1349,36 +1224,47 @@
         font-size: 29px;
       }
 
-      .payment-options {
+      .accounts-grid {
         grid-template-columns: 1fr;
+
+        gap: 8px;
       }
 
-      .payment-option {
-        min-height: 78px;
+      .account-card {
+        min-height: 132px;
 
-        display: grid;
-
-        grid-template-columns: 34px 1fr;
-
-        column-gap: 10px;
-
-        align-items: center;
+        padding: 14px 15px;
       }
 
-      .option-icon {
-        margin: 0;
-
-        grid-row: span 2;
+      .account-balance-label {
+        margin-top: 13px;
       }
 
-      .payments-grid {
+      .account-balance {
+        font-size: 19px;
+      }
+
+      .quick-heading,
+      .quick-actions {
+        display: none;
+      }
+
+      .transfer-card {
+        padding: 13px;
+      }
+
+      .dashboard-grid {
         grid-template-columns: 1fr;
 
         gap: 10px;
       }
 
-      .source-card {
-        padding: 13px;
+      .inheritance-card {
+        align-items: flex-start;
+      }
+
+      .inheritance-card .secondary-btn {
+        align-self: center;
       }
 
       .mobile-bottom-nav {
@@ -1400,20 +1286,15 @@
           8px
           calc(6px + env(safe-area-inset-bottom));
 
-        background:
-          rgba(255,255,255,.97);
+        background: rgba(255,255,255,.97);
 
         backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
 
-        -webkit-backdrop-filter:
-          blur(14px);
-
-        border-top:
-          1px solid var(--border);
+        border-top: 1px solid var(--border);
 
         box-shadow:
-          0 -5px 18px
-          rgba(11,35,66,.07);
+          0 -5px 18px rgba(11,35,66,.07);
 
         z-index: 1050;
       }
@@ -1424,7 +1305,6 @@
         flex-direction: column;
 
         align-items: center;
-
         justify-content: center;
 
         gap: 3px;
@@ -1432,7 +1312,6 @@
         color: #718096;
 
         font-size: 8px;
-
         font-weight: 700;
       }
 
@@ -1454,8 +1333,7 @@
 
         border-radius: 50%;
 
-        border:
-          4px solid var(--bg);
+        border: 4px solid var(--bg);
 
         background:
           linear-gradient(
@@ -1467,15 +1345,13 @@
         color: #fff;
 
         display: flex;
-
         align-items: center;
         justify-content: center;
 
         font-size: 18px;
 
         box-shadow:
-          0 7px 18px
-          rgba(23,105,170,.24);
+          0 7px 18px rgba(23,105,170,.24);
       }
 
       .bottom-deposit span:last-child {
@@ -1484,10 +1360,8 @@
         color: var(--navy);
 
         font-size: 8px;
-
         font-weight: 800;
       }
-
     }
 
     @media (max-width: 390px) {
@@ -1508,17 +1382,18 @@
         font-size: 27px;
       }
 
+      .account-card {
+        padding: 13px 14px;
+      }
+
+      .transfer-text {
+        max-width: 165px;
+      }
     }
-
   </style>
-
 </head>
 
 <body>
-
-  <!-- =========================================
-       HEADER
-  ========================================= -->
 
   <header class="topbar">
 
@@ -1533,10 +1408,7 @@
         <i class="fa-solid fa-bars"></i>
       </button>
 
-      <a
-        href="dashboard.html"
-        class="brand"
-      >
+      <a href="dashboard.html" class="brand">
 
         <span class="brand-mark">
           FM
@@ -1558,11 +1430,9 @@
         onclick="location.href='notifications.html'"
         aria-label="Notifications"
       >
-
         <i class="fa-regular fa-bell"></i>
 
         <span class="notification-dot"></span>
-
       </button>
 
       <button
@@ -1571,25 +1441,17 @@
         onclick="location.href='account.html'"
         aria-label="Account"
       >
-
         <i class="fa-regular fa-user"></i>
-
       </button>
 
     </div>
 
   </header>
 
-
-  <!-- =========================================
-       MENU
-  ========================================= -->
-
   <div
     class="menu-overlay"
     id="menuOverlay"
   ></div>
-
 
   <aside
     class="side-menu"
@@ -1624,13 +1486,10 @@
         type="button"
         aria-label="Close menu"
       >
-
         <i class="fa-solid fa-xmark"></i>
-
       </button>
 
     </div>
-
 
     <div class="menu-scroll">
 
@@ -1640,270 +1499,160 @@
 
       <a
         href="dashboard.html"
-        class="menu-link"
+        class="menu-link active"
       >
-
         <i class="fa-solid fa-house"></i>
-
-        <span>
-          Dashboard
-        </span>
-
+        <span>Dashboard</span>
       </a>
-
 
       <a
         href="account.html"
         class="menu-link"
       >
-
         <i class="fa-regular fa-user"></i>
-
-        <span>
-          Account
-        </span>
-
+        <span>Account</span>
       </a>
-
 
       <div class="menu-section">
         Move Money
       </div>
 
-
       <a
         href="send-money.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-paper-plane"></i>
-
-        <span>
-          Send Money
-        </span>
-
+        <span>Send Money</span>
       </a>
-
 
       <a
         href="zelle.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-bolt"></i>
-
-        <span>
-          Zelle
-        </span>
-
+        <span>Zelle</span>
       </a>
-
 
       <a
         href="add-money.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-circle-plus"></i>
-
-        <span>
-          Add Money
-        </span>
-
+        <span>Add Money</span>
       </a>
-
 
       <a
         href="withdraw.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-arrow-up-from-bracket"></i>
-
-        <span>
-          Withdraw
-        </span>
-
+        <span>Withdraw</span>
       </a>
-
 
       <a
         href="transfer.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-arrow-right-arrow-left"></i>
-
-        <span>
-          Transfer
-        </span>
-
+        <span>Transfer</span>
       </a>
-
 
       <a
         href="mobile-deposit.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-mobile-screen-button"></i>
-
-        <span>
-          Mobile Deposit
-        </span>
-
+        <span>Mobile Deposit</span>
       </a>
-
 
       <div class="menu-section">
         Payments
       </div>
 
-
       <a
         href="payments.html"
-        class="menu-link active"
+        class="menu-link"
       >
-
         <i class="fa-regular fa-credit-card"></i>
-
-        <span>
-          Payments
-        </span>
-
+        <span>Payments</span>
       </a>
-
 
       <a
         href="cards.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-credit-card"></i>
-
-        <span>
-          Cards
-        </span>
-
+        <span>Cards</span>
       </a>
-
 
       <div class="menu-section">
         Activity
       </div>
 
-
       <a
         href="transactions.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-clock-rotate-left"></i>
-
-        <span>
-          Transactions
-        </span>
-
+        <span>Transactions</span>
       </a>
-
 
       <a
         href="statements.html"
         class="menu-link"
       >
-
         <i class="fa-regular fa-file-lines"></i>
-
-        <span>
-          Statements
-        </span>
-
+        <span>Statements</span>
       </a>
-
 
       <a
         href="notifications.html"
         class="menu-link"
       >
-
         <i class="fa-regular fa-bell"></i>
-
-        <span>
-          Notifications
-        </span>
-
+        <span>Notifications</span>
       </a>
-
 
       <div class="menu-section">
         Support & Security
       </div>
 
-
       <a
         href="support.html"
         class="menu-link"
       >
-
         <i class="fa-regular fa-circle-question"></i>
-
-        <span>
-          Support
-        </span>
-
+        <span>Support</span>
       </a>
-
 
       <a
         href="security.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-shield-halved"></i>
-
-        <span>
-          Security
-        </span>
-
+        <span>Security</span>
       </a>
-
 
       <a
         href="settings.html"
         class="menu-link"
       >
-
         <i class="fa-solid fa-gear"></i>
-
-        <span>
-          Settings
-        </span>
-
+        <span>Settings</span>
       </a>
-
 
       <a
         href="#"
         class="menu-link logout"
         id="logoutBtn"
       >
-
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
-
-        <span>
-          Log Out
-        </span>
-
+        <span>Log Out</span>
       </a>
 
     </div>
 
   </aside>
-
-
-  <!-- =========================================
-       MAIN
-  ========================================= -->
 
   <main class="page">
 
@@ -1913,7 +1662,7 @@
         class="welcome-title"
         id="welcomeName"
       >
-        Payments
+        Welcome back
       </h1>
 
       <div
@@ -1923,9 +1672,6 @@
 
     </section>
 
-
-    <!-- BALANCE -->
-
     <section class="balance-card">
 
       <div class="balance-top">
@@ -1934,243 +1680,437 @@
           Total balance
         </span>
 
+        <button
+          class="visibility-btn"
+          id="balanceVisibility"
+          type="button"
+          aria-label="Hide balance"
+        >
+          <i class="fa-regular fa-eye"></i>
+        </button>
+
       </div>
 
       <div
-        class="total-balance"
+        class="total-balance balance-value"
         id="totalBalance"
       >
-        Loading...
-      </div>
-
-      <div
-        class="balance-account-label"
-        id="balanceAccountLabel"
-      >
-        Available across your accounts
+        ••••••••
       </div>
 
       <div class="balance-sub">
-        Payments are deducted from your primary account.
+        Across your First Merit accounts
       </div>
 
     </section>
-
-
-    <!-- PAYMENT OPTIONS -->
 
     <div class="section-heading">
 
       <h2>
-        Make a Payment
+        Accounts
+      </h2>
+
+      <a href="account.html">
+        View all
+      </a>
+
+    </div>
+
+    <section class="accounts-grid">
+
+      <article class="account-card checking">
+
+        <div class="account-card-top">
+
+          <div class="account-heading">
+
+            <div
+              class="account-name"
+              id="checkingAccountName"
+            >
+              Checking
+            </div>
+
+            <div
+              class="account-number"
+              id="checkingNumber"
+            >
+              •••• ••••
+            </div>
+
+          </div>
+
+          <div class="account-type-icon">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+          </div>
+
+        </div>
+
+        <div class="account-balance-label">
+          Available balance
+        </div>
+
+        <div
+          class="account-balance balance-value"
+          id="checkingBalance"
+        >
+          ••••••••
+        </div>
+
+        <div class="account-bottom">
+
+          <span class="account-status">
+
+            <span class="status-dot"></span>
+
+            Active
+
+          </span>
+
+          <a
+            href="account.html"
+            class="account-details-link"
+          >
+            Details
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+      <article class="account-card savings">
+
+        <div class="account-card-top">
+
+          <div class="account-heading">
+
+            <div class="account-name">
+              Savings
+            </div>
+
+            <div
+              class="account-number"
+              id="savingsNumber"
+            >
+              •••• ••••
+            </div>
+
+          </div>
+
+          <div class="account-type-icon">
+
+            <i class="fa-solid fa-piggy-bank"></i>
+
+          </div>
+
+        </div>
+
+        <div class="account-balance-label">
+          Available balance
+        </div>
+
+        <div
+          class="account-balance balance-value"
+          id="savingsBalance"
+        >
+          ••••••••
+        </div>
+
+        <div class="account-bottom">
+
+          <span class="account-status">
+
+            <span class="status-dot"></span>
+
+            Active
+
+          </span>
+
+          <a
+            href="account.html"
+            class="account-details-link"
+          >
+            Details
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+      <article class="account-card ira">
+
+        <div class="account-card-top">
+
+          <div class="account-heading">
+
+            <div
+              class="account-name"
+              id="retirementAccountName"
+            >
+              IRA
+            </div>
+
+            <div
+              class="account-number"
+              id="iraNumber"
+            >
+              •••• ••••
+            </div>
+
+          </div>
+
+          <div class="account-type-icon">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+          </div>
+
+        </div>
+
+        <div class="account-balance-label">
+          Current balance
+        </div>
+
+        <div
+          class="account-balance balance-value"
+          id="iraBalance"
+        >
+          ••••••••
+        </div>
+
+        <div class="account-bottom">
+
+          <span class="account-status">
+
+            <span class="status-dot"></span>
+
+            Active
+
+          </span>
+
+          <a
+            href="account.html"
+            class="account-details-link"
+          >
+            Details
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <div class="section-heading quick-heading">
+
+      <h2>
+        Quick actions
       </h2>
 
     </div>
 
+    <section class="quick-actions">
 
-    <section class="payment-options">
-
-      <button
-        class="payment-option"
-        id="billPaymentBtn"
-        type="button"
+      <a
+        href="send-money.html"
+        class="quick-action"
       >
+        <i class="fa-solid fa-paper-plane"></i>
+        <span>Send</span>
+      </a>
 
-        <div class="option-icon">
-
-          <i class="fa-solid fa-file-invoice-dollar"></i>
-
-        </div>
-
-        <div>
-
-          <strong>
-            Pay a Bill
-          </strong>
-
-          <span>
-            Make a payment to a company or service provider.
-          </span>
-
-        </div>
-
-      </button>
-
-
-      <button
-        class="payment-option"
-        id="payeePaymentBtn"
-        type="button"
+      <a
+        href="zelle.html"
+        class="quick-action"
       >
+        <i class="fa-solid fa-bolt"></i>
+        <span>Zelle</span>
+      </a>
 
-        <div class="option-icon">
-
-          <i class="fa-solid fa-user-check"></i>
-
-        </div>
-
-        <div>
-
-          <strong>
-            Pay a Payee
-          </strong>
-
-          <span>
-            Send a payment to one of your saved payees.
-          </span>
-
-        </div>
-
-      </button>
-
-
-      <button
-        class="payment-option"
-        id="addPayeeBtn"
-        type="button"
+      <a
+        href="add-money.html"
+        class="quick-action"
       >
+        <i class="fa-solid fa-circle-plus"></i>
+        <span>Add Money</span>
+      </a>
 
-        <div class="option-icon">
+      <a
+        href="withdraw.html"
+        class="quick-action"
+      >
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        <span>Withdraw</span>
+      </a>
 
-          <i class="fa-solid fa-user-plus"></i>
-
-        </div>
-
-        <div>
-
-          <strong>
-            Add Payee
-          </strong>
-
-          <span>
-            Add a company or recipient for future payments.
-          </span>
-
-        </div>
-
-      </button>
+      <a
+        href="transfer.html"
+        class="quick-action"
+      >
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        <span>Transfer</span>
+      </a>
 
     </section>
 
+    <div class="section-heading">
 
-    <!-- PRIMARY PAYMENT ACCOUNT -->
+      <h2>
+        Transfer between accounts
+      </h2>
 
-    <section class="source-card">
+    </div>
 
-      <div class="source-left">
+    <section class="transfer-card">
 
-        <div class="source-icon">
+      <div class="transfer-left">
 
-          <i class="fa-solid fa-building-columns"></i>
+        <div class="transfer-icon">
+
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
 
         </div>
 
         <div>
 
-          <div
-            class="source-title"
-            id="sourceAccountName"
-          >
-            Checking
+          <div class="transfer-title">
+            Move money between your accounts
           </div>
 
-          <div class="source-text">
-            Primary payment account
+          <div class="transfer-text">
+            Transfer funds quickly and securely.
           </div>
 
         </div>
 
       </div>
 
-      <div
-        class="source-balance"
-        id="sourceBalance"
+      <a
+        href="transfer.html"
+        class="primary-btn"
       >
-        Loading...
-      </div>
+        Transfer
+      </a>
 
     </section>
 
-
-    <!-- PAYEES + HISTORY -->
-
-    <section class="payments-grid">
-
-
-      <!-- SAVED PAYEES -->
+    <section class="dashboard-grid">
 
       <div class="panel">
 
         <div class="panel-header">
 
           <span class="panel-title">
-            Saved Payees
+            Recent transactions
           </span>
 
-          <button
-            class="panel-action"
-            id="headerAddPayeeBtn"
-            type="button"
-            aria-label="Add payee"
+          <a
+            href="transactions.html"
+            class="panel-link"
           >
-
-            <i class="fa-solid fa-plus"></i>
-
-          </button>
+            View all
+          </a>
 
         </div>
 
-        <div
-          class="payee-list"
-          id="payeeList"
-        >
-
-          <div class="empty-state">
-
-            <i class="fa-solid fa-users"></i>
-
-            No saved payees yet.
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- PAYMENT HISTORY -->
-
-      <div class="panel">
-
-        <div class="panel-header">
-
-          <span class="panel-title">
-            Payment History
-          </span>
-
-          <button
-            class="panel-action"
-            id="refreshPaymentsBtn"
-            type="button"
-            aria-label="Refresh payments"
-          >
-
-            <i class="fa-solid fa-rotate"></i>
-
-          </button>
-
-        </div>
-
-        <div
-          class="payment-history"
-          id="paymentHistory"
-        >
+        <div id="transactionsList">
 
           <div class="empty-state">
 
             <i class="fa-regular fa-clock"></i>
 
-            Loading payments...
+            Loading transactions...
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <span class="panel-title">
+            Account details
+          </span>
+
+          <a
+            href="account.html"
+            class="panel-link"
+          >
+            Manage
+          </a>
+
+        </div>
+
+        <div class="account-details">
+
+          <div class="detail-row">
+
+            <span
+              class="detail-label"
+              id="primaryAccountLabel"
+            >
+              Primary account
+            </span>
+
+            <span
+              class="detail-value"
+              id="primaryAccountValue"
+            >
+              Checking
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Account number
+            </span>
+
+            <span
+              class="detail-value"
+              id="detailAccountNumber"
+            >
+              ••••••••
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span
+              class="detail-label"
+              id="routingNumberLabel"
+            >
+              Routing number
+            </span>
+
+            <span
+              class="detail-value"
+              id="routingNumber"
+            >
+              •••••••••
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Account status
+            </span>
+
+            <span class="detail-value">
+              Active
+            </span>
 
           </div>
 
@@ -2180,18 +2120,46 @@
 
     </section>
 
+    <section class="inheritance-card">
+
+      <div class="inheritance-left">
+
+        <div class="inheritance-icon">
+
+          <i class="fa-solid fa-people-arrows"></i>
+
+        </div>
+
+        <div>
+
+          <div class="inheritance-title">
+            Inheritance & beneficiary
+          </div>
+
+          <div class="inheritance-text">
+            Review your inheritance information and beneficiary details.
+          </div>
+
+        </div>
+
+      </div>
+
+      <a
+        href="inheritance.html"
+        class="secondary-btn"
+      >
+        View information
+      </a>
+
+    </section>
+
   </main>
-
-
-  <!-- =========================================
-       MOBILE NAV
-  ========================================= -->
 
   <nav class="mobile-bottom-nav">
 
     <a
       href="dashboard.html"
-      class="bottom-item"
+      class="bottom-item active"
     >
 
       <i class="fa-solid fa-house"></i>
@@ -2201,7 +2169,6 @@
       </span>
 
     </a>
-
 
     <a
       href="transfer.html"
@@ -2215,7 +2182,6 @@
       </span>
 
     </a>
-
 
     <a
       href="mobile-deposit.html"
@@ -2234,10 +2200,9 @@
 
     </a>
 
-
     <a
       href="payments.html"
-      class="bottom-item active"
+      class="bottom-item"
     >
 
       <i class="fa-regular fa-credit-card"></i>
@@ -2250,793 +2215,181 @@
 
   </nav>
 
-
-  <!-- =========================================
-       BILL MODAL
-  ========================================= -->
-
-  <div
-    class="modal"
-    id="billModal"
-  >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <h3>
-          Pay a Bill
-        </h3>
-
-        <button
-          class="close-btn"
-          id="closeBillModal"
-          type="button"
-        >
-
-          <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-      </div>
-
-
-      <form id="billForm">
-
-        <div class="field">
-
-          <label>
-            Company / Service Provider
-          </label>
-
-          <input
-            type="text"
-            id="billCompany"
-            placeholder="Enter company name"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Account or Reference Number
-          </label>
-
-          <input
-            type="text"
-            id="billReference"
-            placeholder="Enter reference number"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Amount
-          </label>
-
-          <input
-            type="number"
-            id="billAmount"
-            min="0.01"
-            step="0.01"
-            placeholder="0.00"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Payment Date
-          </label>
-
-          <input
-            type="date"
-            id="billDate"
-            required
-          >
-
-        </div>
-
-
-        <button
-          class="primary-btn"
-          type="submit"
-        >
-          Review Payment
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       PAYEE PAYMENT MODAL
-  ========================================= -->
-
-  <div
-    class="modal"
-    id="payeeModal"
-  >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <h3>
-          Pay a Payee
-        </h3>
-
-        <button
-          class="close-btn"
-          id="closePayeeModal"
-          type="button"
-        >
-
-          <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-      </div>
-
-
-      <form id="payeePaymentForm">
-
-        <div class="field">
-
-          <label>
-            Select Payee
-          </label>
-
-          <select
-            id="paymentPayee"
-            required
-          >
-
-            <option value="">
-              Select a payee
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Amount
-          </label>
-
-          <input
-            type="number"
-            id="payeeAmount"
-            min="0.01"
-            step="0.01"
-            placeholder="0.00"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Payment Date
-          </label>
-
-          <input
-            type="date"
-            id="payeeDate"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Note
-          </label>
-
-          <input
-            type="text"
-            id="payeeNote"
-            placeholder="Optional note"
-          >
-
-        </div>
-
-
-        <button
-          class="primary-btn"
-          type="submit"
-        >
-          Review Payment
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       ADD PAYEE MODAL
-  ========================================= -->
-
-  <div
-    class="modal"
-    id="addPayeeModal"
-  >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <h3>
-          Add Payee
-        </h3>
-
-        <button
-          class="close-btn"
-          id="closeAddPayeeModal"
-          type="button"
-        >
-
-          <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-      </div>
-
-
-      <form id="addPayeeForm">
-
-        <div class="field">
-
-          <label>
-            Payee Name
-          </label>
-
-          <input
-            type="text"
-            id="newPayeeName"
-            placeholder="Company or recipient name"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Account / Reference Number
-          </label>
-
-          <input
-            type="text"
-            id="newPayeeReference"
-            placeholder="Enter account number"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Payee Type
-          </label>
-
-          <select id="newPayeeType">
-
-            <option value="Company">
-              Company
-            </option>
-
-            <option value="Person">
-              Person
-            </option>
-
-            <option value="Service">
-              Service Provider
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <button
-          class="primary-btn"
-          type="submit"
-        >
-          Save Payee
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       REVIEW MODAL
-  ========================================= -->
-
-  <div
-    class="modal"
-    id="reviewModal"
-  >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <h3>
-          Review Payment
-        </h3>
-
-        <button
-          class="close-btn"
-          id="closeReviewModal"
-          type="button"
-        >
-
-          <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-      </div>
-
-
-      <div class="review-box">
-
-        <div class="review-row">
-
-          <span>
-            Payment Type
-          </span>
-
-          <strong id="reviewType"></strong>
-
-        </div>
-
-
-        <div class="review-row">
-
-          <span>
-            Payee
-          </span>
-
-          <strong id="reviewPayee"></strong>
-
-        </div>
-
-
-        <div class="review-row">
-
-          <span>
-            Reference
-          </span>
-
-          <strong id="reviewReference"></strong>
-
-        </div>
-
-
-        <div class="review-row">
-
-          <span>
-            Amount
-          </span>
-
-          <strong id="reviewAmount"></strong>
-
-        </div>
-
-
-        <div class="review-row">
-
-          <span>
-            Payment Date
-          </span>
-
-          <strong id="reviewDate"></strong>
-
-        </div>
-
-      </div>
-
-
-      <button
-        class="primary-btn"
-        id="confirmPaymentBtn"
-        type="button"
-      >
-        Confirm Payment
-      </button>
-
-
-      <button
-        class="danger-btn"
-        id="cancelReviewBtn"
-        type="button"
-      >
-        Cancel
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       SUCCESS MODAL
-  ========================================= -->
-
-  <div
-    class="modal"
-    id="successModal"
-  >
-
-    <div class="modal-box">
-
-      <div style="
-        text-align:center;
-        padding:15px 0;
-      ">
-
-        <div style="
-          width:58px;
-          height:58px;
-          border-radius:50%;
-          background:#edf8f3;
-          color:#16845b;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          margin:0 auto 14px;
-          font-size:24px;
-        ">
-
-          <i class="fa-solid fa-check"></i>
-
-        </div>
-
-
-        <h3 style="
-          color:#0b2342;
-          font-size:18px;
-          margin-bottom:7px;
-        ">
-          Payment Completed
-        </h3>
-
-
-        <p style="
-          color:#687589;
-          font-size:10px;
-          line-height:1.5;
-        ">
-          Your payment has been recorded successfully.
-        </p>
-
-
-        <div
-          class="review-box"
-          style="
-            text-align:left;
-            margin-top:17px;
-          "
-        >
-
-          <div class="review-row">
-
-            <span>
-              Transaction ID
-            </span>
-
-            <strong
-              id="successTransactionId"
-            ></strong>
-
-          </div>
-
-
-          <div class="review-row">
-
-            <span>
-              Amount
-            </span>
-
-            <strong
-              id="successAmount"
-            ></strong>
-
-          </div>
-
-        </div>
-
-
-        <button
-          class="primary-btn"
-          id="doneSuccessBtn"
-          type="button"
-        >
-          Done
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
   <div
     class="toast"
     id="toast"
   ></div>
 
-
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================= -->
-
   <script type="module">
 
-    import {
-      auth,
-      db
-    } from "./firebase.js";
-
+    import { auth, db } from "./firebase.js";
 
     import {
       onAuthStateChanged,
       signOut
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
     import {
-      collection,
       doc,
       getDoc,
-      getDocs,
-      addDoc,
-      deleteDoc,
+      setDoc,
+      collection,
       query,
       orderBy,
       limit,
-      runTransaction,
-      serverTimestamp
+      getDocs
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-
     /* =========================================
-       DEFAULTS
+       DEFAULT BALANCES
     ========================================= */
 
     const DEFAULT_CHECKING = 1345000;
     const DEFAULT_SAVINGS = 56000;
     const DEFAULT_IRA = 250000;
 
-
     /* =========================================
        CURRENCY
+       Stored account balances remain USD-based.
+       Only the displayed value is converted.
     ========================================= */
 
     const CURRENCY_RATES = {
 
       USD: {
+        symbol: "$",
         rate: 1
       },
 
       GBP: {
+        symbol: "£",
         rate: 0.75
       },
 
       EUR: {
+        symbol: "€",
         rate: 0.85
       }
 
     };
 
-
     let selectedCurrency = "USD";
 
-
     /* =========================================
-       STATE
+       BALANCE LOADING STATE
     ========================================= */
 
-    let currentUser = null;
-
-    let checkingBalance = 0;
-
-    let savingsBalance = 0;
-
-    let iraBalance = 0;
-
-    let totalBalance = 0;
-
-    let pendingPayment = null;
-
+    let balancesVisible = true;
+    let balancesReady = false;
 
     /* =========================================
        ELEMENTS
     ========================================= */
 
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const closeMenu =
+      document.getElementById("closeMenu");
+
+    const sideMenu =
+      document.getElementById("sideMenu");
+
+    const menuOverlay =
+      document.getElementById("menuOverlay");
+
     const welcomeName =
-      document.getElementById(
-        "welcomeName"
-      );
+      document.getElementById("welcomeName");
 
     const currentDate =
-      document.getElementById(
-        "currentDate"
-      );
+      document.getElementById("currentDate");
 
-    const totalBalanceEl =
-      document.getElementById(
-        "totalBalance"
-      );
+    const totalBalance =
+      document.getElementById("totalBalance");
 
-    const sourceBalance =
-      document.getElementById(
-        "sourceBalance"
-      );
+    const checkingBalance =
+      document.getElementById("checkingBalance");
 
-    const sourceAccountName =
-      document.getElementById(
-        "sourceAccountName"
-      );
+    const savingsBalance =
+      document.getElementById("savingsBalance");
 
-    const balanceAccountLabel =
-      document.getElementById(
-        "balanceAccountLabel"
-      );
+    const iraBalance =
+      document.getElementById("iraBalance");
 
-    const payeeList =
-      document.getElementById(
-        "payeeList"
-      );
+    const checkingNumber =
+      document.getElementById("checkingNumber");
 
-    const paymentHistory =
-      document.getElementById(
-        "paymentHistory"
-      );
+    const savingsNumber =
+      document.getElementById("savingsNumber");
 
-    const paymentPayee =
-      document.getElementById(
-        "paymentPayee"
-      );
+    const iraNumber =
+      document.getElementById("iraNumber");
 
-    const toast =
-      document.getElementById(
-        "toast"
-      );
+    const detailAccountNumber =
+      document.getElementById("detailAccountNumber");
 
+    const routingNumber =
+      document.getElementById("routingNumber");
 
-    const billModal =
-      document.getElementById(
-        "billModal"
-      );
+    const routingNumberLabel =
+      document.getElementById("routingNumberLabel");
 
-    const payeeModal =
-      document.getElementById(
-        "payeeModal"
-      );
+    const checkingAccountName =
+      document.getElementById("checkingAccountName");
 
-    const addPayeeModal =
-      document.getElementById(
-        "addPayeeModal"
-      );
+    const primaryAccountValue =
+      document.getElementById("primaryAccountValue");
 
-    const reviewModal =
-      document.getElementById(
-        "reviewModal"
-      );
+    const retirementAccountName =
+      document.getElementById("retirementAccountName");
 
-    const successModal =
-      document.getElementById(
-        "successModal"
-      );
+    const transactionsList =
+      document.getElementById("transactionsList");
 
+    const balanceVisibility =
+      document.getElementById("balanceVisibility");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
 
     /* =========================================
        MENU
     ========================================= */
 
-    const menuBtn =
-      document.getElementById(
-        "menuBtn"
-      );
-
-    const closeMenu =
-      document.getElementById(
-        "closeMenu"
-      );
-
-    const sideMenu =
-      document.getElementById(
-        "sideMenu"
-      );
-
-    const menuOverlay =
-      document.getElementById(
-        "menuOverlay"
-      );
-
-
     function openMenu() {
 
-      sideMenu.classList.add(
-        "open"
-      );
+      sideMenu.classList.add("open");
 
-      menuOverlay.classList.add(
-        "open"
-      );
+      menuOverlay.classList.add("open");
 
-      document.body.style.overflow =
-        "hidden";
+      document.body.style.overflow = "hidden";
 
     }
-
 
     function closeSideMenu() {
 
-      sideMenu.classList.remove(
-        "open"
-      );
+      sideMenu.classList.remove("open");
 
-      menuOverlay.classList.remove(
-        "open"
-      );
+      menuOverlay.classList.remove("open");
 
-      document.body.style.overflow =
-        "";
+      document.body.style.overflow = "";
 
     }
-
 
     menuBtn.addEventListener(
       "click",
       openMenu
     );
 
-
     closeMenu.addEventListener(
       "click",
       closeSideMenu
     );
 
-
     menuOverlay.addEventListener(
       "click",
       closeSideMenu
     );
-
 
     /* =========================================
        DATE
@@ -3044,8 +2397,7 @@
 
     function showCurrentDate() {
 
-      const now =
-        new Date();
+      const now = new Date();
 
       currentDate.textContent =
         now.toLocaleDateString(
@@ -3060,55 +2412,85 @@
 
     }
 
+    /* =========================================
+       ACCOUNT / COUNTRY TERMINOLOGY
+    ========================================= */
 
-    function todayString() {
+    function updateCountryTerminology() {
 
-      const date =
-        new Date();
+      const isGBP =
+        selectedCurrency === "GBP";
 
-      const month =
-        String(
-          date.getMonth() + 1
-        ).padStart(2, "0");
+      /*
+       * USD:
+       * Checking
+       * IRA
+       * Routing number
+       *
+       * GBP:
+       * Current Account
+       * ISA
+       * Sort code
+       */
 
-      const day =
-        String(
-          date.getDate()
-        ).padStart(2, "0");
+      if (checkingAccountName) {
 
-      return (
-        `${date.getFullYear()}-${month}-${day}`
-      );
+        checkingAccountName.textContent =
+          isGBP
+            ? "Current Account"
+            : "Checking";
+
+      }
+
+      if (retirementAccountName) {
+
+        retirementAccountName.textContent =
+          isGBP
+            ? "ISA"
+            : "IRA";
+
+      }
+
+      if (primaryAccountValue) {
+
+        primaryAccountValue.textContent =
+          isGBP
+            ? "Current Account"
+            : "Checking";
+
+      }
+
+      if (routingNumberLabel) {
+
+        routingNumberLabel.textContent =
+          isGBP
+            ? "Sort code"
+            : "Routing number";
+
+      }
 
     }
-
-
-    document.getElementById(
-      "billDate"
-    ).value =
-      todayString();
-
-
-    document.getElementById(
-      "payeeDate"
-    ).value =
-      todayString();
-
 
     /* =========================================
        CURRENCY
     ========================================= */
 
+    function getCurrencyConfig() {
+
+      return (
+        CURRENCY_RATES[selectedCurrency] ||
+        CURRENCY_RATES.USD
+      );
+
+    }
+
     function formatCurrency(value) {
 
       const config =
-        CURRENCY_RATES[
-          selectedCurrency
-        ] ||
-        CURRENCY_RATES.USD;
+        getCurrencyConfig();
 
-      const converted =
-        Number(value || 0) *
+      const convertedValue =
+        (Number(value) || 0) *
         config.rate;
 
       return new Intl.NumberFormat(
@@ -3116,113 +2498,776 @@
         {
           style: "currency",
           currency: selectedCurrency,
-
           minimumFractionDigits: 2,
-
           maximumFractionDigits: 2
         }
       ).format(
-        converted
+        convertedValue
       );
 
     }
 
-
     /* =========================================
-       DATE FORMAT
+       ACCOUNT NUMBER
     ========================================= */
 
-    function formatDate(value) {
+    function generateAccountNumber(
+      uid,
+      offset = 0
+    ) {
 
-      if (!value) {
-        return "—";
+      const clean =
+        String(uid || "")
+          .replace(/[^0-9]/g, "");
+
+      let base =
+        clean.slice(-8);
+
+      while (base.length < 8) {
+        base = "0" + base;
       }
 
-      let date;
+      const number =
+        Number(base) + offset;
+
+      return String(number)
+        .padStart(8, "0")
+        .slice(-8);
+
+    }
+
+    function maskAccount(number) {
+
+      const clean =
+        String(number || "")
+          .replace(/\D/g, "");
+
+      if (!clean) {
+        return "•••• ••••";
+      }
+
+      return "•••• " + clean.slice(-4);
+
+    }
+
+    /* =========================================
+       HTML ESCAPE
+    ========================================= */
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+    /* =========================================
+       TRANSACTION DATE
+    ========================================= */
+
+    function transactionDate(value) {
 
       try {
 
+        if (!value) {
+          return "Recent";
+        }
+
         if (
-          typeof value.toDate ===
-          "function"
+          typeof value.toDate === "function"
         ) {
 
-          date =
-            value.toDate();
+          return value
+            .toDate()
+            .toLocaleDateString(
+              "en-US",
+              {
+                month: "short",
+                day: "numeric",
+                year: "numeric"
+              }
+            );
 
-        } else {
+        }
 
-          date =
-            new Date(value);
+        const date =
+          new Date(value);
+
+        if (
+          !Number.isNaN(
+            date.getTime()
+          )
+        ) {
+
+          return date
+            .toLocaleDateString(
+              "en-US",
+              {
+                month: "short",
+                day: "numeric",
+                year: "numeric"
+              }
+            );
+
+        }
+
+      } catch (error) {}
+
+      return "Recent";
+
+    }
+
+    /* =========================================
+       TRANSACTION ICON
+    ========================================= */
+
+    function transactionIcon(type) {
+
+      const value =
+        String(type || "")
+          .toLowerCase();
+
+      if (
+        value.includes("deposit") ||
+        value.includes("credit") ||
+        value.includes("add")
+      ) {
+
+        return "fa-arrow-down";
+
+      }
+
+      if (
+        value.includes("withdraw") ||
+        value.includes("debit") ||
+        value.includes("send")
+      ) {
+
+        return "fa-arrow-up";
+
+      }
+
+      if (
+        value.includes("transfer")
+      ) {
+
+        return "fa-arrow-right-arrow-left";
+
+      }
+
+      return "fa-receipt";
+
+    }
+
+    /* =========================================
+       TRANSACTIONS
+    ========================================= */
+
+    async function loadTransactions(uid) {
+
+      try {
+
+        const transactionsRef =
+          collection(
+            db,
+            "users",
+            uid,
+            "transactions"
+          );
+
+        const transactionsQuery =
+          query(
+            transactionsRef,
+            orderBy(
+              "createdAt",
+              "desc"
+            ),
+            limit(3)
+          );
+
+        const snapshot =
+          await getDocs(
+            transactionsQuery
+          );
+
+        if (snapshot.empty) {
+
+          transactionsList.innerHTML = `
+
+            <div class="empty-state">
+
+              <i class="fa-regular fa-clock"></i>
+
+              No recent transactions
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+        let html = "";
+
+        snapshot.forEach(
+          (transactionDoc) => {
+
+            const data =
+              transactionDoc.data();
+
+            const amount =
+              Number(
+                data.amount ??
+                data.value ??
+                0
+              );
+
+            const transactionType =
+              String(
+                data.type ||
+                data.direction ||
+                ""
+              ).toLowerCase();
+
+            const isCredit =
+              transactionType.includes(
+                "credit"
+              ) ||
+              transactionType.includes(
+                "deposit"
+              );
+
+            const name =
+              data.description ||
+              data.name ||
+              data.merchant ||
+              data.title ||
+              "Transaction";
+
+            html += `
+
+              <div class="transaction">
+
+                <div class="transaction-icon">
+
+                  <i class="fa-solid ${transactionIcon(
+                    data.type
+                  )}"></i>
+
+                </div>
+
+                <div class="transaction-main">
+
+                  <div class="transaction-name">
+
+                    ${escapeHtml(name)}
+
+                  </div>
+
+                  <div class="transaction-date">
+
+                    ${transactionDate(
+                      data.createdAt
+                    )}
+
+                  </div>
+
+                </div>
+
+                <div class="transaction-amount ${
+                  isCredit
+                    ? "credit"
+                    : "debit"
+                }">
+
+                  ${isCredit ? "+" : "-"}
+
+                  ${formatCurrency(
+                    Math.abs(amount)
+                  )}
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        );
+
+        transactionsList.innerHTML =
+          html;
+
+      } catch (error) {
+
+        console.error(
+          "Transaction loading error:",
+          error
+        );
+
+        transactionsList.innerHTML = `
+
+          <div class="empty-state">
+
+            <i class="fa-regular fa-clock"></i>
+
+            No recent transactions
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+    /* =========================================
+       LOAD DASHBOARD
+    ========================================= */
+
+    async function loadDashboard(user) {
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          user.uid
+        );
+
+      let userData = {};
+
+      try {
+
+        const snapshot =
+          await getDoc(userRef);
+
+        if (snapshot.exists()) {
+
+          userData =
+            snapshot.data();
 
         }
 
       } catch (error) {
 
-        return "—";
+        console.error(
+          "User data error:",
+          error
+        );
+
+      }
+
+      /* ---------------------------------------
+         USER NAME
+      --------------------------------------- */
+
+      const displayName =
+        userData.fullName ||
+        userData.name ||
+        userData.displayName ||
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "Customer";
+
+      welcomeName.textContent =
+        `Welcome back, ${displayName}`;
+
+      /* ---------------------------------------
+         CURRENCY
+      --------------------------------------- */
+
+      const savedCurrency =
+        String(
+          userData.currency ||
+          "USD"
+        ).toUpperCase();
+
+      if (
+        CURRENCY_RATES[savedCurrency]
+      ) {
+
+        selectedCurrency =
+          savedCurrency;
+
+      } else {
+
+        selectedCurrency =
+          "USD";
+
+      }
+
+      /* ---------------------------------------
+         UPDATE COUNTRY-SPECIFIC WORDING
+      --------------------------------------- */
+
+      updateCountryTerminology();
+
+      /* ---------------------------------------
+         BALANCES
+      --------------------------------------- */
+
+      const checking =
+        Number(
+          userData.checkingBalance ??
+          userData.checking ??
+          DEFAULT_CHECKING
+        );
+
+      const savings =
+        Number(
+          userData.savingsBalance ??
+          userData.savings ??
+          DEFAULT_SAVINGS
+        );
+
+      const ira =
+        Number(
+          userData.iraBalance ??
+          userData.ira ??
+          DEFAULT_IRA
+        );
+
+      const total =
+        checking +
+        savings +
+        ira;
+
+      /* ---------------------------------------
+         FORMAT BALANCES AFTER CURRENCY LOAD
+      --------------------------------------- */
+
+      const formattedChecking =
+        formatCurrency(checking);
+
+      const formattedSavings =
+        formatCurrency(savings);
+
+      const formattedIra =
+        formatCurrency(ira);
+
+      const formattedTotal =
+        formatCurrency(total);
+
+      /* ---------------------------------------
+         SAVE REAL VALUES FOR VISIBILITY
+      --------------------------------------- */
+
+      checkingBalance.dataset.realValue =
+        formattedChecking;
+
+      savingsBalance.dataset.realValue =
+        formattedSavings;
+
+      iraBalance.dataset.realValue =
+        formattedIra;
+
+      totalBalance.dataset.realValue =
+        formattedTotal;
+
+      /* ---------------------------------------
+         DISPLAY BALANCES
+      --------------------------------------- */
+
+      if (balancesVisible) {
+
+        checkingBalance.textContent =
+          formattedChecking;
+
+        savingsBalance.textContent =
+          formattedSavings;
+
+        iraBalance.textContent =
+          formattedIra;
+
+        totalBalance.textContent =
+          formattedTotal;
+
+      } else {
+
+        checkingBalance.textContent =
+          "••••••••";
+
+        savingsBalance.textContent =
+          "••••••••";
+
+        iraBalance.textContent =
+          "••••••••";
+
+        totalBalance.textContent =
+          "••••••••";
+
+      }
+
+      balancesReady = true;
+
+      /* ---------------------------------------
+         ACCOUNT NUMBERS
+      --------------------------------------- */
+
+      const generatedChecking =
+        userData.checkingAccountNumber ||
+        generateAccountNumber(
+          user.uid,
+          0
+        );
+
+      const generatedSavings =
+        userData.savingsAccountNumber ||
+        generateAccountNumber(
+          user.uid,
+          17
+        );
+
+      const generatedIra =
+        userData.iraAccountNumber ||
+        generateAccountNumber(
+          user.uid,
+          39
+        );
+
+      checkingNumber.textContent =
+        maskAccount(
+          generatedChecking
+        );
+
+      savingsNumber.textContent =
+        maskAccount(
+          generatedSavings
+        );
+
+      iraNumber.textContent =
+        maskAccount(
+          generatedIra
+        );
+
+      detailAccountNumber.textContent =
+        maskAccount(
+          generatedChecking
+        );
+
+      /* ---------------------------------------
+         ROUTING NUMBER
+      --------------------------------------- */
+
+      routingNumber.textContent =
+        userData.routingNumber ||
+        "•••••••••";
+
+      /* ---------------------------------------
+         SAVE MISSING DEFAULTS
+      --------------------------------------- */
+
+      const updates = {};
+
+      if (
+        userData.checkingBalance === undefined &&
+        userData.checking === undefined
+      ) {
+
+        updates.checkingBalance =
+          DEFAULT_CHECKING;
 
       }
 
       if (
-        Number.isNaN(
-          date.getTime()
-        )
+        userData.savingsBalance === undefined &&
+        userData.savings === undefined
       ) {
 
-        return "—";
+        updates.savingsBalance =
+          DEFAULT_SAVINGS;
 
       }
 
-      return date.toLocaleDateString(
-        "en-US",
-        {
-          month: "short",
-          day: "numeric",
-          year: "numeric"
+      if (
+        userData.iraBalance === undefined &&
+        userData.ira === undefined
+      ) {
+
+        updates.iraBalance =
+          DEFAULT_IRA;
+
+      }
+
+      if (
+        !userData.checkingAccountNumber
+      ) {
+
+        updates.checkingAccountNumber =
+          generatedChecking;
+
+      }
+
+      if (
+        !userData.savingsAccountNumber
+      ) {
+
+        updates.savingsAccountNumber =
+          generatedSavings;
+
+      }
+
+      if (
+        !userData.iraAccountNumber
+      ) {
+
+        updates.iraAccountNumber =
+          generatedIra;
+
+      }
+
+      if (
+        Object.keys(updates).length
+      ) {
+
+        try {
+
+          await setDoc(
+            userRef,
+            updates,
+            {
+              merge: true
+            }
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Could not save defaults:",
+            error
+          );
+
         }
+
+      }
+
+      await loadTransactions(
+        user.uid
       );
 
     }
 
-
     /* =========================================
-       ESCAPE HTML
+       BALANCE VISIBILITY
     ========================================= */
 
-    function escapeHtml(value) {
+    balanceVisibility.addEventListener(
+      "click",
+      () => {
 
-      return String(
-        value ?? ""
-      )
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
+        /* Do nothing while Firebase is loading */
+        if (!balancesReady) {
+          return;
+        }
+
+        balancesVisible =
+          !balancesVisible;
+
+        const elements =
+          document.querySelectorAll(
+            ".balance-value"
+          );
+
+        elements.forEach(
+          (element) => {
+
+            if (!element.dataset.realValue) {
+              return;
+            }
+
+            if (balancesVisible) {
+
+              element.textContent =
+                element.dataset.realValue;
+
+            } else {
+
+              element.textContent =
+                "••••••••";
+
+            }
+
+          }
         );
 
-    }
+        const icon =
+          balanceVisibility.querySelector(
+            "i"
+          );
 
+        if (balancesVisible) {
+
+          icon.className =
+            "fa-regular fa-eye";
+
+          balanceVisibility.setAttribute(
+            "aria-label",
+            "Hide balance"
+          );
+
+        } else {
+
+          icon.className =
+            "fa-regular fa-eye-slash";
+
+          balanceVisibility.setAttribute(
+            "aria-label",
+            "Show balance"
+          );
+
+        }
+
+      }
+    );
+
+    /* =========================================
+       LOGOUT
+    ========================================= */
+
+    logoutBtn.addEventListener(
+      "click",
+      async (event) => {
+
+        event.preventDefault();
+
+        try {
+
+          await signOut(auth);
+
+          location.href =
+            "login.html";
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+          showToast(
+            "Unable to log out right now."
+          );
+
+        }
+
+      }
+    );
 
     /* =========================================
        TOAST
     ========================================= */
 
     function showToast(message) {
+
+      const toast =
+        document.getElementById(
+          "toast"
+        );
 
       toast.textContent =
         message;
@@ -3239,1776 +3284,18 @@
           );
 
         },
-        2600
+        2500
       );
 
     }
 
-
     /* =========================================
-       MODALS
-    ========================================= */
-
-    function openModal(modal) {
-
-      modal.classList.add(
-        "show"
-      );
-
-    }
-
-
-    function closeModal(modal) {
-
-      modal.classList.remove(
-        "show"
-      );
-
-    }
-
-
-    /* =========================================
-       COUNTRY TERMINOLOGY
-    ========================================= */
-
-    function updateTerminology() {
-
-      const isGBP =
-        selectedCurrency === "GBP";
-
-
-      sourceAccountName.textContent =
-        isGBP
-          ? "Current Account"
-          : "Checking";
-
-
-      balanceAccountLabel.textContent =
-        isGBP
-          ? "Current account, savings and ISA"
-          : "Checking, savings and IRA";
-
-    }
-
-
-    /* =========================================
-       LOAD ACCOUNT
-    ========================================= */
-
-    async function loadAccount() {
-
-      if (!currentUser) {
-        return;
-      }
-
-
-      try {
-
-        const userRef =
-          doc(
-            db,
-            "users",
-            currentUser.uid
-          );
-
-
-        const snapshot =
-          await getDoc(
-            userRef
-          );
-
-
-        if (!snapshot.exists()) {
-
-          throw new Error(
-            "Account not found."
-          );
-
-        }
-
-
-        const data =
-          snapshot.data();
-
-
-        /* ---------------------------------------
-           NAME
-        --------------------------------------- */
-
-        const displayName =
-          data.fullName ||
-          data.name ||
-          data.displayName ||
-          currentUser.displayName ||
-          currentUser.email?.split("@")[0] ||
-          "Customer";
-
-
-        welcomeName.textContent =
-          `Welcome back, ${displayName}`;
-
-
-        /* ---------------------------------------
-           CURRENCY
-        --------------------------------------- */
-
-        const savedCurrency =
-          String(
-            data.currency ||
-            "USD"
-          ).toUpperCase();
-
-
-        if (
-          CURRENCY_RATES[
-            savedCurrency
-          ]
-        ) {
-
-          selectedCurrency =
-            savedCurrency;
-
-        } else {
-
-          selectedCurrency =
-            "USD";
-
-        }
-
-
-        updateTerminology();
-
-
-        /* ---------------------------------------
-           BALANCES
-        --------------------------------------- */
-
-        checkingBalance =
-          Number(
-            data.checkingBalance ??
-            data.checking ??
-            DEFAULT_CHECKING
-          );
-
-
-        savingsBalance =
-          Number(
-            data.savingsBalance ??
-            data.savings ??
-            DEFAULT_SAVINGS
-          );
-
-
-        iraBalance =
-          Number(
-            data.iraBalance ??
-            data.ira ??
-            DEFAULT_IRA
-          );
-
-
-        totalBalance =
-          checkingBalance +
-          savingsBalance +
-          iraBalance;
-
-
-        /* ---------------------------------------
-           DISPLAY
-        --------------------------------------- */
-
-        totalBalanceEl.textContent =
-          formatCurrency(
-            totalBalance
-          );
-
-
-        sourceBalance.textContent =
-          formatCurrency(
-            checkingBalance
-          );
-
-
-        /* ---------------------------------------
-           SAVE MISSING DEFAULTS
-        --------------------------------------- */
-
-        const updates = {};
-
-
-        if (
-          data.checkingBalance ===
-            undefined &&
-          data.checking ===
-            undefined
-        ) {
-
-          updates.checkingBalance =
-            DEFAULT_CHECKING;
-
-        }
-
-
-        if (
-          data.savingsBalance ===
-            undefined &&
-          data.savings ===
-            undefined
-        ) {
-
-          updates.savingsBalance =
-            DEFAULT_SAVINGS;
-
-        }
-
-
-        if (
-          data.iraBalance ===
-            undefined &&
-          data.ira ===
-            undefined
-        ) {
-
-          updates.iraBalance =
-            DEFAULT_IRA;
-
-        }
-
-
-        /*
-         * We intentionally do not
-         * overwrite existing balances.
-         */
-
-        if (
-          Object.keys(updates).length
-        ) {
-
-          try {
-
-            const {
-              setDoc
-            } = await import(
-              "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js"
-            );
-
-
-            await setDoc(
-              userRef,
-              updates,
-              {
-                merge: true
-              }
-            );
-
-          } catch (error) {
-
-            console.error(
-              "Default balance save error:",
-              error
-            );
-
-          }
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Account loading error:",
-          error
-        );
-
-        showToast(
-          "Unable to load account."
-        );
-
-      }
-
-    }
-
-
-    /* =========================================
-       PAYEES
-    ========================================= */
-
-    async function loadPayees() {
-
-      if (!currentUser) {
-        return;
-      }
-
-
-      try {
-
-        const payeesRef =
-          collection(
-            db,
-            "users",
-            currentUser.uid,
-            "payees"
-          );
-
-
-        const snapshot =
-          await getDocs(
-            payeesRef
-          );
-
-
-        payeeList.innerHTML =
-          "";
-
-
-        paymentPayee.innerHTML =
-          `
-            <option value="">
-              Select a payee
-            </option>
-          `;
-
-
-        if (snapshot.empty) {
-
-          payeeList.innerHTML =
-            `
-              <div class="empty-state">
-
-                <i class="fa-solid fa-users"></i>
-
-                No saved payees yet.
-
-              </div>
-            `;
-
-          return;
-
-        }
-
-
-        snapshot.forEach(
-          payeeDoc => {
-
-            const payee =
-              payeeDoc.data();
-
-
-            const item =
-              document.createElement(
-                "div"
-              );
-
-
-            item.className =
-              "payee";
-
-
-            item.innerHTML =
-              `
-                <div class="payee-icon">
-
-                  <i class="fa-solid fa-building"></i>
-
-                </div>
-
-
-                <div class="payee-info">
-
-                  <strong>
-                    ${escapeHtml(
-                      payee.name
-                    )}
-                  </strong>
-
-                  <span>
-                    ${escapeHtml(
-                      payee.type ||
-                      "Payee"
-                    )}
-
-                    •
-
-                    ${escapeHtml(
-                      payee.reference ||
-                      ""
-                    )}
-                  </span>
-
-                </div>
-
-
-                <div class="payee-actions">
-
-                  <button
-                    class="small-btn pay-btn"
-                    data-id="${payeeDoc.id}"
-                    type="button"
-                    title="Pay"
-                  >
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                  </button>
-
-
-                  <button
-                    class="small-btn delete delete-payee"
-                    data-id="${payeeDoc.id}"
-                    type="button"
-                    title="Delete"
-                  >
-
-                    <i class="fa-solid fa-trash"></i>
-
-                  </button>
-
-                </div>
-              `;
-
-
-            payeeList.appendChild(
-              item
-            );
-
-
-            const option =
-              document.createElement(
-                "option"
-              );
-
-
-            option.value =
-              payeeDoc.id;
-
-
-            option.textContent =
-              `${payee.name} — ${payee.reference || ""}`;
-
-
-            paymentPayee.appendChild(
-              option
-            );
-
-          }
-        );
-
-
-        document
-          .querySelectorAll(
-            ".pay-btn"
-          )
-          .forEach(
-            button => {
-
-              button.addEventListener(
-                "click",
-                () => {
-
-                  paymentPayee.value =
-                    button.dataset.id;
-
-                  openModal(
-                    payeeModal
-                  );
-
-                }
-              );
-
-            }
-          );
-
-
-        document
-          .querySelectorAll(
-            ".delete-payee"
-          )
-          .forEach(
-            button => {
-
-              button.addEventListener(
-                "click",
-                async () => {
-
-                  try {
-
-                    await deleteDoc(
-                      doc(
-                        db,
-                        "users",
-                        currentUser.uid,
-                        "payees",
-                        button.dataset.id
-                      )
-                    );
-
-
-                    showToast(
-                      "Payee removed."
-                    );
-
-
-                    await loadPayees();
-
-                  } catch (error) {
-
-                    console.error(
-                      error
-                    );
-
-                    showToast(
-                      "Unable to remove payee."
-                    );
-
-                  }
-
-                }
-              );
-
-            }
-          );
-
-      } catch (error) {
-
-        console.error(
-          "Payee loading error:",
-          error
-        );
-
-        showToast(
-          "Unable to load payees."
-        );
-
-      }
-
-    }
-
-
-    /* =========================================
-       PAYMENT HISTORY
-    ========================================= */
-
-    async function loadPaymentHistory() {
-
-      if (!currentUser) {
-        return;
-      }
-
-
-      try {
-
-        const paymentsRef =
-          collection(
-            db,
-            "users",
-            currentUser.uid,
-            "payments"
-          );
-
-
-        const paymentsQuery =
-          query(
-            paymentsRef,
-            orderBy(
-              "createdAt",
-              "desc"
-            ),
-            limit(10)
-          );
-
-
-        const snapshot =
-          await getDocs(
-            paymentsQuery
-          );
-
-
-        paymentHistory.innerHTML =
-          "";
-
-
-        if (snapshot.empty) {
-
-          paymentHistory.innerHTML =
-            `
-              <div class="empty-state">
-
-                <i class="fa-regular fa-clock"></i>
-
-                No payments found.
-
-              </div>
-            `;
-
-          return;
-
-        }
-
-
-        snapshot.forEach(
-          paymentDoc => {
-
-            const payment =
-              paymentDoc.data();
-
-
-            const item =
-              document.createElement(
-                "div"
-              );
-
-
-            item.className =
-              "history-item";
-
-
-            item.innerHTML =
-              `
-                <div class="history-icon">
-
-                  <i class="fa-solid fa-file-invoice-dollar"></i>
-
-                </div>
-
-
-                <div class="history-info">
-
-                  <strong>
-                    ${escapeHtml(
-                      payment.payee ||
-                      "Payment"
-                    )}
-                  </strong>
-
-                  <span>
-                    ${escapeHtml(
-                      payment.type ||
-                      "Payment"
-                    )}
-
-                    •
-
-                    ${formatDate(
-                      payment.createdAt
-                    )}
-                  </span>
-
-                </div>
-
-
-                <div class="history-amount">
-
-                  -${formatCurrency(
-                    payment.amount
-                  )}
-
-                </div>
-              `;
-
-
-            paymentHistory.appendChild(
-              item
-            );
-
-          }
-        );
-
-      } catch (error) {
-
-        console.error(
-          "Payment history error:",
-          error
-        );
-
-
-        paymentHistory.innerHTML =
-          `
-            <div class="empty-state">
-
-              <i class="fa-regular fa-clock"></i>
-
-              No payments found.
-
-            </div>
-          `;
-
-      }
-
-    }
-
-
-    /* =========================================
-       REVIEW
-    ========================================= */
-
-    function prepareReview(
-      payment
-    ) {
-
-      pendingPayment =
-        payment;
-
-
-      document.getElementById(
-        "reviewType"
-      ).textContent =
-        payment.type;
-
-
-      document.getElementById(
-        "reviewPayee"
-      ).textContent =
-        payment.payee;
-
-
-      document.getElementById(
-        "reviewReference"
-      ).textContent =
-        payment.reference ||
-        "—";
-
-
-      document.getElementById(
-        "reviewAmount"
-      ).textContent =
-        formatCurrency(
-          payment.amount
-        );
-
-
-      document.getElementById(
-        "reviewDate"
-      ).textContent =
-        formatDate(
-          payment.date
-        );
-
-
-      closeModal(
-        billModal
-      );
-
-
-      closeModal(
-        payeeModal
-      );
-
-
-      openModal(
-        reviewModal
-      );
-
-    }
-
-
-    /* =========================================
-       PAYMENT OPTIONS
-    ========================================= */
-
-    document
-      .getElementById(
-        "billPaymentBtn"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          openModal(
-            billModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "payeePaymentBtn"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          openModal(
-            payeeModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "addPayeeBtn"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          openModal(
-            addPayeeModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "headerAddPayeeBtn"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          openModal(
-            addPayeeModal
-          );
-
-        }
-      );
-
-
-    /* =========================================
-       BILL FORM
-    ========================================= */
-
-    document
-      .getElementById(
-        "billForm"
-      )
-      .addEventListener(
-        "submit",
-        event => {
-
-          event.preventDefault();
-
-
-          const company =
-            document.getElementById(
-              "billCompany"
-            ).value.trim();
-
-
-          const reference =
-            document.getElementById(
-              "billReference"
-            ).value.trim();
-
-
-          const amount =
-            Number(
-              document.getElementById(
-                "billAmount"
-              ).value
-            );
-
-
-          const date =
-            document.getElementById(
-              "billDate"
-            ).value;
-
-
-          if (
-            !company ||
-            !reference ||
-            !Number.isFinite(amount) ||
-            amount <= 0
-          ) {
-
-            showToast(
-              "Enter valid payment details."
-            );
-
-            return;
-
-          }
-
-
-          if (
-            amount >
-            checkingBalance
-          ) {
-
-            showToast(
-              "Insufficient checking balance."
-            );
-
-            return;
-
-          }
-
-
-          prepareReview({
-
-            type:
-              "Bill Payment",
-
-            payee:
-              company,
-
-            reference:
-              reference,
-
-            amount:
-              amount,
-
-            date:
-              date
-
-          });
-
-        }
-      );
-
-
-    /* =========================================
-       PAYEE FORM
-    ========================================= */
-
-    document
-      .getElementById(
-        "payeePaymentForm"
-      )
-      .addEventListener(
-        "submit",
-        async event => {
-
-          event.preventDefault();
-
-
-          const payeeId =
-            paymentPayee.value;
-
-
-          const amount =
-            Number(
-              document.getElementById(
-                "payeeAmount"
-              ).value
-            );
-
-
-          const date =
-            document.getElementById(
-              "payeeDate"
-            ).value;
-
-
-          const note =
-            document.getElementById(
-              "payeeNote"
-            ).value.trim();
-
-
-          if (
-            !payeeId ||
-            !Number.isFinite(amount) ||
-            amount <= 0
-          ) {
-
-            showToast(
-              "Enter valid payment details."
-            );
-
-            return;
-
-          }
-
-
-          if (
-            amount >
-            checkingBalance
-          ) {
-
-            showToast(
-              "Insufficient checking balance."
-            );
-
-            return;
-
-          }
-
-
-          try {
-
-            const payeeRef =
-              doc(
-                db,
-                "users",
-                currentUser.uid,
-                "payees",
-                payeeId
-              );
-
-
-            const payeeSnap =
-              await getDoc(
-                payeeRef
-              );
-
-
-            if (
-              !payeeSnap.exists()
-            ) {
-
-              showToast(
-                "Payee could not be found."
-              );
-
-              return;
-
-            }
-
-
-            const payee =
-              payeeSnap.data();
-
-
-            prepareReview({
-
-              type:
-                "Payee Payment",
-
-              payee:
-                payee.name,
-
-              reference:
-                payee.reference,
-
-              amount:
-                amount,
-
-              date:
-                date,
-
-              note:
-                note,
-
-              payeeId:
-                payeeId
-
-            });
-
-          } catch (error) {
-
-            console.error(
-              error
-            );
-
-            showToast(
-              "Unable to load payee."
-            );
-
-          }
-
-        }
-      );
-
-
-    /* =========================================
-       ADD PAYEE
-    ========================================= */
-
-    document
-      .getElementById(
-        "addPayeeForm"
-      )
-      .addEventListener(
-        "submit",
-        async event => {
-
-          event.preventDefault();
-
-
-          const name =
-            document.getElementById(
-              "newPayeeName"
-            ).value.trim();
-
-
-          const reference =
-            document.getElementById(
-              "newPayeeReference"
-            ).value.trim();
-
-
-          const type =
-            document.getElementById(
-              "newPayeeType"
-            ).value;
-
-
-          if (
-            !name ||
-            !reference
-          ) {
-
-            showToast(
-              "Enter all required payee details."
-            );
-
-            return;
-
-          }
-
-
-          try {
-
-            await addDoc(
-              collection(
-                db,
-                "users",
-                currentUser.uid,
-                "payees"
-              ),
-              {
-
-                name:
-                  name,
-
-                reference:
-                  reference,
-
-                type:
-                  type,
-
-                createdAt:
-                  serverTimestamp()
-
-              }
-            );
-
-
-            document.getElementById(
-              "addPayeeForm"
-            ).reset();
-
-
-            closeModal(
-              addPayeeModal
-            );
-
-
-            await loadPayees();
-
-
-            showToast(
-              "Payee saved successfully."
-            );
-
-          } catch (error) {
-
-            console.error(
-              error
-            );
-
-            showToast(
-              "Unable to save payee."
-            );
-
-          }
-
-        }
-      );
-
-
-    /* =========================================
-       CONFIRM PAYMENT
-    ========================================= */
-
-    document
-      .getElementById(
-        "confirmPaymentBtn"
-      )
-      .addEventListener(
-        "click",
-        async () => {
-
-          if (
-            !currentUser ||
-            !pendingPayment
-          ) {
-
-            return;
-
-          }
-
-
-          const confirmButton =
-            document.getElementById(
-              "confirmPaymentBtn"
-            );
-
-
-          confirmButton.disabled =
-            true;
-
-
-          confirmButton.textContent =
-            "Processing...";
-
-
-          try {
-
-            const userRef =
-              doc(
-                db,
-                "users",
-                currentUser.uid
-              );
-
-
-            const paymentRef =
-              doc(
-                collection(
-                  db,
-                  "users",
-                  currentUser.uid,
-                  "payments"
-                )
-              );
-
-
-            const transactionRef =
-              doc(
-                collection(
-                  db,
-                  "users",
-                  currentUser.uid,
-                  "transactions"
-                )
-              );
-
-
-            await runTransaction(
-              db,
-              async transaction => {
-
-                const userSnap =
-                  await transaction.get(
-                    userRef
-                  );
-
-
-                if (
-                  !userSnap.exists()
-                ) {
-
-                  throw new Error(
-                    "Account not found."
-                  );
-
-                }
-
-
-                const userData =
-                  userSnap.data();
-
-
-                /*
-                 * Payments use the same
-                 * checkingBalance field
-                 * used by dashboard.html.
-                 */
-
-                const currentChecking =
-                  Number(
-                    userData.checkingBalance ??
-                    userData.checking ??
-                    0
-                  );
-
-
-                const amount =
-                  Number(
-                    pendingPayment.amount
-                  );
-
-
-                if (
-                  !Number.isFinite(
-                    amount
-                  ) ||
-                  amount <= 0
-                ) {
-
-                  throw new Error(
-                    "Invalid payment amount."
-                  );
-
-                }
-
-
-                if (
-                  amount >
-                  currentChecking
-                ) {
-
-                  throw new Error(
-                    "Insufficient checking balance."
-                  );
-
-                }
-
-
-                const newCheckingBalance =
-                  currentChecking -
-                  amount;
-
-
-                /*
-                 * Update the same field
-                 * used by dashboard.html.
-                 */
-
-                transaction.update(
-                  userRef,
-                  {
-
-                    checkingBalance:
-                      newCheckingBalance,
-
-                    updatedAt:
-                      serverTimestamp()
-
-                  }
-                );
-
-
-                /*
-                 * Payment record.
-                 */
-
-                transaction.set(
-                  paymentRef,
-                  {
-
-                    type:
-                      pendingPayment.type,
-
-                    payee:
-                      pendingPayment.payee,
-
-                    reference:
-                      pendingPayment.reference ||
-                      "",
-
-                    amount:
-                      amount,
-
-                    paymentDate:
-                      pendingPayment.date ||
-                      "",
-
-                    note:
-                      pendingPayment.note ||
-                      "",
-
-                    status:
-                      "completed",
-
-                    createdAt:
-                      serverTimestamp()
-
-                  }
-                );
-
-
-                /*
-                 * Dashboard transaction.
-                 */
-
-                transaction.set(
-                  transactionRef,
-                  {
-
-                    type:
-                      "payment",
-
-                    title:
-                      pendingPayment.type,
-
-                    description:
-                      pendingPayment.payee,
-
-                    amount:
-                      amount,
-
-                    direction:
-                      "debit",
-
-                    payee:
-                      pendingPayment.payee,
-
-                    reference:
-                      pendingPayment.reference ||
-                      "",
-
-                    status:
-                      "completed",
-
-                    createdAt:
-                      serverTimestamp()
-
-                  }
-                );
-
-              }
-            );
-
-
-            /*
-             * Update local balance.
-             */
-
-            checkingBalance -=
-              Number(
-                pendingPayment.amount
-              );
-
-
-            totalBalance =
-              checkingBalance +
-              savingsBalance +
-              iraBalance;
-
-
-            totalBalanceEl.textContent =
-              formatCurrency(
-                totalBalance
-              );
-
-
-            sourceBalance.textContent =
-              formatCurrency(
-                checkingBalance
-              );
-
-
-            /*
-             * Close review.
-             */
-
-            closeModal(
-              reviewModal
-            );
-
-
-            /*
-             * Success details.
-             */
-
-            document.getElementById(
-              "successTransactionId"
-            ).textContent =
-              transactionRef.id;
-
-
-            document.getElementById(
-              "successAmount"
-            ).textContent =
-              formatCurrency(
-                pendingPayment.amount
-              );
-
-
-            openModal(
-              successModal
-            );
-
-
-            pendingPayment =
-              null;
-
-
-            await loadPaymentHistory();
-
-          } catch (error) {
-
-            console.error(
-              "Payment error:",
-              error
-            );
-
-
-            showToast(
-              error.message ||
-              "Payment could not be completed."
-            );
-
-          } finally {
-
-            confirmButton.disabled =
-              false;
-
-
-            confirmButton.textContent =
-              "Confirm Payment";
-
-          }
-
-        }
-      );
-
-
-    /* =========================================
-       SUCCESS
-    ========================================= */
-
-    document
-      .getElementById(
-        "doneSuccessBtn"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          closeModal(
-            successModal
-          );
-
-
-          document.getElementById(
-            "billForm"
-          ).reset();
-
-
-          document.getElementById(
-            "payeePaymentForm"
-          ).reset();
-
-
-          document.getElementById(
-            "billDate"
-          ).value =
-            todayString();
-
-
-          document.getElementById(
-            "payeeDate"
-          ).value =
-            todayString();
-
-        }
-      );
-
-
-    /* =========================================
-       CLOSE BUTTONS
-    ========================================= */
-
-    document
-      .getElementById(
-        "closeBillModal"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          closeModal(
-            billModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "closePayeeModal"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          closeModal(
-            payeeModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "closeAddPayeeModal"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          closeModal(
-            addPayeeModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "closeReviewModal"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          closeModal(
-            reviewModal
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "cancelReviewBtn"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-          pendingPayment =
-            null;
-
-          closeModal(
-            reviewModal
-          );
-
-        }
-      );
-
-
-    /* =========================================
-       REFRESH
-    ========================================= */
-
-    document
-      .getElementById(
-        "refreshPaymentsBtn"
-      )
-      .addEventListener(
-        "click",
-        async () => {
-
-          const button =
-            document.getElementById(
-              "refreshPaymentsBtn"
-            );
-
-
-          button.disabled =
-            true;
-
-
-          try {
-
-            await loadAccount();
-
-            await loadPayees();
-
-            await loadPaymentHistory();
-
-
-            showToast(
-              "Payments refreshed."
-            );
-
-          } finally {
-
-            button.disabled =
-              false;
-
-          }
-
-        }
-      );
-
-
-    /* =========================================
-       CLOSE MODALS BY BACKDROP
-    ========================================= */
-
-    document
-      .querySelectorAll(
-        ".modal"
-      )
-      .forEach(
-        modal => {
-
-          modal.addEventListener(
-            "click",
-            event => {
-
-              if (
-                event.target ===
-                modal
-              ) {
-
-                closeModal(
-                  modal
-                );
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-
-    /* =========================================
-       LOGOUT
-    ========================================= */
-
-    document
-      .getElementById(
-        "logoutBtn"
-      )
-      .addEventListener(
-        "click",
-        async event => {
-
-          event.preventDefault();
-
-
-          try {
-
-            await signOut(
-              auth
-            );
-
-
-            location.href =
-              "login.html";
-
-          } catch (error) {
-
-            console.error(
-              error
-            );
-
-
-            showToast(
-              "Unable to log out right now."
-            );
-
-          }
-
-        }
-      );
-
-
-    /* =========================================
-       AUTH
+       AUTHENTICATION
     ========================================= */
 
     onAuthStateChanged(
       auth,
-      async user => {
+      async (user) => {
 
         if (!user) {
 
@@ -5019,19 +3306,11 @@
 
         }
 
-
-        currentUser =
-          user;
-
-
         showCurrentDate();
 
-
-        await loadAccount();
-
-        await loadPayees();
-
-        await loadPaymentHistory();
+        await loadDashboard(
+          user
+        );
 
       }
     );
