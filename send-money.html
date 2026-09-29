@@ -3740,57 +3740,30 @@
             },
             2200
           );
+          
+  } catch (error) {
 
-                } catch (error) {
+  console.error(
+    "TRANSFER ERROR:",
+    error
+  );
 
-          console.error(
-            "TRANSFER ERROR:",
-            error
-          );
+  let message =
+    `Transfer failed: ${error.code || "unknown"} — ${error.message || "Unknown error"}`;
 
-          let message =
-            "Transfer failed.";
+  showError(
+    message
+  );
 
-          if (
-            error.code ===
-            "permission-denied"
-          ) {
+  confirmButton.disabled =
+    false;
 
-            message =
-              "The transfer was rejected by Firestore security rules. Please try again.";
+  confirmButton.innerHTML =
+    "Confirm transfer";
 
-          } else if (
-            error.code ===
-            "failed-precondition"
-          ) {
-
-            message =
-              "The transfer could not be completed because the account information has changed.";
-
-          } else if (
-            error.message
-          ) {
-
-            message =
-              error.message;
-
-          }
-
-          showError(
-            message
-          );
-
-          confirmButton.disabled =
-            false;
-
-          confirmButton.innerHTML =
-            "Confirm transfer";
-
-        }
-
-      }
-    );
-
+    }  
+  }
+);
     /* =====================================
        INPUT CLEANUP
     ===================================== */
