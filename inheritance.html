@@ -124,7 +124,7 @@
       line-height: 1.5;
     }
 
-    /* STATUS HERO */
+    /* HERO */
 
     .hero {
       background: linear-gradient(135deg, #123b72, #19589e);
@@ -189,7 +189,7 @@
       margin-top: 5px;
     }
 
-    /* SETUP CARD */
+    /* SETUP */
 
     .setup-card {
       background: #ffffff;
@@ -310,7 +310,7 @@
     /* VERIFICATION */
 
     .verification-card {
-      background: #ffffff;
+      width: 100%;
       border: 1px solid #e6ebf2;
       border-radius: 21px;
       padding: 19px;
@@ -319,6 +319,25 @@
       gap: 14px;
       box-shadow: 0 5px 18px rgba(24,39,75,0.04);
       margin-bottom: 18px;
+      background: #ffffff;
+      text-align: left;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .verification-card.clickable {
+      cursor: pointer;
+    }
+
+    .verification-card.clickable:hover {
+      border-color: #cbd8e8;
+      box-shadow: 0 8px 24px rgba(24,39,75,0.08);
+    }
+
+    .verification-card.clickable:active {
+      transform: scale(0.99);
     }
 
     .verification-icon {
@@ -335,6 +354,7 @@
 
     .verification-content {
       flex: 1;
+      min-width: 0;
     }
 
     .verification-title {
@@ -354,6 +374,11 @@
       font-weight: 700;
       color: #b87510;
       white-space: nowrap;
+    }
+
+    .verification-arrow {
+      color: #9aa5b5;
+      font-size: 12px;
     }
 
     .edit-btn {
@@ -433,6 +458,105 @@
       background: #f1f5f9;
       color: #596579;
     }
+
+    /* WILL MODAL */
+
+    .will-intro {
+      background: #f4f7fb;
+      border: 1px solid #e5eaf1;
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 18px;
+    }
+
+    .will-intro-title {
+      color: #123b72;
+      font-size: 13px;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+
+    .will-intro-text {
+      color: #748095;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .requirement {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .requirement:last-child {
+      border-bottom: 0;
+    }
+
+    .requirement-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 11px;
+      background: #edf3fa;
+      color: #123b72;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .requirement-content {
+      flex: 1;
+    }
+
+    .requirement-title {
+      font-size: 13px;
+      font-weight: 750;
+      color: #253044;
+    }
+
+    .requirement-text {
+      color: #7f8a9b;
+      font-size: 11px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .requirement-badge {
+      display: inline-flex;
+      margin-top: 7px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #fff6e6;
+      color: #b87510;
+      font-size: 9px;
+      font-weight: 750;
+    }
+
+    .process-note {
+      margin-top: 17px;
+      padding: 13px;
+      border-radius: 13px;
+      background: #f8fafc;
+      color: #7b8798;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .acknowledge-btn {
+      width: 100%;
+      height: 50px;
+      border: 0;
+      border-radius: 14px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 18px;
+    }
+
+    /* FORM */
 
     .form-group {
       margin-bottom: 15px;
@@ -550,651 +674,700 @@
       .hero-amount {
         font-size: 28px;
       }
+
+      .verification-card {
+        padding: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <!-- HEADER -->
+  <!-- HEADER -->
 
-    <header class="topbar">
+  <header class="topbar">
 
-      <div class="topbar-left">
+    <div class="topbar-left">
 
-        <button class="back-btn" id="backBtn">
-          <i class="fa-solid fa-arrow-left"></i>
-        </button>
-
-        <div class="bank-brand">
-
-          <div class="bank-logo">
-            FM
-          </div>
-
-          <div>
-            <div class="bank-name">
-              First Merit Bank
-            </div>
-
-            <div class="page-title-small">
-              Inheritance
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <button class="header-btn" id="refreshBtn">
-        <i class="fa-solid fa-rotate-right"></i>
+      <button class="back-btn" id="backBtn">
+        <i class="fa-solid fa-arrow-left"></i>
       </button>
 
-    </header>
+      <div class="bank-brand">
 
+        <div class="bank-logo">
+          FM
+        </div>
 
-    <main class="content">
+        <div>
+          <div class="bank-name">
+            First Merit Bank
+          </div>
 
-      <div class="page-heading">
-
-        <h1>Inheritance</h1>
-
-        <p>
-          Manage your inheritance information and transfer details.
-        </p>
+          <div class="page-title-small">
+            Inheritance
+          </div>
+        </div>
 
       </div>
-
-
-      <!-- HERO -->
-
-      <section class="hero">
-
-        <div class="hero-top">
-
-          <div class="hero-icon">
-            <i class="fa-solid fa-landmark"></i>
-          </div>
-
-          <div class="hero-status" id="heroStatus">
-            <span class="hero-status-dot"></span>
-            Not Set
-          </div>
-
-        </div>
-
-        <div class="hero-label">
-          INHERITANCE VALUE
-        </div>
-
-        <div class="hero-amount" id="heroAmount">
-          —
-        </div>
-
-        <div class="hero-subtitle">
-          Inheritance information
-        </div>
-
-      </section>
-
-
-      <!-- SETUP -->
-
-      <section class="setup-card" id="setupCard">
-
-        <div class="setup-icon">
-          <i class="fa-solid fa-file-circle-plus"></i>
-        </div>
-
-        <h2>Set Inheritance Details</h2>
-
-        <p>
-          Add your inheritance information to view the amount,
-          receive date, and next of kin details associated
-          with your account.
-        </p>
-
-        <button class="primary-btn" id="setDetailsBtn">
-          Set Inheritance Details
-        </button>
-
-      </section>
-
-
-      <!-- DETAILS -->
-
-      <section class="details-section" id="detailsSection">
-
-        <div class="section-title">
-          Inheritance Information
-        </div>
-
-        <div class="details-card">
-
-          <div class="detail-row">
-
-            <div class="detail-icon">
-              <i class="fa-solid fa-dollar-sign"></i>
-            </div>
-
-            <div class="detail-content">
-
-              <div class="detail-label">
-                Inheritance Amount
-              </div>
-
-              <div class="detail-value amount-value"
-                   id="detailAmount">
-                —
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="detail-row">
-
-            <div class="detail-icon">
-              <i class="fa-solid fa-calendar-days"></i>
-            </div>
-
-            <div class="detail-content">
-
-              <div class="detail-label">
-                Receive Date
-              </div>
-
-              <div class="detail-value"
-                   id="detailReceiveDate">
-                —
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="detail-row">
-
-            <div class="detail-icon">
-              <i class="fa-solid fa-user"></i>
-            </div>
-
-            <div class="detail-content">
-
-              <div class="detail-label">
-                Next of Kin
-              </div>
-
-              <div class="detail-value"
-                   id="detailNextOfKin">
-                —
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="detail-row">
-
-            <div class="detail-icon">
-              <i class="fa-solid fa-right-left"></i>
-            </div>
-
-            <div class="detail-content">
-
-              <div class="detail-label">
-                Transfer Status
-              </div>
-
-              <div class="detail-value"
-                   id="detailTransferStatus">
-                —
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- VERIFICATION -->
-
-        <div class="section-title">
-          Verification
-        </div>
-
-        <div class="verification-card">
-
-          <div class="verification-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-
-          <div class="verification-content">
-
-            <div class="verification-title">
-              Account Verification
-            </div>
-
-            <div class="verification-text">
-              Review your inheritance verification status.
-            </div>
-
-          </div>
-
-          <div class="verification-status"
-               id="verificationStatus">
-            Required
-          </div>
-
-        </div>
-
-
-        <button class="edit-btn" id="editDetailsBtn">
-          <i class="fa-solid fa-pen"></i>
-          Update Inheritance Details
-        </button>
-
-      </section>
-
-    </main>
-
-  </div>
-
-
-  <!-- SET DETAILS MODAL -->
-
-  <div class="modal-overlay" id="detailsModal">
-
-    <div class="modal">
-
-      <div class="handle"></div>
-
-      <div class="modal-header">
-
-        <h2>Inheritance Details</h2>
-
-        <button class="close-btn" id="closeModal">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-      </div>
-
-
-      <form id="inheritanceForm">
-
-        <div class="form-group">
-
-          <label class="form-label">
-            Inheritance Amount
-          </label>
-
-          <input
-            type="number"
-            class="form-input"
-            id="amountInput"
-            value="250000"
-            min="0"
-            step="0.01"
-            required
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label class="form-label">
-            Receive Date
-          </label>
-
-          <input
-            type="date"
-            class="form-input"
-            id="receiveDateInput"
-            required
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label class="form-label">
-            Next of Kin
-          </label>
-
-          <input
-            type="text"
-            class="form-input readonly-input"
-            id="nextOfKinInput"
-            readonly
-          >
-
-          <div class="form-help">
-            Your account holder name is used as the next of kin.
-          </div>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="save-btn"
-          id="saveBtn"
-        >
-          Save Inheritance Details
-        </button>
-
-        <button
-          type="button"
-          class="cancel-btn"
-          id="cancelBtn"
-        >
-          Cancel
-        </button>
-
-      </form>
 
     </div>
 
+    <button class="header-btn" id="refreshBtn">
+      <i class="fa-solid fa-rotate-right"></i>
+    </button>
+
+  </header>
+
+
+  <main class="content">
+
+    <div class="page-heading">
+
+      <h1>Inheritance</h1>
+
+      <p>
+        Manage your inheritance information and transfer details.
+      </p>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-top">
+
+        <div class="hero-icon">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+
+        <div class="hero-status" id="heroStatus">
+          <span class="hero-status-dot"></span>
+          Not Set
+        </div>
+
+      </div>
+
+      <div class="hero-label">
+        INHERITANCE VALUE
+      </div>
+
+      <div class="hero-amount" id="heroAmount">
+        —
+      </div>
+
+      <div class="hero-subtitle">
+        Inheritance information
+      </div>
+
+    </section>
+
+
+    <!-- FIRST-TIME SETUP -->
+
+    <section class="setup-card" id="setupCard">
+
+      <div class="setup-icon">
+        <i class="fa-solid fa-file-circle-plus"></i>
+      </div>
+
+      <h2>Set Inheritance Details</h2>
+
+      <p>
+        Add your inheritance information to view the amount,
+        receive date, and next of kin details associated
+        with your account.
+      </p>
+
+      <button class="primary-btn" id="setDetailsBtn">
+        Set Inheritance Details
+      </button>
+
+    </section>
+
+
+    <!-- SAVED DETAILS -->
+
+    <section class="details-section" id="detailsSection">
+
+      <div class="section-title">
+        Inheritance Information
+      </div>
+
+      <div class="details-card">
+
+        <div class="detail-row">
+
+          <div class="detail-icon">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+
+          <div class="detail-content">
+
+            <div class="detail-label">
+              Inheritance Amount
+            </div>
+
+            <div class="detail-value amount-value"
+                 id="detailAmount">
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+          <div class="detail-icon">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+
+          <div class="detail-content">
+
+            <div class="detail-label">
+              Receive Date
+            </div>
+
+            <div class="detail-value"
+                 id="detailReceiveDate">
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+          <div class="detail-icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <div class="detail-content">
+
+            <div class="detail-label">
+              Next of Kin
+            </div>
+
+            <div class="detail-value"
+                 id="detailNextOfKin">
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+          <div class="detail-icon">
+            <i class="fa-solid fa-right-left"></i>
+          </div>
+
+          <div class="detail-content">
+
+            <div class="detail-label">
+              Transfer Status
+            </div>
+
+            <div class="detail-value"
+                 id="detailTransferStatus">
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- VERIFICATION -->
+
+      <div class="section-title">
+        Verification
+      </div>
+
+      <button
+        class="verification-card clickable"
+        id="verificationCard"
+        type="button"
+      >
+
+        <div class="verification-icon">
+          <i class="fa-solid fa-file-shield"></i>
+        </div>
+
+        <div class="verification-content">
+
+          <div class="verification-title">
+            Read Will &amp; Verification Process
+          </div>
+
+          <div class="verification-text">
+            Review the inheritance instructions and
+            verification requirements before requesting a transfer.
+          </div>
+
+        </div>
+
+        <div class="verification-status"
+             id="verificationStatus">
+          Required
+        </div>
+
+        <div class="verification-arrow">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+      </button>
+
+
+      <button class="edit-btn" id="editDetailsBtn">
+
+        <i class="fa-solid fa-pen"></i>
+
+        Update Inheritance Details
+
+      </button>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- INHERITANCE DETAILS MODAL -->
+
+<div class="modal-overlay" id="detailsModal">
+
+  <div class="modal">
+
+    <div class="handle"></div>
+
+    <div class="modal-header">
+
+      <h2>Inheritance Details</h2>
+
+      <button class="close-btn" id="closeModal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <form id="inheritanceForm">
+
+      <div class="form-group">
+
+        <label class="form-label">
+          Inheritance Amount
+        </label>
+
+        <input
+          type="number"
+          class="form-input"
+          id="amountInput"
+          value="250000"
+          min="0"
+          step="0.01"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label class="form-label">
+          Receive Date
+        </label>
+
+        <input
+          type="date"
+          class="form-input"
+          id="receiveDateInput"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label class="form-label">
+          Next of Kin
+        </label>
+
+        <input
+          type="text"
+          class="form-input readonly-input"
+          id="nextOfKinInput"
+          readonly
+        >
+
+        <div class="form-help">
+          Your account holder name is used as the next of kin.
+        </div>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="save-btn"
+        id="saveBtn"
+      >
+        Save Inheritance Details
+      </button>
+
+      <button
+        type="button"
+        class="cancel-btn"
+        id="cancelBtn"
+      >
+        Cancel
+      </button>
+
+    </form>
+
   </div>
 
+</div>
 
-  <div class="toast" id="toast">
-    Inheritance details saved
+
+<!-- WILL / VERIFICATION MODAL -->
+
+<div class="modal-overlay" id="willModal">
+
+  <div class="modal">
+
+    <div class="handle"></div>
+
+    <div class="modal-header">
+
+      <h2>Will &amp; Verification</h2>
+
+      <button class="close-btn" id="closeWillModal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <div class="will-intro">
+
+      <div class="will-intro-title">
+        Inheritance Transfer Instructions
+      </div>
+
+      <div class="will-intro-text">
+        Please review the following requirements before
+        requesting a transfer from the inheritance account.
+        Completion of the required verification steps is
+        necessary before a transfer can be processed.
+      </div>
+
+    </div>
+
+
+    <div class="requirement">
+
+      <div class="requirement-icon">
+        <i class="fa-solid fa-file-lines"></i>
+      </div>
+
+      <div class="requirement-content">
+
+        <div class="requirement-title">
+          Review the Will
+        </div>
+
+        <div class="requirement-text">
+          Read and acknowledge the inheritance instructions
+          associated with the account.
+        </div>
+
+        <span class="requirement-badge">
+          REQUIRED
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="requirement">
+
+      <div class="requirement-icon">
+        <i class="fa-solid fa-user-check"></i>
+      </div>
+
+      <div class="requirement-content">
+
+        <div class="requirement-title">
+          Beneficiary Verification
+        </div>
+
+        <div class="requirement-text">
+          Confirm that the beneficiary and next-of-kin
+          information associated with the inheritance is accurate.
+        </div>
+
+        <span class="requirement-badge">
+          REQUIRED
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="requirement">
+
+      <div class="requirement-icon">
+        <i class="fa-solid fa-id-card"></i>
+      </div>
+
+      <div class="requirement-content">
+
+        <div class="requirement-title">
+          Identity Verification
+        </div>
+
+        <div class="requirement-text">
+          Complete the identity verification steps requested
+          by the account administrator.
+        </div>
+
+        <span class="requirement-badge">
+          REQUIRED
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="requirement">
+
+      <div class="requirement-icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+
+      <div class="requirement-content">
+
+        <div class="requirement-title">
+          Transfer Eligibility Review
+        </div>
+
+        <div class="requirement-text">
+          The inheritance information and verification status
+          must be reviewed before the transfer can be marked
+          eligible.
+        </div>
+
+        <span class="requirement-badge">
+          REQUIRED
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="process-note">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      Transfer eligibility is controlled by the verification
+      status associated with this inheritance account. Review
+      all requirements carefully before continuing.
+
+    </div>
+
+
+    <button
+      class="acknowledge-btn"
+      id="acknowledgeWillBtn"
+      type="button"
+    >
+      I Have Read the Will
+    </button>
+
   </div>
 
-
-  <script type="module">
-
-    import {
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-    import {
-      doc,
-      getDoc,
-      updateDoc,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-    import {
-      auth,
-      db
-    } from "./firebase.js";
+</div>
 
 
-    /* ELEMENTS */
-
-    const backBtn =
-      document.getElementById("backBtn");
-
-    const refreshBtn =
-      document.getElementById("refreshBtn");
-
-    const setupCard =
-      document.getElementById("setupCard");
-
-    const detailsSection =
-      document.getElementById("detailsSection");
-
-    const setDetailsBtn =
-      document.getElementById("setDetailsBtn");
-
-    const editDetailsBtn =
-      document.getElementById("editDetailsBtn");
-
-    const detailsModal =
-      document.getElementById("detailsModal");
-
-    const closeModal =
-      document.getElementById("closeModal");
-
-    const cancelBtn =
-      document.getElementById("cancelBtn");
-
-    const inheritanceForm =
-      document.getElementById("inheritanceForm");
-
-    const amountInput =
-      document.getElementById("amountInput");
-
-    const receiveDateInput =
-      document.getElementById("receiveDateInput");
-
-    const nextOfKinInput =
-      document.getElementById("nextOfKinInput");
-
-    const saveBtn =
-      document.getElementById("saveBtn");
-
-    const heroAmount =
-      document.getElementById("heroAmount");
-
-    const heroStatus =
-      document.getElementById("heroStatus");
-
-    const detailAmount =
-      document.getElementById("detailAmount");
-
-    const detailReceiveDate =
-      document.getElementById("detailReceiveDate");
-
-    const detailNextOfKin =
-      document.getElementById("detailNextOfKin");
-
-    const detailTransferStatus =
-      document.getElementById("detailTransferStatus");
-
-    const verificationStatus =
-      document.getElementById("verificationStatus");
-
-    const toast =
-      document.getElementById("toast");
+<div class="toast" id="toast">
+  Inheritance details saved
+</div>
 
 
-    let currentUser = null;
-    let currentUserData = null;
+<script type="module">
+
+  import {
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  import {
+    doc,
+    getDoc,
+    updateDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+  import {
+    auth,
+    db
+  } from "./firebase.js";
 
 
-    /* BACK */
+  /* ELEMENTS */
 
-    backBtn.addEventListener("click", () => {
-      window.location.href = "dashboard.html";
-    });
+  const backBtn =
+    document.getElementById("backBtn");
+
+  const refreshBtn =
+    document.getElementById("refreshBtn");
+
+  const setupCard =
+    document.getElementById("setupCard");
+
+  const detailsSection =
+    document.getElementById("detailsSection");
+
+  const setDetailsBtn =
+    document.getElementById("setDetailsBtn");
+
+  const editDetailsBtn =
+    document.getElementById("editDetailsBtn");
+
+  const detailsModal =
+    document.getElementById("detailsModal");
+
+  const closeModal =
+    document.getElementById("closeModal");
+
+  const cancelBtn =
+    document.getElementById("cancelBtn");
+
+  const inheritanceForm =
+    document.getElementById("inheritanceForm");
+
+  const amountInput =
+    document.getElementById("amountInput");
+
+  const receiveDateInput =
+    document.getElementById("receiveDateInput");
+
+  const nextOfKinInput =
+    document.getElementById("nextOfKinInput");
+
+  const saveBtn =
+    document.getElementById("saveBtn");
+
+  const heroAmount =
+    document.getElementById("heroAmount");
+
+  const heroStatus =
+    document.getElementById("heroStatus");
+
+  const detailAmount =
+    document.getElementById("detailAmount");
+
+  const detailReceiveDate =
+    document.getElementById("detailReceiveDate");
+
+  const detailNextOfKin =
+    document.getElementById("detailNextOfKin");
+
+  const detailTransferStatus =
+    document.getElementById("detailTransferStatus");
+
+  const verificationStatus =
+    document.getElementById("verificationStatus");
+
+  const verificationCard =
+    document.getElementById("verificationCard");
+
+  const willModal =
+    document.getElementById("willModal");
+
+  const closeWillModal =
+    document.getElementById("closeWillModal");
+
+  const acknowledgeWillBtn =
+    document.getElementById("acknowledgeWillBtn");
+
+  const toast =
+    document.getElementById("toast");
 
 
-    /* AUTH */
+  let currentUser = null;
+  let currentUserData = null;
 
-    onAuthStateChanged(auth, async (user) => {
 
-      if (!user) {
-        window.location.href = "login.html";
+  /* BACK */
+
+  backBtn.addEventListener("click", () => {
+    window.location.href = "dashboard.html";
+  });
+
+
+  /* AUTH */
+
+  onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    currentUser = user;
+
+    await loadInheritance();
+
+  });
+
+
+  /* LOAD */
+
+  async function loadInheritance() {
+
+    try {
+
+      const userRef =
+        doc(db, "users", currentUser.uid);
+
+      const snapshot =
+        await getDoc(userRef);
+
+
+      if (!snapshot.exists()) {
+        showSetupState();
         return;
       }
 
-      currentUser = user;
 
-      await loadInheritance();
+      currentUserData =
+        snapshot.data();
 
-    });
-
-
-    /* LOAD */
-
-    async function loadInheritance() {
-
-      try {
-
-        const userRef =
-          doc(db, "users", currentUser.uid);
-
-        const snapshot =
-          await getDoc(userRef);
-
-
-        if (!snapshot.exists()) {
-          showSetupState();
-          return;
-        }
-
-
-        currentUserData =
-          snapshot.data();
-
-
-        const fullName =
-          currentUserData.fullName ||
-          currentUser.displayName ||
-          "Account Holder";
-
-
-        nextOfKinInput.value =
-          fullName;
-
-
-        const inheritance =
-          currentUserData.inheritance;
-
-
-        /*
-          Only show the inheritance details
-          after they have been saved.
-        */
-
-        if (
-          inheritance &&
-          inheritance.detailsSet === true
-        ) {
-
-          showDetails(inheritance);
-
-        } else {
-
-          showSetupState();
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Inheritance loading error:",
-          error
-        );
-
-        showSetupState();
-
-      }
-
-    }
-
-
-    /* SETUP STATE */
-
-    function showSetupState() {
-
-      setupCard.style.display = "block";
-      detailsSection.style.display = "none";
-
-      heroAmount.textContent = "—";
-
-      heroStatus.innerHTML = `
-        <span class="hero-status-dot"></span>
-        Not Set
-      `;
-
-    }
-
-
-    /* DETAILS STATE */
-
-    function showDetails(inheritance) {
-
-      setupCard.style.display = "none";
-      detailsSection.style.display = "block";
-
-
-      const amount =
-        Number(inheritance.amount || 0);
-
-
-      heroAmount.textContent =
-        formatCurrency(amount);
-
-
-      heroStatus.innerHTML = `
-        <span class="hero-status-dot"></span>
-        Active
-      `;
-
-
-      detailAmount.textContent =
-        formatCurrency(amount);
-
-
-      detailReceiveDate.textContent =
-        formatDateValue(
-          inheritance.receiveDate
-        );
-
-
-      detailNextOfKin.textContent =
-        inheritance.nextOfKin ||
-        currentUserData.fullName ||
-        currentUser.displayName ||
-        "Account Holder";
-
-
-      detailTransferStatus.textContent =
-        formatStatus(
-          inheritance.transferStatus ||
-          "Inaccessible"
-        );
-
-
-      verificationStatus.textContent =
-        formatStatus(
-          inheritance.verificationStatus ||
-          "Required"
-        );
-
-
-      amountInput.value =
-        amount || 250000;
-
-
-      setDateInput(
-        inheritance.receiveDate
-      );
-
-    }
-
-
-    /* OPEN MODAL */
-
-    setDetailsBtn.addEventListener(
-      "click",
-      openModal
-    );
-
-
-    editDetailsBtn.addEventListener(
-      "click",
-      openModal
-    );
-
-
-    function openModal() {
 
       const fullName =
-        currentUserData?.fullName ||
-        currentUser?.displayName ||
+        currentUserData.fullName ||
+        currentUser.displayName ||
         "Account Holder";
 
 
@@ -1202,356 +1375,687 @@
         fullName;
 
 
-      detailsModal.classList.add("show");
-
-      document.body.style.overflow = "hidden";
-
-    }
-
-
-    /* CLOSE MODAL */
-
-    closeModal.addEventListener(
-      "click",
-      closeDetailsModal
-    );
-
-
-    cancelBtn.addEventListener(
-      "click",
-      closeDetailsModal
-    );
-
-
-    detailsModal.addEventListener(
-      "click",
-      (event) => {
-
-        if (
-          event.target === detailsModal
-        ) {
-          closeDetailsModal();
-        }
-
-      }
-    );
-
-
-    function closeDetailsModal() {
-
-      detailsModal.classList.remove("show");
-
-      document.body.style.overflow = "";
-
-    }
-
-
-    /* SAVE */
-
-    inheritanceForm.addEventListener(
-      "submit",
-      async (event) => {
-
-        event.preventDefault();
-
-
-        const amount =
-          Number(amountInput.value);
-
-
-        const receiveDate =
-          receiveDateInput.value;
-
-
-        const nextOfKin =
-          nextOfKinInput.value.trim();
-
-
-        if (
-          !amount ||
-          amount <= 0 ||
-          !receiveDate ||
-          !nextOfKin
-        ) {
-
-          showToast(
-            "Please complete all fields"
-          );
-
-          return;
-
-        }
-
-
-        saveBtn.disabled = true;
-
-        saveBtn.innerHTML =
-          '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
-
-
-        try {
-
-          const userRef =
-            doc(db, "users", currentUser.uid);
-
-
-          await updateDoc(
-            userRef,
-            {
-              inheritance: {
-                detailsSet: true,
-                amount: amount,
-                receiveDate: receiveDate,
-                nextOfKin: nextOfKin,
-                transferStatus: "Inaccessible",
-                verificationStatus: "Required",
-                updatedAt: serverTimestamp()
-              }
-            }
-          );
-
-
-          currentUserData.inheritance = {
-            detailsSet: true,
-            amount: amount,
-            receiveDate: receiveDate,
-            nextOfKin: nextOfKin,
-            transferStatus: "Inaccessible",
-            verificationStatus: "Required"
-          };
-
-
-          showDetails(
-            currentUserData.inheritance
-          );
-
-
-          closeDetailsModal();
-
-          showToast(
-            "Inheritance details saved"
-          );
-
-        } catch (error) {
-
-          console.error(error);
-
-          showToast(
-            "Unable to save details"
-          );
-
-        } finally {
-
-          saveBtn.disabled = false;
-
-          saveBtn.innerHTML =
-            "Save Inheritance Details";
-
-        }
-
-      }
-    );
-
-
-    /* REFRESH */
-
-    refreshBtn.addEventListener(
-      "click",
-      async () => {
-
-        refreshBtn.innerHTML =
-          '<i class="fa-solid fa-spinner fa-spin"></i>';
-
-        await loadInheritance();
-
-        refreshBtn.innerHTML =
-          '<i class="fa-solid fa-rotate-right"></i>';
-
-      }
-    );
-
-
-    /* DATE */
-
-    function setDateInput(value) {
-
-      if (!value) {
-        receiveDateInput.value = "";
-        return;
-      }
+      const inheritance =
+        currentUserData.inheritance;
 
 
       if (
-        typeof value === "string"
+        inheritance &&
+        inheritance.detailsSet === true
       ) {
 
-        receiveDateInput.value =
-          value;
-
-        return;
-
-      }
-
-
-      if (
-        value &&
-        typeof value.toDate === "function"
-      ) {
-
-        const date =
-          value.toDate();
-
-        receiveDateInput.value =
-          toDateInputValue(date);
-
-        return;
-
-      }
-
-
-      const date =
-        new Date(value);
-
-
-      if (!isNaN(date.getTime())) {
-
-        receiveDateInput.value =
-          toDateInputValue(date);
-
-      }
-
-    }
-
-
-    function toDateInputValue(date) {
-
-      const year =
-        date.getFullYear();
-
-      const month =
-        String(
-          date.getMonth() + 1
-        ).padStart(2, "0");
-
-      const day =
-        String(
-          date.getDate()
-        ).padStart(2, "0");
-
-
-      return `${year}-${month}-${day}`;
-
-    }
-
-
-    function formatDateValue(value) {
-
-      if (!value) {
-        return "—";
-      }
-
-
-      let date;
-
-
-      if (
-        typeof value === "string"
-      ) {
-
-        date =
-          new Date(
-            `${value}T00:00:00`
-          );
-
-      } else if (
-        value &&
-        typeof value.toDate === "function"
-      ) {
-
-        date =
-          value.toDate();
+        showDetails(inheritance);
 
       } else {
 
-        date =
-          new Date(value);
+        showSetupState();
 
       }
 
+    } catch (error) {
 
-      if (isNaN(date.getTime())) {
-        return "—";
-      }
-
-
-      return new Intl.DateTimeFormat(
-        "en-US",
-        {
-          month: "long",
-          day: "numeric",
-          year: "numeric"
-        }
-      ).format(date);
-
-    }
-
-
-    /* FORMATTING */
-
-    function formatCurrency(amount) {
-
-      return new Intl.NumberFormat(
-        "en-US",
-        {
-          style: "currency",
-          currency: "USD",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      ).format(
-        Number(amount) || 0
+      console.error(
+        "Inheritance loading error:",
+        error
       );
 
+      showSetupState();
+
     }
 
+  }
 
-    function formatStatus(value) {
 
-      if (!value) {
-        return "—";
+  /* SETUP STATE */
+
+  function showSetupState() {
+
+    setupCard.style.display = "block";
+
+    detailsSection.style.display = "none";
+
+    heroAmount.textContent = "—";
+
+    heroStatus.innerHTML = `
+      <span class="hero-status-dot"></span>
+      Not Set
+    `;
+
+  }
+
+
+  /* DETAILS STATE */
+
+  function showDetails(inheritance) {
+
+    /*
+      This is the important part:
+
+      Once detailsSet === true,
+      the original setup card is hidden.
+    */
+
+    setupCard.style.display = "none";
+
+    detailsSection.style.display = "block";
+
+
+    const amount =
+      Number(inheritance.amount || 0);
+
+
+    heroAmount.textContent =
+      formatCurrency(amount);
+
+
+    heroStatus.innerHTML = `
+      <span class="hero-status-dot"></span>
+      Active
+    `;
+
+
+    detailAmount.textContent =
+      formatCurrency(amount);
+
+
+    detailReceiveDate.textContent =
+      formatDateValue(
+        inheritance.receiveDate
+      );
+
+
+    detailNextOfKin.textContent =
+      inheritance.nextOfKin ||
+      currentUserData.fullName ||
+      currentUser.displayName ||
+      "Account Holder";
+
+
+    detailTransferStatus.textContent =
+      formatStatus(
+        inheritance.transferStatus ||
+        "Inaccessible"
+      );
+
+
+    verificationStatus.textContent =
+      formatStatus(
+        inheritance.verificationStatus ||
+        "Required"
+      );
+
+
+    amountInput.value =
+      amount || 250000;
+
+
+    setDateInput(
+      inheritance.receiveDate
+    );
+
+  }
+
+
+  /* OPEN DETAILS MODAL */
+
+  setDetailsBtn.addEventListener(
+    "click",
+    openDetailsModal
+  );
+
+
+  editDetailsBtn.addEventListener(
+    "click",
+    openDetailsModal
+  );
+
+
+  function openDetailsModal() {
+
+    const fullName =
+      currentUserData?.fullName ||
+      currentUser?.displayName ||
+      "Account Holder";
+
+
+    nextOfKinInput.value =
+      fullName;
+
+
+    detailsModal.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+
+  /* CLOSE DETAILS MODAL */
+
+  closeModal.addEventListener(
+    "click",
+    closeDetailsModal
+  );
+
+
+  cancelBtn.addEventListener(
+    "click",
+    closeDetailsModal
+  );
+
+
+  detailsModal.addEventListener(
+    "click",
+    (event) => {
+
+      if (
+        event.target === detailsModal
+      ) {
+
+        closeDetailsModal();
+
+      }
+
+    }
+  );
+
+
+  function closeDetailsModal() {
+
+    detailsModal.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+  }
+
+
+  /* VERIFICATION / WILL */
+
+  verificationCard.addEventListener(
+    "click",
+    openWillModal
+  );
+
+
+  function openWillModal() {
+
+    willModal.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+
+  closeWillModal.addEventListener(
+    "click",
+    closeWillVerificationModal
+  );
+
+
+  willModal.addEventListener(
+    "click",
+    (event) => {
+
+      if (
+        event.target === willModal
+      ) {
+
+        closeWillVerificationModal();
+
+      }
+
+    }
+  );
+
+
+  function closeWillVerificationModal() {
+
+    willModal.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+  }
+
+
+  /*
+    Acknowledging the will only records that
+    the user has read it.
+
+    It does NOT automatically make the
+    inheritance transfer eligible.
+  */
+
+  acknowledgeWillBtn.addEventListener(
+    "click",
+    async () => {
+
+      if (!currentUser) {
+        return;
       }
 
 
-      return String(value)
-        .replace(/[-_]/g, " ")
-        .replace(/\b\w/g, letter =>
-          letter.toUpperCase()
+      acknowledgeWillBtn.disabled = true;
+
+      acknowledgeWillBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+
+      try {
+
+        const userRef =
+          doc(db, "users", currentUser.uid);
+
+
+        await updateDoc(
+          userRef,
+          {
+            "inheritance.willRead": true,
+            "inheritance.willReadAt":
+              serverTimestamp()
+          }
         );
 
+
+        if (
+          currentUserData &&
+          currentUserData.inheritance
+        ) {
+
+          currentUserData.inheritance.willRead =
+            true;
+
+        }
+
+
+        closeWillVerificationModal();
+
+
+        showToast(
+          "Will acknowledgement saved"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Will acknowledgement error:",
+          error
+        );
+
+
+        showToast(
+          "Unable to save acknowledgement"
+        );
+
+      } finally {
+
+        acknowledgeWillBtn.disabled = false;
+
+        acknowledgeWillBtn.innerHTML =
+          "I Have Read the Will";
+
+      }
+
+    }
+  );
+
+
+  /* SAVE INHERITANCE DETAILS */
+
+  inheritanceForm.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+
+      const amount =
+        Number(amountInput.value);
+
+
+      const receiveDate =
+        receiveDateInput.value;
+
+
+      const nextOfKin =
+        nextOfKinInput.value.trim();
+
+
+      if (
+        !amount ||
+        amount <= 0 ||
+        !receiveDate ||
+        !nextOfKin
+      ) {
+
+        showToast(
+          "Please complete all fields"
+        );
+
+        return;
+
+      }
+
+
+      saveBtn.disabled = true;
+
+      saveBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+
+      try {
+
+        const userRef =
+          doc(db, "users", currentUser.uid);
+
+
+        /*
+          Saving detailsSet: true is what permanently
+          changes this account from setup mode to
+          saved inheritance mode.
+        */
+
+        await updateDoc(
+          userRef,
+          {
+            inheritance: {
+              detailsSet: true,
+              amount: amount,
+              receiveDate: receiveDate,
+              nextOfKin: nextOfKin,
+
+              /*
+                Transfer remains inaccessible until
+                the verification process is completed.
+              */
+              transferStatus: "Inaccessible",
+
+              verificationStatus: "Required",
+
+              /*
+                New inheritance information starts
+                with the will unread.
+              */
+              willRead: false,
+
+              updatedAt: serverTimestamp()
+            }
+          }
+        );
+
+
+        currentUserData.inheritance = {
+          detailsSet: true,
+          amount: amount,
+          receiveDate: receiveDate,
+          nextOfKin: nextOfKin,
+          transferStatus: "Inaccessible",
+          verificationStatus: "Required",
+          willRead: false
+        };
+
+
+        /*
+          This immediately hides the setup card
+          without requiring the user to refresh.
+        */
+
+        showDetails(
+          currentUserData.inheritance
+        );
+
+
+        closeDetailsModal();
+
+
+        showToast(
+          "Inheritance details saved"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Inheritance save error:",
+          error
+        );
+
+
+        showToast(
+          "Unable to save details"
+        );
+
+      } finally {
+
+        saveBtn.disabled = false;
+
+        saveBtn.innerHTML =
+          "Save Inheritance Details";
+
+      }
+
+    }
+  );
+
+
+  /* REFRESH */
+
+  refreshBtn.addEventListener(
+    "click",
+    async () => {
+
+      refreshBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+
+      await loadInheritance();
+
+
+      refreshBtn.innerHTML =
+        '<i class="fa-solid fa-rotate-right"></i>';
+
+    }
+  );
+
+
+  /* DATE INPUT */
+
+  function setDateInput(value) {
+
+    if (!value) {
+
+      receiveDateInput.value = "";
+
+      return;
+
     }
 
 
-    /* TOAST */
+    if (
+      typeof value === "string"
+    ) {
 
-    let toastTimer;
+      receiveDateInput.value =
+        value;
 
-    function showToast(message) {
-
-      toast.textContent =
-        message;
-
-      toast.classList.add("show");
-
-      clearTimeout(toastTimer);
-
-      toastTimer =
-        setTimeout(() => {
-          toast.classList.remove("show");
-        }, 2300);
+      return;
 
     }
 
-  </script>
+
+    if (
+      value &&
+      typeof value.toDate === "function"
+    ) {
+
+      const date =
+        value.toDate();
+
+
+      receiveDateInput.value =
+        toDateInputValue(date);
+
+      return;
+
+    }
+
+
+    const date =
+      new Date(value);
+
+
+    if (
+      !isNaN(date.getTime())
+    ) {
+
+      receiveDateInput.value =
+        toDateInputValue(date);
+
+    }
+
+  }
+
+
+  function toDateInputValue(date) {
+
+    const year =
+      date.getFullYear();
+
+
+    const month =
+      String(
+        date.getMonth() + 1
+      ).padStart(2, "0");
+
+
+    const day =
+      String(
+        date.getDate()
+      ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+  }
+
+
+  function formatDateValue(value) {
+
+    if (!value) {
+      return "—";
+    }
+
+
+    let date;
+
+
+    if (
+      typeof value === "string"
+    ) {
+
+      date =
+        new Date(
+          `${value}T00:00:00`
+        );
+
+    } else if (
+      value &&
+      typeof value.toDate === "function"
+    ) {
+
+      date =
+        value.toDate();
+
+    } else {
+
+      date =
+        new Date(value);
+
+    }
+
+
+    if (
+      isNaN(date.getTime())
+    ) {
+
+      return "—";
+
+    }
+
+
+    return new Intl.DateTimeFormat(
+      "en-US",
+      {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      }
+    ).format(date);
+
+  }
+
+
+  /* FORMATTING */
+
+  function formatCurrency(amount) {
+
+    return new Intl.NumberFormat(
+      "en-US",
+      {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    ).format(
+      Number(amount) || 0
+    );
+
+  }
+
+
+  function formatStatus(value) {
+
+    if (!value) {
+      return "—";
+    }
+
+
+    return String(value)
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, letter =>
+        letter.toUpperCase()
+      );
+
+  }
+
+
+  /* TOAST */
+
+  let toastTimer;
+
+
+  function showToast(message) {
+
+    toast.textContent =
+      message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 2300);
+
+  }
+
+</script>
 
 </body>
 </html>
