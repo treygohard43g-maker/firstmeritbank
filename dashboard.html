@@ -2263,7 +2263,43 @@
       limit,
       getDocs
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    
+    /* =========================================
+   ADMIN ACCESS
+========================================= */
 
+const ADMIN_UID =
+  "HUJjyMOyDndcT0qXet2Ce2rHUQz2";
+
+const adminMenuSection =
+  document.getElementById("adminMenuSection");
+
+const adminApprovalLink =
+  document.getElementById("adminApprovalLink");
+
+
+function updateAdminMenu(user) {
+
+  const isAdmin =
+    user &&
+    user.uid === ADMIN_UID;
+
+  if (adminMenuSection) {
+
+    adminMenuSection.style.display =
+      isAdmin ? "block" : "none";
+
+  }
+
+  if (adminApprovalLink) {
+
+    adminApprovalLink.style.display =
+      isAdmin ? "flex" : "none";
+
+  }
+
+}
+    
     /* =========================================
        DEFAULT BALANCES
     ========================================= */
@@ -3316,30 +3352,35 @@
     /* =========================================
        AUTHENTICATION
     ========================================= */
+onAuthStateChanged(
+  auth,
+  async (user) => {
 
-    onAuthStateChanged(
-      auth,
-      async (user) => {
+    if (!user) {
 
-        if (!user) {
+      location.href =
+        "login.html";
 
-          location.href =
-            "login.html";
+      return;
 
-          return;
+    }
 
-        }
+    /*
+     * Decide whether the authenticated account
+     * should see the Administration menu.
+     */
+    updateAdminMenu(user);
 
-        showCurrentDate();
+    showCurrentDate();
 
-        await loadDashboard(
-          user
-        );
-
-      }
+    await loadDashboard(
+      user
     );
 
-  </script>
+  }
+);
+    
+</script>
 
 </body>
 
