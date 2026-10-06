@@ -37,8 +37,6 @@
       min-height: 100vh;
     }
 
-    /* HEADER */
-
     .topbar {
       height: 72px;
       background: #ffffff;
@@ -109,8 +107,6 @@
       margin-top: 2px;
     }
 
-    /* CONTENT */
-
     .content {
       width: min(100%, 920px);
       margin: 0 auto;
@@ -133,8 +129,6 @@
       font-size: 14px;
       margin-top: 7px;
     }
-
-    /* SUMMARY */
 
     .summary-card {
       background: linear-gradient(135deg, #123b72, #19589e);
@@ -191,8 +185,6 @@
       border-radius: 50%;
     }
 
-    /* CONTROLS */
-
     .controls {
       background: #ffffff;
       border: 1px solid #e7ecf2;
@@ -247,8 +239,6 @@
       outline: none;
       font-size: 13px;
     }
-
-    /* TRANSACTIONS */
 
     .section-header {
       display: flex;
@@ -368,8 +358,6 @@
       background: #27a66f;
     }
 
-    /* EMPTY / ERROR */
-
     .empty-state,
     .error-state {
       display: none;
@@ -423,8 +411,6 @@
       font-size: 13px;
     }
 
-    /* LOADING */
-
     .loading-state {
       background: #ffffff;
       border: 1px solid #e7ecf2;
@@ -439,8 +425,6 @@
       font-size: 19px;
       margin-bottom: 10px;
     }
-
-    /* MODAL */
 
     .modal-overlay {
       position: fixed;
@@ -601,8 +585,6 @@
       margin-top: 16px;
     }
 
-    /* DESKTOP */
-
     @media (min-width: 700px) {
       .content {
         padding-top: 35px;
@@ -676,664 +658,618 @@
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <!-- HEADER -->
-    <header class="topbar">
+  <header class="topbar">
 
-      <div class="topbar-left">
+    <div class="topbar-left">
 
-        <button class="back-btn" id="backBtn" aria-label="Back">
-          <i class="fa-solid fa-arrow-left"></i>
-        </button>
-
-        <div class="bank-brand">
-
-          <div class="bank-logo">FM</div>
-
-          <div>
-            <div class="bank-name">First Merit Bank</div>
-            <div class="page-title-small">Transactions</div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <button class="header-action" id="refreshBtn" aria-label="Refresh">
-        <i class="fa-solid fa-rotate-right"></i>
+      <button class="back-btn" id="backBtn" aria-label="Back">
+        <i class="fa-solid fa-arrow-left"></i>
       </button>
 
-    </header>
+      <div class="bank-brand">
 
+        <div class="bank-logo">FM</div>
 
-    <!-- CONTENT -->
-    <main class="content">
-
-      <div class="page-heading">
-        <h1>Transactions</h1>
-        <p>Review your recent account activity.</p>
-      </div>
-
-
-      <!-- BALANCE -->
-      <section class="summary-card">
-
-        <div class="summary-top">
-
-          <div>
-            <div class="summary-label">Available Balance</div>
-
-            <div class="summary-balance" id="balanceAmount">
-              $0.00
-            </div>
-          </div>
-
-          <div class="summary-icon">
-            <i class="fa-solid fa-wallet"></i>
-          </div>
-
+        <div>
+          <div class="bank-name">First Merit Bank</div>
+          <div class="page-title-small">Transactions</div>
         </div>
-
-        <div class="summary-bottom">
-          <span class="summary-dot"></span>
-          <span>Checking Account</span>
-        </div>
-
-      </section>
-
-
-      <!-- SEARCH / FILTER -->
-      <section class="controls">
-
-        <div class="search-box">
-
-          <i class="fa-solid fa-magnifying-glass"></i>
-
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Search transactions..."
-            autocomplete="off"
-          >
-
-        </div>
-
-        <div class="filter-row">
-
-          <select id="typeFilter" class="filter-select">
-
-            <option value="all">
-              All transactions
-            </option>
-
-            <option value="credit">
-              Money received
-            </option>
-
-            <option value="debit">
-              Money sent
-            </option>
-
-          </select>
-
-
-          <select
-            id="transactionFilter"
-            class="filter-select"
-          >
-
-            <option value="all">
-              All types
-            </option>
-
-            <option value="send">
-              Send Money
-            </option>
-
-            <option value="zelle">
-              Zelle
-            </option>
-
-            <option value="deposit">
-              Money Added
-            </option>
-
-            <option value="withdrawal">
-              Withdrawal
-            </option>
-
-            <option value="transfer">
-              Bank Transfer
-            </option>
-
-            <option value="payment">
-              Payments
-            </option>
-
-          </select>
-
-        </div>
-
-      </section>
-
-
-      <!-- TRANSACTION LIST -->
-      <section>
-
-        <div class="section-header">
-
-          <h2>Recent Activity</h2>
-
-          <span
-            class="transaction-count"
-            id="transactionCount"
-          >
-            0 transactions
-          </span>
-
-        </div>
-
-
-        <div
-          id="loadingState"
-          class="loading-state"
-        >
-
-          <i class="fa-solid fa-spinner fa-spin"></i>
-
-          <div>
-            Loading transactions...
-          </div>
-
-        </div>
-
-
-        <div
-          id="transactionList"
-          class="transaction-list"
-          style="display:none;"
-        ></div>
-
-
-        <div
-          id="emptyState"
-          class="empty-state"
-        >
-
-          <div class="empty-icon">
-            <i class="fa-solid fa-receipt"></i>
-          </div>
-
-          <h3>No transactions found</h3>
-
-          <p>
-            Your account activity will appear here.
-          </p>
-
-        </div>
-
-
-        <div
-          id="errorState"
-          class="error-state"
-        >
-
-          <div class="error-icon">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-
-          <h3>Unable to load transactions</h3>
-
-          <p>
-            Please try again.
-          </p>
-
-          <button
-            class="retry-btn"
-            id="retryBtn"
-          >
-            Try Again
-          </button>
-
-        </div>
-
-      </section>
-
-    </main>
-
-  </div>
-
-
-  <!-- TRANSACTION DETAILS MODAL -->
-
-  <div
-    class="modal-overlay"
-    id="transactionModal"
-  >
-
-    <div class="transaction-modal">
-
-      <div class="modal-handle"></div>
-
-
-      <div class="modal-header">
-
-        <h2>
-          Transaction Details
-        </h2>
-
-        <button
-          class="close-modal"
-          id="closeModal"
-          aria-label="Close"
-        >
-          <i class="fa-solid fa-xmark"></i>
-        </button>
 
       </div>
 
+    </div>
 
-      <div class="detail-hero">
+    <button class="header-action" id="refreshBtn" aria-label="Refresh">
+      <i class="fa-solid fa-rotate-right"></i>
+    </button>
 
-        <div
-          class="detail-icon"
-          id="detailIcon"
+  </header>
+
+  <main class="content">
+
+    <div class="page-heading">
+      <h1>Transactions</h1>
+      <p>Review your recent account activity.</p>
+    </div>
+
+    <section class="summary-card">
+
+      <div class="summary-top">
+
+        <div>
+          <div class="summary-label">Available Balance</div>
+
+          <div class="summary-balance" id="balanceAmount">
+            $0.00
+          </div>
+        </div>
+
+        <div class="summary-icon">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+
+      </div>
+
+      <div class="summary-bottom">
+        <span class="summary-dot"></span>
+        <span>Checking Account</span>
+      </div>
+
+    </section>
+
+    <section class="controls">
+
+      <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search transactions..."
+          autocomplete="off"
         >
+
+      </div>
+
+      <div class="filter-row">
+
+        <select id="typeFilter" class="filter-select">
+
+          <option value="all">All transactions</option>
+          <option value="credit">Money received</option>
+          <option value="debit">Money sent</option>
+
+        </select>
+
+        <select id="transactionFilter" class="filter-select">
+
+          <option value="all">All types</option>
+          <option value="send">Send Money</option>
+          <option value="zelle">Zelle</option>
+          <option value="deposit">Money Added</option>
+          <option value="withdrawal">Withdrawal</option>
+          <option value="transfer">Bank Transfer</option>
+          <option value="payment">Payments</option>
+
+        </select>
+
+      </div>
+
+    </section>
+
+    <section>
+
+      <div class="section-header">
+
+        <h2>Recent Activity</h2>
+
+        <span class="transaction-count" id="transactionCount">
+          0 transactions
+        </span>
+
+      </div>
+
+      <div id="loadingState" class="loading-state">
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        <div>
+          Loading transactions...
+        </div>
+
+      </div>
+
+      <div
+        id="transactionList"
+        class="transaction-list"
+        style="display:none;"
+      ></div>
+
+      <div id="emptyState" class="empty-state">
+
+        <div class="empty-icon">
           <i class="fa-solid fa-receipt"></i>
         </div>
 
-        <div
-          class="detail-title"
-          id="detailTitle"
-        >
-          Transaction
-        </div>
+        <h3>No transactions found</h3>
 
-        <div
-          class="detail-amount"
-          id="detailAmount"
-        >
-          $0.00
-        </div>
+        <p>
+          Your account activity will appear here.
+        </p>
 
       </div>
 
+      <div id="errorState" class="error-state">
 
-      <div class="detail-list">
-
-        <div class="detail-row">
-
-          <span class="detail-label">
-            Status
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailStatus"
-          >
-            Completed
-          </span>
-
+        <div class="error-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
 
+        <h3>Unable to load transactions</h3>
 
-        <div class="detail-row">
+        <p>
+          Please try again.
+        </p>
 
-          <span class="detail-label">
-            Transaction Type
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailType"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div class="detail-row">
-
-          <span class="detail-label">
-            Date
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailDate"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div class="detail-row">
-
-          <span class="detail-label">
-            Transaction ID
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailId"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="recipientRow"
-        >
-
-          <span class="detail-label">
-            Recipient
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailRecipient"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="payeeRow"
-        >
-
-          <span class="detail-label">
-            Payee
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailPayee"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="accountRow"
-        >
-
-          <span class="detail-label">
-            Account
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailAccount"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="contactRow"
-        >
-
-          <span class="detail-label">
-            Contact
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailContact"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="sourceRow"
-        >
-
-          <span class="detail-label">
-            Source
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailSource"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="destinationRow"
-        >
-
-          <span class="detail-label">
-            Destination
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailDestination"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="referenceRow"
-        >
-
-          <span class="detail-label">
-            Reference
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailReference"
-          >
-            —
-          </span>
-
-        </div>
-
-
-        <div
-          class="detail-row"
-          id="noteRow"
-        >
-
-          <span class="detail-label">
-            Note
-          </span>
-
-          <span
-            class="detail-value"
-            id="detailNote"
-          >
-            —
-          </span>
-
-        </div>
+        <button class="retry-btn" id="retryBtn">
+          Try Again
+        </button>
 
       </div>
 
+    </section>
+
+  </main>
+
+</div>
+
+<div class="modal-overlay" id="transactionModal">
+
+  <div class="transaction-modal">
+
+    <div class="modal-handle"></div>
+
+    <div class="modal-header">
+
+      <h2>Transaction Details</h2>
 
       <button
-        class="modal-button"
-        id="doneModal"
+        class="close-modal"
+        id="closeModal"
+        aria-label="Close"
       >
-        Done
+        <i class="fa-solid fa-xmark"></i>
       </button>
 
     </div>
 
+    <div class="detail-hero">
+
+      <div class="detail-icon" id="detailIcon">
+        <i class="fa-solid fa-receipt"></i>
+      </div>
+
+      <div class="detail-title" id="detailTitle">
+        Transaction
+      </div>
+
+      <div class="detail-amount" id="detailAmount">
+        $0.00
+      </div>
+
+    </div>
+
+    <div class="detail-list">
+
+      <div class="detail-row">
+
+        <span class="detail-label">
+          Status
+        </span>
+
+        <span class="detail-value" id="detailStatus">
+          Completed
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="detail-label">
+          Transaction Type
+        </span>
+
+        <span class="detail-value" id="detailType">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="detail-label">
+          Date
+        </span>
+
+        <span class="detail-value" id="detailDate">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row">
+
+        <span class="detail-label">
+          Transaction ID
+        </span>
+
+        <span class="detail-value" id="detailId">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="recipientRow">
+
+        <span class="detail-label">
+          Recipient
+        </span>
+
+        <span class="detail-value" id="detailRecipient">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="payeeRow">
+
+        <span class="detail-label">
+          Payee
+        </span>
+
+        <span class="detail-value" id="detailPayee">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="accountRow">
+
+        <span class="detail-label">
+          Account
+        </span>
+
+        <span class="detail-value" id="detailAccount">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="contactRow">
+
+        <span class="detail-label">
+          Contact
+        </span>
+
+        <span class="detail-value" id="detailContact">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="sourceRow">
+
+        <span class="detail-label">
+          Source
+        </span>
+
+        <span class="detail-value" id="detailSource">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="destinationRow">
+
+        <span class="detail-label">
+          Destination
+        </span>
+
+        <span class="detail-value" id="detailDestination">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="referenceRow">
+
+        <span class="detail-label">
+          Reference
+        </span>
+
+        <span class="detail-value" id="detailReference">
+          —
+        </span>
+
+      </div>
+
+      <div class="detail-row" id="noteRow">
+
+        <span class="detail-label">
+          Note
+        </span>
+
+        <span class="detail-value" id="detailNote">
+          —
+        </span>
+
+      </div>
+
+      <!-- ADMIN-CONTROLLED DESCRIPTION -->
+
+      <div class="detail-row" id="descriptionRow">
+
+        <span class="detail-label">
+          Description
+        </span>
+
+        <span class="detail-value" id="detailDescription">
+          —
+        </span>
+
+      </div>
+
+    </div>
+
+    <button class="modal-button" id="doneModal">
+      Done
+    </button>
+
   </div>
 
+</div>
 
-  <script type="module">
+<script type="module">
 
-    import {
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  import {
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-    import {
-      doc,
-      getDoc,
-      collection,
-      query,
-      orderBy,
-      limit,
-      getDocs
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+  import {
+    doc,
+    getDoc,
+    collection,
+    query,
+    orderBy,
+    limit,
+    getDocs
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-    import {
-      auth,
-      db
-    } from "./firebase.js";
-
-
-    /* ELEMENTS */
-
-    const backBtn =
-      document.getElementById("backBtn");
-
-    const refreshBtn =
-      document.getElementById("refreshBtn");
-
-    const retryBtn =
-      document.getElementById("retryBtn");
-
-    const balanceAmount =
-      document.getElementById("balanceAmount");
-
-    const searchInput =
-      document.getElementById("searchInput");
-
-    const typeFilter =
-      document.getElementById("typeFilter");
-
-    const transactionFilter =
-      document.getElementById("transactionFilter");
-
-    const loadingState =
-      document.getElementById("loadingState");
-
-    const transactionList =
-      document.getElementById("transactionList");
-
-    const emptyState =
-      document.getElementById("emptyState");
-
-    const errorState =
-      document.getElementById("errorState");
-
-    const transactionCount =
-      document.getElementById("transactionCount");
-
-    const transactionModal =
-      document.getElementById("transactionModal");
-
-    const closeModal =
-      document.getElementById("closeModal");
-
-    const doneModal =
-      document.getElementById("doneModal");
+  import {
+    auth,
+    db
+  } from "./firebase.js";
 
 
-    let allTransactions = [];
-    let currentUser = null;
+  /* ELEMENTS */
+
+  const backBtn =
+    document.getElementById("backBtn");
+
+  const refreshBtn =
+    document.getElementById("refreshBtn");
+
+  const retryBtn =
+    document.getElementById("retryBtn");
+
+  const balanceAmount =
+    document.getElementById("balanceAmount");
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  const typeFilter =
+    document.getElementById("typeFilter");
+
+  const transactionFilter =
+    document.getElementById("transactionFilter");
+
+  const loadingState =
+    document.getElementById("loadingState");
+
+  const transactionList =
+    document.getElementById("transactionList");
+
+  const emptyState =
+    document.getElementById("emptyState");
+
+  const errorState =
+    document.getElementById("errorState");
+
+  const transactionCount =
+    document.getElementById("transactionCount");
+
+  const transactionModal =
+    document.getElementById("transactionModal");
+
+  const closeModal =
+    document.getElementById("closeModal");
+
+  const doneModal =
+    document.getElementById("doneModal");
 
 
-    /* NAVIGATION */
-
-    backBtn.addEventListener("click", () => {
-      window.location.href = "dashboard.html";
-    });
+  let allTransactions = [];
+  let currentUser = null;
 
 
-    /* REFRESH */
+  /* NAVIGATION */
 
-    refreshBtn.addEventListener(
-      "click",
-      async () => {
+  backBtn.addEventListener("click", () => {
+    window.location.href = "dashboard.html";
+  });
 
-        if (!currentUser) return;
 
-        refreshBtn.innerHTML =
-          '<i class="fa-solid fa-spinner fa-spin"></i>';
+  /* REFRESH */
 
-        await loadAccountData(currentUser);
+  refreshBtn.addEventListener(
+    "click",
+    async () => {
 
-        refreshBtn.innerHTML =
-          '<i class="fa-solid fa-rotate-right"></i>';
+      if (!currentUser) return;
+
+      refreshBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+      await loadAccountData(currentUser);
+
+      refreshBtn.innerHTML =
+        '<i class="fa-solid fa-rotate-right"></i>';
+
+    }
+  );
+
+
+  retryBtn.addEventListener(
+    "click",
+    async () => {
+
+      if (!currentUser) return;
+
+      await loadAccountData(currentUser);
+
+    }
+  );
+
+
+  /* AUTH */
+
+  onAuthStateChanged(
+    auth,
+    async (user) => {
+
+      if (!user) {
+
+        window.location.href =
+          "login.html";
+
+        return;
 
       }
-    );
+
+      currentUser = user;
+
+      await loadAccountData(user);
+
+    }
+  );
 
 
-    retryBtn.addEventListener(
-      "click",
-      async () => {
+  /* LOAD DATA */
 
-        if (!currentUser) return;
+  async function loadAccountData(user) {
 
-        await loadAccountData(currentUser);
+    loadingState.style.display =
+      "block";
+
+    transactionList.style.display =
+      "none";
+
+    emptyState.style.display =
+      "none";
+
+    errorState.style.display =
+      "none";
+
+    try {
+
+      /* USER ACCOUNT */
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          user.uid
+        );
+
+      const userSnap =
+        await getDoc(userRef);
+
+      if (userSnap.exists()) {
+
+        const userData =
+          userSnap.data();
+
+        const balance =
+          typeof userData.balance === "number"
+            ? userData.balance
+            : 0;
+
+        balanceAmount.textContent =
+          formatCurrency(balance);
+
+      } else {
+
+        balanceAmount.textContent =
+          "$0.00";
 
       }
-    );
 
 
-    /* AUTH */
+      /* TRANSACTIONS */
 
-    onAuthStateChanged(
-      auth,
-      async (user) => {
+      const transactionsRef =
+        collection(
+          db,
+          "users",
+          user.uid,
+          "transactions"
+        );
 
-        if (!user) {
+      const transactionsQuery =
+        query(
+          transactionsRef,
+          orderBy(
+            "createdAt",
+            "desc"
+          ),
+          limit(100)
+        );
 
-          window.location.href =
-            "login.html";
+      const snapshot =
+        await getDocs(
+          transactionsQuery
+        );
 
-          return;
+      allTransactions = [];
+
+      snapshot.forEach(
+        (transactionDoc) => {
+
+          allTransactions.push({
+            id: transactionDoc.id,
+            ...transactionDoc.data()
+          });
 
         }
+      );
 
-        currentUser = user;
+      renderTransactions();
 
-        await loadAccountData(user);
+    } catch (error) {
 
-      }
-    );
+      console.error(
+        "Transaction loading error:",
+        error
+      );
 
-
-    /* LOAD DATA */
-
-    async function loadAccountData(user) {
+      allTransactions = [];
 
       loadingState.style.display =
-        "block";
+        "none";
 
       transactionList.style.display =
         "none";
@@ -1342,1082 +1278,1092 @@
         "none";
 
       errorState.style.display =
-        "none";
-
-
-      try {
-
-        /* USER ACCOUNT */
-
-        const userRef =
-          doc(
-            db,
-            "users",
-            user.uid
-          );
-
-        const userSnap =
-          await getDoc(userRef);
-
-
-        if (userSnap.exists()) {
-
-          const userData =
-            userSnap.data();
-
-          const balance =
-            typeof userData.balance === "number"
-              ? userData.balance
-              : 0;
-
-          balanceAmount.textContent =
-            formatCurrency(balance);
-
-        } else {
-
-          balanceAmount.textContent =
-            "$0.00";
-
-        }
-
-
-        /* TRANSACTIONS */
-
-        const transactionsRef =
-          collection(
-            db,
-            "users",
-            user.uid,
-            "transactions"
-          );
-
-
-        const transactionsQuery =
-          query(
-            transactionsRef,
-            orderBy(
-              "createdAt",
-              "desc"
-            ),
-            limit(100)
-          );
-
-
-        const snapshot =
-          await getDocs(
-            transactionsQuery
-          );
-
-
-        allTransactions = [];
-
-
-        snapshot.forEach(
-          (transactionDoc) => {
-
-            allTransactions.push({
-              id: transactionDoc.id,
-              ...transactionDoc.data()
-            });
-
-          }
-        );
-
-
-        renderTransactions();
-
-      } catch (error) {
-
-        console.error(
-          "Transaction loading error:",
-          error
-        );
-
-        allTransactions = [];
-
-        loadingState.style.display =
-          "none";
-
-        transactionList.style.display =
-          "none";
-
-        emptyState.style.display =
-          "none";
-
-        errorState.style.display =
-          "block";
-
-      }
+        "block";
 
     }
 
-
-    /* RENDER */
-
-    function renderTransactions() {
-
-      const searchTerm =
-        searchInput.value
-          .trim()
-          .toLowerCase();
+  }
 
 
-      const selectedDirection =
-        typeFilter.value;
+  /* RENDER */
+
+  function renderTransactions() {
+
+    const searchTerm =
+      searchInput.value
+        .trim()
+        .toLowerCase();
+
+    const selectedDirection =
+      typeFilter.value;
+
+    const selectedType =
+      transactionFilter.value;
+
+    const filtered =
+      allTransactions.filter(
+        (transaction) => {
+
+          const title =
+            String(
+              transaction.title || ""
+            ).toLowerCase();
+
+          const type =
+            String(
+              transaction.type || ""
+            ).toLowerCase();
+
+          const recipient =
+            String(
+              transaction.recipient || ""
+            ).toLowerCase();
+
+          const payee =
+            String(
+              transaction.payee || ""
+            ).toLowerCase();
+
+          const recipientAccount =
+            String(
+              transaction.recipientAccount || ""
+            ).toLowerCase();
+
+          const accountNumber =
+            String(
+              transaction.accountNumber || ""
+            ).toLowerCase();
+
+          const recipientContact =
+            String(
+              transaction.recipientContact || ""
+            ).toLowerCase();
+
+          const source =
+            String(
+              transaction.source || ""
+            ).toLowerCase();
+
+          const destination =
+            String(
+              transaction.destination || ""
+            ).toLowerCase();
+
+          const reference =
+            String(
+              transaction.reference || ""
+            ).toLowerCase();
+
+          const note =
+            String(
+              transaction.note || ""
+            ).toLowerCase();
+
+          const description =
+            String(
+              transaction.description || ""
+            ).toLowerCase();
 
 
-      const selectedType =
-        transactionFilter.value;
+          const matchesSearch =
+            !searchTerm ||
+            title.includes(searchTerm) ||
+            type.includes(searchTerm) ||
+            recipient.includes(searchTerm) ||
+            payee.includes(searchTerm) ||
+            recipientAccount.includes(searchTerm) ||
+            accountNumber.includes(searchTerm) ||
+            recipientContact.includes(searchTerm) ||
+            source.includes(searchTerm) ||
+            destination.includes(searchTerm) ||
+            reference.includes(searchTerm) ||
+            note.includes(searchTerm) ||
+            description.includes(searchTerm);
 
 
-      const filtered =
-        allTransactions.filter(
-          (transaction) => {
-
-            const title =
-              String(
-                transaction.title || ""
-              ).toLowerCase();
+          const matchesDirection =
+            selectedDirection === "all" ||
+            transaction.direction ===
+              selectedDirection;
 
 
-            const type =
-              String(
-                transaction.type || ""
-              ).toLowerCase();
+          const matchesType =
+            selectedType === "all" ||
+            transaction.type ===
+              selectedType;
 
 
-            const recipient =
-              String(
-                transaction.recipient || ""
-              ).toLowerCase();
+          return (
+            matchesSearch &&
+            matchesDirection &&
+            matchesType
+          );
+
+        }
+      );
 
 
-            const payee =
-              String(
-                transaction.payee || ""
-              ).toLowerCase();
+    transactionCount.textContent =
+      `${filtered.length} ${
+        filtered.length === 1
+          ? "transaction"
+          : "transactions"
+      }`;
 
 
-            const recipientAccount =
-              String(
-                transaction.recipientAccount || ""
-              ).toLowerCase();
+    loadingState.style.display =
+      "none";
 
 
-            const accountNumber =
-              String(
-                transaction.accountNumber || ""
-              ).toLowerCase();
-
-
-            const recipientContact =
-              String(
-                transaction.recipientContact || ""
-              ).toLowerCase();
-
-
-            const source =
-              String(
-                transaction.source || ""
-              ).toLowerCase();
-
-
-            const destination =
-              String(
-                transaction.destination || ""
-              ).toLowerCase();
-
-
-            const reference =
-              String(
-                transaction.reference || ""
-              ).toLowerCase();
-
-
-            const note =
-              String(
-                transaction.note || ""
-              ).toLowerCase();
-
-
-            const matchesSearch =
-              !searchTerm ||
-              title.includes(searchTerm) ||
-              type.includes(searchTerm) ||
-              recipient.includes(searchTerm) ||
-              payee.includes(searchTerm) ||
-              recipientAccount.includes(searchTerm) ||
-              accountNumber.includes(searchTerm) ||
-              recipientContact.includes(searchTerm) ||
-              source.includes(searchTerm) ||
-              destination.includes(searchTerm) ||
-              reference.includes(searchTerm) ||
-              note.includes(searchTerm);
-
-
-            const matchesDirection =
-              selectedDirection === "all" ||
-              transaction.direction ===
-                selectedDirection;
-
-
-            const matchesType =
-              selectedType === "all" ||
-              transaction.type ===
-                selectedType;
-
-
-            return (
-              matchesSearch &&
-              matchesDirection &&
-              matchesType
-            );
-
-          }
-        );
-
-
-      transactionCount.textContent =
-        `${filtered.length} ${
-          filtered.length === 1
-            ? "transaction"
-            : "transactions"
-        }`;
-
-
-      loadingState.style.display =
-        "none";
-
-
-      if (filtered.length === 0) {
-
-        transactionList.innerHTML =
-          "";
-
-        transactionList.style.display =
-          "none";
-
-        emptyState.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      emptyState.style.display =
-        "none";
-
-      transactionList.style.display =
-        "flex";
-
+    if (filtered.length === 0) {
 
       transactionList.innerHTML =
-        filtered
-          .map(createTransactionCard)
-          .join("");
-
-
-      transactionList
-        .querySelectorAll(
-          ".transaction-card"
-        )
-        .forEach(
-          (card) => {
-
-            card.addEventListener(
-              "click",
-              () => {
-
-                const transactionId =
-                  card.dataset.id;
-
-
-                const transaction =
-                  allTransactions.find(
-                    item =>
-                      item.id ===
-                      transactionId
-                  );
-
-
-                if (transaction) {
-
-                  openTransaction(
-                    transaction
-                  );
-
-                }
-
-              }
-            );
-
-          }
-        );
-
-    }
-
-
-    /* TRANSACTION CARD */
-
-    function createTransactionCard(
-      transaction
-    ) {
-
-      const direction =
-        transaction.direction ===
-        "credit"
-          ? "credit"
-          : "debit";
-
-
-      const icon =
-        getTransactionIcon(
-          transaction.type
-        );
-
-
-      const amount =
-        Number(
-          transaction.amount || 0
-        );
-
-
-      const prefix =
-        direction === "credit"
-          ? "+"
-          : "-";
-
-
-      const title =
-        transaction.title ||
-        getTransactionTitle(
-          transaction.type
-        );
-
-
-      const meta =
-        getTransactionMeta(
-          transaction
-        );
-
-
-      const date =
-        formatDate(
-          transaction.createdAt
-        );
-
-
-      return `
-
-        <article
-          class="transaction-card"
-          data-id="${escapeHtml(
-            transaction.id
-          )}"
-        >
-
-          <div
-            class="transaction-icon ${direction}"
-          >
-            <i class="${icon}"></i>
-          </div>
-
-
-          <div class="transaction-info">
-
-            <div class="transaction-title">
-              ${escapeHtml(title)}
-            </div>
-
-            <div class="transaction-meta">
-              ${escapeHtml(meta)}
-              •
-              ${escapeHtml(date)}
-            </div>
-
-          </div>
-
-
-          <div class="transaction-right">
-
-            <div
-              class="transaction-amount ${direction}"
-            >
-              ${prefix}${formatCurrency(
-                amount
-              )}
-            </div>
-
-
-            <div class="transaction-status">
-
-              <span class="status-dot"></span>
-
-              ${escapeHtml(
-                capitalize(
-                  transaction.status ||
-                  "completed"
-                )
-              )}
-
-            </div>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }
-
-
-    /* ICONS */
-
-    function getTransactionIcon(type) {
-
-      switch (type) {
-
-        case "send":
-          return "fa-solid fa-paper-plane";
-
-        case "zelle":
-          return "fa-solid fa-bolt";
-
-        case "deposit":
-          return "fa-solid fa-arrow-down";
-
-        case "withdrawal":
-          return "fa-solid fa-arrow-up";
-
-        case "transfer":
-          return "fa-solid fa-right-left";
-
-        case "payment":
-          return "fa-solid fa-file-invoice-dollar";
-
-        default:
-          return "fa-solid fa-receipt";
-
-      }
-
-    }
-
-
-    /* TITLES */
-
-    function getTransactionTitle(type) {
-
-      switch (type) {
-
-        case "send":
-          return "Money Sent";
-
-        case "zelle":
-          return "Zelle Payment";
-
-        case "deposit":
-          return "Money Added";
-
-        case "withdrawal":
-          return "Withdrawal";
-
-        case "transfer":
-          return "Bank Transfer";
-
-        case "payment":
-          return "Payment";
-
-        default:
-          return "Transaction";
-
-      }
-
-    }
-
-
-    /* META */
-
-    function getTransactionMeta(
-      transaction
-    ) {
-
-      if (transaction.payee) {
-
-        return `To ${transaction.payee}`;
-
-      }
-
-
-      if (transaction.recipient) {
-
-        return `To ${transaction.recipient}`;
-
-      }
-
-
-      if (transaction.source) {
-
-        return `From ${transaction.source}`;
-
-      }
-
-
-      if (transaction.destination) {
-
-        return `To ${transaction.destination}`;
-
-      }
-
-
-      if (transaction.reference) {
-
-        return transaction.reference;
-
-      }
-
-
-      if (transaction.type) {
-
-        return capitalize(
-          String(transaction.type)
-            .replace(/[-_]/g, " ")
-        );
-
-      }
-
-
-      return "Account activity";
-
-    }
-
-
-    /* OPEN MODAL */
-
-    function openTransaction(
-      transaction
-    ) {
-
-      const direction =
-        transaction.direction ===
-        "credit"
-          ? "credit"
-          : "debit";
-
-
-      const icon =
-        getTransactionIcon(
-          transaction.type
-        );
-
-
-      const amount =
-        Number(
-          transaction.amount || 0
-        );
-
-
-      const prefix =
-        direction === "credit"
-          ? "+"
-          : "-";
-
-
-      const detailIcon =
-        document.getElementById(
-          "detailIcon"
-        );
-
-
-      detailIcon.className =
-        `detail-icon ${direction}`;
-
-
-      detailIcon.innerHTML =
-        `<i class="${icon}"></i>`;
-
-
-      document.getElementById(
-        "detailTitle"
-      ).textContent =
-        transaction.title ||
-        getTransactionTitle(
-          transaction.type
-        );
-
-
-      const detailAmount =
-        document.getElementById(
-          "detailAmount"
-        );
-
-
-      detailAmount.className =
-        `detail-amount ${direction}`;
-
-
-      detailAmount.textContent =
-        `${prefix}${formatCurrency(
-          amount
-        )}`;
-
-
-      document.getElementById(
-        "detailStatus"
-      ).textContent =
-        capitalize(
-          transaction.status ||
-          "completed"
-        );
-
-
-      document.getElementById(
-        "detailType"
-      ).textContent =
-        formatType(
-          transaction.type
-        );
-
-
-      document.getElementById(
-        "detailDate"
-      ).textContent =
-        formatDateTime(
-          transaction.createdAt
-        );
-
-
-      document.getElementById(
-        "detailId"
-      ).textContent =
-        transaction.id ||
-        "—";
-
-
-      setDetailRow(
-        "recipientRow",
-        "detailRecipient",
-        transaction.recipient
-      );
-
-
-      setDetailRow(
-        "payeeRow",
-        "detailPayee",
-        transaction.payee
-      );
-
-
-      setDetailRow(
-        "accountRow",
-        "detailAccount",
-        transaction.recipientAccount ||
-        transaction.accountNumber ||
-        transaction.fromAccount
-      );
-
-
-      setDetailRow(
-        "contactRow",
-        "detailContact",
-        transaction.recipientContact
-      );
-
-
-      setDetailRow(
-        "sourceRow",
-        "detailSource",
-        transaction.source
-      );
-
-
-      setDetailRow(
-        "destinationRow",
-        "detailDestination",
-        transaction.destination
-      );
-
-
-      setDetailRow(
-        "referenceRow",
-        "detailReference",
-        transaction.reference
-      );
-
-
-      setDetailRow(
-        "noteRow",
-        "detailNote",
-        transaction.note
-      );
-
-
-      transactionModal.classList.add(
-        "show"
-      );
-
-      document.body.style.overflow =
-        "hidden";
-
-    }
-
-
-    /* DETAIL ROW */
-
-    function setDetailRow(
-      rowId,
-      valueId,
-      value
-    ) {
-
-      const row =
-        document.getElementById(rowId);
-
-      const element =
-        document.getElementById(valueId);
-
-
-      if (
-        value !== undefined &&
-        value !== null &&
-        String(value).trim() !== ""
-      ) {
-
-        row.style.display =
-          "flex";
-
-        element.textContent =
-          String(value);
-
-      } else {
-
-        row.style.display =
-          "none";
-
-      }
-
-    }
-
-
-    /* CLOSE MODAL */
-
-    function closeTransactionModal() {
-
-      transactionModal.classList.remove(
-        "show"
-      );
-
-      document.body.style.overflow =
         "";
 
+      transactionList.style.display =
+        "none";
+
+      emptyState.style.display =
+        "block";
+
+      return;
+
     }
 
 
-    closeModal.addEventListener(
-      "click",
-      closeTransactionModal
-    );
+    emptyState.style.display =
+      "none";
+
+    transactionList.style.display =
+      "flex";
 
 
-    doneModal.addEventListener(
-      "click",
-      closeTransactionModal
-    );
+    transactionList.innerHTML =
+      filtered
+        .map(createTransactionCard)
+        .join("");
 
 
-    transactionModal.addEventListener(
-      "click",
-      (event) => {
+    transactionList
+      .querySelectorAll(
+        ".transaction-card"
+      )
+      .forEach(
+        (card) => {
 
-        if (
-          event.target ===
-          transactionModal
-        ) {
+          card.addEventListener(
+            "click",
+            () => {
 
-          closeTransactionModal();
+              const transactionId =
+                card.dataset.id;
+
+              const transaction =
+                allTransactions.find(
+                  item =>
+                    item.id ===
+                    transactionId
+                );
+
+              if (transaction) {
+
+                openTransaction(
+                  transaction
+                );
+
+              }
+
+            }
+          );
 
         }
+      );
 
-      }
-    );
-
-
-    /* ESCAPE KEY */
-
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.key === "Escape" &&
-          transactionModal.classList.contains(
-            "show"
-          )
-        ) {
-
-          closeTransactionModal();
-
-        }
-
-      }
-    );
+  }
 
 
-    /* FILTERS */
+  /* TRANSACTION CARD */
 
-    searchInput.addEventListener(
-      "input",
-      renderTransactions
-    );
+  function createTransactionCard(
+    transaction
+  ) {
 
-
-    typeFilter.addEventListener(
-      "change",
-      renderTransactions
-    );
-
-
-    transactionFilter.addEventListener(
-      "change",
-      renderTransactions
-    );
+    const direction =
+      transaction.direction ===
+      "credit"
+        ? "credit"
+        : "debit";
 
 
-    /* CURRENCY */
+    const icon =
+      getTransactionIcon(
+        transaction.type
+      );
 
-    function formatCurrency(amount) {
 
-      return new Intl.NumberFormat(
-        "en-US",
-        {
-          style: "currency",
-          currency: "USD",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      ).format(
-        Number(amount) || 0
+    const amount =
+      Number(
+        transaction.amount || 0
+      );
+
+
+    const prefix =
+      direction === "credit"
+        ? "+"
+        : "-";
+
+
+    const title =
+      transaction.title ||
+      getTransactionTitle(
+        transaction.type
+      );
+
+
+    const meta =
+      getTransactionMeta(
+        transaction
+      );
+
+
+    /*
+      IMPORTANT:
+      Use the admin-selected transactionDate
+      when available. Older transactions that
+      do not have transactionDate continue to
+      use createdAt.
+    */
+
+    const date =
+      formatTransactionDisplayDate(
+        transaction
+      );
+
+
+    return `
+
+      <article
+        class="transaction-card"
+        data-id="${escapeHtml(
+          transaction.id
+        )}"
+      >
+
+        <div
+          class="transaction-icon ${direction}"
+        >
+          <i class="${icon}"></i>
+        </div>
+
+        <div class="transaction-info">
+
+          <div class="transaction-title">
+            ${escapeHtml(title)}
+          </div>
+
+          <div class="transaction-meta">
+            ${escapeHtml(meta)}
+            •
+            ${escapeHtml(date)}
+          </div>
+
+        </div>
+
+        <div class="transaction-right">
+
+          <div
+            class="transaction-amount ${direction}"
+          >
+            ${prefix}${formatCurrency(
+              amount
+            )}
+          </div>
+
+          <div class="transaction-status">
+
+            <span class="status-dot"></span>
+
+            ${escapeHtml(
+              capitalize(
+                transaction.status ||
+                "completed"
+              )
+            )}
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `;
+
+  }
+
+
+  /* ICONS */
+
+  function getTransactionIcon(type) {
+
+    switch (type) {
+
+      case "send":
+        return "fa-solid fa-paper-plane";
+
+      case "zelle":
+        return "fa-solid fa-bolt";
+
+      case "deposit":
+        return "fa-solid fa-arrow-down";
+
+      case "withdrawal":
+        return "fa-solid fa-arrow-up";
+
+      case "transfer":
+        return "fa-solid fa-right-left";
+
+      case "payment":
+        return "fa-solid fa-file-invoice-dollar";
+
+      default:
+        return "fa-solid fa-receipt";
+
+    }
+
+  }
+
+
+  /* TITLES */
+
+  function getTransactionTitle(type) {
+
+    switch (type) {
+
+      case "send":
+        return "Money Sent";
+
+      case "zelle":
+        return "Zelle Payment";
+
+      case "deposit":
+        return "Money Added";
+
+      case "withdrawal":
+        return "Withdrawal";
+
+      case "transfer":
+        return "Bank Transfer";
+
+      case "payment":
+        return "Payment";
+
+      default:
+        return "Transaction";
+
+    }
+
+  }
+
+
+  /* META */
+
+  function getTransactionMeta(
+    transaction
+  ) {
+
+    if (transaction.payee) {
+
+      return `To ${transaction.payee}`;
+
+    }
+
+    if (transaction.recipient) {
+
+      return `To ${transaction.recipient}`;
+
+    }
+
+    if (transaction.source) {
+
+      return `From ${transaction.source}`;
+
+    }
+
+    if (transaction.destination) {
+
+      return `To ${transaction.destination}`;
+
+    }
+
+    if (transaction.reference) {
+
+      return transaction.reference;
+
+    }
+
+    if (transaction.type) {
+
+      return capitalize(
+        String(transaction.type)
+          .replace(/[-_]/g, " ")
       );
 
     }
 
+    return "Account activity";
 
-    /* DATE */
-
-    function formatDate(timestamp) {
-
-      if (!timestamp) {
-        return "Recent";
-      }
+  }
 
 
-      let date;
+  /* OPEN MODAL */
+
+  function openTransaction(
+    transaction
+  ) {
+
+    const direction =
+      transaction.direction ===
+      "credit"
+        ? "credit"
+        : "debit";
 
 
-      if (
-        timestamp &&
-        typeof timestamp.toDate ===
-          "function"
-      ) {
-
-        date =
-          timestamp.toDate();
-
-      } else if (
-        timestamp instanceof Date
-      ) {
-
-        date = timestamp;
-
-      } else if (
-        timestamp &&
-        typeof timestamp === "object" &&
-        typeof timestamp.seconds ===
-          "number"
-      ) {
-
-        date =
-          new Date(
-            timestamp.seconds * 1000
-          );
-
-      } else {
-
-        date =
-          new Date(timestamp);
-
-      }
-
-
-      if (
-        isNaN(
-          date.getTime()
-        )
-      ) {
-
-        return "Recent";
-
-      }
-
-
-      return new Intl.DateTimeFormat(
-        "en-US",
-        {
-          month: "short",
-          day: "numeric"
-        }
-      ).format(date);
-
-    }
-
-
-    /* DATE + TIME */
-
-    function formatDateTime(timestamp) {
-
-      if (!timestamp) {
-        return "—";
-      }
-
-
-      let date;
-
-
-      if (
-        timestamp &&
-        typeof timestamp.toDate ===
-          "function"
-      ) {
-
-        date =
-          timestamp.toDate();
-
-      } else if (
-        timestamp instanceof Date
-      ) {
-
-        date = timestamp;
-
-      } else if (
-        timestamp &&
-        typeof timestamp === "object" &&
-        typeof timestamp.seconds ===
-          "number"
-      ) {
-
-        date =
-          new Date(
-            timestamp.seconds * 1000
-          );
-
-      } else {
-
-        date =
-          new Date(timestamp);
-
-      }
-
-
-      if (
-        isNaN(
-          date.getTime()
-        )
-      ) {
-
-        return "—";
-
-      }
-
-
-      return new Intl.DateTimeFormat(
-        "en-US",
-        {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-          hour: "numeric",
-          minute: "2-digit"
-        }
-      ).format(date);
-
-    }
-
-
-    /* TYPE */
-
-    function formatType(type) {
-
-      if (!type) {
-        return "Account Activity";
-      }
-
-
-      const formatted =
-        String(type)
-          .replace(/[-_]/g, " ");
-
-
-      return formatted.replace(
-        /\b\w/g,
-        letter =>
-          letter.toUpperCase()
+    const icon =
+      getTransactionIcon(
+        transaction.type
       );
 
-    }
+
+    const amount =
+      Number(
+        transaction.amount || 0
+      );
 
 
-    /* CAPITALIZE */
-
-    function capitalize(value) {
-
-      if (!value) {
-        return "";
-      }
+    const prefix =
+      direction === "credit"
+        ? "+"
+        : "-";
 
 
-      const stringValue =
+    const detailIcon =
+      document.getElementById(
+        "detailIcon"
+      );
+
+
+    detailIcon.className =
+      `detail-icon ${direction}`;
+
+
+    detailIcon.innerHTML =
+      `<i class="${icon}"></i>`;
+
+
+    /*
+      ADMIN-CONTROLLED TRANSACTION NAME
+    */
+
+    document.getElementById(
+      "detailTitle"
+    ).textContent =
+      transaction.title ||
+      getTransactionTitle(
+        transaction.type
+      );
+
+
+    const detailAmount =
+      document.getElementById(
+        "detailAmount"
+      );
+
+
+    detailAmount.className =
+      `detail-amount ${direction}`;
+
+
+    detailAmount.textContent =
+      `${prefix}${formatCurrency(
+        amount
+      )}`;
+
+
+    document.getElementById(
+      "detailStatus"
+    ).textContent =
+      capitalize(
+        transaction.status ||
+        "completed"
+      );
+
+
+    document.getElementById(
+      "detailType"
+    ).textContent =
+      formatType(
+        transaction.type
+      );
+
+
+    /*
+      ADMIN-CONTROLLED TRANSACTION DATE
+
+      If transactionDate exists, it is used.
+      Otherwise the original createdAt timestamp
+      is used for older transactions.
+    */
+
+    document.getElementById(
+      "detailDate"
+    ).textContent =
+      formatTransactionDetailDate(
+        transaction
+      );
+
+
+    document.getElementById(
+      "detailId"
+    ).textContent =
+      transaction.id ||
+      "—";
+
+
+    setDetailRow(
+      "recipientRow",
+      "detailRecipient",
+      transaction.recipient
+    );
+
+
+    setDetailRow(
+      "payeeRow",
+      "detailPayee",
+      transaction.payee
+    );
+
+
+    setDetailRow(
+      "accountRow",
+      "detailAccount",
+      transaction.recipientAccount ||
+      transaction.accountNumber ||
+      transaction.fromAccount
+    );
+
+
+    setDetailRow(
+      "contactRow",
+      "detailContact",
+      transaction.recipientContact
+    );
+
+
+    /*
+      ADMIN-CONTROLLED SOURCE
+    */
+
+    setDetailRow(
+      "sourceRow",
+      "detailSource",
+      transaction.source
+    );
+
+
+    setDetailRow(
+      "destinationRow",
+      "detailDestination",
+      transaction.destination
+    );
+
+
+    setDetailRow(
+      "referenceRow",
+      "detailReference",
+      transaction.reference
+    );
+
+
+    setDetailRow(
+      "noteRow",
+      "detailNote",
+      transaction.note
+    );
+
+
+    /*
+      ADMIN-CONTROLLED DESCRIPTION
+    */
+
+    setDetailRow(
+      "descriptionRow",
+      "detailDescription",
+      transaction.description
+    );
+
+
+    transactionModal.classList.add(
+      "show"
+    );
+
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+  /* DETAIL ROW */
+
+  function setDetailRow(
+    rowId,
+    valueId,
+    value
+  ) {
+
+    const row =
+      document.getElementById(rowId);
+
+    const element =
+      document.getElementById(valueId);
+
+
+    if (
+      value !== undefined &&
+      value !== null &&
+      String(value).trim() !== ""
+    ) {
+
+      row.style.display =
+        "flex";
+
+      element.textContent =
         String(value);
 
+    } else {
 
-      return (
-        stringValue.charAt(0).toUpperCase() +
-        stringValue.slice(1)
-      );
+      row.style.display =
+        "none";
 
     }
 
+  }
 
-    /* HTML ESCAPE */
 
-    function escapeHtml(value) {
+  /* CLOSE MODAL */
 
-      return String(
-        value ?? ""
-      )
-        .replace(
-          /&/g,
-          "&amp;"
+  function closeTransactionModal() {
+
+    transactionModal.classList.remove(
+      "show"
+    );
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+
+  closeModal.addEventListener(
+    "click",
+    closeTransactionModal
+  );
+
+
+  doneModal.addEventListener(
+    "click",
+    closeTransactionModal
+  );
+
+
+  transactionModal.addEventListener(
+    "click",
+    (event) => {
+
+      if (
+        event.target ===
+        transactionModal
+      ) {
+
+        closeTransactionModal();
+
+      }
+
+    }
+  );
+
+
+  /* ESCAPE KEY */
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key === "Escape" &&
+        transactionModal.classList.contains(
+          "show"
         )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
+      ) {
+
+        closeTransactionModal();
+
+      }
+
+    }
+  );
+
+
+  /* FILTERS */
+
+  searchInput.addEventListener(
+    "input",
+    renderTransactions
+  );
+
+
+  typeFilter.addEventListener(
+    "change",
+    renderTransactions
+  );
+
+
+  transactionFilter.addEventListener(
+    "change",
+    renderTransactions
+  );
+
+
+  /* CURRENCY */
+
+  function formatCurrency(amount) {
+
+    return new Intl.NumberFormat(
+      "en-US",
+      {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    ).format(
+      Number(amount) || 0
+    );
+
+  }
+
+
+  /* DATE */
+
+  function formatDate(timestamp) {
+
+    if (!timestamp) {
+      return "Recent";
+    }
+
+
+    let date;
+
+
+    if (
+      timestamp &&
+      typeof timestamp.toDate ===
+        "function"
+    ) {
+
+      date =
+        timestamp.toDate();
+
+    } else if (
+      timestamp instanceof Date
+    ) {
+
+      date = timestamp;
+
+    } else if (
+      timestamp &&
+      typeof timestamp === "object" &&
+      typeof timestamp.seconds ===
+        "number"
+    ) {
+
+      date =
+        new Date(
+          timestamp.seconds * 1000
         );
 
+    } else {
+
+      date =
+        new Date(timestamp);
+
     }
 
-  </script>
+
+    if (
+      isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return "Recent";
+
+    }
+
+
+    return new Intl.DateTimeFormat(
+      "en-US",
+      {
+        month: "short",
+        day: "numeric"
+      }
+    ).format(date);
+
+  }
+
+
+  /*
+    ADMIN TRANSACTION DATE — LIST
+  */
+
+  function formatTransactionDisplayDate(
+    transaction
+  ) {
+
+    if (
+      transaction &&
+      transaction.transactionDate
+    ) {
+
+      const date =
+        new Date(
+          `${transaction.transactionDate}T12:00:00`
+        );
+
+
+      if (
+        !isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return new Intl.DateTimeFormat(
+          "en-US",
+          {
+            month: "short",
+            day: "numeric"
+          }
+        ).format(date);
+
+      }
+
+    }
+
+
+    return formatDate(
+      transaction
+        ? transaction.createdAt
+        : null
+    );
+
+  }
+
+
+  /*
+    ADMIN TRANSACTION DATE — MODAL
+  */
+
+  function formatTransactionDetailDate(
+    transaction
+  ) {
+
+    if (
+      transaction &&
+      transaction.transactionDate
+    ) {
+
+      const date =
+        new Date(
+          `${transaction.transactionDate}T12:00:00`
+        );
+
+
+      if (
+        !isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return new Intl.DateTimeFormat(
+          "en-US",
+          {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          }
+        ).format(date);
+
+      }
+
+    }
+
+
+    return formatDateTime(
+      transaction
+        ? transaction.createdAt
+        : null
+    );
+
+  }
+
+
+  /* DATE + TIME */
+
+  function formatDateTime(timestamp) {
+
+    if (!timestamp) {
+      return "—";
+    }
+
+
+    let date;
+
+
+    if (
+      timestamp &&
+      typeof timestamp.toDate ===
+        "function"
+    ) {
+
+      date =
+        timestamp.toDate();
+
+    } else if (
+      timestamp instanceof Date
+    ) {
+
+      date = timestamp;
+
+    } else if (
+      timestamp &&
+      typeof timestamp === "object" &&
+      typeof timestamp.seconds ===
+        "number"
+    ) {
+
+      date =
+        new Date(
+          timestamp.seconds * 1000
+        );
+
+    } else {
+
+      date =
+        new Date(timestamp);
+
+    }
+
+
+    if (
+      isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return "—";
+
+    }
+
+
+    return new Intl.DateTimeFormat(
+      "en-US",
+      {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      }
+    ).format(date);
+
+  }
+
+
+  /* TYPE */
+
+  function formatType(type) {
+
+    if (!type) {
+      return "Account Activity";
+    }
+
+
+    const formatted =
+      String(type)
+        .replace(/[-_]/g, " ");
+
+
+    return formatted.replace(
+      /\b\w/g,
+      letter =>
+        letter.toUpperCase()
+    );
+
+  }
+
+
+  /* CAPITALIZE */
+
+  function capitalize(value) {
+
+    if (!value) {
+      return "";
+    }
+
+
+    const stringValue =
+      String(value);
+
+
+    return (
+      stringValue.charAt(0).toUpperCase() +
+      stringValue.slice(1)
+    );
+
+  }
+
+
+  /* HTML ESCAPE */
+
+  function escapeHtml(value) {
+
+    return String(
+      value ?? ""
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+</script>
 
 </body>
 </html>
