@@ -1438,6 +1438,12 @@
         request.fundingSource ||
         "Not specified";
 
+      /*
+       * FIX:
+       * Use the account type stored on the deposit request.
+       * Do not allow the administrator to change it here.
+       */
+
       const accountType =
         request.accountType ||
         "Checking";
@@ -1627,13 +1633,20 @@
 
                   <select
                     class="account-type"
+                    disabled
                   >
 
-                    <option value="Checking">
+                    <option
+                      value="Checking"
+                      ${String(accountType) === "Checking" ? "selected" : ""}
+                    >
                       Checking
                     </option>
 
-                    <option value="Savings">
+                    <option
+                      value="Savings"
+                      ${String(accountType) === "Savings" ? "selected" : ""}
+                    >
                       Savings
                     </option>
 
@@ -1914,6 +1927,39 @@
 
               throw new Error(
                 "This request has already been reviewed."
+              );
+
+            }
+
+
+            /*
+             * FIX:
+             * The account being credited must match
+             * the account recorded on the original request.
+             */
+
+            const requestedAccountType =
+              requestData.accountType;
+
+
+            if (
+              requestedAccountType !== "Checking" &&
+              requestedAccountType !== "Savings"
+            ) {
+
+              throw new Error(
+                "This deposit request contains an invalid account type."
+              );
+
+            }
+
+
+            if (
+              accountType !== requestedAccountType
+            ) {
+
+              throw new Error(
+                "The approval account does not match the customer's requested account."
               );
 
             }
