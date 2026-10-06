@@ -16,7 +16,7 @@
 
   <link
     rel="preconnect"
-    href="https://fonts.gstatic.com"
+    href="https://fonts.googleapis.com"
     crossorigin
   >
 
@@ -386,7 +386,7 @@
 
     .form-grid {
       display: grid;
-      grid-template-columns: 1fr 1.4fr 1fr;
+      grid-template-columns: 1.2fr 1.2fr 1fr 1fr;
       gap: 12px;
       margin-bottom: 12px;
     }
@@ -629,6 +629,12 @@
       margin-bottom: 18px;
     }
 
+    @media (max-width: 950px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 850px) {
       .request-details {
         grid-template-columns: repeat(2, 1fr);
@@ -636,10 +642,6 @@
 
       .form-grid {
         grid-template-columns: 1fr 1fr;
-      }
-
-      .description-field {
-        grid-column: 1 / -1;
       }
     }
 
@@ -693,10 +695,6 @@
         grid-template-columns: 1fr;
       }
 
-      .description-field {
-        grid-column: auto;
-      }
-
       .request-actions {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -734,11 +732,14 @@
     id="unauthorizedScreen"
   >
     <div class="unauthorized-card">
+
       <div class="unauthorized-icon">
         <i class="fa-solid fa-shield-halved"></i>
       </div>
 
-      <h2>Administrator Access Required</h2>
+      <h2>
+        Administrator Access Required
+      </h2>
 
       <p>
         This area is restricted to authorized First Merit Bank
@@ -752,21 +753,28 @@
         <i class="fa-solid fa-arrow-left"></i>
         Return to Dashboard
       </button>
+
     </div>
   </div>
 
-
   <!-- MAIN APPLICATION -->
-  <div id="adminApplication" style="display:none;">
+  <div
+    id="adminApplication"
+    style="display:none;"
+  >
 
     <header class="topbar">
 
       <div class="brand">
+
         <div class="brand-icon">
           <i class="fa-solid fa-building-columns"></i>
         </div>
 
-        <span>First Merit Bank</span>
+        <span>
+          First Merit Bank
+        </span>
+
       </div>
 
       <div class="top-actions">
@@ -788,12 +796,13 @@
 
     </header>
 
-
     <main class="page">
 
       <section class="page-heading">
 
-        <h1>Admin Approval</h1>
+        <h1>
+          Admin Approval
+        </h1>
 
         <p>
           Review customer deposit requests and approve or reject
@@ -801,7 +810,6 @@
         </p>
 
       </section>
-
 
       <!-- SUMMARY -->
       <section class="summary-grid">
@@ -822,7 +830,6 @@
 
         </div>
 
-
         <div class="summary-card">
 
           <div class="icon">
@@ -838,7 +845,6 @@
           </p>
 
         </div>
-
 
         <div class="summary-card">
 
@@ -858,18 +864,19 @@
 
       </section>
 
-
       <!-- REQUESTS -->
       <section class="requests-section">
 
         <div class="section-header">
 
           <div class="section-title">
+
             <i class="fa-solid fa-list-check"></i>
 
             <h2>
               Pending Deposit Requests
             </h2>
+
           </div>
 
           <button
@@ -882,15 +889,17 @@
 
         </div>
 
-
         <div
           class="requests-container"
           id="requestsContainer"
         >
 
           <div class="loading">
+
             <i class="fa-solid fa-spinner fa-spin"></i>
+
             Loading requests...
+
           </div>
 
         </div>
@@ -900,7 +909,6 @@
     </main>
 
   </div>
-
 
   <!-- REJECTION MODAL -->
   <div
@@ -970,13 +978,11 @@
 
   </div>
 
-
   <!-- TOAST -->
   <div
     class="toast"
     id="toast"
   ></div>
-
 
   <script type="module">
 
@@ -996,82 +1002,100 @@
       where,
       doc,
       runTransaction,
-      serverTimestamp,
-      Timestamp
+      serverTimestamp
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 
     /*
      * ADMIN UID
-     *
-     * This controls which authenticated account can see
-     * the administration interface.
-     *
-     * Firestore rules must ALSO enforce administrator
-     * permissions. This client-side check is not the
-     * security boundary.
      */
 
     const ADMIN_UID =
       "HUJjyMOyDndcT0qXet2Ce2rHUQz2";
-
 
     /*
      * DOM ELEMENTS
      */
 
     const adminApplication =
-      document.getElementById("adminApplication");
+      document.getElementById(
+        "adminApplication"
+      );
 
     const unauthorizedScreen =
-      document.getElementById("unauthorizedScreen");
+      document.getElementById(
+        "unauthorizedScreen"
+      );
 
     const requestsContainer =
-      document.getElementById("requestsContainer");
+      document.getElementById(
+        "requestsContainer"
+      );
 
     const pendingCount =
-      document.getElementById("pendingCount");
+      document.getElementById(
+        "pendingCount"
+      );
 
     const approvedCount =
-      document.getElementById("approvedCount");
+      document.getElementById(
+        "approvedCount"
+      );
 
     const lastRefresh =
-      document.getElementById("lastRefresh");
+      document.getElementById(
+        "lastRefresh"
+      );
 
     const refreshBtn =
-      document.getElementById("refreshBtn");
+      document.getElementById(
+        "refreshBtn"
+      );
 
     const backBtn =
-      document.getElementById("backBtn");
+      document.getElementById(
+        "backBtn"
+      );
 
     const unauthorizedBackBtn =
-      document.getElementById("unauthorizedBackBtn");
+      document.getElementById(
+        "unauthorizedBackBtn"
+      );
 
     const toast =
-      document.getElementById("toast");
+      document.getElementById(
+        "toast"
+      );
 
     const rejectModal =
-      document.getElementById("rejectModal");
+      document.getElementById(
+        "rejectModal"
+      );
 
     const closeRejectModal =
-      document.getElementById("closeRejectModal");
+      document.getElementById(
+        "closeRejectModal"
+      );
 
     const cancelRejectBtn =
-      document.getElementById("cancelRejectBtn");
+      document.getElementById(
+        "cancelRejectBtn"
+      );
 
     const confirmRejectBtn =
-      document.getElementById("confirmRejectBtn");
+      document.getElementById(
+        "confirmRejectBtn"
+      );
 
     const rejectionReason =
-      document.getElementById("rejectionReason");
-
+      document.getElementById(
+        "rejectionReason"
+      );
 
     let currentAdmin = null;
 
     let requestBeingRejected = null;
 
     let approvedThisSession = 0;
-
 
     /*
      * HELPERS
@@ -1082,33 +1106,54 @@
       type = ""
     ) {
 
-      toast.textContent = message;
+      toast.textContent =
+        message;
 
       toast.className =
         "toast show " + type;
 
-      setTimeout(() => {
+      setTimeout(
+        () => {
+          toast.className =
+            "toast";
+        },
+        3500
+      );
 
-        toast.className = "toast";
-
-      }, 3500);
     }
-
 
     function escapeHtml(value) {
 
-      if (value === null || value === undefined) {
+      if (
+        value === null ||
+        value === undefined
+      ) {
         return "";
       }
 
       return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
 
+    }
 
     function formatMoney(
       amount,
@@ -1116,7 +1161,9 @@
     ) {
 
       const numericAmount =
-        Number(amount || 0);
+        Number(
+          amount || 0
+        );
 
       try {
 
@@ -1126,17 +1173,21 @@
             style: "currency",
             currency: currency
           }
-        ).format(numericAmount);
+        ).format(
+          numericAmount
+        );
 
       } catch {
 
         return `${currency} ${numericAmount.toFixed(2)}`;
 
       }
+
     }
 
-
-    function formatTimestamp(timestamp) {
+    function formatTimestamp(
+      timestamp
+    ) {
 
       if (!timestamp) {
         return "Not available";
@@ -1147,11 +1198,18 @@
         let date;
 
         if (
-          typeof timestamp.toDate === "function"
+          typeof timestamp.toDate ===
+          "function"
         ) {
-          date = timestamp.toDate();
+
+          date =
+            timestamp.toDate();
+
         } else {
-          date = new Date(timestamp);
+
+          date =
+            new Date(timestamp);
+
         }
 
         return date.toLocaleString(
@@ -1170,8 +1228,8 @@
         return "Not available";
 
       }
-    }
 
+    }
 
     function todayValue() {
 
@@ -1184,21 +1242,32 @@
       const month =
         String(
           now.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+          2,
+          "0"
+        );
 
       const day =
         String(
           now.getDate()
-        ).padStart(2, "0");
+        ).padStart(
+          2,
+          "0"
+        );
 
       return `${year}-${month}-${day}`;
+
     }
 
+    function escapeAttribute(
+      value
+    ) {
 
-    function escapeAttribute(value) {
-      return escapeHtml(value);
+      return escapeHtml(
+        value
+      );
+
     }
-
 
     /*
      * AUTHORIZATION
@@ -1214,10 +1283,13 @@
             "login.html";
 
           return;
+
         }
 
-
-        if (user.uid !== ADMIN_UID) {
+        if (
+          user.uid !==
+          ADMIN_UID
+        ) {
 
           adminApplication.style.display =
             "none";
@@ -1226,10 +1298,11 @@
             "flex";
 
           return;
+
         }
 
-
-        currentAdmin = user;
+        currentAdmin =
+          user;
 
         unauthorizedScreen.style.display =
           "none";
@@ -1237,12 +1310,10 @@
         adminApplication.style.display =
           "block";
 
-
         await loadPendingRequests();
 
       }
     );
-
 
     /*
      * LOAD PENDING REQUESTS
@@ -1257,7 +1328,8 @@
         </div>
       `;
 
-      refreshBtn.disabled = true;
+      refreshBtn.disabled =
+        true;
 
       try {
 
@@ -1274,33 +1346,28 @@
             )
           );
 
-
         const snapshot =
           await getDocs(
             requestsQuery
           );
 
-
         const requests = [];
-
 
         snapshot.forEach(
           (requestDoc) => {
 
             requests.push({
-              id: requestDoc.id,
+              id:
+                requestDoc.id,
+
               ...requestDoc.data()
             });
 
           }
         );
 
-
         /*
-         * Sort newest first on the client.
-         *
-         * This avoids requiring a Firestore
-         * composite index for the initial version.
+         * Sort newest first.
          */
 
         requests.sort(
@@ -1321,10 +1388,8 @@
           }
         );
 
-
         pendingCount.textContent =
           requests.length;
-
 
         lastRefresh.textContent =
           new Date().toLocaleTimeString(
@@ -1335,10 +1400,8 @@
             }
           );
 
-
         approvedCount.textContent =
           approvedThisSession;
-
 
         if (!requests.length) {
 
@@ -1362,8 +1425,8 @@
           `;
 
           return;
-        }
 
+        }
 
         requestsContainer.innerHTML =
           requests
@@ -1372,9 +1435,7 @@
             )
             .join("");
 
-
         attachRequestEvents();
-
 
       } catch (error) {
 
@@ -1382,7 +1443,6 @@
           "Failed to load deposit requests:",
           error
         );
-
 
         requestsContainer.innerHTML = `
           <div class="empty-state">
@@ -1407,24 +1467,29 @@
 
       } finally {
 
-        refreshBtn.disabled = false;
+        refreshBtn.disabled =
+          false;
 
       }
 
     }
 
-
     /*
      * REQUEST CARD
      */
 
-    function renderRequestCard(request) {
+    function renderRequestCard(
+      request
+    ) {
 
       const amount =
-        Number(request.amount || 0);
+        Number(
+          request.amount || 0
+        );
 
       const currency =
-        request.currency || "USD";
+        request.currency ||
+        "USD";
 
       const customerName =
         request.customerName ||
@@ -1439,15 +1504,23 @@
         "Not specified";
 
       /*
-       * FIX:
-       * Use the account type stored on the deposit request.
-       * Do not allow the administrator to change it here.
+       * The account is intentionally taken from
+       * the original customer request and locked.
        */
 
       const accountType =
         request.accountType ||
         "Checking";
 
+      /*
+       * The customer's original funding source
+       * becomes the default admin source.
+       *
+       * The admin can replace it with anything.
+       */
+
+      const defaultSource =
+        fundingSource;
 
       return `
         <article
@@ -1481,7 +1554,6 @@
 
           </div>
 
-
           <div class="request-body">
 
             <div class="request-details">
@@ -1501,7 +1573,6 @@
 
               </div>
 
-
               <div class="detail">
 
                 <div class="detail-label">
@@ -1516,7 +1587,6 @@
 
               </div>
 
-
               <div class="detail">
 
                 <div class="detail-label">
@@ -1530,7 +1600,6 @@
                 </div>
 
               </div>
-
 
               <div class="detail">
 
@@ -1548,67 +1617,84 @@
 
             </div>
 
-
             <div class="admin-controls">
 
               <div class="controls-title">
+
                 <i class="fa-solid fa-sliders"></i>
+
                 Final Transaction Details
+
               </div>
 
-
               <div class="form-grid">
+
+                <!-- TRANSACTION NAME -->
 
                 <div class="field">
 
                   <label>
-                    Transaction Type
+                    Transaction Name
                   </label>
 
-                  <select
+                  <input
+                    type="text"
                     class="transaction-type"
+                    value="Deposit"
+                    list="transactionNameOptions-${escapeAttribute(
+                      request.id
+                    )}"
+                    placeholder="Enter transaction name..."
                   >
 
-                    <option value="Deposit">
-                      Deposit
-                    </option>
+                  <datalist
+                    id="transactionNameOptions-${escapeAttribute(
+                      request.id
+                    )}"
+                  >
 
-                    <option value="Cash App Deposit">
-                      Cash App Deposit
-                    </option>
+                    <option value="Deposit"></option>
 
-                    <option value="Bank Transfer">
-                      Bank Transfer
-                    </option>
+                    <option value="Inheritance Deposit"></option>
 
-                    <option value="Cash Deposit">
-                      Cash Deposit
-                    </option>
+                    <option value="Salary Payment"></option>
 
-                    <option value="Payroll">
-                      Payroll
-                    </option>
+                    <option value="Bank Transfer"></option>
 
-                    <option value="Refund">
-                      Refund
-                    </option>
+                    <option value="Cash Deposit"></option>
 
-                    <option value="Card Deposit">
-                      Card Deposit
-                    </option>
+                    <option value="Payroll"></option>
 
-                    <option value="Bill Pay">
-                      Bill Pay
-                    </option>
+                    <option value="Refund"></option>
 
-                    <option value="Other">
-                      Other
-                    </option>
+                    <option value="Card Deposit"></option>
 
-                  </select>
+                    <option value="Other"></option>
+
+                  </datalist>
 
                 </div>
 
+                <!-- SOURCE -->
+
+                <div class="field">
+
+                  <label>
+                    Source
+                  </label>
+
+                  <input
+                    type="text"
+                    class="transaction-source"
+                    value="${escapeAttribute(
+                      defaultSource
+                    )}"
+                    placeholder="Enter transaction source..."
+                  >
+
+                </div>
+
+                <!-- TRANSACTION DATE -->
 
                 <div class="field">
 
@@ -1624,6 +1710,7 @@
 
                 </div>
 
+                <!-- ACCOUNT -->
 
                 <div class="field">
 
@@ -1638,14 +1725,24 @@
 
                     <option
                       value="Checking"
-                      ${String(accountType) === "Checking" ? "selected" : ""}
+                      ${
+                        String(accountType) ===
+                        "Checking"
+                          ? "selected"
+                          : ""
+                      }
                     >
                       Checking
                     </option>
 
                     <option
                       value="Savings"
-                      ${String(accountType) === "Savings" ? "selected" : ""}
+                      ${
+                        String(accountType) ===
+                        "Savings"
+                          ? "selected"
+                          : ""
+                      }
                     >
                       Savings
                     </option>
@@ -1656,6 +1753,7 @@
 
               </div>
 
+              <!-- DESCRIPTION -->
 
               <div class="description-row">
 
@@ -1678,7 +1776,6 @@
 
               </div>
 
-
               <div class="request-actions">
 
                 <button
@@ -1688,7 +1785,6 @@
                   <i class="fa-solid fa-xmark"></i>
                   Reject
                 </button>
-
 
                 <button
                   class="btn approve-btn approve-request-btn"
@@ -1706,8 +1802,8 @@
 
         </article>
       `;
-    }
 
+    }
 
     function defaultDescription(
       fundingSource
@@ -1720,7 +1816,6 @@
       return `${fundingSource} deposit`;
 
     }
-
 
     /*
      * EVENT HANDLERS
@@ -1754,7 +1849,6 @@
 
           }
         );
-
 
       document
         .querySelectorAll(
@@ -1790,16 +1884,8 @@
 
     }
 
-
     /*
      * APPROVE REQUEST
-     *
-     * The transaction is intentionally performed
-     * inside a Firestore transaction.
-     *
-     * The corresponding Firestore rules must require
-     * the administrator UID and validate the balance
-     * change atomically.
      */
 
     async function approveRequest(
@@ -1811,34 +1897,55 @@
         return;
       }
 
-
       const requestId =
         card.dataset.requestId;
-
 
       const type =
         card.querySelector(
           ".transaction-type"
-        ).value;
+        ).value.trim();
 
+      const source =
+        card.querySelector(
+          ".transaction-source"
+        ).value.trim();
 
       const description =
         card.querySelector(
           ".transaction-description"
         ).value.trim();
 
-
       const transactionDate =
         card.querySelector(
           ".transaction-date"
         ).value;
-
 
       const accountType =
         card.querySelector(
           ".account-type"
         ).value;
 
+      if (!type) {
+
+        showToast(
+          "Enter a transaction name.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      if (!source) {
+
+        showToast(
+          "Enter a transaction source.",
+          "error"
+        );
+
+        return;
+
+      }
 
       if (!description) {
 
@@ -1848,8 +1955,8 @@
         );
 
         return;
-      }
 
+      }
 
       if (!transactionDate) {
 
@@ -1859,8 +1966,8 @@
         );
 
         return;
-      }
 
+      }
 
       if (
         accountType !== "Checking" &&
@@ -1873,19 +1980,19 @@
         );
 
         return;
-      }
 
+      }
 
       const originalText =
         button.innerHTML;
 
-      button.disabled = true;
+      button.disabled =
+        true;
 
       button.innerHTML = `
         <i class="fa-solid fa-spinner fa-spin"></i>
         Processing...
       `;
-
 
       try {
 
@@ -1896,7 +2003,6 @@
             requestId
           );
 
-
         await runTransaction(
           db,
           async (transaction) => {
@@ -1906,8 +2012,9 @@
                 requestRef
               );
 
-
-            if (!requestSnap.exists()) {
+            if (
+              !requestSnap.exists()
+            ) {
 
               throw new Error(
                 "This request no longer exists."
@@ -1915,10 +2022,8 @@
 
             }
 
-
             const requestData =
               requestSnap.data();
-
 
             if (
               requestData.status !==
@@ -1931,20 +2036,19 @@
 
             }
 
-
             /*
-             * FIX:
-             * The account being credited must match
-             * the account recorded on the original request.
+             * The account being credited MUST match
+             * the account on the customer's original request.
              */
 
             const requestedAccountType =
               requestData.accountType;
 
-
             if (
-              requestedAccountType !== "Checking" &&
-              requestedAccountType !== "Savings"
+              requestedAccountType !==
+                "Checking" &&
+              requestedAccountType !==
+                "Savings"
             ) {
 
               throw new Error(
@@ -1953,9 +2057,9 @@
 
             }
 
-
             if (
-              accountType !== requestedAccountType
+              accountType !==
+              requestedAccountType
             ) {
 
               throw new Error(
@@ -1964,10 +2068,8 @@
 
             }
 
-
             const userId =
               requestData.userId;
-
 
             if (!userId) {
 
@@ -1977,7 +2079,6 @@
 
             }
 
-
             const userRef =
               doc(
                 db,
@@ -1985,14 +2086,14 @@
                 userId
               );
 
-
             const userSnap =
               await transaction.get(
                 userRef
               );
 
-
-            if (!userSnap.exists()) {
+            if (
+              !userSnap.exists()
+            ) {
 
               throw new Error(
                 "Customer account could not be found."
@@ -2000,16 +2101,14 @@
 
             }
 
-
             const userData =
               userSnap.data();
 
-
             const amount =
               Number(
-                requestData.amount || 0
+                requestData.amount ||
+                0
               );
-
 
             if (
               !Number.isFinite(amount) ||
@@ -2022,12 +2121,11 @@
 
             }
 
-
             const balanceField =
-              accountType === "Savings"
+              accountType ===
+                "Savings"
                 ? "savingsBalance"
                 : "checkingBalance";
-
 
             const currentBalance =
               Number(
@@ -2036,14 +2134,12 @@
                 ] || 0
               );
 
-
             const newBalance =
-              currentBalance + amount;
-
+              currentBalance +
+              amount;
 
             const transactionId =
               `${requestId}_${Date.now()}`;
-
 
             const transactionRef =
               doc(
@@ -2054,7 +2150,6 @@
                 transactionId
               );
 
-
             /*
              * ACCOUNT BALANCE UPDATE
              */
@@ -2063,40 +2158,43 @@
 
             balanceUpdate[
               balanceField
-            ] = newBalance;
-
+            ] =
+              newBalance;
 
             balanceUpdate.lastDepositId =
               requestId;
-
 
             transaction.update(
               userRef,
               balanceUpdate
             );
 
-
             /*
              * CUSTOMER TRANSACTION
+             *
+             * type remains "deposit"
+             * so existing transaction filters
+             * continue to recognize this as money received.
              */
 
             transaction.set(
               transactionRef,
               {
-                userId: userId,
+                userId:
+                  userId,
 
                 depositId:
                   requestId,
 
-                amount: amount,
+                amount:
+                  amount,
 
                 currency:
                   requestData.currency ||
                   "USD",
 
                 account:
-                  accountType
-                    .toLowerCase(),
+                  accountType.toLowerCase(),
 
                 accountType:
                   accountType,
@@ -2104,12 +2202,27 @@
                 type:
                   "deposit",
 
+                /*
+                 * Admin-controlled display name.
+                 */
+                title:
+                  type,
+
                 transactionType:
                   type,
+
+                /*
+                 * Admin-controlled source.
+                 */
+                source:
+                  source,
 
                 description:
                   description,
 
+                /*
+                 * Admin-selected transaction date.
+                 */
                 transactionDate:
                   transactionDate,
 
@@ -2129,7 +2242,6 @@
                   currentAdmin.uid
               }
             );
-
 
             /*
              * MARK REQUEST APPROVED
@@ -2153,8 +2265,14 @@
                 approvedTransactionId:
                   transactionId,
 
+                title:
+                  type,
+
                 transactionType:
                   type,
+
+                source:
+                  source,
 
                 description:
                   description,
@@ -2170,21 +2288,18 @@
           }
         );
 
-
-        approvedThisSession += 1;
+        approvedThisSession +=
+          1;
 
         approvedCount.textContent =
           approvedThisSession;
-
 
         showToast(
           "Deposit approved and account credited.",
           "success"
         );
 
-
         await loadPendingRequests();
-
 
       } catch (error) {
 
@@ -2193,15 +2308,14 @@
           error
         );
 
-
         showToast(
           error.message ||
           "Unable to approve this request.",
           "error"
         );
 
-
-        button.disabled = false;
+        button.disabled =
+          false;
 
         button.innerHTML =
           originalText;
@@ -2209,7 +2323,6 @@
       }
 
     }
-
 
     /*
      * REJECTION
@@ -2224,10 +2337,8 @@
         return;
       }
 
-
       const reason =
         rejectionReason.value.trim();
-
 
       if (!reason) {
 
@@ -2237,22 +2348,19 @@
         );
 
         return;
-      }
 
+      }
 
       const requestId =
         requestBeingRejected.dataset.requestId;
 
-
       confirmRejectBtn.disabled =
         true;
-
 
       confirmRejectBtn.innerHTML = `
         <i class="fa-solid fa-spinner fa-spin"></i>
         Rejecting...
       `;
-
 
       try {
 
@@ -2263,7 +2371,6 @@
             requestId
           );
 
-
         await runTransaction(
           db,
           async (transaction) => {
@@ -2273,8 +2380,9 @@
                 requestRef
               );
 
-
-            if (!requestSnap.exists()) {
+            if (
+              !requestSnap.exists()
+            ) {
 
               throw new Error(
                 "This request no longer exists."
@@ -2282,10 +2390,8 @@
 
             }
 
-
             const requestData =
               requestSnap.data();
-
 
             if (
               requestData.status !==
@@ -2297,7 +2403,6 @@
               );
 
             }
-
 
             transaction.update(
               requestRef,
@@ -2319,18 +2424,14 @@
           }
         );
 
-
         closeRejectDialog();
-
 
         showToast(
           "Deposit request rejected.",
           "success"
         );
 
-
         await loadPendingRequests();
-
 
       } catch (error) {
 
@@ -2338,7 +2439,6 @@
           "Rejection failed:",
           error
         );
-
 
         showToast(
           error.message ||
@@ -2360,7 +2460,6 @@
 
     }
 
-
     /*
      * MODAL CONTROLS
      */
@@ -2371,30 +2470,28 @@
         "show"
       );
 
-      rejectionReason.value = "";
+      rejectionReason.value =
+        "";
 
-      requestBeingRejected = null;
+      requestBeingRejected =
+        null;
 
     }
-
 
     closeRejectModal.addEventListener(
       "click",
       closeRejectDialog
     );
 
-
     cancelRejectBtn.addEventListener(
       "click",
       closeRejectDialog
     );
 
-
     confirmRejectBtn.addEventListener(
       "click",
       rejectCurrentRequest
     );
-
 
     rejectModal.addEventListener(
       "click",
@@ -2412,7 +2509,6 @@
       }
     );
 
-
     /*
      * REFRESH
      */
@@ -2421,7 +2517,6 @@
       "click",
       loadPendingRequests
     );
-
 
     /*
      * NAVIGATION
@@ -2436,7 +2531,6 @@
 
       }
     );
-
 
     unauthorizedBackBtn.addEventListener(
       "click",
