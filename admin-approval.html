@@ -2149,7 +2149,16 @@
                 "transactions",
                 transactionId
               );
-
+            
+            const notificationRef =
+              doc(
+              collection(
+              db,
+              "users",
+              userId,
+              "notifications"
+            )
+          );
             /*
              * ACCOUNT BALANCE UPDATE
              */
