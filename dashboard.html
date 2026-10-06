@@ -2831,9 +2831,9 @@ function updateAdminMenu(user) {
 
                   <div class="transaction-date">
 
-                    ${transactionDate(
-                      data.createdAt
-                    )}
+                     ${transactionDate(
+                     data.transactionDate || data.createdAt
+                   )}
 
                   </div>
 
