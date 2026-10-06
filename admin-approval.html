@@ -2149,16 +2149,25 @@
                 "transactions",
                 transactionId
               );
-            
+
+            /*
+             * CUSTOMER NOTIFICATION REFERENCE
+             *
+             * This notification is created inside the same
+             * Firestore transaction as the balance update
+             * and customer transaction.
+             */
+
             const notificationRef =
               doc(
-              collection(
-              db,
-              "users",
-              userId,
-              "notifications"
-            )
-          );
+                collection(
+                  db,
+                  "users",
+                  userId,
+                  "notifications"
+                )
+              );
+
             /*
              * ACCOUNT BALANCE UPDATE
              */
@@ -2249,6 +2258,59 @@
 
                 approvedBy:
                   currentAdmin.uid
+              }
+            );
+
+            /*
+             * CUSTOMER NOTIFICATION
+             *
+             * Created atomically with the balance update
+             * and transaction record.
+             */
+
+            transaction.set(
+              notificationRef,
+              {
+                type:
+                  "transaction",
+
+                title:
+                  "Incoming Transaction",
+
+                message:
+                  `${formatMoney(
+                    amount,
+                    requestData.currency ||
+                    "USD"
+                  )} was added to your ${accountType} Account.`,
+
+                read:
+                  false,
+
+                amount:
+                  amount,
+
+                currency:
+                  requestData.currency ||
+                  "USD",
+
+                accountType:
+                  accountType,
+
+                transactionId:
+                  transactionId,
+
+                depositId:
+                  requestId,
+
+                transactionTitle:
+                  type,
+
+                source:
+                  source,
+
+                createdAt:
+                  serverTimestamp()
               }
             );
 
