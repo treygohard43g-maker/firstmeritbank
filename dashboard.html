@@ -187,18 +187,42 @@
       background: var(--bg);
     }
 
+    /* =========================================
+       NOTIFICATION BADGE
+       Red unread count
+    ========================================= */
+
     .notification-dot {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 4px;
+      right: 3px;
 
-      width: 6px;
-      height: 6px;
+      min-width: 15px;
+      height: 15px;
 
-      border-radius: 50%;
+      padding: 0 4px;
+
+      border-radius: 999px;
+
       background: var(--danger);
+      color: #fff;
 
       border: 1px solid #fff;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 8px;
+      line-height: 1;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    .notification-dot.visible {
+      display: flex;
     }
 
     /* =========================================
@@ -1432,7 +1456,11 @@
       >
         <i class="fa-regular fa-bell"></i>
 
-        <span class="notification-dot"></span>
+        <span
+          class="notification-dot"
+          id="notificationBadge"
+          aria-hidden="true"
+        ></span>
       </button>
 
       <button
@@ -1612,7 +1640,7 @@
         <i class="fa-regular fa-bell"></i>
         <span>Notifications</span>
       </a>
-    
+
       <!-- =========================================
            ADMINISTRATION
            Visible only to the authorized admin UID.
@@ -1635,12 +1663,11 @@
         <i class="fa-solid fa-user-shield"></i>
         <span>Admin Approval</span>
       </a>
-      
+
       <div class="menu-section">
         Support & Security
       </div>
-      
-      
+
       <a
         href="support.html"
         class="menu-link"
@@ -2261,45 +2288,45 @@
       query,
       orderBy,
       limit,
-      getDocs
+      getDocs,
+      onSnapshot
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-    
+
     /* =========================================
-   ADMIN ACCESS
-========================================= */
+       ADMIN ACCESS
+    ========================================= */
 
-const ADMIN_UID =
-  "HUJjyMOyDndcT0qXet2Ce2rHUQz2";
+    const ADMIN_UID =
+      "HUJjyMOyDndcT0qXet2Ce2rHUQz2";
 
-const adminMenuSection =
-  document.getElementById("adminMenuSection");
+    const adminMenuSection =
+      document.getElementById("adminMenuSection");
 
-const adminApprovalLink =
-  document.getElementById("adminApprovalLink");
+    const adminApprovalLink =
+      document.getElementById("adminApprovalLink");
 
+    function updateAdminMenu(user) {
 
-function updateAdminMenu(user) {
+      const isAdmin =
+        user &&
+        user.uid === ADMIN_UID;
 
-  const isAdmin =
-    user &&
-    user.uid === ADMIN_UID;
+      if (adminMenuSection) {
 
-  if (adminMenuSection) {
+        adminMenuSection.style.display =
+          isAdmin ? "block" : "none";
 
-    adminMenuSection.style.display =
-      isAdmin ? "block" : "none";
+      }
 
-  }
+      if (adminApprovalLink) {
 
-  if (adminApprovalLink) {
+        adminApprovalLink.style.display =
+          isAdmin ? "flex" : "none";
 
-    adminApprovalLink.style.display =
-      isAdmin ? "flex" : "none";
+      }
 
-  }
+    }
 
-}
-    
     /* =========================================
        DEFAULT BALANCES
     ========================================= */
@@ -2411,6 +2438,110 @@ function updateAdminMenu(user) {
 
     const logoutBtn =
       document.getElementById("logoutBtn");
+
+    const notificationBadge =
+      document.getElementById("notificationBadge");
+
+    /* =========================================
+       NOTIFICATIONS
+       Live unread notification count
+    ========================================= */
+
+    let unsubscribeNotifications = null;
+
+    function updateNotificationBadge(unreadCount) {
+
+      if (!notificationBadge) {
+        return;
+      }
+
+      const count =
+        Number(unreadCount) || 0;
+
+      if (count <= 0) {
+
+        notificationBadge.textContent = "";
+        notificationBadge.classList.remove("visible");
+        notificationBadge.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+        return;
+      }
+
+      notificationBadge.textContent =
+        count > 99 ? "99+" : String(count);
+
+      notificationBadge.classList.add("visible");
+
+      notificationBadge.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      notificationBadge.setAttribute(
+        "aria-label",
+        `${count} unread notification${count === 1 ? "" : "s"}`
+      );
+
+    }
+
+    function listenForNotifications(uid) {
+
+      if (unsubscribeNotifications) {
+
+        unsubscribeNotifications();
+        unsubscribeNotifications = null;
+
+      }
+
+      const notificationsRef =
+        collection(
+          db,
+          "users",
+          uid,
+          "notifications"
+        );
+
+      unsubscribeNotifications =
+        onSnapshot(
+          notificationsRef,
+          (snapshot) => {
+
+            let unreadCount = 0;
+
+            snapshot.forEach(
+              (notificationDoc) => {
+
+                const data =
+                  notificationDoc.data();
+
+                if (data.read !== true) {
+                  unreadCount++;
+                }
+
+              }
+            );
+
+            updateNotificationBadge(
+              unreadCount
+            );
+
+          },
+          (error) => {
+
+            console.error(
+              "Notification listener error:",
+              error
+            );
+
+            updateNotificationBadge(0);
+
+          }
+        );
+
+    }
 
     /* =========================================
        MENU
@@ -2832,8 +2963,9 @@ function updateAdminMenu(user) {
                   <div class="transaction-date">
 
                      ${transactionDate(
-                     data.transactionDate || data.createdAt
-                   )}
+                       data.transactionDate ||
+                       data.createdAt
+                     )}
 
                   </div>
 
@@ -3297,6 +3429,13 @@ function updateAdminMenu(user) {
 
         try {
 
+          if (unsubscribeNotifications) {
+
+            unsubscribeNotifications();
+            unsubscribeNotifications = null;
+
+          }
+
           await signOut(auth);
 
           location.href =
@@ -3352,35 +3491,53 @@ function updateAdminMenu(user) {
     /* =========================================
        AUTHENTICATION
     ========================================= */
-onAuthStateChanged(
-  auth,
-  async (user) => {
 
-    if (!user) {
+    onAuthStateChanged(
+      auth,
+      async (user) => {
 
-      location.href =
-        "login.html";
+        if (!user) {
 
-      return;
+          if (unsubscribeNotifications) {
 
-    }
+            unsubscribeNotifications();
+            unsubscribeNotifications = null;
 
-    /*
-     * Decide whether the authenticated account
-     * should see the Administration menu.
-     */
-    updateAdminMenu(user);
+          }
 
-    showCurrentDate();
+          location.href =
+            "login.html";
 
-    await loadDashboard(
-      user
+          return;
+
+        }
+
+        /*
+         * Decide whether the authenticated account
+         * should see the Administration menu.
+         */
+
+        updateAdminMenu(user);
+
+        /*
+         * Start the notification listener for
+         * this authenticated customer.
+         */
+
+        listenForNotifications(
+          user.uid
+        );
+
+        showCurrentDate();
+
+        await loadDashboard(
+          user
+        );
+
+      }
     );
 
-  }
-);
-    
-</script>
+  </script>
 
 </body>
 
