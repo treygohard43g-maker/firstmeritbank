@@ -32,6 +32,8 @@
       --gold: #c8a44d;
       --green: #18864b;
       --green-light: #eaf8f0;
+      --amber: #a66a00;
+      --amber-light: #fff7e6;
       --text: #172033;
       --muted: #697386;
       --border: #e3e8ef;
@@ -94,7 +96,8 @@
       gap: 11px;
     }
 
-    .back-btn {
+    .back-btn,
+    .home-btn {
       width: 38px;
       height: 38px;
 
@@ -116,6 +119,10 @@
     .back-btn:hover {
       background: #f5f8fc;
       transform: translateX(-1px);
+    }
+
+    .home-btn:hover {
+      background: #f5f8fc;
     }
 
     /* BRAND */
@@ -173,21 +180,6 @@
       font-weight: 700;
 
       letter-spacing: 3px;
-    }
-
-    .home-btn {
-      width: 38px;
-      height: 38px;
-
-      border: 1px solid var(--border);
-      border-radius: 10px;
-
-      background: #fff;
-      color: var(--navy);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     /* =========================
@@ -338,32 +330,11 @@
       font-weight: 700;
     }
 
-    .field-label-sub {
-      color: var(--muted);
-      font-weight: 500;
-    }
-
     .input-wrap {
       position: relative;
     }
 
-    .input-icon {
-      position: absolute;
-
-      left: 14px;
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      color: #7d8797;
-
-      font-size: 13px;
-
-      pointer-events: none;
-    }
-
-    input,
-    select {
+    input {
       width: 100%;
 
       height: 46px;
@@ -386,41 +357,11 @@
       padding: 0 13px 0 40px;
     }
 
-    select {
-      padding: 0 38px 0 40px;
-
-      appearance: none;
-
-      cursor: pointer;
-    }
-
-    input:focus,
-    select:focus {
+    input:focus {
       border-color: var(--blue);
 
       box-shadow:
         0 0 0 3px rgba(11,99,206,.09);
-    }
-
-    .select-wrap::after {
-      content: "\f078";
-
-      font-family: "Font Awesome 6 Free";
-
-      font-weight: 900;
-
-      position: absolute;
-
-      right: 14px;
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      color: #7d8797;
-
-      pointer-events: none;
-
-      font-size: 10px;
     }
 
     /* AMOUNT */
@@ -539,7 +480,9 @@
       color: var(--blue);
     }
 
-    /* ERROR */
+    /* =========================
+       MESSAGE
+    ========================= */
 
     .message {
       display: none;
@@ -567,7 +510,17 @@
       color: var(--danger);
     }
 
-    /* BUTTON */
+    .message.success {
+      background: var(--green-light);
+
+      border: 1px solid #c7ead7;
+
+      color: var(--green);
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
 
     .primary-btn {
       width: 100%;
@@ -814,16 +767,16 @@
     }
 
     /* =========================
-       SUCCESS
+       PENDING
     ========================= */
 
-    .success {
+    .pending {
       text-align: center;
 
       padding: 18px 6px 3px;
     }
 
-    .success-icon {
+    .pending-icon {
       width: 64px;
       height: 64px;
 
@@ -831,9 +784,9 @@
 
       border-radius: 50%;
 
-      background: var(--green-light);
+      background: var(--amber-light);
 
-      color: var(--green);
+      color: var(--amber);
 
       display: flex;
 
@@ -843,7 +796,7 @@
       font-size: 27px;
     }
 
-    .success h2 {
+    .pending h2 {
       margin: 0;
 
       color: var(--navy-dark);
@@ -851,12 +804,14 @@
       font-size: 22px;
     }
 
-    .success > p {
+    .pending > p {
       margin: 7px 0 19px;
 
       color: var(--muted);
 
       font-size: 12px;
+
+      line-height: 1.55;
     }
 
     .receipt {
@@ -901,10 +856,40 @@
       text-align: right;
     }
 
-    .transaction-id {
+    .request-id {
       max-width: 180px;
 
       word-break: break-all;
+    }
+
+    .status-pending {
+      color: var(--amber) !important;
+    }
+
+    .note-box {
+      padding: 12px;
+
+      border-radius: 10px;
+
+      background: var(--blue-light);
+
+      border: 1px solid #d6e7fb;
+
+      color: #35506f;
+
+      font-size: 10px;
+
+      line-height: 1.5;
+
+      text-align: left;
+
+      margin-bottom: 17px;
+    }
+
+    .note-box i {
+      margin-right: 5px;
+
+      color: var(--blue);
     }
 
     /* =========================
@@ -1121,7 +1106,7 @@
       </h1>
 
       <p>
-        Add funds to your First Merit checking account.
+        Submit a request to add funds to your First Merit account.
       </p>
 
     </div>
@@ -1150,15 +1135,13 @@
               </h2>
 
               <p>
-                Choose how much you'd like to add.
+                Choose how much you'd like to request.
               </p>
 
             </div>
 
           </div>
 
-
-          <!-- ERROR -->
 
           <div
             id="formMessage"
@@ -1187,12 +1170,13 @@
                 min="0.01"
                 step="0.01"
                 placeholder="0.00"
+                autocomplete="off"
               >
 
             </div>
 
             <div class="amount-help">
-              Enter the amount you want to add to your account.
+              Enter the amount you want to request.
             </div>
 
           </div>
@@ -1293,7 +1277,7 @@
             id="reviewBtn"
             type="button"
           >
-            Review deposit
+            Review request
           </button>
 
         </div>
@@ -1317,11 +1301,11 @@
             <div>
 
               <h2>
-                Review deposit
+                Review request
               </h2>
 
               <p>
-                Confirm your deposit details.
+                Confirm the information before submitting.
               </p>
 
             </div>
@@ -1332,7 +1316,7 @@
           <div class="review-amount">
 
             <span>
-              Amount to add
+              Amount requested
             </span>
 
             <strong id="reviewAmount">
@@ -1386,7 +1370,7 @@
             <div class="review-row">
 
               <span>
-                New balance
+                Balance after approval
               </span>
 
               <span id="reviewNewBalance">
@@ -1395,6 +1379,12 @@
 
             </div>
 
+          </div>
+
+
+          <div class="note-box">
+            <i class="fa-solid fa-circle-info"></i>
+            Submitting this request does not immediately change your balance. An authorized account administrator must review and approve the request first.
           </div>
 
 
@@ -1419,7 +1409,7 @@
               id="confirmBtn"
               type="button"
             >
-              Confirm deposit
+              Submit request
             </button>
 
           </div>
@@ -1427,26 +1417,26 @@
         </div>
 
 
-        <!-- SUCCESS VIEW -->
+        <!-- PENDING VIEW -->
 
         <div id="successView">
 
-          <div class="success">
+          <div class="pending">
 
-            <div class="success-icon">
+            <div class="pending-icon">
 
-              <i class="fa-solid fa-check"></i>
+              <i class="fa-solid fa-clock"></i>
 
             </div>
 
 
             <h2>
-              Deposit complete
+              Request submitted
             </h2>
 
 
             <p>
-              Your account balance has been updated.
+              Your request has been submitted successfully and is awaiting administrator approval.
             </p>
 
 
@@ -1481,11 +1471,11 @@
               <div class="receipt-row">
 
                 <span>
-                  New balance
+                  Destination
                 </span>
 
-                <span id="successBalance">
-                  $0.00
+                <span>
+                  Checking Account
                 </span>
 
               </div>
@@ -1497,8 +1487,8 @@
                   Status
                 </span>
 
-                <span style="color:#18864b;">
-                  Completed
+                <span class="status-pending">
+                  Pending Approval
                 </span>
 
               </div>
@@ -1507,18 +1497,24 @@
               <div class="receipt-row">
 
                 <span>
-                  Transaction ID
+                  Request ID
                 </span>
 
                 <span
-                  class="transaction-id"
-                  id="transactionId"
+                  class="request-id"
+                  id="requestId"
                 >
                   —
                 </span>
 
               </div>
 
+            </div>
+
+
+            <div class="note-box">
+              <i class="fa-solid fa-shield-halved"></i>
+              Your balance will only change after the request has been reviewed and approved. The approved transaction will then appear in your account activity.
             </div>
 
 
@@ -1559,7 +1555,7 @@
             </strong>
 
             <span>
-              Your account is protected by your authenticated First Merit session.
+              Your request is tied to your authenticated First Merit account.
             </span>
 
           </div>
@@ -1570,17 +1566,38 @@
         <div class="info-row">
 
           <div class="info-icon">
-            <i class="fa-solid fa-bolt"></i>
+            <i class="fa-solid fa-user-shield"></i>
           </div>
 
           <div class="info-text">
 
             <strong>
-              Fast account updates
+              Administrator review
             </strong>
 
             <span>
-              Your updated balance is reflected in your account after the transaction completes.
+              Requests are reviewed before funds are added to your account balance.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <div class="info-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+
+          <div class="info-text">
+
+            <strong>
+              Pending status
+            </strong>
+
+            <span>
+              Your balance remains unchanged while the request is pending.
             </span>
 
           </div>
@@ -1597,32 +1614,11 @@
           <div class="info-text">
 
             <strong>
-              Transaction history
+              Account activity
             </strong>
 
             <span>
-              Completed deposits are recorded in your account activity.
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="info-row">
-
-          <div class="info-icon">
-            <i class="fa-solid fa-circle-info"></i>
-          </div>
-
-          <div class="info-text">
-
-            <strong>
-              Review before confirming
-            </strong>
-
-            <span>
-              Check the amount and funding source before completing the transaction.
+              Approved requests are recorded in your transaction history.
             </span>
 
           </div>
@@ -1657,6 +1653,7 @@
 
 </div>
 
+
 <script type="module">
 
   import {
@@ -1672,7 +1669,7 @@
     doc,
     getDoc,
     collection,
-    writeBatch,
+    addDoc,
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -1720,11 +1717,8 @@
   const successSource =
     document.getElementById("successSource");
 
-  const successBalance =
-    document.getElementById("successBalance");
-
-  const transactionId =
-    document.getElementById("transactionId");
+  const requestId =
+    document.getElementById("requestId");
 
   const reviewBtn =
     document.getElementById("reviewBtn");
@@ -1780,13 +1774,25 @@
 
   function showMessage(
     element,
-    message
+    message,
+    type = "error"
   ) {
 
     element.textContent =
       message;
 
-    element.classList.add("show");
+    element.classList.remove(
+      "error",
+      "success"
+    );
+
+    element.classList.add(
+      type
+    );
+
+    element.classList.add(
+      "show"
+    );
 
   }
 
@@ -1797,7 +1803,9 @@
 
     element.textContent = "";
 
-    element.classList.remove("show");
+    element.classList.remove(
+      "show"
+    );
 
   }
 
@@ -1884,16 +1892,6 @@
           balance.toFixed(2)
         );
 
-      console.log(
-        "ADD MONEY ACCOUNT:",
-        {
-          uid:
-            currentUser.uid,
-
-          checkingBalance:
-            userBalance
-        }
-      );
 
     } catch (error) {
 
@@ -1974,7 +1972,7 @@
 
 
   /* =========================
-     REVIEW
+     REVIEW REQUEST
   ========================= */
 
   reviewBtn.addEventListener(
@@ -2014,7 +2012,7 @@
 
         showMessage(
           formMessage,
-          "The maximum deposit amount is $1,000,000."
+          "The maximum request amount is $1,000,000."
         );
 
         amount.focus();
@@ -2031,6 +2029,7 @@
       pendingSource =
         getFundingSource();
 
+
       reviewAmount.textContent =
         formatMoney(
           pendingAmount
@@ -2044,11 +2043,16 @@
           userBalance
         );
 
+      /*
+       * This is only an informational projection.
+       * It is NOT written to Firestore.
+       */
       reviewNewBalance.textContent =
         formatMoney(
           userBalance +
           pendingAmount
         );
+
 
       formView.style.display =
         "none";
@@ -2058,6 +2062,7 @@
 
       successView.style.display =
         "none";
+
 
       window.scrollTo({
         top: 0,
@@ -2108,7 +2113,7 @@
 
 
   /* =========================
-     CONFIRM DEPOSIT
+     SUBMIT REQUEST
   ========================= */
 
   confirmBtn.addEventListener(
@@ -2119,6 +2124,7 @@
         reviewMessage
       );
 
+
       if (!currentUser) {
 
         window.location.href =
@@ -2128,6 +2134,7 @@
 
       }
 
+
       if (
         !pendingAmount ||
         pendingAmount <= 0
@@ -2135,210 +2142,90 @@
 
         showMessage(
           reviewMessage,
-          "Please enter a valid deposit amount."
+          "Please enter a valid request amount."
         );
 
         return;
 
       }
 
+
       confirmBtn.disabled =
         true;
 
       confirmBtn.innerHTML =
-        '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+        '<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...';
 
 
       try {
 
         /*
-         * Re-read the latest account balance
-         * before creating the deposit.
-         */
-
-        const userRef =
-          doc(
-            db,
-            "users",
-            currentUser.uid
-          );
-
-        const latestSnapshot =
-          await getDoc(
-            userRef
-          );
-
-        if (
-          !latestSnapshot.exists()
-        ) {
-
-          throw new Error(
-            "Account not found."
-          );
-
-        }
-
-        const latestData =
-          latestSnapshot.data();
-
-        let latestBalance =
-          Number(
-            latestData.checkingBalance ?? 0
-          );
-
-        if (
-          !Number.isFinite(
-            latestBalance
-          )
-        ) {
-
-          latestBalance = 0;
-
-        }
-
-        const updatedBalance =
-          Number(
-            (
-              latestBalance +
-              pendingAmount
-            ).toFixed(2)
-          );
-
-
-        /*
-         * Generate IDs.
-         */
-
-        const depositRef =
-          doc(
-            collection(
-              db,
-              "users",
-              currentUser.uid,
-              "mobileDeposits"
-            )
-          );
-
-        const transactionRef =
-          doc(
-            collection(
-              db,
-              "users",
-              currentUser.uid,
-              "transactions"
-            )
-          );
-
-
-        /*
-         * Atomic batch.
+         * IMPORTANT:
          *
-         * 1. Create deposit
-         * 2. Update checking balance
-         * 3. Create transaction history
+         * This page DOES NOT:
+         *
+         * - update checkingBalance
+         * - create mobileDeposits
+         * - create a completed transaction
+         *
+         * It only creates a pending
+         * depositRequests document.
          */
 
-        const batch =
-          writeBatch(db);
 
+        const requestRef =
+          await addDoc(
+            collection(
+              db,
+              "depositRequests"
+            ),
+            {
 
-        batch.set(
-          depositRef,
-          {
+              userId:
+                currentUser.uid,
 
-            depositId:
-              depositRef.id,
+              customerEmail:
+                currentUser.email || "",
 
-            userId:
-              currentUser.uid,
+              customerName:
+                currentUser.displayName || "",
 
-            amount:
-              pendingAmount,
+              amount:
+                pendingAmount,
 
-            currency:
-              "USD",
+              currency:
+                "USD",
 
-            accountType:
-              "Checking",
+              accountType:
+                "Checking",
 
-            source:
-              pendingSource,
+              fundingSource:
+                pendingSource,
 
-            status:
-              "completed",
+              status:
+                "pending",
 
-            transactionId:
-              transactionRef.id,
+              createdAt:
+                serverTimestamp(),
 
-            createdAt:
-              serverTimestamp()
+              reviewedAt:
+                null,
 
-          }
-        );
+              reviewedBy:
+                null,
 
+              rejectionReason:
+                null,
 
-        batch.update(
-          userRef,
-          {
+              approvedTransactionId:
+                null
 
-            checkingBalance:
-              updatedBalance,
-
-            lastDepositId:
-              depositRef.id
-
-          }
-        );
-
-
-        batch.set(
-          transactionRef,
-          {
-
-            depositId:
-              depositRef.id,
-
-            userId:
-              currentUser.uid,
-
-            type:
-              "deposit",
-
-            title:
-              "Money Added",
-
-            amount:
-              pendingAmount,
-
-            direction:
-              "credit",
-
-            source:
-              pendingSource,
-
-            status:
-              "completed",
-
-            createdAt:
-              serverTimestamp()
-
-          }
-        );
-
-
-        await batch.commit();
+            }
+          );
 
 
         /*
-         * Update local state.
-         */
-
-        userBalance =
-          updatedBalance;
-
-
-        /*
-         * Receipt.
+         * Show pending receipt.
          */
 
         successAmount.textContent =
@@ -2349,17 +2236,12 @@
         successSource.textContent =
           pendingSource;
 
-        successBalance.textContent =
-          formatMoney(
-            updatedBalance
-          );
-
-        transactionId.textContent =
-          transactionRef.id;
+        requestId.textContent =
+          requestRef.id;
 
 
         /*
-         * Show success.
+         * Switch views.
          */
 
         reviewView.style.display =
@@ -2379,22 +2261,22 @@
 
 
         console.log(
-          "ADD MONEY SUCCESS:",
+          "DEPOSIT REQUEST CREATED:",
           {
+            requestId:
+              requestRef.id,
+
+            userId:
+              currentUser.uid,
+
             amount:
               pendingAmount,
 
-            source:
+            fundingSource:
               pendingSource,
 
-            newCheckingBalance:
-              updatedBalance,
-
-            depositId:
-              depositRef.id,
-
-            transactionId:
-              transactionRef.id
+            status:
+              "pending"
           }
         );
 
@@ -2402,13 +2284,13 @@
       } catch (error) {
 
         console.error(
-          "ADD MONEY TRANSACTION ERROR:",
+          "DEPOSIT REQUEST ERROR:",
           error
         );
 
 
         let message =
-          "We couldn't complete the deposit. Please try again.";
+          "We couldn't submit your request. Please try again.";
 
 
         if (
@@ -2417,23 +2299,15 @@
         ) {
 
           message =
-            "The deposit was rejected by your account security rules. Please try again.";
+            "Your request was rejected by the account security rules. Please make sure you are signed in correctly.";
 
         } else if (
           error.code ===
-          "failed-precondition"
+          "unavailable"
         ) {
 
           message =
-            "The deposit could not be completed because your account information has changed.";
-
-        } else if (
-          error.message ===
-          "Account not found."
-        ) {
-
-          message =
-            "Your First Merit account record could not be found.";
+            "The service is temporarily unavailable. Please check your connection and try again.";
 
         }
 
@@ -2448,7 +2322,7 @@
           false;
 
         confirmBtn.innerHTML =
-          "Confirm deposit";
+          "Submit request";
 
       }
 
