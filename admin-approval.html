@@ -1005,12 +1005,14 @@
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+
     /*
      * ADMIN UID
      */
 
     const ADMIN_UID =
       "HUJjyMOyDndcT0qXet2Ce2rHUQz2";
+
 
     /*
      * DOM ELEMENTS
@@ -1097,6 +1099,7 @@
 
     let approvedThisSession = 0;
 
+
     /*
      * HELPERS
      */
@@ -1121,6 +1124,7 @@
       );
 
     }
+
 
     function escapeHtml(value) {
 
@@ -1155,6 +1159,7 @@
 
     }
 
+
     function formatMoney(
       amount,
       currency = "USD"
@@ -1184,6 +1189,7 @@
       }
 
     }
+
 
     function formatTimestamp(
       timestamp
@@ -1231,6 +1237,7 @@
 
     }
 
+
     function todayValue() {
 
       const now =
@@ -1259,6 +1266,7 @@
 
     }
 
+
     function escapeAttribute(
       value
     ) {
@@ -1268,6 +1276,7 @@
       );
 
     }
+
 
     /*
      * AUTHORIZATION
@@ -1314,6 +1323,7 @@
 
       }
     );
+
 
     /*
      * LOAD PENDING REQUESTS
@@ -1366,6 +1376,7 @@
           }
         );
 
+
         /*
          * Sort newest first.
          */
@@ -1388,6 +1399,7 @@
           }
         );
 
+
         pendingCount.textContent =
           requests.length;
 
@@ -1402,6 +1414,7 @@
 
         approvedCount.textContent =
           approvedThisSession;
+
 
         if (!requests.length) {
 
@@ -1427,6 +1440,7 @@
           return;
 
         }
+
 
         requestsContainer.innerHTML =
           requests
@@ -1474,6 +1488,7 @@
 
     }
 
+
     /*
      * REQUEST CARD
      */
@@ -1503,24 +1518,25 @@
         request.fundingSource ||
         "Not specified";
 
+
       /*
-       * The account is intentionally taken from
-       * the original customer request and locked.
+       * Account remains locked to
+       * the original customer request.
        */
 
       const accountType =
         request.accountType ||
         "Checking";
 
+
       /*
-       * The customer's original funding source
-       * becomes the default admin source.
-       *
-       * The admin can replace it with anything.
+       * Original funding source becomes
+       * the default admin source.
        */
 
       const defaultSource =
         fundingSource;
+
 
       return `
         <article
@@ -1675,6 +1691,7 @@
 
                 </div>
 
+
                 <!-- SOURCE -->
 
                 <div class="field">
@@ -1694,6 +1711,7 @@
 
                 </div>
 
+
                 <!-- TRANSACTION DATE -->
 
                 <div class="field">
@@ -1709,6 +1727,7 @@
                   >
 
                 </div>
+
 
                 <!-- ACCOUNT -->
 
@@ -1753,6 +1772,7 @@
 
               </div>
 
+
               <!-- DESCRIPTION -->
 
               <div class="description-row">
@@ -1775,6 +1795,7 @@
                 </div>
 
               </div>
+
 
               <div class="request-actions">
 
@@ -1805,6 +1826,7 @@
 
     }
 
+
     function defaultDescription(
       fundingSource
     ) {
@@ -1816,6 +1838,7 @@
       return `${fundingSource} deposit`;
 
     }
+
 
     /*
      * EVENT HANDLERS
@@ -1849,6 +1872,7 @@
 
           }
         );
+
 
       document
         .querySelectorAll(
@@ -1884,6 +1908,7 @@
 
     }
 
+
     /*
      * APPROVE REQUEST
      */
@@ -1897,33 +1922,40 @@
         return;
       }
 
+
       const requestId =
         card.dataset.requestId;
+
 
       const type =
         card.querySelector(
           ".transaction-type"
         ).value.trim();
 
+
       const source =
         card.querySelector(
           ".transaction-source"
         ).value.trim();
+
 
       const description =
         card.querySelector(
           ".transaction-description"
         ).value.trim();
 
+
       const transactionDate =
         card.querySelector(
           ".transaction-date"
         ).value;
 
+
       const accountType =
         card.querySelector(
           ".account-type"
         ).value;
+
 
       if (!type) {
 
@@ -1936,6 +1968,7 @@
 
       }
 
+
       if (!source) {
 
         showToast(
@@ -1946,6 +1979,7 @@
         return;
 
       }
+
 
       if (!description) {
 
@@ -1958,6 +1992,7 @@
 
       }
 
+
       if (!transactionDate) {
 
         showToast(
@@ -1968,6 +2003,7 @@
         return;
 
       }
+
 
       if (
         accountType !== "Checking" &&
@@ -1983,6 +2019,7 @@
 
       }
 
+
       const originalText =
         button.innerHTML;
 
@@ -1994,6 +2031,7 @@
         Processing...
       `;
 
+
       try {
 
         const requestRef =
@@ -2003,6 +2041,7 @@
             requestId
           );
 
+
         await runTransaction(
           db,
           async (transaction) => {
@@ -2011,6 +2050,7 @@
               await transaction.get(
                 requestRef
               );
+
 
             if (
               !requestSnap.exists()
@@ -2022,8 +2062,10 @@
 
             }
 
+
             const requestData =
               requestSnap.data();
+
 
             if (
               requestData.status !==
@@ -2036,6 +2078,7 @@
 
             }
 
+
             /*
              * The account being credited MUST match
              * the account on the customer's original request.
@@ -2043,6 +2086,7 @@
 
             const requestedAccountType =
               requestData.accountType;
+
 
             if (
               requestedAccountType !==
@@ -2057,6 +2101,7 @@
 
             }
 
+
             if (
               accountType !==
               requestedAccountType
@@ -2068,8 +2113,10 @@
 
             }
 
+
             const userId =
               requestData.userId;
+
 
             if (!userId) {
 
@@ -2079,6 +2126,7 @@
 
             }
 
+
             const userRef =
               doc(
                 db,
@@ -2086,10 +2134,12 @@
                 userId
               );
 
+
             const userSnap =
               await transaction.get(
                 userRef
               );
+
 
             if (
               !userSnap.exists()
@@ -2101,14 +2151,17 @@
 
             }
 
+
             const userData =
               userSnap.data();
+
 
             const amount =
               Number(
                 requestData.amount ||
                 0
               );
+
 
             if (
               !Number.isFinite(amount) ||
@@ -2121,11 +2174,13 @@
 
             }
 
+
             const balanceField =
               accountType ===
                 "Savings"
                 ? "savingsBalance"
                 : "checkingBalance";
+
 
             const currentBalance =
               Number(
@@ -2134,12 +2189,15 @@
                 ] || 0
               );
 
+
             const newBalance =
               currentBalance +
               amount;
 
+
             const transactionId =
               `${requestId}_${Date.now()}`;
+
 
             const transactionRef =
               doc(
@@ -2150,10 +2208,11 @@
                 transactionId
               );
 
+
             /*
              * CUSTOMER NOTIFICATION REFERENCE
              *
-             * This notification is created inside the same
+             * This notification is created in the same
              * Firestore transaction as the balance update
              * and customer transaction.
              */
@@ -2167,6 +2226,7 @@
                   "notifications"
                 )
               );
+
 
             /*
              * ACCOUNT BALANCE UPDATE
@@ -2182,10 +2242,12 @@
             balanceUpdate.lastDepositId =
               requestId;
 
+
             transaction.update(
               userRef,
               balanceUpdate
             );
+
 
             /*
              * CUSTOMER TRANSACTION
@@ -2261,11 +2323,15 @@
               }
             );
 
+
             /*
              * CUSTOMER NOTIFICATION
              *
-             * Created atomically with the balance update
-             * and transaction record.
+             * This is created atomically with the
+             * balance update and transaction record.
+             *
+             * The customer will see this inside
+             * notifications.html.
              */
 
             transaction.set(
@@ -2314,6 +2380,7 @@
               }
             );
 
+
             /*
              * MARK REQUEST APPROVED
              */
@@ -2359,18 +2426,23 @@
           }
         );
 
+
         approvedThisSession +=
           1;
 
+
         approvedCount.textContent =
           approvedThisSession;
+
 
         showToast(
           "Deposit approved and account credited.",
           "success"
         );
 
+
         await loadPendingRequests();
+
 
       } catch (error) {
 
@@ -2379,14 +2451,17 @@
           error
         );
 
+
         showToast(
           error.message ||
           "Unable to approve this request.",
           "error"
         );
 
+
         button.disabled =
           false;
+
 
         button.innerHTML =
           originalText;
@@ -2394,6 +2469,7 @@
       }
 
     }
+
 
     /*
      * REJECTION
@@ -2408,8 +2484,10 @@
         return;
       }
 
+
       const reason =
         rejectionReason.value.trim();
+
 
       if (!reason) {
 
@@ -2422,16 +2500,20 @@
 
       }
 
+
       const requestId =
         requestBeingRejected.dataset.requestId;
 
+
       confirmRejectBtn.disabled =
         true;
+
 
       confirmRejectBtn.innerHTML = `
         <i class="fa-solid fa-spinner fa-spin"></i>
         Rejecting...
       `;
+
 
       try {
 
@@ -2442,6 +2524,7 @@
             requestId
           );
 
+
         await runTransaction(
           db,
           async (transaction) => {
@@ -2450,6 +2533,7 @@
               await transaction.get(
                 requestRef
               );
+
 
             if (
               !requestSnap.exists()
@@ -2461,8 +2545,10 @@
 
             }
 
+
             const requestData =
               requestSnap.data();
+
 
             if (
               requestData.status !==
@@ -2474,6 +2560,7 @@
               );
 
             }
+
 
             transaction.update(
               requestRef,
@@ -2495,14 +2582,18 @@
           }
         );
 
+
         closeRejectDialog();
+
 
         showToast(
           "Deposit request rejected.",
           "success"
         );
 
+
         await loadPendingRequests();
+
 
       } catch (error) {
 
@@ -2510,6 +2601,7 @@
           "Rejection failed:",
           error
         );
+
 
         showToast(
           error.message ||
@@ -2531,6 +2623,7 @@
 
     }
 
+
     /*
      * MODAL CONTROLS
      */
@@ -2549,20 +2642,24 @@
 
     }
 
+
     closeRejectModal.addEventListener(
       "click",
       closeRejectDialog
     );
+
 
     cancelRejectBtn.addEventListener(
       "click",
       closeRejectDialog
     );
 
+
     confirmRejectBtn.addEventListener(
       "click",
       rejectCurrentRequest
     );
+
 
     rejectModal.addEventListener(
       "click",
@@ -2580,6 +2677,7 @@
       }
     );
 
+
     /*
      * REFRESH
      */
@@ -2588,6 +2686,7 @@
       "click",
       loadPendingRequests
     );
+
 
     /*
      * NAVIGATION
@@ -2602,6 +2701,7 @@
 
       }
     );
+
 
     unauthorizedBackBtn.addEventListener(
       "click",
