@@ -1648,6 +1648,7 @@
         await updateDoc(
           userRef,
           {
+            "inheritance.userId": currentUser.uid,
             "inheritance.willRead": true,
             "inheritance.willReadAt":
               serverTimestamp()
@@ -1758,6 +1759,7 @@
           userRef,
           {
             inheritance: {
+              userId: currentUser.uid,
               detailsSet: true,
               amount: amount,
               receiveDate: receiveDate,
@@ -1784,6 +1786,7 @@
 
 
         currentUserData.inheritance = {
+          userId: currentUser.uid,
           detailsSet: true,
           amount: amount,
           receiveDate: receiveDate,
