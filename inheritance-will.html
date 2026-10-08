@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Will & Testament | First Merit Bank</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Georgia", "Garamond", serif;
+      background: #e8e8e8;
+      color: #1a1a1a;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      height: 60px;
+      background: #ffffff;
+      border-bottom: 1px solid #d0d0d0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .back-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 10px;
+      background: #f1f5f9;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .back-btn:hover {
+      background: #e0e8f0;
+    }
+
+    .bank-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: #123b72;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .bank-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #172033;
+    }
+
+    .page-title-small {
+      color: #7e8999;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    /* DOCUMENT */
+
+    .document-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px 0;
+    }
+
+    .document {
+      width: 100%;
+      max-width: 900px;
+      background: #ffffff;
+      padding: 60px 80px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      border-radius: 4px;
+      line-height: 1.8;
+      color: #1a1a1a;
+    }
+
+    .document-header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #123b72;
+      padding-bottom: 20px;
+    }
+
+    .document-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #123b72;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .document-subtitle {
+      font-size: 14px;
+      color: #555555;
+      font-style: italic;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #123b72;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-content {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #333333;
+      text-align: justify;
+    }
+
+    .testator-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-left: 4px solid #123b72;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+
+    .testator-info-title {
+      font-weight: 700;
+      color: #123b72;
+      margin-bottom: 8px;
+    }
+
+    .testator-info-content {
+      font-size: 13px;
+      color: #555555;
+    }
+
+    .bequest {
+      background: #f0f4f8;
+      padding: 18px;
+      border: 1px solid #d0dce8;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .bequest-amount {
+      font-size: 18px;
+      font-weight: 800;
+      color: #123b72;
+      margin-bottom: 8px;
+    }
+
+    .bequest-recipient {
+      font-size: 13px;
+      color: #333333;
+      margin-bottom: 6px;
+    }
+
+    .bequest-property {
+      font-size: 12px;
+      color: #666666;
+      font-style: italic;
+    }
+
+    .signature-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #cccccc;
+      text-align: center;
+    }
+
+    .signature-block {
+      display: inline-block;
+      text-align: center;
+      margin: 0 30px;
+    }
+
+    .signature-line {
+      border-top: 1px solid #1a1a1a;
+      width: 200px;
+      margin-top: 40px;
+      margin-bottom: 5px;
+    }
+
+    .signature-label {
+      font-size: 12px;
+      color: #555555;
+    }
+
+    .date-signed {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666666;
+    }
+
+    .witness-section {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #cccccc;
+    }
+
+    .witness-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #123b72;
+      margin-bottom: 15px;
+    }
+
+    .witness-block {
+      display: inline-block;
+      text-align: center;
+      margin-right: 40px;
+      margin-bottom: 20px;
+    }
+
+    .witness-line {
+      border-top: 1px solid #1a1a1a;
+      width: 180px;
+      margin-top: 35px;
+      margin-bottom: 5px;
+    }
+
+    .witness-label {
+      font-size: 11px;
+      color: #555555;
+    }
+
+    /* ACTIONS */
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 30px 20px;
+      margin-top: 20px;
+    }
+
+    .primary-btn {
+      width: 100%;
+      max-width: 400px;
+      height: 50px;
+      border: 0;
+      border-radius: 14px;
+      background: #123b72;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .primary-btn:hover {
+      background: #0f2d5a;
+      box-shadow: 0 4px 12px rgba(18, 59, 114, 0.3);
+    }
+
+    .primary-btn:active {
+      transform: scale(0.98);
+    }
+
+    .primary-btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translate(-50%,20px);
+      background: #172033;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 13px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%,0);
+    }
+
+    @media (max-width: 768px) {
+      .document {
+        padding: 40px 30px;
+      }
+
+      .document-title {
+        font-size: 22px;
+      }
+
+      .section-content {
+        font-size: 12px;
+      }
+
+      .bequest-amount {
+        font-size: 16px;
+      }
+
+      .actions {
+        padding: 20px 15px;
+      }
+
+      .primary-btn {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+
+  <header class="topbar">
+
+    <div class="topbar-left">
+
+      <button class="back-btn" id="backBtn">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div class="bank-brand">
+
+        <div class="bank-logo">
+          FM
+        </div>
+
+        <div>
+          <div class="bank-name">
+            First Merit Bank
+          </div>
+
+          <div class="page-title-small">
+            Will & Testament
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- DOCUMENT CONTAINER -->
+
+  <div class="document-container">
+
+    <!-- WILL DOCUMENT -->
+
+    <div class="document">
+
+      <!-- HEADER -->
+
+      <div class="document-header">
+
+        <div class="document-title">
+          LAST WILL AND TESTAMENT
+        </div>
+
+        <div class="document-subtitle">
+          Of Newman Gordon
+        </div>
+
+      </div>
+
+
+      <!-- PREAMBLE -->
+
+      <div class="section">
+
+        <div class="section-content">
+          I, NEWMAN GORDON, a resident of Sarasota County, State of Florida, being of sound mind and memory, and considering the uncertainty of life, do hereby make, publish, and declare this to be my Last Will and Testament, hereby revoking all former Wills and Codicils by me at any time heretofore made.
+        </div>
+
+      </div>
+
+
+      <!-- TESTATOR INFO -->
+
+      <div class="testator-info">
+
+        <div class="testator-info-title">
+          TESTATOR INFORMATION
+        </div>
+
+        <div class="testator-info-content">
+          <strong>Name:</strong> Newman Gordon<br>
+          <strong>Age:</strong> 67 years old<br>
+          <strong>Residence:</strong> Sarasota, Florida<br>
+          <strong>Date of Document:</strong> December 2025<br>
+          <strong>Status:</strong> Deceased (2026)
+        </div>
+
+      </div>
+
+
+      <!-- FIRST -->
+
+      <div class="section">
+
+        <div class="section-title">
+          First: Debts and Expenses
+        </div>
+
+        <div class="section-content">
+          I direct my Executor to pay all of my just debts, funeral expenses, and the expenses of administering my estate out of my estate, without requiring such debts and expenses to be presented to me. I direct that all estate and inheritance taxes be paid from my estate.
+        </div>
+
+      </div>
+
+
+      <!-- SECOND -->
+
+      <div class="section">
+
+        <div class="section-title">
+          Second: Primary Bequest
+        </div>
+
+        <div class="section-content">
+          I give, devise, and bequeath to BAILEY NEWMAN, my primary beneficiary and designated heir, the sum of TEN MILLION DOLLARS ($10,000,000.00), and all real property located in Sarasota County, Florida, commonly known as Bright Realty, including all improvements, fixtures, and personal property attached thereto.
+        </div>
+
+        <div class="bequest">
+
+          <div class="bequest-amount">
+            $10,000,000
+          </div>
+
+          <div class="bequest-recipient">
+            <strong>Beneficiary:</strong> Bailey Newman
+          </div>
+
+          <div class="bequest-property">
+            <strong>Property:</strong> Bright Realty, Sarasota, Florida
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- THIRD -->
+
+      <div class="section">
+
+        <div class="section-title">
+          Third: Real Property Distribution
+        </div>
+
+        <div class="section-content">
+          The real property known as Bright Realty, located in Sarasota County, Florida, including all associated real estate holdings, improvements, buildings, and appurtenances thereto, shall be transferred to Bailey Newman in fee simple absolute. This property transfer shall be free and clear of all encumbrances, mortgages, and liens, with all transfer fees and costs to be paid from the estate.
+        </div>
+
+      </div>
+
+
+      <!-- FOURTH -->
+
+      <div class="section">
+
+        <div class="section-title">
+          Fourth: Appointment of Executor
+        </div>
+
+        <div class="section-content">
+          I hereby nominate, constitute, and appoint Bailey Newman as Executor of this my Last Will and Testament. If Bailey Newman is unable or unwilling to serve, I nominate and appoint First Merit Bank as alternate Executor. I authorize my Executor to sell, lease, mortgage, or otherwise dispose of any property in my estate without court approval.
+        </div>
+
+      </div>
+
+
+      <!-- FIFTH -->
+
+      <div class="section">
+
+        <div class="section-title">
+          Fifth: Powers and Duties
+        </div>
+
+        <div class="section-content">
+          I give to my Executor full power and authority to do all such acts, things, and deeds as shall be deemed necessary or advisable in the collection, management, investment, reinvestment, control, and disposition of my estate, and in the distribution thereof, as fully as if I were living and acting for myself.
+        </div>
+
+      </div>
+
+
+      <!-- SIXTH -->
+
+      <div class="section">
+
+        <div class="section-title">
+          Sixth: Residuary Estate
+        </div>
+
+        <div class="section-content">
+          All the rest, residue, and remainder of my estate, both real and personal, I give, devise, and bequeath to Bailey Newman. Should Bailey Newman predecease me, the residuary estate shall be distributed according to Florida Statute.
+        </div>
+
+      </div>
+
+
+      <!-- SEVENTH -->
+
+      <div class="section">
+
+        <div class="section-title">
+          Seventh: Compliance with Law
+        </div>
+
+        <div class="section-content">
+          This Will shall be construed and administered according to the laws of the State of Florida. In witness whereof, I have hereunto set my hand to this my Last Will and Testament on this date.
+        </div>
+
+      </div>
+
+
+      <!-- SIGNATURES -->
+
+      <div class="signature-section">
+
+        <div class="signature-block">
+
+          <div class="signature-line"></div>
+
+          <div class="signature-label">
+            Signature of Testator
+          </div>
+
+          <div class="signature-label" style="font-size: 11px; margin-top: 8px;">
+            Newman Gordon
+          </div>
+
+        </div>
+
+        <div class="date-signed">
+          Date Executed: December 15, 2025
+        </div>
+
+      </div>
+
+
+      <!-- WITNESS SECTION -->
+
+      <div class="witness-section">
+
+        <div class="witness-title">
+          Witness Attestation
+        </div>
+
+        <div class="witness-block">
+
+          <div class="witness-line"></div>
+
+          <div class="witness-label">
+            First Witness
+          </div>
+
+        </div>
+
+        <div class="witness-block">
+
+          <div class="witness-line"></div>
+
+          <div class="witness-label">
+            Second Witness
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ACTIONS -->
+
+  <div class="actions">
+
+    <button class="primary-btn" id="acknowledgeBtn">
+      I Have Read and Understood the Will
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+  Will acknowledgement saved
+</div>
+
+
+<script type="module">
+
+  import {
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  import {
+    doc,
+    updateDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+  import {
+    auth,
+    db
+  } from "./firebase.js";
+
+
+  const backBtn =
+    document.getElementById("backBtn");
+
+  const acknowledgeBtn =
+    document.getElementById("acknowledgeBtn");
+
+  const toast =
+    document.getElementById("toast");
+
+
+  let currentUser = null;
+
+
+  /* AUTH */
+
+  onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    currentUser = user;
+
+  });
+
+
+  /* BACK */
+
+  backBtn.addEventListener("click", () => {
+    window.location.href = "inheritance.html";
+  });
+
+
+  /* ACKNOWLEDGE WILL */
+
+  acknowledgeBtn.addEventListener(
+    "click",
+    async () => {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      acknowledgeBtn.disabled = true;
+
+      acknowledgeBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+
+      try {
+
+        const userRef =
+          doc(db, "users", currentUser.uid);
+
+
+        await updateDoc(
+          userRef,
+          {
+            "inheritance.userId": currentUser.uid,
+            "inheritance.willRead": true,
+            "inheritance.willReadAt":
+              serverTimestamp()
+          }
+        );
+
+
+        showToast(
+          "Will acknowledgement saved"
+        );
+
+
+        setTimeout(() => {
+
+          window.location.href = "inheritance.html";
+
+        }, 1500);
+
+
+      } catch (error) {
+
+        console.error(
+          "Will acknowledgement error:",
+          error
+        );
+
+
+        showToast(
+          "Unable to save acknowledgement"
+        );
+
+      } finally {
+
+        acknowledgeBtn.disabled = false;
+
+        acknowledgeBtn.innerHTML =
+          "I Have Read and Understood the Will";
+
+      }
+
+    }
+  );
+
+
+  /* TOAST */
+
+  let toastTimer;
+
+
+  function showToast(message) {
+
+    toast.textContent =
+      message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 2300);
+
+  }
+
+</script>
+
+</body>
+</html>
