@@ -1428,13 +1428,6 @@
 
   function showDetails(inheritance) {
 
-    /*
-      This is the important part:
-
-      Once detailsSet === true,
-      the original setup card is hidden.
-    */
-
     setupCard.style.display = "none";
 
     detailsSection.style.display = "block";
@@ -1572,7 +1565,9 @@
 
   verificationCard.addEventListener(
     "click",
-    openWillModal
+    () => {
+      window.location.href = "inheritance-will.html";
+    }
   );
 
 
@@ -1615,14 +1610,6 @@
 
   }
 
-
-  /*
-    Acknowledging the will only records that
-    the user has read it.
-
-    It does NOT automatically make the
-    inheritance transfer eligible.
-  */
 
   acknowledgeWillBtn.addEventListener(
     "click",
@@ -1749,12 +1736,6 @@
           doc(db, "users", currentUser.uid);
 
 
-        /*
-          Saving detailsSet: true is what permanently
-          changes this account from setup mode to
-          saved inheritance mode.
-        */
-
         await updateDoc(
           userRef,
           {
@@ -1764,21 +1745,9 @@
               amount: amount,
               receiveDate: receiveDate,
               nextOfKin: nextOfKin,
-
-              /*
-                Transfer remains inaccessible until
-                the verification process is completed.
-              */
               transferStatus: "Inaccessible",
-
               verificationStatus: "Required",
-
-              /*
-                New inheritance information starts
-                with the will unread.
-              */
               willRead: false,
-
               updatedAt: serverTimestamp()
             }
           }
@@ -1796,11 +1765,6 @@
           willRead: false
         };
 
-
-        /*
-          This immediately hides the setup card
-          without requiring the user to refresh.
-        */
 
         showDetails(
           currentUserData.inheritance
@@ -1997,8 +1961,6 @@
   }
 
 
-  /* FORMATTING */
-
   function formatCurrency(amount) {
 
     return new Intl.NumberFormat(
@@ -2031,8 +1993,6 @@
 
   }
 
-
-  /* TOAST */
 
   let toastTimer;
 
